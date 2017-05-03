@@ -1,0 +1,43 @@
+#!/usr/bin/env tcsh
+
+set timeout = 10
+set sleeptime = 1
+
+set testcases = (m3ua-sgp-aspsm-v-001 \
+                 m3ua-sgp-aspsm-v-003 \
+                 m3ua-sgp-aspsm-v-005 \
+                 m3ua-sgp-aspsm-i-001 \
+                 m3ua-sgp-aspsm-i-002 \
+                 m3ua-sgp-aspsm-i-003 \
+                 m3ua-sgp-aspsm-i-004 \
+                 m3ua-sgp-aspsm-o-001 \
+                 m3ua-sgp-aspsm-o-003 \
+                 m3ua-sgp-aspsm-o-004 \
+                 m3ua-sgp-asptm-v-001 \
+                 m3ua-sgp-asptm-v-003 \
+                 m3ua-sgp-asptm-v-006 \
+                 m3ua-sgp-asptm-v-008 \
+                 m3ua-sgp-asptm-v-010 \
+                 m3ua-sgp-asptm-v-011 \
+                 m3ua-sgp-asptm-i-001 \
+                 m3ua-sgp-asptm-i-004 \
+                 m3ua-sgp-asptm-i-005 \
+                 m3ua-sgp-asptm-i-006 \
+                 m3ua-sgp-asptm-i-008 \
+                 m3ua-sgp-asptm-i-010 \
+                 m3ua-sgp-asptm-o-001 \
+                 m3ua-sgp-asptm-o-003 \
+                 m3ua-sgp-mtr-v-002-alternate \
+                 m3ua-sgp-mtr-v-003-alternate \
+                 m3ua-sgp-mtr-i-001 \
+                 m3ua-sgp-mtr-i-002 \
+                 m3ua-sgp-mtr-i-003 \
+                 m3ua-sgp-rkm-v-001 \
+                 m3ua-sgp-rkm-v-002 \
+                 m3ua-sgp-rkm-v-003 \
+                 )
+
+foreach testcase ($testcases)
+  (runm3uatest -t $timeout $testcase > /dev/tty) >& /dev/null
+  sleep $sleeptime
+end

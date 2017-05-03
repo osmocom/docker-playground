@@ -1,0 +1,31 @@
+FROM debian-jessie-build
+
+MAINTAINER Harald Welte <laforge@gnumonks.org>
+
+COPY	Release.key /tmp/Release.key
+
+RUN	apt-key add /tmp/Release.key && \
+	rm /tmp/Release.key && \
+	echo "deb http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/ ./" > /etc/apt/sources.list.d/osmocom-nightly.list
+
+RUN	apt-get update && apt-get install -y \
+	libosmocore-dev \
+	libosmo-netif-dev \
+	libsctp-dev
+
+WORKDIR	/tmp
+
+RUN	git clone git://git.osmocom.org/libosmo-sccp.git && \
+	cd libosmo-sccp && \
+	autoreconf -fi && \
+	./configure && \
+	make -j8 install && \
+	ldconfig
+
+VOLUME	/data
+
+COPY	osmo-stp.cfg /data/
+
+CMD	/usr/local/bin/osmo-stp -c /data/osmo-stp.cfg
+
+EXPOSE	2905 14001 4239
