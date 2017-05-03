@@ -11,8 +11,7 @@ RUN	apt-key add /tmp/Release.key && \
 RUN	apt-get update && apt-get install -y \
 	telnet \
 	libosmocore-dev \
-	libosmo-netif-dev \
-	libsctp-dev
+	libosmo-netif-dev
 
 WORKDIR	/tmp
 

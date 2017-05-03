@@ -11,4 +11,5 @@ RUN	apt-get update && apt-get install -y \
 	autogen \
 	automake \
 	libtool \
-	pkg-config
+	pkg-config \
+	libsctp-dev
