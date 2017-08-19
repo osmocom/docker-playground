@@ -1,4 +1,4 @@
-FROM sigtran-tests
+FROM laforge/sigtran-tests
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
