@@ -8,5 +8,9 @@ RUN	git clone git://git.osmocom.org/osmo-ttcn3-hacks.git && \
 	make compile && \
 	make -j8
 
-CMD	cd osmo-ttcn3-hacks/ggsn_tests && \
-	ttcn3_start ./GGSN_Tests ./GGSN_Tests.cfg && ttcn3_logmerge *.log
+VOLUME	/data
+
+COPY	GGSN_Tests.cfg /data/GGSN_Tests.cfg
+
+CMD	cd /data && \
+	ttcn3_start /osmo-ttcn3-hacks/ggsn_tests/GGSN_Tests ./GGSN_Tests.cfg && ttcn3_logmerge *.log
