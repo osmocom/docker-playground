@@ -14,9 +14,8 @@ RUN	apt-get update && apt-get install -y \
 
 WORKDIR	/tmp
 
-ARG	timestamp=invalid
 RUN	git clone git://git.osmocom.org/openggsn.git
-ADD	http://git.osmocom.org/openggsn/commit/?h=laforge/osmo-ggsn /tmp/commit
+ADD	http://git.osmocom.org/openggsn/patch/?h=laforge/osmo-ggsn /tmp/commit
 RUN	cd openggsn && \
 	git checkout -f laforge/osmo-ggsn && \
 	autoreconf -fi && \
