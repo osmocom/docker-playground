@@ -7,8 +7,10 @@ COPY	*.patch /tmp/
 RUN	git config --global user.email "nobody@localhost" && \
 	git config --global user.name "Docker Container"
 
-RUN	cd /tmp && git clone https://github.com/nplab/sua-testtool && \
-	cd sua-testtool && \
+RUN	cd /tmp && git clone https://github.com/nplab/sua-testtool
+ADD	http://git.osmocom.org/nplab/sua-testtool/commit /tmp/commit
+RUN	cd /tmp/sua-testtool && \
+	git pull && \
 	git am /tmp/*.patch && \
 	cc -o run-sua-test run-sua-test.c && \
 	cp run-sua-test /usr/local/bin/

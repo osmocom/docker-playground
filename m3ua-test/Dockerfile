@@ -2,8 +2,10 @@ FROM sigtran-tests
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
-RUN	cd /tmp && git clone https://github.com/nplab/m3ua-testtool && \
-	cd m3ua-testtool && \
+RUN	cd /tmp && git clone https://github.com/nplab/m3ua-testtool
+ADD	http://git.osmocom.org/nplab/m3ua-testtool/commit /tmp/commit
+RUN	cd /tmp/m3ua-testtool && \
+	git pull && \
 	cc -o runm3uatest runm3uatest.c && \
 	cp runm3uatest /usr/local/bin/
 

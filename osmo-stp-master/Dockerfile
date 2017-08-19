@@ -15,8 +15,10 @@ RUN	apt-get update && apt-get install -y \
 
 WORKDIR	/tmp
 
-RUN	git clone git://git.osmocom.org/libosmo-sccp.git && \
-	cd libosmo-sccp && \
+RUN	git clone git://git.osmocom.org/libosmo-sccp.git
+ADD	http://git.osmocom.org/libosmo-sccp/commit /tmp/commit
+RUN	cd libosmo-sccp && \
+	git pull && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 install && \
