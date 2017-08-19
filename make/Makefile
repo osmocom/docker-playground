@@ -109,4 +109,4 @@ check-release: .release
 
 
 run:
-	docker run $(RUN_ARGS) -it $(NAME)
+	docker run $(RUN_ARGS) -it $(IMAGE)
