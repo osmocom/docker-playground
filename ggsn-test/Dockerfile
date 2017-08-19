@@ -13,4 +13,5 @@ VOLUME	/data
 COPY	GGSN_Tests.cfg /data/GGSN_Tests.cfg
 
 CMD	cd /data && \
-	ttcn3_start /osmo-ttcn3-hacks/ggsn_tests/GGSN_Tests ./GGSN_Tests.cfg && ttcn3_logmerge *.log
+	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/ggsn_tests/GGSN_Tests && \
+	ttcn3_logmerge GGSN*.log
