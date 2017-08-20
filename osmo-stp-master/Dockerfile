@@ -28,6 +28,6 @@ VOLUME	/data
 
 COPY	osmo-stp.cfg /data/
 
-CMD	/usr/local/bin/osmo-stp -c /data/osmo-stp.cfg
+CMD	["/usr/local/bin/osmo-stp", "-c", "/data/osmo-stp.cfg"]
 
 EXPOSE	2905 14001 4239
