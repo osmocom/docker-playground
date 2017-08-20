@@ -39,6 +39,7 @@ VOLUME	/data
 COPY	osmo-bts.cfg /data/osmo-bts.cfg
 
 WORKDIR	/data
-CMD	["/usr/local/bin/osmo-bts-virtual"]
+	# send GSMTAP data to .230 which is the ttcn3-sysinfo test
+CMD	["/usr/local/bin/osmo-bts-virtual", "-i", "172.18.0.230"]
 
 #EXPOSE	
