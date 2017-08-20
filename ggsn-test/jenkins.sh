@@ -1,12 +1,12 @@
 #!/bin/sh
 
 # non-jenkins execution: assume local user name
-if [ "x$REPO_USER" == "x" ]; then
+if [ "x$REPO_USER" = "x" ]; then
 	REPO_USER=$USER
 fi
 
 # non-jenkins execution: put logs in /tmp
-if [ "x$WORKSPACE" == "x" ]; then
+if [ "x$WORKSPACE" = "x" ]; then
 	WORKSPACE=/tmp
 fi
 
