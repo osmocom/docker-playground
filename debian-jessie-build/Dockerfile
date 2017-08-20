@@ -12,4 +12,14 @@ RUN	apt-get update && apt-get install -y \
 	automake \
 	libtool \
 	pkg-config \
-	libsctp-dev
+	libtalloc-dev \
+	libpcsclite-dev \
+	libortp-dev \
+	libsctp-dev \
+	libssl-dev \
+	libdbi-dev \
+	libdbd-sqlite3 \
+	libsqlite3-dev \
+	libpcap-dev \
+	libc-ares-dev \
+	sqlite3
