@@ -3,7 +3,6 @@ FROM	laforge/debian-jessie-build
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 RUN	dpkg --add-architecture i386 && \
-	apt-get upgrade -y && \
 	apt-get install -y --no-install-recommends \
 		asciidoc \
 		bc \
@@ -28,6 +27,7 @@ RUN	useradd --uid=1000 build && \
 
 RUN	pip install timeout_decorator
 
+# first add this file to invalidate cache each time osmo-python-tests.git is updated
 ADD	http://git.osmocom.org/python/osmo-python-tests/patch /tmp/commit-osmo-python-tests
 RUN	git clone git://git.osmocom.org/python/osmo-python-tests && \
 	cd osmo-python-tests && \

@@ -2,8 +2,11 @@ FROM laforge/debian-jessie-build
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
-RUN	apt-get update && apt-get install -y \
-	bison flex
+RUN	apt-get update && \
+	apt-get install -y --no-install-recommends \
+		bison \
+		flex && \
+	apt-get clean
 
 COPY *.patch /tmp/
 

@@ -8,14 +8,16 @@ RUN	apt-key add /tmp/Release.key && \
 	rm /tmp/Release.key && \
 	echo "deb http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/ ./" > /etc/apt/sources.list.d/osmocom-nightly.list
 
-RUN	apt-get update && apt-get install -y \
-	telnet \
-	libosmocore-dev \
-	libosmo-abis-dev \
-	libosmo-netif-dev \
-	libosmo-sccp-dev \
-	libsmpp34-dev \
-	libgtp-dev
+RUN	apt-get update && \
+	apt-get install -y --no-install-recommends \
+		telnet \
+		libosmocore-dev \
+		libosmo-abis-dev \
+		libosmo-netif-dev \
+		libosmo-sccp-dev \
+		libsmpp34-dev \
+		libgtp-dev && \
+	apt-get clean
 
 WORKDIR	/tmp
 

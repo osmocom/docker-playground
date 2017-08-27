@@ -5,7 +5,12 @@ MAINTAINER Harald Welte <laforge@gnumonks.org>
 RUN	apt-get update && apt-get install -y \
 	eclipse-titan
 
-RUN	apt-get update && apt-get -y install build-essential git
+RUN	apt-get update && \
+	apt-get upgrade -y && \
+	apt-get -y install \
+		build-essential \
+		git && \
+	apt-get clean
 
 ARG	eclipsegit=https://github.com/eclipse
 ARG	eclipsegit2=git://git.eclipse.org/gitroot/titan
