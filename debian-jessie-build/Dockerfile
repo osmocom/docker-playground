@@ -29,6 +29,7 @@ RUN	apt-get update && \
 		libfftw3-dev \
 		libgps-dev \
 		libgsm1-dev \
+		libncurses5-dev \
 		libortp-dev \
 		libpcap-dev \
 		libpcsclite-dev \
