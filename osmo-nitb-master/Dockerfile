@@ -16,7 +16,7 @@ RUN	apt-get update && \
 		libosmo-netif-dev \
 		libosmo-sccp-dev \
 		libsmpp34-dev \
-		libgtp-dev &&
+		libgtp-dev && \
 	apt-get clean
 
 WORKDIR	/tmp

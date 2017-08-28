@@ -11,7 +11,7 @@ RUN	apt-key add /tmp/Release.key && \
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		telnet \
-		libosmocore-dev &&
+		libosmocore-dev && \
 	apt-get clean
 
 WORKDIR	/tmp
