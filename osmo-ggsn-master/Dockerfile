@@ -27,9 +27,9 @@ RUN	cd openggsn && \
 
 VOLUME	/data
 
-COPY	osmo-ggsn.cfg /data/openggsn.cfg
+COPY	osmo-ggsn.cfg /data/osmo-ggsn.cfg
 
 WORKDIR	/data
-CMD	["/usr/local/bin/ggsn"]
+CMD	["/usr/local/bin/osmo-ggsn"]
 
 EXPOSE	3386/udp 2123/udp 2152/udp 4257/tcp 4260/tcp
