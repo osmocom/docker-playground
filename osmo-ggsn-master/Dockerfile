@@ -19,7 +19,7 @@ WORKDIR	/tmp
 RUN	git clone git://git.osmocom.org/openggsn.git
 ADD	http://git.osmocom.org/openggsn/patch/?h=laforge/osmo-ggsn /tmp/commit
 RUN	cd openggsn && \
-	git checkout -f laforge/osmo-ggsn && \
+	git fetch && git checkout -f -B laforge/osmo-ggsn origin/laforge/osmo-ggsn && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 install && \
