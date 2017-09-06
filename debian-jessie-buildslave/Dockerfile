@@ -23,7 +23,9 @@ RUN	dpkg --add-architecture i386 && \
 		unzip && \
 	apt-get clean
 
-RUN	useradd --uid=1000 build && \
+RUN	useradd -m --uid=1000 build && \
+	echo "build ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/build && \
+	chmod 0440 /etc/sudoers.d/build && \
 	mkdir /build && \
 	chown build:build /build
 
