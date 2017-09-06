@@ -16,10 +16,10 @@ RUN	apt-get update && \
 
 WORKDIR	/tmp
 
-RUN	git clone git://git.osmocom.org/openggsn.git
-ADD	http://git.osmocom.org/openggsn/patch/?h=laforge/osmo-ggsn /tmp/commit
-RUN	cd openggsn && \
-	git fetch && git checkout -f -B laforge/osmo-ggsn origin/laforge/osmo-ggsn && \
+RUN	git clone git://git.osmocom.org/osmo-ggsn.git
+ADD	http://git.osmocom.org/osmo-ggsn/patch /tmp/commit
+RUN	cd osmo-ggsn && \
+	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 install && \
