@@ -27,6 +27,7 @@ RUN	apt-get update && \
 		libdbd-sqlite3 \
 		libdbi-dev \
 		libfftw3-dev \
+		libgnutls28-dev \
 		libgps-dev \
 		libgsm1-dev \
 		libncurses5-dev \
