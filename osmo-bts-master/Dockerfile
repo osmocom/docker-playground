@@ -21,14 +21,8 @@ RUN	apt-get update && \
 
 WORKDIR	/tmp
 
-RUN	git clone git://git.osmocom.org/openbsc.git
-ADD	http://git.osmocom.org/openbsc/patch /tmp/commit-openbsc
-
 RUN	git clone git://git.osmocom.org/osmo-bts.git
 ADD	http://git.osmocom.org/osmo-bts/patch /tmp/commit-osmo-bts
-
-RUN	cd openbsc/openbsc && \
-	git fetch && git checkout -f -B master origin/master
 
 RUN	cd osmo-bts && \
 	git fetch && git checkout -f -B master origin/master && \
