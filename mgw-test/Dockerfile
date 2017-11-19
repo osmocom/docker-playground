@@ -4,8 +4,9 @@ RUN	mkdir /root/projects && (cd /root/projects && ln -sf / git)
 RUN	git clone git://git.osmocom.org/osmo-ttcn3-hacks.git
 
 ADD	http://git.osmocom.org/osmo-ttcn3-hacks/patch /tmp/commit
-RUN	cd osmo-ttcn3-hacks/mgw && \
+RUN	cd osmo-ttcn3-hacks && \
 	git pull && \
+	cd mgw && \
 	./gen_links.sh && \
 	./regen_makefile.sh && \
 	make compile && \
