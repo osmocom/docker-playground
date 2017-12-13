@@ -12,45 +12,5 @@ RUN	apt-get update && \
 		git && \
 	apt-get clean
 
-ARG	eclipsegit=https://github.com/eclipse
-ARG	eclipsegit2=git://git.eclipse.org/gitroot/titan
-
-RUN	git clone ${eclipsegit}/titan.Libraries.TCCUsefulFunctions && \
-	git clone ${eclipsegit2}/titan.ProtocolModules.GRE && \
-	git clone ${eclipsegit}/titan.ProtocolModules.ICMP && \
-	git clone ${eclipsegit}/titan.ProtocolModules.ICMPv6 && \
-	git clone ${eclipsegit}/titan.ProtocolModules.IP && \
-	git clone ${eclipsegit}/titan.ProtocolModules.L2TP && \
-	git clone ${eclipsegit2}/titan.ProtocolModules.M2PA && \
-	git clone ${eclipsegit}/titan.ProtocolModules.M3UA && \
-	git clone ${eclipsegit2}/titan.ProtocolModules.SCTP && \
-	git clone ${eclipsegit}/titan.ProtocolModules.SMPP && \
-	git clone ${eclipsegit2}/titan.ProtocolModules.SUA && \
-	git clone ${eclipsegit}/titan.ProtocolModules.TCP && \
-	git clone ${eclipsegit}/titan.ProtocolModules.UDP && \
-	git clone ${eclipsegit}/titan.ProtocolModules.RTP && \
-	git clone ${eclipsegit2}/titan.ProtocolModules.SDP && \
-	git clone ${eclipsegit}/titan.TestPorts.Common_Components.Socket-API && \
-	git clone ${eclipsegit2}/titan.TestPorts.GPIO && \
-	git clone ${eclipsegit}/titan.TestPorts.IPL4asp && \
-	git clone ${eclipsegit}/titan.TestPorts.LANL2asp && \
-	git clone ${eclipsegit}/titan.TestPorts.PCAPasp && \
-	git clone ${eclipsegit}/titan.TestPorts.SCTPasp && \
-	git clone ${eclipsegit}/titan.TestPorts.SIPmsg && \
-	git clone ${eclipsegit}/titan.TestPorts.TCPasp && \
-	git clone ${eclipsegit}/titan.TestPorts.TELNETasp && \
-	git clone ${eclipsegit}/titan.TestPorts.UDPasp && \
-	git clone ${eclipsegit}/titan.TestPorts.UNIX_DOMAIN_SOCKETasp && \
-	git clone ${eclipsegit2}/titan.ProtocolModules.BSSAPP_v7.3.0.git && \
-	git clone ${eclipsegit2}/titan.ProtocolModules.BSSGP_v13.0.0.git && \
-	git clone ${eclipsegit2}/titan.ProtocolModules.BSSMAP_v11.2.0.git && \
-	git clone ${eclipsegit2}/titan.ProtocolModules.GTP_v13.5.0.git && \
-	git clone ${eclipsegit2}/titan.ProtocolModules.GTPv2_v13.7.0.git && \
-	git clone ${eclipsegit2}/titan.ProtocolModules.ISUP_Q.762.git && \
-	git clone ${eclipsegit2}/titan.ProtocolModules.LLC_v7.1.0.git && \
-	git clone ${eclipsegit2}/titan.ProtocolModules.MobileL3_v13.4.0.git && \
-	git clone ${eclipsegit2}/titan.ProtocolModules.NS_v7.3.0.git && \
-	git clone ${eclipsegit2}/titan.ProtocolModules.SNDCP_v7.0.0.git
-
 # somehow Debian folks updated the gcc version but not titan :/
 RUN	sed -i 's/^#error/\/\/#error/' /usr/include/titan/cversion.h

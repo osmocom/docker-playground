@@ -5,12 +5,8 @@ RUN	git clone git://git.osmocom.org/osmo-ttcn3-hacks.git
 
 ADD	http://git.osmocom.org/osmo-ttcn3-hacks/patch /tmp/commit
 RUN	cd osmo-ttcn3-hacks && \
-	git pull && \
-	cd mgw && \
-	./gen_links.sh && \
-	./regen_makefile.sh && \
-	make compile && \
-	make -j8
+	git checkout -f -B master origin/master && \
+	make mgw
 
 VOLUME	/data
 
