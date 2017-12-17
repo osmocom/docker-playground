@@ -2,12 +2,15 @@ FROM debian:jessie
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
+ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/"
+
 COPY	Release.key /tmp/Release.key
 
 RUN	apt-key add /tmp/Release.key && \
 	rm /tmp/Release.key && \
-	echo "deb http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/ ./" > /etc/apt/sources.list.d/osmocom-nightly.list
+	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-nightly.list
 
+ADD	$OSMOCOM_REPO/Release /tmp/Release
 RUN	apt-get update && \
 	apt-get upgrade -y && \
 	apt-get install -y --no-install-recommends \
