@@ -15,14 +15,12 @@ RUN	apt-get update && \
 	apt-get upgrade -y && \
 	apt-get install -y --no-install-recommends \
 		telnet \
-		osmocom-sgsn \
-		osmocom-nitb \
-		osmocom-ipaccess-utils \
-		osmocom-gbproxy \
-		osmocom-bsc \
-		osmocom-bsc-nat \
-		osmocom-bs11-utils \
-		openggsn \
+		osmo-sgsn \
+		osmo-msc \
+		osmo-mgw \
+		osmo-gbproxy \
+		osmo-bsc \
+		osmo-ggsn \
 		osmo-bts-trx \
 		osmo-trx \
 		osmo-pcu \
