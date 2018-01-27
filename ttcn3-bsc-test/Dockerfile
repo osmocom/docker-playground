@@ -12,6 +12,7 @@ RUN	git config --global user.email docker@dock.er && \
 
 ADD	http://git.osmocom.org/osmo-ttcn3-hacks/patch /tmp/commit
 RUN	cd osmo-ttcn3-hacks && \
+	git fetch && \
 	git checkout -f -B master origin/master && \
 	git cherry-pick 5ce5241d6d460e9b36a908ac7072d8ea68df08db && \
 	make bsc
