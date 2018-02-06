@@ -20,7 +20,7 @@ mkdir $VOL_BASE_DIR/ggsn-tester
 cp GGSN_Tests.cfg $VOL_BASE_DIR/ggsn-tester/
 
 mkdir $VOL_BASE_DIR/ggsn
-cp ../osmo-ggsn-master/osmo-ggsn.cfg $VOL_BASE_DIR/ggsn/
+cp osmo-ggsn.cfg $VOL_BASE_DIR/ggsn/
 
 # start container with ggsn in background
 docker run	--cap-add=NET_ADMIN \
