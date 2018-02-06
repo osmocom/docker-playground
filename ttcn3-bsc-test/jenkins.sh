@@ -44,7 +44,7 @@ for i in `seq 0 2`; do
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.2.10$i \
 			--name bts$i -d \
-			$REPO_USER/osmo-bts-omldummy ./respawn.sh 172.18.2.20 $((i + 1234))
+			$REPO_USER/osmo-bts-omldummy ./respawn.sh 172.18.2.20 $((i + 1234)) 1
 done
 
 echo Starting container with BSC testsuite
