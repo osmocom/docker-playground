@@ -10,6 +10,11 @@ if [ "x$WORKSPACE" = "x" ]; then
 	WORKSPACE=/tmp
 fi
 
+NET_NAME="ggsn-tester"
+
+echo Creating network $NET_NAME
+docker network create --internal --subnet 172.18.3.0/24 $NET_NAME
+
 VOL_BASE_DIR=`mktemp -d`
 mkdir $VOL_BASE_DIR/ggsn-tester
 cp GGSN_Tests.cfg $VOL_BASE_DIR/ggsn-tester/
@@ -22,7 +27,7 @@ docker run	--cap-add=NET_ADMIN \
 		--device /dev/net/tun:/dev/net/tun \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--rm \
-		--network sigtran --ip 172.18.0.201 \
+		--network $NET_NAME --ip 172.18.3.201 \
 		-v $VOL_BASE_DIR/ggsn:/data \
 		--name ggsn -d \
 		$REPO_USER/osmo-ggsn-master
@@ -30,12 +35,16 @@ docker run	--cap-add=NET_ADMIN \
 # start docker container with testsuite in foreground
 docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
-		--network sigtran --ip 172.18.0.202 \
+		--network $NET_NAME --ip 172.18.3.202 \
 		-v $VOL_BASE_DIR/ggsn-tester:/data \
 		$REPO_USER/ggsn-test
 
 # stop GGSN after test has completed
 docker container stop ggsn
+
+echo Removing network $NET_NAME
+docker network remove $NET_NAME
+
 
 rm -rf $WORKSPACE/logs
 mkdir -p $WORKSPACE/logs

@@ -36,13 +36,13 @@
 ;;; $Id: m3ua-param-testtool.scm,v 1.5 2012/08/28 19:56:13 tuexen Exp $
 
 ;;; Define a transport address of the system under test (osmo-stp)
-(define sut-addr "172.18.0.200")
+(define sut-addr "172.18.7.200")
 (define sut-port   m3ua-port)
 (define sut-port-1 m3ua-port)
 (define sut-port-2 m3ua-port)
 
 ;;; Define the transport address of the tester
-(define tester-addr "172.18.0.2")
+(define tester-addr "172.18.7.2")
 (define tester-port  3333)
 (define tester-port-1 3000)
 (define tester-port-2 3001)

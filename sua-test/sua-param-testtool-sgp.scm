@@ -26,13 +26,13 @@
 ;;; $Id: sua-param-testtool-sgp.scm,v 1.2 2011/03/21 22:18:29 tuexen Exp $
 
 ;;; Define a transport address of the system under test
-(define sut-addr "172.18.0.200")
+(define sut-addr "172.18.6.200")
 (define sut-port   sua-port)
 (define sut-port-1 sua-port)
 (define sut-port-2 (1+ sua-port))
 
 ;;; Define the transport address of the tester
-(define tester-addr "172.18.0.3")
+(define tester-addr "172.18.6.3")
 
 (define tester-port   0)
 (define tester-port-1 3000)

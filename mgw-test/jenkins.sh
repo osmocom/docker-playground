@@ -10,28 +10,36 @@ if [ "x$WORKSPACE" = "x" ]; then
 	WORKSPACE=/tmp
 fi
 
+NET_NAME="mgw-tester"
+
 VOL_BASE_DIR=`mktemp -d`
 mkdir $VOL_BASE_DIR/mgw-tester
 cp MGCP_Test.cfg $VOL_BASE_DIR/mgw-tester/
 
 mkdir $VOL_BASE_DIR/mgw
-cp ../osmo-mgw-master/osmo-mgw.cfg $VOL_BASE_DIR/mgw/
+cp osmo-mgw.cfg $VOL_BASE_DIR/mgw/
+
+echo Creating network $NET_NAME
+docker network create --internal --subnet 172.18.4.0/24 $NET_NAME
 
 # start container with mgw in background
 docker run	--rm \
-		--network sigtran --ip 172.18.0.180 \
+		--network $NET_NAME --ip 172.18.4.180 \
 		-v $VOL_BASE_DIR/mgw:/data \
 		--name mgw -d \
 		$REPO_USER/osmo-mgw-master
 
 # start docker container with testsuite in foreground
 docker run	--rm \
-		--network sigtran --ip 172.18.0.181 \
+		--network $NET_NAME --ip 172.18.4.181 \
 		-v $VOL_BASE_DIR/mgw-tester:/data \
 		$REPO_USER/mgw-test
 
 # stop mgw after test has completed
 docker container stop mgw
+
+echo Removing network $NET_NAME
+docker network remove $NET_NAME
 
 rm -rf $WORKSPACE/logs
 mkdir -p $WORKSPACE/logs

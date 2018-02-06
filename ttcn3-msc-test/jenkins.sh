@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -x
+
 # non-jenkins execution: assume local user name
 if [ "x$REPO_USER" = "x" ]; then
 	REPO_USER=$USER
@@ -9,6 +11,11 @@ fi
 if [ "x$WORKSPACE" = "x" ]; then
 	WORKSPACE=/tmp
 fi
+
+NET_NAME="msc-tester"
+
+echo Creating network $NET_NAME
+docker network create --internal --subnet 172.18.1.0/24 $NET_NAME
 
 VOL_BASE_DIR=`mktemp -d`
 mkdir $VOL_BASE_DIR/msc-tester
@@ -26,14 +33,14 @@ mkdir $VOL_BASE_DIR/unix
 
 echo Starting container with STP 
 docker run	--rm \
-		--network sigtran --ip 172.18.0.200 \
+		--network $NET_NAME --ip 172.18.1.200 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name stp -d \
 		$REPO_USER/osmo-stp-master
 
 echo Starting container with MSC 
 docker run	--rm \
-		--network sigtran --ip 172.18.0.10 \
+		--network $NET_NAME --ip 172.18.1.10 \
 		-v $VOL_BASE_DIR/msc:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name msc -d \
@@ -42,7 +49,7 @@ docker run	--rm \
 
 echo Starting container with MSC testsuite
 docker run	--rm \
-		--network sigtran --ip 172.18.0.103 \
+		--network $NET_NAME --ip 172.18.1.103 \
 		-v $VOL_BASE_DIR/msc-tester:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ttcn3-msc-test \
@@ -51,6 +58,9 @@ docker run	--rm \
 echo Stopping containers
 docker container kill msc
 docker container kill stp
+
+echo Deleting network $NET_NAME
+docker network rm $NET_NAME
 
 rm -rf $WORKSPACE/logs
 mkdir -p $WORKSPACE/logs
