@@ -1,19 +1,8 @@
 #!/bin/sh
 
-# non-jenkins execution: assume local user name
-if [ "x$REPO_USER" = "x" ]; then
-	REPO_USER=$USER
-fi
+. ../jenkins-common.sh
 
-# non-jenkins execution: put logs in /tmp
-if [ "x$WORKSPACE" = "x" ]; then
-	WORKSPACE=/tmp
-fi
-
-NET_NAME="nitb-sysinfo-tester"
-
-echo Creating network $NET_NAME
-docker network create --internal --subnet 172.18.5.0/24 $NET_NAME
+network_create 172.18.5.0/24
 
 # start container with nitb in background
 docker volume rm nitb-vol
@@ -44,8 +33,8 @@ docker run	--rm \
 		$REPO_USER/ttcn3-nitb-sysinfo
 
 # stop bts + nitb after test has completed
-docker container stop bts
-docker container stop nitb
+docker container stop ${BUILD_TAG}-bts
+docker container stop ${BUILD_TAG}-nitb
 
 # start some stupid helper container so we can access the volume
 docker run	--rm \
@@ -56,10 +45,9 @@ docker run	--rm \
 		busybox /bin/sh -c 'sleep 1000 & wait'
 rm -rf $WORKSPACE/logs
 mkdir -p $WORKSPACE/logs
-docker cp sysinfo-helper:/ttcn3-nitb-sysinfo $WORKSPACE/logs
-docker cp sysinfo-helper:/nitb $WORKSPACE/logs
-docker cp sysinfo-helper:/bts $WORKSPACE/logs
-docker container stop -t 0 sysinfo-helper
+docker cp ${BUILD_TAG}-sysinfo-helper:/ttcn3-nitb-sysinfo $WORKSPACE/logs
+docker cp ${BUILD_TAG}-sysinfo-helper:/nitb $WORKSPACE/logs
+docker cp ${BUILD_TAG}-sysinfo-helper:/bts $WORKSPACE/logs
+docker container stop -t 0 ${BUILD_TAG}-sysinfo-helper
 
-echo Removing network $NET_NAME
-docker network remove $NET_NAME
+network_remove

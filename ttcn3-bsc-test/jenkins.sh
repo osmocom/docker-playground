@@ -1,18 +1,7 @@
 #!/bin/sh
 
-# non-jenkins execution: assume local user name
-if [ "x$REPO_USER" = "x" ]; then
-	REPO_USER=$USER
-fi
+. ../jenkins-common.sh
 
-# non-jenkins execution: put logs in /tmp
-if [ "x$WORKSPACE" = "x" ]; then
-	WORKSPACE=/tmp
-fi
-
-NET_NAME="bsc-tester"
-
-VOL_BASE_DIR=`mktemp -d`
 mkdir $VOL_BASE_DIR/bsc-tester
 cp BSC_Tests.cfg $VOL_BASE_DIR/bsc-tester/
 
@@ -22,8 +11,7 @@ cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 mkdir $VOL_BASE_DIR/bsc
 cp osmo-bsc.cfg $VOL_BASE_DIR/bsc/
 
-echo Creating network $NET_NAME
-docker network create --internal --subnet 172.18.2.0/24 $NET_NAME
+network_create 172.18.2.0/24
 
 echo Starting container with STP 
 docker run	--rm \
@@ -56,16 +44,13 @@ docker run	--rm \
 
 echo Stopping containers
 for i in `seq 0 2`; do
-	docker container kill bts$i
+	docker container kill ${BUILD_TAG}-bts$i
 done
-docker container kill bsc
-docker container kill stp
+docker container kill ${BUILD_TAG}-bsc
+docker container kill ${BUILD_TAG}-stp
 
-echo Removing network $NET_NAME
-docker network remove $NET_NAME
-
+network_remove
 
 rm -rf $WORKSPACE/logs
 mkdir -p $WORKSPACE/logs
 cp -a $VOL_BASE_DIR/* $WORKSPACE/logs/
-#rm -rf $VOL_BASE_DIR

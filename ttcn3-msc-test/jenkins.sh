@@ -1,23 +1,9 @@
 #!/bin/sh
 
-set -x
+. ../jenkins-common.sh
 
-# non-jenkins execution: assume local user name
-if [ "x$REPO_USER" = "x" ]; then
-	REPO_USER=$USER
-fi
+network_create 172.18.1.0/24
 
-# non-jenkins execution: put logs in /tmp
-if [ "x$WORKSPACE" = "x" ]; then
-	WORKSPACE=/tmp
-fi
-
-NET_NAME="msc-tester"
-
-echo Creating network $NET_NAME
-docker network create --internal --subnet 172.18.1.0/24 $NET_NAME
-
-VOL_BASE_DIR=`mktemp -d`
 mkdir $VOL_BASE_DIR/msc-tester
 mkdir $VOL_BASE_DIR/msc-tester/unix
 cp MSC_Tests.cfg $VOL_BASE_DIR/msc-tester/
@@ -56,13 +42,11 @@ docker run	--rm \
 		$REPO_USER/ttcn3-msc-test
 
 echo Stopping containers
-docker container kill msc
-docker container kill stp
+docker container kill ${BUILD_TAG}-msc
+docker container kill ${BUILD_TAG}-stp
 
-echo Deleting network $NET_NAME
-docker network rm $NET_NAME
+network_remove
 
 rm -rf $WORKSPACE/logs
 mkdir -p $WORKSPACE/logs
 cp -a $VOL_BASE_DIR/* $WORKSPACE/logs/
-#rm -rf $VOL_BASE_DIR
