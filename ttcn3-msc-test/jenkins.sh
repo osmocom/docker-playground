@@ -35,7 +35,7 @@ echo Starting container with STP
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.1.200 \
 		-v $VOL_BASE_DIR/stp:/data \
-		--name stp -d \
+		--name ${BUILD_TAG}-stp -d \
 		$REPO_USER/osmo-stp-master
 
 echo Starting container with MSC 
@@ -43,7 +43,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.1.10 \
 		-v $VOL_BASE_DIR/msc:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
-		--name msc -d \
+		--name ${BUILD_TAG}-msc -d \
 		$REPO_USER/osmo-msc-master \
 		/usr/local/bin/osmo-msc -M /data/unix/mncc
 
@@ -52,7 +52,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.1.103 \
 		-v $VOL_BASE_DIR/msc-tester:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
-		--name ttcn3-msc-test \
+		--name ${BUILD_TAG}-ttcn3-msc-test \
 		$REPO_USER/ttcn3-msc-test
 
 echo Stopping containers

@@ -29,7 +29,7 @@ docker run	--cap-add=NET_ADMIN \
 		--rm \
 		--network $NET_NAME --ip 172.18.3.201 \
 		-v $VOL_BASE_DIR/ggsn:/data \
-		--name ggsn -d \
+		--name ${BUILD_TAG}-ggsn -d \
 		$REPO_USER/osmo-ggsn-master
 
 # start docker container with testsuite in foreground
@@ -37,6 +37,7 @@ docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--network $NET_NAME --ip 172.18.3.202 \
 		-v $VOL_BASE_DIR/ggsn-tester:/data \
+		--name ${BUILD_TAG}-ggsn-test \
 		$REPO_USER/ggsn-test
 
 # stop GGSN after test has completed

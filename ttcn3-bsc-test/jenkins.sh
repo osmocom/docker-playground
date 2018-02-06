@@ -29,21 +29,21 @@ echo Starting container with STP
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.2.200 \
 		-v $VOL_BASE_DIR/stp:/data \
-		--name stp -d \
+		--name ${BUILD_TAG}-stp -d \
 		$REPO_USER/osmo-stp-master
 
 echo Starting container with BSC 
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.2.20 \
 		-v $VOL_BASE_DIR/bsc:/data \
-		--name bsc -d \
+		--name ${BUILD_TAG}-bsc -d \
 		$REPO_USER/osmo-bsc-master
 
 for i in `seq 0 2`; do
 	echo Starting container with OML for BTS$i
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.2.10$i \
-			--name bts$i -d \
+			--name ${BUILD_TAG}-bts$i -d \
 			$REPO_USER/osmo-bts-omldummy ./respawn.sh 172.18.2.20 $((i + 1234)) 1
 done
 
@@ -51,7 +51,7 @@ echo Starting container with BSC testsuite
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.2.203 \
 		-v $VOL_BASE_DIR/bsc-tester:/data \
-		--name ttcn3-bsc-test \
+		--name ${BUILD_TAG}-ttcn3-bsc-test \
 		$REPO_USER/ttcn3-bsc-test
 
 echo Stopping containers

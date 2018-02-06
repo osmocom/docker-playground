@@ -32,13 +32,14 @@ docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--network $NET_NAME --ip 172.18.6.200 \
 		-v $VOL_BASE_DIR/stp:/data \
-		--name stp \
+		--name ${BUILD_TAG}-stp \
 		-d $REPO_USER/osmo-stp-master
 
 # start docker container with tests
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.6.3 \
 		-v $VOL_BASE_DIR/sua-tester:/data \
+		--name ${BUILD_TAG}-sua-test \
 		$REPO_USER/sua-test > $WORKSPACE/logs/junit-xml-sua.log
 
 docker container stop -t 1 stp

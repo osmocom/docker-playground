@@ -21,7 +21,7 @@ docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--network sigtran --ip 172.18.5.20 \
 		-v nitb-vol:/data \
-		--name nitb -d \
+		--name ${BUILD_TAG}-nitb -d \
 		$REPO_USER/osmo-nitb-master
 
 # start container with bts in background
@@ -30,7 +30,7 @@ docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--network sigtran --ip 172.18.5.210 \
 		-v bts-vol:/data \
-		--name bts -d \
+		--name ${BUILD_TAG}-bts -d \
 		$REPO_USER/osmo-bts-master
 
 
@@ -40,6 +40,7 @@ docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--network sigtran --ip 172.18.5.230 \
 		-v ttcn3-nitb-sysinfo-vol:/data \
+		--name ${BUILD_TAG}-ttcn3-nitb-sysinfo \
 		$REPO_USER/ttcn3-nitb-sysinfo
 
 # stop bts + nitb after test has completed
@@ -51,7 +52,7 @@ docker run	--rm \
 		-v ttcn3-nitb-sysinfo-vol:/ttcn3-nitb-sysinfo \
 		-v nitb-vol:/nitb \
 		-v bts-vol:/bts \
-		--name sysinfo-helper -d \
+		--name ${BUILD_TAG}-sysinfo-helper -d \
 		busybox /bin/sh -c 'sleep 1000 & wait'
 rm -rf $WORKSPACE/logs
 mkdir -p $WORKSPACE/logs

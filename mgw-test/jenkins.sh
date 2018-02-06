@@ -26,13 +26,14 @@ docker network create --internal --subnet 172.18.4.0/24 $NET_NAME
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.4.180 \
 		-v $VOL_BASE_DIR/mgw:/data \
-		--name mgw -d \
+		--name ${BUILD_TAG}-mgw -d \
 		$REPO_USER/osmo-mgw-master
 
 # start docker container with testsuite in foreground
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.4.181 \
 		-v $VOL_BASE_DIR/mgw-tester:/data \
+		--name ${BUILD_TAG}-ttcn3-mgw-test \
 		$REPO_USER/mgw-test
 
 # stop mgw after test has completed
