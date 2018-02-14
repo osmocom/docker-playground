@@ -26,6 +26,7 @@ docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--network $NET_NAME --ip 172.18.3.202 \
 		-v $VOL_BASE_DIR/ggsn-tester:/data \
+		-e "TTCN3_PCAP_PATH=/data" \
 		--name ${BUILD_TAG}-ggsn-test \
 		$REPO_USER/ggsn-test
 
