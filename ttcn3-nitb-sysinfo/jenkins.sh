@@ -8,7 +8,7 @@ network_create 172.18.5.0/24
 docker volume rm nitb-vol
 docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
-		--network sigtran --ip 172.18.5.20 \
+		--network $NET_NAME --ip 172.18.5.20 \
 		-v nitb-vol:/data \
 		--name ${BUILD_TAG}-nitb -d \
 		$REPO_USER/osmo-nitb-master
@@ -17,7 +17,7 @@ docker run	--rm \
 docker volume rm bts-vol
 docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
-		--network sigtran --ip 172.18.5.210 \
+		--network $NET_NAME --ip 172.18.5.210 \
 		-v bts-vol:/data \
 		--name ${BUILD_TAG}-bts -d \
 		$REPO_USER/osmo-bts-master
@@ -27,7 +27,7 @@ docker run	--rm \
 docker volume rm ttcn3-nitb-sysinfo-vol
 docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
-		--network sigtran --ip 172.18.5.230 \
+		--network $NET_NAME --ip 172.18.5.230 \
 		-v ttcn3-nitb-sysinfo-vol:/data \
 		--name ${BUILD_TAG}-ttcn3-nitb-sysinfo \
 		$REPO_USER/ttcn3-nitb-sysinfo
