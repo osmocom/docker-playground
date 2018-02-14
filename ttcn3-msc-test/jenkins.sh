@@ -36,6 +36,7 @@ docker run	--rm \
 echo Starting container with MSC testsuite
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.1.103 \
+		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/msc-tester:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-ttcn3-msc-test \

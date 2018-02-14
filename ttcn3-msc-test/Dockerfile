@@ -19,6 +19,9 @@ RUN	cd osmo-ttcn3-hacks && \
 
 VOLUME	/data
 
+RUN	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-start.sh / && \
+	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-stop.sh /
+
 COPY	MSC_Tests.cfg /data/MSC_Tests.cfg
 
 CMD	cd /data && \

@@ -22,6 +22,7 @@ docker run	--rm \
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.4.181 \
 		-v $VOL_BASE_DIR/mgw-tester:/data \
+		-e "TTCN3_PCAP_PATH=/data" \
 		--name ${BUILD_TAG}-ttcn3-mgw-test \
 		$REPO_USER/mgw-test
 

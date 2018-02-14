@@ -38,6 +38,7 @@ done
 echo Starting container with BSC testsuite
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.2.203 \
+		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/bsc-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-bsc-test \
 		$REPO_USER/ttcn3-bsc-test

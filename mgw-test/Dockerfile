@@ -7,13 +7,16 @@ RUN	cd osmo-ttcn3-hacks && \
 	git checkout -f -B master origin/master && \
 	make deps
 
-ADD	http://git.osmocom.org/osmo-ttcn3-hacks/patch /tmp/commit
+ADD	http://git.osmocom.org/osmo-ttcn3-hacks/patch?h=laforge/cfg /tmp/commit
 RUN	cd osmo-ttcn3-hacks && \
 	git fetch && \
-	git checkout -f -B master origin/master && \
+	git checkout -f -B master origin/laforge/cfg && \
 	make mgw
 
 VOLUME	/data
+
+RUN	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-start.sh / && \
+	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-stop.sh /
 
 COPY	MGCP_Test.cfg /data/MGCP_Test.cfg
 
