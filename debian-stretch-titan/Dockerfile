@@ -9,7 +9,8 @@ RUN	apt-get update && \
 	apt-get upgrade -y && \
 	apt-get -y install \
 		build-essential \
-		git && \
+		git \
+		tcpdump && \
 	apt-get clean
 
 # somehow Debian folks updated the gcc version but not titan :/
