@@ -10,10 +10,12 @@ RUN	cd osmo-ttcn3-hacks && \
 RUN	git config --global user.email docker@dock.er && \
 	git config --global user.name "Dock Er"
 
-ADD	http://git.osmocom.org/osmo-ttcn3-hacks/patch /tmp/commit
+ARG	OSMO_TTCN3_BRANCH="master"
+
+ADD	http://git.osmocom.org/osmo-ttcn3-hacks/patch?h=$OSMO_TTCN3_BRANCH /tmp/commit
 RUN	cd osmo-ttcn3-hacks && \
 	git fetch && \
-	git checkout -f -B master origin/master && \
+	git checkout -f -B $OSMO_TTCN3_BRANCH origin/$OSMO_TTCN3_BRANCH && \
 	git cherry-pick 5ce5241d6d460e9b36a908ac7072d8ea68df08db && \
 	make bsc
 
