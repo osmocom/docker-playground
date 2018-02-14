@@ -7,10 +7,10 @@ RUN	cd osmo-ttcn3-hacks && \
 	git checkout -f -B master origin/master && \
 	make deps
 
-ADD	http://git.osmocom.org/osmo-ttcn3-hacks/patch?h=laforge/cfg /tmp/commit
+ADD	http://git.osmocom.org/osmo-ttcn3-hacks/patch /tmp/commit
 RUN	cd osmo-ttcn3-hacks && \
 	git fetch && \
-	git checkout -f -B master origin/laforge/cfg && \
+	git checkout -f -B master origin/master && \
 	make mgw
 
 VOLUME	/data
