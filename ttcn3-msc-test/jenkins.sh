@@ -50,5 +50,5 @@ network_remove
 
 rm -rf $WORKSPACE/logs
 mkdir -p $WORKSPACE/logs
-rm -rf $VOL_BASE_DIR/msc/unix
+rm -rf $VOL_BASE_DIR/msc-tester/unix
 cp -a $VOL_BASE_DIR/* $WORKSPACE/logs/
