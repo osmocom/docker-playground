@@ -36,7 +36,7 @@ RUN	cd openbsc/openbsc && \
 
 VOLUME	/data
 
-COPY	osmo_sgsn.cfg /data/osmo_sgsn.cfg
+COPY	osmo-sgsn.cfg /data/osmo-sgsn.cfg
 
 WORKDIR	/data
 CMD	["/usr/local/bin/osmo-sgsn"]
