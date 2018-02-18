@@ -24,13 +24,13 @@ RUN	apt-get update && \
 
 WORKDIR	/tmp
 
-RUN	git clone git://git.osmocom.org/openbsc.git
-ADD	http://git.osmocom.org/openbsc/patch /tmp/commit-openbsc
+RUN	git clone git://git.osmocom.org/osmo-sgsn.git
+ADD	http://git.osmocom.org/osmo-sgsn/patch /tmp/commit
 
-RUN	cd openbsc/openbsc && \
+RUN	cd osmo-sgsn && \
 	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
-	./configure --enable-nat --enable-osmo-bsc --enable-smpp && \
+	./configure && \
 	make -j8 install && \
 	ldconfig
 
