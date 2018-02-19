@@ -30,3 +30,4 @@ docker container stop -t 1 ${BUILD_TAG}-stp
 network_remove
 
 cp -a $VOL_BASE_DIR/* $WORKSPACE/logs/
+cat $WORKSPACE/logs/m3ua-tester/junit-*.log || true

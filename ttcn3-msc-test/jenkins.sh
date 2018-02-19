@@ -52,3 +52,4 @@ rm -rf $WORKSPACE/logs
 mkdir -p $WORKSPACE/logs
 rm -rf $VOL_BASE_DIR/unix
 cp -a $VOL_BASE_DIR/* $WORKSPACE/logs/
+cat $WORKSPACE/logs/msc-tester/junit-*.log || true

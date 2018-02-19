@@ -36,3 +36,4 @@ network_remove
 rm -rf $WORKSPACE/logs
 mkdir -p $WORKSPACE/logs
 cp -a $VOL_BASE_DIR/* $WORKSPACE/logs/
+cat $WORKSPACE/logs/sgsn-tester/junit-*.log || true
