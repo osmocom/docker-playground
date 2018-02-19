@@ -13,14 +13,14 @@ cp osmo-bsc.cfg $VOL_BASE_DIR/bsc/
 
 network_create 172.18.2.0/24
 
-echo Starting container with STP 
+echo Starting container with STP
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.2.200 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp -d \
 		$REPO_USER/osmo-stp-master
 
-echo Starting container with BSC 
+echo Starting container with BSC
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.2.20 \
 		-v $VOL_BASE_DIR/bsc:/data \
