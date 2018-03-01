@@ -1,0 +1,7 @@
+.PHONY: run dbg
+
+run:
+	cd /data && LD_LIBRARY_PATH=/usr/local/lib /bin/sh -c /usr/local/bin/osmo-bsc -c /data/osmo-bsc.cfg >/data/osmo-bsc.log 2>&1
+
+dbg:
+	cd /data && LD_LIBRARY_PATH=/usr/local/lib gdb --args /usr/local/bin/osmo-bsc -c osmo-bsc.cfg

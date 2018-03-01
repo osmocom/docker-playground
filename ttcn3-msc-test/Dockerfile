@@ -9,5 +9,7 @@ RUN	ttcn3-docker-prepare "$OSMO_TTCN3_BRANCH" msc
 VOLUME	/data
 
 COPY	MSC_Tests.cfg /data/MSC_Tests.cfg
+COPY	Makefile.within-docker-img /Makefile
 
-CMD	ttcn3-docker-run msc MSC_Tests
+WORKDIR /
+CMD	make test

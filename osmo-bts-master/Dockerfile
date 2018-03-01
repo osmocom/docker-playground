@@ -48,9 +48,9 @@ RUN	cd osmo-bts && \
 VOLUME	/data
 
 COPY	osmo-bts.cfg /data/osmo-bts.cfg
+COPY	Makefile.within-docker-img /Makefile
 
-WORKDIR	/data
-	# send GSMTAP data to .230 which is the ttcn3-sysinfo test
-CMD	["/bin/sh", "-c", "/usr/local/bin/osmo-bts-virtual -c /data/osmo-bts.cfg -i 172.18.0.230 >>/data/osmo-bts-virtual.log 2>&1"]
+WORKDIR	/
+CMD	make run
 
 #EXPOSE

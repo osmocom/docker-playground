@@ -13,6 +13,25 @@ set -e
 #Make sure NET_NAME doesn't clash with the AoIP BSC test
 NET_NAME=ttcn3-bsc_sccplite-test
 
+ADD_TTCN_RUN_OPTS=""
+ADD_TTCN_RUN_CMD=""
+ADD_TTCN_VOLUMES=""
+ADD_BSC_VOLUMES=""
+ADD_BSC_ARGS=""
+
+if [ "x$1" = "x-h" ]; then
+	ADD_TTCN_RUN_OPTS="-ti"
+	ADD_TTCN_RUN_CMD="bash"
+	if [ -d "$2" ]; then
+		ADD_TTCN_VOLUMES="$ADD_TTCN_VOLUMES -v $2:/osmo-ttcn3-hacks"
+	fi
+	if [ -d "$3" ]; then
+		ADD_BSC_RUN_CMD="sleep 100000"
+		ADD_BSC_VOLUMES="$ADD_BSC_VOLUMES -v $3:/src"
+		ADD_BSC_RUN_OPTS="--privileged"
+	fi
+fi
+
 mkdir $VOL_BASE_DIR/bsc-tester
 cp sccplite/BSC_Tests.cfg $VOL_BASE_DIR/bsc-tester/
 
@@ -27,9 +46,12 @@ docker run	--rm \
 		$(docker_network_params $SUBNET 20) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/bsc:/data \
+		$ADD_BSC_VOLUMES \
 		--name ${BUILD_TAG}-bsc -d \
 		$DOCKER_ARGS \
-		$REPO_USER/osmo-bsc-$IMAGE_SUFFIX
+		$ADD_BSC_RUN_OPTS \
+		$REPO_USER/osmo-bsc-$IMAGE_SUFFIX \
+		$ADD_BSC_RUN_CMD
 
 for i in `seq 0 2`; do
 	echo Starting container with OML for BTS$i
@@ -48,6 +70,9 @@ docker run	--rm \
 		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/bsc-tester:/data \
+		$ADD_TTCN_VOLUMES \
 		--name ${BUILD_TAG}-ttcn3-bsc-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-bsc-test
+		$ADD_TTCN_RUN_OPTS \
+		$REPO_USER/ttcn3-bsc-test \
+		$ADD_TTCN_RUN_CMD

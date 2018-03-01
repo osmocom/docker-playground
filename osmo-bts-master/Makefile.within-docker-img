@@ -1,0 +1,10 @@
+.PHONY: run run_ttcn3_bts_test
+
+# the Dockerfile invokes 'run' directly, the manual invocation is usually from the ttcn3-bts-test
+default: run_ttcn3_bts_test
+
+run:
+	cd /data && LD_LIBRARY_PATH=/usr/local/lib /bin/sh -c /usr/local/bin/osmo-bts-virtual -c /data/osmo-bts.cfg -i 172.18.0.230 >>/data/osmo-bts-virtual.log 2>&1
+
+run_ttcn3_bts_test:
+	cd /data && LD_LIBRARY_PATH=/usr/local/lib /usr/local/bin/respawn.sh /usr/local/bin/osmo-bts-trx -c /data/osmo-bts.cfg -i 172.18.9.10
