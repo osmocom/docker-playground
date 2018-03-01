@@ -21,7 +21,9 @@ RUN	apt-get update && \
 	apt-get -y install \
 		build-essential \
 		git \
-		tcpdump && \
+		tcpdump \
+		vim \
+		&& \
 	apt-get clean
 
 # somehow Debian folks updated the gcc version but not titan :/
