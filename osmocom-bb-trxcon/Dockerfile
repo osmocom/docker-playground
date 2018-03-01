@@ -2,6 +2,8 @@ FROM laforge/debian-jessie-build
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
+ARG	OSMO_BB_BRANCH="laforge/trx"
+
 ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/"
 
 COPY	Release.key /tmp/Release.key
@@ -14,6 +16,7 @@ ADD	$OSMOCOM_REPO/Release /tmp/Release
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		telnet \
+		tcpdump \
 		libosmocore-dev \
 		libosmo-abis-dev \
 		libosmo-netif-dev \
@@ -22,25 +25,22 @@ RUN	apt-get update && \
 		libgtp-dev && \
 	apt-get clean
 
-ADD	respawn.sh /usr/local/bin/respawn.sh
-
 WORKDIR	/tmp
 
-RUN	git clone git://git.osmocom.org/osmo-bts.git
-ADD	http://git.osmocom.org/osmo-bts/patch /tmp/commit-osmo-bts
+RUN	git clone git://git.osmocom.org/osmocom-bb.git
 
-RUN	cd osmo-bts && \
-	git fetch && git checkout -f -B master origin/master && \
+ADD	http://git.osmocom.org/osmocom-bb/patch?h=$OSMO_BB_BRANCH /tmp/commit
+RUN	cd osmocom-bb && \
+	git fetch && git checkout -f -B $OSMO_BB_BRANCH origin/$OSMO_BB_BRANCH
+
+RUN	cd osmocom-bb/src/host/trxcon && \
 	autoreconf -fi && \
-	./configure --enable-trx && \
+	./configure && \
 	make -j8 install
+
+RUN	mkdir -p /data/unix
 
 VOLUME	/data
 
-COPY	osmo-bts.cfg /data/osmo-bts.cfg
-
 WORKDIR	/data
-	# send GSMTAP data to .230 which is the ttcn3-sysinfo test
-CMD	["/usr/local/bin/osmo-bts-virtual", "-i", "172.18.0.230"]
-
-#EXPOSE	
+#CMD	["/usr/local/sbin/virtphy","-s","/data/osmocom_l2"]
