@@ -1,0 +1,20 @@
+.PHONY: compile run log
+
+all: compile run
+
+# construct the /build dir to build outside the mounted-in osmo-bsc source tree
+build:
+	cd /osmo-sgsn &&	( test -f configure || autoreconf -fi )
+	mkdir -p /build
+	cd /build && /osmo-sgsn/configure
+
+# The compile target assumes an osmo-sgsn src tree mounted into /osmo-sgsn
+# using something like docker -v ~/src/osmo-sgsn:/osmo-sgsn
+compile: build
+	$(MAKE) -C /build -j install
+
+run:
+	cd /data && /bin/sh -c /usr/local/bin/osmo-sgsn -c /data/osmo-sgsn.cfg >/data/osmo-sgsn.log 2>&1
+
+log:
+

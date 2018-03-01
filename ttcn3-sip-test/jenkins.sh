@@ -9,6 +9,26 @@ docker_images_require \
 set_clean_up_trap
 set -e
 
+ADD_TTCN_RUN_OPTS=""
+ADD_TTCN_RUN_CMD=""
+ADD_TTCN_VOLUMES=""
+ADD_SIP_VOLUMES=""
+ADD_SIP_ARGS=""
+SIP_RUN_CMD="/bin/sh -c \"osmo-sip-connector -c /data/osmo-sip-connector.cfg >>/data/osmo-sip-connector.log 2>&1\""
+
+if [ "x$1" = "x-h" ]; then
+	ADD_TTCN_RUN_OPTS="-ti"
+	ADD_TTCN_RUN_CMD="bash"
+	if [ -d "$2" ]; then
+		ADD_TTCN_VOLUMES="$ADD_TTCN_VOLUMES -v $2:/osmo-ttcn3-hacks"
+	fi
+	if [ -d "$3" ]; then
+		SIP_RUN_CMD="sleep 9999999"
+		ADD_SIP_VOLUMES="$ADD_SIP_VOLUMES -v $3:/src"
+		ADD_SIP_RUN_OPTS="--privileged"
+	fi
+fi
+
 SUBNET=11
 network_create $SUBNET
 
@@ -29,10 +49,12 @@ docker run	--rm \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/sip:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
+		$ADD_SIP_VOLUMES \
 		--name ${BUILD_TAG}-sip-connector -d \
 		$DOCKER_ARGS \
+		$ADD_SIP_RUN_OPTS \
 		$REPO_USER/osmo-sip-$IMAGE_SUFFIX \
-		/bin/sh -c "osmo-sip-connector -c /data/osmo-sip-connector.cfg >>/data/osmo-sip-connector.log 2>&1"
+		$SIP_RUN_CMD
 
 echo Starting container with SIP testsuite
 docker run	--rm \
@@ -41,6 +63,9 @@ docker run	--rm \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/sip-tester:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
+		$ADD_TTCN_VOLUMES \
 		--name ${BUILD_TAG}-ttcn3-sip-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-sip-test
+		$ADD_TTCN_RUN_OPTS \
+		$REPO_USER/ttcn3-sip-test \
+		$ADD_TTCN_RUN_CMD

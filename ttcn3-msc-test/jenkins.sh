@@ -13,6 +13,26 @@ set -e
 SUBNET=20
 network_create $SUBNET
 
+ADD_TTCN_RUN_OPTS=""
+ADD_TTCN_RUN_CMD=""
+ADD_TTCN_VOLUMES=""
+ADD_MSC_VOLUMES=""
+ADD_MSC_RUN_OPTS=""
+MSC_RUN_CMD="/bin/sh -c \"osmo-msc -c /data/osmo-msc.cfg >>/data/osmo-msc.log 2>&1\""
+
+if [ "x$1" = "x-h" ]; then
+	ADD_TTCN_RUN_OPTS="-ti"
+	ADD_TTCN_RUN_CMD="bash"
+	if [ -d "$2" ]; then
+		ADD_TTCN_VOLUMES="$ADD_TTCN_VOLUMES -v $2:/osmo-ttcn3-hacks"
+	fi
+	if [ -d "$3" ]; then
+		ADD_MSC_VOLUMES="$ADD_MSC_VOLUMES -v $3:/src"
+		MSC_RUN_CMD="sleep 9999999"
+		ADD_MSC_RUN_OPTS="--privileged"
+	fi
+fi
+
 mkdir $VOL_BASE_DIR/msc-tester
 mkdir $VOL_BASE_DIR/msc-tester/unix
 cp MSC_Tests.cfg $VOL_BASE_DIR/msc-tester/
@@ -41,10 +61,12 @@ docker run	--rm \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/msc:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
+		$ADD_MSC_VOLUMES \
 		--name ${BUILD_TAG}-msc -d \
 		$DOCKER_ARGS \
+		$ADD_MSC_RUN_OPTS \
 		$REPO_USER/osmo-msc-$IMAGE_SUFFIX \
-		/bin/sh -c "osmo-msc -c /data/osmo-msc.cfg >>/data/osmo-msc.log 2>&1"
+		$MSC_RUN_CMD
 
 echo Starting container with MSC testsuite
 docker run	--rm \
@@ -55,6 +77,9 @@ docker run	--rm \
 		-e "OSMO_SUT_PORT=4254" \
 		-v $VOL_BASE_DIR/msc-tester:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
+		$ADD_TTCN_VOLUMES \
 		--name ${BUILD_TAG}-ttcn3-msc-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-msc-test
+		$ADD_TTCN_RUN_OPTS \
+		$REPO_USER/ttcn3-msc-test \
+		$ADD_TTCN_RUN_CMD

@@ -21,6 +21,26 @@ clean_up() {
 		$VOL_BASE_DIR/bts-tester-hopping/junit-xml-hopping-*.log
 }
 
+ADD_TTCN_RUN_OPTS=""
+ADD_TTCN_RUN_CMD=""
+ADD_TTCN_VOLUMES=""
+BTS_JUST_IDLE=""
+ADD_BTS_VOLUMES=""
+ADD_BTS_RUN_OPTS=""
+
+if [ "x$1" = "x-h" ]; then
+	ADD_TTCN_RUN_OPTS="-ti"
+	ADD_TTCN_RUN_CMD="bash"
+	if [ -d "$2" ]; then
+		ADD_TTCN_VOLUMES="$ADD_TTCN_VOLUMES -v $2:/osmo-ttcn3-hacks"
+	fi
+	if [ -d "$3" ]; then
+		BTS_JUST_IDLE="1"
+		ADD_BTS_VOLUMES="$ADD_BTS_VOLUMES -v $3:/src"
+		ADD_BTS_RUN_OPTS="--privileged"
+	fi
+fi
+
 start_bsc() {
 	echo Starting container with BSC
 	docker run	--rm \
@@ -42,16 +62,26 @@ start_bts() {
 		echo ERROR: You have to specify a BTS variant
 		exit 23
 	fi
+	if [ "$BTS_JUST_IDLE" = 1 ]; then
+		# for running tests manually:
+		# practically idle forever, but for sanity not really forever
+		BTS_RUN_CMD="sleep 9999999"
+	else
+		# normal command to run unattended tests
+		BTS_RUN_CMD="/bin/sh -c \"/usr/local/bin/respawn.sh osmo-bts-$variant -c /data/osmo-bts.gen.cfg >>/data/osmo-bts.log 2>&1\""
+	fi
 	docker run	--rm \
 			$(docker_network_params $SUBNET 20) \
 			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/bts:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
+			$ADD_BTS_VOLUMES \
 			-e "SLEEP_BEFORE_RESPAWN=$sleep_time_respawn" \
 			--name ${BUILD_TAG}-bts -d \
 			$DOCKER_ARGS \
+			$ADD_BTS_RUN_OPTS \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
-			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-$variant -c /data/osmo-bts.gen.cfg >>/data/osmo-bts.log 2>&1"
+			$BTS_RUN_CMD
 }
 
 start_fake_trx() {
@@ -97,6 +127,7 @@ start_virtphy() {
 			--name ${BUILD_TAG}-virtphy -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmocom-bb-host-master \
+			virtphy -s /data/unix/osmocom_l2
 			/bin/sh -c "virtphy -s /data/unix/osmocom_l2 >>/data/virtphy.log 2>&1"
 }
 
@@ -111,9 +142,12 @@ start_testsuite() {
 			-e "OSMO_SUT_PORT=4241" \
 			-v $VOL_BASE_DIR/bts-tester-${variant}:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
+			$ADD_TTCN_VOLUMES \
 			--name ${BUILD_TAG}-ttcn3-bts-test \
 			$DOCKER_ARGS \
-			$REPO_USER/ttcn3-bts-test
+			$ADD_TTCN_RUN_OPTS \
+			$REPO_USER/ttcn3-bts-test \
+			$ADD_TTCN_RUN_CMD
 }
 
 SUBNET=9

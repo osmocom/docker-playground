@@ -1,0 +1,18 @@
+.PHONY: compile test log
+
+default: compile
+	$(MAKE) test; $(MAKE) log
+
+compile:
+	$(MAKE) -C /osmo-ttcn3-hacks bts/compile
+	$(MAKE) -C /osmo-ttcn3-hacks bts -j
+
+test:
+	cd /data && \
+		/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/bts/BTS_Tests; \
+		exit_code=$$?; \
+		/osmo-ttcn3-hacks/log_merge.sh BTS_Tests --rm; \
+		exit $$exit_code
+
+log:
+	cd /data; /osmo-ttcn3-hacks/log_merge.sh BTS_Tests --rm

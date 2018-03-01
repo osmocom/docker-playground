@@ -13,6 +13,25 @@ set -e
 #Make sure NET_NAME doesn't clash with the AoIP BSC test
 NET_NAME=ttcn3-bsc_sccplite-test
 
+ADD_TTCN_RUN_OPTS=""
+ADD_TTCN_RUN_CMD=""
+ADD_TTCN_VOLUMES=""
+ADD_BSC_VOLUMES=""
+ADD_BSC_ARGS=""
+
+if [ "x$1" = "x-h" ]; then
+	ADD_TTCN_RUN_OPTS="-ti"
+	ADD_TTCN_RUN_CMD="bash"
+	if [ -d "$2" ]; then
+		ADD_TTCN_VOLUMES="$ADD_TTCN_VOLUMES -v $2:/osmo-ttcn3-hacks"
+	fi
+	if [ -d "$3" ]; then
+		ADD_BSC_RUN_CMD="sleep 100000"
+		ADD_BSC_VOLUMES="$ADD_BSC_VOLUMES -v $3:/src"
+		ADD_BSC_RUN_OPTS="--privileged"
+	fi
+fi
+
 mkdir $VOL_BASE_DIR/bsc-tester
 cp sccplite/BSC_Tests.cfg $VOL_BASE_DIR/bsc-tester/
 write_mp_osmo_repo "$VOL_BASE_DIR/bsc-tester/BSC_Tests.cfg"
@@ -30,9 +49,12 @@ docker run	--rm \
 		$(docker_network_params $SUBNET 20) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/bsc:/data \
+		$ADD_BSC_VOLUMES \
 		--name ${BUILD_TAG}-bsc -d \
 		$DOCKER_ARGS \
-		$REPO_USER/osmo-bsc-$IMAGE_SUFFIX
+		$ADD_BSC_RUN_OPTS \
+		$REPO_USER/osmo-bsc-$IMAGE_SUFFIX \
+		$ADD_BSC_RUN_CMD
 
 BTS_FEATURES="-fCCN,EGPRS,GPRS,IPv6_NSVC,PAGING_COORDINATION"
 
@@ -57,6 +79,9 @@ docker run	--rm \
 		-e "OSMO_SUT_HOST=172.18.$SUBNET.20" \
 		-e "OSMO_SUT_PORT=4242" \
 		-v $VOL_BASE_DIR/bsc-tester:/data \
+		$ADD_TTCN_VOLUMES \
 		--name ${BUILD_TAG}-ttcn3-bsc-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-bsc-test
+		$ADD_TTCN_RUN_OPTS \
+		$REPO_USER/ttcn3-bsc-test \
+		$ADD_TTCN_RUN_CMD

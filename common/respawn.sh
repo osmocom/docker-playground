@@ -6,7 +6,7 @@ SLEEP_BEFORE_RESPAWN=${SLEEP_BEFORE_RESPAWN:-0}
 
 i=0
 max_i=500
-while [ $i -lt $max_i ]; do
+while [ -e /etc/passwd ]; do
 	echo "$i: starting: $*"
 	$* &
 	LAST_PID=$!

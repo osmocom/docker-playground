@@ -9,5 +9,7 @@ RUN	ttcn3-docker-prepare "$OSMO_TTCN3_BRANCH" hlr
 VOLUME	/data
 
 COPY	HLR_Tests.cfg /data/HLR_Tests.cfg
+COPY	Makefile.within-docker-img /Makefile
 
-CMD	ttcn3-docker-run hlr HLR_Tests
+WORKDIR /
+CMD	make test

@@ -1,0 +1,14 @@
+.PHONY: compile test log
+
+default: compile test
+
+compile:
+	$(MAKE) -C /osmo-ttcn3-hacks mgw/compile
+	$(MAKE) -C /osmo-ttcn3-hacks mgw -j
+
+test:
+	cd /data && \
+		/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/mgw/MGCP_Test; \
+		exit_code=$$?; \
+		/osmo-ttcn3-hacks/log_merge.sh MGCP_Test --rm; \
+		exit $$exit_code
