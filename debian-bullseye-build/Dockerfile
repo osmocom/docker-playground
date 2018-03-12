@@ -28,6 +28,7 @@ RUN	apt-get update && \
 		gawk \
 		gcc \
 		gcc-arm-none-eabi \
+		gdb \
 		git \
 		git-buildpackage \
 		gnupg \
@@ -58,6 +59,7 @@ RUN	apt-get update && \
 		sqlite3 \
 		stow \
 		telnet \
+		vim \
 		wget && \
 	apt-get clean
 
