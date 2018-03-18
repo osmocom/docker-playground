@@ -28,4 +28,4 @@ COPY	MSC_Tests.cfg /data/MSC_Tests.cfg
 
 CMD	cd /data && \
 	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/msc/MSC_Tests && \
-	ttcn3_logmerge MSC*.log
+	/osmo-ttcn3-hacks/log_merge.sh MSC_Tests --rm

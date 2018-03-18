@@ -28,4 +28,4 @@ COPY	HLR_Tests.cfg /data/HLR_Tests.cfg
 
 CMD	cd /data && \
 	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/hlr/HLR_Tests && \
-	ttcn3_logmerge HLR*.log
+	/osmo-ttcn3-hacks/log_merge.sh HLR_Tests --rm

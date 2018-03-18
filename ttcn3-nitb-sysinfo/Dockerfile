@@ -21,4 +21,4 @@ COPY	Test.cfg /data/Test.cfg
 
 CMD	cd /data && \
 	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/sysinfo/Test && \
-	ttcn3_logmerge Test*.log
+	/osmo-ttcn3-hacks/log_merge.sh Test

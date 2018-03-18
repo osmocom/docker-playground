@@ -24,4 +24,4 @@ COPY	MGCP_Test.cfg /data/MGCP_Test.cfg
 
 CMD	cd /data && \
 	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/mgw/MGCP_Test && \
-	ttcn3_logmerge MGCP*.log
+	/osmo-ttcn3-hacks/log_merge.sh MGCP_Test --rm

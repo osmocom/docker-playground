@@ -23,4 +23,4 @@ COPY	GGSN_Tests.cfg /data/GGSN_Tests.cfg
 
 CMD	cd /data && \
 	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/ggsn_tests/GGSN_Tests && \
-	ttcn3_logmerge GGSN*.log
+	/osmo-ttcn3-hacks/log_merge.sh GGSN_Tests --rm
