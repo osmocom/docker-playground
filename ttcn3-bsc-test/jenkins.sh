@@ -32,7 +32,7 @@ for i in `seq 0 2`; do
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.2.10$i \
 			--name ${BUILD_TAG}-bts$i -d \
-			$REPO_USER/osmo-bts-master ./respawn.sh 172.18.2.20 $((i + 1234)) 1
+			$REPO_USER/osmo-bts-master /usr/local/bin/respawn.sh osmo-bts-omldummy 172.18.2.20 $((i + 1234)) 1
 done
 
 echo Starting container with BSC testsuite
