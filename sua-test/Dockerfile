@@ -1,4 +1,5 @@
-FROM laforge/sigtran-tests
+ARG USER=osmocom-build
+FROM $USER/sigtran-tests
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 

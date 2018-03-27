@@ -40,7 +40,7 @@ post-push:
 
 
 docker-build: .release
-	docker build -t $(IMAGE):latest .
+	docker build --build-arg USER=$(USERNAME) -t $(IMAGE):latest .
 	@DOCKER_MAJOR=$(shell docker -v | sed -e 's/.*version //' -e 's/,.*//' | cut -d\. -f1) ; \
 	DOCKER_MINOR=$(shell docker -v | sed -e 's/.*version //' -e 's/,.*//' | cut -d\. -f2) ; \
 
