@@ -28,7 +28,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/ggsn-tester:/data \
 		-e "TTCN3_PCAP_PATH=/data" \
 		--name ${BUILD_TAG}-ggsn-test \
-		$REPO_USER/ggsn-test
+		$REPO_USER/ttcn3-ggsn-test
 
 # stop GGSN after test has completed
 docker container stop ${BUILD_TAG}-ggsn
