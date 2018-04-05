@@ -1,8 +1,6 @@
 .PHONY: build
 build: debian-jessie-build osmo-ggsn-master osmo-stp-master sctp-test sigtran-tests m3ua-test sua-test debian-stretch-titan ttcn3-ggsn-test
 
-.PHONY: ttcn3-bsc-test ttcn3-msc-test ttcn3-bts-test
-
 .PHONY: debian-jessie-build
 debian-jessie-build:
 	$(MAKE) -C debian-jessie-build
@@ -52,7 +50,7 @@ ttcn3-ggsn-test: osmo-ggsn-test
 	$(MAKE) -C ggsn-test
 
 .PHONY: ttcn3-mgw-test
-ttcn3-msc-test: debian-stretch-titan osmo-mgw-master
+ttcn3-mgw-test: debian-stretch-titan osmo-mgw-master
 	$(MAKE) -C ttcn3-mgw-test
 
 .PHONY: sctp-test
