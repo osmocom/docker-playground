@@ -2,7 +2,7 @@ FROM laforge/debian-jessie-build
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
-ARG	OSMO_BB_BRANCH="laforge/trx"
+ARG	OSMO_BB_BRANCH="master"
 
 ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/"
 
