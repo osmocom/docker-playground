@@ -34,8 +34,6 @@ SUITE_NAME=`basename $PWD`
 NET_NAME=$SUITE_NAME
 
 VOL_BASE_DIR=`mktemp -d`
-VOL_SUITE_DIR=$VOL_BASE_DIR/$SUITE_NAME
-mkdir $VOL_SUITE_DIR
 
 rm -rf $WORKSPACE/logs || /bin/true
 mkdir -p $WORKSPACE/logs
