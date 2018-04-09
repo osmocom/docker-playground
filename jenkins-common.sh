@@ -11,8 +11,7 @@ network_remove() {
 }
 
 collect_logs() {
-	cp -a "$VOL_BASE_DIR"/* "$WORKSPACE"/logs/
-	cat "$WORKSPACE"/logs/*/junit-*.log || true
+	cat "$VOL_BASE_DIR"/*/junit-*.log || true
 }
 
 set -x
@@ -22,9 +21,18 @@ if [ "x$REPO_USER" = "x" ]; then
 	REPO_USER=$USER
 fi
 
-# non-jenkins execution: put logs in /tmp
 if [ "x$WORKSPACE" = "x" ]; then
-	WORKSPACE=/tmp
+	# non-jenkins execution: put logs in /tmp
+	VOL_BASE_DIR="$(mktemp -d)"
+
+	# point /tmp/logs to the last ttcn3 run
+	rm /tmp/logs || true
+	ln -s "$VOL_BASE_DIR" /tmp/logs || true
+else
+	# jenkins execution: put logs in workspace
+	VOL_BASE_DIR="$WORKSPACE/logs"
+	rm -rf "$VOL_BASE_DIR"
+	mkdir -p "$VOL_BASE_DIR"
 fi
 
 # non-jenkins execution: put logs in /tmp
@@ -35,8 +43,3 @@ fi
 SUITE_NAME=`basename $PWD`
 
 NET_NAME=$SUITE_NAME
-
-VOL_BASE_DIR=`mktemp -d`
-
-rm -rf $WORKSPACE/logs || /bin/true
-mkdir -p $WORKSPACE/logs

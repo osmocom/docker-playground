@@ -23,7 +23,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.6.3 \
 		-v $VOL_BASE_DIR/sua-tester:/data \
 		--name ${BUILD_TAG}-sua-test \
-		$REPO_USER/sua-test > $WORKSPACE/logs/junit-xml-sua.log
+		$REPO_USER/sua-test > $VOL_BASE_DIR/junit-xml-sua.log
 
 docker container stop -t 1 ${BUILD_TAG}-stp
 
