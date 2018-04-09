@@ -10,7 +10,10 @@ network_remove() {
 	docker network remove $NET_NAME
 }
 
-
+collect_logs() {
+	cp -a "$VOL_BASE_DIR"/* "$WORKSPACE"/logs/
+	cat "$WORKSPACE"/logs/*/junit-*.log || true
+}
 
 set -x
 

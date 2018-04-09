@@ -36,9 +36,5 @@ echo Stopping containers
 docker container kill ${BUILD_TAG}-sip-connector
 
 network_remove
-
-rm -rf $WORKSPACE/logs
-mkdir -p $WORKSPACE/logs
 rm -rf $VOL_BASE_DIR/unix
-cp -a $VOL_BASE_DIR/* $WORKSPACE/logs/
-cat $WORKSPACE/logs/sip-tester/junit-*.log || true
+collect_logs

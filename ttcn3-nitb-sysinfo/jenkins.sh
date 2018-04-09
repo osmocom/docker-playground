@@ -43,11 +43,10 @@ docker run	--rm \
 		-v bts-vol:/bts \
 		--name ${BUILD_TAG}-sysinfo-helper -d \
 		busybox /bin/sh -c 'sleep 1000 & wait'
-rm -rf $WORKSPACE/logs
-mkdir -p $WORKSPACE/logs
 docker cp ${BUILD_TAG}-sysinfo-helper:/ttcn3-nitb-sysinfo $WORKSPACE/logs
 docker cp ${BUILD_TAG}-sysinfo-helper:/nitb $WORKSPACE/logs
 docker cp ${BUILD_TAG}-sysinfo-helper:/bts $WORKSPACE/logs
 docker container stop -t 0 ${BUILD_TAG}-sysinfo-helper
 
 network_remove
+collect_logs

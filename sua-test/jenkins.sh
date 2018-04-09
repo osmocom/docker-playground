@@ -10,9 +10,6 @@ cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 
 network_create 172.18.6.0/24
 
-rm -rf $WORKSPACE/logs || /bin/true
-mkdir -p $WORKSPACE/logs
-
 # start container with STP in background
 docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
@@ -31,6 +28,4 @@ docker run	--rm \
 docker container stop -t 1 ${BUILD_TAG}-stp
 
 network_remove
-
-cp -a $VOL_BASE_DIR/* $WORKSPACE/logs/
-cat $WORKSPACE/logs/sua-tester/junit-*.log || true
+collect_logs
