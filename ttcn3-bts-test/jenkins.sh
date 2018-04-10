@@ -39,7 +39,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.9.21 \
 		--name ${BUILD_TAG}-fake_trx -d \
 		$REPO_USER/osmocom-bb-trxcon \
-		/tmp/osmocom-bb/src/target/fake_trx/fake_trx.py -R 172.18.9.20 -r 172.18.9.22
+		/tmp/osmocom-bb/src/target/trx_toolkit/fake_trx.py -R 172.18.9.20 -r 172.18.9.22
 
 echo Starting container with trxcon
 docker run	--rm \
