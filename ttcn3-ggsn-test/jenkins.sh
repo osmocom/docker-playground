@@ -2,7 +2,6 @@
 
 . ../jenkins-common.sh
 
-VOL_BASE_DIR=`mktemp -d`
 mkdir $VOL_BASE_DIR/ggsn-tester
 cp GGSN_Tests.cfg $VOL_BASE_DIR/ggsn-tester/
 

@@ -2,7 +2,6 @@
 
 . ../jenkins-common.sh
 
-VOL_BASE_DIR=`mktemp -d`
 mkdir $VOL_BASE_DIR/mgw-tester
 cp MGCP_Test.cfg $VOL_BASE_DIR/mgw-tester/
 
