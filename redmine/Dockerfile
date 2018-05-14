@@ -9,3 +9,6 @@ RUN	apt-get update && \
 
 COPY	redmine-issue-2047-svg-image-support.diff /tmp/redmine-issue-2047-svg-image-support.diff
 RUN	cd app && patch -p1 < /tmp/redmine-issue-2047-svg-image-support.diff
+
+COPY	redmine-openid-hmac-digest.diff /tmp/
+RUN	cd /usr/local/bundle/gems/ruby-openid-2.3.0 && patch -p0 < /tmp/redmine-openid-hmac-digest.diff
