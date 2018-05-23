@@ -26,11 +26,13 @@ RUN	apt-get update && \
 
 WORKDIR	/tmp
 
+ARG	OSMO_BSC_BRANCH="master"
+
 RUN	git clone git://git.osmocom.org/osmo-bsc.git
-ADD	http://git.osmocom.org/osmo-bsc/patch /tmp/commit-osmo-bsc
+ADD	http://git.osmocom.org/osmo-bsc/patch?h=$OSMO_BSC_BRANCH /tmp/commit-osmo-bsc
 
 RUN	cd osmo-bsc && \
-	git fetch && git checkout -f -B master origin/master && \
+	git fetch && git checkout -f -B $OSMO_BSC_BRANCH origin/$OSMO_BSC_BRANCH && \
 	autoreconf -fi && \
 	./configure --enable-trx && \
 	make -j8 install

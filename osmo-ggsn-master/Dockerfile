@@ -19,11 +19,12 @@ RUN	apt-get update && \
 
 WORKDIR	/tmp
 
+ARG	OSMO_GGSN_BRANCH="master"
+
 RUN	git clone git://git.osmocom.org/osmo-ggsn.git
-ARG	branch=master
-ADD	http://git.osmocom.org/osmo-ggsn/patch/?h=$branch /tmp/commit
+ADD	http://git.osmocom.org/osmo-ggsn/patch/?h=$OSMO_GGSN_BRANCH /tmp/commit
 RUN	cd osmo-ggsn && \
-	git fetch && git checkout -f -B master origin/$branch && \
+	git fetch && git checkout -f -B $OSMO_GGSN_BRANCH origin/$OSMO_GGSN_BRANCH && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 install && \

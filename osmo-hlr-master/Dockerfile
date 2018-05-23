@@ -23,11 +23,13 @@ RUN	apt-get update && \
 
 WORKDIR	/tmp
 
+ARG	OSMO_HLR_BRANCH="master"
+
 RUN	git clone git://git.osmocom.org/osmo-hlr.git
-ADD	http://git.osmocom.org/osmo-hlr/patch /tmp/commit-osmo-hlr
+ADD	http://git.osmocom.org/osmo-hlr/patch?h=$OSMO_HLR_BRANCH /tmp/commit-osmo-hlr
 
 RUN	cd osmo-hlr && \
-	git fetch && git checkout -f -B master origin/master && \
+	git fetch && git checkout -f -B $OSMO_HLR_BRANCH origin/$OSMO_HLR_BRANCH && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 install

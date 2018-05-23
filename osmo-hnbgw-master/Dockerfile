@@ -23,11 +23,13 @@ RUN	apt-get update && \
 
 WORKDIR	/tmp
 
+ARG	OSMO_IUH_BRANCH="master"
+
 RUN	git clone git://git.osmocom.org/osmo-iuh.git
-ADD	http://git.osmocom.org/osmo-iuh/patch /tmp/commit-osmo-mgw
+ADD	http://git.osmocom.org/osmo-iuh/patch?h=$OSMO_IUH_BRANCH /tmp/commit-osmo-mgw
 
 RUN	cd osmo-iuh && \
-	git fetch && git checkout -f -B master origin/master && \
+	git fetch && git checkout -f -B $OSMO_IUH_BRANCH origin/$OSMO_IUH_BRANCH && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 install && \

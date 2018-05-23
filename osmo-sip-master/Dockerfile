@@ -30,11 +30,13 @@ RUN	apt-get update && \
 
 WORKDIR	/tmp
 
+ARG	OSMO_SIP_BRANCH="master"
+
 RUN	git clone git://git.osmocom.org/osmo-sip-connector.git
-ADD	http://git.osmocom.org/osmo-sip-connector/patch /tmp/commit-osmo-sip-connector
+ADD	http://git.osmocom.org/osmo-sip-connector/patch?h=$OSMO_SIP_BRANCH /tmp/commit-osmo-sip-connector
 
 RUN	cd osmo-sip-connector && \
-	git fetch && git checkout -f -B master origin/master && \
+	git fetch && git checkout -f -B $OSMO_SIP_BRANCH origin/$OSMO_SIP_BRANCH && \
 	autoreconf -fi && \
 	./configure --enable-smpp --enable-iu && \
 	make -j8 install

@@ -30,11 +30,13 @@ RUN	apt-get update && \
 
 WORKDIR	/tmp
 
+ARG	OSMO_MSC_BRANCH="master"
+
 RUN	git clone git://git.osmocom.org/osmo-msc.git
-ADD	http://git.osmocom.org/osmo-msc/patch /tmp/commit-osmo-msc
+ADD	http://git.osmocom.org/osmo-msc/patch?h=$OSMO_MSC_BRANCH /tmp/commit-osmo-msc
 
 RUN	cd osmo-msc && \
-	git fetch && git checkout -f -B master origin/master && \
+	git fetch && git checkout -f -B $OSMO_MSC_BRANCH origin/$OSMO_MSC_BRANCH && \
 	autoreconf -fi && \
 	./configure --enable-smpp --enable-iu && \
 	make -j8 install

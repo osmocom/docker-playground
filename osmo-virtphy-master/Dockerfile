@@ -24,11 +24,13 @@ RUN	apt-get update && \
 
 WORKDIR	/tmp
 
+ARG	OSMO_BB_BRANCH="master"
+
 RUN	git clone git://git.osmocom.org/osmocom-bb.git
-ADD	http://git.osmocom.org/osmocom-bb/patch /tmp/commit
+ADD	http://git.osmocom.org/osmocom-bb/patch?h=$OSMO_BB_BRANCH /tmp/commit
 
 RUN	cd osmocom-bb/src/host/virt_phy && \
-	git fetch && git checkout -f -B master origin/master && \
+	git fetch && git checkout -f -B $OSMO_BB_BRANCH origin/$OSMO_BB_BRANCH && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 install
