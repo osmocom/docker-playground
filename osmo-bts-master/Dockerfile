@@ -26,11 +26,13 @@ ADD	respawn.sh /usr/local/bin/respawn.sh
 
 WORKDIR	/tmp
 
+ARG	OSMO_BTS_BRANCH="master"
+
 RUN	git clone git://git.osmocom.org/osmo-bts.git
-ADD	http://git.osmocom.org/osmo-bts/patch /tmp/commit-osmo-bts
+ADD	http://git.osmocom.org/osmo-bts/patch?h=$OSMO_BTS_BRANCH /tmp/commit-osmo-bts
 
 RUN	cd osmo-bts && \
-	git fetch && git checkout -f -B master origin/master && \
+	git fetch && git checkout -f -B $OSMO_BTS_BRANCH origin/$OSMO_BTS_BRANCH && \
 	autoreconf -fi && \
 	./configure --enable-trx && \
 	make -j8 install
