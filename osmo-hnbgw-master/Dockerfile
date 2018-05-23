@@ -1,4 +1,4 @@
-FROM laforge/debian-stretch-build
+FROM laforge/debian-jessie-build
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
