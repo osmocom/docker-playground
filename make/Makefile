@@ -66,8 +66,8 @@ release: check-status check-release build push
 push: do-push post-push 
 
 do-push: 
-	docker push $(IMAGE):$(VERSION)
 	docker push $(IMAGE):latest
+	[ -f .release ] && docker push $(IMAGE):$(VERSION)
 
 snapshot: build push
 
