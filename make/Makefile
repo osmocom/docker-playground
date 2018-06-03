@@ -13,15 +13,15 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #
-REGISTRY_HOST=docker.io
-USERNAME=$(USER)
-NAME=$(shell basename $(CURDIR))
+REGISTRY_HOST?=docker.io
+USERNAME?=$(USER)
+NAME?=$(shell basename $(CURDIR))
 
 RELEASE_SUPPORT := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))/.make-release-support
-IMAGE=$(REGISTRY_HOST)/$(USERNAME)/$(NAME)
+IMAGE?=$(REGISTRY_HOST)/$(NAME)
 
-VERSION=$(shell . $(RELEASE_SUPPORT) ; getVersion)
-TAG=$(shell . $(RELEASE_SUPPORT); getTag)
+VERSION?=$(shell . $(RELEASE_SUPPORT) ; getVersion)
+TAG?=$(shell . $(RELEASE_SUPPORT); getTag)
 
 SHELL=/bin/bash
 
