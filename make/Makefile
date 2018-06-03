@@ -18,7 +18,7 @@ USERNAME?=$(USER)
 NAME?=$(shell basename $(CURDIR))
 
 RELEASE_SUPPORT := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))/.make-release-support
-IMAGE?=$(REGISTRY_HOST)/$(NAME)
+IMAGE?=$(REGISTRY_HOST)/$(USER)/$(NAME)
 
 VERSION?=$(shell . $(RELEASE_SUPPORT) ; getRelease)
 
