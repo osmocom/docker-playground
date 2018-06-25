@@ -15,14 +15,8 @@ RUN	apt-key add /tmp/Release.key && \
 ADD	$OSMOCOM_REPO/Release /tmp/Release
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
-		telnet \
 		tcpdump \
-		libosmocore-dev \
-		libosmo-abis-dev \
-		libosmo-netif-dev \
-		libosmo-sccp-dev \
-		libsmpp34-dev \
-		libgtp-dev && \
+		libosmocore-dev && \
 	apt-get clean
 
 WORKDIR	/tmp
