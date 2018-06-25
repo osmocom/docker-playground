@@ -34,7 +34,7 @@ ADD	http://git.osmocom.org/osmo-bsc/patch?h=$OSMO_BSC_BRANCH /tmp/commit-osmo-bs
 RUN	cd osmo-bsc && \
 	git fetch && git checkout -f -B $OSMO_BSC_BRANCH origin/$OSMO_BSC_BRANCH && \
 	autoreconf -fi && \
-	./configure --enable-trx && \
+	./configure && \
 	make -j8 install
 
 VOLUME	/data
