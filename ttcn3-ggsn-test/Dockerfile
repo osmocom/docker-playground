@@ -22,5 +22,7 @@ RUN	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-start.sh / && \
 COPY	GGSN_Tests.cfg /data/GGSN_Tests.cfg
 
 CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/ggsn_tests/GGSN_Tests && \
-	/osmo-ttcn3-hacks/log_merge.sh GGSN_Tests --rm
+	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/ggsn_tests/GGSN_Tests; \
+	exit_code=$?; \
+	/osmo-ttcn3-hacks/log_merge.sh GGSN_Tests --rm; \
+	exit $exit_code

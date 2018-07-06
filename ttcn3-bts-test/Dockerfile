@@ -26,5 +26,7 @@ RUN	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-start.sh / && \
 COPY	BTS_Tests.cfg /data/BTS_Tests.cfg
 
 CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/bts/BTS_Tests && \
-	/osmo-ttcn3-hacks/log_merge.sh BTS_Tests --rm
+	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/bts/BTS_Tests; \
+	exit_code=$?; \
+	/osmo-ttcn3-hacks/log_merge.sh BTS_Tests --rm; \
+	exit $exit_code

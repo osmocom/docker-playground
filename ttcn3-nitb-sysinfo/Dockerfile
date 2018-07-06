@@ -20,5 +20,7 @@ VOLUME	/data
 COPY	Test.cfg /data/Test.cfg
 
 CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/sysinfo/Test && \
-	/osmo-ttcn3-hacks/log_merge.sh Test
+	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/sysinfo/Test; \
+	exit_code=$?; \
+	/osmo-ttcn3-hacks/log_merge.sh Test; \
+	exit $exit_code
