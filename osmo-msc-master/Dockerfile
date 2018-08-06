@@ -19,6 +19,7 @@ RUN	apt-get update && \
 		libosmo-abis-dev \
 		libosmo-legacy-mgcp-dev \
 		libosmo-mgcp-client-dev \
+		libosmo-gsup-client-dev \
 		libosmo-netif-dev \
 		libosmo-ranap-dev \
 		libosmo-sccp-dev \
