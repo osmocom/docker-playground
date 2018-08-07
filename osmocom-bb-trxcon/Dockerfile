@@ -15,7 +15,6 @@ RUN	apt-key add /tmp/Release.key && \
 ADD	$OSMOCOM_REPO/Release /tmp/Release
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
-		tcpdump \
 		libosmocore-dev && \
 	apt-get clean
 
