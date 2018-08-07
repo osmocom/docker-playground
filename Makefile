@@ -25,9 +25,9 @@ osmo-msc-master: debian-jessie-build
 osmo-stp-master: debian-jessie-build
 	$(MAKE) -C osmo-stp-master
 
-.PHONY: osmocom-bb-trxcon
-osmocom-bb-trxcon: debian-jessie-build
-	$(MAKE) -C osmocom-bb-trxcon
+.PHONY: osmocom-bb-host-master
+osmocom-bb-host-master: debian-jessie-build
+	$(MAKE) -C osmocom-bb-host-master
 
 .PHONY: osmo-ggsn-master
 osmo-ggsn-master: debian-jessie-build
@@ -38,7 +38,7 @@ ttcn3-bsc-test: debian-stretch-titan osmo-stp-master osmo-bsc-master osmo-bts-ma
 	$(MAKE) -C ttcn3-bsc-test
 
 .PHONY: ttcn3-bts-test
-ttcn3-bts-test: debian-stretch-titan osmo-bsc-master osmo-bts-master osmocom-bb-trxcon ttcn3-bts-test
+ttcn3-bts-test: debian-stretch-titan osmo-bsc-master osmo-bts-master osmocom-bb-host-master ttcn3-bts-test
 	$(MAKE) -C ttcn3-bts-test
 
 .PHONY: ttcn3-msc-test

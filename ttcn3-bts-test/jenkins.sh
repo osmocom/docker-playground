@@ -38,7 +38,7 @@ echo Starting container with fake_trx
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.9.21 \
 		--name ${BUILD_TAG}-fake_trx -d \
-		$REPO_USER/osmocom-bb-trxcon \
+		$REPO_USER/osmocom-bb-host-master \
 		/tmp/osmocom-bb/src/target/trx_toolkit/fake_trx.py -R 172.18.9.20 -r 172.18.9.22
 
 echo Starting container with trxcon
@@ -46,7 +46,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.9.22 \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-trxcon -d \
-		$REPO_USER/osmocom-bb-trxcon \
+		$REPO_USER/osmocom-bb-host-master \
 		/usr/local/bin/trxcon -i 172.18.9.21 -s /data/unix/osmocom_l2
 
 
