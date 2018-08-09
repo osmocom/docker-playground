@@ -68,3 +68,7 @@ sua-test: osmo-stp-master
 .PHONY: m3ua-test
 m3ua-test: osmo-stp-master sigtran-tests
 	$(MAKE) -C m3ua-test
+
+.PHONY: gr-gsm-master
+gr-gsm-master:
+	$(MAKE) -C gr-gsm-master
