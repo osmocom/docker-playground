@@ -20,7 +20,6 @@ RUN	apt-get update && \
 		libosmo-sccp-dev \
 		libosmo-sigtran-dev \
 		libosmo-mgcp-client-dev \
-		libosmo-legacy-mgcp-dev \
 		libgtp-dev && \
 	apt-get clean
 

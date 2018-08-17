@@ -17,7 +17,6 @@ RUN	apt-get update && \
 		libdbd-sqlite3 \
 		libdbi-dev \
 		libosmo-abis-dev \
-		libosmo-legacy-mgcp-dev \
 		libosmo-mgcp-client-dev \
 		libosmo-gsup-client-dev \
 		libosmo-netif-dev \
