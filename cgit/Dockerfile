@@ -12,3 +12,6 @@ RUN	mkdir -p /usr/local/lib/cgit/filters
 
 COPY	osmo-commit-filter.py /usr/local/lib/cgit/filters/osmo-commit-filter.py
 COPY	syntax-highlighting.py /usr/local/lib/cgit/filters/syntax-highlighting.py
+
+RUN    useradd -u 30001 -g ssh git-daemon
+RUN    usermod -a -G 101 www-data
