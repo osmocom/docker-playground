@@ -33,6 +33,10 @@ osmocom-bb-host-master: debian-jessie-build
 osmo-ggsn-master: debian-jessie-build
 	$(MAKE) -C osmo-ggsn-master
 
+.PHONY: osmo-hlr-master
+osmo-hlr-master: debian-jessie-build
+	$(MAKE) -C osmo-hlr-master
+
 .PHONY: ttcn3-bsc-test
 ttcn3-bsc-test: debian-stretch-titan osmo-stp-master osmo-bsc-master osmo-bts-master ttcn3-bsc-test
 	$(MAKE) -C ttcn3-bsc-test
@@ -52,6 +56,10 @@ ttcn3-ggsn-test: osmo-ggsn-test
 .PHONY: ttcn3-mgw-test
 ttcn3-mgw-test: debian-stretch-titan osmo-mgw-master
 	$(MAKE) -C ttcn3-mgw-test
+
+.PHONY: ttcn3-hlr-test
+ttcn3-hlr-test: debian-stretch-titan osmo-hlr-master
+	$(MAKE) -C ttcn3-hlr-test
 
 .PHONY: sctp-test
 sctp-test: debian-jessie-build
