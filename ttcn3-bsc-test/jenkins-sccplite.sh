@@ -2,6 +2,9 @@
 
 . ../jenkins-common.sh
 
+#Make sure NET_NAME doesn't clash with the AoIP BSC test
+NET_NAME=ttcn3-bsc_sccplite-test
+
 mkdir $VOL_BASE_DIR/bsc-tester
 cp sccplite/BSC_Tests.cfg $VOL_BASE_DIR/bsc-tester/
 
