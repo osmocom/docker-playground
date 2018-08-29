@@ -20,6 +20,8 @@ mkdir $VOL_BASE_DIR/osmo-sgsn-master/
 cp osmo-sgsn.cfg $VOL_BASE_DIR/osmo-sgsn-master/
 mkdir $VOL_BASE_DIR/osmo-ggsn-master/
 cp osmo-ggsn.cfg $VOL_BASE_DIR/osmo-ggsn-master/
+mkdir $VOL_BASE_DIR/osmo-sip-master/
+cp osmo-sip-connector.cfg $VOL_BASE_DIR/osmo-sip-master/
 
 
 network_create 172.18.12.0/24
@@ -43,6 +45,7 @@ container_create osmo-msc-master 172.18.12.203
 container_create osmo-bsc-master 172.18.12.11 
 container_create osmo-sgsn-master 172.18.12.204
 container_create osmo-ggsn-master 172.18.12.205
+container_create osmo-sip-master 172.18.12.206
 
 # Get asciidoc counter info
 #${OSMO_INTERACT_VTY} \
@@ -75,6 +78,8 @@ ${OSMO_INTERACT_VTY} \
 	-X -p 4245 -H 172.18.12.204 -O sgsn_vty_reference.xml
 ${OSMO_INTERACT_VTY} \
 	-X -p 4260 -H 172.18.12.205 -O ggsn_vty_reference.xml
+${OSMO_INTERACT_VTY} \
+	-X -p 4256 -H 172.18.12.206 -O sipcon_vty_reference.xml
 
 docker container kill ${BUILD_TAG}-osmo-stp-master
 docker container kill ${BUILD_TAG}-osmo-hlr-master
@@ -83,6 +88,7 @@ docker container kill ${BUILD_TAG}-osmo-mgw-master
 docker container kill ${BUILD_TAG}-osmo-bsc-master
 docker container kill ${BUILD_TAG}-osmo-sgsn-master
 docker container kill ${BUILD_TAG}-osmo-ggsn-master
+docker container kill ${BUILD_TAG}-osmo-sip-master
 
 network_remove
 
