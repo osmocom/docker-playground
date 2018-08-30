@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec /usr/bin/osmo-ggsn -c /data/osmo-ggsn.cfg
