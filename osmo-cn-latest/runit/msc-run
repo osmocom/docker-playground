@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec /usr/bin/osmo-msc -c /data/osmo-msc.cfg
