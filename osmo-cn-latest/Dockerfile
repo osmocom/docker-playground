@@ -40,12 +40,3 @@ COPY	runit/ggsn-run /etc/service/osmo-ggsn/run
 
 WORKDIR	/data
 CMD	["/sbin/runit"]
-
-# STP
-EXPOSE	2905 14001 4239
-# HLR
-EXPOSE	4222 4258 4259
-# SGSN
-EXPOSE	23000/udp 4245/tcp 4249/tcp
-# GGSN
-EXPOSE	3386/udp 2123/udp 2152/udp 4257/tcp 4260/tcp
