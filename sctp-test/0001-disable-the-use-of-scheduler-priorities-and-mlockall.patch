@@ -1,37 +1,38 @@
-From f3635ca581643f489836f6c603c9888ab7595c36 Mon Sep 17 00:00:00 2001
-From: Harald Welte <laforge@gnumonks.org>
-Date: Wed, 3 May 2017 22:31:53 +0200
+From 9f4fc59acf3df854da790da3824c1a3af497c40b Mon Sep 17 00:00:00 2001
+From: Oliver Smith <osmith@sysmocom.de>
+Date: Tue, 4 Sep 2018 14:24:52 +0200
 Subject: [PATCH] disable the use of scheduler priorities and mlockall
 
 This doesn't work inside of docker, so let's disable it
+
+(This is the same patch as the one by laforge, just re-applied to
+current master)
 ---
- gtests/net/packetdrill/run.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ gtests/net/packetdrill/run.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/gtests/net/packetdrill/run.c b/gtests/net/packetdrill/run.c
-index 54f4ebb..66a4c07 100644
+index 8467bb7..9268b50 100644
 --- a/gtests/net/packetdrill/run.c
 +++ b/gtests/net/packetdrill/run.c
-@@ -439,7 +439,7 @@ void set_scheduling_priority(void)
+@@ -454,7 +454,7 @@ void set_scheduling_priority(void)
  	if (num_cpus <= 1)
  		return;
  
--#if !defined(__OpenBSD__)
+-#if !defined(__OpenBSD__) && !defined(__APPLE__)
 +#if 0
  	/* Chose a real-time policy, but use SCHED_RR instead of
  	 * SCHED_FIFO, so that we round-robin among real-time threads
  	 * of the same priority. In practice this shouldn't matter,
-@@ -466,8 +466,10 @@ void set_scheduling_priority(void)
+@@ -481,7 +481,7 @@ void set_scheduling_priority(void)
   */
  void lock_memory(void)
  {
+-#if !defined(__APPLE__)
 +#if 0
  	if (mlockall(MCL_CURRENT | MCL_FUTURE))
- 		die_perror("lockall(MCL_CURRENT | MCL_FUTURE)");
-+#endif
- }
- 
- /* Wait for and return the wall time at which we should start the
+ 		die_perror("mlockall(MCL_CURRENT | MCL_FUTURE)");
+ #endif
 -- 
-2.11.0
+2.17.1
 
