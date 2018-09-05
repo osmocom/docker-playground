@@ -1,4 +1,5 @@
-FROM	laforge/debian-stretch-titan
+ARG	USER
+FROM	$USER/debian-stretch-titan
 
 RUN	git clone git://git.osmocom.org/osmo-ttcn3-hacks.git
 

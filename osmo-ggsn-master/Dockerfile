@@ -1,4 +1,5 @@
-FROM laforge/debian-jessie-build
+ARG	USER
+FROM	$USER/debian-jessie-build
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 

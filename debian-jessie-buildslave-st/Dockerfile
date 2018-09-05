@@ -1,4 +1,5 @@
-FROM	laforge/debian-jessie-buildslave
+ARG	USER
+FROM	$USER/debian-jessie-buildslave
 
 RUN	apt-get -y install \
 		libffi-dev \

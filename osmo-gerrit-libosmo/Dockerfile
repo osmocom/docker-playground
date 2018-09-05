@@ -3,7 +3,8 @@
 # projects, and then simply 'git pull' + build the given project
 # that we want to compile-test at 'docker run' time (in tmpfs)
 
-FROM	laforge/debian-jessie-buildslave
+ARG	USER
+FROM	$USER/debian-jessie-buildslave
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
