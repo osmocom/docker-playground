@@ -3,7 +3,7 @@ FROM 	base/archlinux
 MAINTAINER Vadim Yanitskiy <axilirator@gmail.com>
 
 ARG	LIBOSMOCORE_BRANCH="master"
-ARG	GR_GSM_BRANCH="fixeria/trx"
+ARG	GR_GSM_BRANCH="master"
 
 # Build dependencies
 ENV	BUILD_DEPS \
