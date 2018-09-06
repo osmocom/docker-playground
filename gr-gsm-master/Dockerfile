@@ -17,7 +17,7 @@ ENV	BUILD_DEPS \
 	gcc
 
 # Sync pacman
-RUN	pacman -Syu
+RUN	pacman -Syyu --noconfirm
 
 # Install persistent packages
 RUN	pacman -S --needed --noconfirm \
