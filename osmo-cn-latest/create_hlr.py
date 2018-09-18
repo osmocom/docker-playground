@@ -3,8 +3,17 @@
 import csv
 import sys
 import sqlite3
+from optparse import OptionParser
 
-# 3G
+def parse_options():
+    parser = OptionParser()
+
+    parser.add_option("-c", "--mcc", dest="mcc", help="Mobile Country Code")
+    parser.add_option("-n", "--mnc", dest="mnc", help="Mobile Network Code")
+    (options, args) = parser.parse_args()
+
+    return options, args
+
 def create_hlr_3g(db):
 	conn = sqlite3.connect(db)
 	c = conn.execute(
@@ -112,7 +121,10 @@ def write_hlr_3g(db, data):
 	conn.commit()
 	conn.close()
 
-def main(infilename):
+def main():
+        options, args = parse_options()
+
+        infilename = args[0]
 	csvfields = ['name', 'iccid', 'mcc', 'mnc', 'imsi', 'extension', 'smsp', 'ki', 'opc', 'adm1']
 
 	create_hlr_3g("hlr.db")
@@ -124,12 +136,18 @@ def main(infilename):
 
 	cw.writeheader()
 	for row in cr:
+		imsi = row['imsi']
+                if options.mcc:
+                    imsi = options.mcc + imsi[3:]
+                if options.mnc:
+                    imsi = imsi[0:3] + options.mnc + imsi[5:]
+                    
 		data = {}
 		data['name'] = "Subscriber " + row['iccid'][-6:-1]
 		data['iccid'] = row['iccid']
-		data['mcc'] = row['imsi'][0:3]
-		data['mnc'] = row['imsi'][3:5]
-		data['imsi'] = row['imsi']
+                data['imsi'] = imsi
+		data['mcc'] = data['imsi'][0:3]
+		data['mnc'] = data['imsi'][3:5]
 		data['ki'] = row['ki']
 		data['opc'] = row['opc']
 		data['extension'] = row['iccid'][-6:-1]
@@ -143,5 +161,5 @@ def main(infilename):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1])
+    main()
 
