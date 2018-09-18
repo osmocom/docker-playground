@@ -18,7 +18,7 @@ ADD	$OSMOCOM_REPO/Release /tmp/Release
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		osmo-msc osmo-hlr osmo-sgsn osmo-ggsn osmo-mgw osmo-stp \
-		runit telnet && \
+		runit telnet iptables && \
 	apt-get clean
 
 WORKDIR	/tmp
@@ -40,3 +40,6 @@ COPY	runit/ggsn-run /etc/service/osmo-ggsn/run
 
 WORKDIR	/data
 CMD	["/sbin/runit"]
+
+
+EXPOSE 23000/udp
