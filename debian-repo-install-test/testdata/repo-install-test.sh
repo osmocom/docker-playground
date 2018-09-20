@@ -44,25 +44,48 @@ install_repo_packages() {
 	apt install -y $(cat /data/osmocom_packages.txt)
 }
 
+test_binaries_version() {
+	# Make sure --version runs and does not output UNKNOWN
+	failed=""
+	for program in $@; do
+		# Make sure it runs at all
+		$program --version
+
+		# Check for UNKNOWN
+		if $program --version | grep -q UNKNOWN; then
+			failed="$failed $program"
+			echo "ERROR: this program prints UNKNOWN in --version!"
+		fi
+	done
+
+	if [ -n "$failed" ]; then
+		echo "ERROR: the following program(s) print UNKNOWN in --version:"
+		echo "$failed"
+		return 1
+	fi
+}
+
 test_binaries() {
 	# Make sure the binaries are not broken (run -h or --version)
-	osmo-bsc --version
-	osmo-bts-trx --version
-	osmo-bts-virtual --version
-	osmo-gbproxy --version
-	osmo-ggsn --version
 	osmo-gtphub -h
-	osmo-hlr --version
-	osmo-hlr-db-tool --version
-	osmo-hnbgw --version
-	osmo-mgw --version
-	osmo-msc --version
-	osmo-pcu --version
-	osmo-sgsn --version
 	osmo-sip-connector -h
-	osmo-stp --version
 	osmo-trx-uhd -h
 	osmo-trx-usrp1 -h
+
+	test_binaries_version \
+		osmo-bsc \
+		osmo-bts-trx \
+		osmo-bts-virtual \
+		osmo-gbproxy \
+		osmo-ggsn \
+		osmo-hlr \
+		osmo-hlr-db-tool \
+		osmo-hnbgw \
+		osmo-mgw \
+		osmo-msc \
+		osmo-pcu \
+		osmo-sgsn \
+		osmo-stp
 }
 
 finish() {
