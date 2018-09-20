@@ -1,0 +1,11 @@
+You need a csv with the simcard data.
+
+To create hlr.db and change the mcc/mnc run:
+./create_hlr.py --mcc 901 --mnc 23 source.csv
+
+This will create the hlr.db and a simcards.csv where the first digits of the
+IMSI will be changed to match the MCC/MNC. In order to reprogram the SIM cards
+run pySim-prog like this:
+
+./pySim-prog.py -p 0 -t sysmoUSIM-SJS1 --source=csv --read-csv=simcards.csv --read-iccid
+
