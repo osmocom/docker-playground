@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os, sys
 import csv
 import sys
 import sqlite3
@@ -127,7 +128,22 @@ def main():
         infilename = args[0]
 	csvfields = ['name', 'iccid', 'mcc', 'mnc', 'imsi', 'extension', 'smsp', 'ki', 'opc', 'adm1']
 
-	create_hlr_3g("hlr.db")
+        try:
+            create_hlr_3g("hlr.db")
+        except sqlite3.OperationalError:
+            print("hlr.db already exists, please remove!\n");
+            sys.exit(1)
+
+        msc = open("osmo-msc.cfg.patch", "w")
+        msc.write("network\n")
+        msc.write(" network country code %s\n" %(options.mcc))
+        msc.write(" mobile network code %s\n" %(options.mnc))
+        msc.write(" short name OsmoMSC-%s-%s\n" %(options.mcc, options.mnc))
+        msc.write(" long name OsmoMSC-%s-%s\n" %(options.mcc, options.mnc))
+        msc.close()
+
+        os.system("osmo-config-merge osmo-msc.cfg.base osmo-msc.cfg.patch > osmo-msc.cfg")
+
 	inf = open(infilename, "r")
 	outf = open("simcards.csv", "w")
 
