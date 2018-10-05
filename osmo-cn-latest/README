@@ -1,11 +1,13 @@
-You need a csv with the simcard data.
+You need a csv with the simcard data and osmo-config-merge needs to be in your
+path.
 
 To create hlr.db and change the mcc/mnc run:
-./create_hlr.py --mcc 901 --mnc 23 source.csv
+./provision_hlr.py --mcc 901 --mnc 23 source.csv
 
 This will create the hlr.db and a simcards.csv where the first digits of the
-IMSI will be changed to match the MCC/MNC. In order to reprogram the SIM cards
-run pySim-prog like this:
+IMSI will be changed to match the MCC/MNC. In order to reprogram the IMSIs of
+the SIM cards run pySim-prog:
 
 ./pySim-prog.py -p 0 -t sysmoUSIM-SJS1 --source=csv --read-csv=simcards.csv --read-iccid
 
+This is only needed if the mcc/mnc options are used.
