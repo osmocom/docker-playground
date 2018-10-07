@@ -7,3 +7,6 @@ RUN	apt-get update && \
 		mscgen \
 		patch && \
 	apt-get clean
+
+ADD	hmac.diff /tmp/hmac.diff
+RUN	cd / && patch -p0 < /tmp/hmac.diff
