@@ -2,7 +2,7 @@ FROM debian:stretch
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
-ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_9.0/"
+ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/latest/Debian_9.0/"
 
 COPY	Release.key /tmp/Release.key
 
