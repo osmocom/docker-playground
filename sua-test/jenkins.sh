@@ -1,6 +1,13 @@
 #!/bin/sh
 
 . ../jenkins-common.sh
+IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
+docker_images_require \
+	"debian-jessie-build" \
+	"osmo-stp-$IMAGE_SUFFIX" \
+	"debian-stretch-titan" \
+	"sigtran-tests" \
+	"sua-test"
 
 mkdir $VOL_BASE_DIR/sua-tester
 cp sua-param-testtool-sgp.scm some-sua-sgp-tests.txt $VOL_BASE_DIR/sua-tester/
@@ -16,7 +23,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.6.200 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp \
-		-d $REPO_USER/osmo-stp-master
+		-d $REPO_USER/osmo-stp-$IMAGE_SUFFIX
 
 # start docker container with tests
 docker run	--rm \

@@ -1,6 +1,12 @@
 #!/bin/sh
 
 . ../jenkins-common.sh
+IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
+docker_images_require \
+	"debian-jessie-build" \
+	"osmo-hlr-$IMAGE_SUFFIX" \
+	"debian-stretch-titan" \
+	"ttcn3-hlr-test"
 
 network_create 172.18.10.0/24
 
@@ -15,7 +21,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.10.20 \
 		-v $VOL_BASE_DIR/hlr:/data \
 		--name ${BUILD_TAG}-hlr -d \
-		$REPO_USER/osmo-hlr-master \
+		$REPO_USER/osmo-hlr-$IMAGE_SUFFIX \
 		/usr/local/bin/osmo-hlr
 
 echo Starting container with HLR testsuite

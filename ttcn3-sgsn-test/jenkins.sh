@@ -1,6 +1,12 @@
 #!/bin/sh
 
 . ../jenkins-common.sh
+IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
+docker_images_require \
+	"debian-jessie-build" \
+	"osmo-sgsn-$IMAGE_SUFFIX" \
+	"debian-stretch-titan" \
+	"ttcn3-sgsn-test"
 
 network_create 172.18.8.0/24
 
@@ -17,7 +23,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.8.10 \
 		-v $VOL_BASE_DIR/sgsn:/data \
 		--name ${BUILD_TAG}-sgsn -d \
-		$REPO_USER/osmo-sgsn-master \
+		$REPO_USER/osmo-sgsn-$IMAGE_SUFFIX \
 		/usr/local/bin/osmo-sgsn
 
 echo Starting container with SGSN testsuite

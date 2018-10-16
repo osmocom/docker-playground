@@ -1,6 +1,13 @@
 #!/bin/sh
 
 . ../jenkins-common.sh
+IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
+docker_images_require \
+	"debian-jessie-build" \
+	"osmo-stp-$IMAGE_SUFFIX" \
+	"osmo-msc-$IMAGE_SUFFIX" \
+	"debian-stretch-titan" \
+	"ttcn3-msc-test"
 
 network_create 172.18.1.0/24
 
@@ -22,7 +29,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.1.200 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp -d \
-		$REPO_USER/osmo-stp-master
+		$REPO_USER/osmo-stp-$IMAGE_SUFFIX
 
 echo Starting container with MSC
 docker run	--rm \
@@ -30,7 +37,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/msc:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-msc -d \
-		$REPO_USER/osmo-msc-master \
+		$REPO_USER/osmo-msc-$IMAGE_SUFFIX \
 		/usr/local/bin/osmo-msc -M /data/unix/mncc
 
 echo Starting container with MSC testsuite

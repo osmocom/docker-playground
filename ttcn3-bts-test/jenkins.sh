@@ -1,6 +1,15 @@
 #!/bin/sh
 
 . ../jenkins-common.sh
+IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
+# NOTE: there is no osmocom-bb-host-latest, hence always use master!
+docker_images_require \
+	"debian-jessie-build" \
+	"osmo-bsc-$IMAGE_SUFFIX" \
+	"osmo-bts-$IMAGE_SUFFIX" \
+	"osmocom-bb-host-master" \
+	"debian-stretch-titan" \
+	"ttcn3-bts-test"
 
 network_create 172.18.9.0/24
 
@@ -24,7 +33,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.9.11 \
 		-v $VOL_BASE_DIR/bsc:/data \
 		--name ${BUILD_TAG}-bsc -d \
-		$REPO_USER/osmo-bsc-master \
+		$REPO_USER/osmo-bsc-$IMAGE_SUFFIX \
 		/usr/local/bin/osmo-bsc -c /data/osmo-bsc.cfg
 
 echo Starting container with BTS
@@ -33,7 +42,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/bts:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-bts -d \
-		$REPO_USER/osmo-bts-master \
+		$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
 		/usr/local/bin/respawn.sh /usr/local/bin/osmo-bts-trx -c /data/osmo-bts.cfg -i 172.18.9.10
 
 echo Starting container with fake_trx
@@ -41,7 +50,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.9.21 \
 		-v $VOL_BASE_DIR/fake_trx:/data \
 		--name ${BUILD_TAG}-fake_trx -d \
-		$REPO_USER/osmocom-bb-host-master \
+		$REPO_USER/osmocom-bb-host-$IMAGE_SUFFIX \
 		bash -c "/tmp/osmocom-bb/src/target/trx_toolkit/fake_trx.py -R 172.18.9.20 -r 172.18.9.22 >/data/fake_trx.log 2>&1"
 
 echo Starting container with trxcon
@@ -49,7 +58,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.9.22 \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-trxcon -d \
-		$REPO_USER/osmocom-bb-host-master \
+		$REPO_USER/osmocom-bb-host-$IMAGE_SUFFIX \
 		/usr/local/bin/trxcon -i 172.18.9.21 -s /data/unix/osmocom_l2
 
 

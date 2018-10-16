@@ -1,6 +1,13 @@
 #!/bin/sh
 
 . ../jenkins-common.sh
+IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
+docker_images_require \
+	"debian-jessie-build" \
+	"osmo-bsc-$IMAGE_SUFFIX" \
+	"osmo-bts-$IMAGE_SUFFIX" \
+	"debian-stretch-titan" \
+	"ttcn3-bsc-test"
 
 #Make sure NET_NAME doesn't clash with the AoIP BSC test
 NET_NAME=ttcn3-bsc_sccplite-test
@@ -18,14 +25,17 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.12.20 \
 		-v $VOL_BASE_DIR/bsc:/data \
 		--name ${BUILD_TAG}-bsc -d \
-		$REPO_USER/osmo-bsc-master
+		$REPO_USER/osmo-bsc-$IMAGE_SUFFIX
 
 for i in `seq 0 2`; do
 	echo Starting container with OML for BTS$i
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.12.10$i \
 			--name ${BUILD_TAG}-bts$i -d \
-			$REPO_USER/osmo-bts-master /usr/local/bin/respawn.sh osmo-bts-omldummy 172.18.12.20 $((i + 1234)) 1
+			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
+			/usr/local/bin/respawn.sh \
+			osmo-bts-omldummy \
+			172.18.12.20 $((i + 1234)) 1
 done
 
 echo Starting container with BSC testsuite

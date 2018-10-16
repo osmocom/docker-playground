@@ -1,6 +1,12 @@
 #!/bin/sh
 
 . ../jenkins-common.sh
+IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
+docker_images_require \
+	"debian-jessie-build" \
+	"osmo-stp-$IMAGE_SUFFIX" \
+	"debian-stretch-titan" \
+	"m3ua-test"
 
 mkdir $VOL_BASE_DIR/m3ua-tester
 cp m3ua-param-testtool.scm all-sgp-tests.txt $VOL_BASE_DIR/m3ua-tester/
@@ -16,7 +22,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.7.200 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp \
-		-d $REPO_USER/osmo-stp-master
+		-d $REPO_USER/osmo-stp-$IMAGE_SUFFIX
 
 # start docker container with tests
 docker run	--rm \

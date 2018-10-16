@@ -1,6 +1,12 @@
 #!/bin/sh
 
 . ../jenkins-common.sh
+IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
+docker_images_require \
+	"debian-jessie-build" \
+	"osmo-ggsn-$IMAGE_SUFFIX" \
+	"debian-stretch-titan" \
+	"ttcn3-ggsn-test"
 
 mkdir $VOL_BASE_DIR/ggsn-tester
 cp GGSN_Tests.cfg $VOL_BASE_DIR/ggsn-tester/
@@ -18,7 +24,7 @@ docker run	--cap-add=NET_ADMIN \
 		--network $NET_NAME --ip 172.18.3.201 \
 		-v $VOL_BASE_DIR/ggsn:/data \
 		--name ${BUILD_TAG}-ggsn -d \
-		$REPO_USER/osmo-ggsn-master
+		$REPO_USER/osmo-ggsn-$IMAGE_SUFFIX
 
 # start docker container with testsuite in foreground
 docker run	--rm \
