@@ -1,0 +1,1 @@
+../ttcn3-bsc-test/jenkins-sccplite.sh
