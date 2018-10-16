@@ -1,3 +1,22 @@
+docker_image_exists() {
+	test -n "$(docker images -q "$REPO_USER/$1")"
+}
+
+docker_images_require() {
+	for i in $@; do
+		# Trigger image build (cache will be used when up-to-date)
+		if [ -z "$NO_DOCKER_IMAGE_BUILD" ]; then
+			echo "Building image: $i (export NO_DOCKER_IMAGE_BUILD=1 to prevent this)"
+			make -C "../$i"
+		fi
+
+		# Detect missing images (build skipped/failure)
+		if ! docker_image_exists "$i"; then
+			echo "ERROR: missing image: $i"
+			exit 1
+		fi
+	done
+}
 
 network_create() {
 	NET=$1
