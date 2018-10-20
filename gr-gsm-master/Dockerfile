@@ -70,6 +70,7 @@ RUN	cd gr-gsm \
 	&& cmake \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-Wno-dev \
+		-DENABLE_GRCC=OFF \
 		../ \
 	&& make -j5 \
 	&& make install \
