@@ -66,17 +66,13 @@ test_binaries_version() {
 }
 
 test_binaries() {
-	# Make sure the binaries are not broken (run -h or --version)
-	osmo-gtphub -h
-	osmo-sip-connector -h
-	osmo-trx-uhd -h
-	osmo-trx-usrp1 -h
-
+	# Make sure that binares run at all and output a proper version
 	test_binaries_version \
 		osmo-bsc \
 		osmo-bts-trx \
 		osmo-bts-virtual \
 		osmo-gbproxy \
+		osmo-gtphub \
 		osmo-ggsn \
 		osmo-hlr \
 		osmo-hlr-db-tool \
@@ -85,7 +81,10 @@ test_binaries() {
 		osmo-msc \
 		osmo-pcu \
 		osmo-sgsn \
-		osmo-stp
+		osmo-sip-connector \
+		osmo-stp \
+		osmo-trx-uhd \
+		osmo-trx-usrp1
 }
 
 finish() {
