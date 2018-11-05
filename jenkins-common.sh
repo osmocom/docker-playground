@@ -135,6 +135,10 @@ docker_images_require() {
 	local depends
 	local dir
 
+	if [ -n "$NOBUILD" ]; then
+		export NO_DOCKER_IMAGE_BUILD=1
+	fi
+
 	for i in $@; do
 		# Don't build images that are available on the private
 		# registry, if using it. Instead, pull the images to make sure
