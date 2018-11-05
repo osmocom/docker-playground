@@ -60,6 +60,10 @@ docker_images_require() {
 	local depends
 	local dir
 
+	if [ -n "$NOBUILD" ]; then
+		export NO_DOCKER_IMAGE_BUILD=1
+	fi
+
 	for i in $@; do
 		# Build dependencies first
 		depends="$(docker_depends "$i")"
