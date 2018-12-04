@@ -2,6 +2,9 @@
 
 . ../jenkins-common.sh
 
+docker_images_require \
+	"osmo-cn-latest"
+
 docker network create --subnet 192.168.42.0/24 $NET_NAME
 
 mkdir $VOL_BASE_DIR/osmo-cn
