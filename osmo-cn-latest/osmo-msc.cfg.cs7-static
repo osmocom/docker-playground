@@ -1,0 +1,7 @@
+cs7 instance 0
+ point-code 0.23.1
+ asp asp-clnt-OsmoMSC-A-Iu 2905 2904 m3ua
+  remote-ip 192.168.42.10
+ as as-clnt-OsmoMSC-A-Iu m3ua
+  asp asp-clnt-OsmoMSC-A-Iu
+  routing-key 1 0.23.1
