@@ -17,6 +17,7 @@ RUN	apt-get update && \
 		telnet \
 		libosmocore-dev \
 		libosmo-abis-dev \
+		libosmo-gsup-client-dev \
 		libosmo-netif-dev \
 		libosmo-sccp-dev \
 		libsmpp34-dev \
