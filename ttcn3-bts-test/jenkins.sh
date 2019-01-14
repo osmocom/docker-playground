@@ -51,7 +51,11 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/fake_trx:/data \
 		--name ${BUILD_TAG}-fake_trx -d \
 		$REPO_USER/osmocom-bb-host-$IMAGE_SUFFIX \
-		bash -c "/tmp/osmocom-bb/src/target/trx_toolkit/fake_trx.py -R 172.18.9.20 -r 172.18.9.22 >/data/fake_trx.log 2>&1"
+		/tmp/osmocom-bb/src/target/trx_toolkit/fake_trx.py \
+			--log-file-name /data/fake_trx.log \
+			--log-file-level DEBUG \
+			--log-level INFO \
+			-R 172.18.9.20 -r 172.18.9.22
 
 echo Starting container with trxcon
 docker run	--rm \
