@@ -50,7 +50,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.9.21 \
 		-v $VOL_BASE_DIR/fake_trx:/data \
 		--name ${BUILD_TAG}-fake_trx -d \
-		$REPO_USER/osmocom-bb-host-$IMAGE_SUFFIX \
+		$REPO_USER/osmocom-bb-host-master \
 		/tmp/osmocom-bb/src/target/trx_toolkit/fake_trx.py \
 			--log-file-name /data/fake_trx.log \
 			--log-file-level DEBUG \
@@ -62,7 +62,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.9.22 \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-trxcon -d \
-		$REPO_USER/osmocom-bb-host-$IMAGE_SUFFIX \
+		$REPO_USER/osmocom-bb-host-master \
 		/usr/local/bin/trxcon -i 172.18.9.21 -s /data/unix/osmocom_l2
 
 
