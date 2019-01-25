@@ -34,7 +34,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/bsc:/data \
 		--name ${BUILD_TAG}-bsc -d \
 		$REPO_USER/osmo-bsc-$IMAGE_SUFFIX \
-		/usr/local/bin/osmo-bsc -c /data/osmo-bsc.cfg
+		osmo-bsc -c /data/osmo-bsc.cfg
 
 echo Starting container with BTS
 docker run	--rm \
@@ -43,7 +43,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-bts -d \
 		$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
-		/usr/local/bin/respawn.sh /usr/local/bin/osmo-bts-trx -c /data/osmo-bts.cfg -i 172.18.9.10
+		/usr/local/bin/respawn.sh osmo-bts-trx -c /data/osmo-bts.cfg -i 172.18.9.10
 
 echo Starting container with fake_trx
 docker run	--rm \
@@ -63,7 +63,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-trxcon -d \
 		$REPO_USER/osmocom-bb-host-master \
-		/usr/local/bin/trxcon -i 172.18.9.21 -s /data/unix/osmocom_l2
+		trxcon -i 172.18.9.21 -s /data/unix/osmocom_l2
 
 
 echo Starting container with BTS testsuite

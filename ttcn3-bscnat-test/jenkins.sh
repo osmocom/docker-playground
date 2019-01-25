@@ -23,7 +23,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.11.20 \
 		-v $VOL_BASE_DIR/bscnat:/data \
 		--name ${BUILD_TAG}-bscnat -d \
-		$REPO_USER/osmo-nitb-$IMAGE_SUFFIX /usr/local/bin/osmo-bsc_nat -c /data/osmo-bsc-nat.cfg
+		$REPO_USER/osmo-nitb-$IMAGE_SUFFIX osmo-bsc_nat -c /data/osmo-bsc-nat.cfg
 
 echo Starting container with BSCNAT testsuite
 docker run	--rm \

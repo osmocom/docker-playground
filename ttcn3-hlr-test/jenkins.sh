@@ -22,7 +22,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/hlr:/data \
 		--name ${BUILD_TAG}-hlr -d \
 		$REPO_USER/osmo-hlr-$IMAGE_SUFFIX \
-		/usr/local/bin/osmo-hlr
+		osmo-hlr
 
 echo Starting container with HLR testsuite
 docker run	--rm \
