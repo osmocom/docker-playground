@@ -27,7 +27,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-sip-connector -d \
 		$REPO_USER/osmo-sip-$IMAGE_SUFFIX \
-		osmo-sip-connector -M /data/unix/mncc
+		osmo-sip-connector
 
 echo Starting container with SIP testsuite
 docker run	--rm \
