@@ -14,11 +14,13 @@ RUN	apt-key add /tmp/Release.key && \
 	rm /tmp/Release.key && \
 	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-latest.list
 
+# libdbd-sqlite3: workaround for OS#3771
 ADD	$OSMOCOM_REPO/Release /tmp/Release
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		osmo-msc \
-		telnet && \
+		telnet \
+		libdbd-sqlite3 && \
 	apt-get clean
 
 WORKDIR	/tmp
