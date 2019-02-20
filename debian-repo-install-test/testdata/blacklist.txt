@@ -23,3 +23,5 @@ osmocom-nitb-dbg
 soapysdr-module-lms7
 soapysdr0.6-module-lms7
 soapysdr0.6-module-lms7-dbgsym
+soapysdr0.7-module-lms7
+soapysdr0.7-module-lms7-dbgsym
