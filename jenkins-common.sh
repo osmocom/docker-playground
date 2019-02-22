@@ -29,7 +29,18 @@ network_remove() {
 	docker network remove $NET_NAME
 }
 
+fix_perms() {
+	docker_images_require debian-jessie-build
+	echo Fixing permissions
+	docker run 	--rm \
+			-v $VOL_BASE_DIR:/data \
+			--name ${BUILD_TAG}-cleaner \
+			$REPO_USER/debian-jessie-build \
+			chmod -R a+rX /data/
+}
+
 collect_logs() {
+	fix_perms
 	cat "$VOL_BASE_DIR"/*/junit-*.log || true
 }
 
