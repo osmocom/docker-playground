@@ -1,0 +1,1 @@
+../ttcn3-pcu-test/jenkins-sns.sh
