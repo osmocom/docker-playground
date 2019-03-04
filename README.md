@@ -18,6 +18,9 @@ Environment variables:
 * `IMAGE_SUFFIX`: the version of the Osmocom stack to run the testsuite
   against. Default is `master`, set this to `latest` to test the last
   stable releases.
+* `OSMO_TTCN3_BRANCH`: [osmo-ttcn3-hacks.git](https://git.osmocom.org/osmo-ttcn3-hacks/)
+  branch, which will be used when building a `ttcn3-*` docker image.
+  Defaults to `master`.
 * `NO_DOCKER_IMAGE_BUILD`: when set to `1`, it won't try to update the
   containers (see "caching" below)
 
