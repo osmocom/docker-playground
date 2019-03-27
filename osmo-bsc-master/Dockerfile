@@ -1,9 +1,9 @@
 ARG	USER
-FROM	$USER/debian-jessie-build
+FROM	$USER/debian-stretch-build
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
-ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/"
+ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_9.0/"
 
 COPY	Release.key /tmp/Release.key
 

@@ -30,12 +30,12 @@ network_remove() {
 }
 
 fix_perms() {
-	docker_images_require debian-jessie-build
+	docker_images_require debian-stretch-build
 	echo Fixing permissions
 	docker run 	--rm \
 			-v $VOL_BASE_DIR:/data \
 			--name ${BUILD_TAG}-cleaner \
-			$REPO_USER/debian-jessie-build \
+			$REPO_USER/debian-stretch-build \
 			chmod -R a+rX /data/
 }
 

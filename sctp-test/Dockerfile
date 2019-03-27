@@ -1,5 +1,5 @@
 ARG	USER
-FROM	$USER/debian-jessie-build
+FROM	$USER/debian-stretch-build
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 

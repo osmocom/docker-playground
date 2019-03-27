@@ -4,7 +4,7 @@
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 # NOTE: there is no osmocom-bb-host-latest, hence always use master!
 docker_images_require \
-	"debian-jessie-build" \
+	"debian-stretch-build" \
 	"osmo-bsc-$IMAGE_SUFFIX" \
 	"osmo-bts-$IMAGE_SUFFIX" \
 	"osmocom-bb-host-master" \

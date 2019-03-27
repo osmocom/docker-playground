@@ -29,7 +29,7 @@ Most folders in this repository contain a `Dockerfile`. Build a docker
 container with the same name as the folder like this:
 
 ```
-$ cd debian-jessie-build
+$ cd debian-stretch-build
 $ make
 ```
 
@@ -50,7 +50,7 @@ each `jenkins.sh`:
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
-	"debian-jessie-build" \
+	"debian-stretch-build" \
 	"osmo-stp-$IMAGE_SUFFIX" \
 	"osmo-bsc-$IMAGE_SUFFIX" \
 	"osmo-bts-$IMAGE_SUFFIX" \

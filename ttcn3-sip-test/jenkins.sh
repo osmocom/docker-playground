@@ -3,7 +3,7 @@
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
-	"debian-jessie-build" \
+	"debian-stretch-build" \
 	"osmo-sip-$IMAGE_SUFFIX" \
 	"debian-stretch-titan" \
 	"ttcn3-sip-test"
