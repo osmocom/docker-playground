@@ -29,6 +29,7 @@ ADD	http://git.osmocom.org/osmo-pcu/patch?h=$OSMO_PCU_BRANCH /tmp/commit-osmo-pc
 
 RUN	cd osmo-pcu && \
 	git fetch && git checkout -f -B $OSMO_PCU_BRANCH origin/$OSMO_PCU_BRANCH && \
+	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure --enable-trx && \
 	make -j8 install

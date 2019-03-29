@@ -26,6 +26,7 @@ RUN	git clone git://git.osmocom.org/osmo-ggsn.git
 ADD	http://git.osmocom.org/osmo-ggsn/patch/?h=$OSMO_GGSN_BRANCH /tmp/commit
 RUN	cd osmo-ggsn && \
 	git fetch && git checkout -f -B $OSMO_GGSN_BRANCH origin/$OSMO_GGSN_BRANCH && \
+	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 install && \

@@ -38,6 +38,7 @@ ADD	http://git.osmocom.org/osmo-msc/patch?h=$OSMO_MSC_BRANCH /tmp/commit-osmo-ms
 
 RUN	cd osmo-msc && \
 	git fetch && git checkout -f -B $OSMO_MSC_BRANCH origin/$OSMO_MSC_BRANCH && \
+	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure --enable-smpp --enable-iu && \
 	make -j8 install

@@ -31,6 +31,7 @@ ADD	http://git.osmocom.org/osmo-iuh/patch?h=$OSMO_IUH_BRANCH /tmp/commit-osmo-mg
 
 RUN	cd osmo-iuh && \
 	git fetch && git checkout -f -B $OSMO_IUH_BRANCH origin/$OSMO_IUH_BRANCH && \
+	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 install && \

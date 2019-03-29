@@ -33,6 +33,7 @@ ADD	http://git.osmocom.org/osmo-bsc/patch?h=$OSMO_BSC_BRANCH /tmp/commit-osmo-bs
 
 RUN	cd osmo-bsc && \
 	git fetch && git checkout -f -B $OSMO_BSC_BRANCH origin/$OSMO_BSC_BRANCH && \
+	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 install

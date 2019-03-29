@@ -34,6 +34,7 @@ ADD	http://git.osmocom.org/osmo-bts/patch?h=$OSMO_BTS_BRANCH /tmp/commit-osmo-bt
 
 RUN	cd osmo-bts && \
 	git fetch && git checkout -f -B $OSMO_BTS_BRANCH origin/$OSMO_BTS_BRANCH && \
+	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure --enable-trx && \
 	make -j8 install
