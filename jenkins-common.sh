@@ -3,11 +3,21 @@ docker_image_exists() {
 }
 
 docker_images_require() {
+	local from_line
+	local pull_arg
+
 	for i in $@; do
 		# Trigger image build (cache will be used when up-to-date)
 		if [ -z "$NO_DOCKER_IMAGE_BUILD" ]; then
+			# Pull upstream base images
+			pull_arg="--pull"
+			from_line="$(grep '^FROM' ../$i/Dockerfile)"
+			if echo "$from_line" | grep -q '$USER'; then
+				pull_arg=""
+			fi
+
 			echo "Building image: $i (export NO_DOCKER_IMAGE_BUILD=1 to prevent this)"
-			make -C "../$i" || exit 1
+			PULL="$pull_arg" make -C "../$i" || exit 1
 		fi
 
 		# Detect missing images (build skipped)

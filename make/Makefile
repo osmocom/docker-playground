@@ -17,6 +17,7 @@ REGISTRY_HOST?=docker.io
 USERNAME?=$(USER)
 NAME?=$(shell basename $(CURDIR))
 OSMO_TTCN3_BRANCH?=master
+PULL?=$(PULL)
 
 RELEASE_SUPPORT := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))/.make-release-support
 IMAGE?=$(REGISTRY_HOST)/$(USER)/$(NAME)
@@ -41,7 +42,7 @@ post-push:
 
 docker-build: .release
 	docker build --build-arg USER=$(USERNAME) --build-arg OSMO_TTCN3_BRANCH=$(OSMO_TTCN3_BRANCH) \
-		-t $(IMAGE):latest .
+		$(PULL) -t $(IMAGE):latest .
 	@DOCKER_MAJOR=$(shell docker -v | sed -e 's/.*version //' -e 's/,.*//' | cut -d\. -f1) ; \
 	DOCKER_MINOR=$(shell docker -v | sed -e 's/.*version //' -e 's/,.*//' | cut -d\. -f2) ; \
 
