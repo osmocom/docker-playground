@@ -30,7 +30,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.7.2 \
 		-v $VOL_BASE_DIR/m3ua-tester:/data \
 		--name ${BUILD_TAG}-m3ua-test \
-		$REPO_USER/nplab-m3ua-test > $WORKSPACE/logs/junit-xml-m3ua.log
+		$REPO_USER/nplab-m3ua-test > $VOL_BASE_DIR/junit-xml-m3ua.log
 
 docker container stop -t 1 ${BUILD_TAG}-stp
 
