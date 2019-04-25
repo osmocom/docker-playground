@@ -36,7 +36,7 @@ RUN	git clone git://git.osmocom.org/osmo-sip-connector.git
 ADD	http://git.osmocom.org/osmo-sip-connector/patch?h=$OSMO_SIP_BRANCH /tmp/commit-osmo-sip-connector
 
 RUN	cd osmo-sip-connector && \
-	git fetch && git checkout -f -B $OSMO_SIP_BRANCH origin/$OSMO_SIP_BRANCH && \
+	git fetch && git checkout -f -B $OSMO_SIP_BRANCH $OSMO_SIP_BRANCH && \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure --enable-smpp --enable-iu && \

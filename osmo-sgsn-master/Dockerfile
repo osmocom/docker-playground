@@ -32,7 +32,7 @@ RUN	git clone git://git.osmocom.org/osmo-sgsn.git
 ADD	http://git.osmocom.org/osmo-sgsn/patch?h=$OSMO_SGSN_BRANCH /tmp/commit
 
 RUN	cd osmo-sgsn && \
-	git fetch && git checkout -f -B $OSMO_SGSN_BRANCH origin/$OSMO_SGSN_BRANCH && \
+	git fetch && git checkout -f -B $OSMO_SGSN_BRANCH $OSMO_SGSN_BRANCH && \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure && \

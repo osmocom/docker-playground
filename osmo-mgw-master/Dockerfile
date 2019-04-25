@@ -30,7 +30,7 @@ ADD	http://git.osmocom.org/osmo-mgw/patch?h=$OSMO_MGW_BRANCH /tmp/commit-osmo-mg
 
 
 RUN	cd osmo-mgw && \
-	git fetch && git checkout -f -B $OSMO_MGW_BRANCH origin/$OSMO_MGW_BRANCH && \
+	git fetch && git checkout -f -B $OSMO_MGW_BRANCH $OSMO_MGW_BRANCH && \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure && \

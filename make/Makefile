@@ -17,6 +17,18 @@ REGISTRY_HOST?=docker.io
 USERNAME?=$(USER)
 NAME?=$(shell basename $(CURDIR))
 OSMO_TTCN3_BRANCH?=master
+OSMO_BSC_BRANCH?=master
+OSMO_BTS_BRANCH?=master
+OSMO_GGSN_BRANCH?=master
+OSMO_HLR_BRANCH?=master
+OSMO_IUH_BRANCH?=master
+OSMO_MGW_BRANCH?=master
+OSMO_MSC_BRANCH?=master
+OSMO_NITB_BRANCH?=master
+OSMO_PCU_BRANCH?=master
+OSMO_SGSN_BRANCH?=master
+OSMO_SIP_BRANCH?=master
+OSMO_STP_BRANCH?=master
 PULL?=
 
 RELEASE_SUPPORT := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))/.make-release-support
@@ -42,6 +54,18 @@ post-push:
 
 docker-build: .release
 	docker build --build-arg USER=$(USERNAME) --build-arg OSMO_TTCN3_BRANCH=$(OSMO_TTCN3_BRANCH) \
+		--build-arg OSMO_BSC_BRANCH=$(OSMO_BSC_BRANCH) \
+		--build-arg OSMO_BTS_BRANCH=$(OSMO_BTS_BRANCH) \
+		--build-arg OSMO_GGSN_BRANCH=$(OSMO_GGSN_BRANCH) \
+		--build-arg OSMO_HLR_BRANCH=$(OSMO_HLR_BRANCH) \
+		--build-arg OSMO_IUH_BRANCH=$(OSMO_IUH_BRANCH) \
+		--build-arg OSMO_MGW_BRANCH=$(OSMO_MGW_BRANCH) \
+		--build-arg OSMO_MSC_BRANCH=$(OSMO_MSC_BRANCH) \
+		--build-arg OSMO_NITB_BRANCH=$(OSMO_NITB_BRANCH) \
+		--build-arg OSMO_PCU_BRANCH=$(OSMO_PCU_BRANCH) \
+		--build-arg OSMO_SGSN_BRANCH=$(OSMO_SGSN_BRANCH) \
+		--build-arg OSMO_SIP_BRANCH=$(OSMO_SIP_BRANCH) \
+		--build-arg OSMO_STP_BRANCH=$(OSMO_STP_BRANCH) \
 		$(PULL) -t $(IMAGE):latest .
 	@DOCKER_MAJOR=$(shell docker -v | sed -e 's/.*version //' -e 's/,.*//' | cut -d\. -f1) ; \
 	DOCKER_MINOR=$(shell docker -v | sed -e 's/.*version //' -e 's/,.*//' | cut -d\. -f2) ; \

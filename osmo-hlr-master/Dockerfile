@@ -30,7 +30,7 @@ RUN	git clone git://git.osmocom.org/osmo-hlr.git
 ADD	http://git.osmocom.org/osmo-hlr/patch?h=$OSMO_HLR_BRANCH /tmp/commit-osmo-hlr
 
 RUN	cd osmo-hlr && \
-	git fetch && git checkout -f -B $OSMO_HLR_BRANCH origin/$OSMO_HLR_BRANCH && \
+	git fetch && git checkout -f -B $OSMO_HLR_BRANCH $OSMO_HLR_BRANCH && \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure && \

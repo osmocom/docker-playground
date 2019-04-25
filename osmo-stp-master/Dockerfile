@@ -26,7 +26,7 @@ ARG	OSMO_STP_BRANCH="master"
 RUN	git clone git://git.osmocom.org/libosmo-sccp.git
 ADD	http://git.osmocom.org/libosmo-sccp/patch?h=$OSMO_STP_BRANCH /tmp/commit
 RUN	cd libosmo-sccp && \
-	git fetch && git checkout -f -B $OSMO_STP_BRANCH origin/$OSMO_STP_BRANCH && \
+	git fetch && git checkout -f -B $OSMO_STP_BRANCH $OSMO_STP_BRANCH && \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure && \
