@@ -22,6 +22,7 @@ RUN	apt-get update && \
 	apt-get -y install \
 		build-essential \
 		git \
+		procps \
 		tcpdump \
 		vim \
 		&& \
