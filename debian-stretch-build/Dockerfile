@@ -2,7 +2,6 @@ FROM debian:stretch
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
-ADD	http://ftp.debian.org/debian/dists/stretch/Release /tmp/Release
 RUN	apt-get update && \
 	apt-get upgrade -y && \
 	apt-get install -y --no-install-recommends \
