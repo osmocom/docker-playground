@@ -32,7 +32,7 @@ RUN	git clone git://git.osmocom.org/osmo-bsc.git
 ADD	http://git.osmocom.org/osmo-bsc/patch?h=$OSMO_BSC_BRANCH /tmp/commit-osmo-bsc
 
 RUN	cd osmo-bsc && \
-	git fetch && git checkout -f -B $OSMO_BSC_BRANCH $OSMO_BSC_BRANCH && \
+	git fetch && git checkout -f $OSMO_BSC_BRANCH && \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure && \

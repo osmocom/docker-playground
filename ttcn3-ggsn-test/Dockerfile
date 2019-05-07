@@ -4,7 +4,7 @@ FROM	$USER/debian-stretch-titan
 RUN	git clone git://git.osmocom.org/osmo-ttcn3-hacks.git
 
 RUN	cd osmo-ttcn3-hacks && \
-	git checkout -f -B master origin/master && \
+	git checkout -f master && \
 	make deps
 
 ARG	OSMO_TTCN3_BRANCH="master"
@@ -12,7 +12,7 @@ ARG	OSMO_TTCN3_BRANCH="master"
 ADD	http://git.osmocom.org/osmo-ttcn3-hacks/patch?h=$OSMO_TTCN3_BRANCH /tmp/commit
 RUN	cd osmo-ttcn3-hacks && \
 	git fetch && \
-	git checkout -f -B $OSMO_TTCN3_BRANCH origin/$OSMO_TTCN3_BRANCH && \
+	git checkout -f $OSMO_TTCN3_BRANCH && \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	make ggsn_tests
 

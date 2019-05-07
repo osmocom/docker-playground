@@ -25,7 +25,7 @@ RUN	git clone git://git.osmocom.org/osmocom-bb.git
 
 ADD	http://git.osmocom.org/osmocom-bb/patch?h=$OSMO_BB_BRANCH /tmp/commit
 RUN	cd osmocom-bb && \
-	git fetch && git checkout -f -B $OSMO_BB_BRANCH origin/$OSMO_BB_BRANCH && \
+	git fetch && git checkout -f $OSMO_BB_BRANCH && \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD
 
 RUN	cd osmocom-bb/src/host/trxcon && \

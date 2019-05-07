@@ -50,7 +50,7 @@ RUN	git clone git://git.osmocom.org/libosmocore
 ADD	http://git.osmocom.org/libosmocore/patch?h=$LIBOSMOCORE_BRANCH /tmp/commit-libosmocore
 
 RUN	cd libosmocore \
-	&& git fetch && git checkout -f -B $LIBOSMOCORE_BRANCH origin/$LIBOSMOCORE_BRANCH \
+	&& git fetch && git checkout -f $LIBOSMOCORE_BRANCH \
 	&& git rev-parse --abbrev-ref HEAD && git rev-parse HEAD \
 	&& autoreconf -fi \
 	&& ./configure \
@@ -65,7 +65,7 @@ RUN	git clone git://git.osmocom.org/gr-gsm
 ADD     http://git.osmocom.org/gr-gsm/patch?h=$GR_GSM_BRANCH /tmp/commit-gr-gsm
 
 RUN	cd gr-gsm \
-	&& git fetch && git checkout -f -B $GR_GSM_BRANCH origin/$GR_GSM_BRANCH \
+	&& git fetch && git checkout -f $GR_GSM_BRANCH \
 	&& git rev-parse HEAD \
 	&& mkdir build/ \
 	&& cd build/ \
