@@ -45,7 +45,7 @@ RUN	git clone --reference osmo-mgw git://git.osmocom.org/openbsc.git && \
 # build libasn1c first, no libosmo* dependency and infrequent changes
 ADD	http://git.osmocom.org/libasn1c/patch /tmp/commit-libasn1c
 RUN	cd libasn1c && \
-	git fetch && git checkout -f master && \
+	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 && \
@@ -56,7 +56,7 @@ RUN	cd libasn1c && \
 # build libsmpp34 first, no libosmo* dependency and infrequent changes
 ADD	http://git.osmocom.org/libsmpp34/patch /tmp/commit-libsmpp34
 RUN	cd libsmpp34 && \
-	git fetch && git checkout -f master && \
+	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
 	make -j1 && \
@@ -67,7 +67,7 @@ RUN	cd libsmpp34 && \
 # build libosmocore before any of its downatream dependences
 ADD	http://git.osmocom.org/libosmocore/patch /tmp/commit-libosmocore
 RUN	cd libosmocore && \
-	git fetch && git checkout -f master && \
+	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 && \
@@ -79,7 +79,7 @@ RUN	cd libosmocore && \
 
 ADD	http://git.osmocom.org/libosmo-abis/patch /tmp/commit-libosmo-abis
 RUN	cd libosmo-abis && \
-	git fetch && git checkout -f master && \
+	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 && \
@@ -89,7 +89,7 @@ RUN	cd libosmo-abis && \
 
 ADD	http://git.osmocom.org/libosmo-netif/patch /tmp/commit-libosmo-netif
 RUN	cd libosmo-netif && \
-	git fetch && git checkout -f master && \
+	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 && \
@@ -99,7 +99,7 @@ RUN	cd libosmo-netif && \
 
 ADD	http://git.osmocom.org/libosmo-sccp/patch /tmp/commit-libosmo-sccp
 RUN	cd libosmo-sccp && \
-	git fetch && git checkout -f master && \
+	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 && \
@@ -109,7 +109,7 @@ RUN	cd libosmo-sccp && \
 
 ADD	http://git.osmocom.org/osmo-mgw/patch /tmp/commit-osmo-mgw
 RUN	cd osmo-mgw && \
-	git fetch && git checkout -f master && \
+	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 && \
@@ -119,7 +119,7 @@ RUN	cd osmo-mgw && \
 
 ADD	http://git.osmocom.org/osmo-iuh/patch /tmp/commit-osmo-iuh
 RUN	cd osmo-iuh && \
-	git fetch && git checkout -f master && \
+	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 && \
@@ -129,7 +129,7 @@ RUN	cd osmo-iuh && \
 
 ADD	http://git.osmocom.org/osmo-ggsn/patch /tmp/commit-osmo-ggsn
 RUN	cd osmo-ggsn && \
-	git fetch && git checkout -f master && \
+	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 && \
@@ -139,4 +139,4 @@ RUN	cd osmo-ggsn && \
 
 
 # example command which builds a single osmo-* application at 'docker run' time in tmpfs
-CMD	/bin/sh -c 'cd /tmpfs && git clone --reference /build/openbsc git://git.osmocom.org/openbsc.git && cd openbsc && git checkout -f master && cd openbsc && autoreconf -fi && ./configure --enable-nat --enable-osmo-bsc --enable-smpp --enable-vty-tests --enable-external-tests && make -j8 check'
+CMD	/bin/sh -c 'cd /tmpfs && git clone --reference /build/openbsc git://git.osmocom.org/openbsc.git && cd openbsc && git checkout -f -B master origin/master && cd openbsc && autoreconf -fi && ./configure --enable-nat --enable-osmo-bsc --enable-smpp --enable-vty-tests --enable-external-tests && make -j8 check'
