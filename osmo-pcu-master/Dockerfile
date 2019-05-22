@@ -28,7 +28,8 @@ RUN	git clone git://git.osmocom.org/osmo-pcu.git
 ADD	http://git.osmocom.org/osmo-pcu/patch?h=$OSMO_PCU_BRANCH /tmp/commit-osmo-pcu
 
 RUN	cd osmo-pcu && \
-	git fetch && git checkout -f -B $OSMO_PCU_BRANCH $OSMO_PCU_BRANCH && \
+	git fetch && git checkout $OSMO_PCU_BRANCH && \
+	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_PCU_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure --enable-trx && \

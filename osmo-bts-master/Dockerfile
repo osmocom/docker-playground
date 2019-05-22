@@ -33,7 +33,8 @@ RUN	git clone git://git.osmocom.org/osmo-bts.git
 ADD	http://git.osmocom.org/osmo-bts/patch?h=$OSMO_BTS_BRANCH /tmp/commit-osmo-bts
 
 RUN	cd osmo-bts && \
-	git fetch && git checkout -f -B $OSMO_BTS_BRANCH $OSMO_BTS_BRANCH && \
+	git fetch && git checkout $OSMO_BTS_BRANCH && \
+	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_BTS_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure --enable-trx && \

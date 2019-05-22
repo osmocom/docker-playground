@@ -31,7 +31,8 @@ RUN	git clone git://git.osmocom.org/openbsc.git
 ADD	http://git.osmocom.org/openbsc/patch?h=$OSMO_NITB_BRANCH /tmp/commit-openbsc
 
 RUN	cd openbsc/openbsc && \
-	git fetch && git checkout -f -B $OSMO_NITB_BRANCH $OSMO_NITB_BRANCH && \
+	git fetch && git checkout $OSMO_NITB_BRANCH && \
+	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_NITB_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure --enable-nat --enable-osmo-bsc --enable-smpp && \

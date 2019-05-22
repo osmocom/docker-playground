@@ -25,7 +25,8 @@ ARG	OSMO_GGSN_BRANCH="master"
 RUN	git clone git://git.osmocom.org/osmo-ggsn.git
 ADD	http://git.osmocom.org/osmo-ggsn/patch/?h=$OSMO_GGSN_BRANCH /tmp/commit
 RUN	cd osmo-ggsn && \
-	git fetch && git checkout -f -B $OSMO_GGSN_BRANCH $OSMO_GGSN_BRANCH && \
+	git fetch && git checkout $OSMO_GGSN_BRANCH && \
+	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_GGSN_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure && \
