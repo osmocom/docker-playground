@@ -22,14 +22,20 @@ start_bsc() {
 }
 
 start_bts() {
+	local variant
+	variant="$1"
 	echo Starting container with BTS
+	if [ -z "$variant" ]; then
+		echo ERROR: You have to specify a BTS variant
+		exit 23
+	fi
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.9.20 \
 			-v $VOL_BASE_DIR/bts:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			--name ${BUILD_TAG}-bts -d \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
-			/usr/local/bin/respawn.sh osmo-bts-trx -c /data/osmo-bts.cfg -i 172.18.9.10
+			/usr/local/bin/respawn.sh osmo-bts-$variant -c /data/osmo-bts.cfg -i 172.18.9.10
 }
 
 start_fake_trx() {
@@ -54,6 +60,16 @@ start_trxcon() {
 			--name ${BUILD_TAG}-trxcon -d \
 			$REPO_USER/osmocom-bb-host-master \
 			trxcon -i 172.18.9.21 -s /data/unix/osmocom_l2
+}
+
+start_virtphy() {
+	echo Starting container with virtphy
+	docker run	--rm \
+			--network $NET_NAME --ip 172.18.9.22 \
+			-v $VOL_BASE_DIR/unix:/data/unix \
+			--name ${BUILD_TAG}-virtphy -d \
+			$REPO_USER/osmocom-bb-host-master \
+			virtphy -s /data/unix/osmocom_l2
 }
 
 start_testsuite() {
@@ -84,15 +100,29 @@ mkdir $VOL_BASE_DIR/unix
 
 mkdir $VOL_BASE_DIR/fake_trx
 
+# 1) classic test suite with BSC for OML and trxcon+fake_trx
 start_bsc
-start_bts
+start_bts trx
 start_fake_trx
 start_trxcon
 start_testsuite
 
-echo Stopping containers
+# 2) some GPRS tests require virt_phy
+echo "Changing to virtphy configuration"
+# switch from osmo-bts-trx + trxcon + faketrx to virtphy + osmo-bts-virtual
 docker container kill ${BUILD_TAG}-trxcon
 docker container kill ${BUILD_TAG}-fake_trx
+docker container kill ${BUILD_TAG}-bts
+cp virtphy/osmo-bts.cfg $VOL_BASE_DIR/bts/
+start_bts virtual
+start_virtphy
+# ... and execute the testsuite again with different cfg
+cp virtphy/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester/
+start_testsuite
+
+
+echo Stopping containers
+docker container kill ${BUILD_TAG}-virtphy
 docker container kill ${BUILD_TAG}-bts
 docker container kill ${BUILD_TAG}-bsc
 
