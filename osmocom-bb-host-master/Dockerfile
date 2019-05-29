@@ -34,6 +34,11 @@ RUN	cd osmocom-bb/src/host/trxcon && \
 	./configure && \
 	make -j8 install
 
+RUN	cd osmocom-bb/src/host/virt_phy && \
+	autoreconf -fi && \
+	./configure && \
+	make -j8 install
+
 RUN	mkdir -p /data/unix
 
 VOLUME	/data
