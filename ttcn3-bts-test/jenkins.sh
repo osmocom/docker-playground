@@ -118,13 +118,26 @@ start_bts virtual
 start_virtphy
 # ... and execute the testsuite again with different cfg
 cp virtphy/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester/
-start_testsuite
+#start_testsuite
 
-
-echo Stopping containers
+# 3) OML tests require us to run without BSC
+docker container kill ${BUILD_TAG}-bsc
+# switch back from virtphy + osmo-bts-virtual to osmo-bts-trx
 docker container kill ${BUILD_TAG}-virtphy
 docker container kill ${BUILD_TAG}-bts
-docker container kill ${BUILD_TAG}-bsc
+cp oml/osmo-bts.cfg $VOL_BASE_DIR/bts/
+start_bts trx
+start_fake_trx
+start_trxcon
+# ... and execute the testsuite again with different cfg
+cp oml/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester/
+start_testsuite
+
+echo Stopping containers
+docker container kill ${BUILD_TAG}-trxcon
+docker container kill ${BUILD_TAG}-fake_trx
+docker container kill ${BUILD_TAG}-bts
+
 
 network_remove
 rm -rf $VOL_BASE_DIR/unix
