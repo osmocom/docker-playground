@@ -40,7 +40,10 @@ network_remove() {
 }
 
 fix_perms() {
-	docker_images_require debian-stretch-build
+	if ! docker_image_exists "debian-stretch-build"; then
+		docker_images_require "debian-stretch-build"
+	fi
+
 	echo Fixing permissions
 	docker run 	--rm \
 			-v $VOL_BASE_DIR:/data \
