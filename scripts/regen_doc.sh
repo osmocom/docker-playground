@@ -6,6 +6,7 @@ NAME="$1"
 PORT="$2"
 COUNTERFILE="$3"
 VTYFILE="$4"
+DOCKER_EXTRA="$5"
 
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 if [ -z "$OSMO_INTERACT_VTY" ]; then
@@ -23,7 +24,8 @@ container_create() {
 
 	docker run --rm --network ${NET_NAME} --ip ${IP_ADDR} \
 		--name ${BUILD_TAG}-${CONTAINERNAME} -d \
-		${REPO_USER}/${CONTAINERNAME}
+		${REPO_USER}/${CONTAINERNAME} \
+		${DOCKER_EXTRA}
 
 
 }
