@@ -42,6 +42,8 @@ RUN	cd openbsc/openbsc && \
 VOLUME	/data
 
 COPY	openbsc.cfg /data/openbsc.cfg
+COPY	osmo-bsc-nat.cfg /data/osmo-bsc-nat.cfg
+COPY	bscs.config /data/bscs.config
 
 WORKDIR	/data
 CMD	["/usr/local/bin/osmo-nitb"]
