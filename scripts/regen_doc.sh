@@ -10,7 +10,12 @@ DOCKER_EXTRA="$5"
 
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 if [ -z "$OSMO_INTERACT_VTY" ]; then
-	OSMO_INTERACT_VTY="osmo-interact-vty.py"
+	OSMO_INTERACT_VTY="osmo_interact_vty.py"
+fi
+if ! command -v "$OSMO_INTERACT_VTY" 2>&1; then
+	set +x
+	echo "ERROR: $OSMO_INTERACT_VTY not found. Are osmo-python-tests in PATH?"
+	exit 1
 fi
 
 docker_images_require \
