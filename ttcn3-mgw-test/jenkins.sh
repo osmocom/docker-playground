@@ -10,6 +10,10 @@ docker_images_require \
 
 mkdir $VOL_BASE_DIR/mgw-tester
 cp MGCP_Test.cfg $VOL_BASE_DIR/mgw-tester/
+# conn-timeout must be disabled until release AFTER osmo-mgw 1.5.0 is tagged
+if [ "$IMAGE_SUFFIX" = "latest" ]; then
+	sed "s/mp_enable_conn_timeout_test := true;/mp_enable_conn_timeout_test := false;/g" -i $VOL_BASE_DIR/mgw-tester/MGCP_Test.cfg
+fi
 
 mkdir $VOL_BASE_DIR/mgw
 cp osmo-mgw.cfg $VOL_BASE_DIR/mgw/
