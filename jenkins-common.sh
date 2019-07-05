@@ -28,8 +28,18 @@ docker_images_require() {
 	done
 }
 
+#kills all containers attached to network
+network_clean() {
+	docker network inspect $NET_NAME | grep Name | cut -d : -f2 | awk -F\" 'NR>1{print $2}' | xargs -rn1 docker kill
+}
+
 network_create() {
 	NET=$1
+	if docker network ls | grep -q $NET_NAME; then
+		echo removing stale network and containers...
+		network_clean
+		network_remove
+	fi
 	echo Creating network $NET_NAME
 	docker network create --internal --subnet $NET $NET_NAME
 }
