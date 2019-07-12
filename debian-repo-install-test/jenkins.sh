@@ -3,27 +3,34 @@
 docker_images_require "debian-repo-install-test"
 
 [ -z "$FEED" ] && FEED="nightly"
+CONTAINER="repo-install-test-$FEED"
 
 # Try to run "systemctl status" 10 times, kill the container on failure
 check_if_systemd_is_running() {
 	for i in $(seq 1 10); do
 		sleep 1
-		if docker exec "$BUILD_TAG" systemctl status; then
+		if docker exec "$CONTAINER" systemctl status; then
 			return
 		fi
 	done
 
 	echo "ERROR: systemd is not running properly."
-	docker container kill "$BUILD_TAG"
+	docker container kill "$CONTAINER"
 	exit 1
 }
+
+# Kill already running container
+if [ "$(docker inspect -f '{{.State.Running}}' "$CONTAINER" 2> /dev/null)" = "true" ]; then
+	docker container kill "$CONTAINER"
+	sleep 1
+fi
 
 # Run the container
 # Note that this does not output anything. For debugging, add -it and remove &.
 docker run	--rm \
 		-v "$PWD/testdata:/testdata:ro" \
 		-v "$VOL_BASE_DIR:/data" \
-		--name "${BUILD_TAG}" \
+		--name "$CONTAINER" \
 		-e FEED="$FEED" \
 		-e container=docker \
 		--tmpfs /run \
@@ -35,14 +42,14 @@ docker run	--rm \
 check_if_systemd_is_running
 
 # Run the test script
-docker exec "$BUILD_TAG" /testdata/repo-install-test.sh
+docker exec "$CONTAINER" /testdata/repo-install-test.sh
 ret="$?"
 
 # Interactive shell
 if [ -n "$INTERACTIVE" ]; then
-	docker exec -it "$BUILD_TAG" bash
+	docker exec -it "$CONTAINER" bash
 fi
 
-docker container kill "$BUILD_TAG"
+docker container kill "$CONTAINER"
 
 exit $ret
