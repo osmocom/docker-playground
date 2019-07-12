@@ -12,15 +12,8 @@ check_env() {
 	fi
 }
 
-install_depends() {
-	echo "Installing dependencies"
-	apt-get update
-	apt-get install -y gnupg aptitude
-}
-
 configure_osmocom_repo() {
 	echo "Configuring Osmocom repository"
-	apt-key add /testdata/Release.key
 	echo "deb $HTTP ./" \
 		> /etc/apt/sources.list.d/osmocom-latest.list
 	apt-get update
@@ -87,21 +80,7 @@ test_binaries() {
 		osmo-trx-usrp1
 }
 
-finish() {
-	echo "Test finished successfully!"
-
-	# When docker-run is called with "-it", then stdin and a tty are available.
-	# The container will still exit when the entrypoint script (this file) is
-	# through, so in order to be able to type in commands, we execute a bash shell.
-	if [ -t 0 ]; then
-		echo "Dropping to interactive shell"
-		bash
-	fi
-}
-
 check_env
-install_depends
 configure_osmocom_repo
 install_repo_packages
 test_binaries
-finish
