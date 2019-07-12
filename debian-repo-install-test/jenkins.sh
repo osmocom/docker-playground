@@ -26,7 +26,9 @@ if [ "$(docker inspect -f '{{.State.Running}}' "$CONTAINER" 2> /dev/null)" = "tr
 fi
 
 # Run the container
-# Note that this does not output anything. For debugging, add -it and remove &.
+# * This does not output anything, for debugging add -it and remove &.
+# * /run, /tmp, cgroups, SYS_ADMIN: needed for systemd
+# * SYS_NICE: needed for changing CPUScheduling{Policy,Priority} (osmo-bts systemd service files)
 docker run	--rm \
 		-v "$PWD/testdata:/testdata:ro" \
 		-v "$VOL_BASE_DIR:/data" \
@@ -37,6 +39,7 @@ docker run	--rm \
 		--tmpfs /tmp \
 		-v /sys/fs/cgroup:/sys/fs/cgroup:ro \
 		--cap-add SYS_ADMIN \
+		--cap-add SYS_NICE \
 		"$REPO_USER/debian-repo-install-test" \
 		/lib/systemd/systemd &
 check_if_systemd_is_running

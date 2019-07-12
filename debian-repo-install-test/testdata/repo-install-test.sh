@@ -1,5 +1,31 @@
 #!/bin/sh -ex
 
+# Systemd services that must start up successfully after installing all packages (OS#3369)
+# Disabled services:
+# * osmo-ctrl2cgi (missing config: /etc/osmocom/ctrl2cgi.ini)
+# * osmo-trap2cgi (missing config: /etc/osmocom/%N.ini)
+# * osmo-sgsn (port 2123 already used by osmo-ggsn)
+# * osmo-pcu (expects missing /tmp/pcu_bts socket)
+# * osmo-hnbgw (tries to listen on 10.23.24.1)
+# * osmo-bts-virtual (unit_id is not matching osmo-bsc's config)
+SERVICES="
+	osmo-bsc
+	osmo-gbproxy
+	osmo-ggsn
+	osmo-gtphub
+	osmo-hlr
+	osmo-mgw
+	osmo-msc
+	osmo-pcap-client
+	osmo-sip-connector
+	osmo-stp
+"
+# Services working in nightly, but not yet in latest
+# * osmo-pcap-server: service not included in osmo-pcap 0.0.11
+SERVICES_NIGHTLY="
+	osmo-pcap-server
+"
+
 HTTP="http://download.opensuse.org/repositories/network:/osmocom:/$FEED/Debian_9.0/"
 OBS="obs://build.opensuse.org/network:osmocom:$FEED/Debian_9.0"
 
@@ -80,7 +106,37 @@ test_binaries() {
 		osmo-trx-usrp1
 }
 
+services_check() {
+	local service
+	local services_feed="$SERVICES"
+	local failed=""
+
+	if [ "$FEED" = "nightly" ]; then
+		services_feed="$services_feed $SERVICES_NIGHTLY"
+	fi
+
+	systemctl start $services_feed
+	sleep 2
+
+	for service in $services_feed; do
+		if ! systemctl --no-pager -l status $service; then
+			failed="$failed $service"
+		fi
+	done
+
+	systemctl stop $services_feed
+
+	if [ -n "$failed" ]; then
+		set +x
+		echo
+		echo "ERROR: services failed to start: $failed"
+		echo
+		exit 1
+	fi
+}
+
 check_env
 configure_osmocom_repo
 install_repo_packages
 test_binaries
+services_check
