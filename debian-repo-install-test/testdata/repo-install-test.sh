@@ -2,12 +2,8 @@
 
 # Systemd services that must start up successfully after installing all packages (OS#3369)
 # Disabled services:
-# * osmo-ctrl2cgi (missing config: /etc/osmocom/ctrl2cgi.ini)
-# * osmo-trap2cgi (missing config: /etc/osmocom/%N.ini)
-# * osmo-sgsn (port 2123 already used by osmo-ggsn)
-# * osmo-pcu (expects missing /tmp/pcu_bts socket)
-# * osmo-hnbgw (tries to listen on 10.23.24.1)
-# * osmo-bts-virtual (unit_id is not matching osmo-bsc's config)
+# * osmo-ctrl2cgi (missing config: /etc/osmocom/ctrl2cgi.ini, OS#4108)
+# * osmo-trap2cgi (missing config: /etc/osmocom/%N.ini, OS#4108)
 SERVICES="
 	osmo-bsc
 	osmo-gbproxy
@@ -22,8 +18,16 @@ SERVICES="
 "
 # Services working in nightly, but not yet in latest
 # * osmo-pcap-server: service not included in osmo-pcap 0.0.11
+# * osmo-sgsn: conflicts with osmo-gtphub config in osmo-sgsn 1.4.0
+# * osmo-pcu: needs osmo-bts-virtual to start up properly
+# * osmo-hnbgw: tries to listen on 10.23.24.1 in osmo-iuh 0.4.0
+# * osmo-bts-virtual: unit id not matching osmo-bsc's config in osmo-bsc 1.4.0
 SERVICES_NIGHTLY="
 	osmo-pcap-server
+	osmo-sgsn
+	osmo-pcu
+	osmo-hnbgw
+	osmo-bts-virtual
 "
 
 HTTP="http://download.opensuse.org/repositories/network:/osmocom:/$FEED/Debian_9.0/"
