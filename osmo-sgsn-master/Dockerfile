@@ -19,9 +19,12 @@ RUN	apt-get update && \
 		libosmo-abis-dev \
 		libosmo-gsup-client-dev \
 		libosmo-netif-dev \
+		libosmo-ranap-dev \
 		libosmo-sccp-dev \
+		libosmo-sigtran-dev \
 		libsmpp34-dev \
-		libgtp-dev && \
+		libgtp-dev \
+		libasn1c-dev && \
 	apt-get clean
 
 WORKDIR	/tmp
@@ -36,7 +39,7 @@ RUN	cd osmo-sgsn && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_SGSN_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
-	./configure && \
+	./configure --enable-iu && \
 	make -j8 install && \
 	ldconfig
 
