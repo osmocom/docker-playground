@@ -123,7 +123,7 @@ services_check() {
 	sleep 2
 
 	for service in $services_feed; do
-		if ! systemctl --no-pager -l status $service; then
+		if ! systemctl --no-pager -l -n 200 status $service; then
 			failed="$failed $service"
 		fi
 	done
