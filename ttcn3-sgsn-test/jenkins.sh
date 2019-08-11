@@ -4,6 +4,7 @@
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
 	"debian-stretch-build" \
+	"osmo-stp-$IMAGE_SUFFIX" \
 	"osmo-sgsn-$IMAGE_SUFFIX" \
 	"debian-stretch-titan" \
 	"ttcn3-sgsn-test"
@@ -16,7 +17,17 @@ cp SGSN_Tests.cfg $VOL_BASE_DIR/sgsn-tester/
 mkdir $VOL_BASE_DIR/sgsn
 cp osmo-sgsn.cfg $VOL_BASE_DIR/sgsn/
 
+mkdir $VOL_BASE_DIR/stp
+cp osmo-stp.cfg $VOL_BASE_DIR/stp/
+
 mkdir $VOL_BASE_DIR/unix
+
+echo Starting container with STP
+docker run	--rm \
+		--network $NET_NAME --ip 172.18.8.200 \
+		-v $VOL_BASE_DIR/stp:/data \
+		--name ${BUILD_TAG}-stp -d \
+		$REPO_USER/osmo-stp-$IMAGE_SUFFIX
 
 echo Starting container with SGSN
 docker run	--rm \
@@ -45,6 +56,7 @@ docker run	--rm \
 
 echo Stopping containers
 docker container kill ${BUILD_TAG}-sgsn
+docker container kill ${BUILD_TAG}-stp
 
 network_remove
 collect_logs
