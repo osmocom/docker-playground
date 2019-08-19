@@ -12,10 +12,6 @@ docker_images_require \
 
 mkdir $VOL_BASE_DIR/bsc-tester
 cp BSC_Tests.cfg $VOL_BASE_DIR/bsc-tester/
-# osmux must be disabled until release AFTER osmo-bsc 1.4.1 is tagged
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	sed "s/BSC_Tests.mp_enable_osmux_test := true;/BSC_Tests.mp_enable_osmux_test := false;/g" -i $VOL_BASE_DIR/bsc-tester/BSC_Tests.cfg
-fi
 
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/

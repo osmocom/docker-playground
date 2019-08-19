@@ -14,9 +14,6 @@ NET_NAME=ttcn3-bsc_sccplite-test
 
 mkdir $VOL_BASE_DIR/bsc-tester
 cp sccplite/BSC_Tests.cfg $VOL_BASE_DIR/bsc-tester/
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	sed "s/BSC_Tests.mp_enable_osmux_test := true;/BSC_Tests.mp_enable_osmux_test := false;/g" -i $VOL_BASE_DIR/bsc-tester/BSC_Tests.cfg
-fi
 
 mkdir $VOL_BASE_DIR/bsc
 cp sccplite/osmo-bsc.cfg $VOL_BASE_DIR/bsc/

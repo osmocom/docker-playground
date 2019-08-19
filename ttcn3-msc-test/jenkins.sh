@@ -14,10 +14,6 @@ network_create 172.18.1.0/24
 mkdir $VOL_BASE_DIR/msc-tester
 mkdir $VOL_BASE_DIR/msc-tester/unix
 cp MSC_Tests.cfg $VOL_BASE_DIR/msc-tester/
-# osmux must be disabled until release AFTER osmo-msc 1.3.1 is tagged
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	sed "s/MSC_Tests.mp_enable_osmux_test := true;/MSC_Tests.mp_enable_osmux_test := false;/g" -i $VOL_BASE_DIR/msc-tester/MSC_Tests.cfg
-fi
 
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/
