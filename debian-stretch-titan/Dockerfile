@@ -25,6 +25,7 @@ RUN	apt-get update && \
 		procps \
 		tcpdump \
 		vim \
+		netcat-openbsd \
 		&& \
 	apt-get clean
 
