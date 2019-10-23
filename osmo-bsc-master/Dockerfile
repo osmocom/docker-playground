@@ -46,4 +46,4 @@ COPY	osmo-bsc.cfg /data/osmo-bsc.cfg
 WORKDIR	/data
 CMD	["/usr/local/bin/osmo-bsc"]
 
-#EXPOSE	
+#EXPOSE
