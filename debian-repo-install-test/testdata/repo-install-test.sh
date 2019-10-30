@@ -4,10 +4,10 @@
 # Disabled services:
 # * osmo-ctrl2cgi (missing config: /etc/osmocom/ctrl2cgi.ini, OS#4108)
 # * osmo-trap2cgi (missing config: /etc/osmocom/%N.ini, OS#4108)
+# * osmo-ggsn (no tun device in docker)
 SERVICES="
 	osmo-bsc
 	osmo-gbproxy
-	osmo-ggsn
 	osmo-gtphub
 	osmo-hlr
 	osmo-mgw
