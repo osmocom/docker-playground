@@ -17,6 +17,7 @@ REGISTRY_HOST?=docker.io
 USERNAME?=$(USER)
 NAME?=$(shell basename $(CURDIR))
 OSMO_TTCN3_BRANCH?=master
+OSMO_BB_BRANCH?=master
 OSMO_BSC_BRANCH?=master
 OSMO_BTS_BRANCH?=master
 OSMO_GGSN_BRANCH?=master
@@ -54,6 +55,7 @@ post-push:
 
 docker-build: .release
 	docker build --build-arg USER=$(USERNAME) --build-arg OSMO_TTCN3_BRANCH=$(OSMO_TTCN3_BRANCH) \
+		--build-arg OSMO_BB_BRANCH=$(OSMO_BB_BRANCH) \
 		--build-arg OSMO_BSC_BRANCH=$(OSMO_BSC_BRANCH) \
 		--build-arg OSMO_BTS_BRANCH=$(OSMO_BTS_BRANCH) \
 		--build-arg OSMO_GGSN_BRANCH=$(OSMO_GGSN_BRANCH) \
