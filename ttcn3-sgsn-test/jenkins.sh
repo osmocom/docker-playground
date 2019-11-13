@@ -41,7 +41,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/sgsn:/data \
 		--name ${BUILD_TAG}-sgsn -d \
 		$REPO_USER/osmo-sgsn-$IMAGE_SUFFIX \
-		osmo-sgsn
+		/bin/sh -c "osmo-sgsn -c /data/osmo-sgsn.cfg >/data/osmo-sgsn.log 2>&1"
 
 echo Starting container with SGSN testsuite
 docker run	--rm \

@@ -33,9 +33,7 @@ for i in `seq 0 2`; do
 			--network $NET_NAME --ip 172.18.12.10$i \
 			--name ${BUILD_TAG}-bts$i -d \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
-			/usr/local/bin/respawn.sh \
-			osmo-bts-omldummy \
-			172.18.12.20 $((i + 1234)) 1
+			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-omldummy 172.18.12.20 $((i + 1234)) 1 >>/data/osmo-bts-omldummy-${i}.log 2>&1"
 done
 
 echo Starting container with BSC testsuite

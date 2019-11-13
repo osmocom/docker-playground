@@ -34,7 +34,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-pcu -d \
 		$REPO_USER/osmo-pcu-$IMAGE_SUFFIX \
-		/usr/local/bin/respawn.sh osmo-pcu -c /data/osmo-pcu.cfg -i 172.18.13.10
+		/bin/sh -c "/usr/local/bin/respawn.sh osmo-pcu -c /data/osmo-pcu.cfg -i 172.18.13.10 >>/data/osmo-pcu.log 2>&1"
 
 echo Starting container with PCU testsuite
 docker run	--rm \

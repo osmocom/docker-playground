@@ -18,7 +18,7 @@ start_bsc() {
 			-v $VOL_BASE_DIR/bsc:/data \
 			--name ${BUILD_TAG}-bsc -d \
 			$REPO_USER/osmo-bsc-$IMAGE_SUFFIX \
-			osmo-bsc -c /data/osmo-bsc.cfg
+			/bin/sh -c "osmo-bsc -c /data/osmo-bsc.cfg >>/data/osmo-bsc.log 2>&1"
 }
 
 start_bts() {
@@ -35,7 +35,7 @@ start_bts() {
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			--name ${BUILD_TAG}-bts -d \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
-			/usr/local/bin/respawn.sh osmo-bts-$variant -c /data/osmo-bts.cfg -i 172.18.9.10
+			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-$variant -c /data/osmo-bts.cfg -i 172.18.9.10 >>/data/osmo-bts.log 2>&1"
 }
 
 start_fake_trx() {
@@ -59,7 +59,7 @@ start_trxcon() {
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			--name ${BUILD_TAG}-trxcon -d \
 			$REPO_USER/osmocom-bb-host-master \
-			trxcon -i 172.18.9.21 -s /data/unix/osmocom_l2
+			/bin/sh -c "trxcon -i 172.18.9.21 -s /data/unix/osmocom_l2 >>/data/trxcon.log 2>&1"
 }
 
 start_virtphy() {
@@ -70,6 +70,7 @@ start_virtphy() {
 			--name ${BUILD_TAG}-virtphy -d \
 			$REPO_USER/osmocom-bb-host-master \
 			virtphy -s /data/unix/osmocom_l2
+			/bin/sh -c "virtphy -s /data/unix/osmocom_l2 >>/data/virtphy.log 2>&1"
 }
 
 start_testsuite() {

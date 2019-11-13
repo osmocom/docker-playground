@@ -38,7 +38,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-msc -d \
 		$REPO_USER/osmo-msc-$IMAGE_SUFFIX \
-		osmo-msc
+		/bin/sh -c "osmo-msc -c /data/osmo-msc.cfg >>/data/osmo-msc.log 2>&1"
 
 echo Starting container with MSC testsuite
 docker run	--rm \

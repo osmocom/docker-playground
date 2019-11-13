@@ -14,7 +14,7 @@ start_server() {
 			-v $VOL_BASE_DIR/server:/data \
 			--name ${BUILD_TAG}-server -d \
 			$REPO_USER/osmo-remsim-$IMAGE_SUFFIX \
-			osmo-remsim-server
+			/bin/sh -c "osmo-remsim-server >/data/osmo-remsim-server.log 2>&1"
 }
 
 start_bankd() {
@@ -24,7 +24,7 @@ start_bankd() {
 			-v $VOL_BASE_DIR/bankd:/data \
 			--name ${BUILD_TAG}-bankd -d \
 			$REPO_USER/osmo-remsim-$IMAGE_SUFFIX \
-			osmo-remsim-bankd -i 172.18.17.10
+			/bin/sh -c "osmo-remsim-bankd -i 172.18.17.10 >/data/osmo-remsim-bankd.log 2>&1"
 }
 
 start_client() {
@@ -34,7 +34,7 @@ start_client() {
 			-v $VOL_BASE_DIR/client:/data \
 			--name ${BUILD_TAG}-client-d \
 			$REPO_USER/osmo-remsim-$IMAGE_SUFFIX \
-			osmo-remsim-client
+			/bin/sh -c "osmo-remsim-client >/data/osmo-remsim-client.log 2>&1"
 }
 
 
