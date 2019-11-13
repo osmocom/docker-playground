@@ -4,11 +4,8 @@ FROM	$USER/debian-stretch-titan
 RUN	mkdir /root/projects && (cd /root/projects && ln -sf / git)
 RUN	git clone git://git.osmocom.org/osmo-ttcn3-hacks.git
 
-# FIXME: Once M3UA dep update patches in laforge/stp is merged into master, the
-# line checking it out can be removed.
 RUN	cd osmo-ttcn3-hacks && \
 	git checkout -f -B master origin/master && \
-	git fetch && git checkout -f -B laforge/stp origin/laforge/stp && \
 	make deps
 
 RUN	git config --global user.email docker@dock.er && \
