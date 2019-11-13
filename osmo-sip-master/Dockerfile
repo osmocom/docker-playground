@@ -48,6 +48,6 @@ VOLUME	/data
 COPY	osmo-sip-connector.cfg /data/osmo-sip-connector.cfg
 
 WORKDIR	/data
-CMD	["/usr/local/bin/osmo-sip-connector"]
+CMD	["/bin/sh", "-c", "/usr/local/bin/osmo-sip-connector -c /data/osmo-sip-connector.cfg >/data/osmo-sip-connector.log 2>&1"]
 
 #EXPOSE	

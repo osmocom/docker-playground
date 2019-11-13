@@ -42,6 +42,6 @@ VOLUME	/data
 COPY	osmo-hlr.cfg /data/osmo-hlr.cfg
 
 WORKDIR	/data
-CMD	["/usr/local/bin/osmo-hlr"]
+CMD	["/bin/sh", "-c", "/usr/local/bin/osmo-hlr -c /data/osmo-hlr.cfg >/data/osmo-hlr.log 2>&1"]
 
-#EXPOSE	
+#EXPOSE

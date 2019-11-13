@@ -31,6 +31,6 @@ COPY	osmo-bsc-nat.cfg /data/osmo-bsc-nat.cfg
 COPY	bscs.config /data/bscs.config
 
 WORKDIR	/data
-CMD	["/usr/bin/osmo-nitb"]
+CMD	["/bin/sh", "-c", "/usr/bin/osmo-nitb -c /data/osmo-nitb.cfg >/data/osmo-nitb.log 2>&1"]
 
 EXPOSE	3002/tcp 3003/tcp 4242/tcp 2775/tcp 4249/tcp

@@ -43,4 +43,4 @@ VOLUME	/data
 COPY	osmo-mgw.cfg /data/osmo-mgw.cfg
 
 WORKDIR	/data
-CMD	["/usr/local/bin/osmo-mgw"]
+CMD	["/bin/sh", "-c", "/usr/local/bin/osmo-mgw -c /data/osmo-mgw.cfg >/data/osmo-mgw.log 2>&1"]

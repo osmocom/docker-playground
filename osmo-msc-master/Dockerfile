@@ -49,6 +49,6 @@ VOLUME	/data
 COPY	osmo-msc.cfg /data/osmo-msc.cfg
 
 WORKDIR	/data
-CMD	["/usr/local/bin/osmo-msc"]
+CMD	["/bin/sh", "-c", "/usr/local/bin/osmo-msc -c /data/osmo-msc.cfg >/data/osmo-msc.log 2>&1"]
 
-#EXPOSE	
+#EXPOSE

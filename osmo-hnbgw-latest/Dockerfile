@@ -27,4 +27,4 @@ VOLUME	/data
 COPY	osmo-hnbgw.cfg /data/osmo-hnbgw.cfg
 
 WORKDIR	/data
-CMD	["/usr/bin/osmo-hnbgw", "-c", "/data/osmo-hnbgw.cfg"]
+CMD	["/bin/sh", "-c", "/usr/bin/osmo-hnbgw -c /data/osmo-hnbgw.cfg >/data/osmo-hnbgw.log 2>&1"]

@@ -27,6 +27,6 @@ VOLUME	/data
 COPY	osmo-sgsn.cfg /data/osmo-sgsn.cfg
 
 WORKDIR	/data
-CMD	["/usr/bin/osmo-sgsn"]
+CMD	["/bin/sh", "-c", "/usr/bin/osmo-sgsn -c /data/osmo-sgsn.cfg >/data/osmo-sgsn.log 2>&1"]
 
 EXPOSE	23000/udp 4245/tcp 4249/tcp

@@ -29,6 +29,6 @@ VOLUME	/data
 COPY	osmo-bsc.cfg /data/osmo-bsc.cfg
 
 WORKDIR	/data
-CMD	["/usr/bin/osmo-bsc", "-c", "/data/osmo-bsc.cfg"]
+CMD	["/bin/sh", "-c", "/usr/bin/osmo-bsc -c /data/osmo-bsc.cfg >/data/osmo-bsc.log 2>&1"]
 
 EXPOSE	3003 3002 4242

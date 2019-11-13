@@ -48,6 +48,6 @@ VOLUME	/data
 #COPY	osmo-bts.cfg /data/osmo-bts.cfg
 
 WORKDIR	/data
-CMD	["/usr/local/bin/osmo-resmim-server"]
+CMD	["/bin/sh", "-c", "/usr/local/bin/osmo-resmim-server >/data/osmo-resmim-server.log 2>&1"]
 
 #EXPOSE	
