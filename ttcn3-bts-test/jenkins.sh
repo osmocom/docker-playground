@@ -56,6 +56,7 @@ start_trxcon() {
 	echo Starting container with trxcon
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.9.22 \
+			-v $VOL_BASE_DIR/trxcon:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			--name ${BUILD_TAG}-trxcon -d \
 			$REPO_USER/osmocom-bb-host-master \
