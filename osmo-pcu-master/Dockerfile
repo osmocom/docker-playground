@@ -32,7 +32,7 @@ RUN	cd osmo-pcu && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_PCU_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
-	./configure --enable-trx && \
+	./configure && \
 	make -j8 install
 
 VOLUME	/data
@@ -42,4 +42,4 @@ COPY	osmo-pcu.cfg /data/osmo-pcu.cfg
 WORKDIR	/data
 CMD	["/usr/local/bin/osmo-pcu", "-i", "172.18.0.230"]
 
-#EXPOSE	
+#EXPOSE
