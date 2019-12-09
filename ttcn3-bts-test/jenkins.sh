@@ -101,6 +101,7 @@ cp osmo-bts.cfg $VOL_BASE_DIR/bts/
 mkdir $VOL_BASE_DIR/unix
 
 mkdir $VOL_BASE_DIR/fake_trx
+mkdir $VOL_BASE_DIR/trxcon
 
 # 1) classic test suite with BSC for OML and trxcon+fake_trx
 start_bsc
