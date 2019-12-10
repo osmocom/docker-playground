@@ -12,7 +12,11 @@ mkdir $VOL_BASE_DIR/stp-tester
 cp STP_Tests.cfg $VOL_BASE_DIR/stp-tester/
 
 mkdir $VOL_BASE_DIR/stp
-cp osmo-stp.cfg $VOL_BASE_DIR/stp/
+if [ "$IMAGE_SUFFIX" = "latest" ]; then
+	cp latest/osmo-stp.cfg $VOL_BASE_DIR/stp/
+else
+	cp osmo-stp.cfg $VOL_BASE_DIR/stp/
+fi
 
 network_create 172.18.19.0/24
 
