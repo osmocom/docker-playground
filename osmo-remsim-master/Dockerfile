@@ -16,6 +16,7 @@ RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		telnet \
 		libosmocore-dev \
+		libosmo-simtrace2-dev \
 		libosmo-abis-dev \
 		libosmo-netif-dev \
 		libpcsclite-dev \
