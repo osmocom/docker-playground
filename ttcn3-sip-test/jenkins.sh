@@ -14,10 +14,6 @@ mkdir $VOL_BASE_DIR/sip-tester
 mkdir $VOL_BASE_DIR/sip-tester/unix
 cp SIP_Tests.cfg $VOL_BASE_DIR/sip-tester/
 
-if [ "x${IMAGE_SUFFIX}" != "xmaster" ]; then
-	sed -i 's/mp_mncc_version := [0-9]*/mp_mncc_version:= 5/' "$VOL_BASE_DIR/sip-tester/SIP_Tests.cfg"
-fi
-
 mkdir $VOL_BASE_DIR/sip
 mkdir $VOL_BASE_DIR/sip/unix
 cp osmo-sip-connector.cfg $VOL_BASE_DIR/sip/
