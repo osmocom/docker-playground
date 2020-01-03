@@ -13,22 +13,10 @@ network_create 172.18.13.0/24
 mkdir $VOL_BASE_DIR/pcu-tester
 mkdir $VOL_BASE_DIR/pcu-tester/unix
 cp PCU_Tests.cfg $VOL_BASE_DIR/pcu-tester/
-# Latest release of osmo-pcu (0.7.0) has prompt "Osmo-PCU", while master uses more
-# usual osmocom form "OsmoPCU". This can be removed once a new osmo-pcu version is released
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	sed "s/OsmoPCU/Osmo-PCU/g" -i $VOL_BASE_DIR/pcu-tester/PCU_Tests.cfg
-fi
 
 mkdir $VOL_BASE_DIR/pcu
 mkdir $VOL_BASE_DIR/pcu/unix
 cp osmo-pcu.cfg $VOL_BASE_DIR/pcu/
-# Latest release of osmo-pcu (0.7.0) doesn't know some gsmtap categories
-# This can be removed once a new osmo-pcu version is released
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-        sed "s/gsmtap-category dl-agch//g" -i $VOL_BASE_DIR/pcu/osmo-pcu.cfg
-        sed "s/gsmtap-category dl-pch//g" -i $VOL_BASE_DIR/pcu/osmo-pcu.cfg
-        sed "s/gsmtap-category ul-rach//g" -i $VOL_BASE_DIR/pcu/osmo-pcu.cfg
-fi
 
 mkdir $VOL_BASE_DIR/unix
 
