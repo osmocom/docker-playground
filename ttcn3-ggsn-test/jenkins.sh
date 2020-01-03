@@ -10,10 +10,6 @@ docker_images_require \
 
 mkdir $VOL_BASE_DIR/ggsn-tester
 cp GGSN_Tests.cfg $VOL_BASE_DIR/ggsn-tester/
-# VTY command "(no) echo-interval" must be disabled until osmo-ggsn.git release > 1.4.0 is available.
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	sed "s/GGSN_Tests.m_ggsn_supports_echo_interval := true;/GGSN_Tests.m_ggsn_supports_echo_interval := false;/g" -i $VOL_BASE_DIR/ggsn-tester/GGSN_Tests.cfg
-fi
 
 mkdir $VOL_BASE_DIR/ggsn
 cp osmo-ggsn.cfg $VOL_BASE_DIR/ggsn/
