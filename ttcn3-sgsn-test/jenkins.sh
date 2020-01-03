@@ -16,12 +16,6 @@ cp SGSN_Tests.cfg $VOL_BASE_DIR/sgsn-tester/
 
 mkdir $VOL_BASE_DIR/sgsn
 cp osmo-sgsn.cfg $VOL_BASE_DIR/sgsn/
-# Latest release of osmo-sgsn (1.5.0) uses harcoded default ss7 id 1 from
-# libosmo-sccp (1.1.0). when new osmo-sgsn release is available, these lines
-# below can be dropped:
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	sed "s/cs7 instance 0/cs7 instance 1/g" -i $VOL_BASE_DIR/sgsn/osmo-sgsn.cfg
-fi
 
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/
