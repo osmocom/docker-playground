@@ -12,6 +12,7 @@ RUN	apt-get update && \
 		bison \
 		build-essential \
 		cppcheck \
+		dahdi-source \
 		debhelper \
 		devscripts \
 		dh-autoreconf \
