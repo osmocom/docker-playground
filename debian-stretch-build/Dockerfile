@@ -50,5 +50,6 @@ RUN	apt-get update && \
 		make \
 		pkg-config \
 		sqlite3 \
+		stow \
 		wget && \
 	apt-get clean
