@@ -22,6 +22,7 @@ RUN	apt-get update && \
 		g++ \
 		gawk \
 		gcc \
+		gcc-arm-none-eabi \
 		git \
 		git-buildpackage \
 		gnupg \
@@ -33,6 +34,7 @@ RUN	apt-get update && \
 		libgps-dev \
 		libgsm1-dev \
 		libncurses5-dev \
+		libnewlib-arm-none-eabi \
 		libortp-dev \
 		libpcap-dev \
 		libpcsclite-dev \
