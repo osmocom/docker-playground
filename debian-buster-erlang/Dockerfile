@@ -45,6 +45,6 @@ RUN	apt-key add /tmp/Release.key && \
 ADD	$OSMOCOM_REPO/Release /tmp/Release
 
 # add a non-root user under which we will normaly execute build tests
-RUN	useradd -m osmocom
-WORKDIR	/home/osmocom
-USER	osmocom
+RUN	useradd -m build
+WORKDIR	/home/build
+USER	build
