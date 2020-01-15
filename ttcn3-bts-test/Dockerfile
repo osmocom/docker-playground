@@ -11,7 +11,7 @@ RUN	cd osmo-ttcn3-hacks && \
 RUN	git config --global user.email docker@dock.er && \
 	git config --global user.name "Dock Er"
 
-ARG	OSMO_TTCN3_BRANCH="master"
+ARG	OSMO_TTCN3_BRANCH="pespin/bts-perf"
 
 ADD	http://git.osmocom.org/osmo-ttcn3-hacks/patch?h=$OSMO_TTCN3_BRANCH /tmp/commit
 RUN	cd osmo-ttcn3-hacks && \

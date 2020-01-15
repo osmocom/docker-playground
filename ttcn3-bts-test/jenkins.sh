@@ -92,7 +92,7 @@ mkdir $VOL_BASE_DIR/bts-tester/unix
 cp BTS_Tests.cfg $VOL_BASE_DIR/bts-tester/
 
 mkdir $VOL_BASE_DIR/bsc
-cp osmo-bsc.cfg $VOL_BASE_DIR/bsc/
+cp osmo-bsc-alltcch.cfg $VOL_BASE_DIR/bsc/osmo-bsc.cfg
 
 mkdir $VOL_BASE_DIR/bts
 mkdir $VOL_BASE_DIR/bts/unix
@@ -110,6 +110,7 @@ start_fake_trx
 start_trxcon
 start_testsuite
 
+foo() {
 # 2) some GPRS tests require virt_phy
 echo "Changing to virtphy configuration"
 # switch from osmo-bts-trx + trxcon + faketrx to virtphy + osmo-bts-virtual
@@ -135,8 +136,10 @@ start_trxcon
 # ... and execute the testsuite again with different cfg
 cp oml/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester/
 start_testsuite
+}
 
 echo Stopping containers
+docker container kill ${BUILD_TAG}-bsc
 docker container kill ${BUILD_TAG}-trxcon
 docker container kill ${BUILD_TAG}-fake_trx
 docker container kill ${BUILD_TAG}-bts
