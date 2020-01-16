@@ -72,6 +72,43 @@ necessary to add further complexity to the `Makefile`. Instead it was
 decided to scrap the file, and just keep the short list of dependencies
 right above where they would be needed in the `jenkins.sh`.
 
+## Obtaining gdb backtrace from crash
+
+If for instance TTCN3 test is producing a crash on a program running in docker,
+eg. osmo-msc, it is desirable to get a full crash report. This section describes
+how to do so.
+
+First, open `osmo-$program/Dockerfile` and add lines to install `gdb` plus
+`$program` dependency debug packages. For instance:
+
+```
++RUN    apt-get install -y --no-install-recommends \
++               gdb \
++               libosmocore-dbg libosmo-abis-dbg libosmo-netif-dbg libosmo-sigtran-dbg osmo-msc-dbg && \
++               apt-get clean
+```
+
+In same `Dockerfile` file, modify configure to build with debug symbols enabled
+and other interesting options, such as `--enable-sanitize`:
+
+```
+-       ./configure --enable-smpp --enable-iu && \
++       export CPPFLAGS="-g -O0 -fno-omit-frame-pointer" && \
++       export CFLAGS="-g -O0 -fno-omit-frame-pointer" && \
++       export CXXFLAGS="-g -O0 -fno-omit-frame-pointer" && \
++       ./configure --enable-smpp --enable-iu --enable-sanitize && \
+```
+
+Finally open the script you use to run the program (for instance
+`ttcn3-$program-master/jenkins.sh`), and modify it to launch the process using
+gdb, and to print a full backtrace when control returns to gdb (when the process
+crashes):
+
+```
+-/bin/sh -c "osmo-msc -c /data/osmo-msc.cfg >>/data/osmo-msc.log 2>&1"
++/bin/sh -c "gdb -ex 'run' -ex 'bt full' --arg osmo-msc -c /data/osmo-msc.cfg >>/data/osmo-msc.log 2>&1"
+```
+
 ## See also
 * [Overhyped Docker](http://laforge.gnumonks.org/blog/20170503-docker-overhyped/)
   for related rambling on why this doesn't work as well as one would
