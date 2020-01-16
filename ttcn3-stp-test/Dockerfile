@@ -11,9 +11,7 @@ RUN	cd osmo-ttcn3-hacks && \
 RUN	git config --global user.email docker@dock.er && \
 	git config --global user.name "Dock Er"
 
-# FIXME: Once STP patches in laforge/stp are merged into master, then
-# OSMO_TTCN3_BRANCH can be set again to "master".
-ARG	OSMO_TTCN3_BRANCH="laforge/stp"
+ARG	OSMO_TTCN3_BRANCH="master"
 
 ADD	http://git.osmocom.org/osmo-ttcn3-hacks/patch?h=$OSMO_TTCN3_BRANCH /tmp/commit
 RUN	cd osmo-ttcn3-hacks && \
