@@ -13,7 +13,7 @@ mkdir $VOL_BASE_DIR/sccp-tester
 cp SCCP_Tests.cfg $VOL_BASE_DIR/sccp-tester/
 
 mkdir $VOL_BASE_DIR/sccp
-#cp osmo-sccp.cfg $VOL_BASE_DIR/sccp/
+cp sccp_demo_user.cfg $VOL_BASE_DIR/sccp/
 
 network_create 172.18.22.0/24
 
@@ -23,7 +23,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/sccp:/data \
 		--name ${BUILD_TAG}-stp -d \
 		$REPO_USER/osmo-stp-master \
-		/bin/sh -c "sccp_demo_user -l 172.18.22.200 -r 172.18.22.203 >>/data/sccp_demo_user.log 2>&1"
+		/bin/sh -c "sccp_demo_user -l 172.18.22.200 -r 172.18.22.203 -C /data/sccp_demo_user.cfg >>/data/sccp_demo_user.log 2>&1"
 
 
 echo Starting container with SCCP testsuite
