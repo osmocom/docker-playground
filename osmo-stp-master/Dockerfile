@@ -32,7 +32,7 @@ RUN	cd libosmo-sccp && \
 	autoreconf -fi && \
 	./configure && \
 	make -j8 install && \
-	install examples/sccp_demo_user /usr/local/bin/ && \
+	install examples/.libs/sccp_demo_user /usr/local/bin/ && \
 	ldconfig
 
 VOLUME	/data
