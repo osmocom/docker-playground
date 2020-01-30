@@ -21,6 +21,7 @@ OSMO_BB_BRANCH?=master
 OSMO_BSC_BRANCH?=master
 OSMO_BTS_BRANCH?=master
 OSMO_GGSN_BRANCH?=master
+OSMO_GSM_TESTER_BRANCH?=master
 OSMO_HLR_BRANCH?=master
 OSMO_IUH_BRANCH?=master
 OSMO_MGW_BRANCH?=master
@@ -59,6 +60,7 @@ docker-build: .release
 		--build-arg OSMO_BSC_BRANCH=$(OSMO_BSC_BRANCH) \
 		--build-arg OSMO_BTS_BRANCH=$(OSMO_BTS_BRANCH) \
 		--build-arg OSMO_GGSN_BRANCH=$(OSMO_GGSN_BRANCH) \
+		--build-arg OSMO_GSM_TESTER_BRANCH=$(OSMO_GSM_TESTER_BRANCH) \
 		--build-arg OSMO_HLR_BRANCH=$(OSMO_HLR_BRANCH) \
 		--build-arg OSMO_IUH_BRANCH=$(OSMO_IUH_BRANCH) \
 		--build-arg OSMO_MGW_BRANCH=$(OSMO_MGW_BRANCH) \
