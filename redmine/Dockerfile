@@ -8,5 +8,6 @@ RUN	apt-get update && \
 		patch && \
 	apt-get clean
 
-ADD	hmac.diff /tmp/hmac.diff
-RUN	cd / && patch -p0 < /tmp/hmac.diff
+# no longer needed after ruby-openid-2.9.2 is used
+#ADD	hmac.diff /tmp/hmac.diff
+#RUN	cd / && patch -p0 < /tmp/hmac.diff
