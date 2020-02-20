@@ -34,7 +34,7 @@ start_client() {
 			-v $VOL_BASE_DIR/client:/data \
 			--name ${BUILD_TAG}-client-d \
 			$REPO_USER/osmo-remsim-$IMAGE_SUFFIX \
-			/bin/sh -c "osmo-remsim-client >/data/osmo-remsim-client.log 2>&1"
+			/bin/sh -c "osmo-remsim-client-shell >/data/osmo-remsim-client.log 2>&1"
 }
 
 
@@ -75,11 +75,11 @@ start_testsuite
 docker container kill ${BUILD_TAG}-bankd
 
 # 3) client test suite
-#echo "Changing to client configuration"
-#start_client
-#cp client/REMSIM_Tests.cfg $VOL_BASE_DIR/remsim-tester/
-#start_testsuite
-#docker container kill ${BUILD_TAG}-client
+echo "Changing to client configuration"
+start_client
+cp client/REMSIM_Tests.cfg $VOL_BASE_DIR/remsim-tester/
+start_testsuite
+docker container kill ${BUILD_TAG}-client
 
 network_remove
 collect_logs
