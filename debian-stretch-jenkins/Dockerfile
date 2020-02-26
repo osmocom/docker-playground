@@ -133,17 +133,17 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     update-locale LANG=en_US.UTF-8
 ENV LANG en_US.UTF-8
 
-# osmo-remsim needs libulfius (which indirectly depends on systemd, installed above)
-ARG LIBULFIUS_VER="2.6.4"
-ARG LIBULFIUS_PATH="https://github.com/babelouest/ulfius/releases/download/v${LIBULFIUS_VER}"
-ADD ${LIBULFIUS_PATH}/libulfius-dev_${LIBULFIUS_VER}_debian_${DEBIAN_VERSION}_x86_64.deb /tmp/ulfius/libulfius-dev.deb
-ADD ${LIBULFIUS_PATH}/ulfius-dev-full_${LIBULFIUS_VER}_debian_${DEBIAN_VERSION}_x86_64.tar.gz /tmp/ulfius/all.tar.gz
-RUN cd /tmp/ulfius && \
-	tar -xvf all.tar.gz && \
-	DEBIAN_FRONTEND=noninteractive apt-get update && \
-	DEBIAN_FRONTEND=noninteractive apt-get install -y /tmp/ulfius/*.deb && \
-	cd ~ && \
-	rm -r /tmp/ulfius
+# osmo-remsim needs libulfius which is built in osmocom OBS repos:
+ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_9.0/"
+COPY	Release.key /tmp/Release.key
+RUN	apt-key add /tmp/Release.key && \
+	rm /tmp/Release.key && \
+	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-nightly.list
+ADD	$OSMOCOM_REPO/Release /tmp/Release
+RUN	apt-get update && \
+	apt-get install -y --no-install-recommends \
+		libulfius-dev && \
+	apt-get clean
 
 # osmo-python-tests' contrib/jenkins.sh writes to /usr/local as user
 RUN chown -R build:build /usr/local
