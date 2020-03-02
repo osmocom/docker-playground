@@ -134,6 +134,6 @@ COPY	resources.conf /tmp/osmo-gsm-tester/example/resources.conf
 ENV   OSMO_GSM_TESTER_CONF /tmp/osmo-gsm-tester/example
 
 WORKDIR	/data
-CMD	["/bin/sh", "-c", "/data/osmo-gsm-tester.sh >/data/osmo-gsm-tester.log 2>&1"]
+CMD	["/bin/sh", "-c", "/data/osmo-gsm-tester-master.sh >/data/osmo-gsm-tester.log 2>&1"]
 
 EXPOSE	22/tcp

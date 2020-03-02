@@ -21,9 +21,10 @@ docker_images_require \
 network_create 172.18.50.0/24
 
 mkdir $VOL_BASE_DIR/ogt-slave
+cp osmo-gsm-tester-slave.sh $VOL_BASE_DIR/ogt-slave/
 
 mkdir $VOL_BASE_DIR/ogt-master
-cp osmo-gsm-tester.sh $VOL_BASE_DIR/ogt-master/
+cp osmo-gsm-tester-master.sh $VOL_BASE_DIR/ogt-master/
 
 echo Starting container with osmo-gsm-tester slave
 docker run	--rm \
@@ -35,7 +36,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/ogt-slave:/data \
 		--name ${BUILD_TAG}-ogt-slave -d \
 		$REPO_USER/osmo-gsm-tester \
-		/bin/sh -c "/usr/sbin/sshd -D -e >/data/sshd.log 2>&1"
+		/bin/sh -c "/data/osmo-gsm-tester-slave.sh >/data/sshd.log 2>&1"
 
 echo Starting container with osmo-gsm-tester main unit
 docker run	--rm \
