@@ -127,6 +127,7 @@ RUN	cd osmo-gsm-tester && \
 # Copy several scripts and permission for osmo-gsm-tester:
 RUN     mkdir -p /usr/local/bin/ && cp osmo-gsm-tester/utils/bin/* /usr/local/bin/
 RUN     mkdir -p /etc/sudoers.d/ && cp osmo-gsm-tester/utils/sudoers.d/* /etc/sudoers.d/
+RUN     mkdir -p /etc/security/limits.d/ && cp osmo-gsm-tester/utils/limits.d/* /etc/security/limits.d/
 
 VOLUME	/data
 COPY	resources.conf /tmp/osmo-gsm-tester/example/resources.conf
