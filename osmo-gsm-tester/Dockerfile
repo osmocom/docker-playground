@@ -38,19 +38,6 @@ RUN	pip3 install \
 		pyusb \
 		pysispm
 
-# install srsLTE runtime dependencies
-RUN	apt-get update && \
-	apt-get install -y --no-install-recommends \
-		cmake \
-		libfftw3-dev \
-		libmbedtls-dev \
-		libboost-program-options-dev \
-		libconfig++-dev \
-		libsctp-dev \
-		libpcsclite-dev \
-		libuhd-dev \
-		libczmq-dev
-
 # Intall sshd:
 RUN	apt-get update && apt-get install -y openssh-server
 RUN	mkdir /var/run/sshd
@@ -107,6 +94,22 @@ RUN	apt-get update && \
 		libsmpp34-dev \
 		libgtp-dev \
 		libasn1c-dev && \
+	apt-get clean
+
+# install srsLTE runtime dependencies
+RUN	apt-get update && \
+	apt-get install -y --no-install-recommends \
+		cmake \
+		libfftw3-dev \
+		libmbedtls-dev \
+		libboost-program-options-dev \
+		libconfig++-dev \
+		libsctp-dev \
+		libpcsclite-dev \
+		libuhd-dev \
+		libczmq-dev \
+		libsoapysdr-dev \
+		soapysdr0.7-module-lms7 && \
 	apt-get clean
 
 WORKDIR	/tmp
