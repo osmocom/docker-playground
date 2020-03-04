@@ -30,23 +30,35 @@ docker_images_require() {
 
 #kills all containers attached to network
 network_clean() {
-	docker network inspect $NET_NAME | grep Name | cut -d : -f2 | awk -F\" 'NR>1{print $2}' | xargs -rn1 docker kill
+	NAME=$1
+	if [ -z "$NAME" ]; then
+		NAME="$NET_NAME"
+	fi
+	docker network inspect $NAME | grep Name | cut -d : -f2 | awk -F\" 'NR>1{print $2}' | xargs -rn1 docker kill
 }
 
 network_create() {
 	NET=$1
-	if docker network ls | grep -q $NET_NAME; then
-		echo removing stale network and containers...
-		network_clean
-		network_remove
+	NAME=$2
+	if [ -z "$NAME" ]; then
+		NAME="$NET_NAME"
 	fi
-	echo Creating network $NET_NAME
-	docker network create --internal --subnet $NET $NET_NAME
+	if docker network ls | grep -q $NAME; then
+		echo removing stale network and containers...
+		network_clean $NAME
+		network_remove $NAME
+	fi
+	echo Creating network $NAME
+	docker network create --internal --subnet $NET $NAME
 }
 
 network_remove() {
-	echo Removing network $NET_NAME
-	docker network remove $NET_NAME
+	NAME=$1
+	if [ -z "$NAME" ]; then
+		NAME="$NET_NAME"
+	fi
+	echo Removing network $NAME
+	docker network remove $NAME
 }
 
 fix_perms() {
