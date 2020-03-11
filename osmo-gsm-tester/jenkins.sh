@@ -30,6 +30,7 @@ echo Starting container with osmo-gsm-tester slave
 docker run	--rm \
 		--cap-add=NET_ADMIN \
 		--cap-add=SYS_ADMIN \
+		--ulimit rtprio=99 \
 		--device /dev/net/tun:/dev/net/tun \
 		--network $NET_NAME \
 		--ip 172.18.50.100 \
@@ -42,6 +43,7 @@ echo Starting container with osmo-gsm-tester main unit
 docker run	--rm \
 		--cap-add=NET_ADMIN \
 		--cap-add=SYS_ADMIN \
+		--ulimit rtprio=99 \
 		--device /dev/net/tun:/dev/net/tun \
 		--network $NET_NAME \
 		--ip 172.18.50.2 \
