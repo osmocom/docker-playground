@@ -1,5 +1,5 @@
 ARG	USER
-FROM	$USER/debian-stretch-build
+FROM	$USER/debian-stretch-jenkins
 
 MAINTAINER Pau Espin Pedrol <pespin@sysmocom.de>
 
