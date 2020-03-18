@@ -26,6 +26,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/pcu:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-pcu-sns -d \
+		$DOCKER_ARGS \
 		$REPO_USER/osmo-pcu-$IMAGE_SUFFIX \
 		/bin/sh -c "/usr/local/bin/respawn.sh osmo-pcu -c /data/osmo-pcu.cfg -i 172.18.14.10 >>/data/osmo-pcu.log 2>&1"
 
@@ -36,6 +37,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/pcu-tester:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-ttcn3-pcu-test-sns \
+		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-pcu-test
 
 echo Stopping containers

@@ -13,6 +13,7 @@ start_server() {
 			--network $NET_NAME --ip 172.18.17.20 \
 			-v $VOL_BASE_DIR/server:/data \
 			--name ${BUILD_TAG}-server -d \
+			$DOCKER_ARGS \
 			$REPO_USER/osmo-remsim-$IMAGE_SUFFIX \
 			/bin/sh -c "osmo-remsim-server >/data/osmo-remsim-server.log 2>&1"
 }
@@ -23,6 +24,7 @@ start_bankd() {
 			--network $NET_NAME --ip 172.18.17.30 \
 			-v $VOL_BASE_DIR/bankd:/data \
 			--name ${BUILD_TAG}-bankd -d \
+			$DOCKER_ARGS \
 			$REPO_USER/osmo-remsim-$IMAGE_SUFFIX \
 			/bin/sh -c "pcscd; osmo-remsim-bankd -i 172.18.17.10 >/data/osmo-remsim-bankd.log 2>&1"
 }
@@ -33,6 +35,7 @@ start_client() {
 			--network $NET_NAME --ip 172.18.17.40 \
 			-v $VOL_BASE_DIR/client:/data \
 			--name ${BUILD_TAG}-client-d \
+			$DOCKER_ARGS \
 			$REPO_USER/osmo-remsim-$IMAGE_SUFFIX \
 			/bin/sh -c "osmo-remsim-client-shell >/data/osmo-remsim-client.log 2>&1"
 }
@@ -46,6 +49,7 @@ start_testsuite() {
 			-e "TTCN3_PCAP_PATH=/data" \
 			-v $VOL_BASE_DIR/remsim-tester:/data \
 			--name ${BUILD_TAG}-ttcn3-remsim-test \
+			$DOCKER_ARGS \
 			$REPO_USER/ttcn3-remsim-test
 }
 

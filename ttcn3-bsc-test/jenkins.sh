@@ -26,6 +26,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.2.200 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp -d \
+		$DOCKER_ARGS \
 		$REPO_USER/osmo-stp-$IMAGE_SUFFIX
 
 echo Starting container with BSC
@@ -33,6 +34,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.2.20 \
 		-v $VOL_BASE_DIR/bsc:/data \
 		--name ${BUILD_TAG}-bsc -d \
+		$DOCKER_ARGS \
 		$REPO_USER/osmo-bsc-$IMAGE_SUFFIX
 
 for i in `seq 0 2`; do
@@ -40,6 +42,7 @@ for i in `seq 0 2`; do
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.2.10$i \
 			--name ${BUILD_TAG}-bts$i -d \
+			$DOCKER_ARGS \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
 			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-omldummy 172.18.2.20 $((i + 1234)) 1 >>/data/osmo-bts-omldummy-${i}.log 2>&1"
 done
@@ -50,6 +53,7 @@ docker run	--rm \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/bsc-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-bsc-test \
+		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-bsc-test
 
 echo Stopping containers

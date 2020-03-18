@@ -26,6 +26,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/sip:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-sip-connector -d \
+		$DOCKER_ARGS \
 		$REPO_USER/osmo-sip-$IMAGE_SUFFIX \
 		/bin/sh -c "osmo-sip-connector -c /data/osmo-sip-connector.cfg >>/data/osmo-sip-connector.log 2>&1"
 
@@ -36,6 +37,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/sip-tester:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-ttcn3-sip-test \
+		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-sip-test
 
 echo Stopping containers

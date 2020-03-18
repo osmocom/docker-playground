@@ -24,6 +24,7 @@ docker run	--cap-add=NET_ADMIN \
 		--network $NET_NAME --ip 172.18.3.201 \
 		-v $VOL_BASE_DIR/ggsn:/data \
 		--name ${BUILD_TAG}-ggsn -d \
+		$DOCKER_ARGS \
 		$REPO_USER/osmo-ggsn-$IMAGE_SUFFIX \
 		/bin/sh -c "osmo-ggsn -c /data/osmo-ggsn.cfg >/data/osmo-ggsn.log 2>&1"
 
@@ -34,6 +35,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/ggsn-tester:/data \
 		-e "TTCN3_PCAP_PATH=/data" \
 		--name ${BUILD_TAG}-ggsn-test \
+		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-ggsn-test
 
 # stop GGSN after test has completed

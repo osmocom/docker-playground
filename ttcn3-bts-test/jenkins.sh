@@ -17,6 +17,7 @@ start_bsc() {
 			--network $NET_NAME --ip 172.18.9.11 \
 			-v $VOL_BASE_DIR/bsc:/data \
 			--name ${BUILD_TAG}-bsc -d \
+			$DOCKER_ARGS \
 			$REPO_USER/osmo-bsc-$IMAGE_SUFFIX \
 			/bin/sh -c "osmo-bsc -c /data/osmo-bsc.cfg >>/data/osmo-bsc.log 2>&1"
 }
@@ -34,6 +35,7 @@ start_bts() {
 			-v $VOL_BASE_DIR/bts:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			--name ${BUILD_TAG}-bts -d \
+			$DOCKER_ARGS \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
 			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-$variant -c /data/osmo-bts.cfg -i 172.18.9.10 >>/data/osmo-bts.log 2>&1"
 }
@@ -44,6 +46,7 @@ start_fake_trx() {
 			--network $NET_NAME --ip 172.18.9.21 \
 			-v $VOL_BASE_DIR/fake_trx:/data \
 			--name ${BUILD_TAG}-fake_trx -d \
+			$DOCKER_ARGS \
 			$REPO_USER/osmocom-bb-host-master \
 			/tmp/osmocom-bb/src/target/trx_toolkit/fake_trx.py \
 				--log-file-name /data/fake_trx.log \
@@ -60,6 +63,7 @@ start_trxcon() {
 			-v $VOL_BASE_DIR/trxcon:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			--name ${BUILD_TAG}-trxcon -d \
+			$DOCKER_ARGS \
 			$REPO_USER/osmocom-bb-host-master \
 			/bin/sh -c "trxcon -i 172.18.9.21 -s /data/unix/osmocom_l2 >>/data/trxcon.log 2>&1"
 }
@@ -70,6 +74,7 @@ start_virtphy() {
 			--network $NET_NAME --ip 172.18.9.22 \
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			--name ${BUILD_TAG}-virtphy -d \
+			$DOCKER_ARGS \
 			$REPO_USER/osmocom-bb-host-master \
 			virtphy -s /data/unix/osmocom_l2
 			/bin/sh -c "virtphy -s /data/unix/osmocom_l2 >>/data/virtphy.log 2>&1"
@@ -83,6 +88,7 @@ start_testsuite() {
 			-v $VOL_BASE_DIR/bts-tester:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			--name ${BUILD_TAG}-ttcn3-bts-test \
+			$DOCKER_ARGS \
 			$REPO_USER/ttcn3-bts-test
 }
 

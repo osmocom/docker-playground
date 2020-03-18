@@ -23,6 +23,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.15.20 \
 		-v $VOL_BASE_DIR/bscnat:/data \
 		--name ${BUILD_TAG}-bscnat -d \
+		$DOCKER_ARGS \
 		$REPO_USER/osmo-nitb-$IMAGE_SUFFIX \
 		/bin/sh -c "osmo-bsc_nat -c /data/osmo-bsc-nat.cfg >/data/osmo-bsc-nat.log 2>&1"
 
@@ -32,6 +33,7 @@ docker run	--rm \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/bscnat-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-bscnat-test \
+		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-bscnat-test
 
 echo Stopping containers

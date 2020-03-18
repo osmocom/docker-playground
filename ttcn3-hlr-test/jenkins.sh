@@ -27,6 +27,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.10.20 \
 		-v $VOL_BASE_DIR/hlr:/data \
 		--name ${BUILD_TAG}-hlr -d \
+		$DOCKER_ARGS \
 		$REPO_USER/osmo-hlr-$IMAGE_SUFFIX \
 		/bin/sh -c "osmo-hlr -c /data/osmo-hlr.cfg >/data/osmo-hlr.log 2>&1"
 
@@ -36,6 +37,7 @@ docker run	--rm \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/hlr-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-hlr-test \
+		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-hlr-test
 
 echo Stopping containers

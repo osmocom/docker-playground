@@ -22,6 +22,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.22.200 \
 		-v $VOL_BASE_DIR/sccp:/data \
 		--name ${BUILD_TAG}-stp -d \
+		$DOCKER_ARGS \
 		$REPO_USER/osmo-stp-master \
 		/bin/sh -c "sccp_demo_user -l 172.18.22.200 -r 172.18.22.203 -C /data/sccp_demo_user.cfg >>/data/sccp_demo_user.log 2>&1"
 
@@ -32,6 +33,7 @@ docker run	--rm \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/sccp-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-sccp-test \
+		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-sccp-test
 
 docker container kill ${BUILD_TAG}-stp

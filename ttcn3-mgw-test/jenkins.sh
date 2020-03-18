@@ -21,6 +21,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.4.180 \
 		-v $VOL_BASE_DIR/mgw:/data \
 		--name ${BUILD_TAG}-mgw -d \
+		$DOCKER_ARGS \
 		$REPO_USER/osmo-mgw-$IMAGE_SUFFIX
 
 # start docker container with testsuite in foreground
@@ -29,6 +30,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/mgw-tester:/data \
 		-e "TTCN3_PCAP_PATH=/data" \
 		--name ${BUILD_TAG}-ttcn3-mgw-test \
+		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-mgw-test
 
 # stop mgw after test has completed

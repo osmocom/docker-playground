@@ -21,6 +21,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.19.200 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp -d \
+		$DOCKER_ARGS \
 		$REPO_USER/osmo-stp-$IMAGE_SUFFIX
 
 echo Starting container with STP testsuite
@@ -29,6 +30,7 @@ docker run	--rm \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/stp-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-stp-test \
+		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-stp-test
 
 docker container kill ${BUILD_TAG}-stp

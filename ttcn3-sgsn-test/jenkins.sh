@@ -27,6 +27,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.8.200 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp -d \
+		$DOCKER_ARGS \
 		$REPO_USER/osmo-stp-$IMAGE_SUFFIX
 
 echo Starting container with SGSN
@@ -34,6 +35,7 @@ docker run	--rm \
 		--network $NET_NAME --ip 172.18.8.10 \
 		-v $VOL_BASE_DIR/sgsn:/data \
 		--name ${BUILD_TAG}-sgsn -d \
+		$DOCKER_ARGS \
 		$REPO_USER/osmo-sgsn-$IMAGE_SUFFIX \
 		/bin/sh -c "osmo-sgsn -c /data/osmo-sgsn.cfg >/data/osmo-sgsn.log 2>&1"
 
@@ -43,6 +45,7 @@ docker run	--rm \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/sgsn-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-sgsn-test \
+		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-sgsn-test $@
 
 echo Starting container to merge logs
@@ -52,6 +55,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/sgsn-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-sgsn-test-logmerge \
 		--entrypoint /osmo-ttcn3-hacks/log_merge.sh SGSN_Tests --rm \
+		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-sgsn-test
 
 echo Stopping containers

@@ -37,6 +37,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/msc:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-msc -d \
+		$DOCKER_ARGS \
 		$REPO_USER/osmo-msc-$IMAGE_SUFFIX \
 		/bin/sh -c "osmo-msc -c /data/osmo-msc.cfg >>/data/osmo-msc.log 2>&1"
 
@@ -47,6 +48,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/msc-tester:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-ttcn3-msc-test \
+		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-msc-test
 
 echo Stopping containers
