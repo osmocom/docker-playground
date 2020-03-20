@@ -18,17 +18,19 @@ build_srslte() {
                 exit 1
         fi
         pushd "/tmp/trial"
-        rm -rf inst && mkdir inst
+        rm -rf sysroot && mkdir sysroot
         rm -rf build && mkdir build && cd build || exit 1
-        cmake -DCMAKE_INSTALL_PREFIX="../inst/" "${git_repo_dir}"
+        cmake -DCMAKE_INSTALL_PREFIX="../sysroot/" "${git_repo_dir}"
         set +x; echo; echo; set -x
         make "-j$(nproc)"
         set +x; echo; echo; set -x
         make install
+        cd ..
         this="srslte.build-${BUILD_NUMBER-$(date +%Y-%m-%d_%H_%M_%S)}"
         tar="${this}.tgz"
-        tar czf "/tmp/trial/$tar" -C "/tmp/trial/inst" .
-        cd "/tmp/trial/" && md5sum "$tar" >>checksums.md5
+        tar czf "/tmp/trial/$tar" -C "/tmp/trial/sysroot" .
+        rm -rf build sysroot
+        md5sum "$tar" >>checksums.md5
         popd
 }
 
