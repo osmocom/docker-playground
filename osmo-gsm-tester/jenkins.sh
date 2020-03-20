@@ -96,9 +96,19 @@ docker run	--rm \
 		-e "HOST_GROUP_ID=$(id -g)" \
 		--name ${BUILD_TAG}-ogt-master \
 		$REPO_USER/osmo-gsm-tester
+rc=$?
 
 echo Stopping containers
 docker container kill ${BUILD_TAG}-ogt-slave
 
 network_remove
 collect_logs
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+if [ $rc -eq 0 ]; then
+	echo -e "${GREEN}SUCCESS${NC}"
+else
+	echo -e "${RED}FAILED ($rc)${NC}"
+fi
