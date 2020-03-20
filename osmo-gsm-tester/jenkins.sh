@@ -23,7 +23,7 @@
 # osmo-gsm-tester last run can be found as usual under the trial directory
 # (/tmp/trial/last_run).
 
-TRIAL_DIR="/tmp/trial"
+TRIAL_DIR="${TRIAL_DIR:-/tmp/trial}"
 
 SRS_LTE_BRANCH=${SRS_LTE_BRANCH:-master}
 SRS_LTE_REPO_PREFIX=${SRS_LTE_REPO_PREFIX:-git@github.com:srsLTE}
