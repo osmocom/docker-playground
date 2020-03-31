@@ -55,7 +55,7 @@ fi
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
-	"debian-stretch-build" \
+	"debian-stretch-jenkins" \
 	"osmo-gsm-tester"
 
 network_create 172.18.50.0/24
