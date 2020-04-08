@@ -48,6 +48,7 @@ start_fake_trx() {
 			/tmp/osmocom-bb/src/target/trx_toolkit/fake_trx.py \
 				--log-file-name /data/fake_trx.log \
 				--log-file-level DEBUG \
+				--log-file-time \
 				--log-level INFO \
 				-R 172.18.9.20 -r 172.18.9.22
 }
