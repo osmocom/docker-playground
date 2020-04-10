@@ -130,9 +130,9 @@ RUN     mkdir -p /etc/sudoers.d/ && cp osmo-gsm-tester/utils/sudoers.d/* /etc/su
 RUN     mkdir -p /etc/security/limits.d/ && cp osmo-gsm-tester/utils/limits.d/* /etc/security/limits.d/
 
 VOLUME	/data
-COPY	resources.conf /tmp/osmo-gsm-tester/example/resources.conf
+COPY	resources.conf /tmp/osmo-gsm-tester/sysmocom/resources.conf
 
-ENV   OSMO_GSM_TESTER_CONF /tmp/osmo-gsm-tester/example
+ENV   OSMO_GSM_TESTER_CONF /tmp/osmo-gsm-tester/sysmocom
 
 WORKDIR	/data
 CMD	["/bin/sh", "-c", "/data/osmo-gsm-tester-master.sh >/data/osmo-gsm-tester.log 2>&1"]
