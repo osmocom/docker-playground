@@ -58,10 +58,13 @@ RUN \
 		libgnutls28-dev \
 		libgps-dev \
 		libgsm1-dev \
+		libjansson-dev \
 		liblua5.3-dev \
 		libmnl-dev \
 		libncurses5-dev \
 		libnewlib-arm-none-eabi \
+		libnl-3-dev \
+		libnl-route-3-dev \
 		liboping-dev \
 		libortp-dev \
 		libpcap-dev \
