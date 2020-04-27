@@ -44,6 +44,7 @@ RUN apt-get update && \
     apt-get clean
 
 COPY setup.sh /root
+COPY pgw.sh /root
 
 # crate user
 ARG username=osmocom
