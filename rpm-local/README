@@ -1,0 +1,2 @@
+Local build env to quickly build rpm packages, until we have good .spec files that we can add to the official Osmocom
+repositories. The target distribution is CentOS 8.
