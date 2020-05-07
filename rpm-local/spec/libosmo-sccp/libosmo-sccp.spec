@@ -30,7 +30,9 @@ BuildRequires:  automake >= 1.6
 BuildRequires:  libtool >= 2
 BuildRequires:  lksctp-tools-devel
 BuildRequires:  pkgconfig >= 0.20
+%if 0%{?suse_version} >= 1210
 BuildRequires:  systemd-rpm-macros
+%endif
 BuildRequires:  xz
 BuildRequires:  pkgconfig(libosmo-netif) >= 0.4.0
 BuildRequires:  pkgconfig(libosmocore) >= 1.0.0

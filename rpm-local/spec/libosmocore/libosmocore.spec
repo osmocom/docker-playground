@@ -30,7 +30,7 @@ BuildRequires:  automake >= 1.6
 BuildRequires:  libtool >= 2
 BuildRequires:  lksctp-tools-devel
 BuildRequires:  pkg-config >= 0.20
-BuildRequires:  python2
+BuildRequires:  python3
 BuildRequires:  xz
 BuildRequires:  pkgconfig(gnutls) >= 2.12.0
 BuildRequires:  pkgconfig(libpcsclite)

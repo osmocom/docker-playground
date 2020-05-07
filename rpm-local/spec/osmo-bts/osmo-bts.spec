@@ -27,7 +27,9 @@ BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  libtool
 BuildRequires:  pkgconfig >= 0.20
+%if 0%{?suse_version} >= 1210
 BuildRequires:  systemd-rpm-macros
+%endif
 BuildRequires:  pkgconfig(libosmoabis) >= 0.6.0
 BuildRequires:  pkgconfig(libosmocodec) >= 1.2.0
 BuildRequires:  pkgconfig(libosmocoding) >= 1.2.0

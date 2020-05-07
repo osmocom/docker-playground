@@ -29,7 +29,9 @@ BuildRequires:  automake
 BuildRequires:  gcc-c++
 BuildRequires:  libtool
 BuildRequires:  pkgconfig >= 0.20
+%if 0%{?suse_version} >= 1210
 BuildRequires:  systemd-rpm-macros
+%endif
 BuildRequires:  pkgconfig(libosmocore) >= 1.1.0
 BuildRequires:  pkgconfig(libosmogb) >= 1.1.0
 BuildRequires:  pkgconfig(libosmogsm) >= 1.1.0
