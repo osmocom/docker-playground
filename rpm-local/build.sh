@@ -2,6 +2,8 @@
 DIR="$(cd "$(dirname "$0")" && pwd -P)"
 # Sources (in libosmocore, osmo-bts, ... subdirs)
 SRCDIR="$(realpath "$DIR/../../")"
+# Non-Osmocom sources (ortp/ortp-0.24.2.tar.gz, ...), download with 'osc co home:mnhauke:osmocom:nightly'
+OSCDIR="/home/user/code/obs/home:mnhauke:osmocom:nightly"
 IMAGE="centos8"
 
 require_path() {
@@ -29,37 +31,31 @@ spec_version() {
 	grep '^Version:' "$1" | cut -d ':' -f 2 | xargs
 }
 
-# $1: osmocom git repo name
-build_pkg() {
-	local pkgname="$1"
-	local specfile="spec/$pkgname/$pkgname.spec"
-	local version
-
-	if [ -e ".build.package.$pkgname" ]; then
-		echo ":: $pkgname (already built)"
-		return
-	fi
-
-	echo ":: $pkgname"
-
-	require_path "$SRCDIR/$pkgname"
-	require_path "$specfile"
-
-	# Create temporary rpmbuild with spec
+mkdir_rpmbuild() {
 	mkdir -p \
 		"rpmbuild/RPMS" \
 		"rpmbuild/SOURCES" \
 		"rpmbuild/SPECS" \
 		"rpmbuild/SRPMS"
-	cp -r "$specfile" "rpmbuild/SPECS/$pkgname.spec"
+}
 
-	# Create source tarball
-	version="$(spec_version "$specfile")"
-	git -C "$SRCDIR/$pkgname" archive \
-		--format=tar \
-		--prefix="$pkgname-$version/" \
-		HEAD \
-		> "rpmbuild/SOURCES/$pkgname-$version.tar.xz"
+# $1: pkgname (e.g. libosmocore)
+skip_pkg() {
+	if [ -e ".build.package.$1" ]; then
+		echo ":: $pkgname (already built)"
+		return 0
+	fi
+	echo ":: $pkgname"
+	return 1
+}
+
+# $1: osmocom git repo name
+_build_pkg() {
+	local pkgname="$1"
+	local specfile="spec/$pkgname/$pkgname.spec"
+
+	require_path "$specfile"
+	cp "$specfile" "rpmbuild/SPECS/$pkgname.spec"
 
 	# Install depends and build
 	mkdir -p "cache/$IMAGE/dnf"
@@ -75,8 +71,48 @@ build_pkg() {
 	touch ".build.package.$pkgname"
 }
 
+# $1: pkgname (e.g. libosmocore)
+build_pkg_osmo() {
+	local pkgname="$1"
+	local specfile="spec/$pkgname/$pkgname.spec"
+	local version
+
+	skip_pkg "$pkgname" && return
+	mkdir_rpmbuild
+
+	version="$(spec_version "$specfile")"
+	tarball="rpmbuild/SOURCES/$pkgname-$version.tar.xz"
+	echo "creating tarball from git HEAD: $tarball"
+
+	require_path "$SRCDIR/$pkgname"
+	git -C "$SRCDIR/$pkgname" archive \
+		--format=tar \
+		--prefix="$pkgname-$version/" \
+		HEAD \
+		> "$tarball"
+
+	_build_pkg "$pkgname"
+}
+
+# $1: pkgname (e.g. ortp)
+# $2: path to source in $OSCDIR (e.g. ortp/ortp-0.24.2.tar.gz)
+build_pkg_other() {
+	local pkgname="$1"
+	local tarball="$OSCDIR/$2"
+
+	skip_pkg "$pkgname" && return
+	mkdir_rpmbuild
+
+	require_path "$tarball"
+	cp "$tarball" "rpmbuild/SOURCES/"
+
+	_build_pkg "$pkgname"
+}
+
 require_path "$SRCDIR"
+require_path "$OSCDIR"
 build_docker_image "$IMAGE"
 
-build_pkg "libosmocore"
-build_pkg "libosmo-abis"
+build_pkg_osmo "libosmocore"
+build_pkg_other "ortp" "ortp/ortp-0.24.2.tar.gz"
+build_pkg_osmo "libosmo-abis"
