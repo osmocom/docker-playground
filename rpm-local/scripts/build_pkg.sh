@@ -14,6 +14,7 @@ if [ -d "$ARCH" ]; then
 	name=Local Osmocom packages
 	baseurl=file:///home/user/rpmbuild/RPMS/$ARCH
 	enabled=1
+	gpgcheck=0
 	EOF
 fi
 
