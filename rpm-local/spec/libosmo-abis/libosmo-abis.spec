@@ -27,7 +27,6 @@ Group:          Productivity/Telephony/Utilities
 Url:            https://osmocom.org/projects/libosmo-abis/wiki/Libosmo-abis
 
 Source:         %name-%version.tar.xz
-Patch1:         osmo-talloc.diff
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  automake >= 1.6
 #BuildRequires:  dahdi-linux-devel
@@ -103,7 +102,6 @@ applications that want to make use of libosmotrau.
 
 %prep
 %setup -q
-%patch -P 1 -p1 -F2
 
 %build
 echo "%version" >.tarball-version
