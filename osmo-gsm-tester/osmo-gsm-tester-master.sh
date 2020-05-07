@@ -43,7 +43,7 @@ fi
 chown -R jenkins /tmp/trial/
 
 rc=0
-su -c "python3 -u /tmp/osmo-gsm-tester/src/osmo-gsm-tester.py /tmp/trial $OSMO_GSM_TESTER_OPTS" -m jenkins || rc=$?
+su -c "python3 -u /tmp/osmo-gsm-tester/src/osmo-gsm-tester.py -c \"$OSMO_GSM_TESTER_CONF\" /tmp/trial $OSMO_GSM_TESTER_OPTS" -m jenkins || rc=$?
 
 # Make trial dir again owned by user running the container:
 chown -R "${HOST_USER_ID}:${HOST_GROUP_ID}" /tmp/trial/

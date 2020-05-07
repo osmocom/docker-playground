@@ -80,6 +80,7 @@ docker run	--rm \
 		/bin/sh -c "/data/osmo-gsm-tester-slave.sh >/data/sshd.log 2>&1"
 
 echo Starting container with osmo-gsm-tester main unit
+OSMO_GSM_TESTER_CONF=${OSMO_GSM_TESTER_CONF:-/tmp/osmo-gsm-tester/sysmocom}
 OSMO_GSM_TESTER_OPTS=${OSMO_GSM_TESTER_OPTS:--T -l dbg -s 4g:srsenb-rftype@zmq+srsue-rftype@zmq -t ping}
 docker run	--rm \
 		--cap-add=NET_ADMIN \
@@ -90,6 +91,7 @@ docker run	--rm \
 		--ip 172.18.50.2 \
 		-v $VOL_BASE_DIR/ogt-master:/data \
 		-v "${TRIAL_DIR}:/tmp/trial" \
+		-e "OSMO_GSM_TESTER_CONF=${OSMO_GSM_TESTER_CONF}" \
 		-e "OSMO_GSM_TESTER_OPTS=${OSMO_GSM_TESTER_OPTS}" \
 		-e "SRS_LTE_REPO_NAME=${SRS_LTE_REPO_NAME}" \
 		-e "HOST_USER_ID=$(id -u)" \
