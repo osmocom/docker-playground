@@ -5,6 +5,7 @@ RUN	useradd -m --uid=$UID user
 
 # dnf-plugins-core: for "dnf builddep"
 RUN	dnf install -y \
+		createrepo \
 		dnf-plugins-core \
 		rpm-build
 
