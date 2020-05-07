@@ -1,0 +1,48 @@
+From 4f85fb30bc77e4bb4c3b9187a48a0a5a0a8cbb5a Mon Sep 17 00:00:00 2001
+From: Pau Espin Pedrol <pespin@sysmocom.de>
+Date: Mon, 5 Nov 2018 20:22:45 +0100
+Subject: [PATCH] layer23: Fix build against gpsd >= 3.18
+
+Change-Id: I0e97d3e8c3688064c959ea60ecef50cfbbc1bcd6
+---
+ src/host/layer23/src/common/gps.c | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
+
+diff --git a/src/host/layer23/src/common/gps.c b/src/host/layer23/src/common/gps.c
+index 3ec7377c..35ee4167 100644
+--- a/src/host/layer23/src/common/gps.c
++++ b/src/host/layer23/src/common/gps.c
+@@ -60,9 +60,20 @@ static struct gps_data_t* gdata = NULL;
+ 
+ #if GPSD_API_MAJOR_VERSION >= 5
+ static struct gps_data_t _gdata;
+-#define gps_poll gps_read
+ #endif
+ 
++static inline int compat_gps_read(struct gps_data_t *data)
++{
++/* API break in gpsd 6bba8b329fc7687b15863d30471d5af402467802 */
++#if GPSD_API_MAJOR_VERSION >= 7 && GPSD_API_MINOR_VERSION >= 0
++	return gps_read(data, NULL, 0);
++#elif GPSD_API_MAJOR_VERSION >= 5
++	return gps_read(data);
++#else
++	return gps_poll(data);
++#endif
++}
++
+ int osmo_gpsd_cb(struct osmo_fd *bfd, unsigned int what)
+ {
+ 	struct tm *tm;
+@@ -85,7 +96,7 @@ int osmo_gpsd_cb(struct osmo_fd *bfd, unsigned int what)
+ #endif
+ 
+ 	/* polling returned an error */
+-	if (gps_poll(gdata))
++	if (compat_gps_read(gdata))
+ 	    goto gps_not_ready;
+ 
+ 	/* data are valid */
+-- 
+2.16.4
+

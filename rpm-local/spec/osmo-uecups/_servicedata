@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/osmo-uecups.git</param>
+              <param name="changesrevision">8362efef7c6fa341eb947a75786878e0685767b7</param></service></servicedata>

@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/osmo-sip-connector</param>
+              <param name="changesrevision">e58ead7ac4c0e97f82ceef828b8da30f7cb84927</param></service></servicedata>

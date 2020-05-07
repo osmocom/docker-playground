@@ -1,0 +1,13 @@
+diff --git a/src/host/layer23/configure.ac b/src/host/layer23/configure.ac
+index a5938c7a..5233e35e 100644
+--- a/src/host/layer23/configure.ac
++++ b/src/host/layer23/configure.ac
+@@ -22,7 +22,7 @@ AC_SUBST([LIBGPS_LIBS])
+ 
+ 
+ dnl optional dependencies
+-PKG_CHECK_MODULES(LIBLUA, lua53, [
++PKG_CHECK_MODULES(LIBLUA, lua5.3, [
+ 	WITH_LUA=1], [
+ 	WITH_LUA=0])
+ AC_SUBST([WITH_LUA])

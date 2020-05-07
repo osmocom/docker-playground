@@ -1,0 +1,973 @@
+-------------------------------------------------------------------
+Wed May 06 20:02:21 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.30:
+  * prbs-tool: Add error simulation capabilities
+  * PRBS tool sending PRBS sequence to TRX
+
+-------------------------------------------------------------------
+Wed Apr 15 20:02:15 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.28:
+  * transceiver: get rid of the ctrl threads
+
+-------------------------------------------------------------------
+Tue Apr 14 20:02:27 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.27:
+  * doc: apply an rssi-offset of 28 by default.
+  * transceiver: check the right vector
+  * configure.ac: fix libtool issue  with clang and sanitizer
+
+-------------------------------------------------------------------
+Tue Apr 07 20:02:19 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.24:
+  * doc: do not set the base-port of the trx
+
+-------------------------------------------------------------------
+Wed Apr 01 20:02:34 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.23:
+  * debug: use LOGL_NOTICE for log category DDEV
+
+-------------------------------------------------------------------
+Mon Mar 16 21:01:57 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.22:
+  * radioDevice: Drop unused isControl param from WriteSamples API
+  * radioDevice: Drop unused RSSI param from readSamples API
+
+-------------------------------------------------------------------
+Wed Feb 26 21:02:28 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.20:
+  * cosmetic: fix several typos found by codespell
+
+-------------------------------------------------------------------
+Sat Feb 22 21:03:02 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.19:
+  * debug.h: Fix print format of chan in CLOGCHAN
+  * debug.h: Avoid printing pthread_t type
+  * contrib/jenkins.sh: Reorder sanity checks
+
+-------------------------------------------------------------------
+Thu Jan 16 21:03:33 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.16:
+  * lms: Initial multi-arfcn support
+  * lms: Make ts_offset and smpl rate coefs device-specific
+  * lms: Store device type specific parameters in one place
+
+-------------------------------------------------------------------
+Wed Jan 15 21:08:15 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.13:
+  * lms: Move rx_buffers allocation to constructor
+  * lms: Make reference to std::vector unambiguous
+
+-------------------------------------------------------------------
+Tue Jan 14 21:04:25 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.11:
+  * lms: Change radioDevice constructor arg name to avoid masking instance attr
+  * lms: Improve smpl_buf error logging
+  * smpl_buf: Fix str_code() param and print unknown error val
+
+-------------------------------------------------------------------
+Wed Jan 08 21:02:34 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.8:
+  * lms: Drop unused define
+  * lms: Move initialization of field started to constructor
+  * doc: Update vty reference xml file
+  * radioInterfaceMulti: Fail to tune on freq not following multi-arfcn restrictions
+  * doc: clarify number of channels on B210 with multi-arfcn enabled
+  * uhd: Improve some logging lines printing UHD pretty-print output
+  * uhd: Use DEVDRV log category and support UHD >=3.11 logging framework
+  * Make logging category DLMS generic and reusable for other backends
+
+-------------------------------------------------------------------
+Fri Jan 03 21:06:15 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.0:
+  * Bump version: 1.1.1.38-9f2b-dirty → 1.2.0
+
+-------------------------------------------------------------------
+Mon Dec 23 21:03:41 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.38:
+  * Transceiver.cpp: Introduce and use new logging categories
+  * uhd: use value already cached in tmp variable
+
+-------------------------------------------------------------------
+Wed Dec 04 21:02:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.36:
+  * trx: exit() on unsupported positional arguments on command line
+
+-------------------------------------------------------------------
+Fri Nov 29 21:12:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.35:
+  * Transceiver: Fix wrong response upon CMD HANDOVER failure
+
+-------------------------------------------------------------------
+Mon Oct 21 20:02:00 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.34:
+  * vty: Simplify filler burst settings and improve help and readability.
+
+-------------------------------------------------------------------
+Thu Oct 17 20:01:40 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.33:
+  * Fix common misspellings and typos
+
+-------------------------------------------------------------------
+Tue Oct 15 20:02:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.32:
+  * vty: Don't enable random filler bursts automatically with EDGE.
+
+-------------------------------------------------------------------
+Fri Oct 11 20:02:05 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.31:
+  * Use new libosmocore logging lock API
+
+-------------------------------------------------------------------
+Fri Oct 04 20:01:46 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.30:
+  * radioInterfaceMulti: write frequency offset direction (rx/tx) in log line
+
+-------------------------------------------------------------------
+Sat Sep 28 20:03:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.29:
+  * radioInterface: Atomically fetch and change underrun variable
+
+-------------------------------------------------------------------
+Fri Sep 20 20:02:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.28:
+  * Move multi-ARFCN chan amount modification from UHDDevice to parent class
+  * radioInterface: Mark setRxGain as virtual
+  * Transceiver: Fixed copying of history into and from channelizer buffer.
+
+-------------------------------------------------------------------
+Wed Sep 18 20:06:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.25:
+  * radioInterface{Multi,Resamp}: Fix successful writeSamples() masking underrun from readSamples()
+  * UHDDevice: Drop unneeded MULTI_ARFCN checks
+  * radioInterfaceMulti: Override setTxGain() to avoid chan!=0 calls
+  * radioDevice: Introduce getTxGain() API
+  * radioInterface: Remove unusued getRxGain()
+  * LMSDevice: Return previous txGain/rxGain if setting value failed
+  * USRPDevice: Return previous txGain if setting value failed
+  * USRPDevice: Fix setRxGain return on error and getRxGain() returning always 0
+  * radioInterfaceMulti: Check equals zero explicitly
+  * radioInterface: Rename mRadio to mDevice
+
+-------------------------------------------------------------------
+Fri Sep 13 20:01:43 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.15:
+  * Transceiver: Don't stop TRX if pulling from OFF timeslot
+  * Transceiver: pullRadioVector(): Fix use of uninitialized value bi->tn
+
+-------------------------------------------------------------------
+Fri Sep 06 20:01:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.13:
+  * Transceiver: Log error condition no burst in pullRadioVector()
+  * Transceiver: Use LOGCHAN in logRxBurst to unify log format
+  * Transceiver: Fix logging TN and version
+
+-------------------------------------------------------------------
+Tue Aug 27 20:03:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.10:
+  * device: Use LOGCHAN in set_antennas()
+  * lms: Log available antennas if requested antenna fails
+  * Transceiver: Enable EDGE detection only on PDCH timeslots
+  * Transceiver: exit process when BTS drops connection
+
+-------------------------------------------------------------------
+Mon Aug 26 20:03:13 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.6:
+  * Transceiver: Fix idle ul burst indications being dropped
+  * Transceiver: Clean up receival of downlink bursts
+  * Transceiver: Check return value when binding IP addr for clock socket
+  * Transceiver: fix segfault during init if IP addr binding fails
+
+-------------------------------------------------------------------
+Fri Aug 23 20:05:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.2:
+  * Drop old setPriority related code
+
+-------------------------------------------------------------------
+Tue Aug 20 20:05:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.1:
+  * osmo-trx: log to stderr on signal received
+
+-------------------------------------------------------------------
+Thu Aug 08 21:56:05 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.1.0:
+  * Bump version: 1.1.0-dirty → 1.1.1
+  * Bump version: 1.0.0.104-72a7 → 1.1.0
+  * Require newer version of libosmocore to avoid build failure
+  * Transceiver: Add missing include netinet/in.h
+  * Drop old README information, provide new updated README
+  * Move std_inband.rbf under device/usrp1/ dir
+  * Move README.DFEsymbolspaced to utils/matlab
+  * Move Transceiver52/README to UserManual
+  * Move matlab files under utils/matlab
+  * Move inband-signaling-usb documentation to UserManual
+  * lms: Drop rx_underruns rate ctr, add tx_drop_* rate ctr
+  * jenkins.sh: Workaround libusrp build race conditon
+  * usrp1: don't check for non-null underrun pointer
+  * radioInterface: Clarify how underruns are handled driving a radioDevice
+  * Remove unused autogen.sh
+  * Remove empty ChangeLog fnd NEWS files
+
+-------------------------------------------------------------------
+Wed Jul 24 20:20:02 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.90:
+  * manuals/configuration.adoc: fix copy-paste error in config example
+
+-------------------------------------------------------------------
+Tue Jul 23 20:10:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.89:
+  * Transceiver: Clean up code passing parameters to threads
+  * Transceiver: Store TRXD version per channel
+  * Bind CTRL port to IP addr specified in VTY config
+
+-------------------------------------------------------------------
+Mon Jul 22 20:04:19 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.86:
+  * Add SPDX annotation
+  * cosmetic: Fix trailing whitespace in several files
+  * debian/copyright: Add missing file Utils.* to LGPL-2.1+ list
+  * debian/copyright: Update wrong paths in license list
+  * debian/copyright: Remove non existent radioInterfaceDiversity.cpp from list
+
+-------------------------------------------------------------------
+Sun Jul 21 20:03:12 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.81:
+  * radioInterface.cpp: Fix missing member initialization of RadioInterface()
+  * CorrelationSequence: fix initialization of class members
+  * ChannelizerBase: fix initialization of class members
+  * Timeval: Restore output stream flags after changing them
+
+-------------------------------------------------------------------
+Sat Jul 20 20:02:01 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.77:
+  * trxd_fill_common(): fix TRXD header version coding
+  * proto_trxd.c: Use bit-wise AND, not boolean AND
+
+-------------------------------------------------------------------
+Fri Jul 19 20:03:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.75:
+  * Transceiver: Initialize mExtRACH in constructor
+  * driveTxPriorityQueue(): enrich logging message
+  * driveTxPriorityQueue(): check if message header format is supported
+  * driveTxPriorityQueue(): use trxd_hdr_common for message parsing
+  * driveTxPriorityQueue(): cosmetic: use proper type for TDMA TN
+  * Transceiver: Support TRXD v1
+  * Transceiver: Support SETFORMAT command
+  * Transceiver: Move out TRXD socket send code to prepare for TRXDv1
+  * Logger: global Log mutex is now available from C code
+  * sigProcLib: Add C/I (Carrier-to-Interference ratio) computation
+  * sigProcLib: detectAnyBurst(): make TSC used to detect burst available to caller
+  * sigProcLib: detectAnyBurst() family: Use struct to gather all out params
+
+-------------------------------------------------------------------
+Wed Jul 17 19:05:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.63:
+  * Fix spelling discovered by lintian
+
+-------------------------------------------------------------------
+Thu Jul 11 20:12:41 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.62:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Sun Jul 07 20:09:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.61:
+  * Transceiver: Support pulling idle frames in pullRadioVector()
+  * Transceiver: pullRadioVector(): Move initialization of var to start of function
+  * Transceiver: Simplify code on early error return when calling detectAnyBurst
+  * Transceiver: Avoid noise calculation formula in 2 branches in pullRadioVector
+
+-------------------------------------------------------------------
+Fri Jul 05 20:06:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.57:
+  * Transceiver: replace UDPSocket with libosmocore socket API
+  * Transceiver: Get rid of SoftVector in struct trx_ul_burst_ind
+  * Transceiver: Drop use of GSM::Time from trx_ul_burst_ind
+  * Transceiver: Move soft bits normalization to pullRadioVector()
+  * Transceiver: Move calculation of normalized values (rssiOffset) to pullRadioVector()
+
+-------------------------------------------------------------------
+Wed Jul 03 20:04:54 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.52:
+  * Transceiver: Move nbits burst size calculation to pullRadioVector()
+  * Transceiver: Drop unused rssi_valid struct field
+
+-------------------------------------------------------------------
+Tue Jul 02 20:11:58 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.50:
+  * Transceiver: refactor: gather uplink burst parameters in struct
+  * Introduce structs to encode TRXD packets
+
+-------------------------------------------------------------------
+Tue Jun 25 20:14:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.48:
+  * trx_{vty,rate_ctr}: Set proper license AGPLv3+
+  * Remove AUTHORS file
+
+-------------------------------------------------------------------
+Mon Jun 17 20:04:38 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.46:
+  * Add option to set stack size in config file, default == 0 == OS default
+
+-------------------------------------------------------------------
+Tue Jun 11 20:02:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.45:
+  * Add VTY commands to set error ctr thresholds
+
+-------------------------------------------------------------------
+Sun Jun 09 20:01:59 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.44:
+  * lms: Fix stream_stats checks with overrun/underrun
+  * lms: Drop unusued variable masterClockRate
+
+-------------------------------------------------------------------
+Thu Jun 06 20:02:12 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.42:
+  * doc: vty: Update trx_vty_reference.xml
+  * Rename and move STOP signal from Transceiver to main
+  * Add rate_ctr support to store/retrieve SDR errors through VTY
+
+-------------------------------------------------------------------
+Fri May 31 20:02:12 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.39:
+  * debian: create -doc subpackage with pdf manuals
+
+-------------------------------------------------------------------
+Sun May 26 20:02:04 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.38:
+  * lms: Fix stream_stats checks with droppedPackets
+
+-------------------------------------------------------------------
+Fri May 10 20:02:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.37:
+  * lms: Use smpl_buf to recover from timestamp jumps
+  * smpl_buf: Move it to device/common and create libdevice_common.la
+  * Introduce LOGCHAN macro to standarize logging channel info
+  * smpl_buf: Remove dbg log line with duplicated info
+
+-------------------------------------------------------------------
+Sat May 04 20:02:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.33:
+  * smpl_buf: Remove unused clk_rt variable (fixup)
+
+-------------------------------------------------------------------
+Fri May 03 20:02:11 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.32:
+  * smpl_buf: Remove unused clk_rt variable
+  * device: Drop unused numberRead/numberWritten APIs
+  * Move smpl_buf out of uhd dir to re-use it in other devices
+  * uhd: Avoid reallocation of buffers every read
+  * cosmetic: uhd: Use loglevel ERROR instead of ERR
+  * uhd: smpl_buf: Use TIMESTAMP type in str_status
+  * uhd: smpl_buf: Drop UHD specifics out back to UHDDevice
+  * cosmetic: uhd: Move smpl_buf out of UHDDevice, move UHDDevice class definition to .h
+
+-------------------------------------------------------------------
+Fri Apr 26 20:02:05 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.24:
+  * lms: Catch and log dropped packets by HW during recv
+  * lms: Remove unused var m_last_tx_overruns
+  * lms: Remove references to ALERT loglevel
+  * lms: Log underrun/overrun events
+  * Move duplicated thread_enable_cancel to CommonLibs
+  * cosmetic: Threads.h: Remove trailing whitespace
+  * lms: Improve log during flush recv error
+  * lms: flush_recv: alloc buf on stack instead of heap
+
+-------------------------------------------------------------------
+Wed Apr 17 20:03:43 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.16:
+  * lms: properly call close if set_antennas() fails, add some comments
+  * lms: add device type detection and device specific gains
+  * lms: move LMS_GetLPFBWRange and LMS_Calibrate calls from open to start
+  * lms: move LMS_EnableChannel from Start/Stop to Open/Close device
+  * lms: Remove wrong unused code copied from -uhd
+  * use BSC_FD_READ and not OSMO_FD_READ
+
+-------------------------------------------------------------------
+Thu Apr 11 20:02:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.10:
+  * doc/configuration.adoc: fix incorrect number of physical RF channels for B210
+  * multi-ARFCN: fix maximum number of carriers limitation
+
+-------------------------------------------------------------------
+Thu Apr 04 20:02:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.8:
+  * osmo-trx: Check return code of osmo_fd_register
+
+-------------------------------------------------------------------
+Mon Apr 01 20:02:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.7:
+  * osmo-trx: Use signalfd to serialize signals in main thread ctx
+  * osmo-trx: Avoid handling signals after shutdown triggered
+
+-------------------------------------------------------------------
+Thu Jan 24 21:06:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.5:
+  * tests: Re-enable the convolve_test by default
+  * tests: Rework the convolve_test
+  * VTY: add extended (11-bit) RACH detection toggle
+
+-------------------------------------------------------------------
+Mon Jan 21 21:01:48 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.2:
+  * convolve: Remove support for step, offset parameters
+  * arm/convolve: Fix the vfp4 real convolution for h_len=12
+
+-------------------------------------------------------------------
+Sun Jan 20 21:01:45 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.0:
+  * Bump version: 0.4.0.125-7c78 → 1.0.0
+
+-------------------------------------------------------------------
+Sat Jan 12 21:01:41 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.4.0.127:
+  * cosmetic: Don't call the SDR "USRP" in error message
+  * usrp1: Fix formatting of log message (missing space)
+  * usrp1: Remove uninitialized skipRx logic
+
+-------------------------------------------------------------------
+Mon Dec 17 21:01:37 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.124:
+  * LMSDeviceTest: fix link errors on OBS
+
+-------------------------------------------------------------------
+Mon Dec 17 20:16:48 UTC 2018 - mardnh@gmx.de
+
+- Remove patch:
+  * osmo-trx-fix-linking-error.patch (fixed upstream)
+
+-------------------------------------------------------------------
+Fri Dec 14 21:01:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.123:
+  * configure.ac: check boost only if USRP1 support is enabled
+
+-------------------------------------------------------------------
+Fri Dec 14 15:42:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.122:
+  * lms: Fix build against LimeSuite > 18.10
+
+-------------------------------------------------------------------
+Thu Dec 13 21:01:44 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.121:
+  * TimevalTest: Make test deterministic with fake time
+  * Timeval: Move to osmo_clock_gettime
+  * Timeval: Move implementation to use clock_gettime and timespec
+  * Timeval: passed() returns true if time is equal
+  * LMSDevice: make use of dev-args in osmo-trx.cfg
+  * osmo-trx.cpp: move comma_delimited_to_vector() to Utils.cpp
+
+-------------------------------------------------------------------
+Sat Dec 08 21:01:38 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.115:
+  * lms: Do {under,over}run checks even if LMS_RecvStream fails
+  * lms: Move {under,over}run checks into separate method
+  * transceiver: Log TRXCTRL iface responses towards osmo-bts-trx
+  * Add TRXCTRL log category
+
+-------------------------------------------------------------------
+Thu Dec 06 21:01:54 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.111:
+  * contrib: fix makedistcheck with disabled systemd
+
+-------------------------------------------------------------------
+Wed Dec 05 21:01:44 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.110:
+  * transceiver: log chan on CTRL command received
+  * lms: Improve Set{Rx,Tx}{Gain,Freq} logging
+  * lms: Allow setting Tx/RxFreq for lchan!=0
+  * lms: Allow setting Tx/RxGain for chan!=0
+  * SigProcLib: Improve Vector buffer allocation mess
+  * jenkins.sh: run "make distcheck"
+  * contrib/jenkins.sh: build and publish manuals
+
+-------------------------------------------------------------------
+Tue Dec 04 21:01:56 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.103:
+  * lms: Close device on LMS_Init failure
+  * osmo-trx: Change some lines to use libosmocore logging instead of cout
+  * lms: Make sure LMS_Close is called when Device is torn down
+  * Fix DISTCHECK_CONFIGURE_FLAGS override
+
+-------------------------------------------------------------------
+Mon Dec 03 21:01:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.99:
+  * PointerFIFO: Fix memleak of ListNode
+  * radioInterface: Fix memleak during close()
+  * lms: Destroy streams on device stop
+  * lms: Fix start after stop of device
+
+-------------------------------------------------------------------
+Sun Dec 02 21:01:38 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.95:
+  * UHDDevice: log exception information on device open failure
+  * lms: Set Rx gain to midpoint, as comment suggests.
+  * lms: User correct scale factor for transmit samples
+
+-------------------------------------------------------------------
+Tue Nov 27 21:01:45 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.92:
+  * build manuals moved here from osmo-gsm-manuals.git
+  * osmotrx: Introduce code architecture chapter
+  * osmotrx: Create a common chapter for section documenting backends
+  * osmotrx: configuration: Add section to document multi-arfcn feature
+  * osmotrx: Write initial documentation for several supported devices
+  * osmotrx: Split Device specific section from backend one
+  * trx: Add Hardware device support section
+  * trx: Add Hardware architecture support section
+  * trx: Add reference to project wiki page in overfiew section
+  * vty-ref: Update URI of docbook 5.0 schema
+  * Introduce chapter trx_if.adoc and add it to OsmoTRX and OsmoBTS
+  * Introduce OsmoTRX manual
+  * lms: Apply LMS->OSMO log level conversion
+  * lms: Use LimeSuite.h log level defines instead of hardcoded values
+
+-------------------------------------------------------------------
+Tue Nov 20 19:11:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.76:
+  * UHDDevice: setRxGain on chan 0 when using multi-arfcn
+  * ChannelizerBase: Fix ASan alloc-dealloc-mismatch
+
+-------------------------------------------------------------------
+Wed Oct 24 20:02:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.74:
+  * sigProcLib: add a CorrType for extended (11-bit) RACH
+  * sigProcLib: introduce both TS1 and TS2 RACH synch. sequences
+
+-------------------------------------------------------------------
+Tue Oct 23 20:01:51 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.72:
+  * Add long parameters (--help, --version, ...)
+
+-------------------------------------------------------------------
+Sun Oct 21 17:24:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.71:
+  * trx_validate_config(): Fix validation of rx_sps
+  * SocketsTest.testReaderIP(): Zero terminate received buffer
+
+-------------------------------------------------------------------
+Wed Oct 10 20:01:42 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.69:
+  * jenkins.sh: Enable build of osmo-trx-lms
+  * examples: Use logging level 'set-all' instead of 'all'
+
+-------------------------------------------------------------------
+Wed Oct 03 20:01:39 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.67:
+  * Transciever: Log values causing Tx underrun
+
+-------------------------------------------------------------------
+Tue Oct 02 10:27:54 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.66:
+  * CommonLibs/Makefile.am: Specify libcommon_la_LIBADD
+
+-------------------------------------------------------------------
+Sat Sep 29 19:47:21 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.65:
+  * Use pthread_setname_np to name threads
+
+-------------------------------------------------------------------
+Tue Sep 25 20:01:48 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.64:
+  * ensure well-formed example config files
+
+-------------------------------------------------------------------
+Thu Sep 20 20:01:39 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.63:
+  * device/lms/LMSDevice.cpp: fix compilation warning
+
+-------------------------------------------------------------------
+Thu Sep 13 18:17:13 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.62:
+  * cosmetic: Use proper whitespace in several for loops
+  * Install sample cfg file to /etc/osmocom
+  * Install systemd services with autotools
+
+-------------------------------------------------------------------
+Tue Sep 11 20:01:48 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.59:
+  * jenkins.sh: Add --enable-werror flag to osmo-trx configure step
+  * Vector: Copy arrays in a sane way for non-trivially copyable types
+
+-------------------------------------------------------------------
+Mon Sep 10 20:01:51 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.57:
+  * radioInterfaceMulti:pullBuffer: Sanely convert float array to complex array
+  * cosmetic: Fix trailing whitespace in several files
+  * SigProcLib: Use available copyTo Vector API instead of memcopy
+  * UHHDDevice: Replace deprecated header uhd/utils/thread_priority.hpp
+
+-------------------------------------------------------------------
+Tue Sep 04 20:01:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.53:
+  * update git-version-gen to generate proper version numbers
+  * configure.ac: Specify default language as C++
+  * radioInterface: Fix variable storing integer return value
+  * osmo-trx: Add osmo_signal to stop whole transceiver chain correctly on error
+  * lms: Return error on device read timeout
+  * radioInterface: forward errors from RadioDevice to Transceiver in recv path
+  * cosmetic: Fix trailing whitespace
+  * Logger: Disable pthread cancel point inside Logger destructor
+
+-------------------------------------------------------------------
+Fri Aug 31 20:01:37 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.45:
+  * configure.ac: Add --enable-werror option
+
+-------------------------------------------------------------------
+Wed Aug 29 20:01:45 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.44:
+  * vty: Fix typo in gpsdo clock reference type
+
+-------------------------------------------------------------------
+Sat Aug 18 20:01:39 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.43:
+  * logging: Introduce new "DDEV" category for device-specific code
+
+-------------------------------------------------------------------
+Fri Aug 17 20:04:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.42:
+  * configure.ac: Fix typo in with-lms help string
+
+-------------------------------------------------------------------
+Thu Aug 09 20:01:36 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.41:
+  * debian: add patches for debian8
+
+-------------------------------------------------------------------
+Tue Jul 31 20:01:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.40:
+  * Fix config file saving of {tx,rx}-path VTY config strings
+
+-------------------------------------------------------------------
+Mon Jun 25 20:01:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.39:
+  * debian: Explicitly enable osmo-trx-uhd build
+  * debian: Enable build of osmo-trx-lms
+  * Use correct paths when installing example files
+
+-------------------------------------------------------------------
+Wed Jun 20 13:53:04 UTC 2018 - mardnh@gmx.de
+
+- Build with support for native LimeSDR
+- Package systemd service files
+- Update to version 0.4.0.36:
+  * lms: Allow values diff than 34dB to be set by setRxGain()
+  * Add -V param to print version
+  * debian: Add cfg file examples for osmo-trx-{lms,uhd}
+  * contrib: Add systemd services for all backends
+  * debian: Add package osmo-trx-lms
+
+-------------------------------------------------------------------
+Mon Jun 18 20:01:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.31:
+  * usrp1: Fail in case of unsupported configuration
+  * lms: Fail in case of unsupported configuration
+  * lms: Fix coding style
+  * radioDevice: better encapsulation in base class
+  * radioDevice: Move tx_sps from derived into base class
+  * lms: Call set_antennas() during open() method
+  * lms: Fix support for rx_paths / tx_paths
+  * move set_antennas() from UHD to generic radioDevice base class
+
+-------------------------------------------------------------------
+Mon Jun 18 08:09:17 UTC 2018 - mardnh@gmx.de
+
+- Build with support for usrp1
+- Split into subpackages
+
+-------------------------------------------------------------------
+Thu Jun 14 20:01:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.23:
+  * lms: Reduce Rx gain from 47 to 34 dB
+  * lms: fix LMS_StartStream() handling for multiple channels
+  * lms: Reduce log level of "send buffer of len ..."
+  * lms: Use same timestamp offset like when using LimeSDR via UHD
+  * lms: Check LPBFW to set is within supported range
+  * lms: Makefile.am: Reorder params to fix link issue
+  * LMSDevice: Fix setup failure with LimeSuite > 18.04.1
+  * LMSDevice: Set correct values for Max{Tx,Rx}Gain
+  * LMSDevice: Reduce Rx logging verbosity: Only log unexpected timestamps
+  * LMS_Device: Set ts_offset to 0.
+  * LMSDevice: Fix initial timestamp offset of 2500
+  * LMSDevice: Set low-pass filters to smallest possible option
+  * LMSDevice: Typo fix: s/Internal/External
+  * LMSDevice: Print sample rate range + actual sample rate after setting it
+  * LMSDevice: Call LMS_Init() before setting sample rate
+  * update .gitignore to include osmo-trx-lms
+  * build: Add support for LimeSuite device backend
+  * lms: Several improvements and compilation/runtime fixes
+  * Initial work towards direct LimeSuite support in OsmoTRX
+
+-------------------------------------------------------------------
+Wed Jun 13 20:01:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.4:
+  * examples: Set rt-prio 18 and print file basename
+
+-------------------------------------------------------------------
+Wed May 09 20:02:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.3:
+  * UHDDevice: Fix setup failure with LimeSuite > 18.04.1
+  * trx_vty.c: fix: use CONFIG_NODE as parent by default
+
+-------------------------------------------------------------------
+Fri May 04 20:01:56 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.1:
+  * doc: examples: Add umtrx sample config
+
+-------------------------------------------------------------------
+Thu May 03 20:02:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.0:
+  * doc: add example config for usrp B200 series
+  * git-version-gen: Take into account tags not in master
+  * Bump version: 0.3.0-dirty → 0.4.0
+
+-------------------------------------------------------------------
+Sun Apr 29 20:02:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.2.0.96:
+  * update .gitignore for new executable names
+  * osmo-trx: s/GSM Core Address/GSM BTS Address/
+
+-------------------------------------------------------------------
+Sat Apr 28 20:02:02 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.2.0.94:
+  * build: More OBS build failure fixes
+  * jenkins.sh: Enable build of osmo-trx-usrp1
+  * debian: Remove osmo-trx-usrp1 until we can build libusrp1.deb
+  * debian: Fix OBS build
+  * build: Fix OBS build for ARM
+  * Revert "debian: Remove osmo-trx-usrp1 until we can build libusrp1.deb"
+  * debian/control: Remove "Maintainer" from binary package section
+  * debian/rules: Make sure we always require libusrp
+  * debian: Ensure USRP1 firmware is part of osmo-trx-usrp1
+  * debian/control: Add build dependency to libusrp-dev
+
+-------------------------------------------------------------------
+Fri Apr 27 20:01:53 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.2.0.84:
+  * build: Fix make distcheck
+
+-------------------------------------------------------------------
+Thu Apr 26 20:01:54 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.2.0.83:
+  * Logger: Print correct source file and line number
+  * Transceiver: log timing info of stale bursts
+
+-------------------------------------------------------------------
+Wed Apr 25 20:01:56 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.2.0.81:
+  * Move arch specific fiels to arch subdir
+  * Move device specific files to device subdir
+  * Change configure define USRP1 to DEVICE_USRP1
+  * Move device specific code out of radioInterface
+  * Transceiver: Move device specific code to radioDevice class
+  * Build one osmo-trx binary for each device support enabled
+
+-------------------------------------------------------------------
+Mon Apr 16 20:01:58 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.2.0.75:
+  * use osmo_init_logging2()
+  * tests: Makefile.am: Fix typo in include path
+  * configure.ac: Add --enable-sanitize option
+
+-------------------------------------------------------------------
+Thu Apr 12 21:46:37 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.2.0.72:
+  * jenkins.sh: change qemu-img default location to $HOME/qemu-img instead of /opt/qemu-img
+
+-------------------------------------------------------------------
+Mon Apr 09 09:02:41 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.2.0.71:
+  * configure.ac: Fix typo
+
+-------------------------------------------------------------------
+Sun Apr  8 18:03:32 UTC 2018 - mardnh@gmx.de
+
+- Run tests
+
+-------------------------------------------------------------------
+Sat Apr 07 18:52:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.2.0.70:
+  * jenkins.sh: cleanup always the workspace
+
+-------------------------------------------------------------------
+Wed Mar 14 21:15:38 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.2.0.69:
+  * doc: Add sample cfg file for LimeSDR
+  * osmo-trx: Use VTY cfg structures while still allowing cmd line options
+  * osmo-trx: Re-introduce -l cmd line parameter
+  * Makefile.am: Avoid using subdir if arch is not required
+  * Build Transceiver52M/common as an .la lib
+  * Transceiver.cpp: use a define for the MAX_PACKET_LENGTH
+  * Transceiver.cpp: properly zero-terminate received commands
+  * Transceiver.cpp: use pointer arithmetics for CMD parsing
+  * Transceiver.cpp: fix incorrect format string for SETTSC
+  * Transceiver.cpp: prevent out-of-range array access
+
+-------------------------------------------------------------------
+Wed Mar 14 14:20:44 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.2.0.64
+
+-------------------------------------------------------------------
+Sat Feb 10 16:16:47 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.2.0.40
+
+-------------------------------------------------------------------
+Wed Jan 24 13:16:29 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.2.0.36
+
+-------------------------------------------------------------------
+Thu Dec 28 13:44:49 UTC 2017 - mardnh@gmx.de
+
+- Update to new upstream release 0.2.0
+  * No changelog was provided
+- Specfile cleanup
+
+-------------------------------------------------------------------
+Wed Mar 22 18:44:05 UTC 2017 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1490207482.38b6987:
+  * uhd: Add support for UHD-3.11 logging control
+  * uhd: Increase MC-BTS FPGA clock rate to 51.2 MHz
+  * Add autoconf-archive to dependencies
+  * CommonLibs: Remove unused files.
+  * sigProcLib: Typo sybols -> symbols
+  * radioBuffer: Remove extra ; at the end of inline function definitions.
+  * sigProcLib: Fix documentation, sync argument names in .cpp and .h files.
+  * sigProcLib: make energyDetect() simpler by returning actual energy.
+  * sigProcLib: Rename demodulateBurst() to demodGmskBurst() for clarity.
+  * sigProcLib: Slice SoftVector instead of signalVector for GMSK demod.
+  * Call vectorSlicer() right before packing bits for transmission to osmo-bts.
+  * CommonLibs: Print soft bits with less confidence to console when printing a soft vector.
+  * BitVector: Remove convolutional codec - we don't use it in osmo-trx.
+  * BitVector: Convert SoftVector from 0..1 to -1..+1 soft bits.
+
+-------------------------------------------------------------------
+Fri Mar 03 11:21:36 UTC 2017 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1485446766.2dee3e9:
+  * uhd: Add X300 sample timing for 4 SPS
+  * Revert "uhd: Set minimum supported version to 3.9.0"
+  * debian: Require fftw3 header files for osmo-trx
+  * Add gerrit settings
+  * Integrate Debian packaging changes
+  * Do not embed sqlite3 when building
+  * Remove embedded sqlite3
+  * Fix building against sqlite3
+
+-------------------------------------------------------------------
+Wed Dec 28 21:57:30 UTC 2016 - mardnh@gmx.de
+
+- initial package

@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/libosmocore</param>
+              <param name="changesrevision">3a6bedf1e5f8ef32243e86fa753c6433a22b936d</param></service></servicedata>

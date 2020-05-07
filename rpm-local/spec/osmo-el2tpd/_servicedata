@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/osmo-el2tpd</param>
+              <param name="changesrevision">1cdac78eb0e35c1dd23b7e582bed2a41d663aeb3</param></service></servicedata>

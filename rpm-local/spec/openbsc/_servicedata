@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/openbsc</param>
+              <param name="changesrevision">d2550da76f9974bb1957f74c5d3eb75fdae923d9</param></service></servicedata>

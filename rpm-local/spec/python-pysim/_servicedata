@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+            <param name="url">git://git.osmocom.org/pysim</param>
+          <param name="changesrevision">ee15c77185615af669f0efe1e19a9fa748e224aa</param></service></servicedata>

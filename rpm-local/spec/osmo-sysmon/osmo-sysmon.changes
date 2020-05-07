@@ -1,0 +1,501 @@
+-------------------------------------------------------------------
+Wed Dec 04 21:03:39 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.0.4:
+  * exit(2) on unsupported positional arguments on command line
+
+-------------------------------------------------------------------
+Tue Nov 12 21:09:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.0.3:
+  * Add oneshot mode that exits after one iteration
+  * Cleaner output if sections are empty
+
+-------------------------------------------------------------------
+Fri Nov 08 21:12:46 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.0.1:
+  * simple_ctrl: Don't cause an error if GET response is empty
+
+-------------------------------------------------------------------
+Sun Jul 14 20:11:37 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.0.0:
+  * Bump version: 0.1.1.52-c187 → 0.2.0
+
+-------------------------------------------------------------------
+Thu Jul 11 20:21:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.1.0.3:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Thu Mar 21 21:03:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190320:
+  * Depend on liboping 1.7.0 instead of 1.9.0
+  * debian: Add missing libmnl-dev dependency
+
+-------------------------------------------------------------------
+Wed Mar 20 21:03:36 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190320:
+  * Bump version: 0.0.1.66-d4c3-dirty → 0.1.0
+  * Add debian packaging content
+  * Makefile.am: Add missing bits to have make release working
+
+-------------------------------------------------------------------
+Tue Mar 19 21:03:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190319:
+  * Add vty option to print output of shell cmd on every poll step
+
+-------------------------------------------------------------------
+Sat Mar 16 21:03:12 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190316:
+  * openvn: Fix missing break in last commit
+  * openvpn: Remove useless conditional block in parse_state
+  * openvpn: Fix garbage printed after remote port
+  * openvpn: log status description
+  * openvpn: String returned from openvpn is not null-terminated
+  * openvpn: Set reconnect timeout to a much lower value
+  * openvpn: Improve logging and status information
+  * Integrate sleeping/printing loop into osmo main loop
+
+-------------------------------------------------------------------
+Sat Feb 23 21:03:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190222:
+  * Update config example
+
+-------------------------------------------------------------------
+Fri Feb 22 21:03:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190222:
+  * osmo-sysmon -h: s/OsmoHLR/osmo-sysmon/
+
+-------------------------------------------------------------------
+Thu Feb 21 21:03:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190221:
+  * OpenVPN: track interface disconnect
+  * Add OpenVPN probe
+  * Introduce generic host config and related helpers
+
+-------------------------------------------------------------------
+Thu Feb 07 21:02:37 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190206:
+  * ctrl: log host/port on errors
+
+-------------------------------------------------------------------
+Wed Feb 06 21:02:45 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190206:
+  * Install signal handlers before processing config
+
+-------------------------------------------------------------------
+Fri Feb 01 21:02:36 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190131:
+  * jenkins.sh: remove obsolete comments
+
+-------------------------------------------------------------------
+Thu Jan 31 21:02:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190131:
+  * Add ping probe support
+
+-------------------------------------------------------------------
+Wed Jan 30 21:02:38 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190130:
+  * Update Makefile.am
+
+-------------------------------------------------------------------
+Tue Jan 29 21:02:34 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190128:
+  * ctrl: separate config structure
+
+-------------------------------------------------------------------
+Mon Jan 28 21:02:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190127:
+  * Drop unused parameter
+
+-------------------------------------------------------------------
+Sun Dec 23 21:02:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20181220:
+  * Move shared libs into common LDADD
+
+-------------------------------------------------------------------
+Thu Dec 13 21:02:45 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20181213:
+  * Add cmdline option parsing support
+  * Move source code to src subdir
+  * Add m4 missing files to fix build
+
+-------------------------------------------------------------------
+Sat Dec 08 21:02:33 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20181208:
+  * Add OpenVPN status helper example from corresponding ticket
+
+-------------------------------------------------------------------
+Fri Nov 30 21:02:39 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20181127:
+  * fix file descriptor leak in osysmon_file_read
+
+-------------------------------------------------------------------
+Thu Nov 22 19:00:54 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20181122:
+  * Expand default config
+  * Update default config
+  * Report config file name on error
+  * Update gitignore
+  * Add git-review config
+
+-------------------------------------------------------------------
+Tue Jul 24 20:02:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180724:
+  * git-version-gen: Don't check for .git directory
+
+-------------------------------------------------------------------
+Thu Jun 28 19:08:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Wed Jun 27 20:02:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Tue Jun 26 20:02:36 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Mon Jun 25 20:02:47 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Sun Jun 24 20:02:58 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Sat Jun 23 20:02:30 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Fri Jun 22 20:02:32 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Thu Jun 21 20:02:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Wed Jun 20 20:02:47 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Tue Jun 19 20:02:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Mon Jun 18 20:02:45 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Sun Jun 17 20:02:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Sat Jun 16 20:02:37 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Fri Jun 15 20:03:03 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Thu Jun 14 20:02:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Wed Jun 13 20:02:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Tue Jun 12 20:02:33 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Mon Jun 11 20:02:36 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Sun Jun 10 20:02:33 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Sat Jun 09 20:02:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Fri Jun 08 20:02:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Thu Jun 07 20:02:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Thu Jun 07 10:38:44 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180605:
+  * Makefile.am: Fix typo
+  * Disconnect properly on errors so we can reconnect
+  * Add zero termination char to received ctrl cmd message
+  * Remove unused last_value handling code
+  * add contrib/jenkins.sh for build verification
+  * simple_ctrl: Check for NULL return of simple_ctrl_xceive
+  * Fix compilation issue on my machine, remove unused include
+  * Remove unused function
+  * rename to osmo-sysmon
+
+-------------------------------------------------------------------
+Tue Jun  5 21:51:38 UTC 2018 - mardnh@gmx.de
+
+- Remove patch:
+  * osmo-sysmon-fix-makefile.patch (fixed upstream)
+
+-------------------------------------------------------------------
+Tue Jun  5 18:47:33 UTC 2018 - mardnh@gmx.de
+
+- Initial package, version 0.0.0+git.20180605

@@ -1,0 +1,76 @@
+-------------------------------------------------------------------
+Tue Jul  9 19:30:31 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Remove patches:
+  * 0001-mobile-gsm480_ss.c-fix-build-apply-msgb_wrap_with_TL.patch
+  * 0001-Fix-build-with-latest-libosmocore.patch
+  Recent versions of libosmocore have workarounds for this issues
+
+-------------------------------------------------------------------
+Tue May 28 20:20:08 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Remove patch (fixed by upstream):
+  * 0001-Fix-no-return-in-nonvoid-function-in-bcch_scan.c.patch
+
+-------------------------------------------------------------------
+Thu Dec 27 22:54:16 UTC 2018 - mardnh@gmx.de
+
+- Add patch:
+  * 0001-layer23-Fix-build-against-gpsd-3.18.patch
+
+-------------------------------------------------------------------
+Tue Nov 20 19:47:06 UTC 2018 - mardnh@gmx.de
+
+- Add patch:
+  * 0001-Fix-build-with-latest-libosmocore.patch
+
+-------------------------------------------------------------------
+Mon Feb 19 16:24:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1519031227.9516a0e5:
+  * build: Fix typo in the CFLAGS-variable for libosmodsp
+  * transceiver: Fix RSP SETSLOT format
+- Remove patch:
+  * osmocom-bb-jolly-testing-fix-typo.patch (fixed upstream)
+  * 0002-transceiver-Fix-RSP-SETSLOT-format.patch (fixed upstream)
+
+-------------------------------------------------------------------
+Wed Feb 14 15:12:12 UTC 2018 - mardnh@gmx.de
+
+- Add patch:
+  * 0002-transceiver-Fix-RSP-SETSLOT-format.patch
+
+-------------------------------------------------------------------
+Sat Feb 10 12:08:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1419866780.39304b74:
+  * mobile/SS: Fixed bug in parsing of known supplemenary service codes
+- Add patch:
+  * osmocom-bb-jolly-testing-fix-typo.patch
+
+-------------------------------------------------------------------
+Thu Jan  5 19:08:45 UTC 2017 - mardnh@gmx.de
+
+- Build firmware only on intel plaforms (i586, x86_64)
+
+-------------------------------------------------------------------
+Fri Dec 19 21:36:29 UTC 2014 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1388168889.c1d7289:
+  + osmocon: embed chainloader
+  + fw: remove deprecated chainload app
+  + Fix: Allow TRX command with trailing '\0' and without
+  + fixup 687bc2318d18073d02756ef6ea5b96799f4b9aa7
+  + Add handover support to calypso BTS
+  + transceiver: Add option to set SCHED_RR and prority
+  + osmocon: Add option to set SCHED_RR and prority
+  + osmocon: Improve performance by handling several serial bytes at a time
+  + host/transceiver: Fix leak in AB processing codepath
+  + fw/calypso/dsp: Make dsp_extcode only load with trx app
+- specfile cleanup
+
+-------------------------------------------------------------------
+Mon Aug 26 19:36:23 UTC 2013 - mardnh@gmx.de
+
+- initial package written from scratch
+

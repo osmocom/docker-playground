@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/osmo-pcap</param>
+              <param name="changesrevision">d8368cebf8ca159c38027e4cb9109f9f0bcd0a46</param></service></servicedata>

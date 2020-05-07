@@ -1,0 +1,7 @@
+<services>
+  <service name="download_src_package">
+    <param name="host">packman.links2linux.de</param>
+    <param name="protocol">http</param>
+    <param name="path">/downloadsource/844174/opencore-amr-0.1.5-1.9.src.rpm</param>
+  </service>
+</services>

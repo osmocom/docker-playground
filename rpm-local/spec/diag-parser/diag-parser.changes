@@ -1,0 +1,46 @@
+-------------------------------------------------------------------
+Sun Apr 08 18:48:42 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1511779051.b3707d5:
+  * LTE message parsing Finds the size and copies to the LTE message from the diag structure. Up/down flag of RRC message looks better now. Uses newly defined gsmtap type for LTE RRC
+  * uses newer libosmocore, which contains the proper GSMTAP_TYPE_LTE_NAS
+
+-------------------------------------------------------------------
+Mon Dec 05 22:08:47 UTC 2016 - mardnh@gmx.de
+
+- removed diag-parser.1 (added upstream)
+- Update to version 0.0.0.git1480975056.8c5a21f:
+  * Add manpage
+
+-------------------------------------------------------------------
+Sun Dec  4 19:24:44 UTC 2016 - mardnh@gmx.de
+
+- add manpage
+
+-------------------------------------------------------------------
+Sun Dec 04 14:05:51 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1480793791.008360d:
+  * diag_input: remove inline to allow build
+  * diag_init: add comments about the magic init
+
+-------------------------------------------------------------------
+Fri Nov 18 20:53:13 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1477678339.e24b127:
+  * randcheck: Remove the rand handling
+  * l3: Remove the is_double handling
+  * session: Do not store messages but free them after processing
+  * make: Add dependency tracking and silent rules
+  * session: Remove session_stream
+  * session: gut out more of the state handling
+  * misc: Remove more unused files to slim down the utility
+  * diag: Open the file in read write mode to allow to initialize the modem
+  * output: Remove too strong assert after adding a gsmtap sink
+  * misc: Add some more text for the readme file
+
+-------------------------------------------------------------------
+Fri Nov 18 20:49:34 UTC 2016 - mardnh@gmx.de
+
+- initial package
+

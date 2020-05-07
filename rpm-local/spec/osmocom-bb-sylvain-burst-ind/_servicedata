@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/osmocom-bb</param>
+              <param name="changesrevision">07ce6faff389dcaedc9b11ee4245d2a310f7612b</param></service></servicedata>

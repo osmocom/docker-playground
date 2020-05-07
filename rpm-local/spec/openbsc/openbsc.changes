@@ -1,0 +1,615 @@
+-------------------------------------------------------------------
+Mon Apr 20 20:02:14 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.2.2:
+  * fix compilation with gcc-10
+
+-------------------------------------------------------------------
+Fri Mar 27 21:04:22 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.2.1:
+  * rsl: Send IE MS Power Param during CHAN ACT and MS PWR CTRL messages
+
+-------------------------------------------------------------------
+Fri Jan 03 21:05:43 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.2.0:
+  * Bump version: 1.3.1 → 1.3.2
+
+-------------------------------------------------------------------
+Thu Dec 12 21:04:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.2:
+  * osmoappdesc.py, tests, ipa.py: switch to python 3
+
+-------------------------------------------------------------------
+Sun Dec 01 21:04:01 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.1:
+  * manual: Fix copy+paste error
+
+-------------------------------------------------------------------
+Thu Aug 08 21:55:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.0:
+  * Bump version: 1.3.0.5-38ea → 1.3.1
+  * debian/control: Match dependency versions against configure.ac
+  * Remove undefined param passed to {logging,osmo_stats}_vty_add_cmds
+  * nat: Remove unused func bsc_vty_init()
+
+-------------------------------------------------------------------
+Mon Jul 22 10:37:33 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Disable LTO for now since it breaks compilation of the tests
+  See: https://osmocom.org/issues/4112
+
+-------------------------------------------------------------------
+Fri Jul 19 20:02:38 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.2:
+  * manuals: Generate vty/counter documentation for osmo-bscnat
+  * manuals: Update osmonitb counter/vty documentation
+
+-------------------------------------------------------------------
+Sun Jul 14 20:07:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.0:
+  * Bump version: 1.2.0.20-cf711 → 1.3.0
+
+-------------------------------------------------------------------
+Thu Jul 11 20:12:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.20:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Fri Jun 21 20:17:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.19:
+  * bsc-nat: Remove whitespace at the end of CTR descriptions
+
+-------------------------------------------------------------------
+Wed Jun 19 20:21:59 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.18:
+  * manuals: Add script to regenerate counter/vty documentation
+
+-------------------------------------------------------------------
+Sun May 26 20:01:45 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.17:
+  * mgcp: Handle CI and X-Osmux param name as case insensitive
+
+-------------------------------------------------------------------
+Thu May 23 20:01:51 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.16:
+  * tests: Mute stdout during db_prepare()
+
+-------------------------------------------------------------------
+Tue May 21 20:01:50 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.15:
+  * nat: Allocate bsc_nat_parsed on the stack instead of heap
+
+-------------------------------------------------------------------
+Wed May 08 20:02:34 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.14:
+  * nat: Fix crash (double-free) in forward_sccp_to_msc
+
+-------------------------------------------------------------------
+Fri May 03 20:01:53 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.13:
+  * tests: Fix selection of python version
+
+-------------------------------------------------------------------
+Thu May 02 20:02:01 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.12:
+  * nat: Return error code in queue_for_msc
+
+-------------------------------------------------------------------
+Tue Apr 30 20:03:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.11:
+  * libmgcp: Parse CI as hex string in verify_ci()
+
+-------------------------------------------------------------------
+Thu Apr 25 20:01:52 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.10:
+  * osmo-bsc_nat: Parse MGCP Connection ID as hex
+
+-------------------------------------------------------------------
+Tue Apr 23 20:02:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.9:
+  * Fixed MNCC_RTP_CREATE after MNCC_DISC_IND.
+
+-------------------------------------------------------------------
+Fri Mar 29 21:08:15 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.8:
+  * Write configuration correctly from vty (alert notifications)
+  * vty_test_runner: Handle MGCP message recv len dynamically
+  * Replace broken ipa_ccm_idtag APIs with new ipa_ccm_id ones
+
+-------------------------------------------------------------------
+Wed Mar 27 21:02:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.5:
+  * Drop Iu*S support and related dependencies
+
+-------------------------------------------------------------------
+Tue Mar 26 21:01:51 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.4:
+  * Drop openggsn from build dependencies
+
+-------------------------------------------------------------------
+Mon Mar 25 21:01:55 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.3:
+  * talloc_ctx_init: Use public API osmo_signal_talloc_ctx_init
+  * osmo-bsc-mgcp.service: Fix parsing of cmdline option s
+
+-------------------------------------------------------------------
+Thu Feb 28 21:01:48 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.1:
+  * Don't deliver alert notifications to an ESME that is not yet bound.
+
+-------------------------------------------------------------------
+Thu Jan 31 21:01:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.0:
+  * Bump version: 1.1.0.120-9981 → 1.2.0
+
+-------------------------------------------------------------------
+Thu Jan 24 21:06:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.120:
+  * Remove osmocom-ipaccess-utils-dbg package
+  * Remove openbsc-dev package
+  * Remove meas_* utils
+
+-------------------------------------------------------------------
+Tue Jan 22 07:31:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.117:
+  * fix build: apply msgb_wrap_with_TL() rename
+
+-------------------------------------------------------------------
+Thu Jan 17 21:01:36 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.116:
+  * Cosmetic: Fix spelling in smpp vty
+  * Make alert notifications vty configurable per ESME
+
+-------------------------------------------------------------------
+Sun Jan 13 21:01:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.114:
+  * Don't send SMS STATUS REPORT locally if the ESME accepted it.
+
+-------------------------------------------------------------------
+Wed Dec 12 21:01:56 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.113:
+  * contrib/jenkins.sh: build and publish manuals
+
+-------------------------------------------------------------------
+Thu Dec 06 21:01:38 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.112:
+  * contrib: fix makedistcheck with disabled systemd
+  * Remove ipaccess utils
+
+-------------------------------------------------------------------
+Tue Dec 04 21:01:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.110:
+  * Fix DISTCHECK_CONFIGURE_FLAGS override
+
+-------------------------------------------------------------------
+Fri Nov 30 21:01:26 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.109:
+  * manuals: Osmo{NAT,MGCP} -> OsmoBSC{NAT,MGCP}
+
+-------------------------------------------------------------------
+Thu Nov 29 21:01:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.108:
+  * OsmoMGCP and OsmoNAT manuals moved from osmo-gsm-manuals.git
+  * manuals/OsmoNITB: integrate into this repository
+
+-------------------------------------------------------------------
+Wed Nov 28 21:01:28 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.106:
+  * build manuals moved here from osmo-gsm-manuals.git
+  * vty/bsc_vty_additions.xml: copy from osmo-bsc
+  * author info: add "former" to Holger's job title
+  * vty-ref: Update URI of docbook 5.0 schema
+  * refactor Makefile build rules, don't use the FORCE
+  * OsmoNITB: update vty reference
+  * move smpp.adoc to common chapters, generalize
+  * tweak common/mncc.adoc: use variable for program name
+  * move mncc.adoc to common chapters
+  * Allow easily disabling GFDL references
+  * SMPP: Document Osmocom extensions
+  * smpp.adoc: describe VTY cmd 'local-tcp-ip' instead of 'local-tcp-port'
+  * osmo-nitb: Update VTY command reference
+  * Add chapter on Cell Broadcast Support in Osmocom (to BSC+NITB manual)
+  * Describe how to run multiple instances of osmo-nitb and osmo-bts
+  * fix 'make clean': shell glob, ignore failure
+  * OsmoNITB: include abis.adoc from common/chapters/
+  * OsmoBSC+NITB/running: fix title levels, one too deep
+  * add 'make check' target
+  * make clean: also remove generated image files
+  * Typo in Chapter 14.2
+  * Add OsmoNITB control interface description
+  * fix various typos across all manuals
+  * OsmoNITB HLR: expand on how to create subscribers
+  * Add link to Asciidoc source code of manual
+  * initial checkin of manuals to public repo
+
+-------------------------------------------------------------------
+Tue Nov 27 21:01:30 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.78:
+  * bsc-nat: Enable octet-aligned when ensuring mode set
+
+-------------------------------------------------------------------
+Mon Nov 19 18:32:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.77:
+  * Fix build with latest libosmocore
+
+-------------------------------------------------------------------
+Wed Oct 17 20:01:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.76:
+  * mgcp: osmux_send_dummy: Fix return without value
+
+-------------------------------------------------------------------
+Tue Oct 16 20:01:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.75:
+  * osmux.h: Document enum osmux_state
+  * mgcp: osmux: Improve checks around activating and using enabled osmux
+  * mgcp: osmux: allow enabling osmux only on correct activating state
+
+-------------------------------------------------------------------
+Mon Oct 15 20:01:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.72:
+  * mgcp: osmux: Make func handling dummy frames independent of endp type
+  * mgcp: osmux: Move parse_cid of legacy dummy frames to own function
+  * mgcp: osmux: Don't process regular osmux frames if disabled by cfg
+  * mgcp: osmux_send_dummy: Avoid logging incorrectly and sending if osmux not enabled
+
+-------------------------------------------------------------------
+Sat Oct 13 20:01:25 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.68:
+  * nat: Log state of pending transaction
+  * nat: Log endpoint nr consistently as hex
+  * mgcp: Log endpoint nr consistently as hex
+  * mgcp: Avoid initing output without enabling osmux
+
+-------------------------------------------------------------------
+Fri Oct 05 20:01:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.64:
+  * examples: nanobts: openbsc-multitrx.cfg: Set SDCCH in correct TS of TRX1
+
+-------------------------------------------------------------------
+Mon Sep 17 20:01:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.63:
+  * mgcp_osmux: Use define to calculate rtp_ssrc_winlen
+  * mgcp: Fix (again) osmux_cid_bitmap static array size calculation
+  * bsc_filter: Move whitelisted info log to debug
+  * mgcp: Fix osmux_cid_bitmap static array size calculation
+  * debian/rules: Don't overwrite .tarball-version
+
+-------------------------------------------------------------------
+Sat Sep 15 20:01:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.58:
+  * nat: return -EBADF in read wqueue cb on fd closed
+  * nat: Remove misleading comment
+  * nat: Remove misleading comment
+  * cosmetic: Remove duplicate semicolon and whitespace
+
+-------------------------------------------------------------------
+Thu Sep 13 19:37:02 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.54:
+  * Install sample cfg file to /etc/osmocom
+  * Install systemd services with autotools
+
+-------------------------------------------------------------------
+Tue Sep 11 20:01:33 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.52:
+  * mgcp_osmux.c: osmux_enable_endpoint: Fix incorrect return check
+
+-------------------------------------------------------------------
+Fri Sep 07 20:01:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.51:
+  * systemd: describe osmo-bsc-sccplite service as legacy
+
+-------------------------------------------------------------------
+Thu Aug 30 20:01:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.50:
+  * debian: Install all service files from contrib/systemd
+
+-------------------------------------------------------------------
+Wed Aug 29 20:01:30 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.49:
+  * Add osmo-bsc-nat systemd service and install it with debian
+  * Fix heap-use-after-free due to OML link destruction
+  * abis_nm_ipaccess_rsl_connect: Log bts and trx nr
+  * gsm_data.h: Replace '.' in counter names with ':'
+
+-------------------------------------------------------------------
+Tue Aug 21 20:01:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.45:
+  * configure: Find correct libgsm's gsm.h header
+  * legacy_mgcp: mgcp_test: sanitize: free msgb_ctx
+  * Debian: Include the osmo-bsc-mgcp systemd service in Debian package
+  * osmo-bsc-mgcp: Add debian package
+  * mgcp_test: tweak test failure output
+  * mgcp: add VTY Option to force-realloc endpoints
+  * examples: osmo-bsc_mgcp: Update cfg file
+  * cosmetic: make osmo-python-tests dependency more accurate
+
+-------------------------------------------------------------------
+Fri Aug 17 20:04:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.37:
+  * vty: Fix typo writing bts-jitter-buffer-delay-{min,max}
+
+-------------------------------------------------------------------
+Fri Jul 27 20:01:35 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.36:
+  * git-version-gen: Don't check for .git directory
+
+-------------------------------------------------------------------
+Tue Jul 17 20:01:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.35:
+  * bsc: ctrl: Avoid sending back received ERROR msgs
+  * nat: ctrl: Avoid sending back received ERROR msgs
+  * nat: ctrl: use strtol instead of atoi as it has explicit error documentation
+
+-------------------------------------------------------------------
+Thu Jul 12 20:01:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.32:
+  * bsc: ctrl: Use ctrl_cmd_parse2 to obtain detailed error
+  * nat: ctrl: Use ctrl_cmd_parse2 to obtain detailed error
+
+-------------------------------------------------------------------
+Wed Jul 04 20:01:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.30:
+  * nat: Add VTY cmd paging-bss-forward to nat node
+
+-------------------------------------------------------------------
+Thu Jun 28 20:01:38 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.29:
+  * bsc-nat: forward paging to all BSC when CELL_IDENT_BSS is received
+  * bsc-nat: find_paging: Check return code of tlv_parse
+  * filter: vty: Print policy list in cmd show access-list
+  * bsc_vty: Write access list entries when storing bsc config
+  * Rename bsc_msg_acc_lst_vty_init to have more uniform prefix
+  * Init access_lists before passing it as a parameter
+  * bsc-nat: Add more complete VTY command to show BSC related info
+
+-------------------------------------------------------------------
+Wed Jun 27 20:01:37 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.22:
+  * bsc-nat: Allocate each ctr group with a different idx
+  * bsc-nat: Replace '.' in counter names with ':'
+  * configure.ac: Add --enable-sanitize flag
+  * bsc-nat: Avoid heap-use-after-free on USSD conn lost
+
+-------------------------------------------------------------------
+Wed Jun 20 20:01:35 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.18:
+  * bsc-nat: show running-config now prints bsc nodes
+
+-------------------------------------------------------------------
+Mon Jun 18 20:01:28 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.17:
+  * bsc-sccplite: Add -V param to print version
+  * bsc-nat: Add -V param to print version
+  * bsc-nat: Fix missing help description for -T timestamp cmdline option
+  * gsm0408_dispatch: Fix uninitialized var warning
+
+-------------------------------------------------------------------
+Wed Jun 13 18:41:58 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.13:
+  * chan_alloc: Fix crash when failing to allocate channel
+
+-------------------------------------------------------------------
+Fri Jun 08 20:01:30 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.12:
+  * bsc-nat: Avoid heap-use-after-free on bsc auth failure
+  * bsc-nat: ipaccess_auth_bsc: Close bsc conn immediately on bad format received
+  * bsc-nat: forward_sccp_to_msc: Fix memleak on receive from non authenticated bsc
+  * bsc-nat: forward_sccp_to_msc: Remove unneeded exit3 section
+  * bsc-nat: forward_sccp_to_msc: Remove unneeded goto
+  * bsc-nat: bsc_nat_filter_ipa: Improve documentation
+  * bsc-nat: Avoid sending reset ack twice in a row
+
+-------------------------------------------------------------------
+Thu May 31 20:01:41 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.5:
+  * gitignore: Filter m4 files
+
+-------------------------------------------------------------------
+Wed May 30 20:01:44 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.4:
+  * bsc_nat.c: Return correct err code to avoid heap-user-after-free
+  * chan_alloc: Print bts nr on chan alloc failure
+  * abis_rsl: rsl_rx_chan_rqd: Format bts log string as in everywhere else
+
+-------------------------------------------------------------------
+Mon May 28 20:01:38 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.1:
+  * acc_ramp: Increase log level of some messages
+
+-------------------------------------------------------------------
+Fri May 04 20:01:41 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.0:
+  * debian/changelog: change last release for unreleased to unstable
+  * Bump version: 1.0.0.45-2b362-dirty → 1.1.0
+
+-------------------------------------------------------------------
+Wed Apr 25 20:01:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.0.0.44:
+  * mgcp: switch to new osmux output APIs
+
+-------------------------------------------------------------------
+Thu Apr 19 20:01:38 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.0.0.43:
+  * chan_alloc.c: Fix log var formatting issues
+
+-------------------------------------------------------------------
+Tue Apr 17 20:01:50 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.0.0.42:
+  * smpp_smsc_conf: Fix heap-use-after-free
+
+-------------------------------------------------------------------
+Mon Apr 16 20:01:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.0.0.41:
+  * only log actual access control class ramping changes
+  * ensure that acc_ramp_init() is only called once
+  * trigger acc ramping based on trx rf-locked state
+  * rename helper functions in the acc ramp code to avoid confusion
+  * trigger acc ramping on state-changed-event reports
+  * only trigger acc ramping if trx 0 is usable and unlocked
+  * fix handling of state changes in acc ramping
+  * nat: Add jitter buffer on the uplink receiver
+
+-------------------------------------------------------------------
+Wed Apr 11 20:01:32 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.0.0.33:
+  * libbsc: set_net_mcc_mnc_apply: Fix memleak on parsing incorrect mcc mnc
+  * bsc_nat: ctrl: fix memleak on reply receival
+  * bsc_nat: forward_to_bsc: remove one level of indentation
+  * bsc_nat: forward_to_bsc: Fix memleak on send failure
+  * bsc_nat: Drop redundant ccon ptr in bsc_cmd_list
+  * bsc_nat: ctrl: Fix crash on receveing bsc reply
+
+-------------------------------------------------------------------
+Mon Apr 09 18:38:37 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.0.0.27:
+  * fix a format string error in bts_update_t3122_chan_load()
+  * fix initialization of acc ramping
+
+-------------------------------------------------------------------
+Sat Apr 07 18:52:00 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.0.0.25:
+  * backport support for 3-digit MNC with leading zeros
+  * bsc: Improve handling of paging_request return value
+  * bsc: paging: Fix losing paging messages for BTS
+  * Migrate from OpenSSL to osmo_get_rand_id()
+
+-------------------------------------------------------------------
+Fri Mar 16 10:40:27 UTC 2018 - mardnh@gmx.de
+
+- Create subpackages for
+  * abisip-find
+  * ipaccess-utils
+  * bs11-utils
+
+-------------------------------------------------------------------
+Fri Mar 16 08:30:11 UTC 2018 - mardnh@gmx.de
+
+- Always run build-checks
+
+-------------------------------------------------------------------
+Thu Mar 15 18:46:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.0.0.21:
+  * Add stat items for the BTS's channel load average and T3122.
+  * Add support for Access Control Class ramping.
+
+-------------------------------------------------------------------
+Wed Mar 14 21:27:46 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.0.0.19:
+  * libmsc: add support for both comp128v2 and comp128v3
+  * mgcp_transcoding_test: Add LIBOSMOABIS_CFLAGS
+  * gsm_04_80.h: use '#pragma once' instead of includes
+  * gsm_04_80.h: cosmetic: whitespace fix
+  * src/libmsc/ussd.c: drop useless forward declaration
+  * mgcp_protocol: Don't print osmux stats if it is off
+  * fix build: gprs_ra_id_by_bts(): ensure to init all values
+  * sysinfo: Fix regression causing missing L2 Pseudo-Length in SI5/SI6
+  * Make "waiting indicator" of IMMEDIATE ASSIGN REJECT dynamic.
+  * bts chan_load: ignore unusable BTS
+
+-------------------------------------------------------------------
+Wed Feb 28 22:07:02 UTC 2018 - mardnh@gmx.de
+
+- Do not longer build with --enable-nat and --enable-osmo-bsc
+  These options now are considered legacy.
+- Minor specfile cleanup
+
+-------------------------------------------------------------------
+Sat Feb 10 20:22:38 UTC 2018 - mardnh@gmx.de
+
+- Show testsuite.log when tests are failing
+
+-------------------------------------------------------------------
+Wed Jan 24 13:01:30 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.0.0.14
+
+-------------------------------------------------------------------
+Wed Dec 27 16:02:39 UTC 2017 - mardnh@gmx.de
+
+- Build with --enable-nat, --enable-osmo-bsc, --enable-smpp
+- Specfile cleanup
+
+-------------------------------------------------------------------
+Wed Dec 27 10:13:27 UTC 2017 - mardnh@gmx.de
+
+- Update to new upstream release 1.0.0
+  * No changelog was provided
+
+-------------------------------------------------------------------
+Sun Apr 30 01:22:17 UTC 2017 - jengelh@inai.de
+
+- Ship version 0.15.0.750 for build.opensuse.org

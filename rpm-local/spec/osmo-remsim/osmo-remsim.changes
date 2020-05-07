@@ -1,0 +1,600 @@
+-------------------------------------------------------------------
+Sun May 03 20:04:33 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.2.2.86:
+  * user_simtrace2: Stop using printf, use libosmocore logging
+
+-------------------------------------------------------------------
+Sat Mar 14 21:03:55 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.2.2.85:
+  * introduce --disable-remsim-client-{st2,ifdhanndler}
+  * rspro_util.c: Use %zu for size_t
+
+-------------------------------------------------------------------
+Thu Mar 12 21:03:46 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.2.2.83:
+  * debian: Ensure osmo-remsim-client-st2 package only contains st2 binary
+
+-------------------------------------------------------------------
+Wed Mar 11 21:05:21 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.2.2.82:
+  * debian: osmo-remsim-client-s2 'Replaces' osmo-remsim-client
+
+-------------------------------------------------------------------
+Fri Mar 06 21:03:49 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.2.2.81:
+  * fix config defaults for systemd startscripts
+
+-------------------------------------------------------------------
+Wed Mar 04 21:03:43 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.2.2.80:
+  * debian/control: Fix typo (package->Package)
+  * client: Avoid useless depedency to libosmosim
+  * bankd: Avoid useless dependency to libosmosim
+  * libosmo-rspro: Avoid useless dependency to libosmo-abis
+  * Avoid useless dependency on libcsv
+  * libosmo-rspro: Avoid useless dependency to libosmogsm
+  * debian: split osmo-remsim-client into osmo-remsim-client-{shell,st2}
+  * contrib/jenkins.sh: Harmonize with what we do in other projects
+  * Install config files to /etc/default/
+  * configure.ac + debian: Add systemd service file support
+  * configure/Makefile: Include contrib in "make dist"
+  * client: Fix TODO: add CLK status information to event-script environment
+  * client: major restructuring around new main_fsm
+  * configure/automake: Remove work-arounds
+  * fix debian build after introducing hack around usbdropdir
+  * rspro_client_fsm: Add optional notifiation of parent on connect/disconnect
+  * rspro_client_fsm: Migrate to ipa_client_conn_create2()
+  * doc: Add documentation for remsim-apitool.py
+  * doc: More cross-references; Expand overview slightly
+  * doc: Add WARNINGs about lack of security in protocols
+  * doc: generalize the remsim-client part in the overview section
+  * client: Fix 'make distcheck' bypassing pkg-config usbdropdir
+  * client: ifd_handler (PC/SC reader driver) as remsim-client
+  * client: Add diagram for osmo-remsim-st2 use case
+  * client: document osmo-remsim-client-shell
+  * src/Makefile.am: Build src directory (libosmo-rspro) before sub-directories
+  * contrib: Add owhw-event-script.sh for osmo-remsim-client
+
+-------------------------------------------------------------------
+Tue Mar 03 21:03:46 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.2.2.53:
+  * update .gitignore
+
+-------------------------------------------------------------------
+Sat Feb 22 21:05:27 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.2.2.52:
+  * client: Work around "stock on PTS" problem
+
+-------------------------------------------------------------------
+Fri Feb 21 21:05:42 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.2.2.51:
+  * server: Don't accept out-of-range bank/client/slot numbers on REST
+  * client: user_shell.c: Don't echo stdin on stdout
+  * client: user_shell.c: fflush() after writes to stdout
+  * client: Make ConfigClientBankReq with bankd_port == 0 trigger SRVC_E_DISCONNECT
+  * rspro_client_fsm: Add SRVC_E_DISCONNECT to disconnect from RSPRO server
+
+-------------------------------------------------------------------
+Sun Feb 16 21:09:11 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.2.2.46:
+  * server: Send ConfigClientBankReq with bankd_port == 0 on map delete
+  * server: don't dereference map before OSMO_ASSERT() in _update_client_for_slotmap()
+  * client: Split into remsim_client.c and remsim_client_main.c
+  * client: Remove g_client completely; separate 'main' code
+  * client: Work without global g_client variable
+  * client: Add new osmo-remsim-client-shell binary
+  * client: Adjust to API changes; enable build of remsim-client again
+  * remsim-client: Call an external script in specific situations
+  * remsim-client: Query + Store the USB device path
+  * remsim-client: store last 'status'
+  * remsim-client: Move client_config from .c to .h file
+  * remsim-client: Avoid using 'ci' global variable
+  * remsim-client: Fix the -k/ --keep-running option
+  * remsim-client: move from common 'src' directory to 'src/client'
+
+-------------------------------------------------------------------
+Sat Feb 15 21:04:58 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.2.2.32:
+  * remsim_client: Move body of main() loop to separate function
+  * client: Enable talloc NULL context tracking
+  * remsim-client: Introduce 'struct client_config'
+
+-------------------------------------------------------------------
+Mon Jan 13 21:12:24 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.2.2.29:
+  * require minimum version 1.3.0 of libosmocore
+
+-------------------------------------------------------------------
+Wed Dec 18 21:19:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.2.28:
+  * fix the package we depend on: libosmosimtrace2-dev
+  * debian/control: Add missing Build-Requires libosmo-simtrace2
+
+-------------------------------------------------------------------
+Tue Dec 17 21:05:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.2.26:
+  * bankd: Implement card reset based on clientSlotStatusInd
+  * client: generate clientSlotStatusInd to bankd
+  * rspro_util: Add functions generating {Bank,Client}SlotStatusInd
+  * remsim_client: Port to async libosmousb select loop
+  * jenkins.sh: don't verify (possibly outdated) deps
+  * remsim-client: Port from local copy to libosmousb + libosmo-simtrace2
+  * bankd: Introduce SIGMAPADD to tell worker about new mapping
+  * bankd: Factor out signal-sending from bankd_srvc_remove_mapping()
+
+-------------------------------------------------------------------
+Mon Dec 16 21:08:52 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.2.18:
+  * rspro_client_fsm: Fix handling of IPA keepalive
+  * rspro_client_fsm: Fix uninitialized return variable use
+
+-------------------------------------------------------------------
+Sun Dec 15 21:06:29 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.2.16:
+  * rspro_client_fsm(): Remove outdated/wrong comment from code
+  * rspro_client_fsm: Mark ipa_client_conn_send_rspro() as static
+  * remsim-client: Differentiate the two rspro_client_fsm instances by name
+  * Replace bankd_client_fsm with rspro_client_fsm
+  * rspro_client_fsm: Make RSPRO transmit use FSM event
+  * rspro_client_fsm: Disable automatic connect on FSM allocation
+
+-------------------------------------------------------------------
+Thu Dec 05 21:03:37 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.2.10:
+  * add missing debian/libosmo-rspro1.install
+  * bankd: No need to handle SIGMAPDEL if we're not mapped yet
+  * bankd: Implement new ResetStateReq
+  * Add "--version" to all executables to print compile-time version info
+  * RSPRO: Add new ResetState{Req,Res}
+  * bankd: initialize bank_id/slot_nr to 0xffff for unmapped workers
+  * bankd: Reject removeSlotmap when ClientID doesn't match
+  * bankd: createMapping should implicitly delete existing mappings
+  * bankd: Fix log print during removeMapping
+
+-------------------------------------------------------------------
+Wed Dec 04 21:04:39 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.2.1:
+  * bankd_main: Refactor code: bankd_srvc_remove_mapping()
+  * Bump version: 0.2.1.10-35d9-dirty → 0.2.2
+
+-------------------------------------------------------------------
+Tue Dec 03 21:03:57 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.1.10:
+  * bankd: send IPA CCM ID_ACK after receiving ID_ACK
+  * cosmetic: more comments; spelling fixes in comments
+
+-------------------------------------------------------------------
+Sun Dec 01 21:13:57 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.1.8:
+  * Check for osmo_fsm_register() error return value
+
+-------------------------------------------------------------------
+Fri Nov 22 21:21:39 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.1.7:
+  * bankd_client_fsm: close IPA client connection before re-establishing it
+
+-------------------------------------------------------------------
+Tue Sep 17 20:05:46 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.1.6:
+  * client: fix help strings
+  * remsim-apitool.py: pass IDs as integer
+
+-------------------------------------------------------------------
+Fri Sep 13 20:03:13 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.1.4:
+  * rspro_dec_msg: Simplify msgb ownership handling
+  * remsim-apitool: Fix slotmap-create (integer needed, not string!)
+
+-------------------------------------------------------------------
+Thu Aug 08 21:58:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.1.2:
+  * add contrib/remsim-apitool.py to control the REST-interface of osmo-remsim-server
+
+-------------------------------------------------------------------
+Wed Jul 24 20:38:37 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.1.1:
+  * rspro_client_fsm: Fix another memory leak
+
+-------------------------------------------------------------------
+Tue Jul 23 20:18:39 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.1.0:
+  * Bump version: 0.2.0.4-573d → 0.2.1
+  * debian: build manuals as osmo-remsim-doc package
+  * doc/manuals: Use correct path (osmo-remsim-doc)
+  * usermanual: disable non-existant architecture chapter
+  * rspro_client_fsm/remsim_client: Fix double-free
+
+-------------------------------------------------------------------
+Sun Jul 21 20:11:40 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.0.0:
+  * Bump version: 0.1.0.29-e7f7 → 0.2.0
+  * server: rest_api: Fix memory leak in slotmap post
+  * track libulfius and jansson memory allocations with talloc
+
+-------------------------------------------------------------------
+Sat Jul 20 20:04:00 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.1.0.28:
+  * rspro_client_fsm: Fix memory leak processing RSPRO
+  * remsim_client: Fix memory leak receiving RSPRO messages
+  * rspro_server.c: Fix memory leak in processing inbound RSPRO
+
+-------------------------------------------------------------------
+Thu Jul 18 20:13:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.1.0.25:
+  * remsim_client: Enable talloc tracking of msgb allocations
+  * remsim_server: Enable talloc tracking of msgb allocations
+  * Fix common misspellings and typos
+
+-------------------------------------------------------------------
+Thu Jul 11 20:23:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.1.0.22:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Wed Jul 10 20:19:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.1.0.21:
+  * add examples to remsim-server (json output)
+  * add examples to the command line options for remsim-bankd and remsim-client
+
+-------------------------------------------------------------------
+Thu Jun 13 20:16:51 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.1.0.19:
+  * osmo-remsim-client: add systemd service script template and etc/default configs
+
+-------------------------------------------------------------------
+Wed May 29 20:04:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.1.0.18:
+  * doc: Describe how to obtains PC/SC reader string names
+  * osmo-remsim-bankd: add systemd service script and etc/default config
+  * osmo-remsim-server: add systemd service script
+  * osmo-remsim-bankd: Fix typo in help for --num-slots
+
+-------------------------------------------------------------------
+Wed May 08 20:05:39 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.1.0.14:
+  * bankd: Don't read CSV file until _after_ handling options
+  * doc: REST API url is /banks, not /bankds
+
+-------------------------------------------------------------------
+Thu Apr 11 20:04:29 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.1.0.12:
+  * README.md: add 'osmo-' prefix to remsim-{server,bankd,client}
+
+-------------------------------------------------------------------
+Wed Apr 03 15:36:58 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.1.0.11:
+  * update .gitignore
+  * configure.ac: Add --disable-remsim-bankd
+  * configure.ac: Add --disable-remsim-server
+  * debian/control: add missing libcsv dependency
+  * Add Debian packaging information
+  * rename executables to include osmo- name prefix
+  * Add libosmo-rspro.pc.in for pkg-config integration
+  * Makefile.am: Fix dependency of server on libosmo-rspro.la
+
+-------------------------------------------------------------------
+<<<<<<< ./osmo-remsim.changes.mine
+Wed Apr  3 15:30:12 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Update to version 0.1.0.11:
+  * configure.ac: Add --disable-remsim-bankd
+  * configure.ac: Add --disable-remsim-server
+  * debian/control: add missing libcsv dependency
+  * Add Debian packaging information
+  * rename executables to include osmo- name prefix
+  * Add libosmo-rspro.pc.in for pkg-config integration
+  * Makefile.am: Fix dependency of server on libosmo-rspro.la
+  * cosmetic: remove some FIXME that actually are already fixed
+  * bankd: Use configured bank_id/nr_slots in ConnectBankReq
+  * bankd: move bank_id / num_slots from g_bankd to remsim_srv_conn
+- Drop patch:
+  * 0001-remsim-server-Fix-linking-order.patch (fixed upstream)
+
+-------------------------------------------------------------------
+=======
+Tue Apr 02 20:04:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1554231376.f511667:
+  * cosmetic: remove some FIXME that actually are already fixed
+
+-------------------------------------------------------------------
+Mon Apr 01 20:04:13 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1554145622.4fa407a:
+  * bankd: Use configured bank_id/nr_slots in ConnectBankReq
+  * bankd: move bank_id / num_slots from g_bankd to remsim_srv_conn
+
+-------------------------------------------------------------------
+>>>>>>> ./osmo-remsim.changes.r186
+Mon Apr  1 18:15:10 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Add patch:
+  * 0001-remsim-server-Fix-linking-order.patch
+
+-------------------------------------------------------------------
+Mon Apr 01 10:23:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1554109444.0138bb4:
+  * manuals: remove <<>> from RSPRO to fix rendering
+  * manuals: Add description from README.md to manual
+  * server: Fix dependency on libosmo-rspro.la
+  * Add initial osmo-remsim usermanual
+  * remsim_client: Reduce simtrace timeout from 100s to 1s
+  * rspro_util.c: Disable printf debugging
+  * bankd: Add command-line arguments for IP/port/etc configuration
+  * improve talloc memory leak debugging
+  * fixup warnings
+
+-------------------------------------------------------------------
+Sun Mar 31 20:04:02 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1554038009.13d0f8c:
+  * disable slotmap debugging
+  * rspro_server: Fix Warnings about unused variables
+  * rspro_server: Configure client's bankd parameters (nr/slot/ip/port)
+  * client/server: log failed attempts to transmit/encode RSPRO
+  * bankd: Don't fail on RsproPDUchoice_PR_setAtrRes
+  * bankd: log incoming RSPRO
+  * rspro_server: Treat keepalive timeouts (by closing connection)
+  * rspro_server: Give proper name to IPA_KEEPALIVE FSMs
+  * rspro_server: Print human-readable message type instead of numeric value
+  * rspro_server: Add client_conn_by_slot()  API function
+  * rspro_util: We don't deal with network byte order, asn1c takes care of that
+  * rspro_server: Split CONNECTED into CLIENT and BANKD specific states
+  * rspro_server: Add more comments
+  * rspro_server: Fix log output in client_conn_send()
+  * rspro_util: Fix typo in rspro_gen_ConfigClientIdReq()
+  * client: Allow specification of clientId / slotNr as command line arguments
+  * client: Sort getopt-long like getopt like help message
+  * client: transmit RSPRO via bankd_conn_fsm
+  * bankd/client: Fix memory leak if rspro_enc_msg() fails
+  * client: Fix initialization order: logging first
+  * client: Default server port is 9998, not 9999
+  * client: Use stack instead of heap when possible
+  * remsim_client: Use bankd_conn_send_rspro() where applicable
+  * cosmetic: fix typo in comment
+  * remsim_client: Process SetAtrReq() and set ATR in SIMtrace2 firmware
+  * bankd: Move all PC/SC specific code to bankd_pcsc
+  * bankd_main: Obtain ATR of card via PC/SC API
+
+-------------------------------------------------------------------
+Thu Mar 28 21:04:01 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1553723890.e57334e:
+  * rspro_client_fsm: Use osmocom logging API instead of direct printf
+  * remsim_client: Use osmocom logging instead of printf
+  * bankd_main: Add more logging in error situations
+  * bankd_main: don't use fprintf if we can use osmocom logging API
+  * bankd: Verify bankd/client slot in tpduModemToCard rx handler
+
+-------------------------------------------------------------------
+Sun Mar 17 21:04:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1552852910.4e7a285:
+  * rspro_client_fsm: Disconnect if Connect{Client,Bank}Res != ok
+  * client, bankd: Add SIGUSR1 handling for talloc context debugging
+  * bankd_client_fsm: Fix ESTABLISH signal handling
+  * client: Don't ntohs() integer values from asn1 decoder
+  * remsim_client: Store and use BankSlot received in ConfigClientBankReq
+  * Move client/bank slot conversion functions to rspro_util.c
+  * RSPRO: split ConfigClient into ConfigClientId and ConfigClientBank
+
+-------------------------------------------------------------------
+Mon Mar 11 21:04:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1552325953.19f881a:
+  * bankd: respond to IPA PING from client with IPA PONG
+  * bankd: Disconnect client if we enter state BW_ST_CONN_CLIENT_UNMAPPED
+  * bankd: Implement thread-safe SIGUSR1 talloc context reporting
+  * bandk: store the worker name as part of 'struct bankd_worker'
+  * bankd: terminate bankd connection once map is deleted
+  * bankd: Return ConnectClientRes in error paths of worker_handle_connectClientReq
+
+-------------------------------------------------------------------
+Sat Mar 09 21:04:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1552164548.942f1ff:
+  * bankd: Actually send the RemoveMappingRes we prepare
+  * rspro_client_fsm: Ensure close + reconnect on missing Connect*Res from server
+  * bankd: Don't use hard-coded slotmaps but receive them from remsim-server
+  * bankd: Don't create 10 workers, but 'num_slots' workers
+  * bankd_main: Introduce g_bankd global variable
+  * rspro_util: Add rspro_msgt_name() to get RSPRO message type name + use it
+  * Add asn1c_helpers.c file to get type/enum/choice names for printing
+  * RSPRO: Add ErrorInd
+  * RSPRO: Add two more ResoltCodes
+  * Introduce {server,bankd}_conn_send_rspro()
+  * add missing copyright / license headers everywhere
+  * naming: Distinguish "rspro client" from "remsim client"
+  * Split "RSPRO client FSM" from "BANKD client FSM"
+  * remsim-client: Add command-line options for server ip/port and client id/slot
+  * client: move ClientSlot from bankd_conn to srv_conn
+  * client: Early call to osmo_init_logging2()
+  * client: Add IPA Keepalive handling
+  * client: Restructure {srvc,bankd}_read_cb()
+  * remsim-server: Add support for keepalive
+  * slotmap: restructure read_cb()
+  * client slot
+  * Initial version of remsim-server
+
+-------------------------------------------------------------------
+Fri Mar 08 21:04:13 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1551989732.648f4e3:
+  * slotmap: Introduce slotmap_{rd,wr,un}lock() wrappers for lock debugging
+  * slotmap: Log file/line when changing state
+
+-------------------------------------------------------------------
+Thu Mar 07 21:03:56 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1551949766.294298c:
+  * slotmap: Add _slotmap_del() for callers that already have a lock
+  * slotmap: Add slotmap_get_id() function to get numeric ID of slot map
+  * slotmap: Add "DELETE_REQ" state
+  * slotmap: Return newly-created map from slotmap_add()
+  * slotmap: Introduce the concept of a slotmap state
+  * slotmap: Introduce slotmap-printing function and use it
+  * generalize slotmap to make use of it outside of bankd
+  * share debug.[ch] across all executables
+  * client: Connect to server before connecting to bankd
+  * rspro_util: Add rspro_IpAddr2str() to get stringified version of IpAddr_t
+  * rspro_util: Add rspro_comp_id_retrieve()
+  * respro_util: Add rspro_gen_ConfigClientRes() function
+  * move osmo_fsm_register() into constructor function
+
+-------------------------------------------------------------------
+Mon Mar 04 21:03:54 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1551526962.3ac66a1:
+  * Add dotty graphs on osmo-remsim to 'doc' subdirectory
+  * update .gitignore to include .libs and executable names
+  * add rspro_gen_{Remove,Create}Mapping{Req,Res}()
+  * rspro_util.c: Set pdu version to 2 for all generator functions
+  * rspro_server_conn: Add handle_rx() call-back
+
+-------------------------------------------------------------------
+Thu Feb 14 21:04:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1550167652.4248bec:
+  * Add git-review config
+
+-------------------------------------------------------------------
+Sun Nov 18 21:03:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1542059628.6f074b7:
+  * minor: show USB error message instead of number
+  * add ATR as command line argument
+
+-------------------------------------------------------------------
+Tue Oct 16 20:03:15 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1539626572.f120b64:
+  * remsim: fix TPDU response size transmission
+
+-------------------------------------------------------------------
+Mon Oct 15 20:03:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1539563240.c3632a7:
+  * rspro_gen_ConnectClientReq(): don't dereference optional 'client'
+  * server_conn_fsm_alloc(): add explicit talloc context argument
+  * move ipa_client_conn_send_rspro() into remsim_client_fsm.c
+  * move 'struct rspro_server_conn' to client.h
+  * move DMAIN definition to new debug.h
+  * configure.ac: Explicitly check for -lcsv and csv.h
+  * libusb_util.c: Avoid gcc warning about strncpy()
+  * contrib/jenkins.sh:  Fix project name printed during build
+  * contrib/jenkins.sh: Ensure PKG_CONFIG_PATH is set before build
+  * contrib/jenkins.sh: Harmonize with other projects
+
+-------------------------------------------------------------------
+Sun Oct 14 20:03:13 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1539542965.c7b5c7a:
+  * Add contrib/jenkins.sh for build verification
+  * Fix compiler warning: no-return-in-nonvoid-function main.c
+
+-------------------------------------------------------------------
+Fri Oct 12 20:21:26 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1539349100.3428e41:
+  * add sim switch and modem reset for OWHW
+  * add client id and slot number as command line argument
+  * move main print output closer to main (minor)
+  * set client name (minor)
+  * remove duplicate print output (minor)
+  * indicate more clearly SIMtrace traffic in output log
+  * remove unused remote UDP variable
+  * add command line arguments to set bankd host and port
+  * minor: disable ASN1 debug
+  * send response APDU from bankd (card) to SIMtrace (modem)
+  * send correct APDU to bankd
+  * add missing library flags to compile simtrace2-remsim_client.c
+  * adapt remsim-client to use simtrace2 cardem
+  * add simtrace2 host libraries
+  * fix 'make distcheck' by adding missing client.h to noinst_HEADERS
+  * move ClientSlot_t from fsm to client
+  * ensure the local asn1c library is used
+  * ensure RsproPDU_t client and bank are not NULL
+  * bankd: Ignore IPA CCM and don't terminate if we receive it
+  * RSPRO.asn: Clarify use of optional ClientSlot in ConnectClientReq
+
+-------------------------------------------------------------------
+Thu Oct 04 18:48:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1538602461.43ab79f:
+  * remove libasn1c dependency and use asn1c without libasn1c
+  * bankd: Add FIXME to the main thread
+  * remove rspro_client.c which is not used anyway.
+  * bankd: Remove second \n after PC/SC OK statements
+  * bankd: more timeout/retry handling, including resolving slotmap
+  * bankd: Implement re-opening/connecting to card/reader
+  * bankd_main: Set the pthread name for easier debugging
+  * bankd: Initialize logging early.
+
+-------------------------------------------------------------------
+Mon Sep 24 17:52:09 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1537803965.703d686:
+  * fix double-free of msgb
+  * correctly use asn1c API: PDU pointers must be NULL when calling decoder
+  * add ffasn1c example for RSPRO
+  * rspro_util: Add rspro_gen_ConnectClientRes() function
+  * rspro_util: More error messages
+  * bankd: Print error messages in more error cases during IPA read
+  * bankd: Add app_comp_id to use repro_util helpers
+  * client: Generate CLIENT_CONN_RES event to FSM on RSPR rx of ClientConnRes
+  * bankd: Handle errors during PC/SC open/connect
+  * use msb->l2h as pointer to the RSPRO part inside msgb
+  * RSPRO: don't use "default 1" for protocol version
+  * remsim_client_fsm: Handle re-connect timeout and initial connection failure
+  * bankd: Add hack for hard-coded slotmap
+  * bankd: Add code to handle TPDUs in rx and tx direction
+  * bankd_main: Missing state transition to BW_ST_CONN_CLIENT_MAPPED_CARD
+  * bankd_main: Fix SCardConnect(): Needs dwActiveProtocol output param
+  * bankd_pcsc: Add CSV based mapping of bank-id/slot-nr to PC/SC reader name
+  * bankd_slotmap: Fix debug statements
+  * rspro_util: Add functions to generate TDPU transfer messages
+  * More progress on code of the server_conn_fsm
+  * client: bankd_send_rspro -> ipa_client_conn_send_rspro
+  * client: Introduce FSMs for managing connections to server + bankd
+
+-------------------------------------------------------------------
+Sat Aug 18 17:28:57 UTC 2018 - mardnh@gmx.de
+
+- Initial package, version 0.0.0.git1534536649.2ff0ab9

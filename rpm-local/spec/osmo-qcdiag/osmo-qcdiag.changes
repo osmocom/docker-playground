@@ -1,0 +1,89 @@
+-------------------------------------------------------------------
+Sat Feb 10 15:04:07 UTC 2018 - mardnh@gmx.de
+
+- Specfile cleanup
+
+-------------------------------------------------------------------
+Wed Feb 01 12:04:03 UTC 2017 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1485275799.cb5d847:
+  * Add support for DIAG EVENT reporting
+  * diag_msg: Mark dispatch table as 'const'
+  * Add python tools that (partially) parse the QXDM database
+  * add *.pyc to .gitignore
+  * Add python script to generate 'struct value_string' from enum
+  * qxdm_db.py: Move value_string code generator to separate file
+  * python scripts: Generate file header with #include statements
+  * Add python script to generate value_string from file with #defines
+  * add missing gprs_l1.c file
+  * move variable declarations out of the 'for' loop
+
+-------------------------------------------------------------------
+Sun Jan 22 09:19:12 UTC 2017 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1484994164.cf854ca:
+  * DPL: consequently use struct dpl_iid rather than uint32_t
+  * diag_io.c: remove left-over 'rc=%d' print
+  * replace old magic numbers with proper #defines
+  * Genreate GSMTAP messages from raw received DIAG frames
+  * WIP: Enable PCAP generation in modem
+  * diag_read_msg(): Discard any messages shorter than 3 bytes
+  * Generate GSMTAP messages from raw received DIAG frames
+  * separate diag_log_umts to diag_log_wcdma
+  * patch %s out of format strings received from phone
+  * also log config request/response messages via GSMTAP
+  * fix gen_log_config_set_mask()
+  * fix diag_umts_rrc_chtype and add more diag_log_code_wcdma
+  * WIP: SIM Card logging
+  * add missing diag_dpl.h to repo
+  * update .gitignore
+  * add LLC XID information decode
+  * diag_log_gprs: Cosmetic change in re-ordering the log_dispatch_tbl
+  * Add (E)GPRS MAC ACK/NACK log support
+  * diag_log_gprs_rlc.h: More log message definitions
+  * WIP: More WCDMA/RRC decoding
+  * gprs: handle RLC uplink/downlink ack/nack params
+  * Enable + Interpret more GPRS related logging
+  * decoder for RLC-EPDAN, MDSP-CMD, L2-STATE and L2-TRANSM-STATUS
+  * decode L2 channel type
+  * fix various compilation warnings all over the code
+  * diag_msg: Don't replace second character of every msg with 'p'
+
+-------------------------------------------------------------------
+Sun Jan 01 19:32:21 UTC 2017 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1483296710.3b144a2:
+  * fix typos
+  * WIP: gsmtap
+  * fix DIAG timestamp conversion routines + add comments
+  * fixup dpl
+  * restructuring: Introduce _transceive_ functions for Tx-then-Rx
+  * add ability to hexdump all received and transmitted messages
+  * diag_msgc: Parse responses
+  * remove Tx/Rx debugging from diag_io.c
+  * diag_log: rough verification if response matches request
+  * diag_msg: Include subsys_id in printed message
+  * diag_msg: endian fixes
+  * fixup dpl
+  * don't use magic numbers if we have #defines
+  * register diag_msg via the diag_cmd dispatch table
+  * add printing of DIAG_QSR_EXT_MSG_TERSE_F
+  * diag_cmd: Print error messages for bad {command, length, parameter}
+  * diag_push_subsys_hdr(): subsystem code is 16bits
+  * DPL: add parsing of results from modem
+
+-------------------------------------------------------------------
+Wed Dec 28 14:58:03 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1482934358.af23515:
+  * Fix no-return-in-nonvoid-functions in osmo-qcdiag-log.c
+  * Fix typos
+- removed patches (fixed upstream):
+  - 0001-Fix-no-return-in-nonvoid-functions-in-osmo-qcdiag-lo.patch
+  - 0002-Fix-typos.patch
+
+-------------------------------------------------------------------
+Wed Dec 28 13:20:00 UTC 2016 - mardnh@gmx.de
+
+- initial package
+

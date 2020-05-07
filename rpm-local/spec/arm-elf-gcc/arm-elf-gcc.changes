@@ -1,0 +1,17 @@
+-------------------------------------------------------------------
+Sun Oct 13 20:55:28 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Adjust patch "fix-gcc9-build.patch" to make it work with gcc9.2
+
+-------------------------------------------------------------------
+Thu Jun 20 19:46:15 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Add patch:
+  * fix-gcc9-build.patch
+    https://gcc.gnu.org/bugzilla/show_bug.cgi?id=90677
+
+-------------------------------------------------------------------
+Fri Aug 30 07:36:45 UTC 2013 - mardnh@gmx.de
+
+- Initial package
+

@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/osmo-sysmon</param>
+              <param name="changesrevision">8984bea4619a4d23fc87558042ab96485d520fea</param></service></servicedata>

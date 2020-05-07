@@ -1,0 +1,127 @@
+-------------------------------------------------------------------
+Sun Apr 19 20:05:02 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.3.0.10:
+  * GSUP: fix E-Routing-Error: both session state / ID IEs are optional
+
+-------------------------------------------------------------------
+Fri Apr 17 20:04:57 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.3.0.9:
+  * port_numbers: fix: GSMTAP has noting to do with port 2427/udp
+  * logging: fix section 6.5.3: logging level s/all/force-all/ fatal
+
+-------------------------------------------------------------------
+Sun Mar 22 21:04:53 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.3.0.7:
+  * add common/chapters/cs7-config
+
+-------------------------------------------------------------------
+Sun Mar 08 21:03:59 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.3.0.6:
+  * port_numbers: Add missing mDNS port for D-GSM / osmo-hlr
+  * port_numbers: Add osmo-mgw CTRL port
+
+-------------------------------------------------------------------
+Mon Feb 10 21:09:18 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.3.0.4:
+  * fixup: ensure existence of $(abs_srcdir)
+
+-------------------------------------------------------------------
+Fri Jan 31 21:24:48 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.3.0.3:
+  * fix srcdir to reflect $abs_srcdir
+
+-------------------------------------------------------------------
+Thu Jan 09 21:10:59 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.3.0.2:
+  * bts.adoc: Add information about RACH tuning parameters
+
+-------------------------------------------------------------------
+Mon Jan 06 21:09:55 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.3.0.1:
+  * bts: Document access control classes and acc ramping
+
+-------------------------------------------------------------------
+Fri Jan 03 21:12:42 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.3.0.0:
+  * Bump version: 0.2.0.18-258b → 0.3.0
+  * chapters/gsup.adoc: fix message definitions containing gsup-ie-pdpinfo
+  * chapters/gsup.adoc: further documentation for SM-RP-DA/OA IE coding
+
+-------------------------------------------------------------------
+Fri Dec 27 21:07:50 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.0.16:
+  * Add GPRS
+
+-------------------------------------------------------------------
+Mon Dec  9 20:51:15 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Drop patch:
+  * adjust-check-bin-nwdiag.patch (integrated upstream)
+
+-------------------------------------------------------------------
+Mon Dec 09 20:15:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.0.15:
+  * D-GSM biblio entries
+  * debian/check-depends.sh: add inkscape to depends
+
+-------------------------------------------------------------------
+Fri Dec 06 21:16:48 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.0.13:
+  * Drop python2 and pychart dependencies
+
+-------------------------------------------------------------------
+Tue Dec 03 21:04:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.0.12:
+  * tests: add second VTY reference
+  * Support multiple VTY reference manuals
+
+-------------------------------------------------------------------
+Mon Dec 02 21:09:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.0.10:
+  * Cosmetic: fix Makefile.vty.reference.inc example
+
+-------------------------------------------------------------------
+Sun Dec 01 21:14:19 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.0.9:
+  * gsup: Fix description of Purge MS procedure
+
+-------------------------------------------------------------------
+Fri Nov 22 21:21:59 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.0.8:
+  * trx_if.adoc: Fix typo and formatting of bullet list
+  * Fix python-nwdiag dependency on new debian distros
+
+-------------------------------------------------------------------
+Wed Nov 20 21:12:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.0.6:
+  * some more missing items from glossary.
+  * missing glossary items; mostly MSC/3G related
+  * typo / stylistic fixes by Tom Tessier
+
+-------------------------------------------------------------------
+Tue Nov 12 21:11:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.2.0.3:
+  * Fix some typos
+
+-------------------------------------------------------------------
+Sun Nov 10 15:21:17 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Initial package, version 0.2.0.2

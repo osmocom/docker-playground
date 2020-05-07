@@ -1,0 +1,84 @@
+-------------------------------------------------------------------
+Tue Dec 17 21:06:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1576583006.4a7a208:
+  * update version to 0.2.0 to mark python2 deprecation
+
+-------------------------------------------------------------------
+Thu Dec 12 21:07:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1576063720.934caf1:
+  * Drop python2 support (again)
+
+-------------------------------------------------------------------
+Fri Dec 06 21:16:58 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1575644798.b0ba927:
+  * Revert "Drop python2 support"
+  * Drop python2 support
+
+-------------------------------------------------------------------
+Thu Nov 14 19:49:02 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1572496351.fb4b813:
+  * osmo_interact_vty.py: fix py3 encoding bug
+  * vty.py: Fix endl removed when pkt buffer content ends exactly on a newline char
+  * tweak README
+  * osmo_trap2cgi.py: Don't recurse in ctrl_client()
+  * osmo-trap2cgi: Remove invalid specifier for /etc
+  * deb: fix wrong changelog date
+  * osmo-trap2cgi: Fix script installation and dependencies
+  * Add initial version of asyncio trap2cgi script
+  * ctrl2cgi: update shared helper
+  * Mark soap.py as deprecated
+  * ctrl2cgi: update default parameters in config
+  * ctrl2cgi: explicitly ignore unrelated TRAPs
+  * ctrl2cgi: update comments
+  * ctrl2cgi: account wait and http times separately
+  * scripts/*.py: mark as executable
+  * twisted: remove low-level logging in dispatchers
+  * Trap handlers: adjust http error log
+  * ctrl2cgi: make http request timeout configurable
+  * ctrl2cgi: log request time
+  * Trap handlers: log request/reply as info level
+  * Trap handlers: propagate expected BSC id to command processor
+  * ctrl2cgi: add config file example
+  * ctrl2cgi: properly limit number of requests
+  * ctrl2cgi: fix broken config override
+  * Trap handlers: always log to stdout
+  * Improve code style
+  * Move command processing into shared function
+  * Drop unused Trap() class
+  * ctrl2cgi: fix deferred callbacks
+  * osmo_ctrl.py: properly ignore out-of-order traps
+  * ctrl: add function to skip TRAP messages
+  * ctrl: cosmetic cleanup
+  * Move Trap class back to separate files
+  * Update trap helper
+  * Re-apply changes to trap_helper.py
+  * Move common Trap-related code into separate file
+  * osmo_ipa: update split_combined docs
+  * osmo_ipa: add extended checks
+  * ctrl: introduce constant for TRAP id
+  * ctrl2cgi: remove unused function
+  * ctrl2cgi: explicitly ignore arguments to lambda function
+  * ctrl2cgi: log traps via debug facility
+  * ctrl2cgi.py: log address on errors
+  * make osmpy IPA code aware of RSPRO
+  * osmo-ctrl2cgi.service: Fix exec path not absolute
+  * osmo_interact/common: ignore trailing empty lines in received results
+  * osmo_interact/vty.py: fix parsing of vty logging
+  * ctrl2cgi: Add systemd service file and install with debian
+  * debian: Add python module deps for python3-osmopy-utils
+  * Introduce script ctrl2cgi.py
+
+-------------------------------------------------------------------
+Wed Jul 11 20:31:02 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1531310728.8739f9c:
+  * Move twisted_ipa.py to osmopy lib
+
+-------------------------------------------------------------------
+Tue Jun 26 18:46:03 UTC 2018 - mardnh@gmx.de
+
+- Initial package

@@ -1,0 +1,380 @@
+-------------------------------------------------------------------
+Fri Jan 03 21:06:24 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.4.0.0:
+  * Bump version: 1.3.1 → 1.4.0
+
+-------------------------------------------------------------------
+Tue Dec 17 21:02:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.8:
+  * logging from sofia: add missing newline
+
+-------------------------------------------------------------------
+Thu Dec 12 21:04:45 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.7:
+  * osmoappdesc.py: switch to python 3
+
+-------------------------------------------------------------------
+Thu Nov 28 21:12:53 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.6:
+  * MNCC v6: add optional SDP to the socket protocol
+  * mncc.c: fix gsm_mncc_rtp size checks
+
+-------------------------------------------------------------------
+Sat Nov 23 21:05:13 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.4:
+  * exit if the sip agent failed to start
+
+-------------------------------------------------------------------
+Mon Sep 16 20:03:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.3:
+  * .service: require to ran after network-online.target
+
+-------------------------------------------------------------------
+Tue Sep 03 20:04:55 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.2:
+  * mncc: check fd before closing a connection
+
+-------------------------------------------------------------------
+Sat Aug 10 20:04:56 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.1:
+  * coverity: Address issue found by coverity
+
+-------------------------------------------------------------------
+Thu Aug 08 21:56:13 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.0:
+  * Bump version: 1.2.0.25-ff8a → 1.3.0
+  * Require newer libosmocore 1.0.0
+  * In hold/retrieve/reinvite, add check that other_leg exists
+  * Logging: Make use of Levels, clarify some messages
+  * Handle case where SIP side hangsup while MNCC is on hold
+  * Cosmetic: Logging and Comments, spelling and clarity changes
+  * Define hold/retrieve functions for MO calls
+  * Fix bug with MO calls not connecting.
+  * inet_ntoa() is deprecated, use inet_ntop() instead
+  * Following from previous commit, assume other->ip is network byte order
+  * IPs stored in the call struct are NETWORK byte order
+  * Remove undefined param passed to {logging,osmo_stats}_vty_add_cmds
+  * Only send update to MNCC if media info changed.
+  * Add support for MNCC HOLD/RETRIEVE
+  * Prepare to support MO Call HOLD
+  * Handle SIP re-INVITEs
+  * Add media mode parameter to sdp_create_file()
+
+-------------------------------------------------------------------
+Thu Jul 11 20:12:51 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.9:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Fri May 31 20:02:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.8:
+  * debian: create -doc subpackage with pdf manuals
+  * Cosmetic: debian: build-depends in multiple lines
+
+-------------------------------------------------------------------
+Tue Apr 30 20:03:38 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.6:
+  * Properly indent config file
+
+-------------------------------------------------------------------
+Sun Apr 21 20:02:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.5:
+  * MNCC: Do not continue with B leg if A leg is cancelled.
+
+-------------------------------------------------------------------
+Fri Apr 19 20:02:13 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.4:
+  * Added daemonize feature to osmo-sip-connector
+
+-------------------------------------------------------------------
+Tue Mar 19 21:02:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.3:
+  * Support Emergency Calling
+
+-------------------------------------------------------------------
+Fri Feb 15 21:02:13 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.2:
+  * cosmetic: use OSMO_STRLCPY_ARRAY() instead of osmo_strlcpy()
+  * Support International Caller ID
+
+-------------------------------------------------------------------
+Mon Jan 21 21:01:56 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.0:
+  * Bump version: 1.1.0 → 1.2.0
+
+-------------------------------------------------------------------
+Thu Dec 13 21:01:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.36:
+  * contrib: fix makedistcheck with disabled systemd
+
+-------------------------------------------------------------------
+Wed Dec 05 21:01:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.35:
+  * contrib/jenkins.sh: build and publish manuals
+
+-------------------------------------------------------------------
+Tue Dec 04 21:02:04 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.34:
+  * Fix DISTCHECK_CONFIGURE_FLAGS override
+
+-------------------------------------------------------------------
+Tue Nov 27 21:01:53 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.33:
+  * build manuals moved here from osmo-gsm-manuals.git
+  * sip-connector: update vty reference
+  * running: Add note about DTMF support
+  * osmo-sip-connector: Explicitly note OsmoMSC config with external MNCC
+  * OsmoSIPConnector: fix: avoid OsmoMGW/OsmoSIPcon confusion
+  * Add manual for OsmoSIPConnector
+  * Add VTY reference for osmo-sip-connector
+
+-------------------------------------------------------------------
+Mon Nov 12 21:01:55 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.24:
+  * Allow GSM340_PLAN_UNKNOWN on MNCC originated leg.
+
+-------------------------------------------------------------------
+Tue Nov 06 21:02:14 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.23:
+  * configure.ac: add --enable-sanitize
+
+-------------------------------------------------------------------
+Sun Oct 21 17:24:36 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.22:
+  * Add --version cmdline option
+
+-------------------------------------------------------------------
+Mon Oct 08 20:01:45 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.21:
+  * vty: make 'show calls summary' more userfriendly
+
+-------------------------------------------------------------------
+Fri Oct 05 20:01:49 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.20:
+  * Fix mncc socket name
+  * cosmetic: call.h: spaces -> tabs for consistency
+
+-------------------------------------------------------------------
+Wed Oct 03 20:01:47 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.18:
+  * Logging: Further use of osmo_mncc_name() in logging
+
+-------------------------------------------------------------------
+Fri Sep 21 20:01:51 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.17:
+  * Fix typo in -h: s/hekp/help
+
+-------------------------------------------------------------------
+Thu Sep 13 20:02:01 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.16:
+  * Install sample cfg file to /etc/osmocom
+  * Install systemd services with autotools
+
+-------------------------------------------------------------------
+Thu Sep 06 20:01:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.14:
+  * debian: Use osmo-sip-connector.service from contrib
+
+-------------------------------------------------------------------
+Tue Sep 04 20:01:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.13:
+  * Log using GSM48 Cause Value strings
+  * Cosmetic: correct spelling error in logging
+  * Logging: Add debug logging for status/causes
+
+-------------------------------------------------------------------
+Mon Sep 03 20:01:48 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.10:
+  * jenkins.sh: Use --enable-werror option
+  * configure.ac: Introduce --enable-werror option
+  * mncc: Fix missing conditional clause
+
+-------------------------------------------------------------------
+Sun Sep 02 20:01:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.7:
+  * Implement Cause Mapping
+
+-------------------------------------------------------------------
+Fri Aug 31 20:01:45 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.6:
+  * Add SIP <-> MNCC Cause Map
+
+-------------------------------------------------------------------
+Wed Aug 29 20:01:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.5:
+  * Use htonl, not ntohl before inet_ntoa()
+  * Logging: Log RTP IP in dotted quad format.
+
+-------------------------------------------------------------------
+Mon Aug 06 20:02:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.3:
+  * debian/rules: Don't overwrite .tarball-version
+
+-------------------------------------------------------------------
+Mon May 28 20:01:59 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.2:
+  * Add Cause to DISCONNECT and RELEASE Requests
+
+-------------------------------------------------------------------
+Fri May 25 20:02:00 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.1:
+  * Logging: Log mncc_names in mncc_data()
+
+-------------------------------------------------------------------
+Sun May 06 20:02:01 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.1.0:
+  * Bump version: 1.1.0.11-11a0-dirty → 1.1.1
+
+-------------------------------------------------------------------
+Mon Apr 16 20:02:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.11:
+  * sip: Register log callback function with sofia-sip
+  * use osmo_init_logging2() to avoid allocating from NULL context
+
+-------------------------------------------------------------------
+Sun Apr  8 18:02:35 UTC 2018 - mardnh@gmx.de
+
+- Run tests
+
+-------------------------------------------------------------------
+Sat Apr 07 18:52:32 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.9:
+  * comments
+  * mncc: use 'const' to denote read-only input buffer/message
+  * Call the program "OsmoSIPcon" (also in vty)
+  * osmoappdesc: Fix VTY prompt to use OsmoSIPcon, not old OsmoMNCC
+
+-------------------------------------------------------------------
+Wed Mar 14 21:29:32 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.5:
+  * vty: install default commands for SIP,MNCC,APP_NODE
+  * jenkins: use osmo-clean-workspace.sh before and after build
+  * Fix git-version-gen
+  * configure.ac: Depend on latest upstream libosmo-*
+  * Tag/Release Version 1.1.0
+  * vty: skip installing cmds now always installed by default
+  * mncc.c: Ensure proper string buffer NUL termination
+  * debian/control: Fix URLs for homepage / git
+  * contrib: Add systemd service file
+  * contrib: jenkins.sh: Disable doxygen in libosmocore build
+
+-------------------------------------------------------------------
+Fri Feb 16 17:41:20 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapstho 1.1.0.4
+- Use use systemd service file from contrib/systemd/
+
+-------------------------------------------------------------------
+Sat Feb 10 16:11:51 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapstho 1.1.0.3
+
+-------------------------------------------------------------------
+Wed Jan 24 13:15:22 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapstho 1.1.0.2
+
+-------------------------------------------------------------------
+Fri Dec 29 12:18:40 UTC 2017 - jengelh@inai.de
+
+- %service_* already takes care of restart/removal
+
+-------------------------------------------------------------------
+Wed Dec 27 22:16:48 UTC 2017 - mardnh@gmx.de
+
+- Minor specfile cleanup
+
+-------------------------------------------------------------------
+Wed Dec 27 20:23:22 UTC 2017 - mardnh@gmx.de
+
+- Update to new upstream release 1.1.0
+  * No changelog was provided
+
+-------------------------------------------------------------------
+Wed Feb 15 09:20:08 UTC 2017 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1486793192.42b073a:
+  * sip: Treat SIP 183 as progress too
+  * evpoll: Use {} in the middle of the if/else if/else block
+  * evpoll: Always initialize revents for the output
+  * evpoll: Don't try to be more smart than g_poll
+
+-------------------------------------------------------------------
+Sun Dec 25 21:08:05 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1475798073.fffc742:
+  * build: be robust against install-sh files above the root dir
+  * configure: check for pkg-config presence
+  * jenkins.sh: use osmo-build-dep.sh, log test failures
+
+-------------------------------------------------------------------
+Sun Oct 02 09:27:30 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1474923387.c403ed6:
+  * app/mncc: Add "use-imsi" to allow calling by IMSI
+  * mncc: Only copy 15 chars to leave the last one as NULL
+  * mncc: Have all release go through a local method
+  * mncc: Reject hold requests for now
+  * mncc: Use snprintf correctly create format specifier
+  * vty: Add simple VTY output for current calls
+  * vty: Fix the number of documented arguments
+  * sip/call/mncc: Move source/dest into the call structure
+  * vty: Add extended show calls command with all information
+  * mncc: Use strcpy for these routines and not memcpy
+  * vty: Add VTY command about the state of the mncc connection
+  * jenkins: Add first CI script for the SIP connector
+  * distcheck/tests: Add the referenced osmoappdesc.py for testing
+  * distcheck: Package the logging.h file as well
+  * jenkins: Try to enable the vty tests as well
+  * jenkins: Use separate check invocation tor un the tests
+  * jenkins: Make it find the libosmocore library as well
+  * sip: Start the application even if sofia-sip is broken
+  * log VTY telnet bind only once
+
+-------------------------------------------------------------------
+Thu Mar 31 18:36:18 UTC 2016 - mardnh@gmx.de
+
+- initial package
+

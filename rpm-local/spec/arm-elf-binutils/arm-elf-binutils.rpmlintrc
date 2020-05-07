@@ -1,0 +1,2 @@
+addFilter("suse-filelist-forbidden-opt")
+addFilter("devel-file-in-non-devel-package")

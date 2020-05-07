@@ -1,0 +1,22 @@
+From 31ae86b8f008cb54dbf2a07e8f94a3eb65abff21 Mon Sep 17 00:00:00 2001
+From: Martin Hauke <mardnh@gmx.de>
+Date: Wed, 4 Jan 2017 22:50:11 +0100
+Subject: [PATCH] build: obey CFLAGS
+
+---
+ src/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/Makefile b/src/Makefile
+index 3e5e0af..337991c 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -1,4 +1,4 @@
+-CFLAGS=-Wall -Werror
++CFLAGS+=-Wall -Werror
+ 
+ all: dct3-gsmtap
+ 
+-- 
+2.6.6
+

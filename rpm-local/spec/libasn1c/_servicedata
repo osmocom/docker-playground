@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/libasn1c</param>
+              <param name="changesrevision">19205a38c34175f4fb4d1d06e77f1d3e4a39c651</param></service></servicedata>

@@ -1,0 +1,245 @@
+-------------------------------------------------------------------
+Fri Jan 03 21:05:52 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.1.2.0:
+  * Bump version: 0.1.1.4-7aa6 → 0.1.2
+
+-------------------------------------------------------------------
+Thu Dec 12 21:04:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.1.1.4:
+  * osmoappdesc.py: switch to python 3
+
+-------------------------------------------------------------------
+Tue Dec 10 21:06:29 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.1.1.3:
+  * Cosmetic: README.md: document how to run tests
+  * osmoappdesc.py: fix paths to configs
+  * Cosmetic: README.md: fix typo
+
+-------------------------------------------------------------------
+Thu Aug 08 21:55:56 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.1.1.0:
+  * Bump version: 0.1.0.2-ce06 → 0.1.1
+  * Require libosmocore 0.11.0
+  * Remove undefined param passed to {logging,osmo_stats}_vty_add_cmds
+
+-------------------------------------------------------------------
+Thu Jul 18 20:06:02 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.1.0.0:
+  * Bump version: 0.0.11 → 0.1.0
+
+-------------------------------------------------------------------
+Tue Jul 16 20:02:59 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.11.39:
+  * debian/changelog: Mark 0.0.11 as released
+
+-------------------------------------------------------------------
+Thu Jul 11 20:12:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.11.38:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Fri Jul 05 20:04:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.11.37:
+  * gitignore: fix application names
+
+-------------------------------------------------------------------
+Thu Jul 04 20:10:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.6.99:
+  * tests/Makefile.am: Fix "./configure && make clean && make"
+
+-------------------------------------------------------------------
+Sun Jan 27 21:01:34 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.6.98:
+  * Fix compiler warning about deprecated _BSD_SOURCE
+  * change binary builds URL to network:osmocom as that's more maintained
+
+-------------------------------------------------------------------
+Thu Dec 13 21:01:37 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.6.96:
+  * contrib: fix makedistcheck with disabled systemd
+
+-------------------------------------------------------------------
+Tue Dec 04 21:01:49 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.6.95:
+  * Fix DISTCHECK_CONFIGURE_FLAGS override
+
+-------------------------------------------------------------------
+Fri Nov 02 10:38:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.6.94:
+  * debian: Install osmo_pcap_clean_old in osmo-pcap-server pkg
+  * gitignore: Add compile
+  * Install cfg files with autotools
+  * Install systemd services with autotools
+  * debian: Clean up to look like other osmocom projects
+  * contrib/jenkins.sh: Update to current osmocom infra
+
+-------------------------------------------------------------------
+Tue Oct 09 20:01:36 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.6.88:
+  * server: Add pcap snaplen VTY cmd
+  * server: Improve verification of messages from client
+  * client_send_link: snaplen not needed during allocation
+  * client: Add pcap snaplen VTY cmd
+  * client: Set snaplen to MAXIMUM_SNAPLEN
+
+-------------------------------------------------------------------
+Mon Oct 08 20:01:33 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.6.83:
+  * Use enum for PKT_LINK_*
+  * Replace '.' in counter names with ':'
+  * jenkins.sh: enable werror and sanitize configure flags
+  * configure.ac: Add --enable-sanitize flag
+  * configure.ac: Add --enable-werror flag
+  * osmo_client_send_data: Fix wrong log format
+  * Drop osmo_init_logging and use osmo_init_logging2
+  * server: Properly name main talloc ctx
+  * client: Properly name main talloc ctx
+  * vty: skip installing cmds now always installed by default
+  * cosmetic: client: rename forward_packet function
+
+-------------------------------------------------------------------
+Sun Apr  8 17:59:49 UTC 2018 - mardnh@gmx.de
+
+- Run tests
+
+-------------------------------------------------------------------
+Wed Mar 14 21:28:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.6.72:
+  * debian: Add -dbg packages for the osmo-pcap-client and osmo-pcap-server
+  * sock_src_init(): Don't freeaddrinfo() undefined src_result
+  * Use TCP port numbers for VTY that don't overlap with other Osmocom Software
+  * Rename osmo_pcap_{client_server} executables to osmo-pcap-{client,server}
+  * Use libosmocore osmo_sock_init2() instead of local implementation
+  * client: Move to osmo_sock_init2_ofd()
+  * Add gitreview config
+  * Use release helper from libosmocore
+  * Add support for generating IPIP to osmo-pcap-client
+  * debian/control: Fix URLs for homepage, git, gitweb
+
+-------------------------------------------------------------------
+Sat Feb 10 16:15:14 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.0.6.72
+
+-------------------------------------------------------------------
+Wed Jan 24 13:12:02 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.0.6.70
+
+-------------------------------------------------------------------
+Thu Dec 28 10:11:24 UTC 2017 - mardnh@gmx.de
+
+- Update to new upstream release 0.0.6
+  * No changelog was provided
+
+-------------------------------------------------------------------
+Sat Apr 22 14:43:34 UTC 2017 - mardnh@gmx.de
+
+- Update to version 0.0.6.git1488925061.4776b29:
+  * jenkins: Add the build script from jenkins here
+  * distcheck: Need to package .version on Ubuntu as well
+  * jenkins: Attempt to fix build on FreeBSD and not break Linux
+  * freebsd: Include netinet/in.h and hopefully fix the build
+  * freebsd: Another fix for the next file
+  * jenkins: Attempt to fix FreeBSD distcheck
+  * todo: Update with my long term goal to have TLS support
+  * todo: Add another of my wishlist items
+  * ci: Add travis.yml for the github account
+  * server: Add a config knob to not store the pcap stream
+  * server: Add zmq interface for publishing events
+  * server: Add zmq based event and data interface to the server
+  * todo: With zeromq we can stream the data anywhere we want
+  * misc: Update the todo with an obvious thing to do
+  * vty: Fix compiler warning about type changes
+  * misc: Address compiler warning about deprecated header
+  * stats: Initialize the stats(d) backend in the client/server
+  * client: Fail to start if it can't bind the telnet interface
+  * server: Fail if the telnet interface can not be bound
+  * client: First round of statistics in the pcap client
+  * client: Additional counters for the statistics
+  * server: Add global and per client counters and begin to count
+  * client: Use pcap_stats and export them as statistics
+  * tests: Enable the vty tests for the osmo-pcap as well
+  * tls: Add initial ideas about TLS in the client/server
+  * client: Add API function to close and re-connect network connection
+  * client: Initial support for TLS in the client
+  * server: Update copyright after zmq changes
+  * server: Move to a write_queue for the conn socket
+  * server: Add API function to close a connection
+  * server: Re-factor the read dispatch and connection close
+  * server: Introduce tls mode for the server
+  * server: Allow to enable tls for the pcap server
+  * server: Add vty interface for the TLS configuration
+  * doc: Add initial documentation for the tls support
+  * test: Add tls config file and enable tls a bit
+  * client: Prepare to have multiple server connections
+  * client: Finish renaming client to conn in other places of the code
+  * client: Prepare to work with a list of servers
+  * client: Enable a non-blocking connect to the PCAP server
+  * client: Allow to configure and connect multiple servers
+  * client: Do not connect default connection if no ip/port present
+  * client: Allow to stop and remove a connection
+  * client: disconnect before connecting the connection
+  * client: Tolerate an invalid pcap_handle
+  * debian: Make a new release with the new features we gained
+  * client: Allow to bind to a specific source_ip
+  * debian: Make a new release with the new feature
+  * debian: Add -dbg packages for the osmo-pcap-client and osmo-pcap-server
+
+-------------------------------------------------------------------
+Sat Feb 20 22:20:47 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.0.6.git1453123519.3fedbf8:
+  + misc: Add a readme to describe the project purpose a bit
+  + misc: Update the readme
+  + Point to a stand-a-lone repository with many many packages
+  + Mention the packages available
+
+-------------------------------------------------------------------
+Sat Dec 26 23:00:43 UTC 2015 - mardnh@gmx.de
+
+- Update to version 0.0.6.git1449177446.c016b5d:
+  + gprs: Do not collect BVC FLOW CONTROL / ACK messages
+  + debian: Make a new release of the code
+  + server: Fix the language and refer to the received data length
+  + server: Deal with jumbo frames on the wire
+  + client: Allow receiving jumbo frames on the client as well
+  + debian: Make a new release
+  + client: Deal with external representation for pcap files
+  + Make a new release with 64bit client fixes
+
+-------------------------------------------------------------------
+Mon Sep 21 07:38:33 UTC 2015 - mardnh@gmx.de
+
+- Update to version 0.0.6.git1441897900.f42bbbc:
+  + gprs: Add a custom GPRS filter
+  + gprs: Remove left over for counting llc frames
+  + debian: Prepare a new release
+
+-------------------------------------------------------------------
+Mon Dec 22 21:41:20 UTC 2014 - mardnh@gmx.de
+
+- Update to version 0.0.4.git1419284011.07d96eb:
+  + build: Replace deprecated INCLUDES with AM_CPPFLAGS
+
+-------------------------------------------------------------------
+Sun Dec 21 22:15:38 UTC 2014 - mardnh@gmx.de
+
+- initial package, version 0.0.4.git1365611892.4edd6e6
+

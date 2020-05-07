@@ -1,0 +1,13 @@
+diff --git a/src/target/firmware/Makefile b/src/target/firmware/Makefile
+index 42f7ad4..b816061 100644
+--- a/src/target/firmware/Makefile
++++ b/src/target/firmware/Makefile
+@@ -127,7 +127,7 @@ INCLUDES=-Iinclude/ -I../../../include -I../../shared/libosmocore/include
+ #
+ 
+ # Uncomment this line if you want to enable Tx (Transmit) Support.
+-#CFLAGS += -DCONFIG_TX_ENABLE
++CFLAGS += -DCONFIG_TX_ENABLE
+ 
+ # Uncomment this line if you want to write to flash.
+ #CFLAGS += -DCONFIG_FLASH_WRITE

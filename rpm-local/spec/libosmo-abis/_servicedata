@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/libosmo-abis</param>
+              <param name="changesrevision">73a73c0381beebef3e2a7d88fd612383dfb2bf44</param></service></servicedata>

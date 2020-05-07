@@ -1,0 +1,366 @@
+-------------------------------------------------------------------
+Mon Apr 20 20:01:17 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.6.0.13:
+  * Fix compilation with gcc-10
+
+-------------------------------------------------------------------
+Tue Apr 14 20:01:17 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.6.0.12:
+  * hnbgw: do not use LOGL_DEBUG as default loglevel
+  * configure.ac: fix libtool issue  with clang and sanitizer
+
+-------------------------------------------------------------------
+Wed Apr 08 20:01:27 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.6.0.10:
+  * tests/test-ranap: cosmetic: remove unused variable 'rc'
+  * tests/test-helpers: fix endianness: do not print uint32_t as raw bytes
+  * tests/test-helpers: fix some -Wpointer-sign warnings reported by GCC
+
+-------------------------------------------------------------------
+Wed Apr 01 20:01:17 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.6.0.7:
+  * manual: link to new common cs7-config.adoc
+  * manual: add "Configuring Primary Links" and "Multiple instances"
+
+-------------------------------------------------------------------
+Sat Mar 21 21:01:32 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.6.0.5:
+  * hnbgw_vty.c: Drop unusued variables
+  * Fix compiler warning on signedness of char ptr using OCTET_STRING_fromBuf()
+  * tests/test-ranap.c: Fix wrong printf format
+  * tests/hnb-test-ranap.c: Fix wrong printf format
+
+-------------------------------------------------------------------
+Sun Feb 16 09:39:53 UTC 2020 - Martin Hauke <mardnh@gmx.de>
+
+- Update to version 0.6.0.1:
+  * tests: Missing return statement
+
+-------------------------------------------------------------------
+Fri Jan 03 21:02:55 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.6.0.0:
+  * Bump version: 0.5.0.23-11a1 → 0.6.0
+  * debian: Split libosmo-sabp from libosmo-ranap package
+  * debian/rules: Fix dbg pacakges
+
+-------------------------------------------------------------------
+Wed Jan 01 21:02:41 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.5.0.23:
+  * osmo-hnbgw: make sure osmo_ss7_init() executed successfully
+
+-------------------------------------------------------------------
+Thu Dec 12 21:01:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.22:
+  * debian, asn1tostruct.py: switch to python3
+
+-------------------------------------------------------------------
+Wed Dec 11 21:02:56 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.21:
+  * gitignore: add gen_sabp.stamp
+
+-------------------------------------------------------------------
+Wed Dec 04 21:01:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.20:
+  * exit(2) on unsupported positional arguments on command line
+
+-------------------------------------------------------------------
+Sun Dec 01 21:02:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.19:
+  * Initial minimal OsmoHNBGW user manual
+
+-------------------------------------------------------------------
+Tue Oct 08 20:03:53 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.18:
+  * iu_client: ranap_iu_tx_release() change default cause code to Success
+
+-------------------------------------------------------------------
+Fri Oct 04 20:00:57 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.17:
+  * iu_client: pass return value of osmo_sccp_user_sap_down() towards the caller
+
+-------------------------------------------------------------------
+Thu Sep 26 20:01:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.16:
+  * sabp: Generate C/H files for SABP; create libosmo-sabp
+  * sabp: Add Procedure Codes and IEI constants to CommonDataTypes
+  * sabp: fixup SABP ASN.1 to avoid IOC (which are not supported by our toolchain)
+  * sabp: Initial import of SABP ASN.1 from 3GPP TS 25.419 V11.1.0 (2013-03)
+
+-------------------------------------------------------------------
+Sat Sep 21 20:00:49 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.12:
+  * asn1enum.pl: Make compatible with modern perl
+
+-------------------------------------------------------------------
+Fri Sep 20 20:01:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.11:
+  * hnbgw: Add libosmoctrl's VTY CTRL command initialization
+
+-------------------------------------------------------------------
+Mon Sep 16 20:01:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.10:
+  * iu_client: introduce UE field free_on_release
+  * iu_client: introduce ranap_iu_tx_release_free()
+
+-------------------------------------------------------------------
+Sun Sep 15 20:00:53 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.8:
+  * iu_client: allow to control the notifications
+
+-------------------------------------------------------------------
+Fri Sep 13 20:00:52 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.7:
+  * iu_client: introduce a guard around global_iu_event_cb
+
+-------------------------------------------------------------------
+Thu Sep 05 20:01:04 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.6:
+  * iu_client: emit RANAP_IU_EVENT_LINK_INVALIDATED on SCCP disconnect indication
+  * iu_client: introduce ranap_iu_free_ue() to free the UE connections
+  * iu_client: sccp_sap_up: don't decode empty disconnect indications
+
+-------------------------------------------------------------------
+Tue Sep 03 20:01:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.3:
+  * iu_client: ensure UE is not NULL on CO primitives
+  * iu_client: sccp_sap_up: set rc early
+
+-------------------------------------------------------------------
+Fri Aug 23 20:02:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.1:
+  * hnbgw_vty.c: fix: properly pass pointer to g_hnb_gw
+
+-------------------------------------------------------------------
+Thu Aug 08 21:54:56 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.0.0:
+  * Bump version: 0.4.0.14-92ea-dirty → 0.5.0
+  * Remove undefined param passed to {logging,osmo_stats}_vty_add_cmds
+  * jenkins: Enable manual publishing and building
+  * Add VTY reference manual
+
+-------------------------------------------------------------------
+Thu Jul 18 20:03:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.4.0.11:
+  * osmo-hnbgw.cfg: set local-ip to 0.0.0.0
+
+-------------------------------------------------------------------
+Wed Jul 17 19:02:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.4.0.10:
+  * spelling stuff found by lintian
+
+-------------------------------------------------------------------
+Thu Jul 11 20:07:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.4.0.9:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Mon Apr 22 20:01:11 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.4.0.8:
+  * ranap_msg_factory: Fix criticality of PDUs
+  * iu_client: Implement transmission of ResetAcknowledge
+
+-------------------------------------------------------------------
+Tue Mar 19 21:01:11 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.4.0.6:
+  * tests: use -no-install libtool flag to avoid ./lt-* scripts
+
+-------------------------------------------------------------------
+Fri Mar 08 21:01:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.4.0.5:
+  * osmo-hnbgw: reply with RESET ACK when receiving a RESET
+  * osmo-hnbgw: logging tweaks
+
+-------------------------------------------------------------------
+Wed Mar 06 21:01:19 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.4.0.3:
+  * osmo-hnbgw: set a proper talloc ctx for logging
+  * osmo-hnbgw: fix cmdline: do not force-disable colored logging
+
+-------------------------------------------------------------------
+Fri Jan 25 21:00:58 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.4.0.1:
+  * ranap_msg_factory.h: fix enum def within function signature
+
+-------------------------------------------------------------------
+Mon Jan 21 21:00:54 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.4.0.0:
+  * Bump version: 0.3.0.10-9e66-dirty → 0.4.0
+
+-------------------------------------------------------------------
+Thu Dec 06 21:00:56 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.3.0.13:
+  * contrib: fix makedistcheck with disabled systemd
+
+-------------------------------------------------------------------
+Tue Dec 04 21:00:56 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.3.0.12:
+  * Fix DISTCHECK_CONFIGURE_FLAGS override
+
+-------------------------------------------------------------------
+Thu Nov 01 21:01:00 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.3.0.11:
+  * add a VTY command which shows a specific HNB
+
+-------------------------------------------------------------------
+Sun Oct 21 17:23:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.3.0.10:
+  * hnbgw_tx_hnb_register_rej(): Missing return statement
+
+-------------------------------------------------------------------
+Mon Oct 01 18:09:03 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.3.0.9:
+  * fix transport layer addr again, for nano3g
+
+-------------------------------------------------------------------
+Thu Sep 27 20:01:01 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.3.0.8:
+  * hnbgw: vty: add SCCP related vty commands
+
+-------------------------------------------------------------------
+Thu Sep 13 20:00:58 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.3.0.7:
+  * Install sample cfg file to /etc/osmocom
+  * Install systemd services with autotools
+
+-------------------------------------------------------------------
+Thu Sep 06 20:00:54 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.3.0.5:
+  * debian: package osmo-hnbgw.service
+
+-------------------------------------------------------------------
+Tue Aug 21 20:01:00 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.3.0.4:
+  * fix decoding of incoming X.213 NSAP addr
+
+-------------------------------------------------------------------
+Mon Aug 06 20:01:01 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.3.0.3:
+  * debian/rules: Don't overwrite .tarball-version
+
+-------------------------------------------------------------------
+Wed Jul 25 20:00:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.3.0.2:
+  * hnbgw: remove close_cb() to fix a crash when releasing a hnbgw
+
+-------------------------------------------------------------------
+Tue Jun 05 20:01:14 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.3.0.1:
+  * asn1tostruct: allow to override build date
+
+-------------------------------------------------------------------
+Thu May 03 20:01:13 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.3.0.0:
+  * debian/changelog: set prev releases to unstable
+  * Bump version: 0.2.0.57-cf5f-dirty → 0.3.0
+
+-------------------------------------------------------------------
+Sat Apr 07 18:50:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.2.0.57:
+  * cosmetic: use osmo_plmn_id instead of mcc,mnc
+
+-------------------------------------------------------------------
+Wed Mar 14 21:25:46 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.2.0.56:
+  * hnbgw_rua: fix dereference of unset pointer
+  * hnbgw_cn: rx ranap: set rc in all cases
+  * hnbgw_hnbap: fix missing return in rx [un]successful outcome
+  * cosmetic: hnbgw: hnbap: log rx of unsuccessful outcome
+  * hnbap: log errors on decoding/encoding HNB-REGISTER msgs
+  * configure.ac: Enable -Wall flag
+  * contrib: jenkins.sh: Disable doxygen in libosmocore build
+  * ensure unique CellIDs in HNB-GW
+  * hnb-test: log accurate three-digit MNC with leading zeros
+  * configure: add --enable-werror
+
+-------------------------------------------------------------------
+Sat Feb 10 20:40:07 UTC 2018 - mardnh@gmx.de
+
+- Show testsuite.log when tests are failing
+
+-------------------------------------------------------------------
+Wed Jan 24 13:08:34 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.2.0.51
+- Remove patches: (fixed upstream)
+  * 0001-fix-compiler-warning-implicit-function-declaration-i.patch
+  * 0001-fix-return-values.patch
+  * 0001-iu_client-uses-gprs_msgb.h.patch
+
+-------------------------------------------------------------------
+Mon Jan  1 23:09:44 UTC 2018 - jengelh@inai.de
+
+- Add 0001-fix-return-values.patch,
+  0001-iu_client-uses-gprs_msgb.h.patch
+
+-------------------------------------------------------------------
+Wed Dec 27 11:08:55 UTC 2017 - mardnh@gmx.de
+
+- Update to new upstream release 0.2.0
+  * No changelog was provided
+- Add patch:
+  * 0001-fix-compiler-warning-implicit-function-declaration-i.patch
+- Specfile cleanup
+
+-------------------------------------------------------------------
+Sat Apr 29 00:08:32 UTC 2017 - jengelh@inai.de
+
+- Update to new upstream snapshot 0.0~g435
+  * Better capture for PS Data
+  * osmo-hnbgw, hnb-test: allow configuring VTY address
+  * hnbgw: set default RNC ID to 23 (for testing)
+  * UE Register: fix: free ies when no IMSI is found
+  * ranap: make X.213 NSAP 160 bits long, zero padded
+  * hnbgw: Fix crash if cnlink fails to connect
+
+-------------------------------------------------------------------
+Mon Feb  8 11:53:24 UTC 2016 - jengelh@inai.de
+
+- Initial package (version 0.0~g282 / 6a62e549cdede)
+  for build.opensuse.org

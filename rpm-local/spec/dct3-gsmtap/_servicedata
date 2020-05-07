@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+            <param name="url">git://git.osmocom.org/dct3-gsmtap</param>
+          <param name="changesrevision">143a5bb345c61b9f2442bbcf8f8a6a6ddb8c5b07</param></service></servicedata>

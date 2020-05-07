@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+            <param name="url">https://github.com/2b-as/xgoldmon</param>
+          <param name="changesrevision">f2d5372acee4e492f31f6ba8b850cfb48fbbe478</param></service></servicedata>

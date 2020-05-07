@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+            <param name="url">git://git.osmocom.org/simtrace</param>
+          <param name="changesrevision">6fde8e1c26f12069e67103ba5f69a068d78de063</param></service></servicedata>

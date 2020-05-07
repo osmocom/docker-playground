@@ -1,0 +1,1848 @@
+-------------------------------------------------------------------
+Wed May 06 20:03:38 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.41:
+  * om2k: Acknowledge the unknown MCTR messages we get from time to time
+  * om2k: Acknowledge the HW Infos Reports
+  * om2k: Fix type of msg_type in abis_om2k_tx_simple
+  * om2k: Fix TS channel config payload for non-superchannel case
+  * om2k: Don't use slashes in FSM IDs and use dashes instead
+
+-------------------------------------------------------------------
+Mon May 04 20:04:12 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.36:
+  * gsm_data.h: Comment the 'nokia' BTS fields
+  * timers: T->X: 23002, 23004, 23005, 23006
+
+-------------------------------------------------------------------
+Tue Apr 28 20:03:42 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.34:
+  * om2k: Add VTY command to allow TX of arbitrary message for testing
+  * om2k: Allow the CON configuration request to be triggered via VTY
+  * om2k: Allow TG and MCTR to be manipulated via VTY
+  * om2k: Add definitions for the TG object
+
+-------------------------------------------------------------------
+Mon Apr 20 20:03:56 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.30:
+  * handorer.h: Fix compilation with gcc-10
+
+-------------------------------------------------------------------
+Tue Apr 14 20:03:45 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.29:
+  * vty: clarify EGPRS Packet Channel Request message support
+  * configure.ac: fix libtool issue  with clang and sanitizer
+
+-------------------------------------------------------------------
+Mon Apr 06 20:03:25 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.27:
+  * vty: 'gprs 11bit_rach_support_for_egprs': clarify error message
+  * vty: 'gprs 11bit_rach_support_for_egprs': drop redundant check
+  * rest_octets: cosmetic: fix alignment in gprs_cell_options
+
+-------------------------------------------------------------------
+Sat Apr 04 20:03:13 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.24:
+  * doc/manuals: remove deprecated DNAT from the VTY reference
+  * vty: fix: restore removed DNAT category as deprecated
+
+-------------------------------------------------------------------
+Fri Apr 03 20:03:25 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.22:
+  * remove 'NAT' log category
+
+-------------------------------------------------------------------
+Mon Mar 30 20:03:18 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.21:
+  * manual: add SCCPlite section
+  * manual: add SCCP/M3UA section from common chapters
+
+-------------------------------------------------------------------
+Sun Mar 29 20:03:18 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.19:
+  * Meas Tools, Avoid compiler format warnings
+  * Meas Tools: Avoid unusable terminal in case of error on osmo_sock_init
+  * Meas Tools: Avoid OSMO_ASSERT due to uninitialised logging.
+
+-------------------------------------------------------------------
+Fri Mar 27 21:07:24 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.16:
+  * VTY: regenerate bsc_vty_reference.xml
+  * VTY: let all descriptions end in \n
+  * VTY: add show bts failure report
+  * abis_nm: move fail report parsing to extra func
+
+-------------------------------------------------------------------
+Tue Mar 24 21:03:24 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.12:
+  * abis_nm.c: rx_fail_evt_rep: fix sd.bts
+
+-------------------------------------------------------------------
+Sun Mar 22 21:03:33 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.11:
+  * manual: add "Multiple Instances" section, akin to other manuals
+
+-------------------------------------------------------------------
+Sat Mar 21 21:04:33 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.10:
+  * main: exit on mutually exclusive codecs settings
+
+-------------------------------------------------------------------
+Thu Mar 19 21:03:28 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.9:
+  * osmo-bsc-minimal.cfg: fix codec-list
+
+-------------------------------------------------------------------
+Mon Mar 16 21:03:05 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.8:
+  * osmo-bsc/bsc_vty: fail on get_amr_from_arg error
+
+-------------------------------------------------------------------
+Thu Mar 12 21:02:57 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.7:
+  * osmo-bsc/bsc_vty: set default gprs cell bvci to 2
+  * tests/Makefile.am: allow running only one VTY test
+
+-------------------------------------------------------------------
+Mon Feb 17 21:12:54 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.5:
+  * bssap: Avoid logging error if no optional Global Call Ref IE received
+
+-------------------------------------------------------------------
+Wed Jan 29 21:06:19 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.4:
+  * OM2000: Add some more message types and IEs we now understand
+
+-------------------------------------------------------------------
+Fri Jan 24 21:18:39 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.3:
+  * VTY: fix writing of custom timer values to a configuration file
+
+-------------------------------------------------------------------
+Thu Jan 16 21:06:57 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.2:
+  * bsc_main: use higher default loglevels.
+
+-------------------------------------------------------------------
+Mon Jan 06 21:08:17 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.1:
+  * Introduce nm_fail_rep_signal_data for "SS_NM, S_NM_FAIL_REP" signal
+
+-------------------------------------------------------------------
+Fri Jan 03 21:10:48 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.0:
+  * Bump version: 1.5.0.43-e1f08-dirty → 1.6.0
+
+-------------------------------------------------------------------
+Thu Dec 12 21:05:48 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.43:
+  * debian, osmoappdesc.py, tests: switch to python 3
+
+-------------------------------------------------------------------
+Fri Dec 06 21:14:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.42:
+  * gsm_04_80: Avoid using deprecated API
+  * doc: osmux: use generated svg instead of pychart
+
+-------------------------------------------------------------------
+Wed Dec 04 21:03:31 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.40:
+  * exit(2) on unsupported positional arguments on command line
+
+-------------------------------------------------------------------
+Mon Dec 02 21:07:40 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.39:
+  * abis_nm.c: fix RSL connection timeout for trx->nr > 0
+
+-------------------------------------------------------------------
+Sun Dec 01 21:11:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.38:
+  * Move a_reset_fsm regstration to __attribute__((contructor))
+  * manual: Fix copy+paste error
+  * check for osmo_ss7_init() error return value
+  * check for osmo_fsm_register() error return value
+
+-------------------------------------------------------------------
+Sat Nov 23 21:08:57 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.34:
+  * fsm: use deferred deallocation
+
+-------------------------------------------------------------------
+Wed Nov 20 21:11:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.33:
+  * bsc: Send MS Power Control msg upon max MS power change
+
+-------------------------------------------------------------------
+Tue Nov 19 21:13:36 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.32:
+  * abis_nm.c: replace magic numbers with NM_CHANC_* constants
+  * abis_nm.c: fix error message in verify_chan_comb()
+  * cosmetic: bs11_config: clean trailing whitespace
+  * bsc: Adapt maximum MS Power Ctrl level based on band and MS Power class
+
+-------------------------------------------------------------------
+Thu Nov 14 21:10:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.28:
+  * Fix some typos
+
+-------------------------------------------------------------------
+Tue Nov 05 21:17:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.27:
+  * osmo_bsc_main.c: fix CCCH_CONF computation: use pchan_from_config
+  * osmo_bsc_main.c: simplify computation of CCCH_CONFIG
+  * osmo_bsc_main.c: verify the physical channel mapping at startup
+  * VTY: also print the active phan config in ts_dump_vty()
+
+-------------------------------------------------------------------
+Fri Nov 01 21:11:40 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.23:
+  * gsm_data.h: Remove unused func declarations
+  * gsm_data.h: Remove unused field classmark from gsm_subscriber_connection
+  * Remove unused API classmark_is_r99()
+
+-------------------------------------------------------------------
+Tue Oct 29 21:04:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.20:
+  * rsl: Send IE MS Power Param to osmocom BTS models only
+  * rsl.c: Clean up some repeated use of long chains of pointers
+
+-------------------------------------------------------------------
+Mon Oct 28 21:03:11 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.18:
+  * rsl: Send IE MS Power Param during CHAN ACT and MS PWR CTRL messages
+  * bsc_vty: Fix typo in 'no depends-on-bts' cmd
+
+-------------------------------------------------------------------
+Tue Oct 15 20:03:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.16:
+  * sigtran: Set default remote ip to localhost instead of null
+
+-------------------------------------------------------------------
+Fri Oct 04 20:02:40 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.15:
+  * gsm_08_08.c: Mark func bsc_find_msc() static
+
+-------------------------------------------------------------------
+Thu Sep 26 20:03:31 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.14:
+  * bsc_subscr_conn_fsm: Cleanly clear BSSAP conn if associated channel closed during WAIT_CC
+
+-------------------------------------------------------------------
+Sun Sep 08 20:03:43 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.13:
+  * SMSCB: Send ETWS Primary Notifiation via RSL to BTS
+  * bsc: gsm_08_08.c: Remove repeated conn not null check
+  * a_reset.c: Don't wait 2 seconds to send first BSSMAP RESET
+
+-------------------------------------------------------------------
+Sat Sep 07 20:03:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.10:
+  * SMSCB: Send ETWS primary warning message via all dedicated channels
+
+-------------------------------------------------------------------
+Wed Sep 04 20:03:04 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.9:
+  * manual: Update statements regarding SCCPlite
+  * doc: update bsc_vty_reference.xml
+  * Cell Broadcast: CBSP and CBCH scheduling support
+
+-------------------------------------------------------------------
+Thu Aug 29 20:08:56 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.6:
+  * gsm_08_08.c: always pick first msc for unsolicit paging responses
+
+-------------------------------------------------------------------
+Tue Aug 27 20:05:20 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.5:
+  * lchan_select.c: tune log level in lchan_select_by_type()
+  * abis_nm.c: use LOGP() macro instead of LOGPC()
+
+-------------------------------------------------------------------
+Wed Aug 14 20:29:31 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.3:
+  * neighbor config: allow re-using ARFCN+BSIC pairs
+  * add vty 'no neighbors' to remove all HO targets
+
+-------------------------------------------------------------------
+Mon Aug 12 20:10:34 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.1:
+  * bsc_msc_data: remove unused member is_authenticated
+
+-------------------------------------------------------------------
+Thu Aug 08 21:57:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.0:
+  * Bump version: 1.4.0.109-caec1-dirty → 1.5.0
+  * Remove undefined param passed to logging_vty_add_cmds
+
+-------------------------------------------------------------------
+Fri Jul 26 20:34:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.108:
+  * rest_octets: add Serving Cell Priority Parameters
+
+-------------------------------------------------------------------
+Wed Jul 24 20:36:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.107:
+  * osmo-bsc.cfg: work with osmo-bts example cfg
+
+-------------------------------------------------------------------
+Tue Jul 23 20:17:04 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.106:
+  * turn -Werror=null-dereference into a warning
+  * doc: Add Osmux documentation to User Manual
+
+-------------------------------------------------------------------
+Mon Jul 22 10:35:46 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Disable LTO for now since it breaks compilation of the tests
+  See: https://osmocom.org/issues/4113
+
+-------------------------------------------------------------------
+Fri Jul 19 20:06:53 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.104:
+  * vty: Fix typo in VTY command descrption -> description
+
+-------------------------------------------------------------------
+Wed Jul 17 19:10:19 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.103:
+  * Fix some spelling errors found by lintian
+
+-------------------------------------------------------------------
+Tue Jul 16 20:08:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.102:
+  * logging: introduce LOG_BTS and LOG_TRX and use it everywhere
+
+-------------------------------------------------------------------
+Sun Jul 14 20:11:25 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.101:
+  * silence error for "invalid enum handover_scope value: none"
+  * comment and VTY doc tweaks
+
+-------------------------------------------------------------------
+Thu Jul 11 20:21:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.99:
+  * contrib/jenkins.sh: "maintainer-clean" after "publish"
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Tue Jul 09 20:13:39 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.97:
+  * remove double BSSMAP Clear on HO failure
+  * doc/manuals, vty doc: more handover doc clarifications
+  * make bsc_clear_request() static
+
+-------------------------------------------------------------------
+Thu Jun 27 20:34:45 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.94:
+  * bsc_subscr_conn_fsm: Log Tx of BSSMAP Clear Request with cause
+  * bsc_subscr_conn_fsm: Use gscon_bssmap_clear() helper on send failure
+
+-------------------------------------------------------------------
+Fri Jun 21 20:32:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.92:
+  * doc/manuals: review and tweak handover docs
+
+-------------------------------------------------------------------
+Tue Jun 18 20:18:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.91:
+  * Re-introduce support for IPA-encapsulated MGCP
+  * Remove extern declarations of libosmovty symbols
+
+-------------------------------------------------------------------
+Mon Jun 17 20:14:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.89:
+  * manuals: Add script to update vtr/counter documentation from docker
+
+-------------------------------------------------------------------
+Thu Jun 06 20:03:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.88:
+  * vty: adjust config name for unit-id
+  * bsc: Append Osmux Support IE only on AoIP
+  * Introduce msc_is_{sccplite,aoip}() helpers
+  * manuals: Update generated VTY reference and counters
+
+-------------------------------------------------------------------
+Fri May 31 20:03:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.84:
+  * debian: create -doc subpackage with pdf manuals
+
+-------------------------------------------------------------------
+Mon May 27 20:03:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.83:
+  * rx_fail_evt_rep(): Don't recycle variable
+
+-------------------------------------------------------------------
+Sun May 26 20:03:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.82:
+  * Allow VTY to set the CCCH Load Indication Threshold
+
+-------------------------------------------------------------------
+Fri May 24 20:03:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.81:
+  * vty: Dump per-bts stat_item group in 'show bts' output
+  * keep per-BTS stat_items about RACH busy / RACH access percentage
+  * chan_alloc: Don't include CBCH channels in load computation
+  * smscb: Allow transmit of SCHEDULE and DEFAULT SMSCB
+  * abis_rsl: Fix log message about unimplemented common channel msg
+  * abis_rsl: Avoid "Unimplemented" log message for every CBCH LOAD IND
+  * abis_rsl: Add support for extended CBCH to rsl_sms_cb_command()
+
+-------------------------------------------------------------------
+Thu May 23 20:03:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.74:
+  * lcls: Fix MDCX with garbage on LCLS loop break
+
+-------------------------------------------------------------------
+Mon May 20 20:03:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.73:
+  * bssap: Feed Assign Complete with Osmux CID retrieved from MGW
+  * bssap: Parse Osmux CID on BSSAP Assign Req recv and use it in MGCP
+
+-------------------------------------------------------------------
+Sun May 19 20:03:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.71:
+  * bssap: Announce Osmux support on RESET (ACK) send
+  * bssap: Detect MSC Osmux support on RESET (ACK) recv
+  * vty: Add option to enable osmux towards MSC
+  * Make sure to default to AMR octet-aligned mode
+
+-------------------------------------------------------------------
+Tue May 07 20:04:57 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.67:
+  * handover_fsm.c: fix: prevent possible buffer overflow
+  * abis_rsl.c: missing newlines on log lines
+  * fix inter-BSC-HO-incoming for AoIP (2/2)
+  * fix inter-BSC-HO-incoming for AoIP (1/2)
+
+-------------------------------------------------------------------
+Fri May 03 20:03:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.63:
+  * assignment_fsm: Properly support assigning signalling mode TCH/x
+
+-------------------------------------------------------------------
+Tue Apr 30 20:05:57 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.62:
+  * move mgw endpoint FSM to osmo-mgw.git
+  * use libosmocore osmo_tdef
+
+-------------------------------------------------------------------
+Fri Apr 19 20:03:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.60:
+  * Revert "fix inter-BSC-HO-incoming for AoIP (1/2)"
+
+-------------------------------------------------------------------
+Wed Apr 17 20:06:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.59:
+  * gsm_data.h: Remove unused variable from OpenBSC times
+  * Change comments/strings from OpenBSC to OsmoBSC
+  * manuals: Fix example config to reflect OsmoBSC commands
+  * doc: Add generic counter chapter in manual
+
+-------------------------------------------------------------------
+Mon Apr 15 20:03:45 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.55:
+  * Drop unused old osmux leftover code
+
+-------------------------------------------------------------------
+Fri Apr 12 20:03:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.54:
+  * fix inter-BSC-HO-incoming for AoIP (1/2)
+  * Handover Request: also parse Chosen Algorithm IE, pass to lchan activation
+  * lchan activation: add explicit encryption info to activation
+
+-------------------------------------------------------------------
+Mon Apr 08 20:03:41 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.51:
+  * ipaccess-config: use POSIX regex for Unit ID format check
+  * osmo_bsc_lcls.c: cosmetic: make Coverity happy
+  * gsm_data.c: use REG_NOSUB flag of regcomp()
+
+-------------------------------------------------------------------
+Sat Apr 06 20:03:13 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.48:
+  * abis_nm.c: fix broken logging in abis_nm_rx_ipacc()
+  * abis_nm.c: use msgb_lv_put() to put abis_nm_ipa_magic
+  * abis_nm.c: use abis_nm_ipa_magic from libosmocore
+  * abis_nm.c: also print TRX number in abis_nm_get_attr()
+  * abis_nm.c: use proper format specifiers for BTS / TRX number
+
+-------------------------------------------------------------------
+Wed Mar 27 21:05:15 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.43:
+  * nanobts: use libosmocore's osmo_store*() for OML attr. patching
+  * osmo_bsc_bssap: check bssmap length field
+
+-------------------------------------------------------------------
+Sun Mar 24 21:03:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.41:
+  * avoid use-after-free: on MGW endpoint dealloc, also forget it in conn->ho.*
+
+-------------------------------------------------------------------
+Tue Mar 19 21:03:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.40:
+  * lchan_fsm: add missing header file.
+  * AMR: Signal usage of octet-aligned or bandwith-efficient mode to MSC
+  * OML: Fix encoded length value of OML GET ATTRIBUTES
+  * lchan_fsm: do not include 12.2k in active set on HR channels
+  * lchan_fsm: make sure multi rate configuration is valid
+  * codec_pref: fix special handling for AMR rate configuration  (S15-S0)
+  * osmo_bsc_msc: Use meaningful amr rate configuration on BTS level
+
+-------------------------------------------------------------------
+Sat Mar 16 21:03:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.33:
+  * fix another log line end in assignment_fsm.c
+
+-------------------------------------------------------------------
+Fri Mar 15 21:03:15 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.32:
+  * fix log line end in assignment_fsm.c
+  * Revert "assignment_fsm: Properly support assigning signalling mode TCH/x"
+
+-------------------------------------------------------------------
+Thu Mar 14 21:03:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.30:
+  * src/utils/Makefile.am: Drop unneeded sigtran and mgcp-client deps
+  * configure.ac: Add flag to enable/disable build of ipaccess related utils
+  * net_init.c: remove unneeded header
+  * ipaccess/Makefile.am: Remove unneeded libosmo-sigtran dep
+  * Move msc related code from gsm_data to bsc_msc
+  * Move LCLS references from gsm_data to osmo_bsc_lcls
+  * assignment_fsm: Properly support assigning signalling mode TCH/x
+  * log N-CONNECT from MSC
+  * incoming connect: don't crash if calling addr is missing
+  * ipaccess/Makefile.am: Remove unneeded libmgcp-client dep
+
+-------------------------------------------------------------------
+Mon Mar 11 21:03:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.20:
+  * handover_fsm: copy old S15_S0 to new lchan
+
+-------------------------------------------------------------------
+Fri Mar 08 21:03:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.19:
+  * assignment_fsm: use activate.info.s15_s0 for ASS. COMPL.
+
+-------------------------------------------------------------------
+Wed Mar 06 21:04:12 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.18:
+  * cosmetic: drop unused struct mgcp_ctx shadow
+
+-------------------------------------------------------------------
+Sat Feb 23 21:03:15 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.17:
+  * assignment_fsm: fix channel allocator preferences
+
+-------------------------------------------------------------------
+Mon Feb 11 21:03:02 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.16:
+  * bsc_vty: add features to disable specific lchans via vty
+
+-------------------------------------------------------------------
+Wed Feb 06 21:02:37 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.15:
+  * comments: clarify usage of conn.assignment and .handover scopes
+  * handover_fsm: do not access conn->assignment.req, it may be outdated
+
+-------------------------------------------------------------------
+Tue Feb 05 21:02:36 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.13:
+  * Implement CSFB "Fast Return" Handling at RR RELEASE
+  * manual: Remove bogus "Control interface" sub-section in overview
+  * manual: s/OsmoNITB/OsmoBSC/ in examples; remove E1 based BTSs
+  * manual: Re-order chapters in more logical order
+  * manual: Add sections on 3G/4G neighbor cells
+  * manual: It's not "A over SCCP" but "BSSAP over SCCP"
+  * gsm_data: Add gsm_bts_name() just like we have gsm_{trx,ts,lchan}_name()
+
+-------------------------------------------------------------------
+Fri Feb 01 21:02:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.6:
+  * bsc_vty: add vty command to display all lchans
+
+-------------------------------------------------------------------
+Tue Jan 29 21:02:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.5:
+  * LCLS: use libosmocore function to add status
+
+-------------------------------------------------------------------
+Fri Jan 25 21:02:39 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.4:
+  * abis_rsl: Fix TCH-as-SDCCH allocation on Channel Request
+
+-------------------------------------------------------------------
+Tue Jan 22 20:35:38 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.3:
+  * lchan_select: Do not unsolicitedly select a TCH/F
+  * lchan_select: dont allow half rate EFR to be selected
+
+-------------------------------------------------------------------
+Mon Jan 21 21:02:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.1:
+  * LCLS: constify helper parameters
+
+-------------------------------------------------------------------
+Sun Jan 20 21:02:39 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.0:
+  * Bump version: 1.3.0.293-605c → 1.4.0
+
+-------------------------------------------------------------------
+Fri Jan 18 21:02:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.293:
+  * chan_alloc: remove references to lchan_alloc()
+
+-------------------------------------------------------------------
+Thu Jan 17 21:02:46 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.292:
+  * Log MDCX ACK for established lchan
+
+-------------------------------------------------------------------
+Mon Jan 14 21:02:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.291:
+  * Print BTS number on GPRS options error
+  * paging: fix nullpointer deref
+
+-------------------------------------------------------------------
+Tue Jan 08 21:02:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.289:
+  * use mgcp-client configured endpoint domain name
+
+-------------------------------------------------------------------
+Fri Jan 04 21:02:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.288:
+  * LCLS: use enum values instead of magic numbers
+
+-------------------------------------------------------------------
+Thu Jan 03 21:02:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.287:
+  * IPA: log OML/RSL link drop reason
+  * comments: describe some lchan details
+  * make sure early lchan act failure resets the lchan
+
+-------------------------------------------------------------------
+Thu Dec 20 21:02:35 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.284:
+  * LCLS: log config/control update
+
+-------------------------------------------------------------------
+Tue Dec 18 21:02:30 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.283:
+  * LCLS: update parameter representation
+
+-------------------------------------------------------------------
+Fri Dec 14 21:02:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.282:
+  * Add VTY option to avoid sending empty Full BCCH Info for disabled SI
+
+-------------------------------------------------------------------
+Wed Dec 12 21:03:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.281:
+  * bsc: bssap: Set subscr log context during paging
+  * bsc: dtap: Set subscr log context
+  * bsc: rsl: Set subscr log context during meas report
+  * bsc: Set subscr log context during complete_layer3
+  * bsc_main: filter_fn: Compare imsi values instead of subscr pointers
+  * paging: Properly enclose logging imsi filter scope
+  * VTY: Allow logging filter imsi statements for IMSIs we haven't seen yet
+  * paging: fix whitespace
+
+-------------------------------------------------------------------
+Tue Dec 11 21:02:41 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.273:
+  * set gscon FSM instances' log level to DEBUG
+
+-------------------------------------------------------------------
+Sat Dec 08 21:02:25 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.272:
+  * handover_fsm: send HANDOVER PERFORMED msg on internal ho
+
+-------------------------------------------------------------------
+Thu Dec 06 21:02:48 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.271:
+  * gsm_04_08: Free GSM subscr conn if paging response can't be matched
+  * contrib: fix makedistcheck with disabled systemd
+
+-------------------------------------------------------------------
+Wed Dec 05 21:02:41 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.269:
+  * paging: Add VTY options to calculate T3113 timeout dynamically
+  * bsc: lchan_fsm: Fix invalid duplicated transition
+  * bsc: timeslot_fsm: Handle and ignore tear down of lchan during PDCH DEACT
+  * bsc: lchan_fsm: Add missing transition WAIT_TS_READY->WAIT_RLL_RTP_RELEASED
+  * bsc: lchan_rtp_fsm: Avoid duplicate LCHAN_EV_RTP_RELEASED event
+  * bsc: timeslot_fsm: Fix count in ts_lchans_waiting
+  * bsc: timeslot_fsm: Fix possible skip of some lchans in ts_terminate_lchan_fsms
+  * bsc: ts_is_pchan_switching: Return correct IPA dyn TS target_pchan
+  * bsc: timeslot_fsm: Fix ts_is_lchan_waiting_for_pchan
+  * bsc: timelost_fsm: Remove unneeded set of out variable on failure
+  * bsc: Fix lchan iteration for dyn TS during PDCH Deact
+  * bsc: Add define for ts_as_pchan_for_each_lchan with ts->pchan_on_init
+  * contrib/jenkins.sh: build and publish manuals
+
+-------------------------------------------------------------------
+Tue Dec 04 21:02:55 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.256:
+  * Fix DISTCHECK_CONFIGURE_FLAGS override
+
+-------------------------------------------------------------------
+Sat Dec 01 21:02:25 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.255:
+  * osmo_bsc_bssap.c: fix incorrect link_id assignment
+
+-------------------------------------------------------------------
+Fri Nov 30 21:02:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.254:
+  * follow-up: logging tweak for Immediate Assignment
+
+-------------------------------------------------------------------
+Thu Nov 29 21:02:26 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.253:
+  * bsc: ts_for_each_lchan: Improve documentation
+  * bsc: ts_as_pchan_for_each_lchan: reorder and improve documentation
+  * bsc: lchan_select: Avoid returning a TCH/H lchan when TCH/F is requested
+
+-------------------------------------------------------------------
+Wed Nov 28 21:02:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.250:
+  * cosmetic: bsc: timeslot_fsm: Clean uneeded scope brackets
+
+-------------------------------------------------------------------
+Tue Nov 27 21:02:45 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.249:
+  * build manuals included from osmo-gsm-manuals.git
+  * copy NITB's osmobsc-usermanual.adoc to OsmoBSC
+  * OsmoBSC: update VTY reference
+  * OsmoBSC/HLR/MSC: Fix default config file name
+  * author info: add "former" to Holger's job title
+  * bsc: handover: mention the need to resend SI for telnet neighbor cfg
+  * bsc: handover: clarify default of all-cells-are-neighbors
+  * bsc: document handover
+  * vty-ref: Update URI of docbook 5.0 schema
+  * OsmoBSC: update VTY reference
+  * add message sequence chart MS/BTS/BSC/MSC for 3GPP aoIP MO call
+  * common / OsmoBSC: drop unused alink.adoc
+  * OsmoBSC: update overview to explain both SCCPlite and SCCP/M3UA
+  * OsmoBSC: add rate counter documentation
+  * OsmoBSC: update CTRL docs
+  * refactor Makefile build rules, don't use the FORCE
+  * Allow easily disabling GFDL references
+  * MGW: Include MGCP endpoint naming scheme of old IPA/SCCPlite approach
+  * mgw: Fix endpoint names for new MGW
+  * osmux: Fix description for Dummy frames FT field
+  * osmux-reference-docinfo: Add latest changes to revhistory
+  * osmux-reference: Add traffic saving plot
+  * osmux-reference: Add sequence charts
+  * osmux-reference: Use packetdiag to draw packet header structures
+  * BSC: Add series of message sequence charts about MGCP handling
+  * Add chapter on Cell Broadcast Support in Osmocom (to BSC+NITB manual)
+  * Add osmux-reference document
+  * BSC,BTS: add diagrams of PCU-BTS-NITB-SGSN relationships
+  * fix 'make clean': shell glob, ignore failure
+  * OsmoBSC: include bts-examples.adoc from OsmoNITB
+  * OsmoBSC+NITB/running: fix title levels, one too deep
+  * add 'make check' target
+  * make clean: also remove generated image files
+  * OM2000 MSC: Fix spelling
+  * OM2000 message sequence charts: specify MO in node name
+  * add Ericsson OM2000 message sequence charts (one for each MO)
+  * Add OsmoBSC control interface description
+  * minor tweak
+  * fix various typos across all manuals
+  * Add OsmoBSC control interface description
+  * Add link to Asciidoc source code of manual
+  * initial checkin of manuals to public repo
+  * send Immediate Assignment Reject only before Immediate Assignment
+
+-------------------------------------------------------------------
+Fri Nov 23 21:02:26 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.204:
+  * ipaccess-config: Fix indentation of the usage output
+  * ipaccess-config: Generate valid JSON output when using the -G parameter
+  * vty: add command to show TRX selectively
+
+-------------------------------------------------------------------
+Thu Nov 22 19:00:45 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.201:
+  * ipaccess-config: Introduce -q quiet param
+  * LCLS: add bts-loop variant
+  * RSL: restructure MDCX functions
+  * gsm0408_rcvmsg: Release lchan if L3 fails to complete
+
+-------------------------------------------------------------------
+Wed Nov 21 20:21:19 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.197:
+  * ipaccess-config: cosmetic: Remove unneeded comment with hex values
+  * ipaccess-config: Add -G cmdl opt to query OML IP and Unit ID
+  * ipaccess-config: Fix whitespace
+  * abis_nm: Introduce new signal S_NM_GET_ATTR_REP
+
+-------------------------------------------------------------------
+Tue Nov 20 19:11:59 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.193:
+  * bsc: vty: Verify and warn on invalid arfcn passed
+  * bsc: band_compatible: Return band non-compatible for invalid arfcn
+  * bsc: Enable force-combined-si on nanoBTS by default
+  * bsc: si: Fix SI2ter L2 pseudo length
+  * bsc: si: Fix SI2bis L2 pseudo length
+  * bsc: Prefix log string with related SI type during call to list_arfcn
+
+-------------------------------------------------------------------
+Mon Nov 19 18:33:25 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.187:
+  * unlink socket path correctly in rf_create_socket()
+  * LCLS: make config and control redable in 'sh conns'
+
+-------------------------------------------------------------------
+Sun Nov 18 21:02:37 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.185:
+  * LCLS: move mode check into separate function
+  * LCLS: explicitly check for mode before closing the loop
+  * add missing 'break' in switch statement
+  * always directly send BSSMAP Clear Request
+  * osmo-bsc: gsm_timers_vty: Set global T_defs during vty_init
+  * check return value of gsm48_multirate_config()
+  * LCLS: tighten GCR check
+  * bsc: gsm0808: Fix return code in bsc_compl_l3
+  * bsc: vty: Use enum value in neighbor-list check
+  * bsc: bts_alloc: Use enum value during neigh_list_manual_mode initialization
+  * examples: Remove neighbor-list invalid for default setup
+
+-------------------------------------------------------------------
+Thu Nov 15 14:31:39 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.174:
+  * show dynamic timeslot details in 'show timeslot' vty command
+
+-------------------------------------------------------------------
+Wed Nov 14 21:02:58 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.173:
+  * coverity: gscon_forget_lchan: squelch forward-null
+  * lchan: set cause for 4 instances of release_in_error = true
+  * cosmetic: abis_rsl.c: drop uneccesary braces
+  * cosmetic: lchan: introduce sub-struct lchan->release.*
+  * lchan release: always Deact SACCH
+  * lchan: release in error: fix missing messages / events
+  * abis_rsl.c: drop unused enum sacch_deact
+  * fix: send RR Release (e.g. after BSSMAP Clear Cmd)
+
+-------------------------------------------------------------------
+Sat Nov 10 19:31:09 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.165:
+  * dbug log: verbosely detach conn<->lchan
+  * lchan: rf release: make sure conn is NULL
+  * lchan_fsm_cleanup: drop redundant 'forget_lchan' call
+
+-------------------------------------------------------------------
+Fri Nov 09 21:02:41 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.162:
+  * abis_nm: parse_attr_resp_info_unreported: Fix offset calculation
+  * abis_nm: Support parsing nanoBTS format for Get Attributes Info
+  * abis_nm: Add support to parse OML IP and Unit Id in Get Attributes
+  * abis_nm: Add support to parse some nanoBTS Attribute Response attributes
+  * abis_nm: Allow sending and receiving Get Attributes (Response) against nanoBTS
+  * abis_nm: Split reported attr list parsing from Attribute Response Info into its own func
+  * abis_nm: Split handling of Attribute Response Info into its own func
+  * abis_nm: Rename m_id_len to ease review of forthcoming patches
+  * gsm_data: make cgi_for_msc available for other modules
+  * re-order condition checks for clarity
+
+-------------------------------------------------------------------
+Thu Nov 08 21:02:36 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.152:
+  * LCLS: expand logging to print the name of the mode in use
+
+-------------------------------------------------------------------
+Wed Nov 07 21:06:14 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.151:
+  * constify rsl_tx_ipacc_*cx() parameters
+  * Make IP address helper accessible via header file
+  * LCLS: move MGCP MDCX into separate function
+
+-------------------------------------------------------------------
+Tue Nov 06 21:03:15 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.148:
+  * vty doc: drop "(HO algo 2 only)" strings
+  * ipaccess-config: Use enum value for OML IP
+  * vty: don't show GPRS details if not configured
+
+-------------------------------------------------------------------
+Wed Oct 31 21:02:49 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.145:
+  * ipaccess_sign_link_reject: fix: use osmo_strlcpy() to safely copy IP
+
+-------------------------------------------------------------------
+Tue Oct 30 21:02:49 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.144:
+  * vty: add 'show rejected-bts'
+  * fix build: revert bad neighbor_ident.vty change
+  * handover_fsm: fix failure logging of uninitialized chan mode
+  * handover_fsm: fix missing newline for log statement
+  * abis_rsl.c: fix uninitialized RSL cause issues
+
+-------------------------------------------------------------------
+Thu Oct 25 20:02:51 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.139:
+  * cipher mode reject: send proper cause codes
+  * cosmetic: fix spec ref for gsm0808_cipher_mode()
+
+-------------------------------------------------------------------
+Wed Oct 24 20:03:13 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.137:
+  * lchan_fsm: generate proper multirate configuration IE on RSL
+  * bsc_vty: check amr mode parameters
+  * gsm_04_08: improve gsm48_multirate_config()
+  * codec_pref: also check amr codec rates in check_codec_pref()
+
+-------------------------------------------------------------------
+Tue Oct 23 20:02:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.133:
+  * gsm_data: set meaningful default values for amr modes
+
+-------------------------------------------------------------------
+Sun Oct 21 17:25:25 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.132:
+  * handover_decision_2.c: implement HO to remote BSS
+  * handover_decision_2.c: refactor trigger_*()
+  * ipaccess-proxy: Add error handling to IAP CCM ID RESP parsing
+  * acc_ramp: An unsigned int is always >= 0
+  * subscr_conn_fsm: Fix null-pointer deref / N-CONNECT.ind from unknown MSC
+  * bssmap_handle_cipher_mode(): Don't sent reject if !conn
+  * ipaccess-config: Fix open() return value checking
+  * gsm_08_08: do not include zero length speech codec list.
+  * handover_start_inter_bsc_in(): Uninitialized variable
+  * range_enc_determine_range(): Don't dereference array on size=0
+
+-------------------------------------------------------------------
+Wed Oct 17 20:02:25 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.122:
+  * gsm_08_08: allow zero length speech codec lists in compl l3 info.
+
+-------------------------------------------------------------------
+Tue Oct 16 20:02:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.121:
+  * vty 'show bts'/'show trx': display IPs and ports
+  * remote-BSS neighbors: allow only one cell ID
+  * handover_fsm: adjust inter-BSC HO failure handling to spec
+  * lchan_fsm: notify conn of released lchan upon RF Release
+
+-------------------------------------------------------------------
+Fri Oct 12 20:02:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.117:
+  * handover_decision_2.c: drop redundant debug_candidate() args
+  * handover_decision_2.c: find_alternative_lchan: drop goto
+  * handover_decision_2.c: tweak ho candidate logging
+  * handover_decision_2.c: tweak comments
+  * lchan_fsm: fix failure handling: notify conn when released
+  * subscr conn: properly forget lchan before release
+  * gscon_forget_lchan(): Clear Request iff no lchans remain
+  * gscon_forget_lchan(): no Clear Request after Clear Command
+  * fix counters for inter-BSC outgoing
+  * debian: Require libcdk and install meas_vis osmo-bsc-meas-utils
+
+-------------------------------------------------------------------
+Thu Oct 11 20:02:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.107:
+  * codec_pref: also check physical channels
+  * codec_pref: cosmetic: seperate half/full rate determination
+
+-------------------------------------------------------------------
+Mon Oct 08 20:02:28 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.105:
+  * codec_pref: check codec configuration before start
+
+-------------------------------------------------------------------
+Sun Oct 07 18:23:46 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.104:
+  * nanoBTS: Allow BCCH with CBCH on TS0
+
+-------------------------------------------------------------------
+Sat Oct 06 20:02:28 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.103:
+  * osmo_bsc_msc: Set reasonable codec list defaults
+  * gsm_08_08: abort complete L3 3 msg gen when no codecs are set
+
+-------------------------------------------------------------------
+Fri Oct 05 20:02:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.101:
+  * codec_pref: handle S0-S15 in ASSIGNMENT REQUEST
+  * osmo_bsc_main.c: initialize rate counters
+
+-------------------------------------------------------------------
+Thu Oct 04 20:02:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.99:
+  * abis_nm_get_ts: Return TS of correct TRX, not always TRX0
+  * osmo-bsc: Add default case for switch(enum)
+
+-------------------------------------------------------------------
+Mon Oct 01 18:10:48 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.97:
+  * cosmetics: Fix typo in bsc_vty.c
+
+-------------------------------------------------------------------
+Sat Sep 29 19:48:09 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.96:
+  * fix unaligned access in abis_nm_rx_ipacc()
+
+-------------------------------------------------------------------
+Thu Sep 27 20:02:47 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.95:
+  * vty: write local neighbors by bts nr, not lac-ci
+  * neighbor vty: allow setting local neighbors by CGI
+  * neighbor vty: rather 'no neighbor', not 'neighbor del'
+  * neighbor vty: drop keyword 'add'
+  * test neighbor ident vty docs
+  * make: allow vty-tests without configure
+  * vty: add SCCP related vty commands
+
+-------------------------------------------------------------------
+Wed Sep 26 20:02:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.88:
+  * cosmetic: drop param from send_assignment_complete()
+  * fix LCLS during Assignment: actually use new TCH lchan
+  * lcls: log channel type and lchan names on LCLS codec mismatch
+  * check for overlong unix socket paths
+
+-------------------------------------------------------------------
+Mon Sep 24 20:02:22 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.84:
+  * codec_pref: Add Codec List to COMPLETE LAYER 3 INFORMATION
+  * gsm_data.c: Set reasonable AMR codec defaults in gsm_bts_alloc()
+  * assignment_fsm: only include speech codec (choosen) on AoIP networks
+
+-------------------------------------------------------------------
+Wed Sep 19 20:02:41 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.81:
+  * Implement RR Classmark Enquiry
+
+-------------------------------------------------------------------
+Mon Sep 17 20:02:53 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.80:
+  * gsm_data: remove unused struct member chan_mode
+  * gsm_data: remove unused struct member full_rate.
+  * LCLS: fix codec mismatch detection
+
+-------------------------------------------------------------------
+Sat Sep 15 20:02:32 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.77:
+  * codec_pref: fix missing breaks in switch-case statement
+  * codec_pref: add AMR configuration bits to make_scl_config() in unit-test
+  * codec_pref: fix typo in comment
+
+-------------------------------------------------------------------
+Thu Sep 13 19:56:54 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.74:
+  * Install sample cfg file to /etc/osmocom
+  * Install systemd services with autotools
+
+-------------------------------------------------------------------
+Wed Sep 12 20:02:37 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.72:
+  * ts,lchan_fsm: do not attempt to allocate CBCH subslots
+
+-------------------------------------------------------------------
+Mon Sep 10 20:02:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.71:
+  * lchan_fsm: allow late RTP release events without erroring
+  * ho fsm: handle RR HO Failure for inter-BSC outgoing
+
+-------------------------------------------------------------------
+Sun Sep 09 20:02:33 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.69:
+  * CBCH: Fix gsm_bts_get_cbch()
+  * CBCH: Fix SI4 CBCH IE generation
+  * Introduce gsm48_lchan2chan_desc_as_configured()
+  * gsm48_lchan2chan_desc() belongs to gsm_data.h
+  * cbch: Don't send cell-broadcast command on BTS without CBCH channel
+
+-------------------------------------------------------------------
+Fri Sep 07 20:02:35 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.64:
+  * inter-BSC HO outgoing: fix L3 forwarding
+  * inter-BSC HO incoming: send BSSMAP HO Complete directly
+  * SCCPlite Assignment Complete: include Speech Codec (Chosen)
+  * codec_pref.c: Add comment in expected switch case without break
+
+-------------------------------------------------------------------
+Thu Sep 06 20:02:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.60:
+  * assignment: remove unnecessary call to gsm0808_speech_codec_from_chan_type()
+
+-------------------------------------------------------------------
+Tue Sep 04 20:02:36 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.59:
+  * codec_pref: Log HR2 specifically as never specified
+  * codec_pref: Log unsupported codec name used
+  * lchan: pick proper power and ta values
+  * cosmetic: lchan activ: drop todo comments
+  * cosmetic: lchan activ: no need to clear mr again
+
+-------------------------------------------------------------------
+Wed Aug 29 20:02:39 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.54:
+  * fix dependency bug: include mgcp_client/, not mgcp/
+  * log: tweaks and more context in osmo_bsc_sigtran_send()
+  * inter-BSC HO: send failure msg directly
+  * log: 'sending BSSMAP HO Request ACK'
+  * log: lchan_rtp_fsm: add missing '\n'
+  * lchan_fsm: safer 'concluded' flag
+  * cosmetic: lchan_fsm failure: log about state transitions
+  * lchan_fsm: lchan_fail_to(): store target state early
+  * inter-BSC HO incoming: drop old/wrong RTP port code
+  * inter-BSC HO incoming: continue despite missing Classmark
+  * neighbor_ident_vty.c: fix CI format, should be 16bit
+
+-------------------------------------------------------------------
+Tue Aug 28 20:02:41 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.43:
+  * cosmetic: neighbor_ident_vty.c: add and use common string defs
+  * MGCP: add 'X-Osmo-IGN: C' for SCCPlite by default
+
+-------------------------------------------------------------------
+Fri Aug 24 12:15:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.41:
+  * abis_nm_ipaccess_rsl_connect: Log bts and trx nr
+  * Fix heap-use-after-free due to OML link destruction
+
+-------------------------------------------------------------------
+Wed Aug 22 20:02:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.39:
+  * fix lchan_rtp_fsm: missing event handling
+  * abis_nm: Fix trailing whitespacing
+  * abis_nm: Fix heap-use-after-free in abis_nm_set_channel_attr
+
+-------------------------------------------------------------------
+Tue Aug 21 20:02:48 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.36:
+  * use __FILE__, not __BASE_FILE__
+
+-------------------------------------------------------------------
+Fri Aug 17 20:05:49 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.35:
+  * bsc: Use libosmocore API to track osmo_signal structs
+
+-------------------------------------------------------------------
+Mon Aug 13 20:02:35 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.34:
+  * doc: update mgw settings in example config file
+  * lcls: do not LCLS call legs with different codecs
+
+-------------------------------------------------------------------
+Tue Aug 07 20:02:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.32:
+  * GSCON: call api of a_reset.c with msc object directly
+  * GSCON: avoid sending connection oriented data when not connected
+  * sigtran: fix memleak in osmo_bsc_sigtran_send()
+
+-------------------------------------------------------------------
+Wed Aug 01 20:02:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.29:
+  * handover_fsm.c: Fix -Werror=format-security errors
+  * Migrate from osmo_ipa_idtag_parse() to ipa_ccm_id_resp_parse()
+  * gscon: use BSS-common payload types on BSS side
+  * endpoint_fsm: add missing return in mgcp_pick_codec
+
+-------------------------------------------------------------------
+Sat Jul 28 20:02:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.25:
+  * cosmetic: gscon: don't re-enter ST_CLEARING
+  * cosmetic: rename osmo_bsc_api.c to gsm_08_08.c
+  * cosmetic: rename bsc_api.h to gsm_08_08.h
+  * cosmetic: reduce bsc_api.h
+  * cosmetic: dissolve bsc_api.c
+  * vty: 'handover any': pick more random chans, use lchan_select_by_type()
+  * cosmetic: constify gsm_bts_num() net arg
+  * create separate logging categories for lchan,ts,as FSMs
+  * allocate larger lchans if no SDCCH are available
+  * lchan_fsm: add in_release_handler flag
+  * lchan_fsm: split off lchan_rtp_fsm, establish RTP a bit earlier
+  * fix BSC_CTR_ASSIGNMENT doc strings
+  * cosmetic: FSMs: allow ignorable events
+  * timeslot FSM: permit entering broken state from anywhere
+  * timeslot FSM: fix infinite recursion on failure to send PDCH ACT
+  * fix: dispatch TS_EV_RSL_DOWN when losing RSL
+  * fix nanobts: timeslot FSM: use flags to remember OML,RSL status
+  * large refactoring: use FSMs for lchans; add inter-BSC HO
+  * add gsm_timers, for Tnnn definitions usable by FSMs
+  * cosmetic: move RR functions from bsc_api.c to gsm_04_08_rr.c
+  * rename gsm_04_08_utils.[hc] to gsm_04_08_rr
+  * fix / clarify rsl dtap cache
+  * doc: update/fix FSM charts
+  * inter-BSC HO: neighbor_ident API: drop 9bit BSIC
+  * inter-BSC HO: add neighbor_ident API to manage neighbor-BSS-cells
+
+-------------------------------------------------------------------
+Fri Jul 27 20:02:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.0:
+  * Bump version: 1.2.1.92-93916-dirty → 1.3.0
+  * rsl: use 3GPP assigned payload type constants from libosmo-netif
+
+-------------------------------------------------------------------
+Wed Jul 25 20:02:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.91:
+  * git-version-gen: Don't check for .git directory
+
+-------------------------------------------------------------------
+Tue Jul 24 20:02:44 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.90:
+  * BTS codec pref legacy compat: allow all codecs per default
+
+-------------------------------------------------------------------
+Mon Jul 23 20:02:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.89:
+  * various logging: fix missing/extra newlines
+  * hodec2 log: less verbose, more concise logging
+
+-------------------------------------------------------------------
+Sun Jul 22 20:02:25 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.87:
+  * chan_alloc: reset rtp voice related bits in lchan_free()
+  * ctrl: Avoid sending back received ERROR msgs
+  * codec_pref: check bts codec support
+  * codec_pref: move match_codec_pref() to separate c-file and add unit-test
+
+-------------------------------------------------------------------
+Sat Jul 21 20:02:38 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.83:
+  * ho cfg: fix unit strings
+  * fix handover start: dealloc ho if event not permitted
+  * fix handling of invalid pchan names in vty
+
+-------------------------------------------------------------------
+Thu Jul 19 20:02:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.80:
+  * call osmo_xua_msg_tall_ctx_init()
+
+-------------------------------------------------------------------
+Wed Jul 11 20:02:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.79:
+  * cosmetic: name osmo-bsc's root ctx 'osmo-bsc', not 'openbsc'
+
+-------------------------------------------------------------------
+Thu Jun 28 20:02:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.78:
+  * filter: Allocate each ctr group with a different idx
+  * filter: Replace '.' in counter names with ':'
+  * filter: vty: Print policy list in cmd show access-list
+  * Rename bsc_msg_acc_lst_vty_init to have more uniform prefix
+  * Init access_lists before passing it as a parameter
+  * bsc_vty: Write access list entries when storing bsc config
+  * bsc-filter: Remove unused func barr_adapt and set barr_find static
+
+-------------------------------------------------------------------
+Tue Jun 26 20:02:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.71:
+  * lcls: set codec info when performing MGW operation
+
+-------------------------------------------------------------------
+Mon Jun 25 20:02:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.70:
+  * gscon: pick suitable payload type / encoding name for MGCP
+  * debian: Move meas related binaries into new package osmo-bsc-meas-utils
+
+-------------------------------------------------------------------
+Mon Jun 18 20:02:37 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.68:
+  * cosmetic / linking: move str_to_imsi() out of abis_rsl.c
+
+-------------------------------------------------------------------
+Sat Jun 16 20:02:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.67:
+  * fix dyn TS init: properly identify BTS on OML OPSTART ACK
+
+-------------------------------------------------------------------
+Fri Jun 15 20:02:54 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.66:
+  * osmo-bsc: Add -V param to print version
+  * osmo-bsc: Clean help description of cmd line parameters
+  * pcu_sock: Log event pcu_sock created
+
+-------------------------------------------------------------------
+Thu Jun 14 20:02:32 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.63:
+  * absi_rsl: Fix segfault in rsl_rx_conn_fail()
+
+-------------------------------------------------------------------
+Mon Jun 11 20:02:28 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.62:
+  * bsc_subscr_conn_fsm: BSC must not release SCCP connection
+  * Add missing event string name for GSCON_EV_LCLS_FAIL
+  * remove traces of osmo-bsc_nat in python test (osmoappdesc/test_runner)
+
+-------------------------------------------------------------------
+Sat Jun 09 20:02:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.59:
+  * Remove unused logging subsystems DCC and DMGCP
+  * Explicitly register CTRL-over-IPA callback with libosmo-sigtran
+
+-------------------------------------------------------------------
+Fri Jun 08 20:02:32 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.57:
+  * Ignore "dest" command in MSC node
+  * make T10 configurable like the rest of them
+  * drop dead code: conn->T10, handled by gscon instead
+  * HO: introduce T7, T8, T101 timers
+  * cosmetic: gscon: drop odd use of OSMO_STRINGIFY
+  * doc: charts: illustrate new plan for ts and lchans
+  * doc: add ms-channel-request.msc
+  * doc: add lchan-release.msc
+  * doc: tweak msc charts on Assignment/Handover: act_timer
+  * cosmetic: handover_test: add IMSI to subscr for logging
+  * store subscriber identity on paging
+  * try to pick up subsrc IMSI on l3-compl
+  * gscon: put subscriber a little later
+  * cosmetic: bsc_subscr_alloc: log initial get
+  * cosmetic: penalty timers: constify, tweak doc
+  * use libosmocore's gsm0808_permitted_speech(), gsm0808_chosen_channel()
+  * log: assignment: add two logs on unexpected lchan release
+  * log: fix logging in rsl_rx_chan_act_nack()
+  * assignment: signal assignment failure on chan act nack
+  * cosmetic: gscon: undup code: add common assignment_failed()
+  * cosmetic: magic number: use RSL_ACT_ constant for chan act
+  * remove struct bsc_api
+  * dissolve libbsc: move all to src/osmo-bsc, link .o files
+
+-------------------------------------------------------------------
+Thu Jun 07 20:02:26 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.34:
+  * bsc_test: drop "scan to MSC" code path
+  * tests: remove channel_test
+  * tests: remove bssap_test
+  * increment 'paging responded' counter for active paging only
+
+-------------------------------------------------------------------
+Thu Jun 07 10:38:37 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.30:
+  * Reject ASSIGNMENT REQ with CIC but no AoIP transp addr in AoIP case
+
+-------------------------------------------------------------------
+Sun Jun 03 20:03:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.29:
+  * VTY: Print some more information in "show conns"
+  * Add initial 3GPP LCLS support to OsmoBSC
+  * LCLS: add VTY config to enable/disable LCLS on per-MSC basis
+
+-------------------------------------------------------------------
+Wed May 30 20:02:59 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.26:
+  * chan_alloc: Print bts nr on chan alloc failure
+  * abis_rsl.c: Fix whitespace
+  * abis_rsl: rsl_rx_chan_rqd: Format bts log string as in everywhere else
+
+-------------------------------------------------------------------
+Mon May 28 20:02:54 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.23:
+  * Remove 'struct bsc_msc_connection' + fix IPA-encapsulated CTRL
+  * move 'extern struct gsm_network *bsc_gsmnet" to header file
+  * acc_ramp: Increase log level of some messages
+  * doc: add msc charts on Assignment/Handover internals
+
+-------------------------------------------------------------------
+Sun May 27 20:02:56 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.19:
+  * remove remaining bits of osmo-bsc_nat
+
+-------------------------------------------------------------------
+Fri May 25 20:03:02 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.18:
+  * bsc: Fix check for MSC-side FSM allocation failure
+  * vty: Permit selection of other ASP protocol than M3UA
+  * bsc: Add mgcp_port_to_cic() to determine CIC from RTP Port
+  * bsc: Use correct MGCP endpoint name for IPA/SCCPlite
+  * bsc: Don't reject ASSIGNMENT for Audio in IPA/SCCPlite case
+  * bsc: Don't include AoIP IEs in ASSIGNMENT COMPLETE over SCCPlite
+  * bsc: Don't create MSC-side MGCP connection in IPA/SCCPlite case
+
+-------------------------------------------------------------------
+Thu May 24 20:03:00 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.11:
+  * fix misaligned memory write access in abis_nm_ipaccess_rsl_connect()
+
+-------------------------------------------------------------------
+Wed May 23 20:03:03 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.10:
+  * bsc_api.c: actually log with context
+  * abis_rsl.h: drop unused rsl_chan_activate() declaration
+  * cosmetic: bsc_dyn_ts.c: make local functions static
+  * cosmetic: define TCH_F_PDCH_PENDING_MASK as actual bitwise or
+  * cosmetic: logging and ordering in handle_ass_compl()
+  * gscon: remove dead code
+
+-------------------------------------------------------------------
+Tue May 22 20:03:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.4:
+  * add counter for connection attempts from BTS with unknown unit id
+  * nat: Add jitter buffer on the uplink receiver
+
+-------------------------------------------------------------------
+Fri May 18 20:02:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.2:
+  * a_reset: cleanup + remove dead code
+  * show all global counters of osmo-bsc in vty
+
+-------------------------------------------------------------------
+Tue May 15 20:03:26 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.1.0:
+  * Bump version: 1.2.0.9-a7008 → 1.2.1
+
+-------------------------------------------------------------------
+Mon May 14 20:02:55 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.13:
+  * deprecate dyn_ts_allow_tch_f and by default allow all TCH
+  * fix default fallbacks in audio_support_to_gsm88()
+  * log: indicate hr/fr in audio_support_to_gsm88() error
+  * cosmetic: dyn ts init: undup logging for gprs = none
+
+-------------------------------------------------------------------
+Thu May 10 20:02:59 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.9:
+  * dyn TS: init only when both RSL and the Channel OM are established
+  * dyn TS: allow any pchan type changes, fix for gprs mode none
+  * debug log: verbosely log all lchan alloc choices
+
+-------------------------------------------------------------------
+Tue May 08 20:02:55 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.6:
+  * osmo_bsc_vty.c: fix: write MGW configuration
+
+-------------------------------------------------------------------
+Mon May 07 20:02:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.5:
+  * dyn TS, assignment: set lchan state to LCHAN_S_ACT_REQ in the proper place
+  * dyn TS, assignment: allow switch from PDCH with associated conn
+
+-------------------------------------------------------------------
+Sun May 06 20:02:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.3:
+  * dyn ts, bts_ipaccess_nanobts.c: init PDCH on Chan OPSTART ACK
+
+-------------------------------------------------------------------
+Fri May 04 20:02:58 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.2:
+  * bsc_api/GSCON: prevent unnecessary channel mode modifications
+  * resurrect meas_feed.c: vty, vty-test
+
+-------------------------------------------------------------------
+Thu May 03 20:03:25 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.0:
+  * cosmetic: Add note about libosmo-legacy-mgcp to configure.ac
+  * resurrect meas_feed.c from openbsc.git history
+  * resurrect meas_feed.c: make it compile, add logging
+  * Bump version: 1.1.2.360-42ab-dirty → 1.2.0
+
+-------------------------------------------------------------------
+Tue Apr 24 20:02:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.357:
+  * extend documentation of paging_flush_bts()
+  * flush paging when RSL link is dropped
+
+-------------------------------------------------------------------
+Mon Apr 23 20:02:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.355:
+  * abis_rsl.c: abis_rsl_rx_cchan: Print msg type name for unimplemented messages received
+  * abis_rsl.c: Clean ericsson specific imm assign code
+  * gsm_data_shared.h: Remove unused enum gsm_paging_event
+
+-------------------------------------------------------------------
+Thu Apr 19 20:02:51 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.352:
+  * chan_alloc.c: Fix log var formatting issues
+  * properly skip paging is OML link is down
+
+-------------------------------------------------------------------
+Tue Apr 17 20:03:13 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.350:
+  * gscon: fix assignment of signalling channels
+  * use osmo_init_logging2
+
+-------------------------------------------------------------------
+Mon Apr 16 20:03:01 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.348:
+  * bsc_nat: ctrl: Fix crash on receveing bsc reply
+  * Cosmetic: Fix typo: Siganlling->Signalling
+
+-------------------------------------------------------------------
+Sat Apr 14 20:28:51 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.346:
+  * fix handling of state changes in acc ramping
+  * inform A-RESET FSM about MSC CR timeouts
+
+-------------------------------------------------------------------
+Thu Apr 12 21:47:38 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.344:
+  * rename helper functions in the acc ramp code to avoid confusion
+  * trigger acc ramping on state-changed-event reports
+  * only trigger acc ramping if trx 0 is usable and unlocked
+
+-------------------------------------------------------------------
+Wed Apr 11 20:02:53 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.341:
+  * only log actual access control class ramping changes
+  * libbsc: set_net_mcc_mnc_apply: Fix memleak on parsing incorrect mcc mnc
+  * bsc_nat: ctrl: fix memleak on reply receival
+  * bsc_nat: forward_to_bsc: remove one level of indentation
+  * bsc_nat: forward_to_bsc: Fix memleak on send failure
+  * bsc_nat: Drop redundant ccon ptr in bsc_cmd_list
+  * ensure that acc_ramp_init() is only called once
+  * trigger acc ramping based on trx rf-locked state
+
+-------------------------------------------------------------------
+Mon Apr 09 18:39:58 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.333:
+  * fix a format string error in bts_update_t3122_chan_load()
+  * fix initialization of acc ramping
+
+-------------------------------------------------------------------
+Sat Apr 07 18:53:48 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.331:
+  * cosmetic: Fix infinite number of formatting errors in gscon_fsm_states
+  * abis_nm: Improve and fix OML logging
+  * paging: Unify formatting of log messages with (bts=%d) prefix
+  * RR: Send RR STATUS in case of unsupported/unknown message
+  * pcu_sock.c: Avoid breaking strict-aliasing on ptr derreference
+  * contrib: jenkins.sh: Add --enable-werror flag
+  * fix an error message in bssmap_handle_paging()
+  * cosmetic: abis_nm: use osmo_cell_global_id, parse 3-digit MNC
+  * fixup: apply mnc3 change also in ipaccess/network_listen.c
+  * cosmetic: remove unused enum members
+  * cosmetic: fix typo
+  * cosmetic: fix argument order of forward_dtap()
+  * cosmetic: remove needless fixme note.
+  * cosmetic: fix incomplete sentence in comment.
+  * Cosmetic: fix missing semicolon after osmo-assert
+  * cosmetic: remove dead code and obsolete fixmes
+  * cosmetic: remove old, already commented-out code
+  * BSSAP: Fix test_codec_pref() implementation for AMR
+  * BSSAP: document match_codec_pref() more thoroughly
+  * GSCON FSM: Fix argument order when calling gsm0808_assign_req()
+  * bssmap: State correct speech codec in ASSIGNMENT COMPLETE
+  * vty: drop unused vty definitions (*_NODE, msc_*)
+  * gsm0408_test: drop LAI encoding test
+  * ipaccess: make ipaccess-config build again
+  * bs11: make bs11_config build again
+  * cosmetic: remove dead code: osmo_bsc_reset.c
+  * contrib: osmo-bsc.service: Update description
+  * contrib: osmo-bsc.service: Fix osmo-mgw.service dependency
+  * libbsc: nokia_site: Fix uninitialized return val
+  * bsc_vty: Fix uninitialized var false positive on gcc 7.3.1
+  * paging: paging_request_bts: Fix wrong return value
+  * bssap: Log non handled paging requests
+  * gscon: fix illegal state transitions
+  * change return type of page_subscriber() to void
+  * range_enc_arfcns: avoid runtime error on zero size
+  * fix gsm0408_test: properly free bts struct after each test
+  * move init from gsm_bts_alloc_register() to gsm_bts_alloc(); fix gsm0408_test
+  * cosmetic: gsm0408_test: drop unused arg from bts_init()
+  * ctx cleanup: use non-NULL talloc ctx for osmo_init_logging2()
+  * cosmetic: remove dead code
+  * cosmetic: Add fixme note for OS#3112
+  * doc/examples: use NECI = 1 by default
+  * vty: re-add 'timeout-ping' and 'timeout-pong' as dummy commands
+  * Generate the S_L_INP_TEI_UP signal earlier.
+  * Start Dynamic PDCH Initialization after RSL is up
+  * "show timeslot": Show dynamic PDCH state also for Osmocom-style dyn PDCH
+
+-------------------------------------------------------------------
+Sat Mar 17 12:13:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.285:
+  * bsc_api.c: bsc_handle_lchan_signal: Remove unused variable
+  * bsc_subscr_conn_fsm.c: Fix wrong param list passed to LOGPFSML
+  * tests: handover_test.c: Add missing header
+
+-------------------------------------------------------------------
+Fri Mar 16 19:59:44 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.282:
+  * introduce an osmo_fsm for gsm_subscriber_connection
+  * abisip-find: Improve use information output
+  * ipaccess-config: Check cmdlie arg unit-id format
+
+-------------------------------------------------------------------
+Fri Mar 16 10:12:28 UTC 2018 - mardnh@gmx.de
+
+- Create subpackages for
+  * abisip-find
+  * ipaccess-utils
+  * bs11-utils
+
+-------------------------------------------------------------------
+Thu Mar 15 18:48:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.279:
+  * use libosmocore to parse cell identifiers in osmo-bsc
+
+-------------------------------------------------------------------
+Wed Mar 14 21:34:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.278:
+  * sysinfo: Fix regression causing missing L2 Pseudo-Length in SI5/SI6
+  * gsm_data: use feature list from libosmocore
+  * bsc_vty: display bts features in show bts
+  * abisip-find: Add option to bind to a specific source address
+  * abisip-find: Force stdout buffer flush
+  * abisip-find: Add --format-json option
+  * configure: add --enable-werror
+  * ipaccess-config: Enable logging all categories to print errors
+  * ipaccess-config: Add missing path with log error
+  * ipaccess-config: Improve handling of last parameter
+
+-------------------------------------------------------------------
+Wed Mar 14 19:56:20 UTC 2018 - mardnh@gmx.de
+
+- Rebase patch:
+  * osmo-bsc-disable-osmo-bsc_nat.patch
+
+-------------------------------------------------------------------
+Sat Mar  3 11:04:30 UTC 2018 - mardnh@gmx.de
+
+- We don't have libosmo-sccp anymore.
+  Lets drop the remaining legacys stuff that still depend on that
+  library.
+- Add patch:
+  * osmo-bsc-disable-osmo-bsc_nat.patch
+
+-------------------------------------------------------------------
+Wed Feb 14 16:16:57 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.1.2.184
+
+-------------------------------------------------------------------
+Sat Feb 10 20:32:18 UTC 2018 - mardnh@gmx.de
+
+- Show testsuite.log when tests are failing
+
+-------------------------------------------------------------------
+Sat Feb 10 16:07:23 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.1.2.182
+
+-------------------------------------------------------------------
+Sat Jan 27 18:08:11 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.1.2.172
+- Remove patch:
+  * osmo-bsc-fix-includes.patch (fixed upstream)
+
+-------------------------------------------------------------------
+Thu Dec 28 09:23:13 UTC 2017 - mardnh@gmx.de
+
+- Add patch:
+  * osmo-bsc-fix-includes.patch
+
+-------------------------------------------------------------------
+Wed Dec 27 16:35:29 UTC 2017 - mardnh@gmx.de
+
+- Initial package, version 1.1.2

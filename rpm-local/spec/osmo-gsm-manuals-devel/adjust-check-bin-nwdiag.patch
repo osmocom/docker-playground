@@ -1,0 +1,36 @@
+diff --git a/build/diag-filter.conf b/build/diag-filter.conf
+index 0c30db7..4f6005e 100644
+--- a/build/diag-filter.conf
++++ b/build/diag-filter.conf
+@@ -49,7 +49,7 @@ template::[filter-diag-pngsvg-blockmacro]
+ 
+ 
+ [nwdiag-filter-style]
+-nwdiag-style=template="nwdiag-block",subs=(),posattrs=("style","target"),filter='nwdiag3 -o "{outdir={indir}}/{imagesdir=}{imagesdir?/}{target}" -T{format={basebackend-docbook!png}{basebackend-docbook?png}} - && echo " "'
++nwdiag-style=template="nwdiag-block",subs=(),posattrs=("style","target"),filter='nwdiag -o "{outdir={indir}}/{imagesdir=}{imagesdir?/}{target}" -T{format={basebackend-docbook!png}{basebackend-docbook?png}} - && echo " "'
+ 
+ [blockdef-listing]
+ template::[nwdiag-filter-style]
+@@ -62,7 +62,7 @@ template::[filter-diag-pngsvg-blockmacro]
+ 
+ 
+ [packetdiag-filter-style]
+-packetdiag-style=template="packetdiag-block",subs=(),posattrs=("style","target"),filter='packetdiag3 -o "{outdir={indir}}/{imagesdir=}{imagesdir?/}{target}" -T{format={basebackend-docbook!png}{basebackend-docbook?png}} - && echo " "'
++packetdiag-style=template="packetdiag-block",subs=(),posattrs=("style","target"),filter='packetdiag -o "{outdir={indir}}/{imagesdir=}{imagesdir?/}{target}" -T{format={basebackend-docbook!png}{basebackend-docbook?png}} - && echo " "'
+ 
+ [blockdef-listing]
+ template::[packetdiag-filter-style]
+diff --git a/check-depends.sh b/check-depends.sh
+index f072fd8..adb49c5 100755
+--- a/check-depends.sh
++++ b/check-depends.sh
+@@ -13,8 +13,7 @@ check_dep_bin xsltproc libxslt
+ check_dep_bin a2x asciidoc
+ check_dep_bin asciidoc asciidoc
+ check_dep_bin dblatex dblatex
+-check_dep_bin packetdiag3 python3-nwdiag
++check_dep_bin packetdiag nwdiag
+ check_dep_bin dot graphviz
+-check_dep_bin inkscape inkscape
+ 
+ echo "All dependencies installed!"

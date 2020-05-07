@@ -1,0 +1,447 @@
+-------------------------------------------------------------------
+Tue Apr 14 20:00:30 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.19:
+  * configure.ac: fix libtool issue  with clang and sanitizer
+
+-------------------------------------------------------------------
+Mon Mar 09 21:00:24 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.18:
+  * ortp: disable SO_REUSEADDR + SO_REUSEPORT
+  * Add rtp_test to show the double-bind bug of OS#4444
+
+-------------------------------------------------------------------
+Sat Mar 07 21:00:24 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.16:
+  * osmo_ortp: add osmo_rtp_socket_set_dscp()
+
+-------------------------------------------------------------------
+Wed Jan 29 21:00:21 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.15:
+  * add ipa ping/pong keepalive for OML/RSL links between bts and bsc
+
+-------------------------------------------------------------------
+Wed Jan 22 21:02:47 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.14:
+  * ipaccess.c: line_already_initialized: int -> bool
+
+-------------------------------------------------------------------
+Sun Jan 12 21:01:28 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.13:
+  * e1d: Implement varions non-LAPD timeslot modes
+  * e1d: Don't connect to e1d at program start time
+  * e1d: Use LOGPIL/LOGPITS logging macros to give context
+  * e1d: Use line->port_nr to specify e1d interface/line
+  * e1d: Remove bogus vty_show function.
+  * e1d: Remove EXCEPTFD handling
+  * e1d: Don't use perror() directly, use osmocom logging instead
+  * e1d: add missing forward-declaration of e1inp_e1d_init()
+  * e1d: Use HAVE_E1D in C source, not ENABLE_E1D
+  * e1d: Initial osmo-e1d support
+  * introduce and use logging macros with context on E1 line / timeslot
+  * dahdi: Don't use perror() directly, use osmocom logging instead
+
+-------------------------------------------------------------------
+Wed Jan 08 21:00:45 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.1:
+  * add/clean big-endian packed structs (struct_endianess.py)
+
+-------------------------------------------------------------------
+Fri Jan 03 21:00:54 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.0:
+  * Bump version: 0.7.0.8-4c2c-dirty → 0.8.0
+
+-------------------------------------------------------------------
+Wed Jan 01 21:00:46 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.7.0.8:
+  * input/ipa_keepalive.c: make sure IPA keepalive FSM is registered
+
+-------------------------------------------------------------------
+Tue Dec 03 21:00:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.7:
+  * Enable DAHDI support by default; require --disable-dahdi otherwise
+
+-------------------------------------------------------------------
+Sun Dec 01 21:00:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.6:
+  * e1_input.c: make reference counting get() / put() more verbose
+  * input/ipaccess.c: fix debug message on receipt of IPAC_MSGT_ID_GET
+  * input/ipaccess.c: propagate errors from ipa_parse_unitid()
+
+-------------------------------------------------------------------
+Fri Nov 15 21:01:01 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.3:
+  * dahdi: Use ioctl(DAHDI_SPECIFY) instead of legacy /dev/dahdi/%u
+
+-------------------------------------------------------------------
+Tue Nov 12 21:01:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.2:
+  * ipa: Allow setting local addr and port for struct ipa_client_conn
+
+-------------------------------------------------------------------
+Mon Sep 16 20:00:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.1:
+  * ipa: ipa_server_link_close() add checks of link state
+
+-------------------------------------------------------------------
+Sun Jul 21 20:00:39 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.0:
+  * Bump version: 0.6.0.13-b4a7 → 0.7.0
+  * extend the ipa keepalive fsm
+  * ipaccess.c: Avoid calling close(-1) on error path
+
+-------------------------------------------------------------------
+Wed Jul 17 19:01:37 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.12:
+  * spelling
+
+-------------------------------------------------------------------
+Thu Jul 11 20:00:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.11:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Fri Jun 21 20:00:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.10:
+  * add TCP_USER_TIMEOUT to keepalive
+  * ipaccess: allow tcp keepalive for ipa clients
+
+-------------------------------------------------------------------
+Thu Apr 11 20:00:31 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.8:
+  * ipa_keepalive_fsm: Suppress error messages for INIT -> INIT transition
+  * ipa_keepalive_fsm: Fix OSMO_IPA_KA_E_STOP allstate event
+
+-------------------------------------------------------------------
+Mon Apr 01 14:15:41 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.6:
+  * Add IPA keep-alive FSM implementation
+
+-------------------------------------------------------------------
+Tue Mar 19 21:00:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.5:
+  * rtp: Add 'autoconnect' feature to the osmo_rtp_socket
+  * tests: use -no-install libtool flag to avoid ./lt-* scripts
+
+-------------------------------------------------------------------
+Mon Mar 11 21:00:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.3:
+  * ipa: Make ipa_server_conn_destroy() re-entrant
+
+-------------------------------------------------------------------
+Tue Feb 05 21:00:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.2:
+  * Log peer's port in accept callback
+
+-------------------------------------------------------------------
+Thu Jan 24 21:04:52 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.1:
+  * Set local IP in ipa_server_link properly
+
+-------------------------------------------------------------------
+Sun Jan 20 21:00:25 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.0:
+  * Bump version: 0.5.1.20-de57 → 0.6.0
+
+-------------------------------------------------------------------
+Thu Dec 06 21:00:21 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.21:
+  * log IPA tags correctly
+
+-------------------------------------------------------------------
+Tue Nov 20 19:09:45 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.20:
+  * osmo_ortp: Log domain and fix strings without endl char
+
+-------------------------------------------------------------------
+Tue Oct 09 20:00:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.19:
+  * e1_input.h: Set correct type for input_signal_data->link_type
+  * ipaccess: Simplify handling of ipaccess e1line ts
+
+-------------------------------------------------------------------
+Wed Oct 03 20:00:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.17:
+  * ipacces: Log correct trx_nr during IPA GET
+
+-------------------------------------------------------------------
+Wed Sep 26 20:00:22 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.16:
+  * ensure unix socket paths are NUL-terminated for bind/connect
+
+-------------------------------------------------------------------
+Tue Sep 04 20:00:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.15:
+  * debian: Conflict libosmoabis6 with libosmoabis5
+  * Properly deal with sockaddr_un socket path length limitations.
+
+-------------------------------------------------------------------
+Thu Aug 30 20:00:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.13:
+  * debian: Fix libosmoabis soname package version
+
+-------------------------------------------------------------------
+Wed Aug 29 20:00:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.12:
+  * ipaccess: Allow passing return code in e1inp_line_ops->sign_link()
+  * ipaccess: Return -EBADF when closing socket in ipaccess_bts_read_cb
+  * ipa: Allow signalling fd destroyed in ipa_server_conn_read
+  * ipa: Allow signalling fd destroyed in ipa_client_read
+  * ipa: Simplify code in ipa_server_conn_read
+  * ipa: Simplify code in ipa_client_read
+
+-------------------------------------------------------------------
+Sat Aug 25 20:00:22 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.6:
+  * ipa: don't crash on missing IPA ID GET message
+
+-------------------------------------------------------------------
+Thu Aug 23 20:00:21 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.5:
+  * ipaccess_rcvmsg: Fix bug introduced in previous commit
+
+-------------------------------------------------------------------
+Wed Aug 22 20:00:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.4:
+  * ipaccess: Use osmo_fd_setup to set up callbacks
+
+-------------------------------------------------------------------
+Mon Aug 06 20:00:25 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.3:
+  * debian/rules: Don't overwrite .tarball-version
+
+-------------------------------------------------------------------
+Wed Aug 01 20:00:25 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.2:
+  * Migrate from ipa_ccm_idtag_parse to ipa_ccm_id_resp_parse()
+
+-------------------------------------------------------------------
+Fri Jul 27 20:00:26 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.1:
+  * fix strncpy bugs in ipaccess.c, ipa_proxy.c
+  * Bump version: 0.5.0.10-a210-dirty → 0.5.1
+
+-------------------------------------------------------------------
+Tue Jul 24 20:00:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.10:
+  * e1_input.c: Replace '.' in counter names with ':'
+
+-------------------------------------------------------------------
+Tue Jun 05 20:00:25 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.9:
+  * Revert "ortp: make sure the ortp scheduler is started"
+  * Revert "ortp: enable scheduled mode on rtp socket creation"
+
+-------------------------------------------------------------------
+Thu May 31 20:00:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.7:
+  * ortp: enable scheduled mode on rtp socket creation
+
+-------------------------------------------------------------------
+Wed May 30 20:00:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.6:
+  * ortp: make sure the ortp scheduler is started
+  * ortp: reset rtp session on SSRC changes
+  * ortp: detect ssrc changes immediately
+
+-------------------------------------------------------------------
+Thu May 24 20:00:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.3:
+  * fix double-free/use-after-free of pointers in struct e1inp_line
+
+-------------------------------------------------------------------
+Wed May 23 20:00:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.2:
+  * ipaccess: ipaccess_rcvmsg: Drop unneeded memcpy
+  * ipaccess: Avoid using released line and bfd in ipaccess_fd_cb
+
+-------------------------------------------------------------------
+Thu May 03 20:00:26 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.0:
+  * git-version-gen: Check first for new tag format
+  * Bump version: 0.4.0.21-60fd-dirty → 0.5.0
+
+-------------------------------------------------------------------
+Tue Apr 17 20:00:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.20:
+  * use osmo_init_logging2
+
+-------------------------------------------------------------------
+Wed Apr 11 20:00:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.19:
+  * configure.ac: Fix condition check for RTP_SIGNAL_PTR_CAST define
+
+-------------------------------------------------------------------
+Sat Apr 07 18:49:44 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.18:
+  * preserve 'when' flags of new osmo_fd in ipaccess_rcvmsg()
+  * e1_input.h: Remove dead declaration of unexistent API ipaccess_setup
+
+-------------------------------------------------------------------
+Wed Mar 14 21:20:53 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.16:
+  * Add SPDX-License-Identifier to all source files
+  * add --enable-sanitize config option
+  * unixsocket: fix a potential string overflow
+  * Add a new osmo_rtp_set_source_desc() function to set the RTCP SDES items
+  * cosmetic: update ipaccess_bts_handle_ccm()
+  * debian/control: Fix Vcs-Browser
+  * IPA: log remote address
+  * contrib: jenkins.sh: Disable doxygen in libosmocore build
+  * configure: add --enable-werror
+  * jenkins.sh: use --enable-werror configure flag, not CFLAGS
+
+-------------------------------------------------------------------
+Wed Feb 14 16:29:24 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.4.0.13
+
+-------------------------------------------------------------------
+Sat Feb 10 20:08:05 UTC 2018 - mardnh@gmx.de
+
+- Show testsuite.log when tests are failing
+
+-------------------------------------------------------------------
+Thu Jan 25 20:51:03 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.4.0.10
+
+-------------------------------------------------------------------
+Mon Oct  2 22:48:02 UTC 2017 - jengelh@inai.de
+
+- Update to new upstream snapshot 0.4.0.2
+  * osmo_ortp: Duration of a RTP frame affects timestamp of the
+    next one
+  * osmo_ortp: Add osmo_rtp_drop_frame API
+  * osmo_ortp: Fix warning: check ortp API in
+    rtp_session_signal_connect
+- Drop 0001-build-resolve-compiler-warnings.patch (merged)
+
+-------------------------------------------------------------------
+Fri Apr 28 20:58:28 UTC 2017 - jengelh@inai.de
+
+- Update to new upstream snapshot 0.3.2.68
+  * Really fix order of set_connected_mode and set_remote_addr
+  * Resync RTP session in case of timestamp jump
+  * e1_input: Add E1 timeslot number to input_signal_data
+  * Convert e1inp_{sign,ts}type_name() to use struct value_string
+  * Implement new 'raw' input type for E1 timeslots
+  * Add HDLC timeslot mode
+  * lapd: adding support for ericsson's lapd dialect
+  * Enable adaptive jitter compensation
+  * lapd: Reduce N200 (SABM retransmission count)
+- Drop ortp27.diff (no longer needed)
+
+-------------------------------------------------------------------
+Sat Oct  1 12:30:41 UTC 2016 - jengelh@inai.de
+
+- Update to new upstream snapshot 0.3.2.24
+* No visible changes
+- Add ortp27.diff
+
+-------------------------------------------------------------------
+Sat Jul 30 17:54:58 UTC 2016 - jengelh@inai.de
+
+- Update to new upstream snapshot 0.3.2.19
+* ipa driver: make bind address vty configurable
+* Do not send RTP to port 0
+* Add defines for FN to SAMPLE conversion
+
+-------------------------------------------------------------------
+Fri Jan 22 19:08:57 UTC 2016 - jengelh@inai.de
+
+- Move to seprate location and ensure pkgconfig is used correctly
+
+-------------------------------------------------------------------
+Wed Dec 23 17:34:54 UTC 2015 - jengelh@inai.de
+
+- Update to new upstream release 0.3.2.3
+* ortp: Guard the jitter stats with a version check
+* ortp: Export statistics for the bts or similar
+* export lapd_tei_alloc for libosmo-netif
+
+-------------------------------------------------------------------
+Thu Apr  2 12:29:23 UTC 2015 - jengelh@inai.de
+
+- Add 0001-build-resolve-compiler-warnings.patch
+
+-------------------------------------------------------------------
+Sun Mar  1 01:15:24 UTC 2015 - jengelh@inai.de
+
+- Update to new upstream release 0.3.1
+* No changelog was provided, again
+
+-------------------------------------------------------------------
+Thu Oct  2 20:43:07 UTC 2014 - jengelh@inai.de
+
+- Update to new upstream release 0.3.0
+* No changelog was provided
+
+-------------------------------------------------------------------
+Mon Jul 21 08:00:10 UTC 2014 - jengelh@inai.de
+
+- Update to new upstream release 0.2.0
+* No changelog was provided
+- Remove 0001-lapd-Do-not-override-t203_sec-initialization.patch,
+  0002-misdn-Set-ret-to-0-when-using-the-LAPD-from-userspac.patch
+  (no longer needed)
+
+-------------------------------------------------------------------
+Sun Jun  2 23:50:42 UTC 2013 - jengelh@inai.de
+
+- Add 0001-lapd-Do-not-override-t203_sec-initialization.patch,
+  0002-misdn-Set-ret-to-0-when-using-the-LAPD-from-userspac.patch
+
+-------------------------------------------------------------------
+Fri Feb 22 09:03:06 UTC 2013 - jengelh@inai.de
+
+- Initial package (version 0.1.5) for build.opensuse.org

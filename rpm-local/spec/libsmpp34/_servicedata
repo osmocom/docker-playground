@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/libsmpp34</param>
+              <param name="changesrevision">7dbf4bbe052da74875b350e13bcf62480f49f929</param></service></servicedata>

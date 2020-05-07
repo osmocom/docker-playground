@@ -1,0 +1,11 @@
+-------------------------------------------------------------------
+Wed Jan  4 21:50:52 UTC 2017 - mardnh@gmx.de
+
+- add patch 0001-build-obey-CFLAGS.patch
+- add CFLAGS to supress compiler-errors on newer gcc versions
+
+-------------------------------------------------------------------
+Mon Dec 22 16:05:20 UTC 2014 - mardnh@gmx.de
+
+- initial package, version 0.0.0.git1356478582.143a5bb
+

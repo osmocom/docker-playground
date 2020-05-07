@@ -1,0 +1,15 @@
+-------------------------------------------------------------------
+Wed Mar 14 21:47:38 UTC 2018 - mardnh@gmx.de
+
+- Fix dependencies
+
+-------------------------------------------------------------------
+Thu Mar  8 22:00:02 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20180308
+- Removed not longer needed patches (fixed upstream)
+
+-------------------------------------------------------------------
+Thu Mar  8 15:38:50 UTC 2018 - mardnh@gmx.de
+
+- Initial package, version 0.0.0+git.20160413

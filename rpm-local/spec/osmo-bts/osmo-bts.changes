@@ -1,0 +1,2249 @@
+-------------------------------------------------------------------
+Mon Apr 27 20:02:30 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.46:
+  * osmo-bts-{sysmo,oc2g,lc15}: fix segfault on 'dsp-trace-flag'
+
+-------------------------------------------------------------------
+Sat Apr 25 20:03:03 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.45:
+  * measurement: remove unecessary is_amr_sid_update parameter
+  * dtx: add detection of AMR DTX frames for osmo-bts-trx
+  * oc2g: Fix mismatching signature in callback provided
+  * oc2g: Fix returning values on void function
+  * lc15: Fix mismatching signature in callback provided
+  * lc15: Fix returning values on void function
+  * osmo-bts-litecell15: Implement missing features.
+
+-------------------------------------------------------------------
+Wed Apr 22 20:02:55 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.38:
+  * osmo-bts-virtual: Avoid rejecting AMR in uplink
+
+-------------------------------------------------------------------
+Mon Apr 20 20:02:51 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.37:
+  * fix compilation with gcc-10
+
+-------------------------------------------------------------------
+Tue Apr 14 20:02:44 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.36:
+  * logging: use only LOGL_NOTICE as defualt loglevel
+  * configure.ac: fix libtool issue  with clang and sanitizer
+
+-------------------------------------------------------------------
+Sun Apr 05 20:02:41 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.34:
+  * scheduler: always call Uplink burst handler on NOPE.ind
+
+-------------------------------------------------------------------
+Fri Apr 03 20:02:27 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.33:
+  * cosmetic: remove dead code from logging.c
+
+-------------------------------------------------------------------
+Wed Apr 01 20:02:54 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.32:
+  * l1sap: fix gsmtap_ph_rach(): properly pack 8-bit and 11-bit RA
+
+-------------------------------------------------------------------
+Tue Mar 24 21:02:29 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.31:
+  * VTY: add "test send-failure-event-report"
+
+-------------------------------------------------------------------
+Mon Mar 23 21:02:24 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.30:
+  * osmo-bts-trx: do not set rx-gain to 1 by default
+
+-------------------------------------------------------------------
+Sun Mar 22 21:02:33 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.29:
+  * trx: Use NOPE indications on SDCCH
+  * trx: Use NOPE indications from OsmoTRX for TCH/F and TCH/H
+  * trx: Fix reported BER for TCH/H
+
+-------------------------------------------------------------------
+Wed Mar 11 21:02:14 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.26:
+  * osmo-bts-virtual: Fix "virtual-um net-device NETDEV"
+  * osmo-bts-virtual: Add "virtual-um ttl <0-255>" VTY option
+
+-------------------------------------------------------------------
+Tue Mar 10 21:02:09 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.24:
+  * rsl: make IP DSCP configurable
+  * osmo-bts-virtual: implement GSMTAP_CHANNEL_VOICE
+
+-------------------------------------------------------------------
+Mon Mar 09 21:02:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.22:
+  * l1sap: Use msgb_pull_l2() and unify l1sap_tch_ind + l1sap_ph_data_ind
+
+-------------------------------------------------------------------
+Sun Mar 08 21:02:07 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.21:
+  * osmo-bts-virtual: do not log GSMTAP message sending failure twice
+
+-------------------------------------------------------------------
+Sun Mar 01 21:02:06 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.20:
+  * osmo-bts-virtual: do not print redundant info in tx_to_virt_um()
+  * osmo-bts-virtual: fix wrong endianness in gsmtap_hdr_stringify()
+  * common/sysinfo: reduce criticality of a logging message
+
+-------------------------------------------------------------------
+Sat Feb 29 21:02:32 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.17:
+  * vty: fix left shift by 31 cannot be represented in type 'int'
+
+-------------------------------------------------------------------
+Wed Feb 26 21:03:05 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.16:
+  * virtual: Fix VTY commands to specify GSMTAP multicast groups
+  * cosmetic: Fix some typos with codespell
+
+-------------------------------------------------------------------
+Tue Feb 25 21:03:02 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.14:
+  * bts-trx: trx_if.c: Fix some printf formats
+
+-------------------------------------------------------------------
+Wed Feb 19 21:06:40 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.13:
+  * osmo-bts-sysmo: merge measurement data and payload
+  * Do not depend on pcu_direct flag when populating ph_data_ind
+
+-------------------------------------------------------------------
+Thu Feb 13 21:03:06 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.11:
+  * l1sap: Change loglevel of Rx TCH.ind INFO->DEBUG
+  * l1_if: Fix strange formatting of Meas info logging
+
+-------------------------------------------------------------------
+Mon Jan 27 21:02:54 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.9:
+  * osmo-bts-sysmo/Makefile.am: fix: do not overwrite bin_PROGRAMS
+
+-------------------------------------------------------------------
+Mon Jan 20 21:09:17 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.8:
+  * l1sap: merge MEAS IND into PRIM PH DATA / PRIM TCH
+  * measurment: write irssi_full_sum variable correctly
+  * ta_control: move timing advance code from osmo-bts-trx to common
+
+-------------------------------------------------------------------
+Sat Jan 18 21:06:11 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.5:
+  * L1SAP: use LOGL_DEBUG for logging from rach_pass_filter()
+
+-------------------------------------------------------------------
+Sun Jan 12 21:13:03 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.4:
+  * rsl.c: Fix compiler error on gcc-9.2.1
+  * common/abis.c: make use of RSL TEI from OML IPA RSL Connect
+  * common/vty.c: get rid of generic exit / end commands
+
+-------------------------------------------------------------------
+Mon Jan 06 21:04:59 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.1:
+  * measurement: use signed integer for division of ta256b_sum
+
+-------------------------------------------------------------------
+Fri Jan 03 21:06:45 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.0:
+  * Bump version: 1.1.0.95-24e7-dirty → 1.2.0
+  * l1sap.c: ensure ms power control loop is running
+  * rsl: ensure measurement reports are sent
+
+-------------------------------------------------------------------
+Tue Dec 31 21:02:31 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.93:
+  * osmo-bts-trx/vty: ensure backwards compatibility with older config files
+  * l1sap: is_fille_frame(): verify len of data compared
+
+-------------------------------------------------------------------
+Mon Dec 09 21:06:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.91:
+  * power_control.c: Clarify loop algo vars and use correct ones during log
+
+-------------------------------------------------------------------
+Thu Dec 05 21:02:02 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.90:
+  * power_control.c: Log maximum allowed MS Power Level
+  * rsl: Clarify when autnonoums MS Power Ctrl Loop is used
+
+-------------------------------------------------------------------
+Wed Dec 04 21:02:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.88:
+  * rach_pass_filter(): Add information about channel type
+
+-------------------------------------------------------------------
+Tue Dec 03 21:02:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.87:
+  * rsl_rx_chan_act: Apply bitmask when parsing IE MS_POWER
+  * common/abis.c: use tall_bts_ctx as talloc-context for libosmo_abis_init()
+
+-------------------------------------------------------------------
+Mon Dec 02 21:04:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.85:
+  * common/abis.c: pass gsm_bts_trx to e1inp_sign_link_create()
+
+-------------------------------------------------------------------
+Sat Nov 30 21:08:36 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.84:
+  * bts-trx: Drop low layer MS Power Control Loop algo
+
+-------------------------------------------------------------------
+Wed Nov 27 21:06:25 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.83:
+  * scheduler_trx.c: cast ptrdiff value to fix printf format
+
+-------------------------------------------------------------------
+Tue Nov 26 21:08:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.82:
+  * common/vty.c: fix: properly assert() the result of get_string_value()
+
+-------------------------------------------------------------------
+Fri Nov 22 21:12:56 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.81:
+  * pcuif_proto.h: extend RACH.ind with TRX and timeslot number fields
+
+-------------------------------------------------------------------
+Thu Nov 21 21:05:55 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.80:
+  * power_control.c: Limit speed of announced MS Power Level value changes
+  * power_control.c: Don't use announced MS Power level as input for loop calculations
+
+-------------------------------------------------------------------
+Wed Nov 20 21:08:37 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.78:
+  * osmo-bts-trx/trx_if.c: fix: NOPE.ind also contains C/I field
+  * scheduler_trx.c: avoid division by zero when calculating BER
+
+-------------------------------------------------------------------
+Tue Nov 19 21:05:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.76:
+  * osmo-bts-virtual.cfg: ms-power-control dsp -> osmo
+  * osmo-bts-trx/trx_if.c: also print both RSSI and ToA256 for NOPE.ind
+  * osmo-bts-trx/trx_if.c: fix: always initialize bi->burst_len for NOPE.ind
+  * osmo-bts-trx: general handling of NOPE / IDLE indications
+
+-------------------------------------------------------------------
+Mon Nov 18 21:04:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.72:
+  * Introduce BTS feature BTS_FEAT_MS_PWR_CTRL_DSP
+  * power_control.c: Fix ms pwr ctrl skipped if MS doesn't support announced MS Power Level
+  * power_control.c: Log rx current and target signal levels
+  * power_control.c: Apply latests improvements from loops.c
+
+-------------------------------------------------------------------
+Fri Nov 15 21:06:20 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.68:
+  * bts-trx: loops.c: Avoid always clamping MS power to MS power class 1
+  * Move and rename gsm_lchan.ms_power field
+  * rsl: Remove unneeded duplicate reset on some lchan fields
+  * Change gsm_lchan field fixed to bool
+  * Change gsm_bts_trx field to bool and rename it
+  * cosmetic: Fix trailing whitespace
+
+-------------------------------------------------------------------
+Wed Nov 13 21:09:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.62:
+  * rsl: Fix logged value in rx MS Power Control
+
+-------------------------------------------------------------------
+Tue Nov 12 21:03:51 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.61:
+  * bts-trx: Implement MS Power control loop calculations using dBm instead of ctl levels
+  * rsl: Assign recv pwr to lchan's max ms power
+
+-------------------------------------------------------------------
+Mon Nov 11 21:04:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.59:
+  * scheduler_trx: initalize n_errors, n_bursts_bits, n_bits_total
+
+-------------------------------------------------------------------
+Tue Oct 29 21:03:20 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.58:
+  * scheduler_trx: use gsm0502_fn_remap() to calculate frame number
+
+-------------------------------------------------------------------
+Mon Oct 28 21:02:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.57:
+  * cosmetic: l1sap.c: Fix typo
+  * power_control.c: Take into account RSL CHAN ACT ms power level limits
+  * loops.h: Fix missing include for struct l1sched_trx
+  * bts-trx: loops.c: Take into account RSL CHAN ACT ms power level limits
+  * cosmetic: bts-trx: document variable power level
+
+-------------------------------------------------------------------
+Mon Oct 21 20:02:15 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.52:
+  * osmo-bts-trx/scheduler: fix: print the last frame number in rx_data_fn()
+  * vty.c: avoid coverity BAD_SHIFT issues
+  * vty.c: don't ignore get_string_value() errors
+
+-------------------------------------------------------------------
+Thu Oct 17 20:01:53 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.49:
+  * Rename variable: CALIB_SUCESS -> CALIB_SUCCESS
+  * Fix common misspellings and typos
+  * vty: add "logging filter l1-sapi"
+
+-------------------------------------------------------------------
+Wed Oct 16 20:01:53 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.46:
+  * bts-trx: Time out if no clock ind recvd after RSP POWERON
+
+-------------------------------------------------------------------
+Fri Oct 11 20:02:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.45:
+  * log: set L1 SAPI log context
+
+-------------------------------------------------------------------
+Thu Oct 10 20:02:20 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.44:
+  * README.md: update osmo-bts-trx specific limitations
+  * L1SAP: there can be no DATA.ind primitives on PTCCH/U, reject them
+  * L1SAP: use GSMTAP_CHANNEL_PDTCH for PDTCH blocks by default
+  * L1SAP: fix gsmtap_pdch(): there can be no DATA.ind on PTCCH/U
+  * L1SAP: use the actual ARFCN for outgoing PCUIF messages
+  * bts-trx: Log TRXC and TRXD socket recv()/send() failures
+  * L1SAP: properly handle 11-bit encoded RACH.ind in gsmtap_ph_rach()
+  * L1SAP: refactor handling of Access Bursts on PDCH
+  * L1SAP: do not pass unused parameter to l1sap_handover_rach()
+  * L1SAP: clarify debug messages in rach_pass_filter()
+  * L1SAP: also consider RSL_CHAN_OSMO_CBCH8 as CBCH
+  * L1SAP: use RSL_CHAN_* definitions from libosmogsm
+
+-------------------------------------------------------------------
+Mon Oct 07 20:07:20 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.32:
+  * gitignore: add oc2g generated files
+
+-------------------------------------------------------------------
+Sun Oct 06 20:01:41 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.31:
+  * bts-trx: Drop unused func check_transceiver_availability()
+  * bts-trx: Get rid of messy transceiver_available state handler
+  * bts-trx: Don't reset transceiver_available in scheduler_trx.c
+  * bts-trx: Rework code handling poweron state
+  * bts-trx: trx_set_bts(): Avoid double loop by checking current trx
+  * bts-trx: vty: Print phy link state in cmd 'show transceiver'
+  * bts-trx: Allocate struct osmo_trx_clock_state as part of bts-trx private data
+  * struct gsm_bts: Add model_priv pointer handing bts_model specific data
+
+-------------------------------------------------------------------
+Fri Oct 04 20:01:58 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.23:
+  * common/l1sap: increase ToA precision for packet Access Bursts
+  * osmo-bts-trx/scheduler: also detect TSC for Access Bursts on PDCH
+  * scheduler: fix handling of PTCCH/U and PTCCH/D logical channels
+
+-------------------------------------------------------------------
+Wed Oct 02 20:01:43 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.20:
+  * l1sap: Log conn dropped due to radio link counter timeout
+  * scheduler: Use OSMO_ASSERT instead of abort
+  * scheduler.c: Move some message log level to DEBUG
+
+-------------------------------------------------------------------
+Sun Sep 29 20:06:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.17:
+  * bts.h: Remove non-existent function definitions
+  * bts-trx: vty: Use API to get poweron state
+
+-------------------------------------------------------------------
+Thu Sep 19 20:13:41 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.15:
+  * doc: bts-models.adoc: Fix typos in rts-advance section
+  * bts-trx: Change super verbose IDLE ind not-supported line to DEBUG
+
+-------------------------------------------------------------------
+Wed Sep 18 20:06:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.13:
+  * osmo-bts-trx/scheduler: fix: check rc of osmo_ecu_frame_out()
+
+-------------------------------------------------------------------
+Tue Sep 10 20:02:34 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.12:
+  * bts-trx: Log case where no SETFORMAT is sent
+  * osmo-bts-trx: migrate to new generic ECU abstraction
+
+-------------------------------------------------------------------
+Sun Sep 08 20:02:01 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.10:
+  * osmo-bts-trx/scheduler: add FIXME note about FACCH/H and BFI
+  * osmo-bts-trx/scheduler: fix tx_tch_common(): do not send AMR BFI twice
+  * osmo-bts-trx/scheduler: prevent uninitialized memory access
+  * common/rsl.c: fix possible NULL-pointer dereference
+
+-------------------------------------------------------------------
+Sat Sep 07 20:02:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.6:
+  * doc: Update Abis manual RSL section with ETWS related infomration
+  * pcu_interface: Forward ETWS Primary Notification to PCU
+
+-------------------------------------------------------------------
+Fri Sep 06 20:02:02 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.4:
+  * ETWS Primary Notification via P1 Rest Octets
+
+-------------------------------------------------------------------
+Thu Aug 29 20:06:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.3:
+  * pcu_sock: fix endian-swapped CellID
+
+-------------------------------------------------------------------
+Fri Aug 23 20:05:51 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.2:
+  * virtual: set link quality for GSMTAP_CHANNEL_RACH
+  * Cosmetic: virtual: l1sap.c: fix typos
+
+-------------------------------------------------------------------
+Thu Aug 08 21:56:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.0:
+  * Bump version: 1.0.1 → 1.1.0
+  * configure.ac: Require libosmocore 1.2.0
+  * Remove undefined param passed to {logging,osmo_stats}_vty_add_cmds
+  * scheduler_trx: Handle negative return of gsm0503_tch_hr_decode()
+  * osmo-bts-trx: Don't attemtp to adjust MS power if fixed
+  * osmo-bts-trx: Don't increment rssi_valid_count twice
+
+-------------------------------------------------------------------
+Wed Jul 24 20:21:01 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.355:
+  * trx: Use LOGPPHI instead of LOGP in some more messages
+  * manuals: Update vty documentation
+  * bts-trx: Introduce VTY command osmotrx trxd-max-version
+
+-------------------------------------------------------------------
+Sun Jul 21 20:04:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.352:
+  * osmo-bts-trx/scheduler: rx_data_fn(): provide actual C/I ratio to L1SAP
+  * osmo-bts-trx/scheduler: rx_rach_fn(): provide actual C/I ratio to L1SAP
+  * Move Access Burst link quality handling to L1SAP
+  * Clarify and refactor link quality (C/I) handling
+  * sysmo/l1_if.c: Annotate fall-through in switch statement
+
+-------------------------------------------------------------------
+Fri Jul 19 20:04:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.347:
+  * manuals: Add counter documentation
+
+-------------------------------------------------------------------
+Thu Jul 18 20:06:45 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.346:
+  * common/rsl.c: fix: properly handle SI3 Rest Octets
+
+-------------------------------------------------------------------
+Wed Jul 17 19:05:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.345:
+  * fix spelling stuff mentioned by lintian
+
+-------------------------------------------------------------------
+Tue Jul 16 20:04:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.344:
+  * osmo-bts-trx/scheduler: rx_rach_fn(): enrich debug message
+  * osmo-bts-trx/scheduler: rx_rach_fn(): clarify handover RACH handling
+  * osmo-bts-trx/scheduler: rx_rach_fn(): use optional TSC info from TRX
+  * osmo-bts/scheduler: provide actual C/I values to OsmoPCU
+  * osmo-bts-trx/scheduler: pass trx_ul_burst_ind to lchan handlers
+  * osmo-bts-trx/trx_if.c: encode actual TRXD header version
+  * osmo-bts-trx/trx_if.c: add TRXD header version negotiation
+  * RSL: Fix fixed MS power control in RSL CHAN ACTIV
+
+-------------------------------------------------------------------
+Thu Jul 11 20:13:45 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.336:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Sun Jul 07 20:10:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.335:
+  * osmo-bts-trx/trx_if.c: properly describe TRXD messages in logs
+  * osmo-bts-trx/trx_if.c: drop RSSI / ToA debugging code
+  * osmo-bts-trx/trx_if.c: introduce TRXD header version 0x01 support
+  * osmo-bts-trx/trx_if.c: introduce TRXD header version handling
+
+-------------------------------------------------------------------
+Thu Jun 27 20:17:55 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.331:
+  * osmo-bts-trx/trx_if.c: rename and clarify TRX_MAX_BURST_LEN
+  * osmo-bts-trx/trx_if.c: use osmo_loadXXbe() for TDMA FN and ToA256
+  * bts: Bypass T200 DCCH values for CCCH
+
+-------------------------------------------------------------------
+Fri Jun 21 20:19:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.328:
+  * revert changes to T200
+
+-------------------------------------------------------------------
+Wed Jun 19 20:24:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.327:
+  * manuals: Add script to regenerate counter/vty documentation
+
+-------------------------------------------------------------------
+Thu Jun 13 20:10:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.326:
+  * gsm_data_shared.h: Remove unused loc_list from struct gsm_bts
+  * lapdm: Use new libosmocore API to ensure per-channel-type N200 values
+  * Update T200 timer default values
+  * [correctly] use the LAPDm T200 values received via OML
+  * l1sap: Compute statistics on FN advance in PH-RTS.ind
+
+-------------------------------------------------------------------
+Sun Jun 09 20:02:15 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.321:
+  * common/scheduler.c: refactor description of TRXC_* lchans
+
+-------------------------------------------------------------------
+Wed Jun 05 20:02:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.320:
+  * Use #define RSL_CHAN_RACH for RSL Channel Number of RACH
+
+-------------------------------------------------------------------
+Tue Jun 04 20:02:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.319:
+  * bts-trx: trx_if.c: Introduce logging macro LOGPPHI
+
+-------------------------------------------------------------------
+Mon Jun 03 20:02:34 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.318:
+  * common/bts.c: bts_supports_cm(): take care about GSM48_CMODE_SIGN
+  * trx: Update documentation for fn-advance and rts-advance
+
+-------------------------------------------------------------------
+Sat Jun 01 20:02:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.316:
+  * common/rsl.c: RSL_IE_HANDO_REF is mandatory for handover CHAN ACT
+  * osmo-bts/scheduler.h: cosmetic: use bool for ho_rach_detect
+  * osmo-bts-trx/l1_if.h: drop unused ho_rach_detect from trx_l1h
+  * osmo-bts-trx/trx_if.c: dropping Tx bursts is a noticeable event
+
+-------------------------------------------------------------------
+Fri May 31 20:02:31 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.312:
+  * debian: create -doc subpackage with pdf manuals
+  * osmo-bts-lc15: Change LED behaviour to be the same as oc2g
+  * osmo-bts-oc2g: Fix status LED responsibilities
+
+-------------------------------------------------------------------
+Wed May 29 20:02:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.309:
+  * clear GPRS indicator in SI3 while PCU is disconnected
+  * lc15,sysmo,oc2g: fix dsp-trace-flag command
+
+-------------------------------------------------------------------
+Mon May 27 20:02:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.307:
+  * Fix passing of RR SUSPEND REQ from DCCH to PCU socket
+
+-------------------------------------------------------------------
+Sun May 26 20:02:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.306:
+  * common/rsl.c: fix NULL-pointer dereference in rsl_rx_rll()
+  * Add severity to OML FAILURE EVENT REPORT
+  * oml: Have one generic log message for all transmitted messages
+  * oml: Print more context from FOM Header or using MO
+  * l1sap: Fix calculation of expired RACH slots in case of missing frame numbers
+  * l1sap: Correctly count RACH slots in calc_exprd_rach_frames()
+
+-------------------------------------------------------------------
+Fri May 24 20:02:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.300:
+  * load_indication: Fix missing re-set of RACH parameters
+  * rsl: MS POWER COCNTROL isn't (only) about "forcing" power levels
+  * rsl: Implement parsing of BS Power Control message
+  * RSL: Fix logic about fixed/dynamic MS power control in MS POWER COMMAND
+  * rsl.adoc: DELETE INDICATION is implemented since Feb '18
+  * Use LOGPLCHAN whenever possible
+
+-------------------------------------------------------------------
+Thu May 23 20:02:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.294:
+  * cbch: Improve verbosity and extend logging; Always indicate BASIC/EXTD CBCH
+  * cbch: Add counters; queue length limits and CBCH LOAD reporting
+  * sysmo: Fix "nominal power" / BS power display in VTY
+
+-------------------------------------------------------------------
+Wed May 22 20:02:20 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.291:
+  * README.md: Mention LimeSDR as SDR device
+  * manual: SMSCB BROADCAST COMMAND has no limitations anymore
+  * manual: We now support RSL CBCH LOAD INDICATION
+
+-------------------------------------------------------------------
+Tue May 21 20:02:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.288:
+  * cbch: Keep SMSCB queue length counter
+  * cbch: Support Extended CBCH
+  * cbch: Fix memory leak and send error message on invalid SMSCB command
+  * cbch: Implement support for DEFAULT message
+  * cbch: Log every RSL SMSCB COMMAND with type and number of blocks
+  * cbch: Refactor get_smscb_block() / remove smscb_msg.next_seg
+  * cbch: Implement handling of "Schedule" message
+  * RSL: Fix off-by-one error when parsing SACCH INFO IE in RSL CHAN ACT
+  * RSL: Reject RLL messages for lchans that are not active yet
+  * rsl: Include Channel Nr and Link ID in Error reports whenever possible
+  * rsl: Send RSL Error Report in case of unknown/unsupported msg_type
+
+-------------------------------------------------------------------
+Mon May 20 20:02:25 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.277:
+  * Revert "debian: create -doc subpackage with pdf manuals"
+  * debian: create -doc subpackage with pdf manuals
+
+-------------------------------------------------------------------
+Fri May 10 20:02:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.275:
+  * README.md: remove OS#1865 from 'Known limitations'
+  * Remove 11-bit RACH support from 'Known Limitations'
+  * osmo-bts-sysmo: fix: indicate BTS_FEAT_CBCH support on OML
+
+-------------------------------------------------------------------
+Thu May 09 20:02:29 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.272:
+  * osmo-bts-trx: distinguish 11-bit Access Bursts by synch. sequence
+  * handle NULL return from rate_ctr_group_alloc()
+
+-------------------------------------------------------------------
+Tue May 07 20:03:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.270:
+  * common/oml.c: fix: properly encode NM_ATT_SW_CONFIG
+  * common/oml.c: refactor Get Attribute Response message generation
+
+-------------------------------------------------------------------
+Sun May 05 20:02:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.268:
+  * common/oml.c: fix broken debug print in down_mom()
+  * common/oml.c: use proper format specifier for uint16_t
+  * common/oml.c: introduce and use both LOGPFOH and DEBUGPFOH
+
+-------------------------------------------------------------------
+Thu Apr 25 20:02:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.265:
+  * common/paging.c: fix unaligned pointer access
+  * common/rsl.c: fix unaligned pointers in rsl_add_rtp_stats()
+
+-------------------------------------------------------------------
+Tue Apr 23 20:02:45 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.263:
+  * common/rsl.c: fix size argument in memcmp() call
+
+-------------------------------------------------------------------
+Sun Apr 21 20:02:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.262:
+  * common/l1sap.c: fix: add missing new line to a debug message
+  * common/oml.c: fix total length calculation in cleanup_attr_msg()
+  * common/oml.c: use proper OML object for Get Attribute Response
+  * common/oml.c: use proper NACK reason in oml_tx_attr_resp()
+  * common/oml.c: constify argument 'trx' of handle_attrs_trx()
+
+-------------------------------------------------------------------
+Wed Apr 17 20:04:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.257:
+  * pcu_sock: use %zu conversion specifier for printing sizeof() result
+
+-------------------------------------------------------------------
+Mon Apr 15 20:02:38 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.256:
+  * oc2gbts_mgr: use osmo_init_logging2() instead of osmo_init_logging()
+
+-------------------------------------------------------------------
+Fri Apr 12 20:02:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.255:
+  * common/pcu_sock.c: fix possible memleaks in pcu_sock_read()
+
+-------------------------------------------------------------------
+Mon Apr 08 20:02:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.254:
+  * oc2gbts_mgr_calib: do not return NULL on integer function
+  * oc2gbts_mgr_calib: don't use fsync() on *FILE pointer
+  * l1_if: add include for missing header file
+
+-------------------------------------------------------------------
+Mon Apr 01 20:02:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.251:
+  * common/oml.c: fix: properly push abis_nm_ipa_magic
+
+-------------------------------------------------------------------
+Wed Mar 27 21:03:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.250:
+  * Forward GPRS SUSPEND REQ from DCCH to PCU socket
+  * oml: use oml_tx_failure_event_rep() instead of signals to SS_FAIL
+  * oml: use oml_tx_failure_event_rep() instead of oml_fail_rep()
+  * main: remove wrong call to oml_fail_rep() on SIGUSR1/2 and SIGABRT
+  * vty: add function gsmnet_from_vty() to vty.h
+  * contrib: Remove deprecated screen script helpers
+  * rsl.c: Add missing #include of gsm0808.h
+  * oc2g: change log level for calibration file errors to FATAL
+  * oc2g: generate failure event report in case of bad calibration
+
+-------------------------------------------------------------------
+Wed Mar 20 21:02:29 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.241:
+  * oc2gbts_mgr: use msgb_talloc_ctx_init() instead of msgb_set_talloc_ctx()
+
+-------------------------------------------------------------------
+Tue Mar 19 21:02:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.240:
+  * oc2g: l1if: delay trx initialization to avoid race condition
+
+-------------------------------------------------------------------
+Mon Mar 18 21:02:15 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.239:
+  * Constify pcu_rx_*() parameters
+  * Make gsm_pchan2chan_nr() static
+  * oc2gbts_mgr_vty: remove calls to vty_install_default()
+  * oml: make oml_tx_failure_event_rep() public
+  * lc15: remove unused define constant FACTORY_ROM_PATH
+  * oc2g: remove unused define constant FACTORY_ROM_PATH
+
+-------------------------------------------------------------------
+Fri Mar 15 21:02:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.233:
+  * OC-2G: Nominal transmit power is 25 dBm, not 40
+
+-------------------------------------------------------------------
+Sat Feb 23 21:02:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.232:
+  * OML: Don't advertise baseband transceiver as UNLOCKED at startup
+  * OML: Store merged attributes of IPA OML Managed Objects
+
+-------------------------------------------------------------------
+Thu Feb 21 21:02:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.230:
+  * oc2g: vty: Compilation error fixes due to commented code
+  * oc2g: Remove unused static function
+
+-------------------------------------------------------------------
+Wed Feb 20 21:23:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.228:
+  * oc2g: Remove unused variables
+  * oc2g: fsync requires fd instead of file stream
+  * oc2g: led_sleep_cb: pass correct ptr to llist_move_tail
+  * oc2g: Cleanup of get_hwversion_desc
+  * oc2g: Add get_hwversion_desc to header file
+  * oc2g: Fix compilation error (comment mark inside comment)
+
+-------------------------------------------------------------------
+Mon Feb 18 21:02:25 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.222:
+  * Enable statsd support
+
+-------------------------------------------------------------------
+Sun Feb 17 21:02:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.221:
+  * scheduler_trx: use stored fn for pdtch data indications
+
+-------------------------------------------------------------------
+Fri Feb 15 21:02:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.220:
+  * Log lchan kind on PCU-related error
+  * osmo-bts-trx: add extended (11-bit) RACH support
+
+-------------------------------------------------------------------
+Tue Feb 12 21:02:59 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.218:
+  * OML: Work around OsmoBSC sending "GET ATTRIBUTES" with short length
+  * OML: Properly reject short messages and truncate over-long messages
+  * OML: Reject segmented OML messages
+  * OML: Use 'const struct abis_oml_mo *' whenever users only read
+  * OML: Report short messages even for invalid TRX numbers in down_fom()
+  * OML: Reduce code duplication in down_mom/down_fom
+  * OML: send proper OML alerts in case of errors
+
+-------------------------------------------------------------------
+Sun Feb 10 21:01:56 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.211:
+  * OML: remove double-logging on oml_tx_failure_event_rep()
+  * OML: Don't overwrite MO instance before oml_tx_failure_event_rep()
+  * OML: Ensure MOs are initialized with valid "Administrative State'
+  * OML: Return attributes in ACK/NACK messages
+
+-------------------------------------------------------------------
+Sat Feb 09 21:01:50 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.207:
+  * OML: some more comments on what functions do
+  * scheduler_trx: Fix erroneous multiply-by-four
+
+-------------------------------------------------------------------
+Wed Jan 30 21:01:50 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.205:
+  * doc/examples: Install OC2G config files with autotools
+  * systemd: Install OC2G service files with autotools
+
+-------------------------------------------------------------------
+Sun Jan 27 21:01:55 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.203:
+  * common/vty.c: fix 'cfg_phy_no_inst_cmd' command description
+
+-------------------------------------------------------------------
+Sun Jan 20 21:01:59 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.202:
+  * Bump version: 0.8.1.199-5c93-dirty → 1.0.0
+
+-------------------------------------------------------------------
+Fri Jan 18 21:01:56 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.8.1.201:
+  * dump_docs: Use new config file naming scheme
+  * Rename oc2g config file to match new naming scheme
+
+-------------------------------------------------------------------
+Sun Dec 23 21:01:50 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.199:
+  * osmo-bts-trx/loops.c: Make code control flow more readable
+  * osmo-bts-trx/loops.c: Use lchan name based logging
+  * osmo-bts-trx/loops.[ch]: Make functions "void" if they always return 0
+  * osmo-bts-trx/loops.c: Add comments documenting TA + MS power control loop
+  * rsl: Send PDCH ACT NACK if TCH chan is still active
+
+-------------------------------------------------------------------
+Tue Dec 18 21:01:53 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.194:
+  * sysmobts_mgr: Add support for gpsd < 2.96
+  * sysmobts_mgr: Prepare code for gpsd < 2.96 support
+
+-------------------------------------------------------------------
+Thu Dec 06 21:02:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.192:
+  * contrib: fix makedistcheck with disabled systemd
+
+-------------------------------------------------------------------
+Wed Dec 05 21:01:59 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.191:
+  * contrib/jenkins_*.sh: build and publish manuals
+
+-------------------------------------------------------------------
+Tue Dec 04 21:02:12 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.190:
+  * bts-trx: (n)ack PDCH DEACT only after TRX answered SETSLOT
+  * Fix DISTCHECK_CONFIGURE_FLAGS override
+  * oc2g: Fix headers missing during make distcheck
+
+-------------------------------------------------------------------
+Tue Nov 27 21:02:01 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.187:
+  * build manuals moved here from osmo-gsm-manuals.git
+  * OsmoBTS: Fix typo
+  * OsmoBTS: Print VTY command in fixed-width font
+  * bts: Fix typo
+  * vty-ref: Update URI of docbook 5.0 schema
+  * Introduce chapter trx_if.adoc and add it to OsmoTRX and OsmoBTS
+  * OsmoBTS: bts-models: Add Lime Microsystems devices as supported osmo-trx
+  * refactor Makefile build rules, don't use the FORCE
+  * Allow easily disabling GFDL references
+  * update osmo-bts-virtual documentation, now that code is merged
+  * rtp-amr: Fix typo and trailing whitespace
+  * rtp-amr: Describe requirement to recieve all PH-DATA.ind events
+  * OsmoBTS: Update osmotrx ip to diff between local and remote
+  * OsmoBTS/chapters/configuration.adoc: Add bts index in example
+  * Sync DTX FSM with OsmoBTS code
+  * Describe how to run multiple instances of osmo-nitb and osmo-bts
+  * BSC,BTS: add diagrams of PCU-BTS-NITB-SGSN relationships
+  * dynamic timeslots: add BSC level config instructions
+  * Add DTX implementation details to RTP AMR
+  * Move RTP AMR doc to top level
+  * rtp-amr.adoc: Fixes to Message Sequence Charts
+  * rtp-amr.adoc: New TCH/AHS downlink chapters
+  * rtp-amr: TCH/AHS Uplink: FACCH/H During DTX
+  * rtp-amr.adoc: TCH/AFS Downlink: Inhibiting
+  * rtp-amr.adoc: TCH/AFS Uplink
+  * Documentation on AMR RTP in case of DTX
+  * fix build: abis: re-add dependencies
+  * OsmoBTS/abis/rsl: split dyn TS ladder diagrams to fit on page
+  * OsmoBTS: generate osmobts-abis.pdf again
+  * fix 'make clean': shell glob, ignore failure
+  * OsmoBTS/abis/rsl: combine separate dyn ts sections
+  * add 'make check' target
+  * make clean: also remove generated image files
+  * OsmoBTS/abis/rsl: add missing info for Osmocom Dyn Channels
+  * OsmoBTS/abis/rsl: cosmetic: 'IPA style'
+  * OsmoBTS/chapters/configuration.adoc: fix index numbering
+  * osmobts-usermanual.adoc: fix link to abis.adoc chapter
+  * OsmoBTS/chapters/dynamic-timeslots.adoc: Remove obsolete links
+  * OsmoBTS/abis/rsl.adoc: fix missing section header
+  * OsmoBTS: add vty reference documentation
+  * OsmoBTS/abis/dyn_ts_osmocom_style.msc: adjust PDCH Act ack
+  * OsmoBTS/abis/rsl: fix subtitle for ladder diagram of osmo dyn switchover
+  * Add section about configuring power-ramping
+  * osmobts-abis: Add Revision log regarding dynamic cannels
+  * spelling: message discriminator, not descriminator
+  * Document dynamic channels on Abis, both IPA and Osmocom style
+  * OsmoBTS: hardware support: remove dup, tweak wording
+  * OsmoBTS: wording tweak
+  * OsmoBTS: typos
+  * abis/oml.doc: remove duplicate sentence part
+  * Add OsmoBTS control interface description
+  * fix various typos across all manuals
+  * OsmoBTS: explain IEs marked 'ignored' *and* 'Received'
+  * OsmoBTS: s/content of this attribute/this attribute/
+  * OsmoBTS: fix typos, streamline language style
+  * OsmoBTS: typo x2 ('Objects Classes' -> 'Object Classes')
+  * OsmoBTS: Fix the author name and mail address
+  * Add link to Asciidoc source code of manual
+  * initial checkin of manuals to public repo
+  * bts_model: Allow TS connect to be processed asynchronously
+
+-------------------------------------------------------------------
+Mon Nov 26 18:55:58 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.125:
+  * cosmetic: fix whitespace
+  * bts-trx: early return on POWERON success
+  * rsl: Avoid sending ipa PDCH DEACT NACK followed by ACK
+  * rsl: Log lchan state during dynts PDCH->TCH
+
+-------------------------------------------------------------------
+Thu Nov 22 19:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.121:
+  * Drop unused function
+  * Fix type mismatch
+  * Fix deprecated gsm_arfcn2band(), use gsm_arfcn2band_rc()
+  * common/vty.c: fix deprecated osmo_str2lower() usage
+  * bts: Fix TRX0 param initialization
+
+-------------------------------------------------------------------
+Tue Nov 20 19:11:22 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.116:
+  * bts-trx: Allow re-try without exit if POWERON fails in osmo-trx
+  * common: Implement OML for trx_set_available(1)
+  * bts-trx: setup timer once at creation time
+
+-------------------------------------------------------------------
+Mon Nov 19 18:32:49 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.113:
+  * add missing check of osmo_wqueue_enqueue() return value
+  * properly initialize si3 in test_is_ccch_for_agch_setup()
+  * bts-trx: trx_if: Use struct to store CTRL msg parsed responses
+  * osmo-bts-trx: print TRX socket addresses in 'show transceiver'
+
+-------------------------------------------------------------------
+Sun Nov 18 21:01:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.109:
+  * bts: Allocate TRX for BTS dynamically, deprecate -t
+  * prevent potential NULL dereference in virtbts's tx_tchh_fn
+
+-------------------------------------------------------------------
+Tue Oct 30 21:02:09 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.107:
+  * {oc2g,sysmo}-mgr-calib: Fix build against gpsd >= 3.18
+
+-------------------------------------------------------------------
+Sat Oct 27 20:01:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.106:
+  * Add OC-2G BTS sources
+
+-------------------------------------------------------------------
+Thu Oct 25 20:02:11 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.105:
+  * common/scheduler.c: track TDMA frame loss per logical channels
+
+-------------------------------------------------------------------
+Mon Oct 22 20:01:56 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.104:
+  * Convert lchan CCCH_LCHAN to chan_nr BCCH and viceversa
+  * gsm_pchan2chan_nr: Fix conversion of CCCH_LCHAN
+
+-------------------------------------------------------------------
+Sun Oct 21 17:24:44 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.102:
+  * scheduler_trx.c: Switch to osmo_timerfd() of libosmocore >= 0.12.0
+
+-------------------------------------------------------------------
+Wed Oct 10 20:01:55 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.101:
+  * rsl_rx_chan-activ: Improve logging information
+  * l1sap: Log name of chan_nr instead of hex value
+  * lchan_meas_check_compute: Log value during incorrect num of SUB measurementes detected
+
+-------------------------------------------------------------------
+Sun Oct 07 18:23:12 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.98:
+  * common/pcu_sock.c: cosmetic: explicitly address lchan
+
+-------------------------------------------------------------------
+Thu Oct 04 20:01:56 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.97:
+  * abis: inp_s_cbfn: Improve logging signal related information
+
+-------------------------------------------------------------------
+Sun Sep 30 20:01:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.96:
+  * sysmo, virtual: properly handle BS-AG-BLKS-RES as received from BSC
+  * Fix computing CCCH block number from frame number
+  * paging_test: Fix AGCH/PCH split test for second half of 102 multiframe
+  * contrib/jenkins_*.sh: drop rudimentary '--with-osmo-pcu'
+
+-------------------------------------------------------------------
+Wed Sep 26 20:01:53 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.92:
+  * vty: mark 'rtp bind-ip' deprecated, not hidden
+
+-------------------------------------------------------------------
+Tue Sep 25 20:02:02 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.91:
+  * lc15bts_mgr_vty: Ensure writing well-formed config files
+  * ensure all config file examples are well-formed
+
+-------------------------------------------------------------------
+Fri Sep 21 20:01:59 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.89:
+  * lc15: led_sleep_cb: pass correct ptr to llist_move_tail
+
+-------------------------------------------------------------------
+Wed Sep 19 20:01:56 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.88:
+  * common/rsl.c: tweak log message in lapdm_rll_tx_cb()
+  * CBCH: Some more scheduler_mframe cleanup
+
+-------------------------------------------------------------------
+Tue Sep 18 20:01:54 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.86:
+  * CBCH: Fix CBCH implementation for osmo-bts-trx
+
+-------------------------------------------------------------------
+Mon Sep 17 20:02:12 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.85:
+  * CBCH: sprinkle some OMSO_ASSERT() and guard against talloc failure
+  * CBCH: Add FIXME comments on queue overflow/underflow handling
+  * get_lchan_by_chan_nr(): Fix resolution of CBCH
+  * CBCH: Fix CBCH via L1SAP for osmo-bts-{sysmo,octphy,litecell15}
+  * l1sap/scheduler: Consistently print chan_nr as hex number
+
+-------------------------------------------------------------------
+Sun Sep 16 20:02:01 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.80:
+  * lc15: rewrite and refactor code to print hwversion description
+  * lc15: fsync requires fd instead of file stream
+  * lc15: vty: Add missing include for lchan_deactivate
+  * osmo-bts-trx/l1_if.c: cosmetic: fix typo in debug msg
+
+-------------------------------------------------------------------
+Sat Sep 15 20:01:55 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.76:
+  * doc/examples/Makefile: Install bts-mgr cfg files used by systemd services
+
+-------------------------------------------------------------------
+Thu Sep 13 18:42:15 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.75:
+  * measurement: fix unit-test test_lchan_meas_process_measurement
+  * measurement: remove missed interval end detection
+  * cosmetic: fix typo in comment
+  * Install sample cfg file to /etc/osmocom
+  * Install systemd services with autotools
+
+-------------------------------------------------------------------
+Tue Sep 11 20:02:01 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.70:
+  * fix handling of odd pchans in bts_supports_cm()
+  * log: add error log for RSL Chan Mode Modif
+  * fix RSL Chan Mode Modif for dyn TS
+
+-------------------------------------------------------------------
+Sun Sep 09 20:01:55 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.67:
+  * CBCH: Use llist_first_entry_or_null() instead of reinventing it
+  * CBCH: Implement CBCH support for osmo-bts-{trx,virtual}
+  * CBCH: Move processing via L1SAP
+  * [sysmo,lc15]: Consider CBCH channel combinations in chan_nr_by_sapi()
+  * CBCH: Fix rejecting SMS-CB related RSL messages
+
+-------------------------------------------------------------------
+Thu Sep 06 20:02:04 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.62:
+  * Move systemd service to contrib/systemd
+  * measurement: display fn_mod when measuremnet is added
+
+-------------------------------------------------------------------
+Fri Aug 31 20:01:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.60:
+  * paging: add unit-test to check different bs_ag_blks_res settings
+
+-------------------------------------------------------------------
+Thu Aug 30 20:01:54 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.59:
+  * measurement: add SUB measurements in test_lchan_meas_process_measurement
+  * measurement: substitue missing measurements
+
+-------------------------------------------------------------------
+Wed Aug 29 20:02:00 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.57:
+  * cosmetic: test_is_meas_overdue() does not test is_meas_complete()
+  * cosmetic: rename *_meas_rep_fn10* to *_meas_rep_fn10*_by_*s
+  * measurement: fix is_meas_overdue() and increase testcoverage
+  * measurement: add unit tests for ts45008_83_is_sub()
+  * measurement: fix sub frame table for TCH/H, SS1
+  * measurement: add unit tests for is_meas_complete()
+
+-------------------------------------------------------------------
+Tue Aug 28 20:02:01 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.51:
+  * fix ip.access dyn TS for osmo-bts-trx
+  * cosmetic: remove wrong comment
+  * cosmetic: fix sourcecode formatting
+
+-------------------------------------------------------------------
+Sat Aug 25 20:01:49 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.48:
+  * cosmetic: abis.c: typo "exixt"
+
+-------------------------------------------------------------------
+Fri Aug 24 12:14:56 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.47:
+  * osmo_mcast_sock: make sure SO_REUSEADDR is applied
+
+-------------------------------------------------------------------
+Thu Aug 23 20:01:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.46:
+  * Revert "send TCH/F fill frames in DTX mode (WIP)"
+
+-------------------------------------------------------------------
+Wed Aug 22 20:01:53 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.45:
+  * measurement: fix measurement interval end detection
+  * send TCH/F fill frames in DTX mode (WIP)
+  * fix conditions for sending fill frames during RTS IND
+
+-------------------------------------------------------------------
+Tue Aug 21 20:02:10 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.42:
+  * measurement: make sure measurement interval end is detected
+  * measurement: make sure state is reset on chan act.
+
+-------------------------------------------------------------------
+Fri Aug 17 20:04:51 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.40:
+  * cosmetic: unify measurement sample handling in one function
+  * fix timespec subtraction in compute_elapsed_us()
+  * cosmetic: separate measurement testcase definitions
+
+-------------------------------------------------------------------
+Mon Aug 06 20:02:12 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.37:
+  * debian/rules: Don't overwrite .tarball-version
+
+-------------------------------------------------------------------
+Thu Aug 02 20:01:55 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.36:
+  * Clarify frame loss counter for l1sched_chan_state
+
+-------------------------------------------------------------------
+Wed Jul 25 20:02:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.35:
+  * preserve lchan-specific SI overrides on SACCH FILL
+
+-------------------------------------------------------------------
+Tue Jul 24 20:02:03 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.34:
+  * update sysinfo copies in all lchans upon SACCH FILL
+
+-------------------------------------------------------------------
+Sat Jul 21 20:02:01 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.33:
+  * trx: scheduler: Keep RTP clock up to date while in DTXu pause
+  * scheduler: Log error on fn jump
+  * sched: Log RX->RTP packet like we do in add_l1sap_header
+  * l1sap: add_l1sap_header: Compact msgb_push ret assignment
+
+-------------------------------------------------------------------
+Mon Jul 16 20:01:55 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.29:
+  * rsl: Use value_string to print encryption algo name
+
+-------------------------------------------------------------------
+Tue Jul 03 20:01:46 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.28:
+  * debian: Create dbg package for osm-bts-virtual
+  * debian: Make osmo-bts-* packages conflict with old osmo-bts package
+  * Remove unneeded direct libortp dependency
+
+-------------------------------------------------------------------
+Mon Jul 02 20:01:54 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.25:
+  * debian: Package installed example doc files
+  * build: Install example cfg files
+  * doc: Move calypsoBTS example into trx subdir
+
+-------------------------------------------------------------------
+Fri Jun 29 20:01:53 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.22:
+  * Add min/max/std-dev measurement reporting for TOA256
+
+-------------------------------------------------------------------
+Thu Jun 28 20:02:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.21:
+  * octphy: add support for 16x oversampling mode
+
+-------------------------------------------------------------------
+Mon Jun 25 20:01:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.20:
+  * log reception of PCU_IF_MSG_PAG_REQ messages from osmo-pcu
+
+-------------------------------------------------------------------
+Fri Jun 22 20:01:50 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.19:
+  * jenkins_*.sh: add --enable-werror to configure flags
+  * sysmo: calib_file.c: Avoid decl of unused vars and funcs with femtobts_v2.7 build
+  * sysmo: l1_if.c: Avoid decl of unused vars and funcs with femtobts_v2.7 build
+  * sysmo: l1if_mute_rf: Declare vars inside ifdef section
+  * sysmo: Fix memcmp in RF-MUTE.req for superfemto < 3.6.0
+  * sysmo: vty: Add missing include for lchan_deactivate
+  * l1_if.c: Move decl of vars used in conditional macro
+
+-------------------------------------------------------------------
+Fri Jun 15 20:02:00 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.12:
+  * pcu_sock: Log event pcu_sock created
+
+-------------------------------------------------------------------
+Mon Jun 11 20:01:48 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.11:
+  * lc15: Fix incorrect cast of hLayer1
+
+-------------------------------------------------------------------
+Sun Jun 10 20:01:48 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.10:
+  * lc15: Use correct type for hLayer1 field
+
+-------------------------------------------------------------------
+Sat Jun 09 20:01:47 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.9:
+  * Send DELETE_IND when dropping Imm Assign pending message
+
+-------------------------------------------------------------------
+Fri Jun 08 20:01:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.8:
+  * compact AGCH queue: Drop too msg diff than IMM_ASS_REJ
+  * bts_agch_enqueue: Decrease queue len hard_limit from 1000 to 100
+  * bts.c: Add missing include for gsm48_rr_msg_name
+
+-------------------------------------------------------------------
+Thu Jun 07 20:01:50 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.5:
+  * bts.c: Log name of RR msg type instead of value
+
+-------------------------------------------------------------------
+Fri May 25 20:02:09 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.4:
+  * rtp: make port range configurable, assign correct port numbers
+
+-------------------------------------------------------------------
+Thu May 24 20:02:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.3:
+  * scheduler_trx: Add reminders to use libosmocore functions
+  * cosmetic: it's n_r in check_for_first_ciphrd(), not n_s
+
+-------------------------------------------------------------------
+Wed May 16 20:02:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.1:
+  * let osmo-bts log a special notice if OML connection is closed early
+
+-------------------------------------------------------------------
+Tue May 15 20:02:22 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.0:
+  * Bump version: 0.8.0.16-6a9a → 0.8.1
+
+-------------------------------------------------------------------
+Thu May 10 20:02:10 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.0.16:
+  * rsl: If CHAN ACT or MODE MODIF fails, send respective NACK
+  * osmo-bts-trx: Enable A5/3 cipher support
+  * dyn TS: be less strict on chan_nr, to allow arbitrary pchan switches
+
+-------------------------------------------------------------------
+Wed May 09 20:02:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.0.13:
+  * ignore RSL RF CHAN REL for inactive lchans
+  * fix RSL Chan Activ Nack messages
+  * ip.access dyn ts: properly NACK a PDCH ACT on a still active lchan
+  * add/improve various logging around dyn ts
+  * rsl: log errors when parsing of  encryption information fails
+  * rsl: Make channel activation fail if encryption algorithm not supported
+  * rsl: Properly NACK CHAN_ACKT / MODE_MODIFY
+
+-------------------------------------------------------------------
+Tue May 08 20:02:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.0.6:
+  * send a State Changed Event Report when rf is locked/unlocked
+
+-------------------------------------------------------------------
+Sun May 06 20:02:10 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.0.5:
+  * cosmetic: dyn TS: clarify rsl_tx_rf_rel_ack() with a switch
+  * dyn TS: fix TCH/F_TCH/H_PDCH: properly record release of PDCH TS
+  * dyn TS: rx_rf_chan_rel: properly mark PDCH rel when no PCU, clarify
+  * dyn TS: clear TCH state upon reconnecting as PDCH
+  * cosmetic: dyn TS: clarify chan_nr composition
+
+-------------------------------------------------------------------
+Thu May 03 20:02:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.0.0:
+  * Bump version: 0.7.0.183-c45a-dirty → 0.8.0
+
+-------------------------------------------------------------------
+Wed May 02 20:02:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.7.0.183:
+  * scheduler_trx: Fix signed integer overflow in clock calculations
+
+-------------------------------------------------------------------
+Mon Apr 23 20:02:03 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.7.0.182:
+  * cosmetic: fix typos in src/common/oml.c
+  * return NACK codes instead of errno values from oml_tx_attr_resp()
+  * gsm_data_shared.h: Remove unused enum gsm_paging_event
+
+-------------------------------------------------------------------
+Thu Apr 19 20:02:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.7.0.179:
+  * respond with NACK for non-hopping BTS with multiple ARFCN
+
+-------------------------------------------------------------------
+Tue Apr 17 20:02:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.7.0.178:
+  * osmo-bts-trx: perform error concealment for FR frames
+  * Include missing headers for osmo_init_logging2
+  * common/sysinfo.c: Fix no return on on-void function
+
+-------------------------------------------------------------------
+Mon Apr 09 09:02:56 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.7.0.175:
+  * octphy: integrate octasics latest header release
+
+-------------------------------------------------------------------
+Sun Apr  8 07:54:38 UTC 2018 - mardnh@gmx.de
+
+- Add subpackage for osmo-bts-omldummy
+
+-------------------------------------------------------------------
+Sat Apr 07 18:52:44 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.7.0.174:
+  * Get rid of 'struct gsm_bts_role_bts'
+  * virtual: Correctly set+report BTS variant in OML attributes
+  * Add 'osmo-bts-omldummy' to bring up only OML without RSL
+  * fix inverted logic bug in omldummy patch
+  * omldummy: Suppress RSL transmission errors
+  * debian: Split osmo-bts-virtual from osmo-bts-trx
+  * l1sap: Avoid assumption that l1sap is at head of msgb
+  * cosmetic: remove dead code
+  * cosmetic: remove unused variable
+  * cosmetic: remove unused variable in osmo-bts-omldummy/main.c
+  * osmo-bts-sysmo eeprom.c Restore ability to read/write EEPROM
+  * use osmo_init_logging2() with proper talloc ctx
+  * fox chan_nr_is_dchan() for RSL_CHAN_OSMO_PDCH
+  * rsl_tx_dyn_pdch_ack: Add missing FRAME_NR information element
+  * fix activation of osmocom-style dynamic PDCH as TCH/F or TCH/H
+  * contrib: jenkins_bts_model: Fix bashism expr
+
+-------------------------------------------------------------------
+Sat Mar 17 21:51:33 UTC 2018 - mardnh@gmx.de
+
+- Create subpackage for osmo-bts-virtual
+
+-------------------------------------------------------------------
+Sat Mar 17 12:55:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.7.0.158:
+  * cosmetic: Move agch_queue to sub-structure of gsm_bts_role_bts
+
+-------------------------------------------------------------------
+Sat Mar 17 12:11:26 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.7.0.157:
+  * gsm_data_shared: Remove unused definitions/members/functions
+
+-------------------------------------------------------------------
+Wed Mar 14 21:30:55 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.7.0.156:
+  * l1_tch: remove dead code
+  * common/vty.c: remove unused variables
+  * fix handover: handle_ph_ra_ind(): evaluate ra_ind before msgb_trim()
+  * sysinfo.c: SI1 is optional; Send SI2 at TC=0 if no SI1 exists
+  * sysmobts: Compatibility with older firmware versions
+  * implement support for 3-digit MNC with leading zeros
+  * cosmetic: Document some SI scheduling related function API
+  * sysinfo: Fix scheduling of downlink SACCH information
+  * configure: add --enable-werror
+  * common/main.c: track talloc NULL contexts by default
+
+-------------------------------------------------------------------
+Sun Feb 25 09:42:23 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.7.0.110
+
+-------------------------------------------------------------------
+Mon Feb 19 16:30:27 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.7.0.83
+
+-------------------------------------------------------------------
+Sat Feb 10 20:34:45 UTC 2018 - mardnh@gmx.de
+
+- Show testsuite.log when tests are failing
+
+-------------------------------------------------------------------
+Sat Feb 10 16:17:25 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.7.0.77
+
+-------------------------------------------------------------------
+Thu Jan 25 18:49:43 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.7.0.59
+- Remove patch:
+  * osmo-bts-fix-cflags.patch (fixed upstream)
+
+-------------------------------------------------------------------
+Wed Jan 24 13:03:50 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.7.0.56
+- Remove patch (included upstream):
+  * 0001-l1sap-fix-wrong-return-value-of-is_fill_frame.patch
+
+-------------------------------------------------------------------
+Mon Jan  1 21:18:08 UTC 2018 - jengelh@inai.de
+
+- Remove unnecessary sysvinit script macros.
+
+-------------------------------------------------------------------
+Fri Dec 29 14:03:59 UTC 2017 - mardnh@gmx.de
+
+- Remove handcrafted CFLAGS
+- Add patch:
+  * 0001-l1sap-fix-wrong-return-value-of-is_fill_frame.patch
+
+-------------------------------------------------------------------
+Wed Dec 27 22:43:49 UTC 2017 - mardnh@gmx.de
+
+- Update to new upstream release 0.7.0
+  * No changelog was provided
+- Specfile cleanup
+- Add patch
+  * osmo-bts-fix-cflags.patch
+
+-------------------------------------------------------------------
+Wed Feb 15 09:22:22 UTC 2017 - mardnh@gmx.de
+
+- Update to version 0.4.0.git1487093487.6b4c6aa:
+  * Log socket path on error
+  * Add Abis OML failure event reporting
+  * Alarm on various errors
+  * RSL: drop obsolete NULL check
+  * RSL: add assertions to check args of public API
+  * OML: fix possible segfault: add NULL check in oml_ipa_set_attr()
+  * CTRL: make the CTRL-Interface IP address configurable
+  * Remove obsolete define TLVP_PRES_LEN
+  * DTX: fix SID-FIRST detection
+  * scheduler: log lchan on which prim error occured
+  * lc15,sysmobts l1_if: fix memleak in handle_mph_time_ind()
+  * l1sap: Fix expired rach slot counting
+  * l1sap: fix missing 'else's causing wrong rach frame expiry counts
+  * deb: use gsm_data_shared.* from openbsc-dev
+  * octphy: set tx attenuation via VTY
+  * Revert "deb: use gsm_data_shared.* from openbsc-dev"
+  * debian: Use the header files installed by openbsc-dev
+  * build: Do not require more headers from OpenBSC
+  * OML: internalize failure reporting
+  * Add ctrl command to send OML alert
+  * octphy VTY: fix vty write output for octphy's phy section
+  * cosmetic: Remove stray newlines in octphy_vty.c
+  * sysmo,lc15: fix memory leak at each call placed
+  * cosmetic: remove stray newline in octphy's l1_oml.c
+  * DTX: fix "unexpected burst" error
+  * rsl: Fix dropping of LAPDm UA message.
+  * Fix AMR HR DTX FSM logic.
+  * octphy: Improve OML ADM state handling
+  * sysmobts: Add correct nominal transmit power for sysmoBTS 1020
+  * sysmobts_eeprom.h: Fix/extend model number definitions
+  * Fix SACCH channel release indication not sent to BSC after location update.
+  * Revert "sysmobts: Add correct nominal transmit power for sysmoBTS 1020"
+  * tx_power: various cosmetic fixes in comments
+  * tx_power: Change PA calibration tables to use delta vales
+  * Add new unit-test for transmit power computation code
+  * fix missing ~ in bit logic for lchan->si.valid in rsl_rx_sacch_inf_mod()
+  * SACCH: fix sending of SI with an enum value > 7
+  * SACCH SI: assert that SI enum vals fit in bit mask
+  * all models: fix vty write: bts_model_config_write_phy
+  * cosmetic: lchan_sacch_get: early-exit instead of nested-if
+  * rsl: Output RTP stats before closing the socket.
+  * osmo-trx-bts: Fix incorrect setting of RXGAIN and POWER parameters on second channel (TRX1) of osmo-trx
+  * osmo-trx-bts: Fix osmo-bts-trx crash on startup during reading phy instance parameters from config file
+  * Fix typo in TCH/H interleaving table
+  * osmo-trx-bts: Fix incorrect bts shutdown procedure in case of abis connection closure
+  * sysmobts: fully support trx_power_params
+
+-------------------------------------------------------------------
+Fri Jan 06 20:30:24 UTC 2017 - mardnh@gmx.de
+
+- Update to version 0.4.0.git1483701882.2cf6b73:
+  * Move code to libosmocore
+
+-------------------------------------------------------------------
+Fri Jan 06 12:29:50 UTC 2017 - mardnh@gmx.de
+
+- Update to version 0.4.0.git1483698786.f376359:
+  * DTX AMR HR: fix inhibition
+  * fix: dyn ts: uplink measurement report
+  * Add copyright for .deb packages
+- run tests after the build
+
+-------------------------------------------------------------------
+Sun Dec 25 20:56:51 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.4.0.git1482415865.c2ecca6:
+  * DTX: move scheduling check inside repeat_last_sid
+  * DTX: further AMR SID cache fixes (lc15, sysmo)
+  * DTX: move ONSET detection into separate function
+  * DTX: send AMR voice alongside with ONSET
+  * build: be robust against install-sh files above the root dir
+  * configure: check for pkg-config presence
+  * octphy: reintroducing multi-trx support
+  * octopy: fixing renamed constant
+  * DTX: fix 1st RTP packet drop
+  * DTX: fix conversion from fn to ms
+  * Move copy-pasted array into shared header
+  * octphy: prevent mismatch between dsp-firmware and octphy headers
+  * rsl: improving the log output
+  * jenkins.sh: use osmo-build-dep.sh, log test failures
+  * DTX DL: use FSM for AMR
+  * TRX: fix building with latest DTX changes
+  * DTX: fix array size calculation
+  * msgb ctx: use new msgb_talloc_ctx_init() in various main()s
+  * DTX AMR - fix buffer length check
+  * Replace magic number with define
+  * Fix lc15 build
+  * jenkins-oct.sh: fix build: typo in deps path
+  * Extend RTP RX callback parameters
+  * DTX HR - fix array size calculation
+  * Fix DTX DL AMR SIDscheduling logic
+  * Add tools to check DTX operation
+  * 11bit RACH support for osmo-bts-litecell15
+  * DTX DL: split ONSET state handling
+  * Remove obsolete define
+  * DTX DL: add AMR HR support to scheduling check
+  * DTX fix ONSET handling
+  * Initialize parameters in osmo-trx for 11bit RACH
+  * dtx_check.gawk: Fix false-positives in DTX check
+  * Fix tests linking with libosmocodec
+  * DTX DL: tighten check for enabled operation
+  * DTX: wrap FSM signal dispatching
+  * Add libosmocodec for octphy build
+  * dtx_check.gawk: add check for repetitive SID FIRST
+  * fix 'osmo-bts-* --version' segfault
+  * Remove duplicated code
+  * Replace link_id constant with define
+  * l1sap: Fix use-after-free in loopback mode.
+  * vty: Add commands to manually activate/deactivate a channel.
+  * cosmetic: tweak README
+  * vty: Ensure to not use negative (error) sapi value
+  * octphy: multi-trx support: fix AC_CHECK order
+  * osmo-bts-trx: remove obsolete include of netif/rtp.h
+  * add jenkins_bts_trx.sh
+  * add jenkins_oct_and_bts_trx.sh
+  * jenkins: add jenkins_bts_model.sh
+  * trx: Add "maxdlynb" VTY command to control max TA for Normal Bursts.
+  * DTX DL AMR: rewrite FSM recursion
+  * Remove duplicated code
+  * cosmetic: vty prompts: add space after '#'
+  * Fix AGCH/PCH proportional allocation
+  * bursts test: test_pdtch: pre-init result mem
+  * TRX: prevent segfault upon phy init
+  * DTX: add explicit check if DTX enabled
+  * Save RTP metadata in Control Buffer
+  * osmo-bts-trx: fix lchan deactivation
+  * DTX: fix TS adjustment for ONSET
+  * Optionally use adaptive RTP jitter buffering
+  * DTX: don't always perform AMR HR specific check
+  * Fix some spelling errors
+  * Integrate Debian packaging changes
+
+-------------------------------------------------------------------
+Sun Oct 02 09:32:57 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.4.0.git1475228189.94fa252:
+  * doc: move dyn_pdch.msc to osmo-gsm-manuals.git
+  * error log: rsl.c: typo x2
+  * info log: l1sap.c: add '0x' to hex output
+  * fix compiler warning: msg_utils.c: fn_chk() constify arg
+  * cosmetic: pcu_sock.c: rename ts_is_pdch() to ts_should_be_pdch()
+  * cosmetic: clarify TCH/F_PDCH related naming and comments
+  * dyn PDCH: code dup: use conf_lchans_as_pchan()
+  * prepare dyn TS: split/replace conf_lchans_for_pchan()
+  * trx: Add EGPRS tables, sequences, and mappings
+  * code dup: join [rsl_]lchan_lookup() from libbsc and osmo-bts
+  * dyn TS: common TCH/F_TCH/H_PDCH implementation
+  * sysmo/oml.c: rename ts_connect() to ts_opstart()
+  * dyn TS: implement SysmoBTS specifics
+  * lc15/oml.c: rename ts_connect() to ts_opstart()
+  * dyn TS: implement litecell15 specifics
+  * comment typo: common/l1sap.c
+  * log typo: trx_sched_set_pchan()
+  * dyn TS: sysmo,lc15: chan_nr_by_sapi(): add missing assertion
+  * trx: Add EGPRS coding and decoding procedures
+  * trx: Enable EGPRS handling through burst lengths
+  * Activate PTCCH UL
+  * fix comment in common/l1sap.c, function name changed
+  * pcu_sock: use osmo_sock_unix_init() from libosmocore
+  * Fix dsp tracing at phy config
+  * octphy: fix build
+  * dyn TS, dyn PDCH: common/l1sap.c: properly notice PDCH
+  * dyn PDCH: trx l1_if.c: factor out trx_set_ts_as_pchan() from trx_set_ts()
+  * dyn PDCH: complete for trx: implement bts_model_ts_[dis]connect()
+  * dyn PDCH: trx l1_if.c: drop fixme, add comment
+  * trx: Fix coverity BER calculation NULL dereference
+  * Add .mailmap for mapping mail addresses in shortlog
+  * ci/spatch: Remove the "static" analysis handling
+  * Fill measurements data for L1SAP
+  * osmo-bts-trx: Fix PCS1900 operation
+  * osmo-bts-trx: log decoder bit errors as DEBUG, not NOTICE
+  * dyn TS: complete for TRX
+  * dyn TS: measurement.c: replace fixme with comment
+  * sysmo,lc15: ts_connect_as(): log error also for pchan_as == TCH/F_PDCH
+  * sysmo: fix dyn TS: Revert "Activate PTCCH UL" [in sysmobts]
+  * sysmo: ts_connect: log channel combination name instead of number
+  * Change interface in osmo-bts for 11 bit RACH
+  * log: l1sap: add 0x to hex output of chan_nr, 5 times
+  * dyn TS: measurement: use correct nr of subslots, rm code dup
+  * cosmetic: common ts_is_pdch()
+  * dyn TS: sysmo,lc15: ph_data_req: fix PDCH mode detection
+  * Fix ip.access style dyn PDCH, broken in 37af36e85eca546595081246aec010fa7f6fd0be
+  * common/rsl: move decision whether to chan act ack/nack to common function
+  * oct: Attempt to enable the Octphy for the osmo-bts-oct build
+  * octphy: fix build: Revert "octphy: fix for multiple trx with more than 1 dsp"
+  * octphy: fix build: Revert "octphy: add support for multiple trx ids"
+  * octphy: fix build with OCTSDR-OPENBSC-02.07.00-B708: name changed
+  * dyn TS: if PCU is not connected, allow operation as TCH
+  * Update parameters in osmo-bts-sysmo for 11bit RACH
+  * log: sysmo,lc15: tweak log about sapi_cmds queue
+  * log causing rx event for lchan_lookup errors
+  * heed VTY 'line vty'/'bind' command
+  * DTX: fix last SID saving
+  * DTX: fix SID repeat scheduling
+  * DTX: fix SID logic
+  * lc15, sysmo: Use SID_FIRST_P1 to initiate DTX
+  * octphy: Fixing missing payload type in ph. chan. activation
+  * octphy: Fixing band selection for ARFCN 0
+  * sysmobts_mgr, lc15bts_mgr: fix tall context for telnet vty
+  * DTX: check Marker bit to send ONSET to L1
+  * DTX: remove misleading comment
+  * LC15: Clarify msgb ownership / fix memory leaks
+
+-------------------------------------------------------------------
+Sun Jul 17 17:56:22 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.4.0.git1468702853.4355021:
+  * Fix ocmo-bts-octphy interaction with OsmoPCU
+  * pcuif: Do not bump the PCU_IF version
+  * octphy: Use the event defaults as base
+  * Fix copy-paste issue
+  * Update configuration examples
+  * misc: Attempt to fix make distcheck and dumping docs
+  * octphy: Enable TCH/H mode and begin testing
+  * Fix SI2ter scheduling
+  * Add explicit check for SI2quater index and count
+  * Ignore binary and backup files
+  * Add utility to check proper scheduling of SI
+  * octphy: add missing include to fix the build
+  * Fix typo in error message
+  * octphy: use octasic's routines for debug output
+  * octphy: add support for multiple trx ids
+  * octphy: add example configuration with 2 trx
+  * octphy: fix for multiple trx with more than 1 dsp
+  * LC15: ignore build byproducts
+  * LC15: add stubs for phy link/instance defaults
+  * LC15: properly initialize unmapped phy instances
+  * debian: Create initial packaging for the osmo-bts-trx
+  * misc: Ignore files generated by a debian packaging build
+  * jenkins: Add the build script from jenkins here
+  * jenkins: Add the build script from jenkins here
+  * Ensure TRX invariant
+  * octphy: Update outdated config param name in error message.
+  * Use libosmocore function for uplink measurements
+  * Fix debug output
+  * Fix RTP timestamps in case of DTX
+  * Add DTXd support for sysmoBTS and LC15
+  * Use libosmocodec for AMR RTP
+  * octphy: Use the app. info. defaults as base
+  * Close TRX session before opening new one
+  * Fix debug output
+  * DTXd: store/repeat last SID
+  * DTXd: store/repeat last SID
+  * DTXu: mark beginning of speech burst in RTP
+  * l1sap.h: fix wrong L1SAP_FN2PTCCHBLOCK calculation according to TS 45.002 Table 6
+  * common/abis.c: fix 100% CPU usage after disconnecting OML/RSL link (Bug #1703)
+  * sysmobts: Add the barebox boot state reservation
+  * sysmo: add L3 handle to l1prim messages
+  * LC15: Bring back DSP trace argument
+  * LC15: Hardware changes: - Change system devices path - Remove obsoleted sensors and add new sensors - Change TRX and sensors numbering to 0,1 instead of 1,2 (JFD)
+  * LC15: TRX nominal TX power can be used from EEPROM or from BTS configuration
+  * Fix OML activation
+  * TRX: Add vty command to power on/off transceiver
+  * pcu_sock: add pcu_connected() to query PCU availability
+  * tests/stubs.c: remove unused stubs
+  * fix typo in error message ('at lEast')
+  * oml, Set Chan Attr: treat unknown PCHAN types as error
+  * dyn PDCH: rsl rx dchan: also log ip.access message names
+  * dyn PDCH: cosmetic: lchan_to_GsmL1_SubCh_t(): add case for TCH_F_PDCH
+  * doc: add ladder diagram on dynamic PDCH, add msc-README
+  * add missing DSUM entry to bts_log_info_cat
+  * TRX: add configuration example
+  * Add .gitreview
+  * fix compiler warning: printf format for sizeof()
+  * fix compiler warning: add missing case (PHY_LINK_CONNECTING)
+  * fix two compiler warnings: add two opaque struct declarations
+  * dyn PDCH: add bts_model_ts_connect() and _disconnect() stubs
+  * dyn PDCH: conf_lchans_for_pchan(): handle TCH/F_PDCH
+  * dyn PDCH: pcu_tx_info_ind(): handle TCH/F_PDCH in PDCH mode
+  * dyn PDCH: chan_nr_by_sapi(): handle TCH/F_PDCH according to ts->flags
+  * dyn PDCH: implement main dyn PDCH logic in common/
+  * dyn PDCH: sysmo-bts/oml.c: add ts_connect_as(), absorbing ts_connect() guts
+  * dyn PDCH: sysmo: handle TCH/F_PDCH init like TCH/F
+  * dyn PDCH: complete for sysmo-bts: implement bts_model_ts_*()
+  * error log: two minor clarifications
+  * debug log: log lchan state transitions
+  * debug log: log TS pchan type on connect
+  * DTX: add support for AMR/HR
+  * Move copy-pasted code into common part
+  * Use libosmocodec functions for AMR
+  * Use error values instead of number for RSL error
+  * Clarify logging message
+  * fix lc15 build: put src/common/libbts.a left of -losmogsm
+  * lc15: add L3 handle to l1prim messages
+  * dyn PDCH: lc15: chan_nr_by_sapi(): handle TCH/F_PDCH according to ts->flags
+  * dyn PDCH: lc15: add ts_connect_as(), absorbing ts_connect() guts
+  * dyn PDCH: lc15: handle TCH/F_PDCH init like TCH/F
+  * dyn PDCH: lc15: complete for litecell15-bts: implement bts_model_ts_*()
+  * dyn PDCH: safeguard: exit if nothing pending in dyn_pdch_ts_disconnected()
+  * vty: install orphaned trx nominal power command
+  * fix compiler warnings: include bts_model.h in phy_link.c
+  * fix compiler warning: remove useless 'static' storage class for struct decl
+  * fix compiler warning: remove unused variable 'i' in calib_verify()
+  * Make get_lchan_by_chan_nr globally available
+  * DTXu: move copy-pasted code to common part
+  * Remove duplicated nibble shift code
+  * TRX: add Uplink DTX support for FR/HR
+  * sysmobts: screnrc/systemd-service: Use osmo-bts-sysmo instead of sysmobts
+  * Mark array as static const
+  * sysmobts: Fix eeprom padding before gpg key
+  * cosmetic: osmo-bts-trx: add comment, fix comment typo
+  * log: osmo-bts-trx: change access burst logs to DEBUG level
+  * log: osmo-bts-trx: change PDTCH block logs to DEBUG level
+  * osmo-bts-trx: init OML only once by sending AVSTATE_OK with OPSTATE_ENABLED
+  * sysmobts: dump PRACH and PTCCH parameters
+
+-------------------------------------------------------------------
+Sat Feb 20 21:54:56 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.4.0.git1455563767.94bb376:
+  + sysmobts: Clarify msgb ownership / fix memory leaks
+  + fix large amount of compiler warnings in common and sysmobts code
+  + l1sap: Whitespace fixes.
+  + sysmobts: add missing break statement in l1if_handle_ind()
+  + sysmobts-v2/eepromreader: Add userspace program to read EEPROM
+  + sysmobts-calib: Warn about firmware and header mismatch
+  + fix some format specifiers
+  + print a NOTICE message if lchan not activ in get_active_lchan_by_chan_nr()
+  + LAPDm: Use T200 settings from OML rather than libosmocore defaults
+  + Add support for Octasic OCTSDR-2G GSM PHY
+  + OCTPHY: Replace '-lortp' with the proper pkg-config/autofoo version
+  + OCTPHY: Ensure we write the phy-netdev parameter
+  + OCTPHY: Exit gracefully if config file specifies no phy-netdev
+  + OCTPHY: Fix various memory leaks and add comments on msgb ownership
+  + OCTPHY: Block PHY indications until it is confirmed open
+  + OCTPHY: Print NOTICE message if we receive supervisory frame
+  + OCTPHY: Implement command re-transmission after message loss
+  + OCTPHY: Obtain information from PHY and expose it in VTY
+  + TRX: remove obsolete get_mac() function
+  + TRX: Add stub bts_model_change_power() function
+  + sysmoBTS: port 'press Ctrl+C twice for immediate exit' from osmo-bts-trx
+  + TRX: some comments dscribing the scheduler.[ch] API
+  + TRX: mark scheduler data structures as 'const'
+  + TRX: use const for dummy and fcch burst definitions
+  + TRX: Reduce magic numbers, introduce GSM_HYPERFRAME for 2715648
+  + move 'GSM_FR_BYTES' and related definitiions to common part
+  + use existing #define for FR/EFR frame length (33/31)
+  + TRX: make trx_chan_desc static, it is not used externally
+  + TRX: schedule: remove dead code
+  + TRX: scheduler: whitespace cleanup
+  + TRX: replace some more 2715648 magic numbers with GSM_HYPERFRAME
+  + TRX: Don't use magic numbers when we have #defines
+  + TRX: Don't hard-code 23 bytes, use GSM_MACBLOCK_LEN
+  + TRX: the L1SAP queue contains mac blocks, not bursts (cosmetic)
+  + Fix T200 default values
+  + Make T200 default initialization even more robust
+  + OCTPHY: Don't have files in EXTRA_DIST that don't exist (anymore)
+  + ABIS: Support for multiple RSL connections
+  + common/support.c: Remove unused file
+  + Add new bts_model_ctrl_cmds_install()
+  + merge bts-specific main function into common/main.c:bts_main()
+  + OCTPHY: fix 'make dist' (missing header files)
+  + main: Return something from the method
+  + Fix T200 default values
+  + lapdm: Add DEBUGP statement about T200 values being set for lchan
+  + OML: Ignore T200 settings by BSC for now
+  + octphy: Look-up the right timeslot and then the logical chan
+  + Revert "oml: temporary debug hack"
+  + abis: Add a queue of OML messages
+  + fix compile warnings
+  + L1SAP: Ensure we don't process MPH-TIME.indication on TRX != C0
+  + fix migration of check_for_ciph_cmd() from sysmobts to l1sap
+  + TRX: factor out the scheduler from remaining code
+  + TRX: split scheduler in generic part and backend part
+  + TRX: call trx_loop_sacch_clock from TRX scheduler backend
+  + TRX: scheduler: don't access l1h->config from scheduler
+  + TRX: scheduler: Move trx_sched_clock() to scheduler_trx.c
+  + TRX: scheduler: Remove dependency to trx_if.[ch]
+  + TRX: Move scheduler to src/common
+  + Introduce new phy_link and phy_instance abstraction
+  + don't touch OML MO when PHY link is established
+  + port sysmobts to phy_link/phy_instance abstraction
+  + abis.c: Fix segfault on OML link loss
+  + sysmobts: make clock calibration eeprom default (again?)
+  + LC15: Add initial support for the NuRAN Wireless Litecell 1.5
+  + LC15: Disable DSP trace flags by default
+  + LC15: use talloc pool for msgb and ortp library
+  + LC15: configure.ac: use --enable-litecell15 insteda of --enable-litecell15-bts
+  + LC15: configure.ac: Allow specifying an alternate include-dir
+  + LC15: port litecell 1.5 support to recent osmo-bts master
+  + LC15: Add example configuration file for Litecell 1.5
+  + LC15: cosmetic whitespace fixes
+  + LC15: Fix printed msgq file names in error messages
+  + LC15: fix compiler warning against more recent libosmovty
+  + introduce + use new generic vty_get_phy_instance()
+  + sysmobts/LC15: Fix startup-time DSP trace flage configuration
+  + LC15: Remove unused clk_use_eeprom and clk_src fields
+  + LC15/sysmobts: Don't try to refer to fl1h from PHY config
+  + LC15: Remove clk_cal (another unused struct member)
+  + LC15: Call l1if_reset() after l1if_open()
+  + move auto-band configuration commands to common/vty.c
+  + declare pcu_direct in pcu_if.h
+  + make PCU socket and telnet port configurable
+  + Use consistent naming of binaries accross BTS models
+  + LC15: Fix 'make dist' (missing include files)
+  + LC15: set nominal transmit power of 37dBm for all TRX
+  + LC15: remove bogus check_for_ciph_cmd() copy
+  + sysmobts_vty: Fix null-check for pinst
+  + use unsigned int to compare wih ARRAY_SIZE
+  + scheduler: Fix ARRAY_SIZE() in trx_sched_init()
+
+-------------------------------------------------------------------
+Sat Dec 26 23:13:58 UTC 2015 - mardnh@gmx.de
+
+- Update to version 0.4.0.git1449483816.e28a20a:
+  + amr: Catch up with the amr_mode changes
+  + amr: Catch-up for the non-RTP mode after amr rename
+  + configure.ac: Only require libgps if building for sysmoBTS
+  + configure.ac: Depend on libosmotrau 0.3.2 (ortp statistics)
+  + configure.ac: Add subdir-objects to suppress warnings
+  + configure.ac: Better description for --enable-sysmocom-bts and --enable-trx
+  + Revert "configure.ac: Add subdir-objects to suppress warnings"
+  + Don't blindly link against '-lortp' but use pkg-config for that
+  + TRX: catch up with trhe amr_mode naming changes
+  + tests/Makefile.am: Don't use sysmobts SUBDIRS twice
+  + cope with 'struct gsm_bts' without a tsc member
+  + sysmobts: fix ph_data_req() msgb handling + alignment
+  + sysmobts: Dont recycle PHY primitive for L1SAP in PH-DATA.ind
+  + common/rsl.c: The presence of a valied measurement result is DEBUG
+  + l1sap: Ensure we only pass PHY primitives of active lchans
+  + osmo-bts-sysmo: Disable DSP trace flags by default
+  + use talloc pool for msgb and ortp library
+  + sysmobts: support eeprom map version 2
+  + sysmobts: Catch up with the API changes and specify the version
+
+-------------------------------------------------------------------
+Tue Sep 22 18:33:58 UTC 2015 - mardnh@gmx.de
+
+- Update to version 0.3.0.git1442932914.f1fb0fa:
+  + update README to bring it more in sync with reality.
+  + audio/rsl: Include the connection identifier in the DLCX ind
+  + audio/rsl: Include statistics for one call
+  + audio/rsl: Honor the speech mode and don't send anything
+  + Add BCCH message to PH-/MPH-/TCH-SAP interface
+  + l1sap: Split ph_data_req() into smaller parts
+  + Add RACH message to PH-/MPH-/TCH-SAP interface
+  + l1sap: Use L1SAP_IS_CHAN_RACH instead of magic number 0x88
+  + l1sap: fix coding style
+  + l1sap: fix missing include file and resulting compiler warning
+  + l1sap: RACH: Detect hand-over even on TRX0
+  + l1sap: correctly set chan_nr on PRIM_PH_RACH / INDICATION
+  + l1sap: sysmobts: remove obsolete get_lapdm_chan_by_hl2()
+  + Add PCH/AGCH message to PH-/MPH-/TCH-SAP interface
+  + l1sap: Add a warning about assuming BS_AG_BLKS_RES=1
+  + Add PDCH messages to PH-/MPH-/TCH-SAP interface
+  + l1sap: additional comments explaining l1sap changes in l1_if.c
+  + Add TIME (MPH_INFO) IND messages to PH-/MPH-/TCH-SAP interface
+  + l1sap: Re-introduce more correct RACH slot counting
+  + Relace bts_model_get_time() by get_time() at common part
+  + Move chan act/rel/modify from bts_model to PH-/MPH-/TCH-SAP interface
+  + l1sap: re-introduce a comment that was lost during l1sap merge
+  + Add TCH messages to PH-/MPH-/TCH-SAP interface
+  + l1sap: Use {data,empty}_req_from_l1sap() and avoid code duplication
+  + l1sap: Avoid compiler warnings regarding uninitialized nmsg
+  + Add SDCCH/SACCH/FACCH messages to PH-/MPH-/TCH-SAP interface
+  + sysmobts/l1_if: Sacch/Sdcc/Facch are handled in l1sap/core
+  + l1sap: Port code to new ciphering handling
+  + Add MEAS (MPH_INFO) IND message to PH-/MPH-/TCH-SAP interface
+  + sysmobts: Clean up transitions for lchan cipher state
+  + Send primitives at PH-/MPH-/TCH-SAP interface via GSMTAP
+  + Move gsmtap VTY commands from osmo-bts-sysmo to common part
+  + Add gsmtap option to command line to main.c of osmo-bts-sysmo
+  + Remove obsolete gsmtap handling from osmo-bts-sysmo part.
+  + Move detection of handover frames from sysmo-bts code to common code
+  + move MS power control handling from sysmobts to common part
+  + fix: make sysmobts tests only when sysmobts is enabled
+  + Fix: Retrieve ARFCN (from OML) for TRX other than C0
+  + Fix: Process all TRX on GSM Time indication, not only C0
+  + Fix: Call e1inp_vty_init() before reading config file
+  + Change to new structure of multirate at gsm_data_shared.h
+  + TRX: Introduce osmobts-trx, a layer 1 implementation for OpenBTS tranceivers
+  + Add test code for testing GSM burst transcoding
+  + TRX: On negative response of critical commands, shutdown BTS
+  + ABIS: Introduce bts_model_abis_close to indicate ABIS link failure.
+  + TRX: Power down tranceiver and reset scheduler, if abis link is lost
+  + TRX: Completed transcoding of TCH with reordering Table 2 of TS 05.03
+  + Add test routing to test transcoding of TCH FR / FACCH frames
+  + Fix: Check right result on bursts_test
+  + TRX: Fixes and improvements of scheduler
+  + TRX: Use received TRX clocks to determine availablility of tranceiver
+  + TRX: Fix, never send confirm for DEACT SACCH request (TS 05.08 4.6)
+  + TRX: Minor fixes, especially handle TOA of RACH correctly
+  + TRX: Fixed swapped stealing bits
+  + TRX: Completed TCH/F full rate support
+  + TRX: Allow transcoding of TCH FR with MSB first (RTP) or LSB first (E1)
+  + TRX: Lost TCH frame detection of omitted bursts from tranceiver
+  + TRX: PDTCH (GPRS) works now
+  + TRX: Add test code for PDTCH transcoding
+  + TRX: Detect missing received bursts and fill them with zero-sbits
+  + TRX: By default, send 20 frames in advance to tranceiver
+  + TRX: Cleanup of channel transcoding
+  + TRX: Replaced GSM 06.10 ordering table by table in libosmocodec
+  + TRX: Ciphering
+  + TRX: Fix of SCH burst data
+  + TRX: Fixes to TRX interface
+  + TRX: Improved handling of clock indications.
+  + TRX: Implementation of MS power and timing advance loops
+  + TRX: Out of range primitives found in downlink queue are not an error
+  + TRX: Use link timeout value from BSC via OML attribute.
+  + TRX: Code cleanup, prepare for other codecs than GSM full rate
+  + TRX: Add support for EFR transcoding
+  + Get RSSI from received uplink data and send to PCU
+  + TRX: Support for AMR full speech
+  + TRX: Add AMR Payload handling
+  + TRX: Support for TCH/H and GSM half rate transcoding
+  + TRX: Support for AMR half speech
+  + TRX: Reset ciphering state when closing channel
+  + TRX: Add VTY options to enable and disable SETTSC and SETBSIC
+  + Allow one or more TRX to configure via VTY
+  + TRX: Fix: Cleanly free TRX instances during initialization in case of an error
+  + TRX: Fixed typos tranceiver -> transceiver
+  + TRX: Report measurements
+  + TRX: Clear lchan state when resetting TRX
+  + TRX: Handover access burst support
+  + TRX: Use correct slot type for GSM_PHCAN_BCCH
+  + TRX: Disable handover burst detection when closing channel during detection
+  + TRX: Process real time scheduling option is now similar to sysmobts
+  + Add test case for successful handover and unsuccessful handover
+  + TRX: Set ciphering to an initial state when activating channel
+  + TRX: If no cipher algorithm is given, or if it is a5/0, reset cipher state
+  + TRX: No need to set mode and cipher for PDCH
+  + TRX: Fixup ciphering state names after rebasing
+  + TRX: Add bts_model_trx_close to TRX implementation
+  + TRX: Close TRX (shutdown all active channels) on ABIS link failure
+  + TRX: Do not send burst on IDLE channels at TRX != C0
+  + trx: Add option to set transmit power reduction via OML (BSC)
+  + TRX: Fixed chan_nr for SACCH/8(7) at scheduler
+  + TRX: Changed logging of unserved primitives from LOGL_NOTICE to LOGL_INFO
+  + Allow TRX 0..254 at VTY, even if less TRX are available
+  + tests: make tests for sysmobts conditional
+  + build: Use AM_CPPFLAGS in Makefile.am
+  + TRX: fix some typos in comments
+  + TRX: Add VTY option to allow setting RTS advance in frames
+  + TRX: Free bust buffer memory to when changing lchan type
+  + TRX: Activate LCHAN of CCCH when CCCH is configured on time slot
+  + trx: Set lchan inactive, only if the dedicated channel is deactivated
+  + TRX: Show which TRX does not respond or rejects a command
+  + TRX: Check if Transceiver indicates an out of range clock
+  + TRX: Remove extra TCH/HS puncturing value
+  + trx: Implement BER calculations.
+  + tests: Update bursts_test to accommodate BER calculations.
+  + trx: More logging for voice frame decoding functions.
+  + trx: Fix typo in a log message.
+  + trx: Remove unused variables.
+  + trx: Cleanup unused parts of loops.c
+  + trx: Assume 100% BER if total decoded bits is 0 in l1if_process_meas_res()
+  + trx: Send POWERON/OFF commands to osmo-bts only for the first channel.
+  + trx: fix potential use of uninitialized toa variable.
+  + tests: Update busrsts_test build.
+  + fixup tests after bts_model_adjst_ms_pwr
+  + make osmo-bts-trx provide bts_model_adjst_ms_pwr()
+  + TRX: Add missing call to abis_init()
+
+-------------------------------------------------------------------
+Tue Jul 14 18:08:46 UTC 2015 - mardnh@gmx.de
+
+- Update to version 0.3.0.git1436860556.a7c276b:
+  + sysmo-bts: Use correct boundaries of L1 msg when forwarding to L1 proxy
+  + Add header file of PH-/MPH-/TCH-SAP interface to common part of osmo-bts
+  + write_queue: Check the result of osmo_wqueue_enqueue and free
+  + meas: Do not send incomplete measurement reports
+
+-------------------------------------------------------------------
+Sun Feb 15 20:58:51 UTC 2015 - mardnh@gmx.de
+
+- Update to version 0.3.0.git1423171973.b631bd2:
+  + cbch: Speculative change to not change CHAN ACK for CBCH
+  + msg: Generalize the message structure test
+  + sysmobts: Begin with calib control from the sysmobts manager
+  + sysmobts: Copy more of l1if_rf_clock_info_reset into the CTRL code
+  + sysmobts: Use the ctrl interface for calibration
+  + sysmobts: The correction for GPS is in the reverse direction
+  + sysmobts: Initial version to use libgps to determine FIX state
+  + sysmobts: Start the calibration the first time the link is up
+  + sysmobts: Create a calibration loop that will be run
+  + sysmobts: Improve some log messages for calib control
+  + misc: Fix up testcase after 5a03e129a633637d0a6b57b3b5aa6d6596b938fe
+  + sysmobts: Check mgr->calib.bts_conn for NULL
+  + power/sysmobts: Add a manual ms power level control
+  + power: Make it possible to force a power level
+
+-------------------------------------------------------------------
+Tue Dec 30 20:25:34 UTC 2014 - mardnh@gmx.de
+
+- Update to version 0.3.0.git1419943502.8fc2630:
+  + sysmobts: Include the serial number in the find response
+  + Initial CBCH support
+  + CBCH: Implement CBCH block segmentation and RSL_MT_SMS_BC_CMD
+  + SMS-CB: Use GSM412_ #defines from libosmocore rather than our own
+  + SMS-CB: use gsm412_block_type from libosmocore
+  + SMS-CB: Use GSM412_SEQ_NULL_MSG rather than 0xf
+  + SMS-CB: Clean up + centralize generation of NULL block
+
+-------------------------------------------------------------------
+Thu Dec 18 19:26:55 UTC 2014 - mardnh@gmx.de
+
+- Update to version 0.3.0.git1418757748.c265bef:
+  + bts: Move BTS and children into the enabled state after opstart
+  + sysmobts: Actions can be executed in all levels
+  + sysmobts: Add an option to stop the systemd sysmobts.service
+  + eeprom: Fix brown paper bag introduced a long while ago
+  + sysmobts: Don't list non integer parameters in the help
+  + sysmobts: Read the clock calibration from another place
+  + sysmobts: Remove unused global variables
+  + sysmobts: Add "normal" actions to execute
+  + sysmobts: Comment out the varpoware options that are not implemented
+  + sysmobts: Add slave on/off action for the sysmoBTS2050
+
+-------------------------------------------------------------------
+Fri Sep 12 19:26:56 UTC 2014 - mardnh@gmx.de
+
+- update to version 0.3.0+git.1409175947.9f22fcf
+- specfile cleanup
+
+-------------------------------------------------------------------
+Tue Apr 15 07:59:51 UTC 2014 - mardnh@gmx.de
+
+- update to version 0.3.0+git.1390316846.72ba533
+
+-------------------------------------------------------------------
+Fri Aug 23 20:09:10 UTC 2013 - mardnh@gmx.de
+
+- initial package written from scratch
+

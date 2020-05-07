@@ -1,0 +1,43 @@
+-------------------------------------------------------------------
+Wed Dec 04 21:04:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20191204:
+  * jenkins.sh: disable 'publish' of manuals; we don't have any yet
+  * exit(2) on unsupported positional arguments on command line
+  * jenkins.sh: We cannot build libosmo-netif without libosmo-abis
+
+-------------------------------------------------------------------
+Mon Sep 09 20:03:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190805:
+  * use cbsp_category rather than cbc_message_prio
+  * log REST API HTTP port on startup
+  * fix smscb_message array order
+  * add cbc_peer_proto_name  value_string
+  * track libulfius memory allocations using talloc
+  * cbsp_server: move llist_add() up a bit to ensure llist_del() works in error paths
+  * add minimalistic VTY
+  * CBSP Server improvements
+  * Add some basic functions operating on cbc_data structures
+
+-------------------------------------------------------------------
+Sat Jul 20 20:27:47 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Update to version 0.0.0+git.20190720:
+  * Fix 'make distclean' for tests directory
+  * Makefile.am: Add 'contrib' to SUBDIRS
+  * add missing doc/examples/osmo-cbc.cfg
+  * Makefile.am: Remove non-existant osmoappdesc.py
+  * fix 'make dist': Include header files
+  * introduce cbc_data.h with core data model of CBC
+  * cbsp_server: Allow for bind to non-standard port + bind to IP
+  * WIP on JSON Schema for the REST interface
+  * Add initial version of REST API
+  * WIP: add basic character set conversion routines
+  * osmo_cbsp_recv_buffered() is now part of libosmocore
+  * update CBSP API to current libosmocore
+
+-------------------------------------------------------------------
+Thu Jul 18 20:59:02 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Initial package, version XXX

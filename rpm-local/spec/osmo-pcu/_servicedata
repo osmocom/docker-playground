@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/osmo-pcu</param>
+              <param name="changesrevision">20331ae5f6dbb545f2239dccd726a4d3ce3dcc59</param></service></servicedata>

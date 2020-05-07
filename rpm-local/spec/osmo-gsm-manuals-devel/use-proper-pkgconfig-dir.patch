@@ -1,0 +1,13 @@
+diff --git a/Makefile.am b/Makefile.am
+index 75b642e..2413555 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -1,7 +1,7 @@
+ share_files = $(srcdir)/build $(srcdir)/common $(srcdir)/*.xsl
+ share_path = "$(DESTDIR)$(prefix)/share/osmo-gsm-manuals"
+ 
+-noarch_pkgconfigdir = $(prefix)/lib/pkgconfig
++noarch_pkgconfigdir = $(prefix)/share/pkgconfig
+ noarch_pkgconfig_DATA = osmo-gsm-manuals.pc
+ BUILT_SOURCES = $(top_srcdir)/.version
+ EXTRA_DIST = git-version-gen .version check-depends.sh $(share_files)

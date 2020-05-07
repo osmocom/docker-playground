@@ -1,0 +1,22 @@
+-------------------------------------------------------------------
+Mon Apr 27 20:04:50 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.1.3.1:
+  * daemon: Add VTY command to configure local bind IP of UECUPS socket
+
+-------------------------------------------------------------------
+Sat Apr 25 20:05:31 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.1.3.0:
+  * Bump version: 0.1.2-8e2a → 0.1.3
+
+-------------------------------------------------------------------
+Wed Apr 22 20:05:32 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.1.3:
+  * dameon: Handle multiple coalesced SIGCHLD
+
+-------------------------------------------------------------------
+Mon Apr 20 20:09:53 UTC 2020 - Martin Hauke <mardnh@gmx.de>
+
+- Initial version, 0.1.2

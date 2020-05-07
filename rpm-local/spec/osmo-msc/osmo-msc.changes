@@ -1,0 +1,1627 @@
+-------------------------------------------------------------------
+Fri May 01 20:03:16 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.31:
+  * SMS-over-GSUP: notify sender in case of RPL delivery failure
+
+-------------------------------------------------------------------
+Thu Apr 30 20:03:17 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.30:
+  * SMS-over-GSUP: notify sender about malformed GSUP messages
+  * SMS-over-GSUP: notify sender about unhandled GSUP messages
+  * SMS-over-GSUP: respond with error if net->sms_over_gsup is false
+  * SMS-over-GSUP: move net->sms_over_gsup check to gsm411_gsup_rx()
+
+-------------------------------------------------------------------
+Sun Apr 26 20:03:19 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.26:
+  * SMS-over-GSUP: clarify error message about unexpected MO/MT SMS
+
+-------------------------------------------------------------------
+Mon Apr 20 20:03:41 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.25:
+  * vlr_auth_fsm: Fix compilation with gcc-10
+
+-------------------------------------------------------------------
+Tue Apr 14 20:03:32 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.24:
+  * doc: do not use random ip-address for MGW
+  * configure.ac: fix libtool issue  with clang and sanitizer
+
+-------------------------------------------------------------------
+Wed Apr 01 20:03:46 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.22:
+  * manual: add missing mention of MGCP in "Multiple instances"
+
+-------------------------------------------------------------------
+Tue Mar 10 21:02:50 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.21:
+  * fix segfault: unsolicited Paging Response
+
+-------------------------------------------------------------------
+Mon Feb 10 21:07:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.20:
+  * libmsc/sdp: cosmetic: fix less-than-zero comparison of an unsigned value
+
+-------------------------------------------------------------------
+Wed Jan 29 21:06:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.19:
+  * osmo-msc: use stderr to print error messages, not stdout
+  * libmsc/gsm_04_11.h: remove unused sms_deliver definition
+
+-------------------------------------------------------------------
+Mon Jan 27 21:06:50 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.17:
+  * libmsc/gsm_04_08: use DRR in gsm48_rx_rr_pag_resp(), not DMM
+  * libmsc/gsm_04_08: make use of msc_a in gsm48_rx_rr_app_info()
+  * VTY: cosmetic: make struct cmd_node for GSMNET_NODE static
+  * msc/sccp_ran.h: fix: do not pass -1 to osmo_rat_type_name()
+  * vlr_sgs_fsm: add missing break, do not call to_null() twice
+  * vlr: remove unused parameter 'log_level' of auth_fsm_start()
+  * libmsc: move subscriber expiration timer T3212 to libvlr
+  * libvlr: use generic osmo_tdef API for T3250, T3260, and T3270
+  * VTY: add osmo_tdef introspection and configuration commands
+
+-------------------------------------------------------------------
+Sat Jan 25 21:09:01 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.8:
+  * VTY: mark 'subscriber create imsi' command as deprecated
+
+-------------------------------------------------------------------
+Mon Jan 20 21:12:04 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.7:
+  * msc/signal.h: remove unused (since the NiTB split up) signals
+  * osmo-msc: fix: properly initialize default values for MGW timers
+  * libvlr: remove unused 'periodic_lu_timer' from struct vlr_subscr
+
+-------------------------------------------------------------------
+Sun Jan 19 21:11:52 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.4:
+  * manuals/vty: update the VTY reference to reflect recent changes
+
+-------------------------------------------------------------------
+Wed Jan 15 21:13:59 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.3:
+  * libmsc: SMS, Avoid premature RP-ACK to MS
+  * Trivial: code simplification, return early
+
+-------------------------------------------------------------------
+Sun Jan 12 21:16:21 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.1:
+  * Use GSM411_RP_* and not GSM48_CC_*
+
+-------------------------------------------------------------------
+Thu Jan 09 21:08:02 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.1.0:
+  * Bump version: 1.6.0.3-02dd2 → 1.6.1
+
+-------------------------------------------------------------------
+Mon Jan 06 21:07:20 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.3:
+  * vlr.c: fix condition to check MSISDN presence
+  * vlr_gsup_rx: fix uninitialized rc
+
+-------------------------------------------------------------------
+Sun Jan 05 21:07:00 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.1:
+  * libmsc/gsm_04_08.c: fix: verify MI before calling vlr_subscr_rx_id_resp()
+
+-------------------------------------------------------------------
+Fri Jan 03 21:09:41 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.0:
+  * Bump version: 1.5.0.72-6e72-dirty → 1.6.0
+
+-------------------------------------------------------------------
+Tue Dec 31 21:03:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.72:
+  * libmsc/gsm_04_11_gsup.c: fix SM-RP-OA encoding for MO SMS over GSUP
+  * libmsc/gsm_04_11_gsup.c: do not init a buffer in gsm411_gsup_mo_fwd_sm_req()
+
+-------------------------------------------------------------------
+Sun Dec 15 21:04:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.70:
+  * sms log tweak
+
+-------------------------------------------------------------------
+Thu Dec 12 21:05:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.69:
+  * sms db: when storing an SMS, retrieve the ID
+  * osmoappdesc.py, tests: switch to python 3
+  * gsup: indicate CN-Domain in SendAuthInfo Requests
+
+-------------------------------------------------------------------
+Wed Dec 04 21:03:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.66:
+  * msc: exit(2) on unsupported positional arguments on command line
+
+-------------------------------------------------------------------
+Mon Dec 02 21:05:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.65:
+  * libmsc: fix potential NULL-pointer dereferences detected by GCC's LTO
+  * counters: polish documentation of cm_service_request / paging_resp
+  * counters: clarify documentation for MSC_CTR_CALL_* entries
+  * counters: clarify documentation for MSC_CTR_LOC_UPDATE_* entries
+  * counters: clarify documentation for MSC_CTR_SMS_* entries
+
+-------------------------------------------------------------------
+Sun Dec 01 21:08:36 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.60:
+  * Check for osmo_fsm_register() error return value
+  * manual: Fix copy+paste error
+  * check for osmo_ss7_init() error return value
+
+-------------------------------------------------------------------
+Thu Nov 28 21:14:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.57:
+  * msc_vlr_test_call: rename lu_utran_tmsi
+  * msc_vlr_tests: log descriptions in color with -v
+  * msc_vlr_test_call.c: add MNCC logging
+  * msc_vlr_tests: better err logging for dtap msgs
+  * MNCC v6: add optional SDP to the socket protocol
+  * add sdp_msg API: SDP parsing/composition
+  * fix incoming call while Paging
+  * msc_a CC: add some basic sanity tests
+  * fail on invalid RTP address from MGW
+
+-------------------------------------------------------------------
+Sat Nov 23 21:07:50 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.48:
+  * Fix some typos
+
+-------------------------------------------------------------------
+Tue Nov 12 21:07:40 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.47:
+  * BSSMAP: decode Codec List (BSS Supported)
+  * fix msc_vlr_test_call.c
+
+-------------------------------------------------------------------
+Mon Nov 11 21:05:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.45:
+  * cc trans: remove unused tch_rtp_create
+
+-------------------------------------------------------------------
+Mon Nov 04 21:05:37 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.44:
+  * charts: add full MO and MT voice call diagram
+  * add msc_log_to_ladder.py
+  * CC: add error handling for CRCX responses
+  * use osmo_sockaddr_str_is_nonzero()
+  * rtp_stream: sanely cancel MGW endpoint FSM notify
+  * fsm: use deferred deallocation
+
+-------------------------------------------------------------------
+Wed Oct 30 21:03:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.38:
+  * send MNCC REL only if MNCC has actually started
+  * log: ran_msg_a: tweak a message name
+  * log: RANAP encode: use RANAP message names instead of BSSAP
+  * BSSMAP log tweak
+  * also log MNCC_SETUP_REQ
+
+-------------------------------------------------------------------
+Tue Oct 29 21:04:11 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.33:
+  * tests: only check IU configs if IU is enabled
+
+-------------------------------------------------------------------
+Thu Oct 24 20:04:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.32:
+  * log: drop duplicate MNCC log
+  * log which DTAP messages are sent to RAN
+  * LOG_TRANS for CC: always log CC state
+
+-------------------------------------------------------------------
+Thu Oct 17 20:02:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.29:
+  * vlr_auth_fsm: on SAI use the GSUP provided GMM cause code
+  * make vlr_gmm_cause_to_mm_cause public
+
+-------------------------------------------------------------------
+Fri Sep 27 20:04:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.27:
+  * catch GSUP auth result without auth_fsm
+
+-------------------------------------------------------------------
+Thu Sep 26 20:03:20 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.26:
+  * paging: Send SGsAP-SERVICE-ABORT-REQUEST on paging timeout
+  * sgs_iface: Accept messages with unknown TLV elements
+
+-------------------------------------------------------------------
+Wed Sep 18 20:08:00 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.24:
+  * fix error on BSSMAP Cipher Mode Complete L3 msg IE
+
+-------------------------------------------------------------------
+Mon Sep 16 20:05:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.23:
+  * vlr: gmm_cause_to_fsm_and_mm_cause() drop fsm_cause_p argument
+  * vty: fix access to wrong argv in paging response-timer
+
+-------------------------------------------------------------------
+Tue Sep 03 20:07:55 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.21:
+  * msc_a fsm: ignore state chg to same state
+  * ran_dec logging: log message sizes on errors
+  * vlr: don't log about "gratuitous ID RESPONSE"
+  * Implement a global switch on the network to disable call waiting.
+
+-------------------------------------------------------------------
+Mon Sep 02 20:06:41 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.17:
+  * cosmetic: fix call_leg_ensure_ci() decl. arg name to match impl.
+  * msc_a.c, CC trans: change a comment to a debug log
+  * gsm48_tch_rtp_create(): check against NULL mgcp_info
+  * msc_vlr_tests: GSUP: don't care about extra IEs
+  * log, cosmetic: add "RR" to "Ciphering Mode Complete"
+
+-------------------------------------------------------------------
+Thu Aug 29 20:08:36 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.12:
+  * tweak CC cause for incoming call to unattached nr
+  * vlr_lu_fsm: ignore ID_IMEISV during VLR_ULA_S_WAIT_HLR_UPD
+  * fix segfault: don't send CC REL on NULL msc_a
+  * cc trans: make sure bearer cap is empty
+  * memleak on cc setup errors
+  * mncc: send payload type matching chosen codec
+
+-------------------------------------------------------------------
+Tue Aug 27 20:04:59 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.6:
+  * smpp_openbsc.c: check acl before deref it
+
+-------------------------------------------------------------------
+Mon Aug 19 20:16:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.5:
+  * msc_a: switch RAN type back to SGs when a CSFB-Call is cleared
+
+-------------------------------------------------------------------
+Sun Aug 18 20:18:20 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.4:
+  * libvlr/vlr.c: cosmetic: move message_type assignment
+
+-------------------------------------------------------------------
+Fri Aug 16 20:16:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.3:
+  * sgs_iface: do not use SGsAP-MO-CSFB-INDICATION for CSFB return
+
+-------------------------------------------------------------------
+Wed Aug 14 20:28:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.2:
+  * add 'encryption uea 1 2' cfg / fix ttcn3 iu tests
+
+-------------------------------------------------------------------
+Mon Aug 12 20:10:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.1:
+  * cosmetic: make function mncc_tx_to_gsm_cc static
+
+-------------------------------------------------------------------
+Thu Aug 08 21:57:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.0:
+  * Bump version: 1.4.0 → 1.5.0
+  * Fix dependency version requirements
+  * vlr_lu_fsm: fix missing event for IMEISV
+  * doc/sequence_charts: fix naming of mncc_fsm to mncc_call
+  * doc/sequence_charts/mncc_fsm.msc: add SIP messages, tweak
+  * add msc_vlr tests for UMTS without ciphering
+  * do not force encryption on UTRAN
+  * manual: adjust and fix auth and ciph docs
+  * Remove undefined param passed to logging_vty_add_cmds
+  * Set coding in mncc_set_cause()
+  * minor comments in msc_vty.c
+
+-------------------------------------------------------------------
+Thu Jul 25 20:37:36 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.183:
+  * doc: Add Osmux documentation to User Manual
+
+-------------------------------------------------------------------
+Wed Jul 24 20:30:12 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.182:
+  * vlr_lu_fsm.c: don't send LU reject twice
+
+-------------------------------------------------------------------
+Mon Jul 22 20:06:59 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.181:
+  * turn -Werror=null-dereference into a warning
+
+-------------------------------------------------------------------
+Mon Jul 22 10:31:53 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Disable LTO for now since it breaks compilation of the tests
+  See: https://osmocom.org/issues/4115
+
+-------------------------------------------------------------------
+Thu Jul 18 20:08:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.180:
+  * replace osmo_counter with stat_items
+
+-------------------------------------------------------------------
+Wed Jul 17 19:09:48 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.179:
+  * fix spelling detected by lintian
+
+-------------------------------------------------------------------
+Thu Jul 11 20:19:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.178:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Wed Jul 10 20:13:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.177:
+  * libmsc/msc_vty.c: print subscriber expiration time
+  * Fix: add missing semicolons to OSMO_ASSERT statements
+
+-------------------------------------------------------------------
+Thu Jun 20 20:29:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.175:
+  * libmsc/ran_msg_iu.c: fix: properly handle SAPI IE of RANAP_DirectTransfer
+  * libmsc/gsm_04_11.c: do not abuse LOG_TRANS() in gsm411_alloc_mt_trans()
+  * gsm_04_11_gsup.c: fix broken reference counting for vsub
+  * sms_queue.c: Improve misleading log line
+
+-------------------------------------------------------------------
+Wed Jun 19 20:31:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.171:
+  * libvlr/vlr.c: do not expire subscribers if periodic LU is disabled
+  * tests/msc_vlr: fix: do not pass RAT type to expect_bssap_clear()
+
+-------------------------------------------------------------------
+Tue Jun 18 20:12:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.169:
+  * manuals: Include overview chapter about counters
+  * manuals: Update counter/vty documentation
+  * manuals: Add script to update vty/counter documentation from docker
+  * libmsc/gsm_09_11.c: do not suppress rc of gsup_client_mux_tx()
+  * libmsc/gsm_09_11.c: do not abuse LOG_TRANS() in gsm0911_rcv_nc_ss()
+  * libmsc/gsm_09_11.c: fix broken reference counting for vsub
+  * libmsc/gsm_09_11.c: avoid double zero-initialization of gsup_msg
+
+-------------------------------------------------------------------
+Mon Jun 17 20:09:53 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.162:
+  * libmsc/gsm_09_11.c: properly handle OSMO_GSUP_MSGT_PROC_SS_ERROR
+  * libmsc/gsm_09_11.c: inform HLR/EUSE if Paging has failed
+  * libmsc/msc_net_init.c: pass pointer to gsm_network directly
+  * libmsc/gsm_09_11.c: drop meaningless check for concurrent paging
+  * libmsc/gsm_09_11.c: drop rudimentary vsub->cgi.lai.lac check
+  * libmsc/gsm_09_11.c: log network-originated session establishment error
+  * libmsc/gsm_09_11.c: do not abuse LOG_TRANS() and early trans allocation
+  * libvlr: fix sgsn tmsi creation, replace constant with define
+
+-------------------------------------------------------------------
+Sat Jun 15 20:16:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.154:
+  * libmsc/paging.c: cosmetic: remove leading space in log line
+  * libmsc/paging.c: cosmetic: actually use default branch of switch
+  * libmsc/paging.c: avoid double zero-initialization
+  * libmsc/msc_a.c: fix: remove dummy allstate_action of msc_a_fsm
+  * libmsc/gsm_04_08.c: clean up unused leftover includes
+  * libmsc/gsm_09_11.c: send GSUP PROS_SS ERROR message when needed
+  * libmsc/gsm_09_11.c: fix: return trans from establish_nc_ss_trans()
+  * gsup_client_mux_tx_error_reply(): fix: do not omit SM-RP-MR IE
+  * gsup_client_mux_tx_error_reply(): fix: do not omit message class IE
+  * gsup_client_mux_tx_error_reply(): fix: do not omit session IEs
+  * gsup_client_mux_tx_error_reply(): fix: do not override IMSI
+  * libmsc/gsm_0(4|9)_11_gsup.c: print error message if subscr is not known
+  * libmsc/mncc_builtin.c: drop dummy switch in int_mncc_recv()
+
+-------------------------------------------------------------------
+Sun Jun 09 20:02:56 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.141:
+  * libmsc/db.c: get rid of hard-coded SMS expiry threshold
+
+-------------------------------------------------------------------
+Thu Jun 06 20:03:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.140:
+  * libmsc/db.c: warn user about SMS text truncation
+  * libmsc/db.c: introduce and use parse_sm_ud_from_result()
+  * libmsc/db.c: fix potential integer overflow
+
+-------------------------------------------------------------------
+Wed Jun 05 20:03:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.137:
+  * db_sms_test: Remove libdbi expected driver load errors
+  * debian/control: add missing libdbd-sqlite3 to Build-Depends
+
+-------------------------------------------------------------------
+Tue Jun 04 20:03:11 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.135:
+  * db_sms_test: Do not print exact memcmp result
+  * db: Fix call to mempcy with NULL src ptr
+
+-------------------------------------------------------------------
+Mon Jun 03 20:03:19 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.133:
+  * libmsc/db.c: fix storing SMS with empty TP-User-Data
+  * Introduce initial unit test for db_sms_* API
+  * tests: share stubs.h from msc_vlr_test as stubs.c
+  * libmsc/msc_vty.c: do not abuse strlen() to check char buffers
+  * libmsc/msc_vty.c: refactor 'show subscr / conn / trans' commands
+
+-------------------------------------------------------------------
+Fri May 31 20:03:19 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.128:
+  * debian: create -doc subpackage with pdf manuals
+
+-------------------------------------------------------------------
+Wed May 29 20:03:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.127:
+  * Use GSM23003_MSISDN_MAX_DIGITS from libosmogsm
+
+-------------------------------------------------------------------
+Mon May 27 20:03:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.126:
+  * sgs_iface: detect and react to VLR/HLR failure
+
+-------------------------------------------------------------------
+Sun May 26 20:03:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.125:
+  * transaction: accept trans_type enum in trans_log_subsys()
+  * Request Osmux CID and forward it in Assign Req and Assign Compl
+
+-------------------------------------------------------------------
+Sun May 19 20:03:20 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.123:
+  * libmsc/gsm_04_11.c: properly handle MMTS indication
+  * a_iface: Announce Osmux support on RESET (ACK) send
+  * bssap: Detect BSC Osmux support on RESET (ACK) recv
+  * vty: Add option to enable osmux towards BSCs
+  * build osmo-msc: add "missing" LIBASN1C_LIBS
+
+-------------------------------------------------------------------
+Thu May 16 20:03:38 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.118:
+  * libmsc/rtp_stream.c: prevent NULL-pointer dereference
+  * libmsc/msc_vty.c: use llist_count() in subscr_dump_full_vty()
+  * libmsc/msc_vty.c: fix documentation of 'show subscriber id'
+  * libmsc/msc_vty.c: fix: use msub_for_vsub() in subscr_dump_full_vty()
+
+-------------------------------------------------------------------
+Wed May 15 20:03:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.114:
+  * remove msc specific db counters
+  * ran_peer: Move rx_reset_ack logic into its own func
+  * vlr: optionally send IMEI early to HLR
+  * vlr: when setting IMEISV, also set IMEI
+  * vlr: fix IMEI length
+  * vty: make retrieve-imeisv-early configurable
+
+-------------------------------------------------------------------
+Tue May 14 20:03:04 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.108:
+  * libmsc/ran_peer.c: avoid unreasonable use of goto in ran_peer_down_paging()
+  * libmsc/ran_peer.c: fix msgb memleaks in ran_peer_down_paging()
+  * make LOG_TRANS() NULL-safe again
+  * vlr_lu_fsm.c: assert for invalid events
+  * libmsc/mncc_call.c: fix uninitialized access of stack memory
+  * libmsc/ran_msg_a.c: prevent chosen_encryption->key buffer overrun
+  * libmsc/ran_msg_a.c: refactor ran_a_decode_lcls_notification()
+  * libmsc/ran_msg_a.c: avoid ternary operator in struct initialization
+  * libmsc/gsm_04_11.c: fix NULL-pointer dereference in gsm340_rx_tpdu()
+  * sms_queue_test: assert return value of osmo_use_count_get_put()
+  * libmsc/msc_a.c: fix possible NULL-pointer dereferences
+  * libmsc/msc_ho.c: fix unreacheable check of MSC-T role allocation
+  * libmsc/sgs_server.c: do not override rc in case of SCTP_SHUTDOWN_EVENT
+
+-------------------------------------------------------------------
+Mon May 13 20:03:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.95:
+  * tests/.../Makefile.am avoid redundant linkage with librt
+
+-------------------------------------------------------------------
+Sun May 12 20:03:02 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.94:
+  * libmsc/gsm_04_11_gsup.c: cosmetic: drop useless variable
+  * libmsc/gsm_04_08.c: clarify IMEI rejection in gsm48_rx_mm_serv_req()
+  * libmsc/gsm_04_08.c: refactor CM Service Request parsing
+  * libmsc/gsm_04_08.c: fix: print proper length value
+  * silence error messages about HANDOVER_END not permitted
+  * add DSS logging category
+  * libmsc/gsm_04_11.c: cosmetic: restructure gsm411_mm_send()
+  * libmsc/gsm_04_11.c: fix double init of both SMR and SMC FSMs
+
+-------------------------------------------------------------------
+Sat May 11 20:03:25 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.86:
+  * Iu: Send SMS over SAPI-3
+
+-------------------------------------------------------------------
+Fri May 10 20:03:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.85:
+  * call_leg: document the parent_event_* items
+  * call_leg: remove unused event MSC_EV_CALL_LEG_RTP_RELEASED
+  * SMPP: Don't accept password or system-id exceeding spec length
+  * LOG_TRANS: store subsys in trans, unify USSD logging back to DMM
+  * no HO call forwarding if no RTP stream
+  * make msc_a_vsub() and others NULL-safe
+  * ran_a_make_handover_request(): allow no encryption
+  * libmsc/gsm_04_11.c: properly handle TP-User-Data-Length
+  * libmsc/ran_peer.c: fix msgb memleak in ran_peer_rx_reset()
+
+-------------------------------------------------------------------
+Thu May 09 20:03:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.76:
+  * comment: apply function renames to message cycle explanation
+  * msub_check_for_release(): Initialize msc_role_a_c
+  * vty/cfg: add missing write-back of inter-BSC and inter-MSC HO config
+  * fix regression: fix internal MNCC operation
+  * smpp: Make libsmpp34 use talloc for its allocations
+
+-------------------------------------------------------------------
+Wed May 08 20:04:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.71:
+  * rename bscconfig.h to config.h, cleanup
+  * GSUP: include terminating nul in inter-MSC source/destination name
+  * large refactoring: support inter-BSC and inter-MSC Handover
+  * gsm_04_11: use gsm48_decode_bcd_number2(), evaluate rc
+
+-------------------------------------------------------------------
+Tue May 07 20:04:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.67:
+  * fix various missing line endings in logging
+
+-------------------------------------------------------------------
+Fri Apr 26 20:03:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.66:
+  * vlr subscr get/put: also check against NULL
+
+-------------------------------------------------------------------
+Thu Apr 25 20:03:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.65:
+  * libmsc/gsm_04_11.c: clarify implicit CP-ACK handling
+  * libmsc/db.c: print info about database name and libdbi version
+  * configure.ac: drop useless SQLite3 dependency
+
+-------------------------------------------------------------------
+Tue Apr 23 20:03:40 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.62:
+  * vlr_sgs_fsm: make sure vsub is marked used when LA is present
+
+-------------------------------------------------------------------
+Mon Apr 15 20:03:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.61:
+  * configure.ac: drop rudimentary check for -fvisibility=hidden
+  * smpp: fix vlr_subscr use count bugs
+
+-------------------------------------------------------------------
+Sun Apr 14 20:04:00 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.59:
+  * Allow MME name preformatted as FQDN in SGsAP
+
+-------------------------------------------------------------------
+Fri Apr 12 20:03:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.58:
+  * gsm_04_08_cc: improve logging for CC trans
+  * add LOG_TRANS, proper context for all transactions
+  * vlr_subscr: use osmo_use_count
+  * sms queue: avoid repeated Paging for a failed SMS
+  * enable osmo_fsm_term_safely(), apply logging changes
+
+-------------------------------------------------------------------
+Thu Apr 11 20:03:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.53:
+  * sgs_iface: fix nullpointer dereference
+
+-------------------------------------------------------------------
+Wed Apr 10 20:04:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.52:
+  * smpp_smsc: Call destroy_tlv() when using build_tlv()
+  * sms_queue: Print dest msisdn instead of unknown subscriber
+
+-------------------------------------------------------------------
+Mon Apr 08 20:03:25 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.50:
+  * msc/gsm_data.h: drop unused SMS_HDR_SIZE macro
+
+-------------------------------------------------------------------
+Sun Apr 07 20:03:05 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.49:
+  * vlr_sgs: start lu expiration timer on sgs eps detach
+  * vlr_sgs: fix SGs IMSI detech from non EPS services
+
+-------------------------------------------------------------------
+Mon Apr 01 20:03:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.47:
+  * tests/sms_queue: track the use of NULL talloc memory contexts
+  * libmsc/sms_queue.c: fix memleak in smsq_take_next_sms()
+
+-------------------------------------------------------------------
+Sun Mar 31 20:02:59 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.45:
+  * Write configuration correctly from vty (alert notifications)
+
+-------------------------------------------------------------------
+Thu Mar 28 21:02:59 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.44:
+  * libmsc: fix: properly initialize the SGs server
+  * libmsc/sgs_vty.c: don't print SGs socket error twice
+  * libmsc/sgs_iface.c: register sgs_vlr_reset_fsm on DSO load
+  * libmsc/sgs_iface.c: fix copy-paste error
+
+-------------------------------------------------------------------
+Wed Mar 27 21:04:40 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.40:
+  * debian/control: Fix typo
+
+-------------------------------------------------------------------
+Sun Mar 24 21:02:55 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.39:
+  * vlr_subscr_name(): use OSMO_STRBUF
+
+-------------------------------------------------------------------
+Tue Mar 19 21:03:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.38:
+  * msc_vty: add missing header file
+  * libvlr: Allow 2G auth tuples to be re-used without going through AUTH
+  * a_iface: OSMO_ASSERT() if we ever want to send BSSAP with invalid length
+
+-------------------------------------------------------------------
+Fri Mar 15 21:03:02 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.35:
+  * silent_call: use osmo_strlcpy() instead of strncpy()
+
+-------------------------------------------------------------------
+Thu Mar 14 21:03:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.34:
+  * libmsc: Allow different channel types to be requested as silent calls
+
+-------------------------------------------------------------------
+Mon Mar 11 21:03:04 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.33:
+  * vty: add cmd subscriber ID sms delete-all
+
+-------------------------------------------------------------------
+Thu Mar 07 21:02:55 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.32:
+  * SMS queue: properly log failed attempts number
+  * gsm_04_11_gsup.c: drop unused conn lookup
+  * use only accepted ran_conns for new transactions
+
+-------------------------------------------------------------------
+Thu Feb 28 21:02:59 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.29:
+  * Don't deliver alert notifications to ESME not yet bound.
+  * libmsc/msc_vty.c: drop dead comparison against null
+  * libmsc/sgs_vty.c: always write server address and VLR name
+
+-------------------------------------------------------------------
+Wed Feb 27 21:03:05 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.26:
+  * libmsc/sgs_iface.c: fix SGS_STATE_NS11 counter reference
+  * libmsc/ran_conn.c: add missing 'break' to OSMO_RAT_EUTRAN_SGS
+
+-------------------------------------------------------------------
+Tue Feb 26 21:03:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.24:
+  * debian: depend on libdbd-sqlite3
+
+-------------------------------------------------------------------
+Thu Feb 21 21:02:57 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.23:
+  * libmsc/gsm_09_11.c: implement guard timer for NCSS sessions
+
+-------------------------------------------------------------------
+Mon Feb 18 21:03:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.22:
+  * a_iface: Fix hexdumping of N-DATA.req
+  * a_iface: use 'const' qualifier for ran_conn whenever possible
+  * a_iface: Centralize/wrap BSSAP / N-DATA transmission
+
+-------------------------------------------------------------------
+Fri Feb 15 21:03:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.19:
+  * transaction.h: use #pragma once as include guard
+  * transaction: fix description of trans_assign_trans_id()
+  * transaction: clarify magic 0xff transaction ID
+  * transaction: drop meaningless ti_flag of trans_assign_trans_id()
+
+-------------------------------------------------------------------
+Thu Feb 14 21:03:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.15:
+  * libmsc/osmo_msc.c: move connection ref-counting code to 'ran_conn.c'
+
+-------------------------------------------------------------------
+Wed Feb 13 21:11:41 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.14:
+  * libmsc/gsm_04_80.c: add msc_send_ussd_release_complete_cause()
+  * libmsc/gsm_04_80.c: use gsm0480_create_release_complete()
+
+-------------------------------------------------------------------
+Tue Feb 12 21:03:57 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.12:
+  * a_iface: Include CSFB Indication into BSSMAP CLEAR COMMAND
+
+-------------------------------------------------------------------
+Wed Feb 06 21:02:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.11:
+  * configure.ac: Check for libsctp
+  * debian: depend on libsctp-dev
+
+-------------------------------------------------------------------
+Tue Feb 05 21:02:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.9:
+  * VLR tests: use msgb_eq_data_print() for comparison
+  * Add SGs Interface
+
+-------------------------------------------------------------------
+Fri Feb 01 21:02:19 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.7:
+  * libmsc/gsm_04_11.c: introduce and use gsm411_assign_sm_rp_mr()
+  * libmsc/gsm_04_11.c: also assign SM-RP-MR to MO transactions
+  * transaction: change arguments of trans_find_by_sm_rp_mr()
+
+-------------------------------------------------------------------
+Sat Jan 26 21:02:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.4:
+  * libmsc/ran_conn.c: cosmetic: use tabs instead of N * 8 spaces
+  * transaction.c: cosmetic: use 'default' branch in trans_free()
+
+-------------------------------------------------------------------
+Thu Jan 24 21:07:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.2:
+  * Various logging fixes
+  * Handle LCLS-NOTIFICATION message from BSS
+
+-------------------------------------------------------------------
+Tue Jan 22 20:35:29 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.1.0:
+  * Bump version: 1.3.0 → 1.3.1
+
+-------------------------------------------------------------------
+Tue Jan 22 07:32:13 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.1:
+  * fix build: apply msgb_wrap_with_TL() rename
+
+-------------------------------------------------------------------
+Mon Jan 21 21:02:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.3.0.0:
+  * Bump version: 1.2.0.199-45df98-dirty → 1.3.0
+
+-------------------------------------------------------------------
+Fri Jan 18 21:02:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.199:
+  * vty: make 'sh connect/transact' readable again
+
+-------------------------------------------------------------------
+Thu Jan 17 21:02:36 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.198:
+  * Cosmetic: Fix spelling in smpp vty
+  * Make alert notifications vty configurable per ESME
+  * SMS: remove code duplication in transaction init
+
+-------------------------------------------------------------------
+Wed Jan 16 21:02:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.195:
+  * MNCC: use explicit struct type in gsm_call
+  * Enable SMS-related log in VLR tests
+  * VLR: send CHECK-IMEI to EIR/HLR
+
+-------------------------------------------------------------------
+Mon Jan 14 21:02:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.192:
+  * Fix trans_has_conn() doxygen description
+
+-------------------------------------------------------------------
+Sat Jan 12 21:02:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.191:
+  * gsm_04_08: Fix nullpointer deref
+  * gsm_04_08_cc.c: drop non-sensible error message
+  * msc_vlr_tests: tweak logging in verbose mode
+  * err log: fully log MS supported A5 algos on mismatch
+  * tweak fsm_msc_mgcp FSM and FI name
+  * mm_rx_id_resp(): use osmo_mi_name()
+  * refactor log ctx for vlr_subscr and ran_conn
+  * rx CM Service Req: reject double use sooner
+  * add LOG_RAN_CONN() to use the conn->fi->id for context
+  * use osmo_lu_type_name() from libosmocore
+  * libmsc/gsm_04_11.c: accept MT SMS messages over GSUP
+
+-------------------------------------------------------------------
+Fri Jan 11 21:02:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.180:
+  * Use explicit protocol discriminator for NC SS/USSD session
+
+-------------------------------------------------------------------
+Wed Jan 09 21:02:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.179:
+  * VLR: vlr_subscr_{,msisdn_or_}name: const vsub arg
+  * vlr_core.h: remove duplicate declarations
+  * msc_vty.c: make check-imei-rqd configurable
+  * Cosmetic: msc_vty: remove redundant "0 =", "1 ="
+
+-------------------------------------------------------------------
+Tue Jan 08 21:02:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.175:
+  * use mgcp-client configured endpoint domain name
+
+-------------------------------------------------------------------
+Fri Jan 04 21:02:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.174:
+  * use osmo_rat_type from libosmocore
+  * vty cfg: move 'ipa-name' from 'msc' to 'hlr' section
+  * vlr: auth_fsm: make sure vsub->auth_fsm = NULL when it terminates
+  * abort assignment on Assignment Failure
+  * fix: incoming call during ongoing call
+  * move trans->assignment_done to cc.assignment_started
+  * remove code dup: add msc_mgcp_try_call_assignment()
+  * Constify transaction helpers parameters
+  * fix vlr ops.subscr_assoc re-association
+
+-------------------------------------------------------------------
+Thu Jan 03 21:02:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.165:
+  * release RTP stream only for matching CC transaction
+  * cosmetics in msc_mgcp_call_release()
+  * libmsc/gsm_04_11.c: forward MO SMS messages over GSUP
+  * libmsc/VTY: introduce kill-switch for routing SMS over GSUP
+
+-------------------------------------------------------------------
+Sun Dec 23 21:02:19 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.161:
+  * MNCC: use log wrapper for call processing
+
+-------------------------------------------------------------------
+Fri Dec 21 21:02:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.160:
+  * use vty->type instead of local variable
+
+-------------------------------------------------------------------
+Thu Dec 20 21:02:26 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.159:
+  * fix test_nodes.vty after libosmo-mgcp-client vty changes
+
+-------------------------------------------------------------------
+Wed Dec 19 21:02:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.158:
+  * mgcp log tweak: say RAN, not BTS, like surrounding logging
+  * fix msc_mgcp_fsm_evt_names: two missing events
+  * msc_vty: also show IMEI and IMEISV
+  * Remove redundancy in LAC processing
+  * msc_vty: display current RAN type
+  * msc_vty: display subscriber flags
+
+-------------------------------------------------------------------
+Tue Dec 18 21:02:22 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.152:
+  * vty: show subscriber: put() before printing the use count
+  * VLR: drop unused struct members
+  * Use proper type for tch_rtp_connect() parameter
+  * VLR tests: avoid leaking LAC access details
+  * VLR tests: add logging macro with explicit value description
+
+-------------------------------------------------------------------
+Mon Dec 17 21:02:21 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.147:
+  * CC: log more details about unhandled message/state
+  * cosmetic: drop unused variable
+  * comment: vlr: put the 'balancing' comment closer to the put()
+  * vlr_lu_fsm: drop unused out_state INIT -> WAIT_IMEI
+  * tweak comment to indicate sub_pres_vlr fsm as dead code
+  * log: by default start with all categories on LOGL_NOTICE
+  * cosmetic: drop duplicated #include
+
+-------------------------------------------------------------------
+Thu Dec 13 21:02:30 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.140:
+  * require 'ipa-name' option to be set via config file
+
+-------------------------------------------------------------------
+Tue Dec 11 21:02:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.139:
+  * Revert "move ASS-COMPL MGCP handling out of a_iface_bssap.c"
+  * provide software version information to gsup peer
+  * make gsup ipa name configurable in osmo-msc.cfg
+  * LU: do not always invoke sub_pres_vlr_fsm_start()
+  * detach cancelled subscribers from VLR
+  * drop gsm48 RR ciph mode compl from permitted initial messages
+  * move ASS-COMPL MGCP handling out of a_iface_bssap.c
+
+-------------------------------------------------------------------
+Mon Dec 10 21:02:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.132:
+  * ASS-COMPL: do not fire Sec Mode Compl event
+
+-------------------------------------------------------------------
+Thu Dec 06 21:02:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.131:
+  * contrib: fix makedistcheck with disabled systemd
+
+-------------------------------------------------------------------
+Wed Dec 05 21:02:33 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.130:
+  * add VTY commands: mncc internal / external (== -M)
+  * vty: mncc cfg: separate the 'mncc' from 'mncc-guard-timeout'
+  * msc_main: mncc: move mncc socket decision to after read_cfg
+  * cosmetic: msc_main.c: default args definition style
+  * add test_nodes.vty transcript test
+  * make: prepare for adding transcript tests
+  * python tests: use py shebang instead of $(PYTHON)
+  * gsm_subscriber: make function msc_paging_request() static
+  * contrib/jenkins.sh: build and publish manuals
+
+-------------------------------------------------------------------
+Tue Dec 04 21:02:47 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.121:
+  * Fix DISTCHECK_CONFIGURE_FLAGS override
+
+-------------------------------------------------------------------
+Sat Dec 01 21:02:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.120:
+  * move gsm_cbfn to gsm_subscriber.h, the only user
+  * drop cruft from gsm_subscriber.h
+  * GSM_EXTENSION_LENGTH -> VLR_MSISDN_LENGTH
+  * move gsm_auth_tuple to vlr.h as vlr_auth_tuple
+  * cosmetic: drop some unused opaque struct defs
+  * combine several small .h in msc_common.h
+  * move ran_conn declarations to new ran_conn.h
+  * move subscr_conn.c to ran_conn.c
+  * rename some RAN conn related stuff to ran_conn_*
+  * rename gsm_subscriber_connection to ran_conn
+  * drop msc_compl_l3() return value
+  * rename gsm_encr to geran_encr, it is only applicable on GERAN
+  * populate gsm_subscriber_connection->encr during Ciph
+  * adjust copyright in subscr_conn.c
+  * cosmetic: subscr_conn_fsm_auth_ciph() should be static
+  * drop unused tests/db/*
+  * drop unused gsm0408_allow_everyone() declaration
+  * drop unused SUBSCR_CONN_E_INVALID
+  * drop unused openbscdefines.h
+
+-------------------------------------------------------------------
+Fri Nov 30 21:02:22 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.101:
+  * libmsc/gsm_04_11.c: fix: always use SAPI 3 for MT SMS
+  * drop unused gsm_network->handover.active
+  * drop unused gsm_subscr_conn->mncc_rtp_bridge
+
+-------------------------------------------------------------------
+Thu Nov 29 21:02:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.98:
+  * libmsc/gsm_04_11.c: refactor MT SMS message handling
+  * libmsc/transaction: introduce trans_find_by_sm_rp_mr()
+
+-------------------------------------------------------------------
+Wed Nov 28 21:02:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.96:
+  * libmsc/gsm_09_11.c: drop redundant assertion of stored msgb
+
+-------------------------------------------------------------------
+Tue Nov 27 21:02:36 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.95:
+  * build manuals moved here from osmo-gsm-manuals.git
+  * msc: update vty reference
+  * OsmoBSC/HLR/MSC: Fix default config file name
+  * add SGs / CSFB related dot + msc files
+  * vty-ref: Update URI of docbook 5.0 schema
+  * OsmoMSC: update VTY reference
+  * share chapters/gsup.adoc from OsmoSGSN to OsmoMSC + OsmoHLR
+  * OsmoMSC: add rate counter documentation
+  * refactor Makefile build rules, don't use the FORCE
+  * add OsmoHLR manual, OsmoHLR VTY reference
+  * add OsmoMSC manual
+  * libmsc/transaction.c: cosmetic: fix typo
+  * libmsc/gsm_04_11.c: refactor RP-DATA header validation
+  * libmsc/gsm_04_11.c: don't pass msgb to gsm411_rx_rp_{ack|error}
+
+-------------------------------------------------------------------
+Fri Nov 23 21:02:18 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.79:
+  * osmo_msc: remove unused parameter from msc_dtap()
+
+-------------------------------------------------------------------
+Thu Nov 22 19:00:37 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.78:
+  * msc_vlr_tests.c: drop duplicating DMM category definition
+
+-------------------------------------------------------------------
+Wed Nov 21 20:21:11 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.77:
+  * msc/gsm_04_11.h: use forward-declaration for _gsm411_sms_trans_free()
+  * msc/gsm_04_11.h: drop unused sms_next_rp_msg_ref()
+  * libmsc/db.c: cosmetic: mark missing breaks in switch as intended
+
+-------------------------------------------------------------------
+Tue Nov 20 19:11:51 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.74:
+  * Use libosmocore to function to parse cipher mode reject cause
+  * Use BSSAP-specific TLV parser from libosmocore
+  * msc: vty: Fix integer printf formatting
+
+-------------------------------------------------------------------
+Mon Nov 19 18:33:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.71:
+  * Fix build with latest libosmocore
+  * libmsc: Don't send SMS STATUS REPORT locally if the ESME accepted it.
+
+-------------------------------------------------------------------
+Sun Nov 18 21:02:28 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.69:
+  * msc_vlr_tests: tweak conn_exists()
+
+-------------------------------------------------------------------
+Fri Nov 16 21:02:28 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.68:
+  * vlr: drop unused is_ps parameter in vlr_subscr_req_lu()
+
+-------------------------------------------------------------------
+Tue Nov 13 21:02:45 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.67:
+  * vty: add command to show all known BSC
+
+-------------------------------------------------------------------
+Thu Nov 08 21:02:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.66:
+  * cosmetic: remove forgotten debug printf
+
+-------------------------------------------------------------------
+Sat Nov 03 21:02:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.65:
+  * Add counters for BSSMAP cipher mode messages
+  * Properly parse cause in cipher mode reject
+
+-------------------------------------------------------------------
+Thu Nov 01 21:02:37 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.63:
+  * lu_fsm: result cb: use proper cause type (warning/coverity)
+
+-------------------------------------------------------------------
+Wed Oct 24 20:03:03 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.62:
+  * gsm_04_08_cc: Add global guard timer for MNCC
+
+-------------------------------------------------------------------
+Sun Oct 21 17:25:14 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.61:
+  * gsm0407_is_duplicate(): Handle error ret of gsm0407_pdisc_ctr_bin()
+
+-------------------------------------------------------------------
+Mon Oct 08 20:02:19 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.60:
+  * msc_mgcp: move mncc struct initalization to where its actually needed
+
+-------------------------------------------------------------------
+Sat Oct 06 20:02:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.59:
+  * GSUP client: send CN domain IE on LU request
+
+-------------------------------------------------------------------
+Sat Sep 29 19:48:01 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.58:
+  * fix a use-after-free in msc_mgcp.c:_handle_error()
+
+-------------------------------------------------------------------
+Fri Sep 28 20:02:21 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.57:
+  * mncc: fix byte ordering of IP-Address in mncc
+  * vty: add SCCP related vty commands
+
+-------------------------------------------------------------------
+Wed Sep 19 20:02:32 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.55:
+  * fix Classmark Update without VLR subscriber
+
+-------------------------------------------------------------------
+Mon Sep 17 20:02:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.54:
+  * A5/n Ciph: request Classmark Update if missing
+  * msc_vlr_tests: cosmetically tweak perm algo printing
+  * store classmark in vlr_subscr, not conn
+
+-------------------------------------------------------------------
+Thu Sep 13 19:33:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.51:
+  * Install sample cfg file to /etc/osmocom
+  * Install systemd services with autotools
+
+-------------------------------------------------------------------
+Thu Aug 23 20:02:21 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.49:
+  * cosmetic: mute "COMPLETE_LAYER_3 not permitted"
+
+-------------------------------------------------------------------
+Tue Aug 21 20:02:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.48:
+  * use __FILE__, not __BASE_FILE__
+
+-------------------------------------------------------------------
+Fri Aug 17 20:05:21 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.47:
+  * msc: Set talloc ctx for osmo_signal structures
+
+-------------------------------------------------------------------
+Tue Aug 14 20:03:33 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.46:
+  * osmo-msc: track the use of talloc NULL memory contexts
+  * osmo-msc: free the VTY talloc context on exit
+  * osmo-msc: Improve shutdown due to signal and print talloc report on exit
+
+-------------------------------------------------------------------
+Sat Aug 11 20:02:18 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.43:
+  * libmsc/mncc_sock.c: Add lchan_type_offset in queue_hello()
+
+-------------------------------------------------------------------
+Thu Aug 09 20:02:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.42:
+  * doc: update mgw settings in example config file
+
+-------------------------------------------------------------------
+Tue Aug 07 20:02:18 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.41:
+  * mgcp: use codec information returned with ASSIGNMENT COMPL.
+
+-------------------------------------------------------------------
+Sun Aug 05 20:02:25 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.40:
+  * RRLP: print log when sending a position request
+  * RRLP: migrate and share mode definitions from msc_vty.c
+  * RRLP: fix: actually init the RRLP signal handlers
+  * RRLP: properly name the init function
+  * Remove local libgsupclient; Use libosmo-gsup-client from osmo-hlr
+  * libmsc/gsm_09_11.c: clean up the local GSM 04.80 API
+  * libmsc/rrlp.c: add missing include
+  * msc/rrlp.h: use #pragma once include guard
+  * msc/signal.h: use #pragma once include guard
+
+-------------------------------------------------------------------
+Tue Jul 31 20:02:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.31:
+  * migrate to oap_client in libosmogsm
+
+-------------------------------------------------------------------
+Mon Jul 30 20:02:22 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.30:
+  * libmsc/gsm_09_11.c: introduce counter for active sessions
+  * libmsc/gsm_09_11.c: introduce rate counters for NC_SS sessions
+  * libmsc/gsm_09_11.c: properly handle MS-initiated release
+  * libmsc/gsm_09_11.c: implement network-initiated sessions
+  * libmsc/gsm_09_11.c: forward SS/USSD messages to HLR over GSUP
+
+-------------------------------------------------------------------
+Sun Jul 29 20:02:22 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.25:
+  * libvlr/vlr.c: forward unhandled GSUP messages towards MSC
+  * msc_vlr_tests: don't abuse USSD-request to conclude connections
+
+-------------------------------------------------------------------
+Fri Jul 27 20:02:32 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.23:
+  * cosmetic: typos in log and comment
+  * Iu MGCP: no need to loopback on the cn side
+  * vlr_access_req_fsm.c: use osmo_strlcpy and avoid compiler error
+
+-------------------------------------------------------------------
+Wed Jul 25 20:02:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.20:
+  * libmsc: move L3 call-control to separate C file (gsm_04_08_cc.c)
+  * git-version-gen: Don't check for .git directory
+
+-------------------------------------------------------------------
+Sat Jul 07 20:05:04 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.18:
+  * configure.ac: drop unused dependencies
+
+-------------------------------------------------------------------
+Mon Jun 25 20:02:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.17:
+  * VLR: reject overlong IMSIs in ID RESP messages
+
+-------------------------------------------------------------------
+Thu Jun 21 20:02:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.16:
+  * jenkins.sh: Use --enable-werror only when iu support is disabled
+
+-------------------------------------------------------------------
+Mon Jun 18 20:02:28 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.15:
+  * .gitignore: ignore src/libgsupclient/gsup_test_client
+
+-------------------------------------------------------------------
+Fri Jun 15 20:02:39 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.14:
+  * msc_main: Fix typo in description of version param
+
+-------------------------------------------------------------------
+Thu Jun 14 20:02:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.13:
+  * libmsc/gsm_04_80.c: make the API abstract from ss_request struct
+  * libmsc/gsm_09_11.c: properly indicate transaction errors
+  * libmsc/gsm_04_08.c: expose gsm48_tx_simple()
+  * Use proper naming for GSM TS 09.11 implementation
+
+-------------------------------------------------------------------
+Sun Jun 10 20:02:19 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.9:
+  * libmsc/ussd.c: use connection ref-counting and transactions
+  * libmsc: properly name the MSC_CONN_USE token for SS
+  * libmsc/ussd.c: FIX: properly indicate errors
+
+-------------------------------------------------------------------
+Tue May 29 20:02:45 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.6:
+  * mgcp: do not start connections in loopback mode
+  * mgcp: hack to keep IuUP working
+
+-------------------------------------------------------------------
+Wed May 23 20:02:51 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.4:
+  * implement periodic Location Update expiry in the VLR
+
+-------------------------------------------------------------------
+Fri May 18 20:02:45 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.3:
+  * a_reset: cleanup + remove dead code
+  * remove redundant unconditional PKG_CHECK_MODULES for libsmpp
+
+-------------------------------------------------------------------
+Wed May 16 20:03:30 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.1:
+  * vlr_access_req_fsm: use correct cause codes
+
+-------------------------------------------------------------------
+Thu May 03 20:03:13 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.0:
+  * Bump version: 1.1.2.269-86f21-dirty → 1.2.0
+
+-------------------------------------------------------------------
+Tue Apr 24 20:02:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.269:
+  * Remove unused GSM_PAGING_OOM
+  * setup_trig_pag_evt: Remove uneeded default case in switch statement
+  * setup_trig_pag_evt: Always log correct paging failure case
+  * setup_trig_pag_evt: Fix heap-use-after-free
+
+-------------------------------------------------------------------
+Tue Apr 17 20:03:00 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.265:
+  * tests/msc_vlr: fix expected SS message names
+  * smpp_smsc_conf: Fix heap-use-after-free
+
+-------------------------------------------------------------------
+Mon Apr 16 20:02:49 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.263:
+  * cosmetic: use enum ranap_nsap_addr_enc instead of int
+
+-------------------------------------------------------------------
+Sat Apr 14 20:28:39 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.262:
+  * smpp: Unset esme->acl on socket close
+  * sms_queue: fix use-after-free on 'pending'
+
+-------------------------------------------------------------------
+Thu Apr 12 21:47:26 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.260:
+  * CC: intentionally release T308 on BSSMAP Clear Request from BSC
+  * refactor subscr_conn and subscr_conn_fsm de-/alloc
+  * properly receive BSSMAP Clear Complete and Iu Release Complete
+  * fix BSC Clear Request
+  * cosmetic: embed compl_l3_type in FSM id
+  * libmsc/ussd: don't overwrite rc if decoding failed
+  * refactor VLR FSM result handling
+  * msc conn ref counts: log human readable list of conn owners
+
+-------------------------------------------------------------------
+Wed Apr 11 20:02:41 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.252:
+  * msc_mgcp.c: log endpoint name instead of pointer
+  * msc_mgcp: do not send wildcarded DLCX messages
+
+-------------------------------------------------------------------
+Tue Apr 10 18:48:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.250:
+  * ussd.h: cosmetic: remove useless comment
+  * ussd.h: cosmetic: use '#pragma once' include guard
+  * libmsc/gsm_04_80.c: drop unused 'in_msg' argument
+  * libmsc/ussd.c: cosmetic: correct log level and message
+  * trans_free: drop bad assertion
+  * msc_vlr_test_call: reproduce OS#3062
+
+-------------------------------------------------------------------
+Mon Apr 09 18:39:46 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.244:
+  * DTAP: Ensure proper DLCI is used in MSC-originated DTAP
+  * Permit any Sender MSISDN when sending SMS from VTY
+
+-------------------------------------------------------------------
+Mon Apr  9 12:04:28 UTC 2018 - mardnh@gmx.de
+
+- Build with --enable-iu
+
+-------------------------------------------------------------------
+Sat Apr 07 18:53:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.242:
+  * msc_mgcp.c: Fix several wrong ptr printf fmt
+  * BSSAP: Return error code if COMPL L3 with no or too short L3 payload
+  * a_iface_bssap: Treat inbound RESET as implicit RESET ACK
+  * a_iface: If L3/DTAP returns error in COMPL L3, close SCCP connection
+  * cosmetic: remove unused variable
+  * cosmetic: gsm_04_08.c: drop unused struct gsm_lai
+  * trans_free: tear down conn when last transaction is done
+  * dissolve libcommon,libcommon-cs: clean up vty definitions
+  * cosmetic: msc_vty.c: use static gsmnet instead of gsmnet_from_vty()
+  * dissolve libcommon: drop unused bsc_version.c
+  * dissolve libcommon: drop debug.c
+  * dissolve libcommon: move talloc ctx into msc_main.c, drop talloc_ctx.c
+  * dissolve libcommon: drop gsm_subscriber_base.c, move vlr_subscr_* to vlr.c
+  * dissolve libcommon: drop gsm_data.c, move code to libmsc
+  * rename libcommon to libgsupclient
+  * dissolve libcommon-cs: mv a_reset.c to libmsc
+  * dissolve libcommon-cs: move gsm_network_init() to libmsc
+  * dissolve libcommon-cs: move gsm48_* code to libmsc, drop sms_next_rp_msg_ref()
+  * remove empty libcommon-cs
+  * contrib: osmo-msc.service: Depend on osmo-mgw.service
+  * gsup_test_client: gsupc_read_cb: fix uninitialized value 'io'
+  * use osmo_init_logging2() with proper talloc ctx
+  * drop some dead definitions (gsm_data.h, gsup_client.c)
+  * test_reject_concurrency: missing assert
+  * cosmetic: rx_bssmap: read message type once into local var
+  * cosmetic: rename gsm_subscriber_connection->conn_fsm to ->fi
+  * cosmetic: rename subscr_conn_from to complete_layer3_type
+  * subscr_conn: store complete_layer3_type in conn, not FSM event arg
+  * unify allocation of gsm_subscriber_connection
+
+-------------------------------------------------------------------
+Fri Mar 16 19:59:30 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.213:
+  * msc_mgcp: to not access higher layers after release
+
+-------------------------------------------------------------------
+Thu Mar 15 18:38:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.2.212:
+  * mgcp: be sure that pending mgcp transactions are canceled before free
+  * trans_free: safeguard against a still running CC timer on free
+  * msc_mgcp: use more conceise error msg on truncation
+  * mcgp: let the MGW allocate the MGCP endpoint
+  * use libosmocom to parse cell identifier in bssmap_rx_l3_compl()
+  * cosmetic: remove disabled (debug) code gsm_04_08.c
+  * cosmetic: vlr_auth: log decision to send UMTS or GSM AKA challenge
+  * cosmetic: msc_vlr_tests: enable CC logging in debug
+  * cosmetic: rename conn_fsm "bump" event to "release_when_unused"
+  * msc_vlr_tests: add CC Release test and test to catch OS#2779
+
+-------------------------------------------------------------------
+Sun Feb 18 19:23:33 UTC 2018 - mardnh@gmx.de
+
+- Build with --enable-iu
+
+-------------------------------------------------------------------
+Wed Feb 14 16:08:29 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.1.2.158
+
+-------------------------------------------------------------------
+Sat Feb 10 20:47:32 UTC 2018 - mardnh@gmx.de
+
+- Show testsuite.log when tests are failing
+
+-------------------------------------------------------------------
+Sat Feb 10 16:18:13 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.1.2.145
+
+-------------------------------------------------------------------
+Thu Jan 25 19:15:21 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.1.2.105
+- Remove patch:
+  * osmo-msc-fix-includes.patch (fixed upstream)
+
+-------------------------------------------------------------------
+Wed Jan 24 13:10:50 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.1.2.84
+-------------------------------------------------------------------
+Fri Dec 29 14:50:52 UTC 2017 - mardnh@gmx.de
+
+- Update Patch:
+  * osmo-msc-fix-includes.patch (more include fixes)
+
+-------------------------------------------------------------------
+Fri Dec 29 12:18:40 UTC 2017 - jengelh@inai.de
+
+- %service_* already takes care of restart/removal
+
+-------------------------------------------------------------------
+Thu Dec 28 09:39:36 UTC 2017 - mardnh@gmx.de
+
+- Initial package, version 1.1.2

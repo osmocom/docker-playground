@@ -1,0 +1,19 @@
+<services>
+  <service name="tar_scm" mode="disabled">
+    <param name="scm">git</param>
+    <param name="url">git://git.osmocom.org/osmo-sim-auth</param>
+    <param name="revision">master</param>
+    <param name="versionformat">git%ct.%h</param>
+    <param name="versionprefix">0.0.0</param>
+    <param name="exclude">.git</param>
+    <param name="package-meta">no</param>
+    <param name="package-meta">no</param>
+    <param name="changesgenerate">enable</param>
+  </service>
+  <service name="recompress" mode="disabled">
+    <param name="compression">xz</param>
+    <param name="file">*.tar</param>
+  </service>
+  <service name="set_version" mode="disabled">
+  </service>
+</services>

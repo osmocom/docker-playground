@@ -1,0 +1,13 @@
+diff --git a/build/Makefile.docbook.inc b/build/Makefile.docbook.inc
+index 373db7d..162ac24 100644
+--- a/build/Makefile.docbook.inc
++++ b/build/Makefile.docbook.inc
+@@ -33,7 +33,7 @@ all: $(DOCBOOKS_PDF)
+ 
+ # Create a PDF file and lint it before
+ # xslt path: find includes in both $(OSMO_GSM_MANUALS_DIR)/common/chapters and $(builddir)/generated
+-%.pdf: %.xml %.xml-lint $(DOCBOOKS_DEPS) build common
++%.pdf: %.xml $(DOCBOOKS_DEPS) build common
+ 	dblatex --xslt-opts="--path $(realpath $(OSMO_GSM_MANUALS_DIR))/common/chapters:$$PWD/generated" \
+ 		$(dblatex_quiet) -P draft.mode=no -o $(notdir $@) $<
+ 

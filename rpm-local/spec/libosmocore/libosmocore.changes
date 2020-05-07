@@ -1,0 +1,2645 @@
+-------------------------------------------------------------------
+Tue May 05 20:00:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.76:
+  * sim: When decoding SW, take application specific SW into account
+  * rest_octets: fix encoding of 3G Early Classmark Sending Restriction
+
+-------------------------------------------------------------------
+Sat May 02 20:00:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.74:
+  * gsm_29_118.h: Fix compilation with gcc-10
+  * configure.ac: Fix HAVE_CLOCK_GETTIME undef when func in -lrt
+
+-------------------------------------------------------------------
+Wed Apr 29 20:00:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.72:
+  * gsm_04_06.h: Remove repeated egprs header struct definitions
+
+-------------------------------------------------------------------
+Mon Apr 20 20:00:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.71:
+  * gsm0503_parity: Fix compilation with gcc-10
+
+-------------------------------------------------------------------
+Sun Apr 19 20:00:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.70:
+  * timerfd: call osmo_fd_unregister() when closing on read error
+  * timer.c: make timers thread safe
+
+-------------------------------------------------------------------
+Sat Apr 18 20:00:09 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.68:
+  * select.c: Introduce support for signalfd
+  * exec: Introduce osmo_system_nowait2() to allow specify a user
+
+-------------------------------------------------------------------
+Fri Apr 17 20:00:11 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.66:
+  * tests/coding_test: Fix test_pdtch() results
+  * tests/coding: Test decoding of DL EGPRS data packet
+  * ports.h: Add 4268 for UECUPS VTY
+
+-------------------------------------------------------------------
+Tue Apr 14 20:00:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.63:
+  * dtx: add decoding for AMR-DTX frames
+  * configure.ac: fix libtool issue  with clang and sanitizer
+
+-------------------------------------------------------------------
+Wed Apr 08 20:00:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.61:
+  * gsm0503_tables: Document USF encoding tables
+  * gsm0503_coding: Fix USF encoding in MCS1-4
+
+-------------------------------------------------------------------
+Tue Apr 07 20:00:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.59:
+  * gsm0503_coding: Fix misleading comment UL vs DL
+
+-------------------------------------------------------------------
+Wed Apr 01 20:00:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.58:
+  * coding: fix bit ordering in 11-bit RACH coding functions
+  * tests/coding: add 11-bit Access Burst samples from a real phone
+  * coding: fix documentation of PDTCH encoding functions
+  * tests/coding: cosmetic: use ARRAY_SIZE() macro from utils.h
+  * tests/coding: reduce verbosity of 8-bit / 11-bit RACH coding tests
+  * tests/coding: check return value of encoding / decoding functions
+
+-------------------------------------------------------------------
+Sun Mar 22 21:00:07 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.52:
+  * osmo-sim-test: Avoid double-close
+
+-------------------------------------------------------------------
+Sat Mar 21 21:00:11 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.51:
+  * sim: Add HPSIM application support
+  * card_fs_{usim,isim}: Update to 15.7.0 / Release 15
+  * osmo-sim-test: Also [attempt to] dump DF.GSM on USIM cards
+  * sim: re-structure how we support cards + applications
+  * sim: add osim_file_desc_find_aid()
+  * osmo-sim-test: Optionally dump card files to host filesystem
+  * osmo-sim-test: don't print SW in successful case of dump_file()
+  * osmo-sim-test: Use stderr for error messages
+  * card_fs_sim: Avoid '/' in file names
+  * sim: card_fs_usim.c: Fix FID of EF.EXT4
+
+-------------------------------------------------------------------
+Tue Mar 17 21:00:07 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.41:
+  * debian: Change python3 dependency to native arch
+
+-------------------------------------------------------------------
+Mon Mar 16 21:00:06 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.40:
+  * libosmosim: Build irrespective of PC/SC support
+
+-------------------------------------------------------------------
+Sat Mar 14 21:00:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.39:
+  * gsm690: Fix amr speech bit length table
+
+-------------------------------------------------------------------
+Tue Mar 10 21:00:07 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.38:
+  * socket: Add osmo_sock_mcast_iface_set() to bind multicast to device
+
+-------------------------------------------------------------------
+Mon Mar 09 21:00:06 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.37:
+  * conv: add convolutional coder for AMR SID UPDATE frames
+  * parity: add amr crc14 definition
+
+-------------------------------------------------------------------
+Sun Mar 08 21:00:07 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.35:
+  * fixup depreciation warning
+  * gsmtap: Solve TCH / FACCH confusion once and for all
+  * Add CTRL port number for osmo-mgw
+  * Add GSMTAP_CHANNEL_VOICE to gsmtap_gsm_channel_names[] value_string
+
+-------------------------------------------------------------------
+Fri Mar 06 21:00:07 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.31:
+  * gsmtap.h: Add definitions for voice inside GSMTAP
+
+-------------------------------------------------------------------
+Wed Mar 04 21:00:06 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.30:
+  * osmo-sim-test: check tlv_parsed struct tp before access
+  * gb: Print signalling and data weights on NS-VC creation.
+  * gb: Fix typos in gprs_ns.c comments
+
+-------------------------------------------------------------------
+Fri Feb 28 21:00:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.27:
+  * chantype_rsl2gsmtap(): Add entries for CBCH
+
+-------------------------------------------------------------------
+Sat Feb 22 21:00:38 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.26:
+  * bitvec: avoid redundant zero-initialization in bitvec_alloc()
+  * bitvec: cosmetic: init i only once in bitvec_[un]pack()
+  * bitvec: fix misleading description of bitvec_spare_padding()
+
+-------------------------------------------------------------------
+Wed Feb 19 21:00:09 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.23:
+  * bitvec: fix bitvec_unhex(): do not return 1 on success
+  * tests/bitvec: add a unit test for bitvec_read_field()
+
+-------------------------------------------------------------------
+Tue Feb 18 21:00:22 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.21:
+  * osmo-sim-test: Fall-back to classic SIM
+  * osmo-sim-test: Recurse through subdirectories
+
+-------------------------------------------------------------------
+Wed Feb 12 21:01:51 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.19:
+  * bitvec: make bitvec_free() safe against NULL
+
+-------------------------------------------------------------------
+Mon Feb 10 21:00:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.18:
+  * exec: propogate errors from osmo_environment_[filter|append]
+  * exec: prevent uninitialized memory access in osmo_system_nowait()
+  * osmo_libusb: check return value of osmo_fd_register()
+  * conv: prevent theoretical NULL pointer dereference in osmo_conv_encode()
+
+-------------------------------------------------------------------
+Thu Feb 06 21:00:07 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.14:
+  * tdef_vty: do not enforce enum 'node_type' in osmo_tdef_vty_groups_init()
+
+-------------------------------------------------------------------
+Tue Feb 04 21:00:06 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.13:
+  * value_string: Switch val from unsigned to int
+
+-------------------------------------------------------------------
+Fri Jan 31 21:00:32 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.12:
+  * pcsc: don't leak memory
+
+-------------------------------------------------------------------
+Tue Jan 21 21:00:21 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.11:
+  * gsm/gsm48049.c: fix use of GNU 'missing =' extension in designator
+  * usb/Makefile.am: fix copy-pasted library name: s/libosmosim/libosmousb/
+
+-------------------------------------------------------------------
+Mon Jan 20 21:00:36 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.9:
+  * osmo_libusb: Check return of libusb_get_string_descriptor_ascii()
+
+-------------------------------------------------------------------
+Fri Jan 17 21:00:21 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.8:
+  * usb: Add osmo_libusb_find_matching_dev_{path,serial}
+
+-------------------------------------------------------------------
+Wed Jan 08 21:00:23 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.7:
+  * l1sap: add measurement related struct members
+  * jenkins.sh: simpler invocation of verify_value_string_...
+  * add crcXXgen.c.tpl to EXTRA_DIST
+
+-------------------------------------------------------------------
+Mon Jan 06 21:00:06 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.4:
+  * usb: Use OSMO_STRLCPY where appropriate
+
+-------------------------------------------------------------------
+Sat Jan 04 21:00:07 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.3:
+  * logging_vty.c: Avoid acquiring log tgt lock in logging level cmd when not needed
+  * gb: Fix typo in bssgp_cause_strings description
+  * bitvec: Fix return value in doc for bitvec_write_field()
+
+-------------------------------------------------------------------
+Fri Jan 03 21:00:30 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.3.0.0:
+  * Bump version: 1.2.0.108-c6a8-dirty → 1.3.0
+  * Drop empty file debian/patches/series
+  * osmo-release.sh: Improve of PKG_CHECK_MODULES from configure.ac
+
+-------------------------------------------------------------------
+Wed Dec 18 21:03:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.108:
+  * Introduce helper functions for safe fork+exec of processes
+
+-------------------------------------------------------------------
+Tue Dec 17 21:00:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.107:
+  * debian/control: Add missing libusb-1.0-0-dev dependency
+  * usb: Import a variety of libusb utility functions from simtrace
+  * libosmocore libusb integration
+  * gprs_bssgp: Work around gcc-9 claiming "error=stringop-overflow"
+
+-------------------------------------------------------------------
+Thu Dec 12 21:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.103:
+  * debian, utils: switch to python 3
+
+-------------------------------------------------------------------
+Wed Dec 11 21:00:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.102:
+  * core/defs.h: introduce and use OSMO_DEPRECATED_OUTSIDE
+
+-------------------------------------------------------------------
+Mon Dec 09 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.101:
+  * sim: allow opening reader# > 0
+  * gsup: Introduce OSMO_GSUP_NUM_VECTORS_REQ_IE
+
+-------------------------------------------------------------------
+Wed Dec 04 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.99:
+  * utils: exit(2) on unsupported positional arguments on command line
+  * osmo-arfcn: Fix '-h' option
+
+-------------------------------------------------------------------
+Tue Dec 03 21:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.97:
+  * osmo-release.sh: Use set -e before applying changes to prepare release
+
+-------------------------------------------------------------------
+Sun Dec 01 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.96:
+  * gprs_ns_instantiate(): propagate errors from gprs_sns_init() to caller
+  * Check for osmo_fsm_register() error return value
+
+-------------------------------------------------------------------
+Sat Nov 30 21:01:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.94:
+  * libosmovty: simplify condition checking vty->fd in vty_close()
+  * libosmovty: properly initialize vty->fd in vty_new()
+  * 04.80: Deprecate gsm0480_create_ussd_resp()
+  * Add code coverage support
+
+-------------------------------------------------------------------
+Fri Nov 29 21:00:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.90:
+  * add all missing OSMO_GSUP_TO_MSGT_*() macros
+
+-------------------------------------------------------------------
+Thu Nov 28 21:01:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.89:
+  * Introduce fields related to DTAP DLCI
+
+-------------------------------------------------------------------
+Mon Nov 25 21:00:54 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.88:
+  * add osmo_escape_cstr and osmo_quote_cstr
+  * vty_app_info.is_config_node: add OSMO_DEPRECATED
+  * vty: track parent nodes also for telnet sessions
+
+-------------------------------------------------------------------
+Sun Nov 24 21:00:41 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.85:
+  * osmo_sockaddr_str: deprecate osmo_sockaddr_str_*_32n()
+  * utils: add osmo_strnchr()
+  * utils_test: add osmo_print_n_test()
+  * msgb_put: more elaborate logging of head/tailroom failure
+  * fsm.h: add missing include of logging.h
+  * GSUP: rename E_ROUTING_ERROR to ROUTING_ERROR
+
+-------------------------------------------------------------------
+Sat Nov 23 21:00:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.79:
+  * fix osmo_escape_str_c() and osmo_quote_str_c()
+  * utils.h: add OSMO_NAME_C_IMPL() macro
+  * osmo_sockaddr_str: API doc: fix 32bit addr mixup of host/network byte order
+  * cosmetic: logging.h: fix comment s/levels/subsystems
+  * fix DLSMS logging category color: '[1:38m' isn't actually defined
+  * logging.h: define ansi color constants
+
+-------------------------------------------------------------------
+Fri Nov 22 21:01:37 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.73:
+  * libosmogsm: add support for XOR authentication
+  * utils.c: fix various inaccurate API doc about return values
+  * add osmo_sockaddr_str_cmp()
+
+-------------------------------------------------------------------
+Thu Nov 21 21:01:43 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.70:
+  * logging/vty: fix: do not close stderr in vty_close()
+  * logging/vty: fix vty_read_file(): do not write warnings to stdin
+  * logging/vty: fix: actually ignore deprecated logging commands
+  * logging/vty: use LOG_LEVEL_ARGS in logging_vty_add_deprecated_subsys()
+  * logging/vty: do not print deprecated logging commands to stdout
+
+-------------------------------------------------------------------
+Mon Nov 11 21:00:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.65:
+  * fix OSMO_SOCKADDR_STR_FMT for IPv6
+  * test: add OSMO_SOCKADDR_STR_FMT to sockaddr_str_test.c
+
+-------------------------------------------------------------------
+Sat Nov 09 21:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.63:
+  * GPRS/BSSGP: introduce bssgp_bvc_ctx_free()
+
+-------------------------------------------------------------------
+Thu Nov 07 21:01:37 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.62:
+  * select: Make file descriptor lists per-thread
+
+-------------------------------------------------------------------
+Wed Nov 06 21:00:54 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.61:
+  * gsm: gsm_04_08.h: Allow accessing classmark2 as struct instead of uint32_t
+  * gsm: gsm_utils: Fix return type of API ms_class_gmsk_dbm() and add unit tests
+
+-------------------------------------------------------------------
+Mon Nov 04 21:00:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.59:
+  * gsm: Fix compilation error under some compilers
+  * gsm_04_08.h: Introduce API osmo_gsm48_rfpowercap2powerclass()
+
+-------------------------------------------------------------------
+Fri Nov 01 21:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.57:
+  * add osmo_sockaddr_str_is_nonzero()
+  * cosmetic: gsm_04_08.h: Fix trailing whitespace
+
+-------------------------------------------------------------------
+Wed Oct 30 21:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.55:
+  * fsm: refuse state chg and events after term
+  * add osmo_fsm_set_dealloc_ctx(), to help with use-after-free
+
+-------------------------------------------------------------------
+Tue Oct 29 21:00:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.53:
+  * gprs_ns_vty: return success for disabled FR/GRE
+
+-------------------------------------------------------------------
+Mon Oct 28 21:00:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.52:
+  * gsm0508: add functions to calculate beginning of a block
+  * vty: Return error if cmd returns CMD_WARNING while reading cfg file
+  * configure: Introduce --disable-libsctp and error by default if libsctp not found
+  * socket.c: build multiaddr socket API helpers only if used by public APIs
+
+-------------------------------------------------------------------
+Tue Oct 22 20:00:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.48:
+  * libosmocore.pc.in: Append -lsctp to Libs.private
+
+-------------------------------------------------------------------
+Mon Oct 21 20:00:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.47:
+  * socket: Remove unneeded condition check in osmo_sock_init2_multiaddr()
+
+-------------------------------------------------------------------
+Fri Oct 18 10:11:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.46:
+  * socket: Introduce API osmo_sock_init2_multiaddr()
+  * tdef: Return correct snprintf value for osmo_tdef_range_str_buf()
+
+-------------------------------------------------------------------
+Fri Oct 11 20:00:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.44:
+  * vty: Fix go_parent_cb not called for indented nodes at end of cfg file
+  * socket.c: Move glibc workarounds to same place in addrinfo_helper()
+
+-------------------------------------------------------------------
+Wed Oct 09 20:00:51 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.42:
+  * logging: Introduce mutex API to manage log_target in multi-thread envs
+
+-------------------------------------------------------------------
+Tue Oct 08 20:00:37 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.41:
+  * vty: Optionally Set/replace cfg file during cmd 'write file'
+
+-------------------------------------------------------------------
+Mon Oct 07 20:01:31 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.40:
+  * tdef_test: verify case where osmo_tdef_set returns -EEXIST
+  * tdef: Introduce min_val and max_val fields
+
+-------------------------------------------------------------------
+Fri Oct 04 20:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.38:
+  * API doc tweaks (mncc.h, gsm_08_08.h)
+  * gsup: add OSMO_GSUP_SUPPORTED_RAT_TYPES_IE and OSMO_GSUP_CURRENT_RAT_TYPE_IE
+
+-------------------------------------------------------------------
+Sat Sep 28 20:00:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.36:
+  * cosmetic: clarify c_iflag in osmo_serial_init()
+  * sim/class_tables: Fix typo in comment
+
+-------------------------------------------------------------------
+Fri Sep 27 20:00:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.34:
+  * gsm29205_test: fix error: missing braces around initializer
+
+-------------------------------------------------------------------
+Thu Sep 26 20:00:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.33:
+  * No fail if no /proc/cpuinfo
+  * msgb: Allow size==headroom in msgb_alloc_headroom*()
+
+-------------------------------------------------------------------
+Fri Sep 20 20:00:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.31:
+  * logging: Move extern declaration of osmo_log_target_list from logging.h to logging_internal.h
+  * osmo-release.sh: update TODO-RELEASE for non-lib projects too
+  * ecu_fr: increase test coverage for FR ECU implementation
+  * cosmetic: Add comment on GSM-FR ECU struct
+  * cosmetic: Move comment to the right place
+
+-------------------------------------------------------------------
+Wed Sep 18 20:00:31 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.26:
+  * logging.h: add L1 SAPI related context and filter
+  * logging_internal.h: Fix osmo_log_info definition
+
+-------------------------------------------------------------------
+Fri Sep 13 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.24:
+  * tdef: fixup osmo_tdef_set()
+
+-------------------------------------------------------------------
+Sun Sep 08 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.23:
+  * tdef_vty.h: Add missing header dependencies
+  * tdef: Introduce API osmo_tdef_set()
+
+-------------------------------------------------------------------
+Thu Sep 05 20:00:13 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.21:
+  * Introduce BTS_FEAT_ETWS_PN for communicating ETWS PN capability
+  * gsm_08_58: Add vendor-specific Message Type for ETWS Primary Warning
+
+-------------------------------------------------------------------
+Mon Sep 02 20:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.19:
+  * codec/ecu: Introduce new generic Error Concealment Unit abstraction
+  * MAXPATHLEN set if not defined
+  * cbsp: Fix decoding of WRITE-REPLACE payload
+
+-------------------------------------------------------------------
+Sun Sep 01 20:00:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.16:
+  * cbsp: Remove printf() statement from early development/debugging
+  * cbsp: Fix endless loop iteration when decoding cell list IEs
+
+-------------------------------------------------------------------
+Sat Aug 31 20:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.14:
+  * OSMO_SOCKADDR_STR_FMT_ARGS: guard against NULL pointer
+  * OSMO_SOCKADDR_STR_FMT_ARGS: remove useless condition
+
+-------------------------------------------------------------------
+Fri Aug 30 20:01:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.12:
+  * fix: vty crash by logging during VTY_CLOSED event handling
+
+-------------------------------------------------------------------
+Tue Aug 27 20:00:15 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.11:
+  * context: Add support for [per-thread] global talloc contexts
+
+-------------------------------------------------------------------
+Fri Aug 23 20:00:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.10:
+  * Cosmetic: l1sap.h: change /* !< to /*!<
+
+-------------------------------------------------------------------
+Tue Aug 20 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.9:
+  * vty: Register logp cmd next to logging commands
+  * osmo_tdef_get(): allow passing -1 as default timeout
+  * add vty logp command to echo on all log targets
+
+-------------------------------------------------------------------
+Mon Aug 12 20:00:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.6:
+  * codec/ecu_fr: Mark input TCH frame as 'const' as we only read it
+  * osmo-release.sh: Support releasing openbsc.git
+
+-------------------------------------------------------------------
+Thu Aug 08 21:53:43 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.4:
+  * osmo-release.sh: Check patches under debian/patches apply
+  * osmo-release.sh: Verify consistency of dependency versions in configure.ac and debian/control
+  * osmo-release.sh: Verify debian/rules dh_strip lines match LIBVERSION
+  * osmo-release.sh: Add DRY_RUN mode
+  * Bump version: 1.1.0.107-afce-dirty → 1.2.0
+  * osmo-release.sh: Drop whitespace after = when parsing LIBVERSION
+  * configure: Allow disabling workaround for TLS bug in old ARM gcc versions
+  * configure: Autodetect TLS bug on ARM with old gcc and apply workaround
+  * tests: logging: Remove undefined param passed to logging_vty_add_cmds
+  * Get rid of osmo_str_tolower() use inside libosmocore code
+  * utils: share static buffer in osmo_str_to{lower,upper}()
+  * pseudotalloc: Simplistic wrapper of talloc_named()
+  * avoid gcc format error on embedded builds
+  * vty/vty.c: the command buffer can be accessed directly
+  * vty/vty.c: fix vty_read(): prevent further heap-buffer overrun
+  * vty/telnet_interface.c: log connection accept() / close() events
+  * gsm0808_test: Fix wrong use of memcp
+  * vty/logging_vty.c: fix writing of 'print category-hex'
+  * vty/telnet_interface.c: avoid unneeded initialization
+  * vty/telnet_interface.c: use DLGLOBAL logging sub-system
+
+-------------------------------------------------------------------
+Fri Jul 26 20:00:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.93:
+  * gsm/gsm48.h: drop meaningless 'const' from gsm48_mi_to_string()
+
+-------------------------------------------------------------------
+Thu Jul 25 20:02:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.92:
+  * stats_vty: Add verb to sentence for show asciidoc counters
+
+-------------------------------------------------------------------
+Sun Jul 21 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.91:
+  * tell ubsan to ignore SUN_LEN
+  * gsm/gsm0480.c: use DLGLOBAL and LOGL_ERROR for logging
+  * gsm/gsm0480.c: parse_ss(): drop needless debug print
+  * osmo_get_rand_id(): Avoid dead code by proper #if/#else/#endif
+  * tdef: remove bogus OSMO_ASSERT(unsigned long >= 0)
+  * cbsp.c: Remove dead code
+
+-------------------------------------------------------------------
+Sat Jul 20 20:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.85:
+  * Add Cell Broadcast related definitions from 3GPP TS 23.041
+  * cbsp: Introduce osmo_cbsp_errstr
+  * CBSP (Cell Broadcast Service Protocol; 3GPP TS 48.049) support
+
+-------------------------------------------------------------------
+Thu Jul 18 20:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.82:
+  * bitvec/bitval2mask(): cosmetic: get rid of temporary int variable
+  * osmo_gsm48_rest_octets_si3_decode(): fix copy-paste error in comment
+
+-------------------------------------------------------------------
+Wed Jul 17 19:01:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.80:
+  * Set HTML_TIMESTAMP to NO to make build reproducible
+
+-------------------------------------------------------------------
+Thu Jul 11 20:00:12 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.79:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Wed Jul 10 20:01:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.78:
+  * libosmogsm/l1sap.h: extend ph_rach_ind_param with lqual_cb
+
+-------------------------------------------------------------------
+Tue Jul 09 20:00:37 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.77:
+  * Revert "utils.h: require a semi colon after OSMO_ASSERT"
+
+-------------------------------------------------------------------
+Mon Jul 08 20:02:20 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.76:
+  * utils.h: require a semi colon after OSMO_ASSERT
+
+-------------------------------------------------------------------
+Fri Jun 28 20:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.75:
+  * Makefile.am: don't delete example.xml, vtydoc.xsd
+  * gitignore: add doc/*.tag.prep
+
+-------------------------------------------------------------------
+Wed Jun 26 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.73:
+  * vty: Simplify char escaping in asciidoc output
+
+-------------------------------------------------------------------
+Fri Jun 21 20:00:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.72:
+  * gsm: lapd_core: Log timeout used upon start of T200
+
+-------------------------------------------------------------------
+Wed Jun 19 20:00:38 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.71:
+  * vty: Remove trailing whitespace in output from show asciidoc
+
+-------------------------------------------------------------------
+Mon Jun 17 20:00:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.70:
+  * bitvec: correct comment in bitvec_alloc
+  * add define for magic tmsi constant
+
+-------------------------------------------------------------------
+Sat Jun 15 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.68:
+  * Revert "fsm.c: Print error message for FSM with allstate_action but no events"
+  * fsm.c: Print error message for FSM with allstate_action but no events
+  * vty: command.c: Fix: single-choice optional args are no longer passed incomplete to vty func
+  * vty: command.c: Fix: multi-choice args are no longer passed incomplete to vty func
+  * vty: tests: Verify incomplete optional parameters are passed to vty funcs
+  * vty: command.c: Get rid of big indentation block
+  * command.c: Improve return check condition in cmd_execut_command_real()
+
+-------------------------------------------------------------------
+Thu Jun 13 20:00:19 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.61:
+  * logging: Use reentrant ctime_r instead of ctime
+  * (minor) fix typo in comments
+  * logging: Check return error from time() call
+  * minor: don't redefine macros
+  * fix isdigit taking unsigned as input
+
+-------------------------------------------------------------------
+Wed Jun 12 20:00:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.56:
+  * vty: command.c: Get rid of huge indentation block
+  * cosmetic: vty: command.c: Use upper case for enum match_type value names
+  * protocol/gsm_04_08.h: do not check if unsigned is positive
+  * core/utils: drop meaningless const from return value of osmo_luhn()
+  * vty: command.c: Fix is_cmd_ambiguous() returning always 0
+  * vty: command.c: Get rid of huge indentation block
+
+-------------------------------------------------------------------
+Sun Jun 09 20:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.50:
+  * gsm48_decode_bcd_number2: fix ENOSPC edge case
+
+-------------------------------------------------------------------
+Thu Jun 06 20:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.49:
+  * vty_transcript_test.vty: add choice auto-complete tests
+
+-------------------------------------------------------------------
+Wed Jun 05 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.48:
+  * fsm: Reduce amount of copy+pasted LOGPFSMSRC() statements
+  * fsm: Allow millisecond granularity in osmo_fsm built-in timer
+  * lapd_core: Perform N200 retransmissions, not N200-1
+  * lapdm: Allow user to specify T200 values; Use correct N200 values
+
+-------------------------------------------------------------------
+Tue Jun 04 20:00:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.44:
+  * gsm0808_utils: Add gsm0808_decode_cell_id_u()
+  * make all library-internal static buffers thread-local
+  * utils: add gsmtap_logread.py a gsmtap log reader
+
+-------------------------------------------------------------------
+Sun Jun 02 20:00:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.41:
+  * lapdm: Don't truncate L3 payload at 200 bytes length
+
+-------------------------------------------------------------------
+Sat Jun 01 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.40:
+  * socket.c: fix Doxygen doc for osmo_sock_unix_init_ofd()
+  * vty/command.c: cosmetic: add missing curly brackets
+
+-------------------------------------------------------------------
+Wed May 29 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.38:
+  * gsm48_encode_bcd_number(): clarify optional LHV header initialization
+  * rest_octets: Remove SI2ter + SI2bis encoders that don't do anything
+  * rest_octets: Implement actual SI6 rest octets encoding
+  * rest_octets: Add function to parse SI3 rest octets
+  * rest_octets: Suffix encoder functiosn with _encode
+  * rest_octets: Fix export of osmo_gsm48_rest_octets
+  * rest_octets: Actually include gsm48_rest_octets.c in Makefile.am
+  * rest_octets: Use correct symbols names for range encoder
+
+-------------------------------------------------------------------
+Tue May 28 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.30:
+  * gsm48_rest_octets: Fix license: GPLv2+ instead of AGPLv3+
+  * gsm48_decode_bcd_number2(): return -EINVAL if LV has too big length
+  * gsm48_decode_bcd_number2(): fix: return -ENOSPC on truncation
+  * gsm48_decode_bcd_number2(): fix output truncation
+  * gsm0408/gsm0408_test.c: introduce BCD number encoding / decoding test
+  * tdef: Fix license: GPLv2+ instead of AGPLv3+
+  * oap_client: Fix license: GPLv2+ instead of AGPLv3+
+  * rsl: Add osmocom-specific extensions to RSL channel numbers for CBCH
+
+-------------------------------------------------------------------
+Fri May 24 20:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.22:
+  * protocol/gsm_12_21.h: fix copy-pasted struct description
+
+-------------------------------------------------------------------
+Tue May 21 20:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.21:
+  * lapdm_rslms_recvmsg: Fix memory leak in error path
+
+-------------------------------------------------------------------
+Sun May 19 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.20:
+  * TLV: Add one-shot TLV encoder
+  * Cosmetic: GSUP: fix too long comment line
+  * Deprecate usage of osmo_counter_*
+  * pseudotalloc: turn talloc_steal() into #define
+
+-------------------------------------------------------------------
+Sat May 18 20:00:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.16:
+  * Revert "Change GSM48_PDISC_* to enum type"
+  * Change GSM48_PDISC_* to enum type
+
+-------------------------------------------------------------------
+Wed May 15 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.14:
+  * codec/ecu: Add a bit of precision about the actual frame format used
+  * gsm_23_003: add GSM23003_MSISDN_{MIN,MAX}_DIGITS
+
+-------------------------------------------------------------------
+Mon May 13 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.12:
+  * gsm0808: Introduce Osmocom extensions to announce Osmux support
+
+-------------------------------------------------------------------
+Sun May 12 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.11:
+  * NS: log address:port on error
+  * osmo_sock_get_name_*: Ensure string is returned in error case
+
+-------------------------------------------------------------------
+Fri May 10 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.9:
+  * Revert "Print error message if application fails to call rate_ctr_init()"
+  * gsm0808_utils: Introduce gsm0808_msgb_put_cell_id_u()
+  * Print error message if application fails to call rate_ctr_init()
+  * Fix osmo_quote_str_c() for strings larger than 32 bytes
+  * Add MO-FALLBACK-VALUE SGsAP IE
+
+-------------------------------------------------------------------
+Thu May 09 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.4:
+  * fix typo in FSM description
+  * Add expect script: 'vty' for easy access to all vtys
+  * deal with rate_ctr_group_alloc() returning NULL
+
+-------------------------------------------------------------------
+Wed May 08 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.1:
+  * Add VTY and CTRL port numbers for OsmoCBC (Cell Broadcast Centre)
+
+-------------------------------------------------------------------
+Tue May 07 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.0:
+  * Bump version: 1.0.1.143-cc72c → 1.1.0
+  * add osmo_stat_item_inc/osmo_stat_item_dec to set it relative
+
+-------------------------------------------------------------------
+Mon May 06 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.142:
+  * Re-introduce declaration of gsm0808_create_handover_request_ack()
+
+-------------------------------------------------------------------
+Sun May 05 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.141:
+  * add gsm0808_create_handover_request_ack2 to add AoIP RTP addr
+  * osmo_gsup_decode(): properly check IMSI, avoid deprecation
+  * gsm48_decode_bcd_number2(): allow avoiding deprecation
+  * gsm48_decode_bcd_number2(): fix input len check
+  * add comment to gsm_mncc_bearer_cap.speech_ver
+  * add vty_is_active()
+  * add osmo_bssap_tlv_parse2() for multiple identical T
+  * add gsm48_decode_bcd_number2() from osmo-msc
+  * BSSMAP: add messages for inter-BSC and inter-MSC Handover
+
+-------------------------------------------------------------------
+Thu May 02 20:00:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.132:
+  * gsm/gsm_utils.h: fix argument type of gsm_chan_t_name()
+
+-------------------------------------------------------------------
+Wed May 01 20:00:11 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.131:
+  * BSSMAP: tweaks
+  * GSUP: add inter-MSC handover related msgs and IEs
+
+-------------------------------------------------------------------
+Thu Apr 25 20:00:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.129:
+  * bitcomp.c: fix missing Doxygen group closing tag
+  * application.c: drop wrong \references of osmo_init_ignore_signals()
+
+-------------------------------------------------------------------
+Sun Apr 14 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.127:
+  * GSUP: add Message Class IE
+  * add OSMO_IMSI_BUF_SIZE
+  * gsm/gsm_utils.c: indicate intentional fall-through
+
+-------------------------------------------------------------------
+Fri Apr 12 20:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.124:
+  * gb/gprs_ns_sns.c: fix incorrect sizeof() calculation
+  * Fix incorrect buffer size calculation
+  * add identifier sanitation for setting FSM instance ids
+  * add osmo_{escape,quote}_str_buf2() for standard args ordering
+  * tweak OSMO_STRBUF_APPEND(), add OSMO_STRBUF_APPEND_NOLEN()
+
+-------------------------------------------------------------------
+Thu Apr 11 20:00:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.119:
+  * add osmo_str_startswith()
+  * make osmo_sockaddr_str_is_set() NULL-safe
+  * fsm_dealloc_test: no need for ST_DESTROYING
+  * fsm: support graceful osmo_fsm_inst_term() cascades
+  * fsm: add flag to ensure osmo_fsm_inst_term() happens only once
+  * add fsm_dealloc_test.c
+  * gsm_utils.c: fix Doxygen description for gsm_get_octet_len()
+  * vty/talloc_ctx_vty.c: use REG_NOSUB flag of regcomp()
+  * vty/talloc_ctx_vty.c: allocate walk_cb_params on stack, not heap
+  * Add _c versions of functions that otherwise return static buffers
+
+-------------------------------------------------------------------
+Wed Apr 10 20:00:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.109:
+  * gsm_03_40.h: define max SM-TP-UDL (User-Data-Length) values
+
+-------------------------------------------------------------------
+Mon Apr 08 20:00:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.108:
+  * add osmo_use_count API
+  * add osmo_sockaddr_str API
+  * gsm_utils: fix use buf_len instead of sizeof in osmo_dump_gsmtime_buf
+  * Add _buf() functions to bypass static string buffers
+
+-------------------------------------------------------------------
+Fri Mar 29 21:00:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.104:
+  * osmo_escape_str_buf: Always copy, don't return input string pointer
+
+-------------------------------------------------------------------
+Thu Mar 28 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.103:
+  * ipa: Fix ipa_ccm_id_resp_parse on big endian systems
+  * ipa: Document ipa_ccm_idtag_parse_off and fix ipa_ccm_idtag_parse
+  * src/gsmtap_util.c: fix possible memleak in gsmtap_source_init()
+  * BSSGP: use variable for NSEI
+
+-------------------------------------------------------------------
+Wed Mar 27 21:00:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.99:
+  * logging_gsmtap.c: document all params of log_target_create_gsmtap()
+  * Doxygen: fix documentation of osmo_timer_setup()
+  * src/rate_ctr.c: drop some incorrect \ref references
+  * Doxygen: fix documentation of rate_ctr_for_each_counter()
+  * core/msgb.h: fix incorrect Doxygen parameter description
+  * src/msgb.c: fix Doxygen documentation for msgb_printf()
+  * core/msgb.h: drop meaningless parameter of msgb_eq_* helpers
+  * core/msgb.h: fix dead msgb2 reference in msgb_eq_* helpers
+  * src/logging.c: fix syntax errors in Doxygen documentation
+  * core/linuxlist.h: fix white-space and inconsistent alignment
+  * core/linuxlist.h: fix and unify Doxygen documentation
+  * gsm_utils.h: remove unused include of gsm_08_08.h
+
+-------------------------------------------------------------------
+Mon Mar 25 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.87:
+  * Revert "ipa_ccm_idtag_parse*: Fix reported length value"
+  * Doxygen: fix incorrect / missing parameter description
+
+-------------------------------------------------------------------
+Fri Mar 22 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.85:
+  * Revert "signal.c: Make non-exported tall_sigh_ctx static"
+
+-------------------------------------------------------------------
+Thu Mar 21 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.84:
+  * signal.c: Make non-exported tall_sigh_ctx static
+  * signal.c: Fix osmo_signal_talloc_ctx_init()
+  * select: Rename BSC_FD_* constants to OSMO_FD_*
+  * src/signal.c: cosmetic: use talloc_zero()
+
+-------------------------------------------------------------------
+Wed Mar 20 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.80:
+  * gprs_ns_sns: Properly initialize sockaddr_in in gprs_nsvc_create_ip4()
+
+-------------------------------------------------------------------
+Tue Mar 19 21:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.79:
+  * socket: osmo_sock_get_name() Use "const void *" as talloc context
+  * vty/tdef_vty.c: drop redundant comparison
+  * ipa_ccm_idtag_parse*: Fix reported length value
+  * rate_ctr_group_free(): guard against empty or NULL input
+  * tests: use -no-install libtool flag to avoid ./lt-* scripts
+
+-------------------------------------------------------------------
+Sun Mar 17 21:00:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.74:
+  * gprs_ns_sns: Use "correct" remote IP address for local IP endpoint
+  * gprs_ns: Don't use initial IP/port for anything but SNS
+
+-------------------------------------------------------------------
+Sat Mar 16 21:00:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.72:
+  * gprs_ns.c: Update comment: IP SNS has recently been implemented
+
+-------------------------------------------------------------------
+Thu Mar 14 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.71:
+  * osmo_gsm48_classmark_a5_name(): fix 'no-cm3' label
+
+-------------------------------------------------------------------
+Tue Mar 12 21:00:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.70:
+  * Fix build on non-glibc systems
+
+-------------------------------------------------------------------
+Mon Mar 11 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.69:
+  * gsm0808_utils: fix gsm48 multirate to S-bit converter
+  * gsm0808_utils: fix gsm48 multirate configuration generator
+
+-------------------------------------------------------------------
+Fri Mar 08 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.67:
+  * add gsm0808_cell_id_from_cgi(), gsm0808_cell_id_to_cgi()
+  * fsm: add osmo_fsm_inst_state_chg_keep_or_start_timer()
+  * fix tdef_test.c: do call the function-to-test in all cases
+  * tdef_test: tweak output to prepare for a fix
+
+-------------------------------------------------------------------
+Wed Mar 06 21:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.63:
+  * represent negative T-timers as Osmocom-specific X-timers
+  * api doc: tweak gsm0808_cell_id_matches_list() doc
+
+-------------------------------------------------------------------
+Tue Mar 05 21:00:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.61:
+  * coding: check gsm0503_rach_*() results
+
+-------------------------------------------------------------------
+Wed Feb 27 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.60:
+  * fix api doc typo for osmo_plmn_name2()
+
+-------------------------------------------------------------------
+Tue Feb 26 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.59:
+  * log: fsm: allow logging the timeout on state change
+  * NS: Add support for GPRS NS IP Sub-Network-Service (SNS)
+  * NS: Factor out gprs_nsvc_start_test() and use it
+  * gprs_ns: Add code for SNS-SIZE and SNS-CONFIG encoding
+  * enlarge gsm0808 msgb headroom
+  * LCLS: add string dump helpers
+  * GPRS: Doxygen documentation for 'struct libgb_msgb_cb'
+  * NS: Add missing NS Cause strings
+  * NS: Don't print information about FR/GRE if not enabled!
+
+-------------------------------------------------------------------
+Sat Feb 23 21:00:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.50:
+  * Add multipatch capability to osmo-config-merge
+  * select: Call log_reset_context() before calling file descriptor callbacks
+
+-------------------------------------------------------------------
+Wed Feb 20 21:22:53 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.48:
+  * gprs_ns: Add missing NSVCI IE to NS-BLOCK-ACK message
+  * gprs_ns: Declare gprs_ns_tx_alive*() in header file
+  * gprs_ns.c: cosmetic whitespace fixes
+  * gprs_ns: Use gprs_ns_tx_alive() instead of gprs_ns_tx_simple()
+
+-------------------------------------------------------------------
+Tue Feb 19 21:00:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.44:
+  * bssgp_tx_bvc_unblock(): Fix log message
+  * rsl: Support PDCH in rsl_chan_nr_str
+
+-------------------------------------------------------------------
+Mon Feb 18 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.42:
+  * gsm0808: Add unit tests for test_create_clear_command2()
+  * gsm0808: comment about difference of gsm0808_create_clear_command()
+  * Fix BSSMAP length generated by gsm0808_create_clear_command2()
+
+-------------------------------------------------------------------
+Sun Feb 17 21:00:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.39:
+  * add OSMO_STRBUF_PRINTF()
+  * gsm_08_08.h: Add constants for Channel Type in signalling mode
+
+-------------------------------------------------------------------
+Fri Feb 15 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.37:
+  * fix osmo_gsm48_classmark* libosmogsm.map entries
+  * get_value_string(): guard against NULL
+  * Enable remote SIM protocol log level
+
+-------------------------------------------------------------------
+Fri Feb 08 21:00:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.34:
+  * gsm/gsm0480: introduce gsm0480_create_release_complete()
+
+-------------------------------------------------------------------
+Thu Feb 07 21:00:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.33:
+  * protocol/gsm_04_14: Fix the OPEN LOOP message type
+
+-------------------------------------------------------------------
+Wed Feb 06 21:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.32:
+  * platform independence fix: tdef range tests
+
+-------------------------------------------------------------------
+Tue Feb 05 21:00:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.31:
+  * gsm0808: Add CSFB indication IE to BSSMAP CLEAR COMMAND
+  * bitvec: Add bitvec_tailroom_bits() function
+  * bitvec: Add bitvec_bytes_used() function
+  * gsm_08_08.h: Add IEI definitions from Release 15
+  * Extend gsm_04_08.h with CSFB related definitiosn form 44.018 Rel 15
+
+-------------------------------------------------------------------
+Mon Feb 04 21:00:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.26:
+  * add osmo_tdef API, originally adopted from osmo-bsc T_def
+  * doxygen: allow manual 'make apidoc' even if --disable-doxygen
+  * doxygen: add source files as dependencies
+  * doxygen: enable cross referencing everywhere
+  * vty api: add vty_out_va()
+  * vty telnet: consistently never change nodes upon CTRL-C
+  * vty: enable tab-completion for optional-multi-choice args
+  * vty: enable optional-multi-choice syntax: [(one|two)]
+  * vty: enable optional-multi-choice syntax: ([one]|[two])
+  * add generic vty_transcript_test.c, vty_transcript_test.vty
+  * socket.h: add missing include
+  * GSUP: deprecate osmo_gsup_get_err_msg_type()
+
+-------------------------------------------------------------------
+Sat Feb 02 21:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.14:
+  * osmo_fsm_inst_state_chg(): clamp timeout_secs to <= ~68 years
+
+-------------------------------------------------------------------
+Thu Jan 31 21:00:05 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.13:
+  * osmo_fsm_inst_state_chg(): set T also for zero timeout
+
+-------------------------------------------------------------------
+Tue Jan 29 21:00:05 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.12:
+  * jenkins distcheck: enable external tests
+  * build: add missing logging_vty_test.vty to EXTRA_DIST
+  * osmo_fsm_state_name: make robust against NULL fi
+  * add osmo_classmark_* API
+  * add osmo_hexdump_buf() and test
+  * gsm0808: add BSSMAP Cell Identifier matching API
+
+-------------------------------------------------------------------
+Tue Jan 22 20:33:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.6:
+  * Work around bogus gcc-8.2 array-bounds warning/error
+  * constrain gsm48_generate_mid() output array bounds
+  * gsm0408_test: Fix IMEI-SV related tests to use no more than 16 digits
+
+-------------------------------------------------------------------
+Mon Jan 21 20:50:50 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.1.3:
+  * Bump version: 1.0.0 → 1.0.1
+  * gsm_23_003.h: add GSM23003_IMEI_NUM_DIGITS_NO_CHK
+
+-------------------------------------------------------------------
+Mon Jan 21 15:39:01 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.1:
+  * Rename msgb_wrap_with_TL()
+
+-------------------------------------------------------------------
+Sun Jan 20 21:00:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.0:
+  * Bump version: 0.12.0.128-8dfde → 1.0.0
+  * Prevent GCR encoder/decoder functions from being used directly
+  * LCLS: make GCR into static member of osmo_lcls
+  * LCLS: add status parameter to Assignment Completed message
+
+-------------------------------------------------------------------
+Fri Jan 18 21:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.12.0.200:
+  * gsm29118: fix coverity issues
+  * socket: add define for socket name length
+
+-------------------------------------------------------------------
+Tue Jan 15 21:00:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.12.0.198:
+  * LCLS: add GCR comparison helper
+  * LCLS: expand enc/dec tests
+  * comments: update/fix three 3GPP spec references
+
+-------------------------------------------------------------------
+Mon Jan 14 21:00:05 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.12.0.195:
+  * change GSM48_CMSERV_* to enum type, add names
+  * gsm23003: add osmo_imei_str_valid()
+
+-------------------------------------------------------------------
+Sat Jan 12 21:00:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.12.0.193:
+  * port rest octets encoding code from osmo-bsc
+  * port arfcn range encode support from osmo-bsc
+
+-------------------------------------------------------------------
+Wed Jan 09 21:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.12.0.191:
+  * LCLS: use proper types for value_string wrappers
+  * Cosmetic: GSUP: note "on wire" for imei_result
+  * msgb: fix debug print
+
+-------------------------------------------------------------------
+Tue Jan 08 21:00:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.12.0.188:
+  * add osmo_lu_type_names[], osmo_lu_type_name()
+  * add osmo_mi_name(), for MI-to-string like "IMSI-123456"
+
+-------------------------------------------------------------------
+Mon Jan 07 21:00:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.12.0.186:
+  * LCLS: fix LCLS-CONNECT-CONTROL encoder
+  * Automatically disable GnuTLS fallback
+  * Streamline glibc version check
+
+-------------------------------------------------------------------
+Sat Jan 05 21:01:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.12.0.183:
+  * tests/gsup_test.c: drop session IEs from MO-ForwardSM Error
+
+-------------------------------------------------------------------
+Fri Jan 04 21:00:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.12.0.182:
+  * fix typo in enum BSS_MAP_MSG_TYPE: BSS_MAP_MSG_ASSIGMENT*
+  * osmo_rat_type: add OSMO_RAT_EUTRAN_SGS
+  * gsm_utils: add enum osmo_rat_type, from osmo-msc enum ran_type
+
+-------------------------------------------------------------------
+Thu Jan 03 21:00:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.12.0.179:
+  * add LOGPFSMSL(), LOGPFSMSLSRC()
+  * LOGPFSM*: guard against fi == NULL
+  * add API doc for LOGPFSM* macros
+
+-------------------------------------------------------------------
+Sat Dec 29 21:00:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.176:
+  * logging/gsmtap: fix buffer overflow in _gsmtap_raw_output()
+
+-------------------------------------------------------------------
+Sun Dec 23 21:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.175:
+  * LCLS: enc/dec entire parameter set instead of GCR
+  * define LOGPFSM fmt only once, in LOGPFSMLSRC
+  * Fix VTY documentation error introduced  in "bind" VTY port change
+  * vty: Make TCP port configurable and introduce telnet_init_default
+  * vty: The telnet interface is TCP only. Fix the comments
+
+-------------------------------------------------------------------
+Fri Dec 21 21:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.170:
+  * tests/gsm0808: use new msgb comparison API
+  * GSUP: add CHECK-IMEI message
+  * GSUP: add end marker to enum osmo_gsup_iei
+  * GSUP: fix missing osmo_gsup_get_err_msg_type()s
+
+-------------------------------------------------------------------
+Thu Dec 20 21:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.166:
+  * TLV: add convenience function for 1-byte values
+  * TLV: fix doc copy-paste error
+  * Use define for key buffers
+
+-------------------------------------------------------------------
+Wed Dec 19 21:00:10 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.163:
+  * rename CELL_IDENT_LAI_AND_LAC to CELL_IDENT_LAI
+  * add/clean big-endian packed structs (struct_endianess.py)
+  * LCLC: fix doc to match type signature
+  * Fix typos in SS opcode names
+  * add to osmo_sock_get_name*() API
+
+-------------------------------------------------------------------
+Tue Dec 18 21:00:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.158:
+  * GSUP/SMS: introduce READY-FOR-SM message
+  * GSUP/SMS: introduce MO-/MT-FORWARD-SM messages
+
+-------------------------------------------------------------------
+Fri Dec 14 21:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.156:
+  * LCLS: add gsm0808_create_ass2()
+  * LCLS, TS 48.008: add GCR IE encoding/decoding
+  * LCLS, TS 29.205: add GCR routines
+  * gsm0480: fix copy-pasted note for gsm0480_gen_return_error()
+
+-------------------------------------------------------------------
+Thu Dec 13 21:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.152:
+  * stats.h: Fix build on MacOS
+
+-------------------------------------------------------------------
+Wed Dec 12 21:00:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.151:
+  * msgb: add test helpers
+
+-------------------------------------------------------------------
+Tue Dec 11 21:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.150:
+  * fix api doc for osmo_bcd2str()
+
+-------------------------------------------------------------------
+Mon Dec 10 21:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.149:
+  * gsm48_mi_to_string(): do not read from zero length input buffer
+  * gsm48_mi_to_string(): guard against zero length output buffer
+  * gsm48_generate_mid(): mask out ODD flag from mi_type
+  * gsm48_mi_to_string: use osmo_bcd2str(), fix some corner cases
+  * add osmo_bcd2str()
+  * Constify llist_count() parameter
+  * api doc: gsm48_mi_to_string(): warn of return value implementation
+  * gsm0408_test: test encoding and decoding Mobile Identity
+  * timer: Fix clockid_t undefined on MacOS < 10.12
+
+-------------------------------------------------------------------
+Sat Dec 08 21:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.140:
+  * gsm0808: add encoder for cause codes and use it
+
+-------------------------------------------------------------------
+Fri Dec 07 21:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.139:
+  * gsm29118: add generator functions for GSM29118 messages
+  * gsm_29_118.h: Add constant for default port
+  * cosmetic apn: correct whitespace error
+  * Add osmo_sockaddr_in_to_str_and_uint()
+
+-------------------------------------------------------------------
+Thu Dec 06 21:00:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.135:
+  * Allow log_init() with NULL log_info
+
+-------------------------------------------------------------------
+Wed Dec 05 21:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.134:
+  * gsm_29_118: add missing extern for struct value_string decl.
+
+-------------------------------------------------------------------
+Tue Dec 04 21:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.133:
+  * LCLS: update osmo_lcls struct
+  * Add msgb_tl_put() helper
+  * ctrl: use #define for TRAP id
+
+-------------------------------------------------------------------
+Mon Dec 03 21:00:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.130:
+  * Update msgb Lx helpers
+  * gsm0808: add message generator for BSSMAP HANDOVER PERFORMED
+  * configure.ac: check clock_gettime for glib < 2.17
+
+-------------------------------------------------------------------
+Fri Nov 30 21:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.127:
+  * Move BSSMAP_MSG_* defines to header file
+
+-------------------------------------------------------------------
+Mon Nov 26 18:54:13 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.126:
+  * ctrl: print textual error on IPA parsing failure
+
+-------------------------------------------------------------------
+Thu Nov 22 18:56:55 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.125:
+  * add contrib/struct_endianess.py
+  * Update gsm0808_create_ass() doxygen
+
+-------------------------------------------------------------------
+Tue Nov 20 19:09:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.123:
+  * gsm: Deprecate buggy gsm_arfcn2band API and introduce gsm_arfcn2band_rc
+  * LCLS: add 48.008 parameter structure
+  * document unblock-ack vs. signalling in gprs_ns_process_msg()
+  * send NS_POUT_UNBLOCK_ACK before signalling S_NS_UNBLOCK
+
+-------------------------------------------------------------------
+Mon Nov 19 18:30:42 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.119:
+  * gsm_44_318.h: remove #if 0 from struct gan_cch_desc_ie
+  * Add missing header include
+  * Support cipher mode reject with extended cause
+  * Move msgb_push helpers to public header
+
+-------------------------------------------------------------------
+Sun Nov 18 21:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.115:
+  * gsm48: gsm48_decode_freq_list: Improve documentation of paramter f
+  * Update GSM0808_LCLS enums
+  * Update 3GPP TS 08.08 Cause handling
+  * Add helper wrapper for BSSAP TLV parsing
+
+-------------------------------------------------------------------
+Fri Nov 16 21:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.111:
+  * fsm: fix apidoc of osmo_fsm_state_name()
+  * gsm29118: add value strings for SGSAP IEI
+
+-------------------------------------------------------------------
+Thu Nov 15 14:29:02 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.109:
+  * gsm/protocol/gsm_08_58.h: Fix typo
+
+-------------------------------------------------------------------
+Thu Nov 15 14:07:58 UTC 2018 - mardnh@gmx.de
+
+- remove patch:
+  * fix-big-endian.patch (fixed upstream)
+
+-------------------------------------------------------------------
+Tue Nov 13 21:00:10 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.108:
+  * merge_doc.xsl: move to osmo-gsm-manuals.git
+
+-------------------------------------------------------------------
+Wed Nov 07 21:00:09 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.107:
+  * gsm_29_118: add missing include to header file
+  * socket.c: fix IP and port buffer sizes
+  * jenkins: print gcc version in log
+  * core/msgb.h: introduce msgb_l4len() helper
+
+-------------------------------------------------------------------
+Tue Nov 06 21:00:09 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.103:
+  * Fix deprecation warning in gsm0808_test
+  * gsm/gsup.h: cosmetic: use tab for comment alignment
+
+-------------------------------------------------------------------
+Sat Nov 03 21:00:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.101:
+  * gsm48: correct apidoc for gsm48_generate_mid()
+  * Update cipher reject function
+
+-------------------------------------------------------------------
+Tue Oct 30 21:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.99:
+  * gsm0808: cosmetic: rename parameter "reason" to "cause"
+  * gsm0808: fix doxygen apidoc
+  * make 'show rate-counters' show group index
+
+-------------------------------------------------------------------
+Mon Oct 29 21:00:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.96:
+  * stop printing group description in vty_out_rate_ctr_group_fmt()
+
+-------------------------------------------------------------------
+Sun Oct 28 21:00:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.95:
+  * gsm23003: Add MME domain name related helper functions
+
+-------------------------------------------------------------------
+Sat Oct 27 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.94:
+  * add osmo_sock_get_{local,remote}_ip{,_port}()
+
+-------------------------------------------------------------------
+Thu Oct 25 20:00:13 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.93:
+  * cosmetic: fix typo (soocket -> socket)
+
+-------------------------------------------------------------------
+Wed Oct 24 20:00:15 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.92:
+  * stats_statsd: Send all stat_items as gauges
+  * vty: adjust telnet log
+
+-------------------------------------------------------------------
+Sun Oct 21 17:22:44 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.90:
+  * libosmogsm/gsup.c: fix error code in osmo_gsup_encode()
+  * SGsAP protocol definitions (header + C file)
+  * gsm_08_58.h: Introduce struct abis_rsl_chan_nr
+  * vty.c: Set vty->fd to -1 after closing the FD
+  * telnet_interface: avoid double-close of fd()
+  * timerfd_create(): Fix error handling of osmo_fd_register()
+  * osmo-config-merge: fclose() what we fopen()
+
+-------------------------------------------------------------------
+Wed Oct 17 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.83:
+  * gsm0808: allow decoding of zero length speech codec lists.
+
+-------------------------------------------------------------------
+Mon Oct 15 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.82:
+  * add support for ipaccess messages on the ctrl interface
+
+-------------------------------------------------------------------
+Thu Oct 11 20:00:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.81:
+  * gsm_08_58.h: Introduce struct abis_rsl_link_id
+
+-------------------------------------------------------------------
+Wed Oct 10 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.80:
+  * fix error handling gprs_ns_nsip_listen()
+
+-------------------------------------------------------------------
+Mon Oct 08 20:00:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.79:
+  * GSMTAP: fix typos in comments
+  * GSMTAP: add definitions for LTE NAS subtypes
+  * GSMTAP: add definitions for new LTE RRC channels
+
+-------------------------------------------------------------------
+Mon Oct 01 18:08:14 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.76:
+  * vty logging: fix crash when missing 'logging enable'
+
+-------------------------------------------------------------------
+Sat Sep 29 19:45:49 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.75:
+  * Revert "osmo-config-merge: Add manual page"
+  * osmo-config-merge: Add manual page
+  * osmo-config-merge: Fix some small issues
+
+-------------------------------------------------------------------
+Thu Sep 27 20:00:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.72:
+  * utils/osmo-config-merge: explicitly return from main()
+
+-------------------------------------------------------------------
+Wed Sep 26 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.71:
+  * ensure unix socket paths are NUL-terminated for bind/connect
+  * osmo-config-merge: Don't use C99 'for' loop initial declarations
+
+-------------------------------------------------------------------
+Tue Sep 25 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.69:
+  * logging_vty: Ensure writing well-formed config files
+  * Add new osmo-config-merge utility
+  * gsm0808: add function to convert AMR S15-S0 to gsm0408 settings
+  * gsm_utils: add function to get value strings for gsm48_chan_mode
+  * vty: omit HIDDEN from vty reference
+
+-------------------------------------------------------------------
+Mon Sep 24 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.64:
+  * vty list: fix deprecation/hidden bit logic
+  * vty reference: fix deprecation bit evaluation
+  * vty/command.h: document and prettify CMD_ATTR_* flags
+
+-------------------------------------------------------------------
+Fri Sep 21 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.61:
+  * gsm0808_utils: constify parameter
+
+-------------------------------------------------------------------
+Wed Sep 19 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.60:
+  * gsm0808: add function to convert amr gsm0408 setings to gsm0808
+
+-------------------------------------------------------------------
+Mon Sep 17 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.59:
+  * logging vty: add 'logging level set-all <level>'
+  * Revert "gsm0808: add function to convert amr gsm0408 setings to gsm0808"
+
+-------------------------------------------------------------------
+Sat Sep 15 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.57:
+  * gsm0808: add function to convert amr gsm0408 setings to gsm0808
+  * gsm0808: fix wrong codec defaults for OFR_AMR_WB
+
+-------------------------------------------------------------------
+Thu Sep 13 20:00:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.55:
+  * logging vty: deprecate 'all', introduce 'force-all'
+  * logging vty: write: check logging levels validity
+  * logging vty: deprecate the 'everything' keyword
+  * logging vty: rewrite 'logging level' vty cmd generation
+  * jenkins: add --enable-external-tests
+  * gsm0808: implement BSSMAP Classmark Request
+  * logging vty: add VTY transcript test
+  * fix tests linking: don't use system installed libs
+
+-------------------------------------------------------------------
+Fri Sep 07 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.47:
+  * add osmo_str_tolower() and _toupper() with test
+  * api doc: fix osmo_quote_str_*
+  * coding: Always initialize bit counters in gsm0503_pdtch_egprs_decode().
+  * coding: Correctly count bits when decoding EDGE bursts with MCS >= 7.
+
+-------------------------------------------------------------------
+Wed Sep 05 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.43:
+  * core/utils.h: move includes to the top
+  * core/utils.h: drop duplicate '<stdbool.h>' include
+
+-------------------------------------------------------------------
+Mon Sep 03 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.41:
+  * Add RSPRO support to IPA and logging definitions
+  * Add CC_CAUSE value_string array
+
+-------------------------------------------------------------------
+Thu Aug 30 20:00:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.39:
+  * osmo-release.sh: Add checks to help avoid libversion debian major mismatch
+  * osmo-release.sh: Allow forcing release without LIBVERSION bump
+  * osmo-release.sh: Add quotes to string to fix shellcheck warning
+
+-------------------------------------------------------------------
+Wed Aug 29 20:00:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.36:
+  * Properly deal with sockaddr_un socket path length limitations.
+  * properly handle mandatory cli param of gsm0808_create_paging2
+
+-------------------------------------------------------------------
+Tue Aug 28 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.34:
+  * gsm0808: inter-bsc HO messages: add missing BSSMAP header, x4
+  * log: add 'last' option to 'logging print file'
+
+-------------------------------------------------------------------
+Fri Aug 24 12:13:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.32:
+  * gsmtap_util: make sure SO_REUSEADDR is applied for GSMTAP
+  * socket: add flag to enforce SO_REUSEADDR on UDP sockets
+
+-------------------------------------------------------------------
+Thu Aug 23 21:10:47 UTC 2018 - mardnh@gmx.de
+
+- Remove patch:
+  * libosmocore-fix-build.patch (fixed upstream)
+
+-------------------------------------------------------------------
+Wed Aug 22 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.30:
+  * ipa: Document ipa_msg_recv* functions
+
+-------------------------------------------------------------------
+Tue Aug 21 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.29:
+  * use __FILE__, not __BASE_FILE__
+  * vty: Makefile: Fix LIBVERSION typo introduced in 0.12.0 release
+
+-------------------------------------------------------------------
+Fri Aug 17 20:00:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.27:
+  * msgb: Introduce msgb_{de,en}queue_count APIs
+  * signal: Introduce API osmo_signal_talloc_ctx_init
+
+-------------------------------------------------------------------
+Fri Aug 10 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.25:
+  * bssgp: introduce flush queue functions
+
+-------------------------------------------------------------------
+Mon Aug 06 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.24:
+  * debian/rules: Don't overwrite .tarball-version
+
+-------------------------------------------------------------------
+Sun Aug 05 20:00:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.23:
+  * libosmogsm: (re)introduce gsm48_push_l3hdr()
+  * gsm/gsm0480.c: use the local msgb allocator
+  * gsm/gsm0480.c: prevent NULL-pointer dereference
+  * vty/vty.c: fix bug in vty_config_write
+  * comp128v23 (minor): update original code site and author
+
+-------------------------------------------------------------------
+Thu Aug 02 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.18:
+  * socket: do not set SO_REUSEADDR for IPPROTO_UDP
+  * socket: check return code of setsockopt
+
+-------------------------------------------------------------------
+Wed Aug 01 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.16:
+  * re-introduce ipa_ccm_idtag_parse_off()
+  * jenkins_arm.sh: Use same Werror related options as on other builds
+  * Deprecate ipa_ccm_idtag_parse() with ipa_ccm_id_{get,resp}_parse()
+  * cosmetic: More context / naming / comment for test_idtag_parsing()
+
+-------------------------------------------------------------------
+Mon Jul 30 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.12:
+  * import oap_client_test from osmo-sgsn
+  * oap_client: Rename symbols with osmo_ prefix
+  * import oap_client into libosmogsm
+  * vty/vty.c: remove dead unused tall_bsc_ctx
+
+-------------------------------------------------------------------
+Sun Jul 29 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.8:
+  * 04.80: New gsm0480_gen_{reject,return_error}() functions
+  * USSD: Introduce gsm0480_gen_ussd_resp_7bit()
+  * gsm0480: Factor out msgb allocation helper function
+  * ctrl/vty: fsm: use correct element when iterating over fsm->proc.children
+
+-------------------------------------------------------------------
+Fri Jul 27 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.12.0.4:
+  * cosmetic: osmo-sim-test.c: use memcpy instead of strncpy
+  * fix strncpy bugs in socket.c
+  * fix strncpy bugs in gsm/ipa.c
+  * GSMTAP: add SIM sub_types
+  * Bump version: 0.11.0.91-9d4a3-dirty → 0.12.0
+  * logging.c: Fix whitespace typo
+
+-------------------------------------------------------------------
+Wed Jul 25 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.90:
+  * logging_vty: Simplify code in config_write_log_single
+  * logging: log_vty_command_string: Fix undercount of buf alloc size
+  * stats_statsd: sanitize statsd name
+
+-------------------------------------------------------------------
+Tue Jul 24 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.87:
+  * stats_vty: Add asciidoc sections between the different counters
+
+-------------------------------------------------------------------
+Mon Jul 23 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.86:
+  * gprs_ns.h: Declare gprs_ns_cause_str() which already existed in c file
+
+-------------------------------------------------------------------
+Sat Jul 21 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.85:
+  * rate_ctr: Improve logging
+  * tests: codec: ecu_fr: Add buffer with unequal XMAXC values
+  * tests: codec: ecu_fr: Print XMAXC fields
+  * libosmocodec: FR err concealment: Fix too many silent frames generated
+  * vty: initialize termios before using it
+
+-------------------------------------------------------------------
+Fri Jul 20 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.80:
+  * add osmo_sockaddr_to_str_and_uint()
+  * utils_test: check stderr to catch sanitizer issues
+  * utils_test: fix isqrt_test calculation range
+  * libosmocoding: clarify return values for TCH decoding functions
+
+-------------------------------------------------------------------
+Mon Jul 16 20:00:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.76:
+  * tests: ctrl: Test received ERROR messages are handled correctly
+  * ctrl: ctrl_handle_msg: Avoid sending back received ERROR msgs
+  * ctrl: Introduce ctrl_cmd_parse3 API
+  * coding: Documentation typo fix.
+  * coding: Fix (E)GPRS BER calculation to correctly account for puncturing.
+
+-------------------------------------------------------------------
+Fri Jul 13 20:00:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.71:
+  * gsm0808: Add value_string for encryption algorithms
+
+-------------------------------------------------------------------
+Thu Jul 12 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.70:
+  * ctrl: Fix parsing of ERROR recvd msgs with id=err
+  * ctrl: Log CMD TYPE on invalid ID number
+  * gsm_08_08: gsm0808_permitted_speech does not have value strings
+  * gsm_04_08: add function to get value string
+  * vty: fix use-after-free and memleaks in is_cmd_ambiguous()
+
+-------------------------------------------------------------------
+Wed Jul 11 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.65:
+  * vty: cosmetic: cmd_deopt(): use talloc_strndup(), not memcpy()
+  * vty/command.c: talloc from tall_vty_cmd_ctx, not NULL
+
+-------------------------------------------------------------------
+Mon Jul 02 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.63:
+  * Don't enforce Python 2 for utilities
+
+-------------------------------------------------------------------
+Fri Jun 29 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.62:
+  * osmo_panic(): Annotate as __attribute__ ((noreturn))
+  * Don't call abort() directly, always use osmo_panic()
+
+-------------------------------------------------------------------
+Thu Jun 28 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.60:
+  * jenkins_arch.sh: Exit with error on unknown architecture
+  * jenkins_arch.sh: Accept "arm-none-eabi" as alias for "arm"
+  * jenkins_arm.sh: Don't run 'make check' on embedded builds
+  * Fix embedded (arm-none-eabi) builds
+
+-------------------------------------------------------------------
+Mon Jun 25 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.56:
+  * return error to sender upon bssgp_tlv_parse() failure
+  * check bssgp_tlv_parse() return code in bssgp_rcvmsg()
+
+-------------------------------------------------------------------
+Mon Jun 18 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.54:
+  * add and tweak inter-BSC HO API
+  * gsm: lapdm.c: Add missing new line char in notice log string
+  * gsm 04.80: Add value_string for component type and op code
+
+-------------------------------------------------------------------
+Sat Jun 16 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.51:
+  * gsup: Add value_string for Session State IE
+
+-------------------------------------------------------------------
+Fri Jun 15 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.50:
+  * Add function gprs_nsvc_state_append
+
+-------------------------------------------------------------------
+Mon Jun 11 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.49:
+  * gsup: Add osmo_gsup_get_err_msg_type() function
+  * gsm/gsm0480: refactor and expose gsm0480_parse_facility_ie()
+  * gsm/gsm0480.c: introduce gsm0480_extract_ie_by_tag()
+
+-------------------------------------------------------------------
+Sat Jun 09 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.46:
+  * vty: Add logging_vty_add_deprecated_subsys
+  * vty: Don't dump deprecated commands in XML export
+
+-------------------------------------------------------------------
+Fri Jun 08 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.44:
+  * fsm: Change semantics of LOGPFSML() log-level
+
+-------------------------------------------------------------------
+Thu Jun 07 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.43:
+  * fix gsm0808_permitted_speech(): don't return HR3 for TCH_F + AMR
+
+-------------------------------------------------------------------
+Thu Jun 07 10:35:50 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.42:
+  * Add osmo_isqrt32() to compute 32bit integer square root
+
+-------------------------------------------------------------------
+Tue Jun 05 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.41:
+  * Doxygen: gitignore generated files for libosmoctrl
+
+-------------------------------------------------------------------
+Sat Jun 02 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.40:
+  * gsm0808: Add value_string for LCLS related IEs
+  * tlv: Add TLVP_VAL_MINLEN() to obtain value _if_ length is >= minimum
+
+-------------------------------------------------------------------
+Fri Jun 01 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.38:
+  * GSUP: implement TCAP-like session management
+  * GSUP: introduce new messages for SS/USSD payloads
+  * add osmo_fsm_inst_state_chg_keep_timer()
+
+-------------------------------------------------------------------
+Wed May 30 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.35:
+  * gsm_08_08.h: Add enum for LCLS config, control and status
+  * gsm0808: Add encoding functions for LCLS BSSMAP messages
+
+-------------------------------------------------------------------
+Tue May 29 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.33:
+  * ports.h: Add ctrl port for osmo-gbproxy
+  * gsm0480: fix: don't overwrite the data of RELEASE_COMPLETE
+
+-------------------------------------------------------------------
+Mon May 28 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.31:
+  * add gsm0808_cell_id_to_list()
+  * add support for gsm0808 HANDOVER REQUIRED message
+  * add gsm0808_create_handover_request_ack()
+  * Add enum gsm48_progress_desc
+  * debian: Add libosmoctrl-doc sub-package
+
+-------------------------------------------------------------------
+Sun May 27 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.26:
+  * ctrl: Introduce libosmoctrl.map to avoid unintended exports
+  * ctrl: Add doxygen API documentation; generate html from it
+
+-------------------------------------------------------------------
+Sat May 26 20:00:09 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.24:
+  * Add enum gsm48_cause_coding from GSM 04.08 Section 10.5.4.11
+  * cosmetic: Whitespace fixes in control_if.c
+
+-------------------------------------------------------------------
+Fri May 25 20:00:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.22:
+  * introduce vty_out_rate_ctr_group_fmt() function
+  * Add a 'show rate-counters' VTY command.
+  * remove unused argument from pad_append_ctr() helper function
+
+-------------------------------------------------------------------
+Thu May 24 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.19:
+  * mncc: properly export osmo_mncc_name()
+
+-------------------------------------------------------------------
+Thu May 17 20:00:26 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.18:
+  * tests: bitrev_test: Fix dynamic-stack-buffer-overflow
+  * tests: gea_test: Use correct max size for key in buffer
+  * tests: a5_test: Print wrong buffer correctly on error
+  * gsm: kasumi: Fix dynamic-stack-buffer-overflow on out buffers not multiple of 64 bits
+
+-------------------------------------------------------------------
+Wed May 16 20:00:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.14:
+  * fix spelling
+
+-------------------------------------------------------------------
+Tue May 15 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.13:
+  * fsm: guard action callback
+
+-------------------------------------------------------------------
+Sat May 12 20:00:09 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.12:
+  * import isdn4linux HDLC code from linux kernel
+  * isdnhdlc: Port from kernel to userspace
+
+-------------------------------------------------------------------
+Thu May 10 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.10:
+  * Add osmo_timerfd_* functions for osmo_fd-wrapped timerfd
+
+-------------------------------------------------------------------
+Wed May 09 20:00:10 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.9:
+  * add gsm0808 channel enum to IE val conversion functions
+  * lapdm: cleanup: send_rslms_rll_l3_ui(): Use msgb_tv_push()
+  * lapdm: send_rslms_rll_l3_ui(): Don't include B4/SACCH IE unless needed
+  * lapdm: don't enforce contention resolution on SAPI0/DCCH
+
+-------------------------------------------------------------------
+Tue May 08 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.5:
+  * lapdm: Implement SABM related constraints
+
+-------------------------------------------------------------------
+Mon May 07 20:00:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.4:
+  * define a constant for the max length of called party BCD IE
+
+-------------------------------------------------------------------
+Sun May 06 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.3:
+  * lapdm: Fix back-pointer from lapdm_entity to lapdm_channel
+
+-------------------------------------------------------------------
+Fri May  4 20:09:47 UTC 2018 - mardnh@gmx.de
+
+- Bump libosmocore so-version 9 -> 10
+
+-------------------------------------------------------------------
+Fri May 04 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.2:
+  * control_if: Avoid heap-use-after-free in osmo_wqueue_bfd_cb
+  * configure: Check separately for lib implementing dlopen and dlsym
+
+-------------------------------------------------------------------
+Thu May 03 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.11.0.0:
+  * gsm_utils: call gnutls_global_init() as constructor
+  * osmo-release.sh: Remove temporary file TODO-RELEASE.entries after use
+  * osmo-release.sh: Exit with error if no description for new changelog entry provided
+  * osmo-release.sh: Fix error condition no LIBVERSION modified
+  * osmo-release.sh: Always generate entire commit changelog
+  * osmo-release.sh: Allow user to add extra information to the release commit
+  * debian: libosmoctrl: Use correct library version in pkg name
+  * debian/changelog: Fix typo in maintainer e-mail
+  * Bump version: 0.10.2.284-bc47-dirty → 0.11.0
+
+-------------------------------------------------------------------
+Tue Apr 24 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.279:
+  * gsm0808_test: silence deprecation: use gsm0808_create_layer3_2()
+
+-------------------------------------------------------------------
+Mon Apr 23 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.278:
+  * gsm_08_58.h: Add Ericsson vendor-specific RSL message types
+  * gsm_08_58.h: introduce RSL_IE_ERIC_PAGING_GROUP
+  * gsm0808_test: fix more missing inits (address sanitizer issues)
+
+-------------------------------------------------------------------
+Thu Apr 19 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.275:
+  * osmo_sockaddr_is_local: Fix memleak
+  * RSL/LAPDm: Not all RLL message are "transparent"
+
+-------------------------------------------------------------------
+Wed Apr 18 20:00:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.273:
+  * tlv: add TLV_GET() and TLV_GET_MINLEN()
+  * add gsm0808_cell_{id,id_list}_name() and friends
+  * osmo_get_macaddr: Fix buffer read out of bounds
+
+-------------------------------------------------------------------
+Tue Apr 17 20:00:09 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.270:
+  * prevent integer underflow in ipa_ccm_make_id_resp_from_req()
+  * protocol/gsm_04_08.h: drop incorrect GSM48_PDISC_USSD
+  * gsm/gsm48.c: add call independent SS message names
+
+-------------------------------------------------------------------
+Mon Apr 16 20:00:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.267:
+  * test_gsm0808_enc_dec_speech_codec_with_cfg: initialize properly
+  * cosmetic: log: fix typo, clarify msg for rate_ctr name mangling
+
+-------------------------------------------------------------------
+Sat Apr 14 20:25:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.265:
+  * add osmo_cgi_name()
+  * add gsm0808_cell_id_list_add() to combine two cell identifier lists
+  * add tlv_parse2(), capable of multiple instances of the same IE
+  * add gsm0808_{enc,dec}_cell_id
+  * test_gsm0808_enc_dec_cell_id_list_lac(): validate encoded bytes
+  * test_gsm0808_enc_dec_cell_id_list_lac(): populate all LACs
+
+-------------------------------------------------------------------
+Thu Apr 12 21:44:51 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.259:
+  * msgb: msgb_get: Drop unneeded tmp var
+  * msgb: msgb_pull: Abort when pulling more than avail size
+
+-------------------------------------------------------------------
+Wed Apr 11 19:59:59 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.257:
+  * deprecate PLMN de-/coding functions incapable of 3-digit MNC with leading zeros
+  * avoid warning in gsm0808_create_layer3
+
+-------------------------------------------------------------------
+Mon Apr 09 18:37:09 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.255:
+  * add osmo_quote_str(),osmo_quote_str_buf() and test
+  * fsm_test: terminate the main loop instead of exit on timeout
+  * osmo_fsm_inst_find_by_name(): guard against strcmp(NULL)
+  * fsm_test: more thoroughly test FSM inst ids and names
+  * fsm: id: properly set name in case of NULL id
+  * cosmetic: osmo_fsm_inst_update_id(): don't log "allocate"
+  * add osmo_fsm_inst_update_id_f()
+  * add gsm48_reject_value_names
+  * fix issue on big endian architecture
+
+-------------------------------------------------------------------
+Mon Apr 09 09:00:47 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.246:
+  * fix a cell identifier parsing bug in libosmocore
+  * fix cell identifier decoding in libosmocore
+  * use gsm48_decode_lai2() in gsm0808_dec_cell_id_list()
+  * fix bug in parse_cell_id_ci_list()
+  * fix parse_cell_id_lac_and_ci_list()
+  * add a test for CELL_IDENT_WHOLE_GLOBAL cell identifier lists
+  * add a regression test for TLV parsing with repeated IEs
+  * abis_nm: Introduce abis_nm_dump_foh()
+  * fsm: Update the name as well if the id is updated and accept NULL
+  * gsm_08_08: correct speech codec defaults
+  * gsm0808_test: cosmetic: re-arrange struct init; print hexdump on failure
+  * gsm0808_test: cosmetic: test non-hex MCC
+  * show failure in gsm0808_enc_cell_id_list2() in gsm0808_test
+  * fix gsm0808_enc_cell_id_list2 for leading-zero MNC
+  * cosmetic: gsm0808_test: drop extraneous assertion
+  * contrib/fsm-to-dot: add -h option to print basic instructions
+  * contrib/fsm-to-dot: allow transition from and to the same state
+  * contrib/fsm-to-dot: don't match on event names in comments
+  * contrib/fsm-to-dot: warn and draw unallowed state transitions
+  * contrib/fsm-to-dot: add default edge label '-'
+  * contrib/fsm-to-dot: mark arrows that feed events
+  * contrib/fsm-to-dot: less false positives on event parsing
+  * contrib/fsm-to-dot: mark illegal states in red
+  * contrib/fsm-to-dot: warn about identically named FSMs
+  * VTY: Don't welcome the user to the "control" interface, if it's VTY
+  * vty/command.c: write_config_file(): sanely compose temp path
+  * fix logging talloc ctx: add osmo_init_logging2()
+  * gsm0808: Add value strings for BSSMAP cause codes
+  * gsm0480: document the 'ss_request' structure
+  * gsm0480: copy the raw USSD data, its DCS and length
+  * gsm0480: drop messages with incorrect data length
+  * ctrl: test deferred cmd, show current failure
+  * ctrl: fix deferred commands (and hence fix osmo-bts-sysmo 'clock-info' cmd)
+  * cosmetic: flatten ctrl_handle_msg()
+  * fix ctrl_test sanitizer issues
+  * socket.c: osmo_sock_init2: bind: Several logic fixes and log improvements
+  * socket.c: osmo_sock_init2: connect: Several logic fixes and log improvements
+  * socket.c: osmo_sock_init: Several logic fixes and log improvements
+  * use osmo_init_logging2() with proper talloc ctx
+  * fix spelling
+
+-------------------------------------------------------------------
+Sat Apr 07 18:49:19 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.245:
+  * gsm0480: copy the raw USSD data, its DCS and length
+  * gsm0480: drop messages with incorrect data length
+  * ctrl: test deferred cmd, show current failure
+  * ctrl: fix deferred commands (and hence fix osmo-bts-sysmo 'clock-info' cmd)
+  * cosmetic: flatten ctrl_handle_msg()
+  * fix ctrl_test sanitizer issues
+  * socket.c: osmo_sock_init2: bind: Several logic fixes and log improvements
+  * socket.c: osmo_sock_init2: connect: Several logic fixes and log improvements
+  * socket.c: osmo_sock_init: Several logic fixes and log improvements
+  * use osmo_init_logging2() with proper talloc ctx
+
+-------------------------------------------------------------------
+Sat Mar 17 12:49:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.214:
+  * jenkins_amd64.sh: use --enable-werror configure flag, not CFLAGS
+  * support for more cell ID list types in libosmocore
+  * fix a cell identifier parsing bug in libosmocore
+  * fix cell identifier decoding in libosmocore
+  * use gsm48_decode_lai2() in gsm0808_dec_cell_id_list()
+  * fix bug in parse_cell_id_ci_list()
+  * fix parse_cell_id_lac_and_ci_list()
+  * add a test for CELL_IDENT_WHOLE_GLOBAL cell identifier lists
+  * add a regression test for TLV parsing with repeated IEs
+  * abis_nm: Introduce abis_nm_dump_foh()
+
+-------------------------------------------------------------------
+Sat Mar 17 12:02:46 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.214:
+  * jenkins_amd64.sh: use --enable-werror configure flag, not CFLAGS
+  * support for more cell ID list types in libosmocore
+  * fix a cell identifier parsing bug in libosmocore
+  * fix cell identifier decoding in libosmocore
+  * use gsm48_decode_lai2() in gsm0808_dec_cell_id_list()
+  * fix bug in parse_cell_id_ci_list()
+  * fix parse_cell_id_lac_and_ci_list()
+  * add a test for CELL_IDENT_WHOLE_GLOBAL cell identifier lists
+  * add a regression test for TLV parsing with repeated IEs
+  * abis_nm: Introduce abis_nm_dump_foh()
+
+-------------------------------------------------------------------
+Fri Mar 16 19:56:37 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.213:
+  * configure: add --enable-werror
+  * jenkins_amd64.sh: use --enable-werror configure flag, not CFLAGS
+  * support for more cell ID list types in libosmocore
+  * fix a cell identifier parsing bug in libosmocore
+  * fix cell identifier decoding in libosmocore
+  * use gsm48_decode_lai2() in gsm0808_dec_cell_id_list()
+  * fix bug in parse_cell_id_ci_list()
+  * fix parse_cell_id_lac_and_ci_list()
+  * add a test for CELL_IDENT_WHOLE_GLOBAL cell identifier lists
+  * add a regression test for TLV parsing with repeated IEs
+
+-------------------------------------------------------------------
+Thu Mar 15 18:44:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.208:
+  * features: define osmo_bts_*_feature() as static inline
+  * src/msgb.c: cosmetic: fix spelling mistakes
+  * src/msgb.c: remove dead includes from OpenBSC
+  * src/msgb.c: print an error if msgb allocation failed
+  * src/msgb.c: avoid using internal talloc API
+  * configure: add --enable-werror
+  * jenkins_amd64.sh: use --enable-werror configure flag, not CFLAGS
+  * support for more cell ID list types in libosmocore
+  * fix a cell identifier parsing bug in libosmocore
+  * fix cell identifier decoding in libosmocore
+
+-------------------------------------------------------------------
+Wed Mar 14 21:17:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.2.206:
+  * gsm23003: add osmo_mcc_from_str()
+  * osmo-release.sh: Set correct version when generating the changelog
+  * features: define osmo_bts_*_feature() as static inline
+  * src/msgb.c: cosmetic: fix spelling mistakes
+  * src/msgb.c: remove dead includes from OpenBSC
+  * src/msgb.c: print an error if msgb allocation failed
+  * src/msgb.c: avoid using internal talloc API
+  * configure: add --enable-werror
+  * jenkins_amd64.sh: use --enable-werror configure flag, not CFLAGS
+  * support for more cell ID list types in libosmocore
+
+-------------------------------------------------------------------
+Wed Mar 14 18:31:50 UTC 2018 - mardnh@gmx.de
+
+- Fix dependencies
+
+-------------------------------------------------------------------
+Tue Mar 13 20:42:15 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.10.2.206
+
+-------------------------------------------------------------------
+Thu Mar  8 19:59:41 UTC 2018 - mardnh@gmx.de
+
+- Add python2 to the build-requirements
+
+-------------------------------------------------------------------
+Sun Feb 25 11:46:17 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapsthot 0.10.2.178
+
+-------------------------------------------------------------------
+Wed Feb 14 16:21:49 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapsthot 0.10.2.159
+- Remove patch:
+  * osmo-pkgconfig.diff (fixed upstream)
+
+-------------------------------------------------------------------
+Sat Feb 10 20:11:01 UTC 2018 - mardnh@gmx.de
+
+- Show testsuite.log when tests are failing
+
+-------------------------------------------------------------------
+Sat Feb 10 16:19:05 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapsthot 0.10.2.155
+
+-------------------------------------------------------------------
+Wed Jan 24 12:54:07 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapsthot 0.10.2.135
+
+-------------------------------------------------------------------
+Wed Dec 27 20:10:30 UTC 2017 - jengelh@inai.de
+
+- Update to new upstream release 0.10.2
+  * GPRS: print remote state info for NS peer
+  * ctrl: allow more nodes than those in enum ctrl_node_type
+  * fsm: Enforce FSM and FSM instance names are valid osmocom
+    identifiers
+  * rate_ctr: Enforce counter (and ctr_group) names are valid
+    identifiers
+  * Convert lib-internal rate_ctr from '.' separator to ':'
+    separator
+  * GPRS: add vty command to show only persistent NS
+
+-------------------------------------------------------------------
+Mon Oct  2 22:37:48 UTC 2017 - jengelh@inai.de
+
+- Update to new upstream snapshot 0.9.6.400
+  * vty: install 'exit', 'end',... commands on *all* nodes
+  * osmo-auc-gen: umts: add --ind-len arg
+  * osmo-auc-gen: umts: add --ind arg
+  * Add osmo_gprs_{ul,dl}_block_size_{bits,bytes} functions
+  * BSSGP: add function to reset all PTP BVC
+  * GSUP: define default GSUP port as 4222
+  * gsup: Add encoding/decoding for the pdp charging characteristics
+  * Add missing BSSGP cause values
+  * gsm0808: fix length check of the element decoder functions
+  * Add header file with definitions for GSM TS 04.14 / 3GPP TS 44.014
+  * Fix wrongful GSM FR codec SID frame detection in DTX.
+  * Distinguish between unsupported and invalid MCS
+
+-------------------------------------------------------------------
+Fri Apr 28 20:26:26 UTC 2017 - jengelh@inai.de
+
+- Update to new upstream snapshot 0.9.6.193
+  * fix: DLGSUP logging category "unusable"
+  * ph_data_param struct changed / Extend L1SAP PH-DATA with
+    measurement information.
+  * Size of ph_tch_param struct changed / Extend with RTP Marker
+  * Size of struct log_target changed / Extend with GSMTAP
+  * Internal API for GPRS cipher implementors updated to
+    accommodate for arbitrary key lengths.
+  * Extend L1SAP PH-DATA with presence information
+  * Fix the counter index after the NS reset.
+  * Fix rate_ctr attribute for GPRS NS counters.
+- Remove test.diff (no longer applicable)
+
+-------------------------------------------------------------------
+Sat Jul 30 16:02:05 UTC 2016 - jengelh@inai.de
+
+- Update to new upstream snapshot 0.9.0.212
+* Add support for SI2quater messages
+* Add basic EARFCN support
+* Add vty command to explicitly reset given BVCI
+* Add function to make Uplink Measurement
+* Add GEA3 & GEA4 ciphers
+
+-------------------------------------------------------------------
+Fri Mar 11 01:39:12 UTC 2016 - jengelh@inai.de
+
+- reenable bigendian builds as GSM IE code was fixed upstream
+  during 2015
+- Update to new upstream snapshot 0.9.0.91
+* log: Add conditional logging based on log_check_level
+* Add byte printing macros
+* vty: add bind command for telnet vty line
+
+-------------------------------------------------------------------
+Fri Jan 22 18:08:57 UTC 2016 - jengelh@inai.de
+
+- Update to new upstream snapshot 0.9.0.58
+* Add bitvector functions and APN conversion functions
+- Add test.diff to resolve compiler warning
+
+-------------------------------------------------------------------
+Wed Dec 23 17:19:46 UTC 2015 - jengelh@inai.de
+
+- Update to new upstream release 0.9.0
+* ipaccess: add OAP proto_ext (in design).
+* stats: Report stat item values
+* stats: Implement timer based reporting
+* stats/vty: Add stats configuration
+* stat/vty: Add vty_out_statistics_full to show all statistics
+* stats: Add vty_out_stat_item_group
+* LaPDm: Refuse SUSPEND/RESUME/RECONNECT in BTS mode
+* ns: Force a defined state when sending NS RESET
+- Drop osmo-symbols.diff (solved better upstream),
+  osmo-talloc.diff, osmo-talloc2.diff, osmo-talloc3.diff (solved
+  upstream)
+
+-------------------------------------------------------------------
+Thu Sep 10 21:13:26 UTC 2015 - jengelh@inai.de
+
+- Update to new upstream release 0.8.3
+* Add G-RNTI derived TLLI types defined in 23.003
+* vty: Change API to have node installation be done by int
+* ipa: Properly parse LV stream of a ID_GET request
+* Add APN utility function to libosmogsm
+* gsm: Add A5/3-4 cipher support
+* bssgp: Handle BSSGP STATUS messages
+- Add osmo-symbols.diff
+
+-------------------------------------------------------------------
+Sun Mar  1 01:10:34 UTC 2015 - jengelh@inai.de
+
+- Update to new upstream release 0.8.0
+* new Osmocom SIM card library
+- Remove 0001-utils-resolve-compiler-warnings-on-implicit-declarat.patch,
+  libosmocore_0_7_0_avoid_smscb_test_failure.patch,
+  osmo-kasumi.diff, osmo-version.diff (no longer needed x4),
+  rework osmo-talloc2.diff and add osmo-talloc3.diff after upstream
+  conversion. Add osmo-pkgconfig.diff.
+
+-------------------------------------------------------------------
+Wed Feb 18 16:07:32 UTC 2015 - normand@linux.vnet.ibm.com
+
+- remove the previous patch about  ppc/ppc64 architectures
+  as upstream suggesting that known to be not supported
+  so explicitely add ExcludeArch in spec file.
+
+-------------------------------------------------------------------
+Wed Feb 18 09:05:16 UTC 2015 - normand@linux.vnet.ibm.com
+
+- avoid smscb test failure on ppc/ppc64 architectures
+  with libosmocore_0_7_0_avoid_smscb_test_failure.patch
+
+-------------------------------------------------------------------
+Thu Oct  2 20:05:34 UTC 2014 - jengelh@inai.de
+
+- Update to new upstream release 0.7.0
+* No changelog was provided
+* osmocore gained GPRS NS interface support, and now provides a
+  control interface library (libosmoctrl)
+- Add osmo-kasumi.diff to fix link failure during `make check`
+
+-------------------------------------------------------------------
+Mon Jul 21 07:51:35 UTC 2014 - jengelh@inai.de
+
+- Update to new upstream release 0.6.6
+* No changelog was provided
+- Remove 0001-osmo-arfcn-Return-something-from-the-method.patch,
+  0002-utils-avoid-breaking-strict-aliasing.patch (no longer needed)
+
+-------------------------------------------------------------------
+Sun Jun  2 23:08:13 UTC 2013 - jengelh@inai.de
+
+- Update to new upstream release 0.6.0
+* No changelog was provided
+- Add 0001-osmo-arfcn-Return-something-from-the-method.patch
+  from upstream to provide fix for rpmlint errors
+- Add 0001-utils-resolve-compiler-warnings-on-implicit-declarat.patch,
+  0002-utils-avoid-breaking-strict-aliasing.patch to fix rpmlint
+  warnings
+
+-------------------------------------------------------------------
+Sun Feb 17 19:17:54 UTC 2013 - jengelh@inai.de
+
+- Initial package (version 0.5.3) for build.opensuse.org
+
+-------------------------------------------------------------------
+Mon Oct 10 12:14:16 UTC 2011 - jengelh@medozas.de
+
+- Initial prototype (version 0.3.10)

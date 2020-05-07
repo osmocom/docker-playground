@@ -1,0 +1,47 @@
+-------------------------------------------------------------------
+Tue Jul  9 19:34:19 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Remove patches:
+  * 0001-mobile-gsm480_ss.c-fix-build-apply-msgb_wrap_with_TL.patch
+  * 0001-Fix-build-with-latest-libosmocore.patch
+  Recent versions of libosmocore have workarounds for this issues
+
+-------------------------------------------------------------------
+Tue May 28 20:17:57 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Remove patch (fixed by upstream):
+  * 0001-Fix-no-return-in-nonvoid-function-in-bcch_scan.c.patch
+
+-------------------------------------------------------------------
+Tue Nov 20 19:49:07 UTC 2018 - mardnh@gmx.de
+
+- Add patch:
+  * 0001-Fix-build-with-latest-libosmocore.patch
+
+-------------------------------------------------------------------
+Sat Feb 10 13:51:36 UTC 2018 - mardnh@gmx.de
+
+- Add patch:
+  * osmocom-bb-jolly-testing-fix-typo.patch
+- Specfile cleanup
+
+-------------------------------------------------------------------
+Thu Jan  5 19:08:15 UTC 2017 - mardnh@gmx.de
+
+- Build firmware only on intel plaforms (i586, x86_64)
+
+-------------------------------------------------------------------
+Fri Dec 19 21:30:25 UTC 2014 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1381915414.fabd63f:
+  + fw/l1: Initial import of new BTS primitive
+  + fw/l1/l23_api: Wire the L1CTL to the internal TRX interface & prim_bts
+  + fw/trx: Initial import of the TRX firmware application
+  + host/layer23: Initial import of the transceiver application
+  + host/transceiver: Fix leak in AB processing codepath
+  + Add EMI application to firmware apps
+  + fw/calypso/dsp: Make dsp_extcode only load with trx app
+  + Add command line tool 'osmocli' to talk to firmware Apps using console DCLI
+  + Hack to prevent sercomm from getting stuck while sending.
+  + EMI-App: Add command line interface to control App via serial console
+- specfile cleanup

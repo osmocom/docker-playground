@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/libosmo-netif</param>
+              <param name="changesrevision">a45acd81be1f6c24fcf3e54b0cf5168e55c31c0a</param></service></servicedata>

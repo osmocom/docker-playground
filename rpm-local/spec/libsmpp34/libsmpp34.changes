@@ -1,0 +1,105 @@
+-------------------------------------------------------------------
+Tue Apr 14 20:00:48 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.14.0.1:
+  * configure.ac: fix libtool issue  with clang and sanitizer
+
+-------------------------------------------------------------------
+Thu Aug 08 21:54:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.14.0.0:
+  * Bump version: 1.13.0.7-ffff → 1.14.0
+
+-------------------------------------------------------------------
+Sun Jul 21 20:00:59 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.13.0.7:
+  * bind_receiver_test: Fix "unused value" of writing addr_ton twice
+
+-------------------------------------------------------------------
+Thu Jul 11 20:01:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.13.0.6:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Thu Apr 11 20:00:46 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.13.0.5:
+  * Allow application to override default heap allocator
+  * configure.ac: enable kernel style compile messages
+
+-------------------------------------------------------------------
+Tue Nov 27 21:00:33 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.13.0.3:
+  * fix use of partly initialized struct in tcp test
+
+-------------------------------------------------------------------
+Tue Oct 30 21:00:42 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.13.0.2:
+  * esme.c: mark switch statement fall-thru for coverity
+
+-------------------------------------------------------------------
+Mon Sep 17 20:00:38 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.13.0.1:
+  * debian/rules: Don't overwrite .tarball-version
+
+-------------------------------------------------------------------
+Fri May  4 20:17:29 UTC 2018 - mardnh@gmx.de
+
+- soversion bump
+
+-------------------------------------------------------------------
+Thu May 03 20:00:42 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.13.0.0:
+  * src/Makefile.am: Use LIBVERSION variable to set version-info
+  * Bump version: 1.12.0.20-a637-dirty → 1.13.0
+
+-------------------------------------------------------------------
+Wed Mar 14 21:23:13 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.12.0.19:
+  * debian/rules: show testsuite.log when tests are failing
+  * jenkins: use osmo-clean-workspace.sh before and after build
+  * add --enable-sanitize config option
+  * Enable sanitize for CI tests
+  * debian/control: Fix Vcs-{Browser,Git} URLs
+  * binaries/Makefile.am: Fix parallel build issue
+  * jenkins: Enable parallel build and distcheck
+  * jenkins.sh: output all test logs when 'make check' failed
+  * configure: add --enable-werror
+  * jenkins.sh: use --enable-werror configure flag, not CFLAGS
+
+-------------------------------------------------------------------
+Sun Feb 11 13:01:21 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.12.0.16
+- Rebase patch:
+  - build-fixes.diff
+
+-------------------------------------------------------------------
+Sat Feb 10 20:21:50 UTC 2018 - mardnh@gmx.de
+
+- Show testsuite.log when tests are failing
+
+-------------------------------------------------------------------
+Wed Jan 24 12:59:51 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.12.0.13
+
+-------------------------------------------------------------------
+Mon Oct  2 23:25:01 UTC 2017 - jengelh@inai.de
+
+- Update to new upstream snapshot 1.12.8
+  * Fix Out of bounds compilation warning in OCTET8
+  * smpp34_structs.h: Fix truncated output in str_tlv_id
+
+-------------------------------------------------------------------
+Sat Apr 29 18:15:07 UTC 2017 - jengelh@inai.de
+
+- Ship version 1.10.37 for build.opensuse.org
+- Add build-fixes.diff

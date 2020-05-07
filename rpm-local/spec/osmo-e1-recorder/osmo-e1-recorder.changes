@@ -1,0 +1,43 @@
+-------------------------------------------------------------------
+Sun Jan 12 21:19:26 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20191204:
+  * e1_recorder: Skip storing data to disk if line is in ALARM state
+
+-------------------------------------------------------------------
+Wed Dec 04 21:04:57 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20191204:
+  * e1cap_dump: Avoid deprecated osmo_init_logging() API
+  * e1_recorder: Avoid deprecated osmo_init_logging() API
+  * jenkins.sh: disable 'publish' of manuals; we don't have any yet
+  * e1cap_dump: Add -h and -V to print help / version of program
+  * e1_recorder: Add --help and --version command line arguments
+  * print error message when config file cannot be opened
+  * exit(2) on unsupported positional arguments on command line
+  * vty: Make sure to save timeslot mode in lowercase (as vty expects)
+  * tests: Add test_nodes.vty for VTY interface testing
+  * vty: don't store configurations for timeslots in mode NONE
+
+-------------------------------------------------------------------
+Wed Nov 27 21:13:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20191124:
+  * e1cap_dump: fix superchannel without pcap output
+
+-------------------------------------------------------------------
+Sun Nov 24 21:04:39 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Update to version 0.0.0+git.20191124:
+  * add contrib/jenkins.sh
+  * update .gitignore
+  * convert build system to autotools
+  * fix various compiler warnings
+  * storage.c: Fix compiler error due to missing writev() declaration
+- Remove patch:
+  * osmo-e1-recorder-fix-makefile.patch (fixed by upstream)
+
+-------------------------------------------------------------------
+Tue Apr 10 18:09:02 UTC 2018 - mardnh@gmx.de
+
+- Initial package, version 0.0.0+git.20161114

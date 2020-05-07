@@ -1,0 +1,22 @@
+From 316f6727e00a80d354dce4cd6287d87378e049d2 Mon Sep 17 00:00:00 2001
+From: Martin Hauke <mardnh@gmx.de>
+Date: Wed, 28 Dec 2016 14:52:40 +0100
+Subject: [PATCH] Fix Makefile
+
+---
+ src/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/Makefile b/src/Makefile
+index 073268d..296494b 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -1,4 +1,4 @@
+-CPPFLAGS ?= -g -O0 -Wall `pkg-config --cflags libosmocore` `pkg-config --cflags qmi-glib`
++CPPFLAGS += -g -Wall `pkg-config --cflags libosmocore` `pkg-config --cflags qmi-glib`
+ LIBS ?= `pkg-config --libs libosmocore` `pkg-config --libs qmi-glib`
+ all: osmo-qcdiag-log
+ 
+-- 
+2.6.6
+

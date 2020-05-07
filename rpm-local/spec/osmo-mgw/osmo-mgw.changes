@@ -1,0 +1,869 @@
+-------------------------------------------------------------------
+Wed May 06 20:03:13 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.7.0.10:
+  * counters: Implement more useful counters.
+
+-------------------------------------------------------------------
+Tue May 05 20:03:45 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.7.0.9:
+  * vty: Prepend VTY output of counters for better visual separation.
+
+-------------------------------------------------------------------
+Tue Apr 14 20:03:19 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.7.0.8:
+  * configure.ac: fix libtool issue with clang and sanitizer
+  * tests: dlopen does not imply availability of dlsym..
+
+-------------------------------------------------------------------
+Wed Apr 01 20:03:32 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.7.0.6:
+  * doc: do not bind osmo-mgw to random ip-address
+
+-------------------------------------------------------------------
+Tue Mar 10 21:02:39 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.7.0.5:
+  * allow larger MGCP client wqueue: 10 -> 1024
+
+-------------------------------------------------------------------
+Sun Mar 08 21:02:35 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.7.0.4:
+  * Update per-trunk global packet/byte counters in real-time
+  * fix vty dump_trunk: start from zero, do not omit first CONN
+  * Add CTRL interface to osmo-mgw
+  * Fix number of endpoints of default trunk
+
+-------------------------------------------------------------------
+Fri Jan 03 21:08:22 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.7.0.0:
+  * Bump version: 1.6.0.30-832bc-dirty → 1.7.0
+
+-------------------------------------------------------------------
+Thu Dec 12 21:05:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.6.0.30:
+  * osmoappdesc.py: switch to python 3
+
+-------------------------------------------------------------------
+Wed Dec 04 21:03:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.6.0.29:
+  * exit(2) on unsupported positional arguments on command line
+
+-------------------------------------------------------------------
+Sun Dec 01 21:08:05 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.6.0.28:
+  * Move fsm_mgcp_client regstration to __attribute__((contructor))
+  * mgcp_client: Check for osmo_fsm_register() error return value
+  * manual: Fix copy+paste error
+
+-------------------------------------------------------------------
+Mon Nov 25 21:07:29 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.6.0.25:
+  * fix use-after-free: require new fsm deferred dealloc, check for term
+
+-------------------------------------------------------------------
+Fri Nov 01 21:08:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.6.0.24:
+  * accept MGCP without SDP
+
+-------------------------------------------------------------------
+Wed Oct 30 21:02:59 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.6.0.23:
+  * client: endp fsm: add osmo_mgcpc_ep_ci_ep()
+  * client: endp fsm: allow cancelling a notify event
+  * client: endp fsm: clear ci[] before dispatching DLCX success
+  * client: endp fsm: add notify struct, prep for cancel-notify
+
+-------------------------------------------------------------------
+Mon Oct 28 21:02:51 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.6.0.19:
+  * clear pending requests on MGCP failure
+  * mgcp_client_fsm cleanup: Do not assert on DLCX failure
+
+-------------------------------------------------------------------
+Fri Sep 20 20:03:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.6.0.17:
+  * mgw: Allocate mgcp_conn instance under tcfg->endpoints
+  * mgcp_test: Correctly release all endpoints allocated
+
+-------------------------------------------------------------------
+Thu Aug 29 20:08:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.6.0.15:
+  * SDP: store all ptmap entries
+  * tweak mgcp_parse_audio_ptime_rtpmap()
+  * explicitly free codecs in mgcp_rtp_conn_cleanup()
+  * mgcp_codec_add: fix audio_name size check
+  * mgcp_codec: codec_set(): log about all possible errors
+  * ptmap: implicitly match  '/8000' and '/8000/1'
+  * differentiate AMR octet-aligned=0 vs =1
+  * test_mgcp_codec_pt_translate(): more tests
+  * mgcp_test: extend / rewrite test_mgcp_codec_pt_translate()
+
+-------------------------------------------------------------------
+Wed Aug 28 20:03:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.6.0.6:
+  * fix memleak: actually free strings in mgcp_codec_reset_all()
+  * mgcp_codec: split codec_free() off of codec_init()
+
+-------------------------------------------------------------------
+Mon Aug 26 20:04:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.6.0.4:
+  * mgcp_send(): stop looping on conversion error
+  * fix crashes: don't assert on incoming RTP packet size
+
+-------------------------------------------------------------------
+Tue Aug 13 20:07:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.6.0.2:
+  * mgcp_codec: constify 'param' arg
+  * rename codecs_cmp() to codecs_same()
+
+-------------------------------------------------------------------
+Thu Aug 08 21:56:56 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.6.0.0:
+  * Bump version: 1.5.0.84-a2d10-dirty → 1.6.0
+  * configure.ac: Require libosmo-netif 0.6.0
+  * Remove undefined param passed to {logging,osmo_stats}_vty_add_cmds
+  * Fix return variable of strtoul()
+
+-------------------------------------------------------------------
+Thu Jul 25 20:34:54 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.81:
+  * Catch unsigned integer MGCP parsing errors with strtoul
+
+-------------------------------------------------------------------
+Wed Jul 24 20:28:01 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.80:
+  * doc: Add Osmux documentation to OsmoMGW User Manual
+
+-------------------------------------------------------------------
+Mon Jul 22 20:05:48 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.79:
+  * turn -Werror=null-dereference into a warning
+
+-------------------------------------------------------------------
+Sun Jul 21 20:05:34 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.78:
+  * mgcp_sdp: Don't check if an unsigned int is below 0
+
+-------------------------------------------------------------------
+Thu Jul 11 20:16:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.77:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Sun Jul 07 20:12:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.76:
+  * doc: X-Osmo-IGN: small formatting and typo fixes
+  * "make dist" fix for: no rule to make mgcp_common.h
+
+-------------------------------------------------------------------
+Wed Jul 03 20:08:52 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.74:
+  * mgw: Allow receiving uppercase noanswer keyword
+  * mgw: Allow receiving lowercase X-Osmo-Ign Callid field
+  * mgw: Allow receiving lowercase MGCP header keyword
+  * mgw: Make check of duplicated LCO fields case insensitive
+  * mgw: Support receiving lowercase LCO codec
+  * mgw: Support receiving uppercase connection mode
+  * mgcp-cli: Support lowercase header parameters
+  * mgw: Support lowercase header parameters
+  * mgw: Support uppercase LCO options
+
+-------------------------------------------------------------------
+Thu Jun 27 20:22:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.65:
+  * manuals: update VTY documentation
+  * vty: update desc of conn-timeout
+  * vty: allow 0 as conn-timeout to disable it
+
+-------------------------------------------------------------------
+Wed Jun 19 20:25:45 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.62:
+  * manuals: Update vty/counter documentation
+  * manuals: Add script to regenerate vty/counter documentation
+
+-------------------------------------------------------------------
+Fri May 31 20:03:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.60:
+  * debian: create -doc subpackage with pdf manuals
+
+-------------------------------------------------------------------
+Wed May 29 20:03:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.59:
+  * mgcp-cli: Validate osmux cid value during mgcp_msg_gen
+
+-------------------------------------------------------------------
+Tue May 21 20:02:53 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.58:
+  * osmux: Fix hardcoded rtp payload_type 98 in osmux conn
+
+-------------------------------------------------------------------
+Sun May 19 20:03:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.57:
+  * osmux: Fix CID release for non-enabled connections
+  * osmux: Fix loopback for Osmux connections
+  * osmux: Use DUMMY ft msg as per Osmux spec
+  * mgw, mgcp-li: Handle X-Osmux param name as case insensitive
+  * osmux: Redo read/write osmux glue code to have data routed correctly
+  * osmux: Delay osmux enable of conn until remote addr is configured by MDCX
+  * osmux: Improve logging around osmux enabling events
+  * osmux: Use remote port to send osmux frames
+  * osmux: Provide correct local port during mgcp resp
+  * mgcp-cli: endpoint_fsm: Add API to retrieve Osmux CID from MGW
+  * osmux: Drop unneeded OSMUX_STATE_NEGOTIATING
+  * mgcp-cli: Parse X-Osmux on MDCX response
+  * mgcp-cli: Allow submitting X-Osmux on MDCX request
+  * osmux: Handle Osmux MGCP extension in MDCX messages
+  * mgcp-cli: Parse X-Osmux on CRCX response
+  * mgcp-cli: Allow submitting X-Osmux on CRCX request
+  * osmux: Mark conn_rtp->type as osmux during CRCX
+  * osmux: Introduce mgcp_conn_rtp_is_osmux() helper
+  * osmux: Allocate CID during CRCX
+  * vty: Allow enabling Osmux
+
+-------------------------------------------------------------------
+Tue May 14 20:02:50 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.37:
+  * cosmetic: osmux: Document network byte order in port variable
+  * cosmetic: mgcp_udp_send: Document port param is in network byte order
+
+-------------------------------------------------------------------
+Mon May 13 20:02:54 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.35:
+  * osmux: Use LOGPCONN in several log calls
+  * osmux: Fix reception of legacy dummy payloads
+
+-------------------------------------------------------------------
+Sat May 11 20:03:12 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.33:
+  * configure.ac: drop useless check for -fvisibility=hidden
+
+-------------------------------------------------------------------
+Thu May 09 20:03:01 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.32:
+  * update .gitignore
+  * handle NULL return of rate_ctr_group_alloc()
+
+-------------------------------------------------------------------
+Wed May 08 20:03:58 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.30:
+  * osmux: Document func and return different rc upon osmux init failure
+  * mgcp-cli: Change osmo_mgcpc_ep_fsm name to avoid collision with old osmo-bsc
+
+-------------------------------------------------------------------
+Mon May 06 20:02:58 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.28:
+  * osmux: Log osmux socket during osmux_init
+  * mgcp_osmux.c: osmux_enable_endpoint: Fix incorrect return check
+
+-------------------------------------------------------------------
+Thu May 02 20:03:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.26:
+  * mgcp_internal: LOGPENDP: ensure *endp is not NULL
+
+-------------------------------------------------------------------
+Tue Apr 30 20:04:40 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.25:
+  * constify map_codec_to_pt() ptmap arg
+  * fix: multiple initial CRCX
+  * move MGW endpoint FSM from osmo-bsc to here
+
+-------------------------------------------------------------------
+Fri Apr 26 20:02:52 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.22:
+  * osmux: Cleanup of CID alloc pool APIs
+  * create_response_with_sdp: Fix inclusion of X-Osmux
+  * Introduce log fmt helpers LOGPENDP and LOGPCONN
+
+-------------------------------------------------------------------
+Wed Apr 24 20:03:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.19:
+  * cosmetic: handle_modify_con: Fix indentation level
+  * mgcp_msg: Log faulty line on Osmux parsing error
+
+-------------------------------------------------------------------
+Tue Apr 23 20:03:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.17:
+  * cosmetic: tests: mgcp_client_test: clean trailing whitespace
+  * cosmetic: Fix typos in comment
+  * libosmo-mgcp: Use trunk type during endpoint allocation
+
+-------------------------------------------------------------------
+Wed Apr 17 20:05:04 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.14:
+  * mgcp-client: Sanitize implementation of mgcp_client_rtpbridge_wildcard
+  * mgcp-client: whitespace cleanup in mgcp_client.c
+
+-------------------------------------------------------------------
+Tue Mar 19 21:03:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.12:
+  * AMR: Add function to convert between bw-effient and octet aligned mode
+
+-------------------------------------------------------------------
+Mon Mar 11 21:02:51 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.11:
+  * mgcp_network: use mgcp_rtp_codec in downlink format callback
+  * mgcp_sdp: untangle parsing of a= parameters
+  * mgcp_sdp: mgcp_sdp.c does not include own header file
+  * mgco_client: cosmetic: remove excess whitespace
+  * mgcp_sdp: cosmetic: correct typo in comment
+
+-------------------------------------------------------------------
+Wed Mar 06 21:03:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.6:
+  * make codec_table public as osmo_mgcpc_codec_names
+  * mgcp client: allow setting conn mode for CRCX and MDCX
+  * log: don't spam with "can not patch PT" messages
+
+-------------------------------------------------------------------
+Tue Feb 26 21:02:55 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.3:
+  * Add option to GSM HR frames to RFC5593 representation
+
+-------------------------------------------------------------------
+Wed Feb 06 21:02:19 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.2:
+  * Inactive connection cleanup (disabled by default)
+
+-------------------------------------------------------------------
+Wed Jan 30 21:02:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.1:
+  * Cosmetic: fix spaces/tabs in mgcp_requests[]
+
+-------------------------------------------------------------------
+Sun Jan 20 21:02:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.0:
+  * Bump version: 1.4.0.90-ed0c-dirty → 1.5.0
+
+-------------------------------------------------------------------
+Fri Jan 04 21:02:13 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.90:
+  * mgcp_client: tweak some log levels INFO -> {DEBUG,ERROR}
+  * mgcp_client: make domain part of endpoint configurable
+
+-------------------------------------------------------------------
+Thu Dec 20 21:02:18 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.88:
+  * mgcp_client: logging tweaks
+  * mgcp_client: drop a bunch of dead code
+  * mgcp_client_vty: fix missing talloc_free
+
+-------------------------------------------------------------------
+Wed Dec 19 21:02:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.85:
+  * osmo-mgw: err-log: include expected domain name
+
+-------------------------------------------------------------------
+Mon Dec 17 21:02:13 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.84:
+  * check_rtp: on IP:port errors, log the IP and port
+  * drop/replace very weird logging in mgcp_client.c
+
+-------------------------------------------------------------------
+Thu Dec 13 21:02:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.82:
+  * contrib: fix makedistcheck with disabled systemd
+
+-------------------------------------------------------------------
+Wed Dec 05 21:02:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.81:
+  * contrib/jenkins.sh: build and publish manuals
+
+-------------------------------------------------------------------
+Tue Dec 04 21:02:39 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.80:
+  * Fix DISTCHECK_CONFIGURE_FLAGS override
+  * jenkins.sh: remove leftover MGCP env variable
+
+-------------------------------------------------------------------
+Tue Nov 27 21:02:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.78:
+  * build manuals moved here from osmo-gsm-manuals.git
+  * mgw: update vty reference
+  * OsmoMGW: document the 'X-Osmo-IGN' MGCP extension
+  * Add initial OsmoMGW manual
+  * mgw: Add new VTY reference
+  * vty-ref: Update URI of docbook 5.0 schema
+  * OsmoMGW: update VTY reference
+  * osmo-mgw: Add vty reference manual
+  * add DLCX command statistics to osmo-mgw
+
+-------------------------------------------------------------------
+Mon Nov 26 18:56:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.67:
+  * fix osmo-mgw -s; fixes osmo-mgw.service using -s
+
+-------------------------------------------------------------------
+Wed Nov 07 21:03:51 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.66:
+  * mgcp_protocol: increase buffer space for codec name in LCO
+
+-------------------------------------------------------------------
+Tue Nov 06 21:02:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.65:
+  * add aggregated rtp connection stats to osmo-mgw
+
+-------------------------------------------------------------------
+Tue Oct 30 21:02:33 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.64:
+  * add MDCX command statistics to osmo-mgw
+  * add more mgcp crxc error counters
+  * use local variable for rate counters in handle_create_con()
+  * show RTP TX/RX stats in 'mgcp show stats' output
+
+-------------------------------------------------------------------
+Mon Oct 29 21:02:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.60:
+  * add MGCP CRCX command statistics to osmo-mgw
+
+-------------------------------------------------------------------
+Thu Oct 25 20:02:35 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.59:
+  * check_rtp_origin(): Avoid using memcmp for comparing integer types
+  * check_rtp_origin(): Don't memcmp sockadd_in and in_addr
+
+-------------------------------------------------------------------
+Wed Oct 17 20:02:11 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.57:
+  * osmux: Avoid processing further frames if conn not found
+  * osmux.h: Document enum osmux_state
+  * osmux: Improve checks around activating and using enabled osmux
+  * osmux: allow enabling osmux only on correct activating state
+  * osmux: Make func handling dummy frames independent of endp type
+  * osmux: Move parse_cid of legacy dummy frames to own function
+  * osmux: Don't process regular osmux frames if disabled by cfg
+  * osmux_send_dummy: Avoid logging incorrectly and sending if osmux not enabled
+  * mgcp: Log endpoint nr consistently as hex
+  * osmux: Avoid initing output without enabling osmux
+
+-------------------------------------------------------------------
+Wed Sep 19 20:02:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.47:
+  * mgcp_osmux: Use define to calculate rtp_ssrc_winlen
+  * mgcp: Fix osmux_cid_bitmap static array size calculation
+
+-------------------------------------------------------------------
+Thu Sep 13 19:52:02 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.45:
+  * Install sample cfg file to /etc/osmocom
+  * Install systemd services with autotools
+
+-------------------------------------------------------------------
+Tue Sep 11 20:02:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.43:
+  * debian: Remove dangling symlink to osmo-bsc-mgcp.service
+  * log: avoid logging early media as error
+
+-------------------------------------------------------------------
+Mon Sep 10 22:22:04 UTC 2018 - mardnh@gmx.de
+
+- Remove libosmo-legacy-mgcp and osmo-bsc-mgcp
+
+-------------------------------------------------------------------
+Fri Sep 07 20:02:21 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.41:
+  * comment: indicate struct type for mgcp_endpoint.conns
+  * cosmetic: mgcp_test: fix get_conn_id_from_response()
+  * mgcp_conn_get(): match conn Id ('I:') despite leading zeros
+  * mgcp_conn_get(): compare conn Id ('I:') case insensitively
+  * Remove libosmo-legacy-mgcp and osmo-bsc-mgcp
+
+-------------------------------------------------------------------
+Thu Sep 06 20:02:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.36:
+  * generate shorter 'I:' conn IDs
+  * fix mgcp_verify_ci(): off-by-one in max len check
+  * mgcp_verify_ci(): return meaningful error codes
+  * doc: fix mgcp_verify_ci() return val doc
+  * mgcp_common: rename to MGCP_CONN_ID_MAXLEN
+  * mgcp_client: error on too long conn id
+  * mgcp_client_test: test long conn_id
+  * mgcp_client_test: also verify received conn_id
+  * mgcp_client_test: use "\r\n\r\n" instead of "\n\n"
+  * mgcp_client_test: cosmetically re-arrange reply_to() args
+
+-------------------------------------------------------------------
+Mon Sep 03 20:02:19 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.26:
+  * debian/rules: Don't overwrite .tarball-version
+
+-------------------------------------------------------------------
+Thu Aug 30 20:02:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.25:
+  * mgcp_test: fix get_conn_id_from_response() CI length
+  * mgcp_test: fix log of conn_id presence
+
+-------------------------------------------------------------------
+Wed Aug 29 20:02:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.23:
+  * mgcp_client_fsm: switch to MGCP_CONN_RECV_SEND in add_audio()
+
+-------------------------------------------------------------------
+Tue Aug 28 20:02:25 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.22:
+  * X-Osmo-IGN: rather parse items by token, not char
+  * add VTY commands which show specific mgcp endpoints
+
+-------------------------------------------------------------------
+Sun Aug 26 20:02:12 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.20:
+  * add X-Osmo-IGN MGCP header to ignore CallID
+
+-------------------------------------------------------------------
+Sat Aug 25 20:02:11 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.19:
+  * cosmetic: drop code dup in mgcp_client_fsm.c CRCX
+
+-------------------------------------------------------------------
+Fri Aug 24 12:15:19 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.18:
+  * fix 3G hack: allow any IP for loopback and 0.0.0.0
+
+-------------------------------------------------------------------
+Wed Aug 22 20:02:15 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.17:
+  * cosmetic: log: fix "CallIDs does not match"
+
+-------------------------------------------------------------------
+Tue Aug 21 20:02:32 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.16:
+  * interpret domain '*' as 'allow any domain'
+  * fix handling of "Wrong domain name" error
+
+-------------------------------------------------------------------
+Fri Aug 17 20:05:14 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.14:
+  * vty: Fix typo writing bts-jitter-buffer-delay-{min,max}
+
+-------------------------------------------------------------------
+Thu Aug 09 20:02:10 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.13:
+  * mgcp_client: check local port only once
+
+-------------------------------------------------------------------
+Sun Aug 05 20:02:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.12:
+  * mgcp_sdp: restructure mgcp_write_response_sdp() (audio)
+  * mgcp_sdp: restructure mgcp_write_response_sdp() (rtpmap)
+  * Cosmetic: remove misplaced line break
+  * network: check packets before further processing
+  * network: do not patch PT of RTCP packets
+
+-------------------------------------------------------------------
+Thu Aug 02 20:02:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.7:
+  * mgcp_test: release endpoints after use
+  * mgcp_client: increment local port number when port is in use
+  * mgcp_client: use IETF source port as for MGCP
+
+-------------------------------------------------------------------
+Tue Jul 31 20:02:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.4:
+  * mgcp_network: translate payload type numbers in RTP packets
+  * mgcp_client_fsm: allow ptmap in mgcp_client_fsm as well
+
+-------------------------------------------------------------------
+Sat Jul 28 20:02:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.2:
+  * configure: Find correct libgsm's gsm.h header
+
+-------------------------------------------------------------------
+Fri Jul 27 20:02:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.4.0.1:
+  * gitignore: Filter *.pc
+  * Bump version: 1.3.0.34-9cd52-dirty → 1.4.0
+
+-------------------------------------------------------------------
+Tue Jul 24 20:02:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.34:
+  * git-version-gen: Don't check for .git directory
+  * IuUP hack: make RTP patching less general
+  * cosmetic: mgcp_network.c: merge one LOGPC to its preceding LOGP
+
+-------------------------------------------------------------------
+Mon Jul 23 20:02:14 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.31:
+  * protocol: prevent unnecessary null pointer deref
+
+-------------------------------------------------------------------
+Mon Jul 09 20:02:13 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.30:
+  * stat+vty: fix printing of rate counter values
+
+-------------------------------------------------------------------
+Thu Jul 05 20:03:37 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.29:
+  * stats: replace packet statistic counters with libosmocore rate counters
+
+-------------------------------------------------------------------
+Tue Jul 03 20:02:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.28:
+  * mgcp_internal: remove unused struct member
+
+-------------------------------------------------------------------
+Mon Jul 02 20:02:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.27:
+  * gitignore: Add m4 scripts from m4 subdir
+  * debian: Package installed example doc files
+
+-------------------------------------------------------------------
+Tue Jun 26 20:02:11 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.25:
+  * cosmetic: fix doxygen comment markers
+
+-------------------------------------------------------------------
+Sat Jun 23 20:02:10 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.24:
+  * client: add features to generate and parse codec information
+  * mgw: clean up codec negotiation (sdp)
+
+-------------------------------------------------------------------
+Fri Jun 15 20:02:26 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.22:
+  * mgcp_client_fsm: improve error logging
+
+-------------------------------------------------------------------
+Wed Jun 13 20:02:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.21:
+  * mgcp-client: add mgcp_conn_get_ci()
+
+-------------------------------------------------------------------
+Thu Jun 07 10:38:21 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.20:
+  * cosmetic: fix typo
+  * protocol: reject illegal lco options
+  * protocol: do not change LCO, when no LCO are present
+
+-------------------------------------------------------------------
+Tue Jun 05 20:03:03 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.17:
+  * cosmetic: fix log output
+  * conn: call talloc_free before setting the pointer to NULL
+
+-------------------------------------------------------------------
+Sat Jun 02 20:02:32 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.15:
+  * cosmetic: fix typo in log message: 'abrupt' instead of 'aprupt'
+
+-------------------------------------------------------------------
+Tue May 29 20:02:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.14:
+  * client: do not start connections in loopback mode
+  * mgcp_network: do not log destination invalid ip/port as error
+
+-------------------------------------------------------------------
+Fri May 25 20:02:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.12:
+  * sdp: remove unused alt_codec field from struct mgcp_rtp_end
+  * sdp: remove circular inclusion
+  * protocol: Try whole port range on port allocation
+
+-------------------------------------------------------------------
+Thu May 24 20:02:35 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.9:
+  * vty: clean up rtp port-range command
+
+-------------------------------------------------------------------
+Tue May 22 20:02:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.8:
+  * mgcp_sdp: correct apidoc of mgcp_parse_sdp_data
+
+-------------------------------------------------------------------
+Sun May 20 20:02:32 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.7:
+  * api doc: fix parameter name for mgcp_conn_create()
+
+-------------------------------------------------------------------
+Sat May 19 20:02:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.6:
+  * legacy-mgcp: Add jitter buffer on the uplink receiver
+  * legacy-mgcp: switch to new osmux output APIs
+  * mgcp: mgcp_osmux: use conn_bts when forwarding pkts from bsc_nat
+  * mgcp: switch to new osmux output APIs
+
+-------------------------------------------------------------------
+Thu May 17 20:03:30 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.2:
+  * network: independently initalize state->out_stream
+  * stats: use libosmocore rate counter for in/out_stream.err_ts_counter
+
+-------------------------------------------------------------------
+Thu May 03 20:03:02 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.0:
+  * Bump version: 1.2.0.109-8d064-dirty → 1.3.0
+
+-------------------------------------------------------------------
+Mon Apr 23 20:02:30 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.109:
+  * Revert "stats: use libosmocore rate counter for in/out_stream.err_ts_counter"
+
+-------------------------------------------------------------------
+Wed Apr 18 20:02:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.108:
+  * stats: use libosmocore rate counter for in/out_stream.err_ts_counter
+
+-------------------------------------------------------------------
+Sat Apr 07 18:53:14 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.107:
+  * cosmetic: rename function .._conn_reset() to .._conn_init()
+  * mgcp_conn: do not touch u.rtp in mgcp_conn_alloc()
+  * cosmetic: rename .._codec_reset() to .._codec_init()
+  * mgcp_conn: add function mgcp_rtp_conn_cleanup()
+  * cosmetic: mgcp, legacy_mgcp: drop unused vty.h definitions
+  * use osmo_init_logging2() with proper talloc ctx
+
+-------------------------------------------------------------------
+Wed Mar 14 21:33:36 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.101:
+  * mgcp_stat: Don't print osmux stats if it is off
+  * mgcp_client: show failure by MGCP SDP section parsing test
+  * mgcp_client: cosmetic: clean up SDP params parsing
+  * mgcp_client: detect SDP section-start parsing errors
+  * compiler warning: ignore deprecated in mgcp_client_test.c
+  * enable osmo_fsm vty commands in libosmo-mgcp-client vty
+  * mgcp_client_fsm: Add FSM event names
+  * cosmetic: mgcp_client_fsm: rename enums
+  * configure: add --enable-werror
+  * jenkins.sh: add --enable-werror to configure flags
+
+-------------------------------------------------------------------
+Sat Feb 10 20:45:51 UTC 2018 - mardnh@gmx.de
+
+- Show testsuite.log when tests are failing
+
+-------------------------------------------------------------------
+Sat Feb 10 16:11:11 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.2.0.89
+
+-------------------------------------------------------------------
+Wed Jan 24 13:09:55 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.2.0.57
+- Remove patch:
+  * osmo-mgw-fix-cflags.patch (fixed upstream)
+
+-------------------------------------------------------------------
+Fri Dec 29 12:51:29 UTC 2017 - jengelh@inai.de
+
+- Drop %restart_on_update et al; %service_* already takes care
+  of it.
+- Resolve package-name-repeated-in-summary.
+
+-------------------------------------------------------------------
+Wed Dec 27 16:51:07 UTC 2017 - mardnh@gmx.de
+
+- Initial package, version 1.2.0
+- Add patch:
+  * osmo-mgw-fix-cflags.patch

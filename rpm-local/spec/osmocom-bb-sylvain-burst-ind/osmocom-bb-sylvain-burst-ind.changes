@@ -1,0 +1,10 @@
+-------------------------------------------------------------------
+Thu Dec 27 22:59:38 UTC 2018 - mardnh@gmx.de
+
+- Add patch:
+  * 0001-layer23-Fix-build-against-gpsd-3.18.patch
+
+-------------------------------------------------------------------
+Mon Jul  2 14:20:34 UTC 2018 - mardnh@gmx.de
+
+- Initial package, version 0.0.0.git1391535122.07ce6faf

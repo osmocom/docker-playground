@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/gapk</param>
+              <param name="changesrevision">ee62e46019c1b92a8109f005788721bee464f6cb</param></service></servicedata>

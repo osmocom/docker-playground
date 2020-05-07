@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/osmo-qcdiag</param>
+              <param name="changesrevision">cb5d8473d73ae42168f39383acd62c7ca42de04a</param></service></servicedata>

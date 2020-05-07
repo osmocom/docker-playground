@@ -1,0 +1,801 @@
+-------------------------------------------------------------------
+Mon Apr 20 20:00:21 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.35:
+  * sccp_internal.h: fix compilation with gcc-10
+
+-------------------------------------------------------------------
+Tue Apr 14 20:00:20 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.34:
+  * configure.ac: fix libtool issue  with clang and sanitizer
+
+-------------------------------------------------------------------
+Thu Mar 19 21:00:18 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.33:
+  * cs7 vty: add 'show cs7 config'
+  * don't use 'debug' log level in example configs
+
+-------------------------------------------------------------------
+Tue Jan 21 21:00:38 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.31:
+  * xua_asp_fsm.c: Drop unused defines
+  * cosmetic: fix typo in comment
+  * sccp: Disarm inactivity timer upon T(iar) active->disconn_pend
+  * sccp_scoc: Deliver correct disconnect cause and importance to user on timer expiration
+  * examples/sccp_test_server: Log disconnect indication in echo service
+  * examples/sccp_test_server: Log primitive name instead of value
+  * osmo_sccp_simple_server(): use sccp instance index 0 instead of 1
+  * examples/sccp_demo_user: Support reading log/vty config from file
+  * example/sccp_demo_user: Use osmocom logging system instead of printf
+
+-------------------------------------------------------------------
+Sun Jan 19 21:00:51 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.22:
+  * sccp: Fix wrong param type in osmo_sccp_pnc_name()
+
+-------------------------------------------------------------------
+Fri Jan 17 21:00:34 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.21:
+  * sccp: Log missing user and router failure paths
+  * sccp2sua.c: Log malformed SUA message
+  * sccp: Support receiving messages with no optional params
+  * sccp: Improve logging in sccp_to_xua_opt()
+  * sccp: Convert ifelse to switch statement
+  * examples/sccp_demo_user: log category name instead of its hex value
+  * examples/sccp_test_server.c: Fix typo in log message
+  * sccp: Avoid memleak of xua_msg receiving malformed sccp message
+  * sccp: Add value_string for SCCP message types
+
+-------------------------------------------------------------------
+Thu Jan 16 21:00:26 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.12:
+  * sccp: Fix null ptr access on malformed or unsupported msg received
+  * sccp_demo_user: Bind VTY to -l local address cmdline arg
+
+-------------------------------------------------------------------
+Wed Jan 15 21:00:23 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.10:
+  * ss7: Improve checks in osmo_ss7_asp_peer_add_host()
+
+-------------------------------------------------------------------
+Mon Jan 13 21:00:36 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.9:
+  * ss7: Fix sccp_simple_server rejecting connections
+  * ss7: Set ASP addresses using asp_peer APIs
+  * ss7: Introduce APIs to manage asp_peer hosts
+  * ss7: Return value from child function in osmo_ss7_xua_server_set_local_host
+
+-------------------------------------------------------------------
+Fri Jan 10 21:00:41 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.5:
+  * sccp_demo_user: Change prompt to not include any '-' symbols
+
+-------------------------------------------------------------------
+Thu Jan 09 21:00:49 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.4:
+  * configure.ac: Check for sctp_recvmsg instead of sctp_send
+  * sua.c: Avoid double free in sua_rx_msg()->...->mtp_user_prim_cb()
+
+-------------------------------------------------------------------
+Wed Jan 08 21:00:36 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.2:
+  * Revert "fix memleaks in mtp_user_prim_cb()"
+  * fix memleaks in mtp_user_prim_cb()
+
+-------------------------------------------------------------------
+Fri Jan 03 21:00:44 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.2.0.0:
+  * Bump version: 1.1.0.71-bb75-dirty → 1.2.0
+  * debian: Drop patches directory containing old patch not longer required
+
+-------------------------------------------------------------------
+Tue Dec 17 21:00:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.71:
+  * ASP: Stop re-transmitting un-acknowledged messages on SCTP down event
+  * ASP FSM: Permit DOWN -> DOWN "transition"
+  * stp: exit(2) on unsupported positional arguments on command line
+
+-------------------------------------------------------------------
+Thu Dec 12 21:00:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.68:
+  * osmoappdesc.py, tests: switch to python 3
+
+-------------------------------------------------------------------
+Wed Dec 11 21:00:45 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.67:
+  * gitignore: add various generated doc files
+
+-------------------------------------------------------------------
+Mon Dec 02 21:00:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.66:
+  * xua_asp_fsm: Ensure xUA client includes routing contexts in ASPAC/ASPIA
+  * xua_asp_fsm: Ensure xUA client includes traffic-mode if configured
+
+-------------------------------------------------------------------
+Sun Dec 01 21:00:19 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.64:
+  * check for osmo_fsm_register() failures and propagate error
+
+-------------------------------------------------------------------
+Thu Nov 28 21:01:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.63:
+  * Skip dynamic ASPs when writing the list of ASPs in an AS
+
+-------------------------------------------------------------------
+Thu Nov 21 21:02:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.62:
+  * xua: Implement traffic mode broadcast
+
+-------------------------------------------------------------------
+Tue Nov 19 21:00:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.61:
+  * fix generating asp-role that can be parsed when re-opening config file
+  * asp: Don't override ASP and SCTP role when re-entering asp node
+  * osmo_ss7: Add osmo_ss7_asp_find()
+  * Don't forget to store the sctp-role during writing config file
+
+-------------------------------------------------------------------
+Fri Nov 15 21:00:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.57:
+  * osmo_ss7_vty.c: implement 'active' filter for show_cs7_as_cmd
+
+-------------------------------------------------------------------
+Wed Nov 13 21:00:25 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.56:
+  * xua: Avoid multiline log in xua_msg_dump()
+
+-------------------------------------------------------------------
+Tue Nov 12 21:00:57 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.55:
+  * ss7: Set correct local addr and port during dynamic ASP creation
+  * ss7: Improve log formatting during ASP restart
+  * xua: ipa_asp_fsm: Allow receiving IPA ID ACK before IPA ID RESP
+  * xua: ipa_asp_fsm: Allow moving ASP to inactive state
+
+-------------------------------------------------------------------
+Mon Nov 11 19:04:45 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Rebase 0001-build-fixes.patch
+
+-------------------------------------------------------------------
+Fri Nov 08 21:00:50 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.51:
+  * xua: Don't send NOTIFY messages to IPA ASPs
+  * ss7: Set ASP default remote addr to 127.0.0.1 if none set in VTY
+
+-------------------------------------------------------------------
+Thu Nov 07 21:01:54 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.49:
+  * tests/sccp/Makefile.am: use sccp.o from $(top_builddir)
+  * xua: On new ASPAC, set and notify other ASPs as inactive
+  * xua: Select only active ASPs during tx in Override traffic mode
+
+-------------------------------------------------------------------
+Wed Nov 06 21:01:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.46:
+  * osmo_ss7.c: fix xua_accept_cb(): properly assign role
+  * xua: Reset AS traffic mode set by peer during shutdown
+  * osmo_ss7.c: fix copy-paste error in xua_accept_cb()
+  * osmo_ss7.c: cosmetic: fix typo in xua_accept_cb()
+  * xua: loadshare: select ASP for tx only if active
+  * xua: Fix private function name
+
+-------------------------------------------------------------------
+Tue Nov 05 21:01:45 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.40:
+  * vty: Permit configuration of ASPs in SCTP client mode
+  * Allow ASP role to be configured
+  * introduce public enum osmo_ss7_asp_role for ASP/SG/IPSP
+  * M3UA: Reject ASP activation + RKM registration for incompatible traffic-mode
+  * xua: Allow traffic mode set by peer if not set by VTY
+  * xua_asp_fsm: Don't send M3UA ERR and then send ASPAC_ACK
+
+-------------------------------------------------------------------
+Mon Oct 28 21:00:20 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.34:
+  * ss7: Set Traffic mode and Route Ctx in ASPAC ACK msg if known
+  * xua: Verify all route ctxs received in ASPAC msg
+  * ss7: Only override traffic mode from recv REG REQ if not set by VTY
+  * ss7: Set configured AS traffic mode when sending Routing Key Register msg
+  * ss7: Implement AS traffic mode loadshare using round robin ASP selection
+
+-------------------------------------------------------------------
+Thu Oct 24 20:00:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.29:
+  * ss7: Set default traffic-mode to override
+  * vty: Print traffic mode during show cs7 instance as
+
+-------------------------------------------------------------------
+Wed Oct 23 20:00:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.27:
+  * xua_rkm: Don't permit de-registration of rctx with ASP active
+  * xua_rkm: Print NOTICE log message if registration for wrong rctx
+  * Log correct protocol during xua_accept_cb()
+  * vty: ss7: Make sure ASP has at least INET_ANY addr set if not configured in VTY
+  * ss7: Fix finding asp by socket addr if it has no remote hosts configured
+  * ss7: Fix finding asp by socket addr if local ip addr is 0.0.0.0
+  * ss7: Fix osmo_ss7_asp_peer_snprintf() output if peer has zero IP addr assigned
+  * cosmetic: Fix trailing whitespace
+  * vty: Fix write-config of local-ip and remote-ip commands
+
+-------------------------------------------------------------------
+Tue Oct 22 20:00:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.18:
+  * cosmetic: ss7: Fix trailing whitespace
+  * tests: Introduce test for multi-homing STP features
+  * ss7: Log local and remote address set upon ASP restart
+  * ss7: Support multiple addresses in SCTP connections
+  * Defer xua server binding until exit of VTY node
+  * m3ua: Log incorrect selected AS
+  * Fix typo in log message of recent commit
+
+-------------------------------------------------------------------
+Mon Oct 21 20:00:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.11:
+  * cosmetic: Document why IPA uses hard-coded routing-context 0
+  * Don't permit routing-context != 0 for IPA peers
+
+-------------------------------------------------------------------
+Sun Oct 20 20:00:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.9:
+  * ipa: VTY config option to explicitly enable/disable SCCP patching
+  * ipa: Fix crash when parsing of received IPA SCCP message fails
+
+-------------------------------------------------------------------
+Sat Oct 19 20:00:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.7:
+  * ipa: Don't send non-SCCP data over IPA/SCCPlite
+  * Use LOGPAS / LOGPASP in favor of generic LOGSS7 where applicable
+  * Move definition of LOGSS7() to header file; add LOGPAS() like LOGPASP()
+
+-------------------------------------------------------------------
+Mon Sep 16 20:00:15 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.4:
+  * sccp_user: correct comment for osmo_sccp_simple_client
+
+-------------------------------------------------------------------
+Fri Sep 06 20:00:15 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.3:
+  * ss7: Do not queue messages if stream is not connected
+
+-------------------------------------------------------------------
+Thu Aug 29 20:00:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.2:
+  * osmo_sccp_simple_client(): use sccp instance index 0 instead of 1
+
+-------------------------------------------------------------------
+Mon Aug 12 20:00:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.1:
+  * systemd: This patch adds Documentation field to the systemd service file
+
+-------------------------------------------------------------------
+Thu Aug 08 21:53:57 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.1.0.0:
+  * Bump version: 1.0.0.26-2728-dirty → 1.1.0
+  * Remove undefined param passed to {logging,osmo_stats}_vty_add_cmds
+
+-------------------------------------------------------------------
+Wed Jul 17 19:01:19 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.25:
+  * This patch fixes typos on which Lintian complains
+
+-------------------------------------------------------------------
+Thu Jul 11 20:00:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.24:
+  * contrib/jenkins.sh: "maintainer-clean" after "publish"
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Wed Jun 19 20:01:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.22:
+  * manuals: Update vty documentation
+  * manuals: Add script to regenerate vty/counter documentation
+
+-------------------------------------------------------------------
+Fri May 31 20:00:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.20:
+  * debian: create -doc subpackage with pdf manuals
+
+-------------------------------------------------------------------
+Sat May 11 20:00:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.19:
+  * osmo-stp: expose root talloc context to the VTY code
+
+-------------------------------------------------------------------
+Fri May 10 20:00:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.18:
+  * osmo-stp: register VTY commands for talloc context introspection
+
+-------------------------------------------------------------------
+Thu May 09 20:00:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.17:
+  * stp: Ensure telnet uses STP talloc context, not NULL context
+
+-------------------------------------------------------------------
+Tue May 07 20:00:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.16:
+  * udts/xudts: Attempt to implement unitdata service parsing
+  * xudt: Implement address and data extraction
+
+-------------------------------------------------------------------
+Thu Apr 18 20:00:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.14:
+  * add osmo_sccp_addr_cmp(), osmo_sccp_addr_ri_cmp()
+  * add caller-owns-msgb variant osmo_sccp_user_sap_down_nofree()
+
+-------------------------------------------------------------------
+Thu Apr 11 20:00:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.12:
+  * sccp_scoc: conn_create{,_id}() user arg, not inst
+  * sccp_scoc: move sccp_find_user() up
+
+-------------------------------------------------------------------
+Wed Apr 03 20:00:19 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.10:
+  * Cosmetic: sccp_scoc: fix local reference comments
+
+-------------------------------------------------------------------
+Mon Apr 01 20:00:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.9:
+  * sccp_scoc: Add more comments describing conn_id and local_ref members
+
+-------------------------------------------------------------------
+Fri Mar 15 21:00:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.8:
+  * Fix output of route destination in 'show ss7 instance <0-15> route'
+
+-------------------------------------------------------------------
+Thu Mar 14 21:00:20 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.7:
+  * Store + show remote ip/port in dynamically created ASPs
+  * improve logging for rejected AS in xua_rkm.c
+  * vty: Ensure to properly save route pointcode and mask when writing
+
+-------------------------------------------------------------------
+Wed Mar 06 21:00:19 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.4:
+  * debug log typo fix in sccp_scoc.c
+
+-------------------------------------------------------------------
+Mon Feb 18 21:00:19 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.3:
+  * OsmoSTP: enable statsd support
+
+-------------------------------------------------------------------
+Wed Feb 13 21:00:39 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.2:
+  * osmo_ss7.c: fix typo
+
+-------------------------------------------------------------------
+Thu Feb 07 21:00:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.1:
+  * Don't use deprecated osmo_stream_cli_open2()
+
+-------------------------------------------------------------------
+Sun Jan 20 21:00:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.0.0.0:
+  * Bump version: 0.10.0.39-b723 → 1.0.0
+  * sccp.c: Fix gcc-8.2 -Werror=maybe-uninitialized
+
+-------------------------------------------------------------------
+Sat Dec 22 21:00:15 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.43:
+  * fix ipa_asp_fsm down state transition
+
+-------------------------------------------------------------------
+Thu Dec 13 21:00:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.42:
+  * contrib: fix makedistcheck with disabled systemd
+
+-------------------------------------------------------------------
+Wed Dec 05 21:00:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.41:
+  * contrib/jenkins.sh: build and publish manuals
+
+-------------------------------------------------------------------
+Tue Dec 04 21:00:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.40:
+  * Fix DISTCHECK_CONFIGURE_FLAGS override
+
+-------------------------------------------------------------------
+Tue Nov 27 21:00:15 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.39:
+  * build manuals moved here from osmo-gsm-manuals.git
+  * stp: update vty reference with added SCCP commands
+  * stp: update vty reference
+  * vty-ref: Update URI of docbook 5.0 schema
+  * OsmoSTP: update VTY reference
+  * STP: Update vty reference XML file
+  * First step towards an OsmoSTP manual
+
+-------------------------------------------------------------------
+Thu Nov 22 18:57:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.30:
+  * SS7: safeguard against wrong number of pointcode component
+
+-------------------------------------------------------------------
+Mon Nov 19 18:30:58 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.29:
+  * Log ip:port for created SS7 server
+  * Make pointcode width function public
+
+-------------------------------------------------------------------
+Sun Nov 18 21:00:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.27:
+  * osmo-stp: add SCCP related VTY commands
+
+-------------------------------------------------------------------
+Fri Nov 09 21:00:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.26:
+  * return error code from xua_srv_conn_cb() if conn is freed
+
+-------------------------------------------------------------------
+Tue Oct 30 21:00:18 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.25:
+  * skip simple-client default as/asp when saving VTY config
+
+-------------------------------------------------------------------
+Sun Oct 21 17:22:54 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.24:
+  * build: move include/{mtp,sccp} to include/osmocom/
+
+-------------------------------------------------------------------
+Thu Sep 27 20:00:19 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.23:
+  * make SCCP timers configurable
+  * sccp_vty: fix doc strings for show ... ssn,connections
+  * cosmetic: allocate ss7->sccp in one common function
+  * vty: install 'show cs7' for sccp addrs on _ve nodes
+  * vty: tweak two printed strings
+  * sccp_vty: define SCCP_STR once
+  * add tests/vty: VTY UI transcript testing
+  * allow less characters for SCCP address book entries
+  * vty: fix 'show asp' from within 'asp' node
+  * drop inaccurate comment from osmo_ss7_vty.c
+  * cosmetic: sccp_scoc.c: fix timers definition units
+
+-------------------------------------------------------------------
+Tue Sep 25 20:00:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.12:
+  * osmo-stp.cfg: Ensure example config is well-formed
+
+-------------------------------------------------------------------
+Sat Sep 15 20:00:18 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.11:
+  * debian: Document why enable-static is used in dh_auto_configure
+
+-------------------------------------------------------------------
+Thu Sep 13 20:00:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.10:
+  * Install sample cfg file to /etc/osmocom
+
+-------------------------------------------------------------------
+Tue Sep 11 20:00:14 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.9:
+  * debian/rules: Remove duplicated override_dh_auto_test section
+  * Install systemd services with autotools
+
+-------------------------------------------------------------------
+Sun Sep 09 20:00:14 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.7:
+  * Revert "Install systemd services with autotools"
+  * Install systemd services with autotools
+
+-------------------------------------------------------------------
+Tue Aug 21 20:00:18 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.5:
+  * ipa_asp_fsm: init: expect IPA ID ACK, not GET
+
+-------------------------------------------------------------------
+Tue Aug 14 20:01:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.4:
+  * xua_rkm: Fix xua_msg memleank in handle_rkey_reg_resp
+  * sscp_scrc: Fix memleak of xua_msg when handing it to scrc_rx_mtp_xfer_ind_xua
+
+-------------------------------------------------------------------
+Mon Aug 06 20:00:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.2:
+  * debian/rules: Don't overwrite .tarball-version
+
+-------------------------------------------------------------------
+Wed Aug 01 20:00:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.1:
+  * Migrate from ipa_ccm_idtag_parse() to ipa_ccm_id_resp_parse()
+
+-------------------------------------------------------------------
+Fri Jul 27 20:00:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.10.0.0:
+  * Bump version: 0.9.0.20-6265-dirty → 0.10.0
+
+-------------------------------------------------------------------
+Wed Jul 25 20:00:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.9.0.20:
+  * git-version-gen: Don't check for .git directory
+
+-------------------------------------------------------------------
+Sat Jul 21 20:00:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.9.0.19:
+  * remove unused -p option from getopt() call in sccp_demo_user
+  * sccp_demo_user: use point code 23 for server and 1 for client
+
+-------------------------------------------------------------------
+Thu Jul 19 20:00:14 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.9.0.17:
+  * comment: explain xua_msg free in m3ua_rx_xfer()
+
+-------------------------------------------------------------------
+Thu Jul 12 20:00:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.9.0.16:
+  * fix two memleaks in ipa_rx_msg_sccp()
+  * add osmo_xua_msg_tall_ctx_init()
+  * cosmetic: sccp2sua.c: log the IEI for parsed SCCP addr
+  * fix memleak in ipa_rx_msg_sccp
+
+-------------------------------------------------------------------
+Mon Jul 02 20:00:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.9.0.12:
+  * debian: Package installed example doc files
+  * build: Install example cfg files
+
+-------------------------------------------------------------------
+Thu Jun 14 20:00:15 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.9.0.10:
+  * rename m3ua_example to sccp_demo_user
+
+-------------------------------------------------------------------
+Wed Jun 13 20:00:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.9.0.9:
+  * make it possible to pass parameters to m3ua_example
+
+-------------------------------------------------------------------
+Fri Jun 08 20:00:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.9.0.8:
+  * Introduce osmo_ss7_register_rx_unknown_cb() for unknown PPID/StreamID
+
+-------------------------------------------------------------------
+Thu Jun 07 10:36:00 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.9.0.7:
+  * fix use after free in osmo_sccp_simple_server_add_clnt()
+
+-------------------------------------------------------------------
+Tue Jun 05 20:00:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.9.0.6:
+  * fix infinite recursion with routing by global title
+
+-------------------------------------------------------------------
+Sat May 26 20:00:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.9.0.5:
+  * osmo_ss7: Register 5000 as default port for IPA/SCCPlite
+
+-------------------------------------------------------------------
+Thu May 17 20:00:44 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.9.0.4:
+  * tests: xua_test: Fix use of wrong buffer for dest addr
+  * tests: xua_test: Fix array len computation
+
+-------------------------------------------------------------------
+Tue May 15 20:00:18 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.9.0.2:
+  * free msgb for primitive allocated in lm_timer_cb() of lm_fsm
+
+-------------------------------------------------------------------
+Tue May 08 20:00:18 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.9.0.1:
+  * debian/control: match build dependency versions with configure.ac
+
+-------------------------------------------------------------------
+Thu May 03 20:00:18 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.9.0.0:
+  * Bump version: 0.8.1.43-7e34-dirty → 0.9.0
+
+-------------------------------------------------------------------
+Tue Apr 17 20:00:19 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.43:
+  * ipa_asp_fsm: Prevent against integer underflow
+  * use osmo_init_logging2
+
+-------------------------------------------------------------------
+Wed Mar 14 21:19:47 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.8.1.41:
+  * add osmo_ss7_route_name()
+  * cosmetic: hmrt_message_for_routing(): use osmo_ss7_route_name()
+  * error log: sccp_scoc.c: log failure to create/resolve conn_id
+  * sccp_types.h: Fix value for SCCP_REFUSAL_UNEQUIPPED_USER
+  * debian/control: Fix Vcs-Browser
+  * build: AC_PROG_LIBTOOL is the same as LT_INIT
+  * SS7: clarify handling of stream opening error
+  * contrib: jenkins.sh: Disable doxygen in libosmocore build
+  * configure: add --enable-werror
+  * jenkins.sh: use --enable-werror configure flag, not CFLAGS
+
+-------------------------------------------------------------------
+Wed Feb 28 20:58:15 UTC 2018 - mardnh@gmx.de
+
+- Don't package libmtp, libsccp and libxua anymore
+  Those libraries are considered legacy these days and are not
+  needed regular osmocom users.
+- Create subpackage for osmo-stp
+- Run spec-cleaner
+- Remove patches:
+  * 0001-build-fixes.patch
+- Add patches:
+  * libosmo-sccp-unbreak-disable-static.patch
+  * libosmo-sccp-use-system-talloc.patch
+
+-------------------------------------------------------------------
+Wed Feb 14 16:32:24 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.8.1.37
+- Rebase patch:
+  * 0001-build-fixes.patch
+
+-------------------------------------------------------------------
+Sat Feb 10 20:14:53 UTC 2018 - mardnh@gmx.de
+
+- Show testsuite.log when tests are failing
+
+-------------------------------------------------------------------
+Wed Jan 24 12:56:38 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.8.1.35
+
+-------------------------------------------------------------------
+Thu Dec 28 00:32:03 UTC 2017 - jengelh@inai.de
+
+- Update to new upstream release 0.8.1
+  * sccp_scrc: fix Network Indicator in SIO composition
+  * osmo_sccp_addr_encode(): Fix truncation of point codes
+
+-------------------------------------------------------------------
+Thu Oct 26 13:05:31 UTC 2017 - dimstar@opensuse.org
+
+- Fix names of shared library packages: the version is 0.7.0.284
+  and the soname contains the entire version. As this results in
+  package rename, we exceptionally obsolete the old/wrong package
+  name in order to facilitate error-free upgrades.
+
+-------------------------------------------------------------------
+Mon Oct  2 23:10:26 UTC 2017 - jengelh@inai.de
+
+- Update to new upstream snapshot 0.7.0.284
+  * vty: add 'asp' / 'local-ip' command
+  * osmo_ss7_vty: fix 'as' / 'routing-key' command
+  * OsmoSTP: Install our default set of signal handlers
+  * Fix SCCP client crash on xUA server (STP) disconnect
+  * vty: hide SG commands when running as ASP
+  * sccp: fix creating of the default route in simple client
+  * sccp: derive local address from given sccp instance
+
+-------------------------------------------------------------------
+Fri Apr 28 22:48:03 UTC 2017 - jengelh@inai.de
+
+- Update to new upstream snapshot 0.7.0.208
+  * Add new 'osmo_ss7' SS7 core code with M3UA, ASP/AS FSM, ...
+  * Add SCCP <-> SUA message transcoding routines
+  * Add tests for xUA code + SCCP/SUA transcoding
+  * Add new SCCP implementation
+  * Add M3UA RKM (routing key management) support, SGW side only
+  * SCCP: Add VTY interface for SCCP
+
+-------------------------------------------------------------------
+Fri Jan 22 18:33:36 UTC 2016 - jengelh@inai.de
+
+- Update to new upstream snapshot 0.7.0.11
+* Add missing OSMO_SCCP_SSN_RANAP for RANAP SSN
+* Properly define SCCP_SAP_USER without random magic number
+* Import SUA (SCCP User Adaptation) and SCCP User SAP
+
+-------------------------------------------------------------------
+Thu Sep 10 21:34:08 UTC 2015 - jengelh@inai.de
+
+- Update to new upstream release 0.7.0
+* sccp: Allow to specify the context of the incoming message
+* mtp: Correct the pointcode mask
+* mtp: Add implementation from cellmgr
+* m3ua: Add the definition of the protocol data header
+* xua: Generalize the m2ua_msg and call it xua_msg
+* XUA: Move m2ua headers to sigtran, create xua_types.h
+  and m3ua_types.h
+* sccp: Create sccp_create_cr and use it in the connection creation
+
+-------------------------------------------------------------------
+Mon Jul 21 08:37:45 UTC 2014 - jengelh@inai.de
+
+- Initial package (version 0.0.6.3) for build.opensuse.org

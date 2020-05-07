@@ -1,0 +1,40 @@
+-------------------------------------------------------------------
+Tue Jul  9 19:41:49 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Remove patches:
+  * 0001-mobile-gsm480_ss.c-fix-build-apply-msgb_wrap_with_TL.patch
+  * 0001-Fix-build-with-latest-libosmocore.patch
+  Recent versions of libosmocore have workarounds for this issues
+
+-------------------------------------------------------------------
+Tue May 28 20:26:53 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Remove patch (fixed by upstream):
+  * 0001-Fix-no-return-in-nonvoid-function-in-bcch_scan.c.patch
+
+-------------------------------------------------------------------
+Tue Nov 20 18:38:39 UTC 2018 - mardnh@gmx.de
+
+- Add patch:
+  * 0001-Fix-build-with-latest-libosmocore.patch
+
+-------------------------------------------------------------------
+Sat Feb 10 14:40:18 UTC 2018 - mardnh@gmx.de
+
+- Specfile cleanup
+
+-------------------------------------------------------------------
+Thu Jan  5 19:04:55 UTC 2017 - mardnh@gmx.de
+
+- Build firmware only on intel plaforms (i586, x86_64)
+
+-------------------------------------------------------------------
+Fri Dec 19 21:47:08 UTC 2014 - mardnh@gmx.de
+
+- specfile cleanup
+
+-------------------------------------------------------------------
+Mon Aug 26 20:06:43 UTC 2013 - mardnh@gmx.de
+
+- initial package written from scratch
+

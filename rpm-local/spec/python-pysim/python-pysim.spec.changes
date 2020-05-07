@@ -1,0 +1,448 @@
+-------------------------------------------------------------------
+Wed Apr 29 20:04:05 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1587983340.ee15c77:
+  * Enable parsing of ISIM Service table (IST)
+  * Extend parsing and printing of Service table to ISIM
+  * Define mapping between ISIM Service Number and its description
+  * Enable parsing of USIM Service table (UST)
+  * Remove redundant functions
+  * Use helper method to print available service in EF.SST
+  * utils.py: Add helper method to parse and print Service Table
+
+-------------------------------------------------------------------
+Mon Apr 27 20:03:58 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1587976909.3e6f16d:
+  * pySim-read.py: Add ability to read Cards with correct CLA, P1 and P2 bytes
+
+-------------------------------------------------------------------
+Sun Apr 19 20:04:10 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1587016515.f9f3e5e:
+  * cards.py: Added method to select ADF by its full AID
+  * Populate AIDs present on the UICC
+
+-------------------------------------------------------------------
+Fri Apr 17 20:04:06 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1587015508.475dcaa:
+  * Define mapping between USIM Service Number and its description
+  * Add ability to parse SIM Service Table (EF.SST)
+
+-------------------------------------------------------------------
+Wed Apr 01 20:04:34 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1585732019.441c4a7:
+  * utils.py: Add helper method to parse Service Table
+  * Define mapping between SIM Service Number and its description
+  * Use the generic method read_binary of card class to read AD
+  * Move parsing of MSISDN to generic Card class
+  * Use the generic method read_binary of card class to read ACC
+  * Move parsing of HPLMNAcT to generic Card class
+  * Move parsing of OPLMNwAcT to generic Card class
+  * Move parsing of PLMNwAcT to generic Card class
+  * Use the generic method read_binary of card class to read PLMNsel
+  * pySim-read.py: Use the method declared in cards.py to read SPN
+  * Use the generic method read_record of card class to read SMSP
+  * Use read_binary function of card class to read GID2 and reduce code duplication
+  * cards.py: Add generic function to read EF record in card class
+  * cards.py: Add generic function to read EF binary to card class
+  * Move parsing of GID2 to generic Card class
+
+-------------------------------------------------------------------
+Sat Mar 28 21:03:52 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1584868625.98a6927:
+  * Move parsing of GID1 to generic Card class
+  * pySim-read.py: Use the method declared in cards.py to read IMSI
+  * pySim-read.py: Use the method declared in cards.py to read ICCID
+
+-------------------------------------------------------------------
+Fri Mar 27 21:07:55 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1584868623.4c306ab:
+  * pySim-read.py: Added a common card detection function for both pySim-prog.py and pySim-read.py
+  * cards.py: Added parsing of all the AIDs in the UICC
+
+-------------------------------------------------------------------
+Fri Mar 13 21:03:20 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1584085485.0e90e6c:
+  * pySim-read.py: support for reading GID2 from SIM
+  * pySim-read.py: support for reading GID1 from SIM
+
+-------------------------------------------------------------------
+Wed Mar 11 21:04:29 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1583926520.d950786:
+  * sysmoISIM-SJA2: Add suport for USIM-only and ISIM-only cards
+  * sysmiISIM-SJA2: add support for new card model / os version
+
+-------------------------------------------------------------------
+Sun Mar 01 21:03:22 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1582744847.9664b2e:
+  * cards: Python 3 fix: use the floor division operator //
+  * commands: Python 3 fix: properly distinguish str and list
+  * transport/pcsc: explicitly specify T0 protocol
+  * transport/pcsc: cosmetic: reuse the existing code of PcscSimLink
+  * utils: fix dec_msisdn(): properly detect international numbers
+
+-------------------------------------------------------------------
+Sat Feb 15 21:04:31 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1581793910.99affe1:
+  * Py2 -> Py3: use the floor division operator // where possible
+  * pySim-read.py: do not import json, it is not needed
+  * pySim-prog.py: add support for MSISDN programming
+  * pySim-read.py: fix reading and parsing of EF.MSISDN
+  * Fix MCC and MCC representation in the output of pySim-read
+  * cards/sysmoUSIM-SJS1: support programming of EF.HPLMNwAcT
+  * cards/sysmoUSIM-SJS1: support programming of ACC bits
+  * cards: fix reading of EF.HPLMNwAcT in Card.update_hplmn_act()
+  * cards: cosmetic/indentation fix: use tabs, not spaces
+  * pySim-prog.py: add presence/length checks for user-provided SPN
+  * pySim-read.py: print meaningful message when SPN is not set
+
+-------------------------------------------------------------------
+Fri Feb 14 21:13:20 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1581695198.a3bb334:
+  * pySim-read.py: fix copy-paste: s/HPLMNAcT/PLMNsel/
+  * Fix compatibility with Python 3: print() is a function
+  * testdata/sysmoUSIM-SJS1.ok: make it match the actual EF.HPLMNAcT
+
+-------------------------------------------------------------------
+Fri Jan 31 21:23:33 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1579602726.e51643e:
+  * Fix file permission
+  * Added feature to program SPN into sysmoUSIM-SJS1 SIM cards
+
+-------------------------------------------------------------------
+Tue Jan 21 21:10:36 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1579600838.f829945:
+  * Added feature to read Service Provider Name (SPN) from the SIM card
+
+-------------------------------------------------------------------
+Thu Jan 09 21:09:43 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1577811762.0ad5bcf:
+  * cards: Add support for sysmo-isim-sja2
+
+-------------------------------------------------------------------
+Tue Dec 31 21:03:54 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1577811762.07cd481:
+  * Fixup: Fix automated tests
+
+-------------------------------------------------------------------
+Mon Dec 23 21:07:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1576845761.cdfdd41:
+  * commands: fix __record_len()
+
+-------------------------------------------------------------------
+Tue Dec 17 21:05:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1576505607.4e72439:
+  * Fix automated tests
+
+-------------------------------------------------------------------
+Tue Nov 12 21:10:10 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1573562182.76db7d7:
+  * Fairwaves-SIM: Add test data
+
+-------------------------------------------------------------------
+Mon Nov 11 21:06:51 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1573466599.5a87631:
+  * cards.py: do not use spaces in card names
+
+-------------------------------------------------------------------
+Mon Oct 07 20:12:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1569674731.8902bcd:
+  * python3 conversion: Use python 2 and 3 compatible exceptions
+
+-------------------------------------------------------------------
+Sat Sep 28 20:07:52 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1568555582.84d2cb3:
+  * python3 conversion: fix tabs and spaces inconsistency
+
+-------------------------------------------------------------------
+Sat Sep 14 20:02:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1568365453.7592eee:
+  * pySim-prog: use functions to derive MCC/MNC from IMSI
+  * cards: use string representation for MNC/MCC
+  * pySim-prog: check if CSV file exists
+  * pySim-prog: use case insensitive CSV headers.
+  * pySim-prog.py: use more expressive error message on CSV read failure
+
+-------------------------------------------------------------------
+Fri Sep 13 20:02:55 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1568280107.c5b422e:
+  * Add support for automatic card handling
+  * pySim-prog: generate a pin_adm from pin_adm_hex also for CSV files
+
+-------------------------------------------------------------------
+Wed Sep 04 20:03:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1567534308.164b963:
+  * Add an option to read the iccid and batch-program the new card data
+  * pySim-prog: Add option for hex ADM keys
+  * pySim-prog: Use CSV format with headers
+  * pySim-prog: Print out hex-escaped pin_adm in card parameters
+
+-------------------------------------------------------------------
+Tue Sep 03 20:09:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1567428163.9f9c609:
+  * pysim-testdate: Add test data for Wavemobile-sim
+
+-------------------------------------------------------------------
+Mon Sep 02 20:07:52 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1567027202.23888da:
+  * make writing SMSP optional
+
+-------------------------------------------------------------------
+Thu Aug 29 20:09:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1567027197.67acdbc:
+  * Make programming OPC optional
+
+-------------------------------------------------------------------
+Fri May 10 20:04:01 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1557501861.35a96ed:
+  * pySim-*.py: print info about selected reader interface
+  * Don't try to parse result if select_file() failed
+  * Use reference array for reading ICCID
+  * utils: add EF [H|O]PLMNwAcT decoding.
+  * import pysim-testdata of automatic testing to this repository
+
+-------------------------------------------------------------------
+Mon Apr 08 20:04:11 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1554129228.6e507a7:
+  * wavemobile-sim: write mnc-length field ine EF.AD
+  * cosmetic: fix sourecode formatting
+  * sysmo-usim-sjs1: update EF.AD with correct MNC length
+
+-------------------------------------------------------------------
+Mon Apr 01 20:03:49 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1553187866.2d15ea0:
+  * cards: sysmo-usim-sjs1: add programming of EF.PLMNsel, EF.PLMNwAcT and EF.OPLMNwAcT
+
+-------------------------------------------------------------------
+Tue Mar 26 21:03:43 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1553185458.91f26d7:
+  * commands: correct case of a TLV tag (A5 => a5)
+
+-------------------------------------------------------------------
+Mon Nov 12 21:03:03 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1540755954.9f9f5a6:
+  * pySim-*.py: add command line option for Calypso reader
+  * pySim-*.py: refactor card reader driver initialization
+  * pySim/transport: introduce Calypso based reader interface
+
+-------------------------------------------------------------------
+Fri Oct 05 20:02:56 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1538738357.4fa8f1c:
+  * pySim-prog: Honor international '+' in SMSC number
+
+-------------------------------------------------------------------
+Wed Sep 26 20:02:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1537978459.0ec1475:
+  * utils: fix encoding/decoding of IMSI value
+
+-------------------------------------------------------------------
+Thu Sep 20 20:02:49 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1536824606.c555e18:
+  * tests: add example test data for Wavemobile-SIM
+
+-------------------------------------------------------------------
+Thu Sep 13 20:03:18 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1536823113.c8ce82a:
+  * cards: Add support for Wavemobile SIM
+
+-------------------------------------------------------------------
+Fri Aug 24 12:16:00 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1535013891.11a2e3c:
+  * tests: add example file for sysmosim-gr1
+
+-------------------------------------------------------------------
+Thu Aug 23 20:02:55 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1535013873.a3de5a3:
+  * cards: do not feed ascii as adm for sysmosim-gr1
+  * cards: autodetect sysmosim-gr1
+
+-------------------------------------------------------------------
+Mon Aug 20 20:02:46 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1534794874.52f59ac:
+  * readme: add 'serial' dep, cosmetically rearrange
+
+-------------------------------------------------------------------
+Wed Jul 25 20:03:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1532544778.fb98dd6:
+  * commands: depend on pytlv only when it is actually needed
+  * readme: add info about dependencies
+
+-------------------------------------------------------------------
+Fri Jul 20 20:02:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1532037060.73a0f04:
+  * add .gitreview
+  * contrib: add jenkins.sh
+
+-------------------------------------------------------------------
+Thu Jul 19 20:02:58 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1531986942.7f34085:
+  * tests: add test program to verify pysim-prog.py (and pysim-read.py)
+  * cards: return SW in method update_plmnsel() of class Card
+  * cosmetic: fix cut and paste error in comment
+
+-------------------------------------------------------------------
+Fri Jul 13 20:02:54 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1531472240.a265049:
+  * pySim-read: read contents of PLMN related files.
+  * pySim-read: Print exception when reading of EF.MSISDN fails
+  * cosmetic: fix excess space in log output (typo)
+  * cards: add update method for EF:PLMNsel to Card class
+
+-------------------------------------------------------------------
+Thu Jul 05 20:04:13 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1530705241.ac9dde6:
+  * pysim-prog: add commandline option to probe cards
+  * commands: get file/record length from FCP (USIM)
+
+-------------------------------------------------------------------
+Tue Jul 03 19:06:22 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1530623824.859e0fd:
+  * __init__: also fetch response bytes for USIMs automatically
+  * csv: fix missing import (broken CSV support)
+
+-------------------------------------------------------------------
+Mon Jun 18 18:30:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1529315036.d4ebb6f:
+  * __init__: allow wildcards in expected SW for send_apdu_checksw()
+
+-------------------------------------------------------------------
+Wed Jun 13 18:47:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1528875053.d982488:
+  * pysim-prog: also allow raw hex adm pins besides numeric ascii
+  * add support for open cells SIM cards
+
+-------------------------------------------------------------------
+Mon Feb 19 16:29:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1518969890.6cbecaa:
+  * transport/serial: Fix serial transport
+
+-------------------------------------------------------------------
+Sat Feb 17 19:12:58 UTC 2018 - mardnh@gmx.de
+
+- Don't use .py suffix for binaries
+
+-------------------------------------------------------------------
+Sat Feb 10 15:39:58 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1516721155.d9d2b94:
+  * Revert "pySim-prog: ADM code can be longer 8 digits, it's implementation specific."
+  * Make derive_milenage_opc and calculate_luhn publicly available through utils.py
+  * cards: Add Fairwaves SIM implementation.
+  * cards: Implement card type autodetection based on ATR.
+  * pySim-prog: Replace magic numbers with a readable EF file name.
+  * pySim-prog: ADM code can be longer 8 digits, it's implementation specific.
+  * cards: Extend Card class with access functions for some of the standard EF files.
+  * Add methods to get ATR for a card or a link.
+  * utils: Fix documentation. 3+3=6 digits equals 3 bytes, not 6
+  * utils: Functions to encode/decode EF SPN.
+  * ts_51_011: A file with MF/DF/EF constants from TS 51 011
+  * Fix comment: Ki -> OPC
+  * utils.py: dec_imsi: Fix ValueError
+  * pySim-prog.py: Fix trailing whitespace
+  * pySim-*.py: Set shebang to use python v2
+  * Support writing SMSP for sysmoUSIM-SJS1
+  * fix writing of ICCID for sysmo-usim-sjs1
+  * Fix select control parameter
+  * cosmetic: missing newlines on last line of 2 files
+  * README.md: Cosmetic/Formatting fixes
+  * Update README with general project information and convert to Markdown
+  * Revert "Do not return the FCI information while selecting a file"
+  * re-program: Instead of specifying the IMSI, read it from the card.
+- Specfile cleanup
+
+-------------------------------------------------------------------
+Sun Jul 31 18:37:09 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1440070376.8c1b33c:
+  * Do not return the FCI information while selecting a file
+
+-------------------------------------------------------------------
+Mon Sep 21 09:17:58 UTC 2015 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1440070376.3e84067:
+  + split parameter writing for CSV and SQL into separate functions
+  + pySim-prog: Add mode where it can re-generate a card from CSV
+  + read_params_csv: Make sure we don't end up in endless loop
+  + Introduce a '--dry-run' option to skip actual card access
+  + Allow changing the class byte for pdu messages
+  + Add PIN-ADM argument to the command line
+  + Add provision support for sysmoUSIM-SJS1 cards
+
+-------------------------------------------------------------------
+Sun Dec  7 16:24:08 UTC 2014 - mardnh@gmx.de
+
+- specfile cleanup
+
+-------------------------------------------------------------------
+Sun Dec 07 16:22:55 UTC 2014 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1387815776.2fc205c:
+  + usim/opc: Add support to write completely random OPC
+  + usim/opc: Derive OPC from KI and OP
+  + cards: Fix comment position
+  + cards: Fix spacing according to PEP
+  + Implement setting of EF.ACC file in GrcardSim and _MagicSimBase
+  + utils: Add functions to decode IMSI and ICCID from EF raw data.
+  + Add an utility to read data from a SIM card.
+  + Move encoder functions for ICCID, IMSI and PLMN to pySim.utils for consistency.
+  + pySim-read: MISDN is not mandatory
+  + cards: sysmocom SysmoSIM-GR2 support added to cards
+
+-------------------------------------------------------------------
+Sat Nov 15 19:25:13 UTC 2014 - mardnh@gmx.de
+
+- run spec-cleaner
+- add python-pyscard to recommends
+
+-------------------------------------------------------------------
+Sun Oct  6 12:50:43 UTC 2013 - mardnh@gmx.de
+
+- initial package
+

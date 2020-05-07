@@ -1,0 +1,13 @@
+-------------------------------------------------------------------
+Wed Jul 10 20:19:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0+git.20190710:
+  * build: Disable some warnings that are just annoying for no reasons
+  * usb: Temporarily mark e1uf_destroy as 'unused'
+  * proto: Fix aliasing error when setting the FD in the CMSG data
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Thu May 16 19:49:15 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Initial package, version 0.0.0+git.20190511

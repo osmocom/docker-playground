@@ -1,0 +1,76 @@
+-------------------------------------------------------------------
+Thu Aug 08 21:54:39 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.1.0:
+  * Bump version: 1.2.0.2-d160-dirty → 1.2.1
+  * debian: Adapt package name to lib's current major version
+
+-------------------------------------------------------------------
+Thu Jul 11 20:01:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.2.0.2:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Mon Sep 17 20:00:55 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.1:
+  * debian/rules: Don't overwrite .tarball-version
+
+-------------------------------------------------------------------
+Thu May 03 20:00:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.0:
+  * configure.ac: Depend on osmo-release.mk
+  * debian/changelog: Set latest release as unstable
+  * configure.ac: Use git-version-gen to set VERSION
+  * Bump version: 1.1.0.5-b1ad-dirty → 1.2.0
+
+-------------------------------------------------------------------
+Thu Apr 26 20:00:46 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.2:
+  * Fix CTRL_ATTR_FAMILY_ID attribute size
+
+-------------------------------------------------------------------
+Wed Mar 14 21:24:58 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.1.0.1:
+  * Provide declaration for struct in_addr
+  * Add Debian packaging information
+  * Add genl_socket_close() function
+  * Add contrib/jenkins.sh for jenkins build verification
+  * Add '--enable-sanitize' from other osmocom projects
+  * gtp_build_payload(): Support absent peer and SGSN address
+  * Use release helper from libosmocore
+  * add 'm4' subdirectory to .gitignore
+  * Tag/Release v1.1.0
+  * Makefile: Build gtp-{link,tunnel} by default, but don't install them
+
+-------------------------------------------------------------------
+Sat Feb 10 19:56:23 UTC 2018 - mardnh@gmx.de
+
+- Show testsuite.log when tests are failing
+
+-------------------------------------------------------------------
+Wed Jan 24 12:49:43 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.1.0.0
+
+-------------------------------------------------------------------
+Thu Dec 28 00:37:51 UTC 2017 - jengelh@inai.de
+
+- Update to new upstream release 1.1.0
+  * gtp: fix missing initialization of netns file descriptor
+  * tools,gtp-genl: gtp-tunnel: fix wrong MS address
+  * tools: gtp-tunnel: restore option parsing
+  * tools: gtp-link: allow to delete links
+  * tools: gtp-link: bind to GTP UDP sockets
+  * Fix look-up of GTP tunnel by TEI
+  * Add support for SGSN role via IFLA_GTP_ROLE
+  * Add support for SGSN role via IFLA_GTP_ROLE
+
+-------------------------------------------------------------------
+Sat Apr 29 00:26:35 UTC 2017 - jengelh@inai.de
+
+- Initial package (version 1.0.1.7) for build.opensuse.org

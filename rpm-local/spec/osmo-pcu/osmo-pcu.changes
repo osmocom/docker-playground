@@ -1,0 +1,1635 @@
+-------------------------------------------------------------------
+Thu Apr 30 20:02:42 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.117:
+  * pdch: Avoid sending GSMTAP_CHANNEL_UNKOWN for rejected UL EGPRS data block
+  * pcu_l1_if: Don't use GSMTAP_CHANNEL_PACCH when sending unknown gsmtap blocks
+
+-------------------------------------------------------------------
+Mon Apr 20 20:03:04 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.115:
+  * TBF/UL: fix rcv_data_block_acknowledged(): print the actual TLLI
+  * sba: fix possible memleak in SBAController::alloc()
+
+-------------------------------------------------------------------
+Fri Apr 17 20:02:48 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.113:
+  * TODO: remove those that have obviously been implemented 5+ years ago
+
+-------------------------------------------------------------------
+Tue Apr 14 20:02:56 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.112:
+  * configure.ac: fix libtool issue  with clang and sanitizer
+
+-------------------------------------------------------------------
+Sat Apr 04 20:02:28 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.111:
+  * l1if: fix pcu_rx_rach_ind(): use proper format string specifiers
+
+-------------------------------------------------------------------
+Mon Mar 30 20:02:32 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.110:
+  * csn1: Remove code block from CSN_NEXT_EXIST_LH
+  * csn1: Properly verify CSN_BITMAP length
+  * csn1: verify enough bits present to decode whole CSN_UINT_ARRAY
+  * csn1: Fix Several typos & whitespace
+  * rlcmac: add dissection of 2G->3G/4G PS handover
+  * rlcmac: support decode FDD_CELL_INFORMATION of "UTRAN FDD Description
+  * Move gsm_rlcmac.cpp -> .c
+  * gsm_rlcmac: Disable unused CSN1 descriptors
+
+-------------------------------------------------------------------
+Sat Mar 28 21:02:38 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.102:
+  * fix: properly include pure C headers from C++ code
+
+-------------------------------------------------------------------
+Fri Mar 27 21:06:31 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.101:
+  * tbf.cpp: Include c++ <new> header required for new operator's replacement type
+  * pdch: cosmetic: use GSM_MI_TYPE_* constants from libosmocore
+  * pdch: fix packet_paging_request(): properly print paging MI
+  * BSSGP: fix: properly encode P-TMSI in RR Paging Request
+  * BSSGP: cosmetic use OSMO_IMSI_BUF_SIZE from libosmocore
+  * Don't check ul_control_block before decoding into it.
+
+-------------------------------------------------------------------
+Thu Mar 26 21:02:50 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.95:
+  * csn1.h: Fix trailing whitespace
+  * gsm_rlcmac.cpp: Avoid declaring variable in for loop
+  * cosmetic: Do not indent header includes inside extern C block
+  * gsm_rlcmac: Use 'struct bitvec' instead of 'bitvec'
+  * pcu_l1_if.cpp: Add missing header ctype.h
+  * rlcmac: Rename field to MS RA Cap2 in Additional_MS_Rad_Access_Cap_t
+
+-------------------------------------------------------------------
+Wed Mar 25 21:03:02 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.89:
+  * cosmetic: rlcmac: Fix comment typo and whitespace introduced recently
+
+-------------------------------------------------------------------
+Mon Mar 23 21:02:36 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.88:
+  * rlcmac: Introduce MS Radio Access Capabilities 2 to fix related spare bits
+  * rlcmac: Log names of de/encoded rlcmac packet types
+  * rlcmac: Fix bug receiving RA cap
+  * csn1: Validate recursive array max size during decoding
+  * rlcmac: Don't pass array element to CSN1 descriptors
+  * tests/RLCMACTest: Several fixes and improvements to RAcap tests
+
+-------------------------------------------------------------------
+Sat Mar 21 21:03:27 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.82:
+  * tests/RLCMACTest: free allocated bitvectors
+
+-------------------------------------------------------------------
+Thu Mar 19 21:02:41 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.81:
+  * csn1.c: Almost all of the logging is DEBUG, not NOTICE
+  * Use downlink BSSGP RA Cap IE
+
+-------------------------------------------------------------------
+Mon Mar 16 21:02:24 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.79:
+  * Use clock_gettime(CLOCK_MONOTONIC) and timespec everywhere
+
+-------------------------------------------------------------------
+Wed Mar 11 21:02:25 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.78:
+  * csn1: fix: do not return 0 if no bits left in the buffer
+  * rlcmac: fix encode_gsm_*(): do not suppress encoding errors
+  * tests/llc: Change unrealistic time jump to avoid runtime error under ARM
+
+-------------------------------------------------------------------
+Sat Mar 07 21:02:18 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.75:
+  * tests/rlcmac: also enable logging for DRLCMACDATA category
+  * gsm_rlcmac: improve dissection of MS RA Capability IE
+  * csn1: fix csnStreamDecoder(): skip bits unhandled by serialize()
+  * tests/rlcmac: add a new test vector for Packet Resource Request
+  * Send UL-CTRL Packet to GSMTAP even if we fail to decode.
+
+-------------------------------------------------------------------
+Mon Mar 02 21:02:16 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.70:
+  * gsm_rlcmac: fix Packet_Resource_Request_t: s/Slot/I_LEVEL_TN/
+  * tests/rlcmac: also verify encoding of MS RA Capability
+  * llc_queue::{dequeue,enqueue}() refactor
+
+-------------------------------------------------------------------
+Wed Feb 19 21:07:16 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.67:
+  * tests/rlcmac: fix malformed MS RA capability in testRAcap()
+
+-------------------------------------------------------------------
+Tue Feb 18 21:04:03 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.66:
+  * gsm_rlcmac: fix misleading LOGP statement in decode_gsm_ra_cap()
+  * csn1: use proper format specifier for unsigned integers
+  * csn1: bitvec_get_uint() may return a negative, use %d
+  * csn1: fix csnStreamDecoder(): update bit_offset in CSN_EXIST{_LH}
+  * csn1: fix csnStreamDecoder(): always keep remaining_bits_len updated
+  * csn1: fix csnStreamDecoder(): do not subtract no_of_bits twice
+  * csn1: get rid of C++ specific code, compile with GCC
+  * tests/rlcmac: additionally match debug output of the CSN.1 codec
+  * csn1: fix existNextElement(): use bitvec_get_bit_pos()
+
+-------------------------------------------------------------------
+Sat Feb 15 21:03:22 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.57:
+  * gsm_rlcmac.cpp: fix global-buffer-overflow error reported by ASAN
+  * gsm_rlcmac.cpp: fix another global-buffer-overflow error reported by ASAN
+
+-------------------------------------------------------------------
+Fri Feb 14 21:07:55 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.55:
+  * gsm_rlcmac: Update : PACKET RESOURCE REQUEST to Release 14.0.0
+
+-------------------------------------------------------------------
+Thu Feb 13 21:03:18 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.54:
+  * tests/rlcmac: mark Packet Polling Request as malformed
+  * csn1: fix csnStreamDecoder(): catch unknown CSN_CHOICE values
+
+-------------------------------------------------------------------
+Tue Feb 11 21:04:35 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.52:
+  * csn1: fix some mistaken CSN.1 error names
+
+-------------------------------------------------------------------
+Mon Feb 10 21:04:29 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.51:
+  * encoding: assert return value of bitvec_set_u64()
+  * tbf: fix NULL pointer dereference in create_[ul|dl]_ass()
+  * tbf: cosmetic: fix spacing in gprs_rlcmac_tbf::create_ul_ass()
+
+-------------------------------------------------------------------
+Sat Feb 08 21:05:29 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.48:
+  * Fix trailing newline mess with LOGP(C) in rlcmac/csn1
+  * pcu_sock: cosmetic: fix typo in a comment message
+  * pcu_sock: fix memleak, allocate pcu_sock_state on stack
+  * VTY: install talloc context introspection commands
+  * VTY: get rid of pcu_vty_go_parent() / pcu_vty_is_config_node()
+
+-------------------------------------------------------------------
+Thu Feb 06 21:04:21 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.43:
+  * csn1: fix csnStreamDecoder(): avoid conditional calls to bitvec_read_field()
+  * rlcmac: Transform a few LOGPC messages to LOGP
+  * Check return code of rlcmac decode/encode functions
+  * rlcmac: Return error code from csn1 encoder/decoder
+
+-------------------------------------------------------------------
+Wed Feb 05 21:04:19 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.39:
+  * csn1.cpp: Rework ProcessError() function to print errors
+
+-------------------------------------------------------------------
+Mon Feb 03 21:06:45 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.38:
+  * cosmetic: csn1.cpp: Fix whitespace
+  * gprs_bssgp_pcu: fixup: fix length check in gprs_bssgp_pcu_rx_dl_ud()
+
+-------------------------------------------------------------------
+Fri Jan 31 21:14:08 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.36:
+  * gprs_bssgp_pcu: fix invalid use of non-static data member 'frame'
+
+-------------------------------------------------------------------
+Wed Jan 29 21:02:42 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.35:
+  * tests/alloc: fix implicit conversion from 'double' to 'int8_t'
+  * encoding: fix log_alert_exit(): do not treat error as format string
+  * gsm_timer: fix comparison of constant LONG_MAX with an integer
+  * gsm_rlcmac: add dissection of NAS container
+  * gsm_rlcmac.cpp: fix an out of bounds access
+  * gsm_rlcmac.cpp: Do not skip too many lines of the CSN_DESCR when the field is missing
+  * gsm_rlcmac.cpp: hanged all M_BIT macros to M_UINT, as M_BIT does not use the referenced hf.
+  * gsm_rlcmac.cpp: Fix trailing whitespace
+  * gsm_rlcmac: Enhance dissection of PSI1
+  * gsm_rlcmac.h: Remove Uplink messages from the RlcMacDownlink_t structure
+  * gsm_rlcmac.h: Make sure we have a corresponding 'u' member to RlcMacDownlink_t for every call
+  * gsm_rlcmac.h: #if 0 unused stuff
+  * csn1: fix this statement may fall through [-Werror=implicit-fallthrough=] found by gcc7
+  * csn1: Drop format_p union from CSN_DESCR
+  * csn1: Try to fix cast discards '__attribute__((const))' qualifier from pointer target type
+  * csn1: Don't cast away constness
+  * csn1: Fix warning with -Wmissing-prototypes
+  * csn1: Fix an infinite loop in CSN.1 dissector when having more than 255 padding bits
+  * csn1: Fix pedantic compiler warnings in csn.1 dissectors
+  * csn1: Allow CHOICE elements to re-process the bits used for the choice
+  * csn1: Extend CSN_SERIALIZE to allow 0 bit of length
+  * csn1: shuffle decrements of remaining_bits_len
+  * csn1: packet-csn1.c:179: warning: 'pui8' may be used uninitialized in this function
+  * csn1: Update M_NULL CSN_DESCR to match wireshark
+  * tests/rlcmac: Add test to showcase that decode_gsm_ra_cap() fails
+
+-------------------------------------------------------------------
+Sat Jan 25 21:07:53 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.10:
+  * tests/rlcmac: Don't check stderr output
+  * tests/rlcmac: Use osmo_hexdump to print buffers
+  * tests/rlcmac: Fix missing commas with unexpected results
+  * tests/rlcmac: Memzero decoded struct
+
+-------------------------------------------------------------------
+Fri Jan 24 21:11:49 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.6:
+  * tests/rlcmac: print test name at the start
+
+-------------------------------------------------------------------
+Wed Jan 15 21:09:26 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.5:
+  * pcu_l1_if.cpp: fix NULL-pointer dereference in imsi2paging_group()
+
+-------------------------------------------------------------------
+Mon Jan 06 21:05:20 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.4:
+  * Support PAGING-CS and PAGING-PS on on PTP-BVCI
+  * Support Gb PAGING-CS
+  * Allow Gb PAGING-PS without P-TMSI
+  * Pass paging group instead of imsi where later is not needed
+
+-------------------------------------------------------------------
+Fri Jan 03 21:07:07 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.8.0.0:
+  * Bump version: 0.7.0.62-fbfa-dirty → 0.8.0
+
+-------------------------------------------------------------------
+Wed Jan 01 21:05:41 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.7.0.62:
+  * Split identity_lv param into mi+mi_len
+  * Log BVCI PTP value upon msg recv
+  * fix typo in log message
+
+-------------------------------------------------------------------
+Mon Dec 16 21:04:48 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.59:
+  * Fix trailing whitespace
+
+-------------------------------------------------------------------
+Tue Dec 10 21:07:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.58:
+  * prs_bssgp_pcu.cpp: Mark priv funcs as static and remove trailing whitespace
+
+-------------------------------------------------------------------
+Mon Dec 09 21:06:57 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.57:
+  * pcu_l1_if: Check pag_req id_lv len fits buffer
+
+-------------------------------------------------------------------
+Wed Dec 04 21:02:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.56:
+  * tbf_dl.cpp: Fix typo in log line
+
+-------------------------------------------------------------------
+Mon Dec 02 21:04:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.55:
+  * Remove dash from name used in VTY cmd prompt
+
+-------------------------------------------------------------------
+Sun Dec 01 21:04:53 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.54:
+  * manual: Add missing documentation for '-i' command line option
+  * manual: Fix documentation missing "-D" command line option
+  * manual: Fix copy+paste error
+
+-------------------------------------------------------------------
+Sat Nov 30 21:09:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.51:
+  * VTY: cosmetic: use osmo_talloc_replace_string()
+  * VTY: add warning about changing PCU socket path at run-time
+  * Clarify (M)CS related VTY attributes
+
+-------------------------------------------------------------------
+Thu Nov 28 21:13:53 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.48:
+  * doc: vty: Update osmo-pcu_vty_reference.xml
+
+-------------------------------------------------------------------
+Sat Nov 23 21:05:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.47:
+  * PTCCH: properly handle RACH.ind for PCU_IF_SAPI_PTCCH
+  * pcuif_proto.h: extend RACH.ind with TRX / TS numbers
+  * PTCCH: properly handle RTS.req for PCU_IF_SAPI_PTCCH
+  * PTCCH: implement basic message codec and API
+
+-------------------------------------------------------------------
+Sun Nov 10 21:04:57 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.43:
+  * gprs_bssgp_destroy(): fix memleak and NULL-pointer dereference
+
+-------------------------------------------------------------------
+Fri Nov 08 21:08:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.42:
+  * GprsMs::update_cs_ul(): clarify the meaning of old_link_qual
+  * tests/tbf: suspend warnings about the link quality measurements
+  * BSSGP: properly print BVCI for signalling messages (BVCI=0)
+  * BSSGP: do not reject SUSPEND ACK / NACK messages
+
+-------------------------------------------------------------------
+Mon Oct 21 20:02:25 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.38:
+  * Fix assertion hit upon CCCH Paging Request
+
+-------------------------------------------------------------------
+Thu Oct 10 20:02:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.37:
+  * encoding: fix space, tabs
+  * VTY: fix command 'show tbf all': properly filter TBFs
+  * VTY: refactor pcu_vty_show_ms_all(): use show_ms()
+
+-------------------------------------------------------------------
+Mon Oct 07 20:08:20 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.34:
+  * pcu_l1_if.cpp: Replace value 23 with libosmocore's GSM_MACBLOCK_LEN
+  * pcu_l1_if.cpp: Imm Assign PCH: clarify size of different items
+  * pcu_l1_if.cpp: Drop unneeded byte in Imm Ass PCH buffer
+  * pcu_l1_if.cpp: Fix GSMTAP Imm Assign PCH wrong encoding
+
+-------------------------------------------------------------------
+Fri Oct 04 20:02:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.30:
+  * Log AGCH and PCH blocks using GSMTAP
+  * Log RACH Requests using GSMTAP
+
+-------------------------------------------------------------------
+Fri Sep 27 20:03:34 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.28:
+  * vty: Fix osmo_tdef timers not listed in write config
+  * tbf_dl.cpp: Remove dup call to tbf_update_ms_class() in state GPRS_RLCMAC_WAIT_RELEASE
+  * tbf_dl: Setup m_llc_timer in constructor using osmocom API
+  * Move tbf_{dl,ul} child constructors to respective .cpp files
+
+-------------------------------------------------------------------
+Thu Sep 26 20:02:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.24:
+  * Move out tbf subclasses from tbf.h to their own headers
+  * cosmetic: fix whitespace
+  * pdch.cpp: Use pcu_l1_meas previously filled by lower layers
+  * pdch.cpp: Refactor bitvec param passing in rcv_control_block
+
+-------------------------------------------------------------------
+Thu Sep 19 20:15:00 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.20:
+  * configure.ac: set C and C++ dialects
+
+-------------------------------------------------------------------
+Wed Sep 18 20:06:48 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.19:
+  * tests/app_info: fix compiling with older g++
+
+-------------------------------------------------------------------
+Tue Sep 17 20:03:08 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.18:
+  * Use osmo_tdef to implement dl-tbf-idle-time
+  * Use osmo_tdef to implement ms-idle-time
+
+-------------------------------------------------------------------
+Mon Sep 16 20:04:04 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.16:
+  * tests: TbfTest: Unify stderr and stdout to ease debugging
+  * Use osmo_tdef to implement T3190
+  * Use osmo_tdef for BSSGP T1 and T2
+
+-------------------------------------------------------------------
+Sat Sep 14 20:01:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.13:
+  * Forward ETWS Primary Notification to MS
+
+-------------------------------------------------------------------
+Fri Sep 13 20:02:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.12:
+  * bts.cpp: Fix osmo_tdef initialization on older g++ compilers
+  * tbf_dl: add comments to the scheduler
+  * Introduce osmo_tdef infra and timer VTY commands
+  * tbf_dl: make preemptive retransmission optional
+  * doc: update generated VTY reference
+
+-------------------------------------------------------------------
+Fri Sep 06 20:02:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.7:
+  * Use proper API osmo_timer_setup() to set up timer struct
+  * cosmetic: tbf: Rename T and N arrays
+
+-------------------------------------------------------------------
+Tue Aug 27 20:04:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.5:
+  * osmobts_sock.cpp: do not print the same debug message twice
+  * osmobts_sock.cpp: pcu_sock_read(): further simplify the code
+  * osmobts_sock.cpp: pcu_sock_read(): use stack buffer, not heap
+  * osmobts_sock.cpp: pcu_sock_cb(): use libosmocore's socket API
+
+-------------------------------------------------------------------
+Mon Aug 12 20:09:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.1:
+  * tests: test encoding of egprs ul ack/nacks
+
+-------------------------------------------------------------------
+Thu Aug 08 21:56:34 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.0:
+  * Bump version: 0.6.0.88-3bcc → 0.7.0
+  * Require newer libosmocore to avoid compile failures
+  * Remove undefined param passed to {logging,osmo_stats}_vty_add_cmds
+
+-------------------------------------------------------------------
+Thu Jul 25 20:31:46 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.86:
+  * gprs_bssgp_pcu_rx_dl_ud(): use OSMO_IMSI_BUF_SIZE
+  * gprs_bssgp_pcu.cpp: check return code of gsm48_mi_to_string()
+  * gprs_bssgp_pcu_rx_dl_ud(): fix: BSSGP_IE_IMSI is optional
+
+-------------------------------------------------------------------
+Wed Jul 24 20:21:15 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.83:
+  * ubsan: fix shift
+
+-------------------------------------------------------------------
+Sun Jul 21 20:04:29 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.82:
+  * bssgp: Fix dead code: PDUT_STATUS can never reach this part
+
+-------------------------------------------------------------------
+Wed Jul 17 19:06:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.81:
+  * fix spelling errors detected by lintian
+
+-------------------------------------------------------------------
+Tue Jul 16 20:04:46 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.80:
+  * Use libosmocore for IMSI parsing
+  * src/pcu_l1_if.cpp: fix: properly pass measurements from PCUIF
+
+-------------------------------------------------------------------
+Sun Jul 14 20:08:05 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.78:
+  * Encoding: ACK/NACK: always encode with length field present
+
+-------------------------------------------------------------------
+Thu Jul 11 20:14:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.77:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+  * Encoding: use uint16_t when interacting with the window object
+  * bts.cpp: ensure left-shift operation does not exceed uint32_t
+  * Encoding: write_packet_ack_nack_desc_egprs: don't use a reference for rest_bits
+
+-------------------------------------------------------------------
+Mon Jun 24 20:11:04 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.73:
+  * decompress_crbb: add length argument for search_runlen
+  * Encoding: drop struct gprs_rlcmac_bts* from all functions
+  * rlc: replace int with uint16_t
+  * Cosmetic: Osmcoom -> Osmocom
+
+-------------------------------------------------------------------
+Sat Jun 22 20:12:53 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.69:
+  * tests/BitcompTest: fix wording in log message
+
+-------------------------------------------------------------------
+Wed Jun 19 20:24:31 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.68:
+  * manuals: Update VTY documentation
+  * manuals: Add script to regenerate vty/counter documentation
+
+-------------------------------------------------------------------
+Tue Jun 18 20:10:31 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.66:
+  * egprs_rlc_compression: fix white spaces
+  * encoding: use `/* */` for comments instead of `#if 0 #endif`
+
+-------------------------------------------------------------------
+Fri Jun 14 20:11:00 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.64:
+  * encoding: correct encoding of CRBB in ACK/NACK when not byte aligned
+
+-------------------------------------------------------------------
+Thu Jun 13 20:10:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.63:
+  * gprs_bssgp_pcu: explicit allocate & initialize bssgp_nsi instance
+
+-------------------------------------------------------------------
+Fri May 31 20:02:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.62:
+  * debian: create -doc subpackage with pdf manuals
+
+-------------------------------------------------------------------
+Sun May 26 20:02:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.61:
+  * gprs_bssgp_pcu: make gprs_bssgp_ns_cb public
+
+-------------------------------------------------------------------
+Thu Apr 11 20:02:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.60:
+  * Add test for MS mode and (M)CS settings
+
+-------------------------------------------------------------------
+Mon Apr 08 20:02:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.59:
+  * Fix help message formatting of osmo-pcu.
+  * cosmetic: use const pointer for bts_data
+  * Update MCS selection for retransmission
+  * vty: add commands to show TBF of a certain kind
+
+-------------------------------------------------------------------
+Thu Mar 28 21:02:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.55:
+  * TS alloc: expand tests log
+
+-------------------------------------------------------------------
+Wed Mar 27 21:03:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.54:
+  * jenkins.sh: Add oc2g build support
+  * oc2g: Change log type (Litecell15->Oc2g)
+  * oc2g: Remove custom alarms
+  * OC-2G: Always use positive TA information provided in PH-RA-IND
+  * OC-2G: Fix TA adjustment
+  * OC-2G: Fix missing header
+  * Initial commit for OC-2G support.
+  * Update IA Rest Octets encoding
+  * TBF-DL: cosmetic update for helper routines
+  * TBF: update MCS counters
+  * Use Timing Advance Index in UL assignments
+  * Rewrite Packet Uplink IA Rest Octets for SBA
+  * Rewrite Packet Uplink IA Rest Octets for MBA
+  * Fix Channel Coding Command for MCS
+  * MCS: add Channel Coding Command encoder
+  * gprs_debug: Use named initializers and explicit array indicies
+  * Forward GPRS SUSPEND REQ from BTS to SGSN using BSSGP
+  * pcu_l1_if: Fix erroneous endian-swapping of the CellID
+  * MCS: add mcs_is_*() helpers
+
+-------------------------------------------------------------------
+Tue Mar 26 21:02:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.35:
+  * Include pdch.h in bts.h even if we're not compiling C++
+
+-------------------------------------------------------------------
+Mon Mar 25 21:02:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.34:
+  * MCS: move Mode enum outside of class definition
+
+-------------------------------------------------------------------
+Thu Mar 21 21:02:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.33:
+  * Fix TA index encoder
+  * TBF-DL: log MCS as string
+  * MCS: use value_string for conversion
+  * MCS: move HeaderType enum outside of class definition
+
+-------------------------------------------------------------------
+Tue Mar 19 21:02:46 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.29:
+  * Explicitly clean up BTS singleton
+  * MS store: move test helper to unit test
+  * tests: use -no-install libtool flag to avoid ./lt-* scripts
+
+-------------------------------------------------------------------
+Thu Mar 14 21:02:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.26:
+  * Use unique NSEI/BVCI/NSVCI in TBF tests
+  * Debian: bump copyright year
+
+-------------------------------------------------------------------
+Wed Mar 13 21:12:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.24:
+  * MCS: remove unused function
+  * Make get_retx_mcs() into regular function
+  * MCS: move Coding Scheme enum outside of class definition
+
+-------------------------------------------------------------------
+Mon Mar 11 21:02:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.21:
+  * encoding: Fixes TMSI vs MI bit selection in repeated page info
+
+-------------------------------------------------------------------
+Thu Mar 07 21:02:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.20:
+  * Log (M)CS UL update errors
+  * Enable LGLOBAL logging for TBF tests
+
+-------------------------------------------------------------------
+Wed Mar 06 21:03:05 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.18:
+  * Tighten lqual table limits check
+  * Use msgb_eq_data_print() in tests
+
+-------------------------------------------------------------------
+Tue Mar 05 21:03:46 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.16:
+  * EDGE tests: remove no-op check
+
+-------------------------------------------------------------------
+Mon Mar 04 21:02:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.15:
+  * MCS: remove dead code
+
+-------------------------------------------------------------------
+Wed Feb 27 21:02:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.14:
+  * EDGE tests: reduce code duplication
+  * MCS: internalize 'family' parameter
+
+-------------------------------------------------------------------
+Tue Feb 26 21:02:33 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.12:
+  * Optionally Use the NS Sub-Network-Service (SNS) on Gb
+  * Rewrite EGPRS Packet Uplink IA Rest Octets for SBA
+  * Mark gprs_ns_reconnect() as static (not used outside of C file)
+  * Rewrite EGPRS Packet Uplink IA Rest Octets for MBA
+  * Rewrite Packet Downlink Assignment
+
+-------------------------------------------------------------------
+Sat Feb 23 21:02:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.7:
+  * Restructure IA Rest Octets encoders
+
+-------------------------------------------------------------------
+Thu Feb 21 21:02:25 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.6:
+  * Clarify write_immediate_assignment() signature
+  * Add encoding tests for Immediate Assignment
+  * Add define for dummy burst string
+  * Move C include to proper place
+
+-------------------------------------------------------------------
+Sun Feb 17 21:02:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.2:
+  * Don't install pcuif_proto.h header
+
+-------------------------------------------------------------------
+Wed Jan 30 21:01:59 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.1:
+  * Added support for daemonize to osmo-pcu.
+
+-------------------------------------------------------------------
+Mon Jan 21 21:02:11 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.0.0:
+  * Bump version: 0.5.1.38-5b52 → 0.6.0
+
+-------------------------------------------------------------------
+Thu Dec 06 21:02:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.38:
+  * contrib: fix makedistcheck with disabled systemd
+
+-------------------------------------------------------------------
+Wed Dec 05 21:02:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.37:
+  * contrib/jenkins.sh: build and publish manuals
+
+-------------------------------------------------------------------
+Tue Dec 04 21:02:21 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.36:
+  * Fix DISTCHECK_CONFIGURE_FLAGS override
+
+-------------------------------------------------------------------
+Tue Nov 27 21:02:10 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.35:
+  * build manuals moved here from osmo-gsm-manuals.git
+  * Change OpenBSC mentions to OsmoBSC where applicable
+  * vty-ref: Update URI of docbook 5.0 schema
+  * OsmoPCU: add rate counter documentation
+  * refactor Makefile build rules, don't use the FORCE
+  * Allow easily disabling GFDL references
+  * configuration: fixing typos
+  * fix 'make clean': shell glob, ignore failure
+  * add 'make check' target
+  * make clean: also remove generated image files
+  * fix various typos across all manuals
+  * gb/NS: Clarify the language regarding the UDP port numbers / socket
+  * consistently use '3GPP TS' not sometimes 3GPP TS and sometimes TS.
+  * gb: Some language improvements, formatting changes
+  * Gb: Various spelling fixes
+  * Gb message sequence chart: Add notion of PCU unix domain socket
+  * Gb message sequence chart: flip sides (SGSN should be right)
+  * OsmoPCU: add MSC chart
+  * OsmoPCU: expand BSSGP documentation
+  * OsmoPCU: expand NS documentation
+  * OsmoPCU: fix Gb documentation front page
+  * Initial place-holder for the new Gb/IP interface documentation
+  * Add link to Asciidoc source code of manual
+  * initial checkin of manuals to public repo
+
+-------------------------------------------------------------------
+Sun Nov 18 21:02:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.9:
+  * deb: add missing copyright file
+
+-------------------------------------------------------------------
+Sun Oct 21 17:24:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.8:
+  * gprs_rlcmac_received_lost(): Fix regression / uninitialized now_tv
+
+-------------------------------------------------------------------
+Wed Sep 26 20:02:01 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.7:
+  * check for overlong unix socket paths
+
+-------------------------------------------------------------------
+Thu Sep 13 20:02:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.6:
+  * Install osmo-pcu.cfg to docdir/examples
+  * Move examples/ to doc/examples/
+  * Install systemd services with autotools
+
+-------------------------------------------------------------------
+Mon Sep 10 20:02:13 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.3:
+  * configure.ac: Set CXXFLAGS during --enable-sanitize
+
+-------------------------------------------------------------------
+Fri Sep 07 20:02:04 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.2:
+  * Cleanup of systemd service files
+
+-------------------------------------------------------------------
+Mon Aug 06 20:02:21 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.1:
+  * debian/rules: Don't overwrite .tarball-version
+
+-------------------------------------------------------------------
+Sat Jul 28 20:02:00 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.0:
+  * Bump version: 0.5.0.11-218e-dirty → 0.5.1
+
+-------------------------------------------------------------------
+Thu Jul 12 20:02:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.11:
+  * tbf: Replace '.' in counter names with ':'
+  * tbf: Use incrementing id for rate_ctr_group_alloc
+
+-------------------------------------------------------------------
+Mon Jun 25 20:02:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.9:
+  * check bssgp_tlv_parse() return code in gprs_bssgp_pcu_rcvmsg()
+
+-------------------------------------------------------------------
+Thu Jun 21 20:01:56 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.8:
+  * jenkins.sh: use flag --enable-werror for sysmo and none
+
+-------------------------------------------------------------------
+Tue Jun 05 20:02:41 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.7:
+  * change log level of "DL packet loss" log messages
+
+-------------------------------------------------------------------
+Fri Jun 01 20:02:19 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.6:
+  * fix time-delta calculations for measurement reports
+
+-------------------------------------------------------------------
+Fri May 25 20:02:19 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.5:
+  * fix a one-byte stack buffer overrun in osmo-pcu
+  * read monotonic clock with clock_gettime() instead of gettimeofday()
+
+-------------------------------------------------------------------
+Thu May 17 20:03:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.3:
+  * tbf: Fix memset(0) on object with no trivial copy-assignment
+  * rlc: Fix memset(0) on object with no trivial copy-assignment
+
+-------------------------------------------------------------------
+Tue May 15 20:02:33 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.1:
+  * Don't register SIGHUP handler without actually handling SIGHUP
+
+-------------------------------------------------------------------
+Thu May 03 20:02:41 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.0.0:
+  * improve documentation of Encoding::write_paging_request()
+  * Bump version: 0.4.0.115-513c-dirty → 0.5.0
+
+-------------------------------------------------------------------
+Thu Apr 12 21:46:58 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.114:
+  * tbf: add frame number to log output
+
+-------------------------------------------------------------------
+Wed Apr 11 20:02:12 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.113:
+  * cosmetic: remove runaway semicolon
+  * pcu_l1_if: add frame number to log output
+
+-------------------------------------------------------------------
+Sat Apr 07 18:52:53 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.111:
+  * mslot_class: find_free_tfi(): use uint32_t to shift 1 << 31
+  * mslot_class: two more: use uint32_t to shift 1 << 31
+  * Revert "Use Timing Advance Index in UL assignments"
+  * Revert "Rewrite Packet Uplink Assignment"
+  * Revert "Rewrite Packet Downlink Assignment"
+  * configure: fix --enable-sysmocom-dsp and --with-sysmobts flags
+  * configure: properly quote CFLAGS in lc15 check
+  * Revert "Rewrite EGPRS Packet Uplink Assignment"
+  * use osmo_init_logging2() with proper talloc ctx
+
+-------------------------------------------------------------------
+Sat Mar 17 12:12:36 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.102:
+  * gprs_bssgp_pcu.cpp: Comment unused function parse_ra_cap
+
+-------------------------------------------------------------------
+Wed Mar 14 21:32:11 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.0.101:
+  * Move PDCH-related functions into separate files
+  * Simplify TS alloc: don't use PDCH for free TFI
+  * Simplify TS alloc: constify max dl slot func
+  * TBF: make network counters internal
+  * Simplify TS alloc: move slot assignment
+  * Simplify TS alloc: move slot check into functions
+  * pcuif_proto.h: fix whitespaces and indention
+  * pcuif_proto: add version 8 features
+  * implement support for 3-digit MNC with leading zeros
+  * configure: add --enable-werror
+
+-------------------------------------------------------------------
+Fri Feb 16 17:39:15 UTC 2018 - mardnh@gmx.de
+
+- Use use the systemd service file from contrib/
+
+-------------------------------------------------------------------
+Wed Feb 14 16:30:49 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.4.0.82
+
+-------------------------------------------------------------------
+Sat Feb 10 20:50:01 UTC 2018 - mardnh@gmx.de
+
+- Show testsuite.log when tests are failing
+
+-------------------------------------------------------------------
+Sat Feb 10 16:09:30 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.4.0.81
+
+-------------------------------------------------------------------
+Wed Jan 24 13:13:01 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.4.0.60
+
+-------------------------------------------------------------------
+Fri Dec 29 12:18:40 UTC 2017 - jengelh@inai.de
+
+- %service_* already takes care of restart/removal
+
+-------------------------------------------------------------------
+Wed Dec 27 21:19:47 UTC 2017 - mardnh@gmx.de
+
+- Update to new upstream release 0.4.0
+  * No changelog was provided
+- Specfile cleanup
+
+-------------------------------------------------------------------
+Wed Mar 29 18:47:54 UTC 2017 - mardnh@gmx.de
+
+- Update to version 0.2.11.git1490567068.e6d26ec:
+  * tests: include headers from include/
+  * jenkins: add value_string termination check
+  * Update README file with general project info and use Markdown
+  * Support sending OML Alerts via BTS
+  * cosmetic: BitcompTest: make readable
+  * bitcomp test: fix: only one hexdump per log; use printf
+  * bitcomp test: fix: also verify bits after decoded data
+  * bitcomp test: use expected rc instead of 'verify' flag
+
+-------------------------------------------------------------------
+Mon Mar 13 11:33:07 UTC 2017 - mardnh@gmx.de
+
+- Update to version 0.2.11.git1489404314.5dd8d1b:
+  * logging: use central filter and ctx consts from libosmocore
+  * gprs_debug.h: remove unused cruft / cosmetic tweaks
+  * logging fixup: shorter names for LOGGING_FILTER_* and LOGGING_CTX_*
+  * BTS: Convert relative frame numbers to absolute frame numbers
+  * Add pkg-config file
+  * bts.cpp: Fix overloading ambiguity
+
+-------------------------------------------------------------------
+Wed Feb 15 09:20:45 UTC 2017 - mardnh@gmx.de
+
+- Update to version 0.2.11.git1487071257.b609190:
+  * Log socket path on connection
+  * Log additional info for radio errors
+  * Add compression support in EGPRS PUAN
+  * Add test case for testing PUAN
+  * Handle packet access reject during packet resource request
+  * BTS: accept also relative frame numbers with rach requst
+  * cosmetic: Fix log output
+  * Fix dozens of compiler warnings across the board
+  * tests: edge, tbf: assert return values
+  * main, tests: use msgb_talloc_ctx_init() (new)
+  * dl tbf: calculate CPS only for EGPRS
+  * dl tbf: initialize punct values and verify
+
+-------------------------------------------------------------------
+Fri Jan 06 20:32:09 UTC 2017 - mardnh@gmx.de
+
+- Update to version 0.2.11.git1483710844.b78a4a6:
+  * fix segfault: check for NULL tbf in sched_select_ctrl_msg()
+
+-------------------------------------------------------------------
+Fri Jan 06 12:27:57 UTC 2017 - mardnh@gmx.de
+
+- Update to version 0.2.11.git1483698967.06bdb35:
+  * Improve logging
+  * Array indexing for SPB counters in bts statistics.
+  * Refactoring write_packet_ack_nack_desc_egprs to prepare for CRBB support
+
+-------------------------------------------------------------------
+Sun Dec 25 20:33:49 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.2.11.git1482415783.ee78bf0:
+  * build: be robust against install-sh files above the root dir
+  * configure: check for pkg-config presence
+  * build: add -Wall
+  * EGPRS: Add EPDAN CRBB Tree based decoding
+  * tbf: add llc_queue_size() to check llc_queue is valid before calling size()
+  * llc: remove NULL-pointer check of gprs_llc_queue::size()/octets()
+  * Revert "tbf: Add state WAIT_ASSIGN"
+  * Use qbit-TA to update Timing Advance
+  * jenkins.sh: use osmo-build-dep.sh, output testlogs
+  * Add logging support
+  * EGPRS: add test case to show EPDAN BSN out of window bug
+  * Modify return type of gprs_rlc_dl_window::distance to uint16_t
+  * EGPRS: fix for EPDAN out of window
+  * Handle Timing Advance IE properly
+  * Handle Immediate assignment reject
+  * Handle packet access reject during EPDAN/PDAN with channel description
+  * Add BTS level counters
+  * pcu_l1_if: get rid of magic numbers and use ARRAY_SIZE() for array iteration
+  * Fix GSMTAP logging in case direct PHY access is enabled
+  * Install the pcuif_proto.h header file
+  * Add new BTS level counters
+  * debian: fix: add pcuif_proto.h to osmo-pcu.install
+  * Add debugging log for RLC data block decoding
+  * Sanitizer build fix for TbfTest
+  * Add statistics in the ms and tbf level.
+  * struct pcu_l1_meas_ts: initialize ms_i_level
+  * Fix uninitialized members in pcu_l1_meas()
+  * Add counter at BTS level And statistics at TBF/MS level.
+  * Adds rate_ctr_init in the startup of osmo-pcu
+
+-------------------------------------------------------------------
+Sun Oct 02 09:28:52 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.2.11.git1474520801.fd9e16c:
+  * Remove unused definitions
+  * Cleanup readme
+  * Remove useless ARFCN parameter
+  * Properly set TA_VALID bit
+  * Add data structure for SPB in EGPRS UL
+  * Add support for SPB handling for EGPRS UL TBF
+  * Extend BTS <-> PCU protocol with measurement
+  * LC: fix build error
+  * jenkins.sh: ensure $MAKE is set
+  * jenkins.sh: use absolute paths instead of 'cd ..' and $PWD
+  * jenkins.sh: more quotes, cosmetics, less dup
+  * jenkins.sh: change build matrix to $with_dsp and $with_vty
+  * jenkins.sh: drop compat with old matrix params
+  * Remove warning while using 'egprs only' command in VTY
+  * Add data structure to handle SPB for EGPRS DL
+  * Modify EGPRS DL TBF flow to support SPB
+  * EGPRS: PUAN encoding: add test case to show wrong urbb_len issue
+  * Fix EGPRS PUAN encoding: use correct urbb_len
+  * Change interface in osmo-pcu for 11 bit RACH
+  * vty: use OSMO_VTY_PORT_PCU instead of number
+  * TBF flow: Coverity fix
+  * TBF flow: unit test compilation error fix
+  * DL: add test case to show wrong window size
+  * GPRS: PUAN encoding: add test case to show wrong BSNs status
+  * Fix GPRS PUAN encoding: wrong BSN status
+  * LC15: Change TRX numbering for the latest Litecell15 hardware
+  * Fix Timing Advance handling
+  * TBF flow: unit test compilation error fix
+  * CSN1 decoding: add test to show bug in CSN_LEFT_ALIGNED_VAR_BMP
+  * Fix CSN1 decoding: CSN_LEFT_ALIGNED_VAR_BMP bounds
+  * DL TS allocation: add test case to show TS allocation bug for 2nd DL TBF
+  * EGPRS: add test case to show LI decoding bug
+  * EGPRS: Fix issue with row 4 of Table 10.4.14a.1 of 44.060 version 7.27.0 Release 7
+  * tbf_dl: factor out EGPRS DL window size calculation
+  * Fix EGPRS DL window calculation during tbf update
+  * Handle EGPRS 11 bit RACH in osmo-pcu
+  * Update the function immediate assignment for EGPRS
+  * heed VTY 'line vty'/'bind' command
+
+-------------------------------------------------------------------
+Sun Jul 17 18:50:57 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.2.11.git1468479379.df69809:
+  * rlc: Dump RLC data for debugging
+  * edge: Move the GPRS UL Ack/Nack encoding into a separate function
+  * rlc: Use a pointer instead of repeated selector chains
+  * edge: Support EGPRS uplink Ack/Nack messages
+  * rlc: Add and use mod_sns(bsn) method
+  * rlc/edge: Consistently use uint16_t for BSNs and SSNs
+  * rlc: Add constructor to window classes
+  * rlc: Make WS and SNS variable
+  * edge: Move EGPRS setup from setup_tbf to tbf_alloc_ul_tbf
+  * edge: Set the EGPRS window parameters
+  * sched: Assert that the generated message is not empty
+  * encoding: Add bitvec based write_packet_uplink_ack
+  * tbf: Use bitvec based write_packet_uplink_ack
+  * encoding: Remove RlcMacDownlink_t based write_packet_uplink_ack
+  * edge/test: Rename test_rlc_decoder to test_rlc_unit_decoder
+  * tbf: Replace static casts by calls to as_ul_tbf/as_dl_tbf
+  * tbf/vty: Move tbf_print_vty_info to pcu_vty_functions.cpp
+  * tbf: Use LListHead instead of llist_pods
+  * edge: Add max_mcs_ul and max_mcs_dl config
+  * edge: Add methods and operators to GprsCodingScheme
+  * edge: Add initial_mcs_dl and initial_mcs_ul config values
+  * edge: Replace integer cs by GprsCodingScheme
+  * edge: Show current mode in VTY
+  * edge: Support EGPRS in write_packet_downlink_assignment
+  * tbf: Remove bogus gprs_rlcmac_dl_tbf::enable_egprs
+  * edge: Enable EGPRS in downlink TBFs
+  * edge: Add work-around to get DL EGPRS from MS object
+  * edge: Remove int casting operator from GprsCodingScheme
+  * edge: Rename gprs_rlc_ul_header_egprs and gprs_rlc_ul_data_block_info
+  * edge: Fix RLC message size
+  * edge: Add numDataHeaderBitsUL/DL and numDataBlockHeaderBits methods
+  * rlc: Add info fields for downlink
+  * edge: Add init functions for gprs_rlc_data_info
+  * edge: Add encoder for downlink RLC data blocks
+  * tbf: Remove obsolete TLLI functions
+  * tbf/test: Add missing function name printfs
+  * edge: Use RLC data block encoding functions
+  * edge: Add Encoding::rlc_data_to_dl_append
+  * edge: Use rlc_data_to_dl_append in create_new_bsn
+  * edge: Select implementation by mode in rlc_data_to_dl_append
+  * edge: Support MCS data block encoding
+  * edge: Provide and use CS -> CPS conversion
+  * edge: Workaround to fix decoding of EGPRS_AckNack_w_len_t
+  * edge: Handle EGPRS PACKET DOWNLINK ACK NACK
+  * edge: Add experimental support for uplink CRBB
+  * edge: Enable CRBB decoding
+  * decode: Add bitvec based GPRS DL ACK/NACK decoder
+  * edge: Add a bitvec based Decoding::extract_rbb function
+  * edge: Add bitvec based DL window updating methods
+  * edge: Use num_blocks in gprs_rlcmac_dl_tbf::analyse_errors
+  * tbf: Use bitvec based window methods for GPRS
+  * edge: Use bitvec based window methods for EGPRS
+  * edge: Call update_window even if FINAL_ACK_INDICATION is set
+  * edge: Fix initial coding scheme selection
+  * edge: Fix MCS range in VTY
+  * edge: Disable GPRS/EGPRS mixed mode
+  * edge: Work-around to use EGPRS if there was no DL RA Cap
+  * rlc: Add unified gprs_rlc_window parent class
+  * tbf: Add gprs_rlcmac_tbf::window() method
+  * utils: Add pcu_bitcount and pcu_lsb
+  * tbf/vty: Fix the CS output and show the EGPRS MS class
+  * edge: Make window size configurable
+  * tbf: Show window parameters in VTY
+  * bssgp: Add hand-coded extended RA Cap parser
+  * Revert "bssgp: Add hand-coded extended RA Cap parser"
+  * rlc: Add decode_gsm_ra_cap to decode Radio Access Caps
+  * edge: Get EGPRS MS class from downlink BSSGP
+  * tbf: Low prio for BSSPG values for GPRS/EGPRS MS class
+  * bssgp: Ignore downlink BSSGP RA Cap IE
+  * tbf: Refactor calls to write_immediate_assignment
+  * tbf: Use the control TS for Immediate Assignments
+  * Revert "tbf: Use the control TS for Immediate Assignments"
+  * tbf: Add counters for aborted TBF in state FLOW
+  * tbf: Add abort method for downlink TBF
+  * tbf: Do not reuse old TBF after RACH requests
+  * sched: Pass the current TS to the control create functions
+  * tbf: Use is_control_ts() instead of comparing TS values directly
+  * tbf: Mark control slots in VTY TBF out
+  * tbf: Add and use tbf->poll_ts
+  * tbf: Add check_polling/set_polling
+  * tbf: Use TLLI as ID if TFI not yet assigned
+  * tbf: Don't change type from CCCH to PACCH without ack
+  * pcu: Add bitvec_write_field_lh
+  * encoding: Use explicit LH encoding in write_immediate_assignment
+  * encoding: Refactor write_immediate_assignment
+  * encoding: Redesign Encoding::write_immediate_assignment API
+  * edge: Support EGPRS in IMM ASSIGNMENT
+  * tbf: Only free TBF if it was replaced in rcv_control_ack
+  * sched: Do PACCH assignments for the same direction last
+  * ms: Add current_pacch_slots method
+  * tbf: Add state WAIT_ASSIGN
+  * rlc: Support encoding of EGPRS header type 1 + 2
+  * edge/vty: Set initial MCS
+  * cs: Add family related methods
+  * cs: Add GprsCodingScheme::optionalPaddingBits
+  * rlc: Add with_padding argument to gprs_rlc_data_info_init_dl/ul
+  * rlc: Add gprs_rlc_mcs_cps_decode
+  * rlc: Use the rlc structure to access the data unit in the RLC message
+  * tbf/tests: Add tests for EGPRS TBF establishment
+  * ms: Fix GprsMs::current_cs_dl()
+  * edge: Refactor create_dl_acked_block for multi-block support
+  * edge: Send a second BSN block in an RLC message if possible
+  * edge: Compare len instead of using cs.isCombinable
+  * edge: Work-around to not use MCS-6 with padding
+  * edge: Support all coding schemes for BSSGP flow control
+  * Ignore files generated by cscope tool
+  * Introduce --gsmtap-ip/-i option
+  * Add gsmtap support to generic bts
+  * alloc: Fix UBSAN for accessing the array at -16
+  * Refactor coding scheme assignment code
+  * Revert "Refactor coding scheme assignment code"
+  * tbf: Fix copy and paste in the set_mode routine
+  * pcu: Fix compiler warning about using string
+  * Fix encoding of padding bits to start with 0 bit
+  * Add test vectors for EGPRS messages
+  * Fix issue in encoding CSN_RECURSIVE_ARRAY
+  * Introduce EGPRS header type1 and type2 in UL
+  * Refactor the Uplink RLC header parsing function
+  * Add data structure for CPS calculation in DL
+  * Update CPS calculation with new data structures
+  * Support puncturing scheme selection for EGPRS DL
+  * fix compiler warnings about format string for size_t
+  * debian: Initial debian packaging
+  * misc: Ignore test files and debian packaging
+  * jenkins: Add the build script from jenkins here
+  * Cleanup build leftovers
+  * Rename define for direct hw access
+  * Restructure sources
+  * Enable subdir-objects automake option
+  * add .gitreview
+  * Change internal API for consistency
+  * Add support for NuRAN Wireless Litecell 1.5 BTS
+  * move statistics counter rlc_sent() to gprs_rlcmac_sched
+  * introduce new counter rlc_sent_dummy
+  * bts/rate_ctr: replace spaces by tabs
+  * tbf_dl: replace cross-file declaration with correct header
+  * gprs_rlcmac_sched: fix mistype of CONTROL ACK
+  * introduce new counter rlc_sent_control
+  * bts/counter: replace '_' with '-' in counter names
+  * rlc.h: remove duplicated define RLC_EGPRS_SNS
+  * tbf_ul: use correct size for chunk_size
+  * add comments to describe functions
+  * decoding: improve and add comments
+  * encoding: add doxygen for rlc_data_to_dl_append*
+  * rlc.h: correct gprs_rlc_data comment
+  * decoding: remove superfluous double-semicolon
+  * tbf_dl: comment why we sent a dummy LLC packets to delay the release of the TBF
+  * encoding/rlc_copy_from_aligned_buffer: export written payload bytes via an argument
+  * add KPI counter to count bytes for RLC and LLC frames
+  * tbf_dl: correct tbf name in log message for moving a DL TBF
+  * tbf: replace this == NULL check in tbf->name
+  * Add test cases for Header Type 2 in EGPRS UL
+  * Remove GMSK only check in EGPRS UL
+  * Add Header Type2 support in EGPRS UL
+  * Add header type 1 support for EGPRS uplink
+  * Add test cases for Header type1 in EGPRS UL
+  * typo in warning
+  * systemd service file: Stop using deprecated '-e' option
+  * Add data structure for ARQ-II in EGPRS DL
+  * Add Accessor functions for ARQ-II in EGPRS DL
+  * Modify DL tbf flow for ARQ-II in EGPRS DL Retx
+  * Add test cases to support ARQ-II for EGPRS DL Retx
+  * bitvector: Remove code clone and fallback to C implementation
+  * egprs: Use RLC/MAC headers from libosmocore
+
+-------------------------------------------------------------------
+Sat Feb 20 22:22:16 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.2.11.git1455448458.7f4841b:
+  + edge: Get EGPRS multislot class
+  + edge: Add egprs config command
+  + edge: Support EGPRS in packet uplink assignment message
+  + edge: Add m_egprs_enabled and related methods to TBF
+  + edge: Support EGPRS multislot class handling in tbf_alloc
+  + edge: Enable EGPRS if configured and egprs_ms_class present
+  + edge: Extend gprs_rlcmac_dl_tbf::handle by egprs_ms_class
+  + edge: Add GprsCodingScheme class
+  + edge: Add test for GprsCodingScheme
+  + edge: Use GprsCodingScheme to adjust the UL RLC block size
+  + edge: Add gprs_rlcmac_pdch::rcv_block_egprs stub
+  + edge: Rename rcv_data_block_acknowledged
+  + edge: Add header type property to GprsCodingScheme
+  + rlc: Check endianness for bit field declarations
+  + edge: Add information about data blocks to GprsCodingScheme
+  + edge: Add unified decoder methods for GPRS/EGPRS
+  + edge: Add test cases for rlc_data_from_ul_data
+  + rlc: Do not raise_v_q in receive_bsn
+  + edge: Add is_received and invalidate_bsn to gprs_rlc_ul_window
+  + edge: Store GprsCodingScheme in gprs_rlc_data
+  + tbf: Refactor parts of extract_tlli into set_tlli_from_ul
+  + edge: Add methods for unified GPRS/EGPRS UL data block handling
+  + edge: Implement gprs_rlcmac_pdch::rcv_block_egprs
+  + edge: Use a single PDCH rcv_data_block method for GPRS and EGPRS
+  + edge: Remove unused GPRS functions
+  + sched: Change next_ctrl_prio increment
+  + edge: Fix data block decoder (Coverity)
+  + edge: Remove leftover comments from encoding.c
+  + pcu: Fix memory corruption bugs (ASAN)
+  + Fix missing '-V / --version' in print_help()
+
+-------------------------------------------------------------------
+Sat Dec 26 22:55:23 UTC 2015 - mardnh@gmx.de
+
+- Update to version 0.2.11.git1448881908.111ebe8:
+  + bssgp: Use measured leak rate for flow control
+  + stats: Attempt to compile fix the new rate_ctr
+  + stats: Include the header file for the new class identifier
+  + rename sysmo_sock.cpp to osmobts_sock.cpp
+  + print/log OpenBTS / OsmoBTS variant in PCU startup
+  + osmobts_sock.cpp: Add missing space in log statement.
+  + remove obsolete OpenBTS PCU interface support
+  + stats: Enable stats subsystem
+  + pcu: Improve default config
+  + encoder: Whitespace fixes
+  + stat: Add global stat group
+  + pcu: Enable dl-tbf-idle-time and idle-ack-delay by default
+  + Revert "pcu: Improve default config"
+
+-------------------------------------------------------------------
+Mon Sep 21 07:37:34 UTC 2015 - mardnh@gmx.de
+
+- Update to version 0.2.11.git1441627835.7c8d39a:
+  + sba: Fix loop exit in SBAController::alloc (Coverity)
+  + alloc: Merge find_least_busy_pdch and find_least_reserved_pdch
+  + alloc: Use an enum instead of numbers to select the mask
+  + alloc: Select applicable Tta/Tra
+  + alloc: Do not use masking for multislot class type 2 MS
+  + alloc: Fix MS_B/MS_C interpretation
+  + alloc/test: Check for TFI conflicts
+  + pdch: Manage TFIs per direction
+  + tbf: Move TFI selection into alloc_algorithm
+  + alloc: Allocate TFI per slot (algorithm A)
+  + tbf: Put the TFI->TBF mapping into the PDCH objects
+  + ms: Add is_idle() method to GprsMs::Guard
+  + alloc/test: Put TBF allocation loop into alloc_many_tbfs
+  + alloc/test: Add test for interleaved TBF chains
+  + alloc: Remove redundant first_common_ts handling
+  + alloc: Refactor alloc algorithms to only apply changes on success
+  + alloc: Remove disabled code fragment for multi-UL allocation
+  + alloc: Add 'dynamic' allocation algorithm
+  + alloc: Add counters for successful algo A/B allocations
+  + pcu: Use alloc_algorithm_dynamic by default
+  + alloc: Change tx_window optimization strategy
+  + alloc/test: Show expectation before failure
+  + alloc: Use a separate usage computation for algo A
+  + alloc/test: Use lower case for slots with TFI shortage
+  + alloc/test: Free the TBF if the recursion has failed
+  + alloc/test: Fix trx_no assertion
+  + alloc: Make alloc_algorithm_dynamic stateful
+  + bssgp: Adapt flowcontrol MS default to current alloc algorithm
+  + llc: Add CoDel AQM implementation
+  + llc: Use CoDel to drop packages from the LLC queue
+  + pcu: Enable LLC CoDel by default
+  + bssgp: Fix leak rate computation CS value
+  + tbf: Always start T3193 when changing state to GPRS_RLCMAC_WAIT_RELEASE
+  + tbf: Handle TLLI change on DL
+  + ms: Set default CoDel interval to 4s
+  + pcu: Update example config file
+  + tbf: Clean old MS objects if they have the same TLLI
+  + tbf: Use update_ms instead of confirm_tlli in handle()
+  + ms: Do not retrieve MS with IMSI 000 from the storage
+  + vty: Change API to have node installation be done by int
+  + ns: Add logging support
+  + ns: Reconnect NSVC after timeout
+  + ms: Move MS information merging to GprsMS
+  + tbf/test: Move UL TBF establishment into separate functions
+  + tbf: Fix typos in log messages concerning UL/DL
+  + tbf/test: Fix existing tests
+  + tbf/test: Add tests for RACH while DL TBFs are active
+  + tbf: Do not kill DL TBF on Packet Resource Request
+  + llc: Add move_and_merge method to llc_queue
+  + tbf: Move pending LLC frames when merging MS objects
+  + tbf/test: Move UL MAC block encoding into a separate function
+  + tbf/test: Add send_rlc_block function with a TBF as parameter
+  + tbf/test: Simplify RLC block number handling
+  + tbf/test: Rename send_rlc_block to request_dl_rlc_block
+  + tbf/test: Do RLC based ack instead of just faking
+  + tbf/test: Add test_tbf_dl_reuse
+  + tbf: Use C++/talloc magic to support TBF constructors/destructors
+  + llist: Add missing const qualifier in llist cast method
+  + bssgp: Only call bssgp_tx_llc_discarded if the bctx exists
+  + ms: Store references to replaced TBFs in the MS object
+  + ms/vty: Show old TBFs
+  + ms/vty: Show LLC queue octets and packets in both views
+  + openbts: Remove unused declaration of fl1h in udp_read_cb
+  + tbf: Use explicit initialisations in constructor (Coverity)
+  + tbf: Add logging for polling
+  + poll: Add a max_delay parameter to PollController::expireTimedout
+  + poll: Set the max_delay to 60 frames
+  + poll: Use the data_ind FN as time source for current frame
+  + poll: Count unexpected block FN values
+  + l1: Use the FN of all data_ind/ra_ind DSP messages
+  + Revert "tbf: Do not kill DL TBF on Packet Resource Request"
+  + tbf: Keep the old MS object alive in extract_tlli
+  + tbf: Refactor reuse_tbf into releasing and DL TBF establishment
+  + bts: Release DL TBF instead of killing in rcv_resource_request
+  + bts: Start a DL TBF if needed after establishment of an UL TBF
+  + poll: Count failed procedures
+
+-------------------------------------------------------------------
+Tue Jul 14 18:15:31 UTC 2015 - mardnh@gmx.de
+
+- Update to version 0.2.11.git1436856715.3db617f:
+  + Fix VTY documentation
+  + tbf: Fix dereference before null check
+  + tests: Fix library link order
+  + tbf/test: Modify test to create a dangling TBF pointer
+  + tbf: Fix dangling m_new_tbf pointer
+  + tbf: Don't use 'old' DL TBFs after reuse_tbf
+  + pcu: Fix log message
+  + tbf: Add name() method and put the buf into the tbf
+  + tbf: Reduce m_new_tbf logging messages
+  + sched: Modify DL scheduling to use different priorities
+  + tbf: Fix scheduling for DL Ack/Nack request
+  + bssgp: Set blocking and reset timer to 30s
+  + bssgp: Handle BSSGP STATUS messages
+  + llc: Add put_dummy_frame to create an LLC dummy command
+  + tbf: Refactor create_dl_acked_block
+  + tbf: Add helper functions for DL TBFs
+  + tbf/test: Put BTS setup and DL TBF creation into helper functions
+  + tbf/test: Fix fn/block_nr in test_tbf_final_ack
+  + tbf: Add frames_since_last_poll method
+  + tbf: Use put_frame in append_data if the TBF has no data
+  + tbf: Insert LLC dummy command if no frame is available
+  + tbf: Implement delayed release of a downlink TBF
+  + tbf/test: Add test for delayed release
+  + tbf: Only create dummy frames if necessary
+  + tbf: Poll MS on idle DL TBFs
+  + pcu: Add pcu_utils.h to Makefile.am
+  + tbf: Use a hysteresis when discarding DL LLC frames
+  + tbf: Force ACK after the last DL LCC frame has been received
+  + vty: Use libosmocore VTY standards
+  + tbf/test: Add test for DL TBF exhaustion
+  + tbf: Send BSSGP LLC discarded on TBI exhaustion
+  + pcu: Call bssgp_set_log_ss(DBSSGP) in main()
+  + tbf: Remove double assigment to m_last_dl_drained_fn
+  + vty: Fix warnings about undeclared functions
+  + vty: Fix value range of commands accepting csecs
+  + pcu: Fix non-critical warnings
+  + l1if: Add missing function prototypes
+  + pcu_emu/test: Initialise current_test
+  + tbf/test: Fix old_tbf argument to tbf_alloc_ul_tbf
+  + tbf: Added calls to llc_dropped_frame
+  + bssgp: Make BVC bucket size / leak rate configurable
+  + bssgp: Compute BVC bucket size and leak rate
+  + bssgp: Add VTY command to Limit the bucket size by time
+  + bssgp: Compute and transmit queue delay
+  + bssgp: Increment BSSGP flow control tag value
+  + ms: Add GprsMs class to hold per-MS information
+  + tbf: Add MS object management to TBF code
+  + tbf/test: Optionally show talloc report
+  + llist: Add a C++ wrapper for linux_list
+  + ms: Add MS storage class
+  + ms: Integrate the MS storage
+  + ms: Support new and old TLLIs
+  + tbf: Get the TLLI from the MS object
+  + tbf: Explicitly pass the direction to update_ms()
+  + tbf: Just pass the MS object in reuse_tbf
+  + llist: Reduce the external dependencies of this test
+  + misc: Update the email address to point to the current ML
+  + write_queue: Check the result of osmo_wqueue_enqueue and free
+  + tbf: Remove the TLLI from the TBFs
+  + tbf: Always call set_tlli/confirm_tlli in update_ms
+  + tbf/test: Fix IMSI creation
+  + tbf: Move IMSI to MS object
+  + ms: Use the IMSI to retrieve the MS object
+  + tbf: Remove IMSI handling from trigger_dl_ass
+  + tbf/test: Attach TLLI and MS objects to TBFs
+  + tbf: Remove TBF chaining (m_new_tbf and m_old_tbf)
+  + tbf/test: Add tests for single and two phase access
+  + tbf: Store the timing advance (TA) value in the GprsMs object
+  + tbf: Remove TimingAdvance storage
+  + ms: Add timer
+  + tbf: Set MS timeout
+  + pcu: Set ms_idle_sec to 60s
+  + l1: Fix warning by logging acc_delay
+  + llc: Separate LLC queue handling from gprs_llc
+  + llc: Add missing declarations to llc.h
+  + tbf: Make the ms() getter method const
+  + tbf: Move the LLC queue to GprsMs
+  + tbf: Store MS class in GprsMs objects
+  + ms: Add back pointer to BTS
+  + tbf: Move the current CS field to GprsMs
+  + vty: Add a file for C++ functions
+  + vty: Add 'show ms all' command
+  + tbf: Add adaptive DL CS adjustment
+  + tbf: Add debugging output to analyse_errors()
+  + tbf: Add adaptive coding scheme configuration
+  + tbf: Ignore lost+recv == 1
+  + ms: Add blocking period for CS upgrade
+  + ms: Add support for maximum CS values
+  + vty: Add command to show detailed MS info
+  + bssgp: Handle btcx == NULL in gprs_bssgp_pcu_rx_sign (Coverity)
+  + llc: Fix LLC UI frame detection (Coverity)
+  + bssgp: Calculate the avg_delay_ms in 32bit only (Coverity)
+  + tbf: Check for NULL in name() (Coverity)
+  + ms: Add missing initialiser for m_delay (Coverity)
+  + ms: Fix timer start condition (Coverity)
+  + build: Add -lrt to AM_LDFLAGS
+  + l1: Pass all L1 measurements upwards
+  + ms: Store the L1 measurement values in the MS objects
+  + ms: Add UL CS selection based on L1 link quality
+  + l1: Store measurement values sent by the MS
+  + l1: Add debug log messages for I_LEVEL
+  + tbf: Include CS into create_new_bsn log message
+  + ms: Store the NACK rate in the MS object
+  + tbf/test: Add test for DL LLC packet loss
+  + tbf: Fix downlink packet loss
+  + llc/test: Add test program for LLC related tests
+  + llc: Add missing include directive to llc.h
+  + llc: Keep track of the number of stored LLC octets
+  + ms: Reduce DL CS level if only a few LLC bytes are left
+  + llc: Make timeval arguments const
+  + llc: Move storage of timestamps into gprs_llc_queue
+  + llc: Add missing include directive for struct timeval
+  + llc/test: Explicitly enable extended initialiser lists
+  + Revert "llc/test: Explicitly enable extended initialiser lists"
+  + llc/test: Use a portable way to set timeval variables
+  + vty: Fix documentation for 'no cs downgrade-threshold'
+  + tbf: Remove update_tlli method
+  + tbf: Pass the MS object around instead of old_tbf
+  + tbf: Always create an MS object on TBF allocation
+  + tbf: Add BTS::ms_alloc method
+  + alloc/test: Add test for successive allocation
+  + alloc/test: Enhance test_alloc_a
+  + alloc/test: Use LOGL_DEBUG environment variable
+  + tbf/test: Add assertions
+  + tbf: Maintain the number of TBF per PDCH
+  + ms: Add first_common_ts method to GprsMs
+  + ms: Add tbf() method to get the TBF based on the direction
+  + tbf: Add GprsMs* argument to update() and use it in reuse_tbf
+  + alloc: Load balancing for algo A
+  + ms: Add support for slot reservation
+  + ms: Get the set of slots currently active
+  + alloc: Ignore slots with differing TSC if multiple slots are requested
+  + alloc: Base algo A on reserved PDCHs
+  + tbf: Set ms in call to tbf_alloc_dl_tbf
+  + tbf: Remove call to update() in reuse_tbf
+  + Revert "tbf: Add GprsMs* argument to update() and use it in reuse_tbf"
+  + tbf: Add Poll Timeout counters
+  + alloc: Replace Algorithm B implementation
+  + alloc: Only use common UL slots when calculating the capacity
+  + alloc: Set minimum slot capacity to 1
+  + alloc: Only reserve 1 UL slot with algorithm B
+  + alloc: Skip common TS without free USF when rating
+  + tbf: Keep a set of used TFI and USF per PDCH
+  + alloc: Optimize find_free_usf
+  + alloc: Disable inner loop debugging by default
+  + sba: Reverse TS search order
+  + alloc/test: Delete first TBF after the second is allocated
+  + alloc: Use least reserved PDCH for algo A
+  + llc: Fix comparison warning
+
+-------------------------------------------------------------------
+Thu Dec 18 19:31:41 UTC 2014 - mardnh@gmx.de
+
+- Update to version 0.2.11.git1411120899.07e3930:
+  + TbfTest: Make logging more verbose
+  + tbf: Include TBF state in tbf_name output
+  + tbf,bts: Keep track of new TBF for dl/ul assignment in m_new_tbf
+  + tests/tbf: Test for final ack issue
+  + tbf: Handle DL ACK/NACK poll timeout correctly
+  + poll_controller: Be stricter with the timeout handling
+  + tbf_dl: Fix warnings
+  + tests/tbf: Use correct function to enqueue llc data
+  + tests/tbf: Commit TbfTest.err *with* whitespace "errors"
+
+-------------------------------------------------------------------
+Wed Jul  2 19:31:36 UTC 2014 - mardnh@gmx.de
+
+- update to version 0.2.11+git.1404305867.e8915b9
+- specfile cleanup
+- make check is br0ken - disabled for now
+
+-------------------------------------------------------------------
+Tue Apr 15 08:24:39 UTC 2014 - mardnh@gmx.de
+
+- update to version 0.2.11+git.1389776622.6f0796a
+
+-------------------------------------------------------------------
+Wed Sep  4 18:21:21 UTC 2013 - mardnh@gmx.de
+
+- update to version 0.2.11.git9d93838
+
+-------------------------------------------------------------------
+Fri Aug 16 19:27:41 UTC 2013 - mardnh@gmx.de
+
+- initial package written from scratch
+

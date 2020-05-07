@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+                <param name="url">git://git.osmocom.org/python/osmo-python-tests</param>
+              <param name="changesrevision">4a7a208ce04126b96f91e084848f89c1e171179f</param></service></servicedata>

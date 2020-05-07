@@ -1,0 +1,1445 @@
+-------------------------------------------------------------------
+Wed May 06 20:04:01 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1588674152.901ac897:
+  * mobile: loopback: support EFR
+  * mobile: traffic req check: support EFR
+  * mobile: implement 'loopback' TCH frame I/O handler
+
+-------------------------------------------------------------------
+Tue May 05 20:04:37 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1588654951.785450c4:
+  * mobile: add audio config, with unused audio loopback setting
+
+-------------------------------------------------------------------
+Sat Apr 25 20:04:21 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1587834514.3425527f:
+  * firmware/rfch.[ch]: Document functions + constify input arguments
+
+-------------------------------------------------------------------
+Tue Apr 14 20:04:04 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1586384039.b217b9b3:
+  * trxcon/logging: print category, level and extended timestamp
+  * trx_toolkit/app_common: add options to enable time printing
+  * trx_toolkit/app_common: introduce auxiliary add_log_handler()
+
+-------------------------------------------------------------------
+Wed Apr 01 20:04:21 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1585736334.67c49ba6:
+  * firmware/layer1: introduce experimental PDCH support
+
+-------------------------------------------------------------------
+Mon Mar 30 20:03:39 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1585570967.930d7240:
+  * trx_toolkit/trx_sniff.py: add options to filter bursts by RSSI
+  * trx_toolkit/trx_sniff.py: add option to ignore NOPE / IDLE indications
+  * trx_toolkit/trx_sniff.py: pass the whole msg to burst_pass_filter()
+
+-------------------------------------------------------------------
+Tue Mar 24 21:03:43 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1584444304.4162b27d:
+  * layer23/l1ctl: fix: do not pass PDCH and CBCH frames to LAPDm
+
+-------------------------------------------------------------------
+Mon Mar 16 21:03:23 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1584354762.f889e916:
+  * trxcon/scheduler: print TDMA statistics on lchan deactivation
+  * trxcon/scheduler: be safe against a theoretical integer overflow
+  * trxcon/scheduler: do not abort on incomplete set of bursts
+  * trxcon/scheduler: TCH/F: fix Downlink burst completeness check
+  * trxcon/scheduler: align Downlink reception to the first burst
+  * trxcon/scheduler: constify Downlink burst bits where possible
+  * trxcon/scheduler: substitute lost TDMA frames on Downlink
+  * trxcon/scheduler: refactor TDMA frame number calculation
+
+-------------------------------------------------------------------
+Tue Mar 10 21:03:18 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1583871844.b9ab7150:
+  * virtphy: Delay response between L1SAP_PM_REQ and L1SAP_PM_CONF
+  * virtphy: Add command line arguments to set multicast netdev + TTL
+  * virtphy: Sync virtual_um.[ch] with osmo-bts
+
+-------------------------------------------------------------------
+Mon Mar 09 21:03:10 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1583778949.419f617a:
+  * virtphy: Fix GSMTAP ARFCN use with multi-TRX BTS
+  * virt_phy: implement GSMTAP_CHANNEL_VOICE
+  * trxcon/scheduler: fix n_errors for BFI triggered by FACCH
+  * trxcon/scheduler: FACCH: ensure fake measurements for BFI
+  * trxcon/scheduler: refactor Downlink measurement processing
+  * trxcon/scheduler: TCH/H & FACCH/H: fix notes on interleaving
+  * trxcon/scheduler: make TDMA_FN_INC(fn) behave like ++fn
+
+-------------------------------------------------------------------
+Sat Mar 07 21:03:16 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1583594746.a1be0a6b:
+  * cbch_sniff: Use CCCH_MODE_COMBINED_CBCH, not CCCH_MODE_COMBINED
+  * virtphy: Don't pass CBCH to L1CTL if not requested by application
+  * virt_l1_sched_execute: talloc_free() TDMA item after unlinking it
+  * cosmetic: Use INIT_LLIST_HEAD() and llist_add_tail()
+  * mobile: fix gsm_recv_voice: pull l1ctl header from TCH payload
+  * remove unused func decl
+
+-------------------------------------------------------------------
+Sun Mar 01 21:03:11 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1583004133.60ce3457:
+  * mobile/gsm322: fix use-after-free of cs->si reported by ASan
+  * layer23/l1ctl: fix NULL-pointer dereference reported by ASan
+  * trxcon/scheduler: print completeness of the Rx burst buffers
+
+-------------------------------------------------------------------
+Fri Feb 28 21:04:03 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1582822000.2d355c24:
+  * virt_phy/build: add configure option to build with ASan/USBan
+
+-------------------------------------------------------------------
+Wed Feb 26 21:04:18 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1582672384.938faa16:
+  * layer23: Terminate process if L2 socket fails/dissappears
+
+-------------------------------------------------------------------
+Wed Jan 15 21:15:37 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1578932905.5738e579:
+  * layer23: Fix build against gpsd >= 3.20
+
+-------------------------------------------------------------------
+Tue Dec 31 21:03:43 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1577811950.69707553:
+  * layer23: Avoid sending downlink AGCH/PCH fill frames over GSMTAP
+  * layer23: Identify AGCH from PCH on tx of GSMTAP downlink messages
+  * mobile: Send correct ARFCN in UL gsmtap
+  * trx_toolkit/data_dump.py: rewrite unit tests to use unittest framework
+  * trx_toolkit/data_msg.py: rewrite unit tests to use unittest framework
+  * contrib/jenkins.sh: also run unit tests for TRX Toolkit
+  * contrib/jenkins.sh: also verify building the firmware
+
+-------------------------------------------------------------------
+Fri Dec 20 21:06:39 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1576856841.4ddb2e61:
+  * layer23: Fix trailing whitespace
+
+-------------------------------------------------------------------
+Mon Dec 09 21:11:04 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1575466916.5b7fc0a8:
+  * trxcon: Use current MS Power on dummy meas reports
+
+-------------------------------------------------------------------
+Sun Dec 01 21:13:09 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1575205902.7069dfc0:
+  * trxcon/sched_trx.c: fix potential NULL-pointer dereference
+  * Check for osmo_fsm_register() error return value
+
+-------------------------------------------------------------------
+Mon Nov 25 21:09:21 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1574537082.a15fbcbd:
+  * trx_toolkit/clck_gen.py: drop unneeded debug print()
+  * trx_toolkit/clck_gen.py: turn CLCKGen's thread into a daemon
+  * trx_toolkit/clck_gen.py: refactor CLCKGen to use a single thread
+
+-------------------------------------------------------------------
+Wed Nov 20 21:11:37 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1574262357.ae8e5ad6:
+  * trx_toolkit/fake_trx.py: send NOPE.ind in case of path loss simulation
+  * trx_toolkit/data_msg.py: fix: NOPE.ind also contains C/I filed
+  * trx_toolkit/fake_trx.py: refactor L12TRX -> TRX2L1 burst transformation
+  * mobile/gsm48_mm.h: use fixed-size integer types in packed structures
+
+-------------------------------------------------------------------
+Mon Nov 18 21:08:41 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1573991351.62164b9e:
+  * mobile/gsm48_mm.h: mark some structures as 'packed'
+  * mobile/gsm48_rr.c: fix NULL-pointer dereference in gsm48_rr_check_mode()
+  * trx_toolkit: fix: do not use 'is' / 'is not' with string and numerical literals
+
+-------------------------------------------------------------------
+Tue Nov 05 21:18:36 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1572954742.eb0560e1:
+  * trxcon: Fix missing header for GSM_MACBLOCK_LEN
+
+-------------------------------------------------------------------
+Mon Oct 28 21:03:29 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1571753251.a4046877:
+  * Fix typo: miliseconds -> milliseconds
+
+-------------------------------------------------------------------
+Tue Oct 22 20:05:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1571299659.1f7a2ab5:
+  * Fix common misspellings and typos
+
+-------------------------------------------------------------------
+Sat Oct 05 20:02:36 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1570272620.9731f0d3:
+  * host/trxcon: add optional GSMTAP frame logging support
+  * trxcon/scheduler: fix handling of PTCCH logical channel
+  * trxcon/scheduler: fix comment in description of PDTCH
+
+-------------------------------------------------------------------
+Thu Aug 29 20:09:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1567094524.5afc0e4c:
+  * trx_toolkit/data_msg.py: enrich some ValueError messages
+  * trx_toolkit/data_msg.py: also print burst length in desc_hdr()
+  * trx_toolkit/data_msg.py: fix: make sure header version is known
+  * trx_toolkit/data_msg.py: fix message length check in parse_msg()
+
+-------------------------------------------------------------------
+Wed Aug 28 20:04:31 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1566933211.5fed799d:
+  * trx_toolkit/trx_sniff.py: also print header for incorrect messages
+  * trx_toolkit/trx_sniff.py: also validate() sniffed messages
+  * trx_toolkit/trx_sniff.py: print exact message parsing error
+  * trx_toolkit/data_msg.py: raise exceptions from validate() methods
+
+-------------------------------------------------------------------
+Tue Aug 27 20:05:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1565523210.ad84c7b2:
+  * fw: Add support for Huawei GTM900-B modules
+  * fw/flash: Read extended ID, expose API
+  * fw/keypad: Poll Iota powerbutton if required
+  * fw/abb/twl3025: Add function to query PWON state
+
+-------------------------------------------------------------------
+Mon Aug 12 20:12:30 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1565523207.a1de51d3:
+  * fw/build: Use arm-none-eabi as default toolchain
+
+-------------------------------------------------------------------
+Fri Aug 09 20:16:50 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1565357597.f5afdf4c:
+  * fb_tools/bdf_to_c.py: make it compatible with python3
+
+-------------------------------------------------------------------
+Thu Aug 08 21:57:40 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1565015080.2cc33927:
+  * trx_toolkit: Fixes in TRXD documentation
+  * Remove undefined param passed to logging_vty_add_cmds
+
+-------------------------------------------------------------------
+Wed Jul 24 20:37:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1563921859.fe981d65:
+  * trx_toolkit/trx_sniff.py: support additional capture filter
+  * trx_toolkit/trx_sniff.py: support sniffing on multiple ports
+  * trx_toolkit/trx_sniff.py: add support for reading from PCAP file
+  * trx_toolkit/burst_gen.py: basic TRXD header version 1 support
+  * trx_toolkit: fix compatibility with Python 3: 'is' vs '=='
+  * trx_toolkit/rand_burst_gen.py: fix compatibility with Python 3
+  * trx_toolkit/trx_sniff.py: fix compatibility with Python 3
+
+-------------------------------------------------------------------
+Sun Jul 21 20:11:01 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1563724017.d0a8b49d:
+  * gsm411_sms.c: Handle negative return of gsm340_gen_oa()
+  * virt_phy: Fix hexdump of L1CTL SIM REQ in l1ctl_rx_sim_req()
+  * mobile/gsm480_ss.c: gsm480_tx_release_compl(): fix cause IE encoding
+  * virtphy: Handle strtok() returning NULL on first call
+  * osmocon: Check write() return code
+  * osmocon: Add missing check for fstat() return value
+  * mobile: Fix encoding of cause in gsm480_tx_release_compl()
+  * osmocon: Fix file descriptor + mem leak in error path
+  * gsm322: Fix resource leak in gsm322_init() while reading BA
+  * osmocon: Fix fd leak in error path of read_file()
+  * osmocon: Fix out-of-bounds for partial reads in un_tool_read()
+  * virtphy: Fix array out of bounds access in getL1ctlPrimName()
+
+-------------------------------------------------------------------
+Wed Jul 17 19:12:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1563317172.998ed796:
+  * target/*.py: shebang: use /usr/bin/env python
+
+-------------------------------------------------------------------
+Tue Jul 16 20:10:02 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1563263544.3d9a1d6e:
+  * trx_toolkit/fake_trx.py: introduce a TRXC command for C/I simulation
+  * trx_toolkit/ctrl_if_trx.py: implement TRXD header version negotiation
+  * trx_toolkit/fake_trx.py: basic TRXD version 0x01 support
+  * trx_toolkit/rand_burst_gen.py: use TrainingSeqGMSK and BurstType enums
+  * trx_toolkit/gsm_shared.py: introduce a new enum TrainingSeqGMSK
+
+-------------------------------------------------------------------
+Thu Jul 11 20:22:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1562854243.1fa8e29e:
+  * target_dsp/bin2cfile.py: make it compatible with python3
+  * firmware/solve_envs.py: make it compatible with python3
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Wed Jul 03 20:12:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1562050086.62825cc8:
+  * trx_toolkit/data_msg.py: legacy flag is only for version 0x00
+  * trx_toolkit/data_msg.py: introduce header coding version 0x01
+  * trx_toolkit/data_msg.py: implement header version coding
+
+-------------------------------------------------------------------
+Tue Jul 02 20:18:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1561977585.851d35c6:
+  * trx_toolkit/data_msg.py: add burst randomization helpers
+  * trx_toolkit/data_msg.py: mark bit conversion methods as @staticmethod
+
+-------------------------------------------------------------------
+Mon Jul 01 20:07:52 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1561890611.0ded4757:
+  * trxcon/scheduer: fix: properly check rc of gsm0503_pdtch_encode()
+  * trxcon/scheduler: enrich GSM 05.03 encoding error messages
+
+-------------------------------------------------------------------
+Mon Jun 24 20:17:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1561385889.696fe71a:
+  * trx_toolkit/data_msg.py: add basic class documentation
+  * trx_toolkit/data_msg.py: inline both gen_fn() and parse_fn()
+  * trx_toolkit/data_msg.py: drop double field initialization
+  * trx_toolkit/data_msg.py: tests: use random reference data
+  * trxcon/scheduler: fix bit shift in BSIC / TDMA FN calculation
+
+-------------------------------------------------------------------
+Sun Jun 02 20:03:31 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1559479452.924d2412:
+  * trxcon/l1ctl.c: properly handle handover RACH request
+  * trxcon/scheduler: fix: do not ignore SACCH prims with odd length
+
+-------------------------------------------------------------------
+Fri May 31 20:03:55 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1559328163.6e980866:
+  * trx_toolkit/data_msg.py: fix: extend RSSI value range to [-47..-120]
+  * trxcon/sched_mframe.c: mark all stolen CBCH UL slots as TRXC_IDLE
+  * trxcon/trx_if.c: Dropping UL bursts is a noticeable event
+  * trxcon: Suppress POWERON to TRX if we're already powered on.
+
+-------------------------------------------------------------------
+Thu May 30 20:03:43 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1559163556.1a66c299:
+  * trxcon/scheduler: move PRIM_IS[_EXT]_RACH macros to sched_trx.h
+  * trxcon/l1ctl.c: on L1CTL_DM_EST_REQ, determine pchan_config first
+
+-------------------------------------------------------------------
+Wed May 29 20:03:50 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1559050062.1efe26f4:
+  * trxcon/l1ctl.c: use #define for RSL_CHAN_RACH
+  * trxcon/sched_mframe.c: do not hard-code lchan combinations
+
+-------------------------------------------------------------------
+Tue May 28 20:14:23 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Remove patch (fixed by upstream):
+  * 0001-Fix-no-return-in-nonvoid-function-in-bcch_scan.c.patch
+
+-------------------------------------------------------------------
+Tue May 28 20:03:34 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1559035335.189da79e:
+  * trxcon/sched_lchan_desc.c: fix missing TRX_CH_FLAG_AUTO flag
+  * virt_phy: Fix typo in log message
+  * layer23: fix tons of compiler warnings, mostly OSMO_DEPRECATED related
+  * trxcon/scheduler: refactor description of TRXC_* lchans
+  * trxcon/sched_trx.c: add missing branch for GSM_PCHAN_PDCH
+  * firmware/scheduler: Fix CBCH related RSL channel numbers
+  * trxcon: Use RSL channel mode #defines from libosmogsm
+  * trxcon: Fix CBCH related RSL channel numbers
+
+-------------------------------------------------------------------
+Fri May 24 20:03:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1558616536.00513d65:
+  * common/sap_fsm.c: fix missing pointer dereference
+
+-------------------------------------------------------------------
+Thu May 23 20:03:36 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1558554357.4b9a3513:
+  * contrib/jenkins.sh: Build gprsdecode + laye23 with 'make distcheck'
+  * layer23: Fix 'make distcheck'
+  * bcch_scan: Fix compiler warning about undefined functions
+
+-------------------------------------------------------------------
+Fri May 17 20:03:37 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1558096831.ab7118a2:
+  * trx_toolkit/clck_gen.py: avoid logging \0-terminator
+
+-------------------------------------------------------------------
+Tue May 14 20:03:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1557841959.507781ee:
+  * common/sim.c: add missing break to sim_apdu_resp()
+  * firmware/Makefile: clarify toolchain configuration include
+  * firmware/Makefile.inc: fix sections with overlapping VMA
+
+-------------------------------------------------------------------
+Fri May 10 20:03:49 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1557445992.0f5f76f6:
+  * trxcon/trx_if.c: use ssize_t for return value of read()
+  * trxcon/trx_if.c: print error message if read() call fails
+  * trxcon/trx_if.c: use read() call instead of recv()
+
+-------------------------------------------------------------------
+Thu May 09 20:03:45 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1557414522.1f07f3e3:
+  * trxcon/l1ctl.c: init DL info header in l1ctl_tx_rach_conf()
+  * trxcon/l1ctl.c: pass band_arfcn to l1ctl_tx_rach_conf()
+
+-------------------------------------------------------------------
+Fri May 03 20:03:41 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1556837870.cb9e0204:
+  * mobile/gsm48_mm.c: use proper types for gsm48_rr_hdr
+  * mobile/gsm48_rr.h: mark gsm48_rr_hdr struct as packed
+  * mobile/gsm322.c: fix heap-use-after-free in gsm322_unselect_cell()
+
+-------------------------------------------------------------------
+Sat Apr 27 20:03:34 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1556356528.b4bd78a8:
+  * lua: Add a sentinel for the fd function table
+
+-------------------------------------------------------------------
+Wed Apr 24 20:04:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1556093523.cca67cfe:
+  * trx_toolkit/data_msg.py: fix TOA256 MIN/MAX constants
+
+-------------------------------------------------------------------
+Mon Apr 22 20:03:52 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1555924643.4dd92e25:
+  * trxcon: introduce extended (11-bit) RACH support
+  * l1ctl_proto.h: add extended RACH (11-bit) request message
+
+-------------------------------------------------------------------
+Fri Mar 22 21:03:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1553183936.e9bedd12:
+  * trxcon: use static helper to prepare FBSB
+  * trxcon: log FBSB timer events
+
+-------------------------------------------------------------------
+Thu Mar 21 21:03:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1553179589.7f024a30:
+  * trxcon: use helper to add l1ctl_info_dl
+  * trxcon: use bool for fbsb_conf_sent
+
+-------------------------------------------------------------------
+Tue Mar 12 21:08:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1552206749.803e420a:
+  * trxcon/scheduler: clarify decoding of incomplete xCCH blocks
+
+-------------------------------------------------------------------
+Tue Mar 05 21:05:40 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1551811821.4d3337c9:
+  * target/firmware/tiffs: update copyright statements
+
+-------------------------------------------------------------------
+Sat Feb 23 21:03:37 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1550744436.4bc4655b:
+  * trxcon/scheduler: count number of measurements
+
+-------------------------------------------------------------------
+Wed Feb 20 21:09:54 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1550564336.94736992:
+  * firmware/lib: introduce TIFFS filesystem support
+  * firmware/board: introduce new FCDEV3B (FreeCalypso) target
+
+-------------------------------------------------------------------
+Sun Feb 17 21:03:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1550056034.28aa9675:
+  * firmware/board/compal_e99: enable reading the second half of flash
+  * firmware/board/compal: indicate both DCS and PCS Rx ports as connected
+
+-------------------------------------------------------------------
+Fri Feb 15 21:03:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1549909688.432dbdf3:
+  * firmware/board/gta0x: fix GPIO and ASIC_CONF_REG configuration
+  * firmware/board/pirelli_dpl10: fix ASIC_CONF_REG setting
+
+-------------------------------------------------------------------
+Sun Feb 03 21:02:41 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1549100270.1c6263b2:
+  * common/sim.c: use msgb_get() in gsm_sim_reply()
+  * common/sim.c: get rid of unused 'payload' pointer
+  * common/osmocom_data.h: use proper type for SAP card status
+  * common/sap_fsm.c: register SAP FSM on DSO load
+  * mobile/gsm322.c: fix: properly print stored BA list entities
+
+-------------------------------------------------------------------
+Wed Jan 23 21:02:39 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1548258778.9ec58916:
+  * mobile/gsm480_ss.c: fix build: apply msgb_wrap_with_TL() rename
+
+-------------------------------------------------------------------
+Thu Jan 17 21:03:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1547730084.851039cb:
+  * trxcon/l1ctl.c: fix memleak triggered by unsupported messages
+  * trxcon/trxcon.c: do not expose tall_trx_ctx
+  * trxcon/l1ctl_link.c: refactor l1ctl_link_init()
+  * trxcon/trx_if: refactor trx_if_open()
+  * trxcon: do not include trxcon.h everywhere
+  * trxcon/trx_if.c: check if trx_fsm allocation failed
+  * trxcon/l1ctl_link.c: check if l1ctl_fsm allocation failed
+  * trxcon: register both l1ctl_fsm and trx_fsm on DSO load
+  * trxcon/sched_trx.c: use bool in sched_trx_reset()
+
+-------------------------------------------------------------------
+Tue Jan 15 21:02:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1547509951.59d20f6d:
+  * trx_toolkit/README: update fake_trx.py description
+  * trx_toolkit/transceiver.py: add optional transceiver name
+  * trx_toolkit/transceiver.py: add init logging message
+  * trx_toolkit: use 'TRXC' and 'TRXD' in logging messages
+  * trx_toolkit/{ctrl,data}_if.py: add init log message
+  * trx_toolkit/fake_trx.py: enrich TRX logging messages
+  * trx_toolkit/fake_trx.py: move init code to __init__()
+  * layer23/sap_interface.c: reimplement (BT)SAP interface
+
+-------------------------------------------------------------------
+Sun Jan 13 21:02:39 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1547372011.e4e3e6fa:
+  * trx_toolkit/fake_trx.py: fix: update trx_list of FakePM
+  * trx_toolkit/fake_trx.py: handle multiple transceivers
+  * trx_toolkit/transceiver.py: add support for child transceivers
+  * trx_toolkit/burst_fwd.py: fix trx_list cross-reference
+
+-------------------------------------------------------------------
+Mon Jan 07 21:06:54 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1546875592.d2004ae4:
+  * layer23/sap_interface.c: separate protocol definition
+  * layer23/include/Makefile.am: add missing header
+  * layer23/sap_interface.c: avoid using 'osmo' prefix
+  * layer23/sap_interface.c: define missing enums and use them
+  * layer23/sap_interface.c: terminate value_string definitions
+  * layer23/sap_interface.c: prettify value_string definitions
+  * layer23/sap_interface.c: fix: properly call sap_msg_free()
+
+-------------------------------------------------------------------
+Fri Jan 04 21:02:46 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1546428187.5caa4ac9:
+  * trxcon/scheduler: fix RSSI -> RX level conversion
+
+-------------------------------------------------------------------
+Wed Dec 26 21:02:35 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1545857538.684fa75b:
+  * layer23/sap_interface.c: use LOGP() instead of fprintf()
+  * layer23/sap_interface.c: use int for rc in sap_open()
+  * layer23/sap_interface.c: remove redundant socket_path argument
+  * layer23/sap_interface.c: drop unused osmosap_sapsocket()
+  * layer23/sap_interface.c: return rc from osmosap_send_apdu()
+  * layer23/include/sap_interface.h: use #pragma once
+  * mobile/subscriber.c: consider GSM_SIM_TYPE_SAP too
+  * host/layer23: rename GSM_SIM_TYPE_READER to GSM_SIM_TYPE_L1PHY
+  * layer23/common/sim.c: don't ignore rc of sim_apdu_send()
+
+-------------------------------------------------------------------
+Sun Dec 23 21:02:42 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1545542737.271993c2:
+  * mobile: Use new VTY telnet API to allow binding to random port
+
+-------------------------------------------------------------------
+Wed Dec 19 21:02:47 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1545221922.2e861308:
+  * layer23/mobile: drop dead SAP initialization code
+  * host/layer23/sap_interface.c: cosmetic: use ARRAY_SIZE()
+  * host/layer23: don't init SAP interface by default
+
+-------------------------------------------------------------------
+Tue Dec 18 21:02:46 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1545086831.152a2da8:
+  * trx_toolkit/fake_trx.py: refactor global class hierarchy
+  * trx_toolkit/data_if.py: add optional legacy message coding flag
+  * trx_toolkit/data_msg.py: add optional legacy message coding flag
+  * trx_toolkit/data_msg.py: use struct API for fn and toa256 coding
+
+-------------------------------------------------------------------
+Mon Dec 17 21:02:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1544919251.016361cd:
+  * trx_toolkit/ctrl_if_bb.py: drop meaningless warnings
+  * trx_toolkit/burst_send.py: exit if DATA dump parsing failed
+  * trx_toolkit/burst_send.py: fix: use proper argparse group
+  * trx_toolkit: fix missing / useless imports
+
+-------------------------------------------------------------------
+Wed Dec 12 21:03:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1544620059.60e402d1:
+  * contrib/jenkins.sh: build and publish manuals
+
+-------------------------------------------------------------------
+Tue Dec 11 21:02:57 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1544550198.810b696b:
+  * trx_toolkit/data_if.py: add message parsing methods
+  * trx_toolkit/ctrl_if.py: read data from socket in handle_rx()
+  * trx_toolkit/ctrl_if_*.py: transparently pass UDPLink arguments
+  * trx_toolkit/ctrl_if_bb.py: fix SETTA command handling
+
+-------------------------------------------------------------------
+Fri Dec 07 21:02:48 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1544209850.59debdcd:
+  * trx_toolkit: merge copyright.py into app_common.py
+  * trx_toolkit: introduce logging configuration arguments
+  * trx_toolkit/fake_trx.py: migrate from getopt to argparse
+  * trx_toolkit/trx_sniff.py: migrate from getopt to argparse
+  * trx_toolkit/ctrl_cmd.py: migrate from getopt to argparse
+  * trx_toolkit/burst_send.py: migrate from getopt to argparse
+  * trx_toolkit/burst_gen.py: migrate from getopt to argparse
+  * trx_toolkit/burst_gen.py: fix short version of --burst-type
+  * trx_toolkit: use generic logging module instead of print()
+  * trx_toolkit/fake_trx.py: drop randomization related cmd options
+  * trx_toolkit/burst_fwd.py: also pass-filter UL bursts by time-slot
+  * trx_toolkit/burst_fwd.py: properly pass-filter multiple time-slots
+  * trx_toolkit/burst_fwd.py: document and refactor BurstForwarder
+
+-------------------------------------------------------------------
+Tue Dec 04 21:03:10 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1543925699.9fd173b1:
+  * doc/manuals: integrate into this repository
+
+-------------------------------------------------------------------
+Thu Nov 29 21:02:42 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1543507887.43fb867c:
+  * trxcon/l1ctl.c: handle hopping channels from L1CTL_DM_EST_REQ
+  * trxcon/trx_if.c: add SETFH CTRL command support
+
+-------------------------------------------------------------------
+Wed Nov 28 21:02:46 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1543421115.e5c385fb:
+  * build manuals moved here from osmo-gsm-manuals.git
+  * osmocomBB: Begin with a manual for the "mobile" application
+
+-------------------------------------------------------------------
+Thu Nov 22 19:01:03 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1542874805.d72aeb8e:
+  * trxcon/l1ctl.c: fix deprecated gsm_band_name() usage
+
+-------------------------------------------------------------------
+Wed Nov 21 20:21:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1542771417.da96b3c0:
+  * mobile: use VTY bind addr from config, deprecate cmd line options
+  * mobile: abort in case of argv handling errors
+  * mobile/app_mobile.c: use LOGP() instead of printf()/fprintf()
+  * mobile/app_mobile.c: drop redundant printf() call
+  * Revert "mobile: fix vty bind ip override"
+
+-------------------------------------------------------------------
+Tue Nov 20 19:12:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1542644411.c8de8cb1:
+  * mobile: fix vty bind ip override
+
+-------------------------------------------------------------------
+Mon Nov 19 18:33:39 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1542619579.dcc7e607:
+  * Fix build with latest libosmocore
+  * l1l2 interface: use LOGP for socket errors
+  * osmocon: log error cause for socket opening
+  * mobile: log socket path on error
+
+-------------------------------------------------------------------
+Sun Nov 18 21:02:51 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1542400675.d4450333:
+  * mobile: use proper type for boolean flags
+  * mobile: add header for MS' MNCC functions
+
+-------------------------------------------------------------------
+Thu Nov 08 21:02:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1541688410.927d030a:
+  * layer23: Avoid mempcy with NULL src
+
+-------------------------------------------------------------------
+Wed Nov 07 21:07:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1541445765.4f85fb30:
+  * layer23: Fix build against gpsd >= 3.18
+  * cosmetic: fix trailing whitespace
+
+-------------------------------------------------------------------
+Mon Nov 05 21:04:28 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1541394837.219ed20c:
+  * l1ctl_proto.h: use flexible array member for traffic messages
+
+-------------------------------------------------------------------
+Tue Oct 30 21:03:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1540594465.d350e9f3:
+  * layer23/l1ctl.c: fix: use host byte order for TDMA fn
+
+-------------------------------------------------------------------
+Sat Oct 27 20:02:47 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1540594185.f8edc455:
+  * layer23/common: move SIM APDU caching from l1ctl.c
+
+-------------------------------------------------------------------
+Fri Oct 26 20:02:59 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1540576367.d464fe53:
+  * trxcon: make TRX bind address configurable
+  * Report socket path on errors
+
+-------------------------------------------------------------------
+Tue Oct 23 20:03:00 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1540245613.5516f2ca:
+  * fake_trx: introduce CTRL commands for RSSI simulation
+
+-------------------------------------------------------------------
+Mon Oct 22 20:03:00 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1540195231.f6e1429f:
+  * firmware: set corret shebang in solve_envs.py python2 script
+
+-------------------------------------------------------------------
+Sun Oct 21 17:25:39 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1540068179.0a1da468:
+  * trxcon/scheduler: add PDTCH channel support
+
+-------------------------------------------------------------------
+Fri Oct 05 20:02:46 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1538570785.1a892eeb:
+  * layer23/l1ctl.c: clean up & fix message length checking
+  * layer23/l1ctl.c: avoid confusion between L1CTL / L1 headers
+  * layer23/l1ctl.c: fix: verify msg length using l1h, not l2h
+  * layer23/l1ctl.c: fix: verify msg length against l1ctl_hdr
+  * layer23/l1ctl.c: keep L1 header, drop L1CTL header
+
+-------------------------------------------------------------------
+Wed Oct 03 20:02:41 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1538555831.b52a5db5:
+  * trxcon/scheduler: add dedicated CBCH mode support
+  * l1ctl_proto.h: extend ccch_mode enum with CBCH
+  * trxcon/scheduler: add CCCH/SDCCH mframe layouts with CBCH
+  * firmware/layer1: add scheduler tasks for CBCH
+  * firmware/layer1: inform about unhandled scheduler tasks
+  * trxcon/l1ctl.c: properly handle indicated CCCH mode
+  * trxcon/sched_lchan_desc.c: fix wrong chan_nr for PDCH
+  * layer23/app_ccch_scan.c: omit dummy (fill) frames
+  * layer23/app_ccch_scan.c: hexdump unhandled PCH/AGCH messages
+  * layer23/app_ccch_scan.c: print pdisc in error message
+  * layer23/app_ccch_scan.c: clean up System Information handling
+  * layer23/app_ccch_scan.c: print 'new-line' char locally
+  * layer23/app_ccch_scan.c: clean up copy-pasted code
+
+-------------------------------------------------------------------
+Sat Sep 29 19:48:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1538176558.0cd4252a:
+  * trxcon/scheduler: fix Measurement Reporting on SACCH
+  * trxcon/sched_prim.c: drop redundant tn validation
+
+-------------------------------------------------------------------
+Fri Sep 28 20:02:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1538087486.195fe9b8:
+  * trxcon/scheduler: pass talloc ctx directly to sched_prim_init()
+  * trxcon/scheduler: pass lchan state to sched_prim_dequeue()
+
+-------------------------------------------------------------------
+Sat Sep 22 20:02:38 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1537539586.c572682e:
+  * layer23/l1ctl.c: replace printf() calls by LOGP
+  * layer23/l1ctl.c: drop redundant printf() call
+
+-------------------------------------------------------------------
+Sun Sep 16 20:02:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1537105889.b4294471:
+  * lua: Expose API to trigger a network reselection
+  * Add includes so the file can be included by itself
+  * Install to /bin as it doesn't require special privileges..
+
+-------------------------------------------------------------------
+Sat Sep 15 20:02:47 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1537038731.7d06c78b:
+  * trxcon/scheduler: add TCH/H channel support
+  * trxcon/scheduler: introduce TCH/H TDMA frame mapping helpres
+  * trxcon/scheduler: introduce TDMA frame math helpers
+  * trxcon/scheduler: fix: don't send BFI in GSM48_CMODE_SIGN mode
+  * trxcon/scheduler.h: share FRAME_DURATION_uS definition
+
+-------------------------------------------------------------------
+Tue Sep 11 20:02:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1536322704.3d62aa72:
+  * trxcon/l1ctl.c: refactor Timing Advance handling
+
+-------------------------------------------------------------------
+Fri Sep 07 20:02:51 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1536310939.05d88069:
+  * trx_toolkit/fake_trx: drop Timing Advance range limitation
+  * trxcon/trx_if.c: drop Timing Advance range limitation
+  * common/l1ctl.c: fix: use signed type for TA in l1ctl_tx_param_req()
+  * trxcon/trx_if.c: drop unused SETPOWER and ADJPOWER
+  * trxcon: distinguish between unimplemented and unknown messages
+  * firmware/l23_api.c: cosmetic: use proper format specifier
+  * trxcon/l1ctl.c: fix: handle ARFCN from L1CTL_DM_EST_REQ
+
+-------------------------------------------------------------------
+Thu Sep 06 20:02:58 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1536243367.fcfe20d3:
+  * layer23: Use osmo_sock_unix_init_ofd() from libosmocore
+  * osmoload: Use osmo_sock_unix_init_ofd() from libosmocore
+  * osmocon: Use osmo_sock_unix_init_ofd() from libosmocore
+  * osmocon: Add --enable-{werror,sanitize} configure flags
+  * trxcon/trx_if.c: use proper format specifiers
+  * trxcon: avoid arfcn / band_arfcn naming confusion
+  * trxcon/l1ctl.c: print timeslot number from L1CTL_DM_EST_REQ
+  * trxcon/l1ctl.c: drop meaningless 'tn > 7' checks
+
+-------------------------------------------------------------------
+Mon Aug 27 20:02:42 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1535367800.1f578082:
+  * cosmetic: add commandline help
+  * cosmetic: fix typo
+
+-------------------------------------------------------------------
+Fri Aug 24 12:15:49 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1535106921.90a9ac41:
+  * Allow lua code to register a fd for reading with the runtime
+  * Forget about the callback after use and cancellation
+  * osmocon: fix read buffer overrun in romload_prepare_block()
+  * osmo_mcast_sock: make sure SO_REUSEADDR is applied
+  * jenkins.sh: Don't only build-verify layer23 but all other host programs, too
+
+-------------------------------------------------------------------
+Thu Aug 23 20:02:43 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1535028776.677a0f81:
+  * osmocon: fix use of an initialized variable
+
+-------------------------------------------------------------------
+Sat Aug 18 20:02:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1534526579.316f22f0:
+  * trxcon/sched_clck.c: fix time delta calculations
+
+-------------------------------------------------------------------
+Wed Aug 15 20:02:41 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1534300328.347406ce:
+  * trxcon/scheduler: get rid of useless lchan->rsl_mode
+  * trxcon/scheduler: fix: properly generate BFI for TCH/H
+  * trxcon/scheduler: pass lchan to sched_bad_frame_ind()
+  * trxcon/sched_prim.c: properly handle both TCH/H and FACCH/H prims
+  * trxcon/sched_prim.c: refactor prim dequeuing logic
+  * trxcon/sched_trx.h: add missing parentheses to PRIM_IS_*
+
+-------------------------------------------------------------------
+Sat Aug 11 20:02:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1533996631.d4fb4fde:
+  * layer23: Replace all instances of strncpy() by osmo_strlcpy
+  * layer23: Fix possible buffer overflow writing NUL beyond end of string
+  * layer23: Use osmo_strlcpy() to avoid non-terminated strings
+  * layer23: Fix compiler warnings about string operation truncation
+  * layer23: Fix compiler warning about snprintf buffer too small
+  * layer23: fix unaligned store in osmo_send_l1()
+  * layer23: Add --enable-sanitize and --enable-werror configure flags
+
+-------------------------------------------------------------------
+Sun Aug 05 20:02:49 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1533162649.a50d3fff:
+  * trx_toolkit/fake_trx: introduce basic path loss simulation
+  * trx_toolkit/burst_fwd.py: separate burst preprocessing
+
+-------------------------------------------------------------------
+Sat Jul 28 20:02:47 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1532719349.488f92d8:
+  * trxcon: make both Valgrind and trxcon happy
+
+-------------------------------------------------------------------
+Tue Jul 24 20:03:01 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1532445853.8f6909a9:
+  * trxcon/scheduler: fix: check primitive len before encoding
+  * Move from libc random() to osmo_get_rand_id (2nd attempt)
+
+-------------------------------------------------------------------
+Sat Jul 21 20:02:53 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1532106898.fd33dcc2:
+  * trx_toolkit/trx_sniff.py: fix memleak: don't store packets
+  * mobile: use osmo_init_logging2 with proper talloc context
+
+-------------------------------------------------------------------
+Tue Jul 17 20:02:42 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1531778998.a0eef8d2:
+  * Revert "Move from libc random() to osmo_get_rand_id"
+
+-------------------------------------------------------------------
+Mon Jul 16 20:02:45 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1531725086.70a50a33:
+  * trxcon: fix tail bits at the front of Access burst
+
+-------------------------------------------------------------------
+Thu Jul 12 20:02:51 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1531343591.6d49b049:
+  * Move from libc random() to osmo_get_rand_id
+
+-------------------------------------------------------------------
+Sat Jul 07 20:05:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1530897060.c36dc296:
+  * calypso: Print warning about unsupported encryption algorithms
+
+-------------------------------------------------------------------
+Thu Jul 05 20:04:03 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1529259777.ce772ce3:
+  * lua: Add API to enable passing credentials
+
+-------------------------------------------------------------------
+Wed Jun 13 18:39:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1528890497.ac37f55b:
+  * osmoload: Set compiler attr to unused function
+  * osmocon: Set compiler attr to unused variables
+  * osmocon: Fix printf format
+  * osmoload: Remove duplicate const keyword
+  * osmocon: Call osmo_init_ignore_signals at startup
+  * trf6151: Actually fix setting of uplink ARFCN
+
+-------------------------------------------------------------------
+Thu Jun 07 18:23:12 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1528087825.fcb420d5:
+  * mobile/sms: Make it optional to store the SMS on disk
+  * mobile/sms: Simplify the string format routines
+  * mobile/sms: Fix memory leak in case the storage can not be opened
+  * mobile: Make time spent in c7 configurable
+  * osmocon: Makefile.am: Fix build using different path
+  * Remove the patches for Wireshark
+  * README.development: add brief info about the TRX Toolkit
+  * README.development: cosmetic: correct/add wiki links
+  * README.building: cosmetic: correct wiki links
+  * include/osmocore: remove unused headers
+  * VIRT_PHY: add missing L1CTL_BURST_IND to l1ctlPrimNames
+  * trxcon: Prefix SACCH fill frame with L1 header
+  * host/trxcon: track talloc NULL contexts by default
+  * host/trxcon: don't free root talloc context
+  * host/trxcon: use osmo_init_logging2()
+
+-------------------------------------------------------------------
+Sun Apr 08 08:09:18 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1523122524.05d95a46:
+  * host/trxcon: introduce a new 'trxcon' application
+  * host/trxcon: initial release of L1CTL interface
+  * host/trxcon: initial release of transceiver interface
+  * host/trxcon: fix NULL-pointer deference
+  * host/trxcon/trx_if.c: add ECHO command
+  * host/trxcon: integrate osmo-fsm framework
+  * host/trxcon: initial release of L1CTL handlers
+  * host/trxcon/scheduler: add basic clock counter
+  * host/trxcon/trx_if.c: handle clock indications
+  * host/trxcon/scheduler: add basic GSM PHY definitions
+  * host/trxcon/scheduler: implement management functions
+  * host/trxcon/scheduler: handle bursts from TRX interface
+  * host/trxcon: store arfcn and band in trx_instance
+  * host/trxcon: handle ccch_mode from L1CTL_FBSB_REQ
+  * host/trxcon: link trxcon against libosmocoding
+  * host/trxcon/scheduler: implement xCCH decoding
+  * host/trxcon/scheduler: implement SCH decoding
+  * host/trxcon: bind L1CTL link with TRX and vice versa
+  * host/trxcon: handle L1CTL_FBSB_REQ inside l1ctl.c
+  * host/trxcon: handle L1CTL_RESET_REQ inside l1ctl.c
+  * host/trxcon: send L1CTL_DATA_IND directly from lchan handler
+  * host/trxcon/scheduler: fix channel deactivation
+  * host/trxcon/l1ctl.c: implement L1CTL_FBSB_CONF
+  * host/trxcon/l1ctl.c: implement L1CTL_CCCH_MODE_{REQ/CONF}
+  * host/trxcon/scheduler: drop resolved FIXME label
+  * host/trxcon: reset scheduler when L1CTL is lost
+  * target/fake_trx: initial release of virtual transceiver
+  * fake_trx/burst_fwd.py: append two unused bytes at the end
+  * host/trxcon/trx_if.c: fix compatibility with OsmoTRX
+  * host/trxcon/trx_if.c: use proper names for burst handlers
+  * host/trxcon/trx_if.c: expose the trx_if_tx_burst()
+  * host/trxcon/scheduler: modify trx_lchan_tx_func definition
+  * host/trxcon/scheduler: store BSIC in trx_instance
+  * host/trxcon/scheduler: implement TX queue handling
+  * host/trxcon/scheduler: implement RACH handler
+  * host/trxcon/l1ctl.c: handle L1CTL_RACH_REQ
+  * host/trxcon/scheduler: confirm successful RACH requests
+  * host/trxcon/trx_if.c: simplify response matching
+  * host/trxcon/trx_if.c: add power measurement command
+  * fake_trx: fix copy-paste error
+  * fake_trx/ctrl_cmd.py: print response to stdout
+  * fake_trx/ctrl_if.py: allow adding custom params to response
+  * fake_trx: implement power measurement emulation
+  * host/trxcon/l1ctl.c: handle L1CTL_PM_REQ correctly
+  * fake_trx: handle SETSLOT command from BB
+  * host/trxcon/scheduler: notify transceiver about TS state
+  * fake_trx: implement simple freq. filter
+  * host/trxcon/l1ctl.c: fix incomplete msg in l1ctl_tx_fbsb_conf()
+  * host/trxcon/l1ctl.c: fix L1CTL_RACH_{REQ,CONF} handling
+  * host/trxcon/l1ctl.c: implement FBSB expire timer
+  * host/trxcon/scheduler: fix TS index in sched_trx_configure_ts()
+  * host/trxcon/l1ctl.c: handle L1CTL_DM_{EST,REL}_REQ
+  * host/trxcon/scheduler: implement xCCH TX capability
+  * host/trxcon/l1ctl.c: handle L1CTL_DATA_REQ
+  * fake_trx: fix compatibility with Python 3
+  * host/trxcon/scheduler: implement TSC selection
+  * host/trxcon/scheduler: confirm xCCH data sending
+  * host/trxcon/scheduler: add a reference to GSM 05.02
+  * host/trxcon: share trxcon fsm and talloc ctx via trxcon.h
+  * host/trxcon: split sched_lchan_handlers.c
+  * host/trxcon/trx_if.c: get rid of CLCK interface
+  * fake_trx: don't send clock indications to mobile stations
+  * host/trxcon/l1ctl.c: handle L1CTL_PARAM_REQ
+  * host/trxcon/l1ctl.c: reset FBSB expire timer on shutdown
+  * host/trxcon: get rid of useless trxcon fsm events
+  * host/trxcon: don't flush trx control messages on reset
+  * host/trxcon: get rid of useless TRX_EVENT_RESET_IND
+  * host/trxcon/scheduler: implement sched_clck_reset()
+  * host/trxcon/scheduler: optionally reset clock counter
+  * host/trxcon: adjust default verbosity level
+  * fake_trx: add copyright message to clck_gen.py and ctrl_cmd.py
+  * fake_trx: add a new tool for burst generation
+  * host/trxcon/scheduler: simplify timeslot management
+  * host/trxcon/scheduler: fix possible NULL deference
+  * host/trxcon/scheduler: git rid of sched_trx_find_ts()
+  * host/trxcon/scheduler: use 'tn' instead of 'ts_num'
+  * host/trxcon/scheduler: drop a meaningless FIXME label
+  * host/trxcon/scheduler: ignore incomplete sets of bursts
+  * host/trxcon/scheduler: fix chan_nr parsing
+  * host/trxcon/scheduler: pass trx_lchan_state to lchan handlers
+  * host/trxcon/scheduler: get rid of useless nbits argument
+  * host/trxcon/l1ctl.c: make l1ctl_tx_data_ind flexible
+  * host/trxcon/scheduler: share common code for lchan handlers
+  * host/trxcon/scheduler: clean up some includes
+  * fake_trx: add options to specify fn, tn and pwr
+  * fake_trx: separate DataInterface from burst_gen.py
+  * fake_trx: whitespace fix
+  * host/trxcon/l1ctl.c: do nothing if CCCH mode matches
+  * host/trxcon: separate logging of L1 Control and L1 Data
+  * host/trxcon/l1ctl.c: fix wrong log level
+  * host/trxcon/scheduler: send stored tx_power to transceiver
+  * host/trxcon/l1ctl.c: retune TRX only if current ARFCN differs
+  * host/trxcon/l1ctl.c: don't fill l1ctl_info_ul into a primitive
+  * host/trxcon/l1ctl.c: share primitive management code
+  * host/trxcon/l1ctl.c: use primitive management API for RACH
+  * host/trxcon/l1ctl.c: include DL frame info in L1CTL_DATA_CONF
+  * host/trxcon/l1ctl.c: handle L1CTL_TCH_MODE_REQ
+  * host/trxcon/scheduler: share common declarations of lchan handlers
+  * host/trxcon/scheduler: fix prim queue flushing function
+  * host/trxcon/trx_if.c: fix wrong logging category
+  * host/trxcon: use LOGP instead of fprintf
+  * host/trxcon/trx_if.c: separate logging of data messages
+  * host/trxcon/scheduler: separate logging of data messages
+  * host/trxcon: fix: use valid names for FSM instances
+  * fake_trx/ctrl_cmd.py: add help and basic command line options
+  * fake_trx/README: correct the branch name
+  * fake_trx/burst_gen.py: remove unused import
+  * fake_trx: implement a new tool for burst sending
+  * fake_trx: correct brief descriptions of files
+  * host/trxcon/scheduler: process frames in advance
+  * host/trxcon/trx_ic.c: use osmo_ubit2sbit() from libosmocore
+  * host/trxcon/trx_if.c: get rid of useless commands
+  * host/trxcon: forward Timing Advance value to transceiver
+  * fake_trx/clck_gen.py: send the first indication immediately
+  * fake_trx/clck_gen.py: reset the clck_src when calling stop()
+  * fake_trx: don't sent clock indications until POWERON
+  * host/trxcon/scheduler: use new libosmocoding API for RACH
+  * host/trxcon/scheduler: clean up the trx_lchan_state
+  * host/trxcon/scheduler: drop meaningless memset call
+  * host/trxcon/scheduler: use GSM_MACBLOCK_LEN definition
+  * common/l1ctl.c move TCH bit-ordering to the firmware
+  * host/trxcon/l1ctl.c: handle L1CTL_TRAFFIC_REQ
+  * host/trxcon/scheduler: add initial TCH/F channel support
+  * host/trxcon/scheduler: inform L2&3 about decoding errors
+  * host/trxcon/scheduler: always print error messages
+  * trxcon/scheduler: BUGFIX: distinguish between SACCH and FACCH
+  * trxcon/scheduler: separate primitive management code
+  * trxcon/scheduler: move prim management outside lchan handlers
+  * trxcon/scheduler: prioritize FACCH correctly
+  * L1CTL/L1CTL_CRYPTO_REQ: add key length and channel info
+  * trxcon/scheduler: preprocess UL bursts before sending
+  * trxcon/scheduler: implement A5/X ciphering support
+  * trxcon/scheduler: FIX: return NULL from TCH dequeue function
+  * trxcon/scheduler: share chan / prim identification helpers
+  * trxcon/scheduler: reset lchan state after deactivation
+  * trxcon/scheduler: deactivate lchans when resetting / deleting TS
+  * trxcon/scheduler: use linuxlist API for lchan management
+  * trxcon/scheduler: drop meaningless TODO comment
+  * trxcon/scheduler: use TCH frame length defs from libosmocodec
+  * fake_trx/burst_send.py: indicate actual burst source
+  * fake_trx: implement a new tool for TRX protocol sniffing
+  * fake_trx: share and use common GSM constants
+  * fake_trx: implement classes for DATA messages
+  * fake_trx/data_msg.py: implement header randomization
+  * fake_trx/data_msg.py: handle bursts properly
+  * fake_trx/data_msg.py: implement header description
+  * fake_trx/burst_gen.py: check argv separately
+  * fake_trx/burst_gen.py: don't store RandBurstGen
+  * fake_trx: use DATAMSG classes for DATA messages
+  * fake_trx/burst_gen.py: also handle RSSI and ToA values
+  * fake_trx/burst_send.py: also handle RSSI and ToA values
+  * fake_trx/burst_send.py: handle both GSM and EDGE bursts
+  * fake_trx: implement classes for DATA capture menagement
+  * fake_trx/trx_sniff.py: use DATADumpFile for capture writing
+  * fake_trx/burst_gen.py: add burst capture support
+  * fake_trx/burst_send.py: implement DATA capture support
+  * fake_trx/data_dump.py: use 2 bytes to store message length
+  * mobile: Fix memory leak when not using a LUA script
+  * trxcon|fake_trx: change default TRX port number to 6700
+  * fake_trx/udp_link.py: close socket in destructor
+  * fake_trx/udp_link.py: drop useless UDPLink.loop() API
+  * fake_trx/udp_link.py: set SO_REUSEADDR socket option
+  * fake_trx/data_msg.py: implement message transformation API
+  * fake_trx/burst_fwd.py: use DATAMSG transformation API
+  * fake_trx/data_msg.py: fix python3 compatibility in tests
+  * fake_trx/data_dump.py: fix python3 compatibility
+  * fake_trx/data_msg.py: use a single unified constructor
+  * fake_trx/burst_fwd.py: drop useless set_slot() method
+  * fake_trx/data_msg.py: use integer math for ToA
+  * fake_trx/data_msg.py: implement ToA parsing support
+  * fake_trx: handle SETTA (Timing Advance) indicated by MS
+  * fake_trx/burst_fwd.py: calculate both RSSI and ToA separately
+  * fake_trx/burst_fwd.py: disable field randomization by default
+  * fake_trx/fake_trx.py: add options to enable field randomization
+  * fake_trx/ctrl_if_(bb|bts).py: add FAKE_TOA command
+  * fake_trx/burst_fwd.py: FIX: apply TA value correctly
+  * trxcon: Define event names for osmo_fsm's
+  * fake_trx: Always send control responses to where commands are from
+  * fake_trx: Send positive response to FAKE_TOA commands
+  * fake_trx: Increase TOA256 value ranges
+  * trxcon: Fix '-i' to specify the "TRX IP address"
+  * fake_trx/ctrl_if_(bb|bts).py: log link info at start-up
+  * host/trxcon: use integer math for ToA (Timing of Arrival)
+  * fake_trx/ctrl_if.py: remove forgotten debug print
+  * fake_trx/ctrl_if.py: reduce code branch nasting
+  * fake_trx/ctrl_if.py: remove incorrect isdigit() check
+  * fake_trx/udp_link.py: use a random bind port by default
+  * fake_trx/ctrl_cmd.py: use a random bind port by default
+  * trxcon/configure.ac: add --enable-sanitize option
+  * trxcon/sched_trx.c: fix: properly deallocate lchans
+  * trxcon/sched_trx.c: fix: omit inactive logical channels
+  * trxcon/sched_trx.h: clarify lchan flags meaning
+  * trxcon/scheduler: introduce a new CBTX lchan flag
+  * trxcon/scheduler: transmit dummy frames on CBTX lchans
+  * trxcon: use meaningful names for L1CTL messages
+  * trxcon: clarify L1CTL message length field
+  * trxcon/l1ctl_link.c: allocate msgb after its length is read
+  * trxcon/l1ctl.c: combine both DATA and TRAFFIC REQ handlers
+  * trxcon: clean up DATA / TRAFFIC confirmation API
+  * trxcon: clean up DATA / TRAFFIC indication API
+  * trxcon/sched_lchan_common.c: use static memory allocation
+  * trxcon/scheduler: enforce lchan handlers to set message type
+  * trxcon/sched_lchan_xcch.c: always send data indications
+  * trxcon/sched_lchan_tchf.c: always send traffic indications
+  * fake_trx: unify the GPL license header
+  * Rename 'fake_trx' to 'trx_toolkit'
+  * L1CTL/L1CTL_CRYPTO_REQ: add key length and channel info
+  * common/l1ctl.c move TCH bit-ordering to the firmware
+  * virt_phy: Add missing gprs related entries to l1ctlPrimNames
+  * trxcon/sched_prim.c: fix: correct the first padding byte
+  * trxcon/scheduler: share lchan link identifiers
+  * trxcon/scheduler: add CHAN_IS_SACCH macro
+  * trxcon: Respect the tch_mode field of DM_EST_REQ
+  * trx_toolkit: Add cmdline arg to set bind addr
+  * trxcon/l1ctl.c: hexdump content of unhandled messages
+
+-------------------------------------------------------------------
+Sat Feb 10 16:21:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1518266180.af4bad31:
+  * mobile/primitives.c: fix format string compiler warning
+  * layer23/cell_log: set default logfile to /dev/null
+
+-------------------------------------------------------------------
+Tue Feb 06 19:07:08 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1517900717.e357646e:
+  * Import gprsdecode utility from SRLabs
+  * l1ctl_proto.h: define burst indication messages
+
+-------------------------------------------------------------------
+Fri Feb 02 20:30:17 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1516638834.75e11d1d:
+  * Don't ignore top-level Makefile
+  * cosmetic: fix Makefile whitespace
+  * mobile: Print an error message if the VTY cannot be initialized
+  * mobile: Add lua examples for basic functions that are available
+  * mobile: Properly close the primitive interface on reload
+  * mobile: Send SMS through the primitive interface
+  * mobile/vty_interface.c: fix 'channel-capability' description
+  * mobile/gsm48_rr.c: cosmetic: drop wrong comment
+  * mobile/gsm48_rr.c: fix ACCH System Information parsing
+  * target/firmware: fix Mediatek firmware compilation
+  * mobile: Return the name of the configured "MS"
+  * mobile: Simplify code and check the cb ref in load_cb
+  * mobile: Use new LOGPSRCC macro to print multiple values
+  * mobile: Create "ms" singleton for struct osmocom_ms
+  * mobile: Add osmo.timeout for lua code to have timeouts
+  * mobile: Add initial support for scripting support
+  * mobile: Add LUA as debug category to the applications
+  * mobile: Search for lua5.3 and link to it
+  * mobile: Notify MM status changes and generate primitive op ind
+  * mobile: Inform the primitive layer about status and new sms
+  * mobile: Directly inform the primitive layer about an event
+  * mobile: Begin with a primitive interface on top of the code
+  * mobile: Move starting/stopping a MS into a separate function
+  * mobile: Declare struct osmocom/vty to be self includeable
+  * mobile: Fix compiler warning on printing ptrdiff_t
+  * mobile: Use enum and not magic value in the VTY
+  * mobile: Re-introduce msg_ref in struct gsm_sms
+  * mobile: ms->shutdown was not converted properly to enum
+  * mobile: Speculative crash fix of the SI pointer
+  * mobile: Avoid msg_ref going out of sync
+  * mobile: Change started and shutdown state through function
+  * mobile: Instead of putting semantic in a comment, use an enum
+  * mobile: Use bool to show started can only be true or false
+  * mobile: Switch from printf to LOGP statements
+  * mobile/vty_interface.c: fix Kc / Ki confusion
+  * layer23 vty: fix prompts: insert space after '#'
+  * mobile: Make VTY logging commands available to the mobile app
+  * mobile/gsm322.c: prevent buffer over-/under-run
+  * mobile/gsm322.c: prevent calling memset() with zero length
+  * mobile: Do not exclude DGPS from the list of default categories
+  * vty: skip installing cmds now always installed by default
+  * host/mobile: use osmocom_ms as talloc context
+  * mobile: get rid of unused variables / functions
+  * mobile/gsm411_sms.c: use secure gsm_7bit_(en|de)code_n
+  * mobile/gsm48_mm.c: use secure gsm_7bit_decode_n
+  * mobile/gsm480_ss.c: use secure gsm_7bit_(en|de)code_n_ussd
+  * mobile/vty_interface.c: fix incompatible pointer type warning
+  * mobile/main.c: fix deprecated call to msgb_set_talloc_ctx()
+  * mobile/vty_interface.c: add missing 'vty/misc.h' header
+  * jenkins: use osmo-clean-workspace.sh before and after build
+  * mobile: register the talloc context introspection command
+  * mobile: clean up and share example configs
+  * mobile/vty_interface.c: do not write 'exit' to config
+  * mobile/vty_interface.c: do not install default commands
+  * mobile/main.c: clean up config file selection logic
+  * Add arbitrary config file location support
+  * Add 'git review' config file
+  * VIRT-PHY: Add support for GPRS / TBF mode
+  * VIRT-PHY: virt_l1_sched: Pass timeslot number into call-back
+  * VIRT-PHY: Support forwarding of CBCH similar to BCCH/CCCH
+  * virtphy: Add SIGINT+SIGTERM handlers
+  * vty_interface.c: use RPLMN from settings if preset
+  * VIRT-PHY: enable proper memory leak debugging
+  * VIRT-PHY: We don't do line-breaks inside log statements
+  * VIRT-PHY: Properly destroy l1_model_ms after disconnect
+  * VIRT-PHY: Change default log levels
+  * VIRT-PHY: Clean up logging statements
+  * VIRT-PHY: Separate logging of L1 Control and L1 Data
+  * VIRT-PHY: Log MS context number whenever possible
+  * VIRT-PHY: Major rewrite to deal with muliple L1CTL clients
+  * VIRT-PHY: Don't redefine GSMTAP port number, use libosmocore
+  * VIRT-PHY Use libosmocore unix domain socket helper
+  * VIRT-PHY: reorganize data structures
+  * VIRT-PHY: some more comments/documentation
+  * VIRT-PHY: Use IPv4 multicast groups for private / local scope
+  * VIRT-PHY: Use osmo_fd_close() introduced in libosmocore
+  * VIRT-PHY: Use new OSMO_SOCK_F_NO_MCAST_{LOOP,ALL} flags
+  * VIRT-PHY mcast_sock: Use uint16_t for ports, bool and const
+  * VIRT-PHY: mcast_sock: properly clean up in error paths (close/unreg socket)
+  * VIRT-PHY: Further simplify mcast_sock code
+  * VIRT-PHY: mcast_sock: We must close the fd before setting it to -1
+  * VIRT-PHY: mcast_sock: Don't keep subscribed multicast group around
+  * VIRT-PHY: mcast_sock: Avoid dynamic allocation of osmo_fd member
+  * VIRT-PHY: osmo_mcast_sock: Get rid of server_sock.sock_conf
+  * VIRT-PHY: osmo_mcast_sock.c coding style cleanup
+  * Port osmo_mcast_sock to libosmocore socket routines
+  * VIRT-PHY: Use gsmtap value_strings in recent libosmocore
+  * VIRT-PHY: common_util: chantype_gsmtap2rsl() now in libosmocore
+  * VIRT-PHY: Fix all compiler warnings on gcc-6.3.0
+  * VIRT-PHY: Make sure heaer files are part of 'make dist'
+  * VIRT-PHY: coding style / API usage cleanup
+  * VIRT-PHY: Remove non-overridable CFLAGS "-g -O0"
+  * VIRT-PHY: Configurable signal power reductions for multiple arfcns.
+  * VIRT-PHY: Extracted common virtphy utils.
+  * VIRT-PHY: Added option parsing.
+  * VIRT-PHY: Add downlink filter for msg on dedicated channels.
+  * VIRT-PHY: Fixed power management and PCS sync.
+  * VIRT-PHY: Fixed FACCH processing on TCH.
+  * VIRT-PHY: Scheduler - correct handling over hyperframe repeat.
+  * VIRT-PHY: Calculate correct scheduler fn for data- and tch-msgs on ul.
+  * VIRT-PHY: Fixed error causing send msgs to be received on same sock.
+  * VIRT-PHY: Data and traffic req from l23 now use scheduler.
+  * VIRT-PHY: Using IANA-registered port 4729 for GSMTAP for virt um.
+  * VIRT-PHY: Uplink scheduler implementation.
+  * VIRT-PHY: Uplink flag and arfcn check.
+  * VIRT-PHY: Added example config for 2 mobile instances.
+  * VIRT-PHY: Enable multiple phy-instances by configurable l1ctl-sock-path.
+  * VIRT-PHY: Cleanup dirs, makefile, dependencies and formatting code.
+  * VIRT_PHY: Improved l1ctl-to-l23 interface + gsmtap header parsing.
+  * VIRT-PHY: Implemented RACH on uplink.
+  * VIRT-PHY: Initial commit of virt-phy to work with osmo-bts virt-phy.
+  * host/mobile: use talloc for ms->name allocation
+  * Makefile: add forgotten gsmmap to (dist)clean section
+  * mobile/gsm48_mm.c: strip unused variable
+  * mobile/gsm480_ss.c: gsm480_mmss_ind: return rc
+  * mobile/gsm48_rr.c: fix BA range exceed check
+  * mobile/gsm480_ss.c: fix copy-paste error
+  * mobile/gsm322.c: fix mcc/mnc typo
+  * mobile/gsm322.c: check fwrite() return value
+  * host/app_mobile.c: do not exit in mobile_new()
+  * sap_interface.c: drop meaningless condition
+  * osmocon.c: strip unused variable
+  * Introduce contrib/jenkins.sh to enable gerrit verification[1]
+  * Support Early Classmark Sending
+  * Fix encoding of padding at end of CLASSMARK 3 IE
+  * mobile.c: Don't register 'end' command to CONFIG_NODE
+  * mobile: Finally fix copyright notice
+  * Revert "trf6151: Fix setting of uplink ARFCN"
+  * define 'fprintf(stderr,' as a wrapper around printf(
+  * Add an endian.h file as one step to build against later libosmocore
+  * Add libosmocore/build-target/include to include path
+  * fix various other compiler warnings
+  * cfi_flash.c: Fix various format string compiler warnings
+  * trf6151: Fix setting of uplink ARFCN
+  * Avoid redefining __{packed,aligned,unused,section}
+- Package cleanup
+
+-------------------------------------------------------------------
+Wed Jan  4 18:37:30 UTC 2017 - mardnh@gmx.de
+
+- Build firmware only on intel plaforms (i586, x86_64)
+
+-------------------------------------------------------------------
+Wed Dec 28 21:03:21 UTC 2016 - mardnh@gmx.de
+
+- Add patches (only apply the first one)
+  + osmocom-bb-gps-type-serial-android-a3-NMEA-GPGGA-disabled-checksum.diff
+  + osmocom-bb-gps-type-serial-android-a3-NMEA-GPGLL.diff
+  + osmocom-bb-gps-type-serial-locosys-bgt31-NMEA-GPGGA.diff
+
+-------------------------------------------------------------------
+Sat Feb 20 22:08:34 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1453250507.ce3c88e:
+  + mobile: Fix for "Added runtime selection of gps device"
+  + host/mobile: Improved SAP interface integration
+  + fw: fix SPCA552 write timing
+
+-------------------------------------------------------------------
+Thu Dec 31 13:39:34 UTC 2015 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1451567560.ef0d8ec:
+  + cleanup some compile warnings
+  + autoconf: Migrate from INCLUDES to AM_CPPFLAGS
+  + modernize AM_INit_AUTOMAKE
+
+-------------------------------------------------------------------
+Mon Sep 21 07:30:09 UTC 2015 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1437477556.8a2e935:
+  + layer1: fix chan_nr2mf_task_mask for TCH/H channel
+
+-------------------------------------------------------------------
+Tue Jul 14 18:23:23 UTC 2015 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1430229474.fc20a37:
+  + host/mobile: Finish working support for the SAP interface
+
+-------------------------------------------------------------------
+Fri Dec 19 20:22:13 UTC 2014 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1410040035.e6372a2:
+  + host/mobile: Fix trans_assign_trans_id() users error checking
+  + host/osmocon: fix some printf format specifier in handle_write_dnload
+  + host/mobile: Fixup in error checking path of l23_app_init
+  + host/mobile: Add 'extern' qualifier to config_dir in app_mobile.h
+  + osmocon: Improve performance by handling several serial bytes at a time
+  + Fix wrong msgb_pull usage
+  + mobile/SS: Fixed bug in parsing of known supplemenary service codes
+  + fw: tell linker to add init_array to ctor section
+  + mobile: Use osmocom auth API instead of direct calls
+  + layer23: initialize l2h/l3h pointers in rx_l1_rach_conf
+
+-------------------------------------------------------------------
+Thu Dec 26 22:27:03 UTC 2013 - mardnh@gmx.de
+
+- update to version git.1387866838.2d0a5ac
+
+-------------------------------------------------------------------
+Mon Aug 26 18:36:57 UTC 2013 - mardnh@gmx.de
+
+- initial package written from scratch
+

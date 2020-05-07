@@ -1,0 +1,123 @@
+-------------------------------------------------------------------
+Thu Jul 18 20:12:15 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.4.79:
+  * Fix typos
+
+-------------------------------------------------------------------
+Thu Jul 11 20:22:45 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.4.78:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Tue Jul 17 20:03:00 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.77:
+  * Make RTP payload type configurable
+  * build: fix packaging problems and make distcheck happy
+
+-------------------------------------------------------------------
+Tue Jul 03 17:33:03 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.75:
+  * configure.ac: disable building libgsmhr by default
+  * fmt_ti.c: fix: properly pre-clean the output buffer
+  * tests: make both Valgrind and LeakSanitizer happy
+  * testsuite.at: fix: conditionally enable 'ecu/ecu_fr_test'
+  * libgsmhr/fetch_sources.py: fix source code downloading
+  * contrib/jenkins.sh: enable AddressSanitizer
+
+-------------------------------------------------------------------
+Sat Jun 30 09:34:05 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.69:
+  * Implement ECU (Error Concealment Unit) block for FR
+  * procqueue.c: rely on item type instead of its position
+  * app_osmo_gapk.c: use recommended osmo_init_logging2()
+
+-------------------------------------------------------------------
+Mon Mar 19 18:57:58 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.66
+
+-------------------------------------------------------------------
+Wed Feb 14 16:06:20 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.4.65
+
+-------------------------------------------------------------------
+Tue Feb  6 18:36:30 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.4.60
+
+-------------------------------------------------------------------
+Wed Jan 31 21:34:24 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 0.4.59
+- Package cleanup
+
+-------------------------------------------------------------------
+Wed Jan 31 20:53:48 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream release 0.4
+- Package cleanup
+
+-------------------------------------------------------------------
+Thu Jan  5 09:57:20 UTC 2017 - mardnh@gmx.de
+
+- build only on intel platforms i586, x86_64
+  + benchmarking is currently only supported on intel platforms
+
+-------------------------------------------------------------------
+Sun Jan 03 20:35:39 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.3.0.git1451650657.d192d8c:
+  + main: Fixup the help screen
+  + benchmark: Fix cpuid clobbering
+
+-------------------------------------------------------------------
+Wed Dec 30 11:23:02 UTC 2015 - mardnh@gmx.de
+
+- Update to version 0.3.0.git1451472903.c0f0342:
+  + benchmark: Make sure to print to stderr
+  + build: Use autotools 'subdir-objects' option
+  + build: Don't build static libraries
+  + libgsmhr/fetch_sources: Only use the filename and not any path
+  + libgsmhr: fix Makefile.am dependency on source download
+  + libgsmhr: Fix parallel build dependency
+  + libgsmhr: Use patch instead of 'sed'
+  + libgsmhr: Add some code cleanup / speedup patches for reference codec
+  + libgsmhr: Make it safe to decode/encode different streams at once
+- minor specfile cleanup
+
+-------------------------------------------------------------------
+Sat Dec 26 23:15:14 UTC 2015 - mardnh@gmx.de
+
+- Update to version 0.3.0.git1446756069.d72b0f6:
+  + Add cycle benchmarking support
+  + add git-version-gen to auto-generate version from git repo tags
+  + Fix dist / distcheck targets by including fetch_sources.py in EXTRA_DIST
+  + ensure all gapk header files are included in 'dist'
+
+-------------------------------------------------------------------
+Thu Dec 18 09:11:20 UTC 2014 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1386945667.8b5e0c7:
+  + format: Add support for the TI calypso/locosto dumped buffer format
+  + format/fmt_ti: Add support for HR variant
+  + format/fmt_ti: Add support for EFR variant
+  + autotools: Add AC_LANG_SOURCE required for autotools >= 2.68
+  + codec: Fix opencore nb include path
+  + gapk main: move fh_in and fh_out to sub-structures in a union
+  + gapk: Add support for RTP input/output streams
+  + gapk: make sure the output file is closed/flushed on ctrl+c
+  + build: Use AM_CPPFLAGS in Makefile.am
+  + libgsmhr: Update source location
+- updated patch: gapk-disable-codec-dl-during-build.diff
+- specfile cleanup
+
+-------------------------------------------------------------------
+Thu Aug 15 21:36:51 UTC 2013 - mardnh@gmx.de
+
+- created package from scratch

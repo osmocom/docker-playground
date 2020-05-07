@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+            <param name="url">git://git.osmocom.org/osmo-sim-auth</param>
+          <param name="changesrevision">3aa34223e1f4d75a51382f8a337c69b7e94e36a2</param></service></servicedata>

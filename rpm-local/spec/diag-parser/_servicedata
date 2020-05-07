@@ -1,0 +1,4 @@
+<servicedata>
+<service name="tar_scm">
+            <param name="url">https://github.com/moiji-mobile/diag-parser</param>
+          <param name="changesrevision">213a79641786b54f8351b49a20682ed2ac9621d8</param></service></servicedata>

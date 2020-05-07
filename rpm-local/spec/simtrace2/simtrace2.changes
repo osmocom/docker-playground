@@ -1,0 +1,553 @@
+-------------------------------------------------------------------
+Thu Mar 19 21:04:17 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.7.0.57:
+  * simtrace2_siff: getopt_long() returns int, not char
+
+-------------------------------------------------------------------
+Fri Mar 13 21:03:35 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.7.0.56:
+  * pio_it.c: Permit repeated calls to PIO_ConfigureIt()
+  * USBD.c: Don't reset EP0 on SetConfiguration(0)
+
+-------------------------------------------------------------------
+Wed Mar 04 21:03:33 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.7.0.54:
+  * cosmetic: Add missing CR to LF in dispatch_received_usb_msg()
+  * extend osmo_st2_cardem_inst with fields required by osmo-remsim
+
+-------------------------------------------------------------------
+Mon Mar 02 21:03:34 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.7.0.52:
+  * cardem: Fix infinite loop + watchdog reset on long OUT message
+
+-------------------------------------------------------------------
+Sun Mar 01 21:03:38 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.7.0.51:
+  * Disable interrupts during EEFC_ReadUniqueID()
+
+-------------------------------------------------------------------
+Wed Feb 26 21:04:47 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.7.0.50:
+  * simtrace2_api: Add osmo_st2_cardem_request_config()
+
+-------------------------------------------------------------------
+Fri Jan 31 21:24:00 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.7.0.49:
+  * cardem: disable upload for simtrace2
+
+-------------------------------------------------------------------
+Thu Jan 30 21:05:03 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.7.0.48:
+  * remsim: allow selecting pcsc reader number
+
+-------------------------------------------------------------------
+Sun Jan 26 21:13:09 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.7.0.47:
+  * increase ringbuffer size from 512 to 1024 bytes
+
+-------------------------------------------------------------------
+Fri Jan 17 21:13:09 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.7.0.46:
+  * host/lib/gsmtap.c: Add GPLv2 disclaimer
+  * host: Add COPYING file for host software (GPLv2)
+
+-------------------------------------------------------------------
+Thu Jan 16 21:09:21 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.7.0.44:
+  * add script to flash latest firmware
+  * DFU: add DFU application
+
+-------------------------------------------------------------------
+Sun Jan 12 21:19:03 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.7.0.42:
+  * firmware: apps/cardem/main.c: Synchronize with apps/trace/main.c
+  * firmware: move printing of welcome banner to common function print_banner()
+
+-------------------------------------------------------------------
+Wed Jan 08 21:05:56 UTC 2020 - mardnh@gmx.de
+
+- Update to version 0.7.0.40:
+  * library: Add osmo_st2_compatible_dev_idsp[]
+
+-------------------------------------------------------------------
+Fri Dec 27 21:07:20 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.39:
+  * migrate to libosmousb
+  * Update .gitignore file for host
+  * OSMO_ASSERT() on double-free or invalid pointer
+
+-------------------------------------------------------------------
+Tue Dec 17 21:05:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.36:
+  * [lib] apdu_dispatch: Don't print APDU state to stdout
+  * [lib] apdu_dispatch: Use DLGLOBAL and don't printf() directly
+  * jenkins.sh: Add verify_value_string_arrays_are_terminated.py
+  * firmware: Reformat value_string to pass our validation scripts
+  * simtrace2-sniff: Reformat value_string to pass our validation scripts
+  * cardem: Implement support for CEMU_FEAT_F_STATUS_IRQ
+  * cardem: Add SIMTRACE_MSGT_BD_CEMU_CONFIG
+  * cardem: Make card_emu_report_status() optionally use IRQ endpoint
+  * card_emu: Remove extraneous initialization of ch->pts.state
+  * card_emu: Remove extraneous code
+  * card_emu: Always print state names in string representation
+  * card_emu: Avoid recursive calls to card_set_state()
+
+-------------------------------------------------------------------
+Mon Dec 16 21:08:41 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.24:
+  * card_emu: Initialize PTSS state every time we start PTS
+  * host_communication: Send zero-length-packet on wMaxPacketSize
+
+-------------------------------------------------------------------
+Sun Dec 15 21:06:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.22:
+  * cardem: RST resets all state (including release of buffers)
+  * cardem: Move card_emu_io_statechg() calls out of interrupt context
+  * card_emu: Factor out card_handle_reset() from card_emu_init()
+  * pseudo_talloc: Increment number of buffers from 10 to 20
+  * usb_buf: Properly initialize buffered_endpoint->ep number
+  * USBD_HAL: Don't disable UDP peripheral clock on suspend
+  * usb_buf: Actually limit queue to 3 elements, not 4
+  * cardem: Fix memory leak on unsupported SIMTRACE_MSGT_DT_CEMU_CARDINSERT
+  * update copyright statement
+  * implement minimalistic talloc_report(); add 't' command on UART
+  * qmod: Document '!' and '@' commands on UART
+  * cosmetic: board_qmod: Annotate #endif with comments
+  * qmod: Don't print EEPROM operations in help when not supported
+  * usb_buf: Limit the maximum queue length to 3 elements
+  * usb_buf: count number of elements in queue
+  * more comments in host_communication.c.
+
+-------------------------------------------------------------------
+Sat Dec 14 21:05:40 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.6:
+  * Add missing CR to achieve CRLF at end of log lines
+  * Fix format string related warnings (int vs. long)
+  * stdio: Add support for %p format string (pointer address)
+
+-------------------------------------------------------------------
+Wed Dec 11 21:14:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.3:
+  * minor: improve trace output
+  * improve shared bootloader/application memory
+  * Makefile: add linker option showing memory usage
+
+-------------------------------------------------------------------
+Fri Dec 06 21:16:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.7.0.0:
+  * Build only 'reasonable' combinations of APP/MEMORY
+  * Patch actual board name into the USB iProduct string descriptor
+  * usb_strings.txt: s/SIMtrace Phone/SIMtrace Card Emulation/
+  * qmod DFU: Don't overwrite memory beyond end of usb_strings[]
+
+-------------------------------------------------------------------
+Tue Dec 03 21:03:46 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.1.15:
+  * DFU: restart bootloader when USB conf failed
+  * DFU: increase USB reset duration to 50 ms
+  * minor: fix typo
+
+-------------------------------------------------------------------
+Mon Dec 02 21:08:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.1.12:
+  * cardem: use simplest ATR as default ATR
+  * simtrace2-remsim: Use simplest ATR
+  * minor: ignore usbstring binary
+  * better detect VCC and nRST changes on simtrace2 board
+  * minor : fix typo in comment
+  * minor: improve debug output
+  * minor: move USB debug output from info to debug level
+  * dfu: minor: make debug output only verbose in info level
+  * minor: updated copyright years
+  * fix baudrate of 'make log'
+  * minor: fix spacing
+  * simtrace2_api: Remove dead code
+
+-------------------------------------------------------------------
+Thu Nov 28 21:18:00 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.6.2:
+  * Fix topdir Makefile and debian packaging
+  * simtrace2-sniff.c: fix printf usage
+
+-------------------------------------------------------------------
+Tue Nov 26 21:15:57 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.1.56:
+  * qmod: lower VCC threshold to 2.5V
+  * free USB buffer when allocation failed
+  * merge simtrace2-discovery.[ch] to libusb_util.[ch]
+  * use osmo_st2_ or osmo_ prefix for [shared] library symbols
+  * host: use autotools and split shared code to libosmo-simtrace2
+
+-------------------------------------------------------------------
+Mon Nov 25 21:09:53 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.1.51:
+  * remove unused function process_do_error()
+  * simtrace2-remsim: Implement/Fix the 'skip_atr' option
+  * fix typo: libisb -> libusb
+  * card_emu_tests: Cosmetic changes (re-order code; more comments)
+
+-------------------------------------------------------------------
+Tue Nov 19 21:15:22 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.1.47:
+  * add DFU enter override capability
+  * add serial and version info in USB description
+
+-------------------------------------------------------------------
+Fri Nov 15 21:09:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.1.45:
+  * check RST/VCC/CLK line at every step of the activation
+  * initialize VCC, RST, and VCC with actual values
+
+-------------------------------------------------------------------
+Wed Oct 30 21:04:07 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.1.43:
+  * firmare/test/Makefile: Fix link order
+  * Attempt to fix master-simtrace2 publish stage (missing WORKSPACE env)
+
+-------------------------------------------------------------------
+Fri Oct 25 20:05:05 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.1.41:
+  * add/fix mcp23017 i2c gpio expander functions and tests
+
+-------------------------------------------------------------------
+Fri Oct 04 20:03:12 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.1.40:
+  * define LEDs for octsimtest
+  * make LED definitions board specific
+  * hw: put board specific pin definition in corresponding file
+
+-------------------------------------------------------------------
+Mon Sep 02 20:08:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.1.37:
+  * USB: place version string in interface
+
+-------------------------------------------------------------------
+Tue Aug 13 20:09:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.1.36:
+  * disable ERASE pin
+
+-------------------------------------------------------------------
+Fri Aug 09 20:17:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.1.35:
+  * Fix builds on Ubuntu 16.04
+
+-------------------------------------------------------------------
+Thu Aug 08 21:58:04 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.1.34:
+  * add serial and version information in USB descriptor
+  * publish: also upload latest
+  *  add new board and app for gpio testing on octsimtest board
+
+-------------------------------------------------------------------
+Sat Jul 20 20:03:50 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.1.31:
+  * contrib/jenkins.sh: don't delete old builds from ftp
+  * contrib/jenkins.sh: also push the .elf files to the ftp (for gdb/objdump)
+
+-------------------------------------------------------------------
+Thu Jun 20 20:35:00 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.1.29:
+  * firmware: name binaries including their git version number
+  * qmod: Disable hub reset and EEPROM erase/write by default
+
+-------------------------------------------------------------------
+Thu May 23 20:04:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.1.27:
+  * remove unused make define
+  * add make DEFINE to remove assert ERASE code
+  * make peer ERASE more robust
+
+-------------------------------------------------------------------
+Sun Mar 03 21:03:44 UTC 2019 - mardnh@gmx.de
+
+- Update to version 0.5.1.24:
+  * Add freq_ctr app
+  * Add minimal board-support for Olimex SAM3-P256
+
+-------------------------------------------------------------------
+Thu Oct 25 20:03:32 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.22:
+  * cardem: add more debug information for TPDU state
+
+-------------------------------------------------------------------
+Sun Oct 21 17:26:03 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.21:
+  * remsim: fix TPDU response size transmission
+  * remsim: update copyright
+  * remsim: add already parsed USB path argument info
+
+-------------------------------------------------------------------
+Sun Oct 14 07:28:35 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.18:
+  * Fix compiler warning: no-return-in-nonvoid-function simtrace2_usb.c
+
+-------------------------------------------------------------------
+Fri Oct 12 20:03:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.17:
+  * libusb_util.c: Avoid gcc warning about strncpy()
+
+-------------------------------------------------------------------
+Sun Sep 23 20:03:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.16:
+  * debian/control: Add dependency to libpcsclite-dev
+
+-------------------------------------------------------------------
+Sun Sep 09 20:03:10 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.15:
+  * owhw: set the right simtrace USB ID in usb2udp
+
+-------------------------------------------------------------------
+Fri Sep 07 20:03:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.14:
+  * host: clean library dependencies
+  * owhw: add missing function board_main_top
+  * owhw: add missing function board_exec_dbg_cmd
+  * minor: update copyright
+  * minor: fix typo in comment
+  * minor: add checks on configurations and functions
+
+-------------------------------------------------------------------
+Tue Sep 04 20:03:14 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.8:
+  * qmod: add LED user control
+  * EEPROM: fix Wformat compile warning
+  * qmod: output EEPROM data only on debug level, and add completion output
+  * DFU: fix Wformat compile warning
+  * stdio: fix detection of malformated format strings
+
+-------------------------------------------------------------------
+Wed Aug 29 20:03:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.3:
+  * stdio: add void 'l' format string qualifier
+  * UART: switch baud rate to 921600 bps
+  * set main clock for using UART at 921600 bps
+
+-------------------------------------------------------------------
+Sun Aug 26 20:03:02 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.5.1.0:
+  * tag debian release 0.5.1
+  * simtrace2-sniff: Fix build with released libosmocore versions
+  * Revert "debian/control: Depend on libosmocore >= 0.12.1"
+  * debian/control: Depend on libosmocore >= 0.12.1
+  * v0.5 debian package release
+
+-------------------------------------------------------------------
+Sun Aug 26 09:07:02 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.4.154:
+  * Add Debian packaging rules
+  * owhw: Fix cardem GPIO initialization pointer value
+  * firmware: Enable -Wformat and resolve all related compiler warnings
+  * add master Makefile to build firmware and host tools
+  * Makefiles: Add "make install" target
+  * host: Fix "make clean": remove simtrace2-sniff
+
+-------------------------------------------------------------------
+Tue Aug 07 20:03:04 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1533661285.76ef811:
+  * jenkins: add simtrace/trace to the builds
+  * jenkins: clean after upload
+  * qmod: error on EEPROM erase fail
+  * jenkins: fix publish
+  * USB: increase USB reset time
+  * qmod: Add 'e' command for erasing the EEPROM
+
+-------------------------------------------------------------------
+Mon Aug 06 20:03:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1533565413.8daba9c:
+  * gcc: fix warning
+  * jenkins: add build uploads
+
+-------------------------------------------------------------------
+Sun Aug 05 20:03:18 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1533374175.04ccb77:
+  * remsim: fix USB hanging USB transfer
+  * cardem (minor): trace tx data send over USB
+  * add libosmcore utilities
+  * cardem: add state name in trace
+  * cardem (minor): remove to verbose log trace
+  * cardem: minor typo fix in comment
+  * add synchronous UART transmission and use it in exceptions
+
+-------------------------------------------------------------------
+Fri Aug 03 20:03:00 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1533112555.dd36d9b:
+  * sniff: send incomplete TPDU when reset is asserted
+  * cardem: use TC2 as WI and update WT after ATR
+
+-------------------------------------------------------------------
+Mon Jul 30 20:03:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1532955835.8f70c3e:
+  * remsim: fix payload overwriting
+  * cardem: use TC_ETU to trigger ATR sending
+
+-------------------------------------------------------------------
+Sun Jul 29 20:03:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1532851111.d8ebd6a:
+  * cardem: increase watchdog to 2 seconds
+  * cardem: show detailed reset cause
+  * sniff: increase debug output
+  * sniff: fix ATR checksum calculation
+  * sniff: ensure the checksum error flag is also printed
+
+-------------------------------------------------------------------
+Fri Jul 27 20:03:19 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1532612048.8e84f81:
+  * sniff: rename reset hold/release to assert/deassert
+  * sniff: send ATR over GSMTAP
+
+-------------------------------------------------------------------
+Tue Jul 24 20:03:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1532419043.3528099:
+  * USB: print decoded USB error
+  * I2C: return error after failed write
+  * I2C: add wait time after write to let EEPROM write
+  * cardem: fix USB message parsing
+  * cardem: fix typo
+
+-------------------------------------------------------------------
+Fri Jul 13 20:03:09 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1531341196.f66af0c:
+  * sniff: add checksum verification for ATR and PPS
+
+-------------------------------------------------------------------
+Thu Jul 12 20:03:15 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1531340686.5f6b871:
+  * fix 'ISO_S_IN_ATR not handled' gcc warning
+  * make adc2uv common
+  * host sniff: add functions to print flags
+  * host sniff: process remaining usb messages in buffer
+  * sniffer: fix inverted reset meaning
+  * sniffer: only allocate USB message if queue is not too long
+  * sniffer: also send malformed message over USB
+  * minor: fix linker warning
+  * sniffer: set LED pattern
+  * LED: add need pattern
+  * sniffer: move reset handling from ISR to main loop
+  * sniffer: move data print before USB send
+  * USB: add flags for sniff data and centralise transfer
+  * cosmetic: put spaces around operations
+  * replace leading spaces with tabs
+  * set linux end of line
+  * firmware: set license to GPLv2+
+  * host: set license to GPLv2+
+  * DFU: use central DFU override check
+
+-------------------------------------------------------------------
+Sat Jul 07 20:05:52 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1530968210.d24e9bd:
+  * DFU: re-enable UART after testing forced bootloader
+  * UART: remove unused code
+  * UART: make IRQ/ISR enabling simpler
+  * DFU: disable configured console UART before starting main app
+  * DFU: set stack pointer before starting main app
+  * buffer: increase buffer size to 512 to cope with fast and long TPDUs
+
+-------------------------------------------------------------------
+Thu Jul 05 20:04:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1530719720.4cbdc7c:
+  * fix LED switching on/off
+  * minor style change: use ARRAY_SIZE
+  * sniffer: add waiting time WT update
+  * sniffing: decrease USB IRQ prioprity to prevent USART overrun
+  * sniffing: fix procedure byte handling and make TPDU parsing more strict
+  * sniffer: also send incomplete (e.g. timeout) data (PPS/ATR/TPDU)
+  * sniffing: move conversion convertion and flag processing from ISR to main loop to keep ISR fast and focus on data capture
+  * console: drop data to be send when buffer is already full
+  * sniffer: display F and D values frim PPS
+  * host USB: add host application to receive and display USB sniffing messages sent by firmware
+  * sniffer USB: implement USB communication and send parsed messages
+  * USB device: add USB message structure for sniffer communication
+  * host USB: use central SIMtrace USB ID definition header
+  * host usb_util fix: used provided class, sub-class, and interfave when finding matching interfaces
+  * USB: add central file to define USB IDs, classes, and endpoints
+  * minor: fix typos in comment
+  * sniff: add WT timeout detection using USART timeout (TC is not required)
+  * sniff: add TPDU parsing (TPDUs become APDUs on the upper layer)
+  * sniff: print parsed ATR and PPS; use red LED to show main application is running; use green LED to indicate activity (message parsed)
+  * LED: add short LED pulse blinking pattern
+  * update_fidi: remove debug output since this function is called in time critical ISR
+  * DFU: switch green LED on to indicate DFU mode, and red LED to indicate flashing activity
+  * board: fix LED pin definition
+  * DFU: remove force bootloader button debug message since the console is output message is not initialized yet
+  * sniffer: use ISR to store sniffed data in buffer, add ATR and PPS parsing, and PPS related FiDi update
+  * trace: increase watchdog for 500 to 2000 ms to provide more time handling buffered data
+  * ISO7816: change update_fidi to use provided USART
+  * SIMtrace: enable interrupt on edge dection for SIM_RST pin to reset the sniffer ISO state
+  * SIMtrace: fix default SIM_RST pin state to allow phone controlled reset
+  * SIMtrace: only enable main sniffing mode on SIMtrace board
+  * sniffer: add state definitions, improve IRQ handling, update pins configuration
+  * simtrace: add support for sniffing on both USART
+  * board: comment USART definitions and add corresponding IRQ numbers
+  * simtrace: add dedicated power pins configuration for sniffing
+  * sniff: use USART 0 instead of USART 1
+  * SIMtrace board: comment and fix pin definition
+  * sniff mode: handle USART 1 RX interrupt to show sniffer data
+  * enable (empty) sniffer support for SIMtrace board
+  * copy working cardem app to trace
+  * ringbuffer: Don't print/TRAC from ringbuffer
+  * echo all command characters entered on serial console
+
+-------------------------------------------------------------------
+Mon Jul 02 10:10:55 UTC 2018 - mardnh@gmx.de
+
+- Initial package, version 0.0.0.git1530455605.cb6e205
+

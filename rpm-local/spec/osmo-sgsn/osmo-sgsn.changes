@@ -1,0 +1,872 @@
+-------------------------------------------------------------------
+Mon Apr 20 20:02:00 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.6:
+  * gtphub_test: Fix compilation with gcc-10
+
+-------------------------------------------------------------------
+Tue Apr 14 20:01:59 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.5:
+  * configure.ac: fix libtool issue with clang and sanitizer
+  * tests: dlopen does not imply availability of dlsym..
+
+-------------------------------------------------------------------
+Wed Apr 01 20:02:00 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.3:
+  * manual: explain IuPS, add SCCP/M3UA section from common chapters
+
+-------------------------------------------------------------------
+Thu Feb 06 21:02:29 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.2:
+  * gprs_gmm_fsm.c: Implement RAT change between 2g and 3g
+  * gprs_gmm: Check for RAT change and ensure this only happens for RAU/ATT
+
+-------------------------------------------------------------------
+Fri Jan 03 21:04:29 UTC 2020 - mardnh@gmx.de
+
+- Update to version 1.6.0.0:
+  * Bump version: 1.5.0.91-5997-dirty → 1.6.0
+
+-------------------------------------------------------------------
+Thu Dec 12 21:02:56 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.91:
+  * osmoappdesc.py, tests: switch to python 3
+
+-------------------------------------------------------------------
+Wed Dec 04 21:01:49 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.90:
+  * exit(2) on unsupported positional arguments on command line
+
+-------------------------------------------------------------------
+Tue Dec 03 21:01:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.89:
+  * regen_doc.sh: support gbproxy, run without docker
+  * doc: add OsmoGbProxy VTY reference
+  * gitignore: fix paths to binaries
+
+-------------------------------------------------------------------
+Sun Dec 01 21:03:17 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.86:
+  * manual: Fix copy+paste error
+  * check for osmo_ss7_init() error return value
+  * check for osmo_fsm_register() error return values
+  * Initial OsmoGbPROXY user manual
+
+-------------------------------------------------------------------
+Sat Nov 30 21:06:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.82:
+  * LLC: Don't use hard-coded N201-U / N201-I values in XID
+
+-------------------------------------------------------------------
+Sat Nov 23 21:03:12 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.81:
+  * Use libosmocore constant for IMSI length in ACL entry
+  * gprs_gmm.c: Send XID reset with received TLLI
+  * gprs_llc.c: Use enum instead of hardcoded value
+  * Improve logging in gprs_llc.c code
+
+-------------------------------------------------------------------
+Sat Nov 16 21:01:56 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.77:
+  * gmm: Fix assertion hit during RA UPD REQ before completting gmm attach
+
+-------------------------------------------------------------------
+Mon Oct 21 20:01:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.76:
+  * sgsn_libgtp.c: Drop use of deprecated libgtp APIs gtp_retrans*()
+
+-------------------------------------------------------------------
+Sat Oct 19 20:01:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.75:
+  * sgsn: Gb: implementing PS Paging when MS is MM_STANDBY
+
+-------------------------------------------------------------------
+Thu Oct 17 20:01:15 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.74:
+  * sgsn_libgtp: refactor ps paging into gprs_gb
+
+-------------------------------------------------------------------
+Thu Oct 10 20:01:29 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.73:
+  * gprs_mm_state_iu_fsm.c: fix: assign timer_cb to mm_state_iu_fsm
+  * sgsn_mm_ctx_alloc(): check for unallocated fsms
+  * gprs_gmm: release Iu connection on RAU failures
+  * ranap: add non-spec X1001
+
+-------------------------------------------------------------------
+Tue Oct 08 20:05:32 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.69:
+  * sgsn: MM Gb Fsm: fix event handling for implicit detach
+  * gprs_sgsn: always allocate Gb/Iu mm fsm
+  * gprs_ranap: add missing rc = 0
+  * gprs_mm_state_gb_fsm: ensure T3350 is not running when entering IDLE
+  * gprs_ranap: on Iu release, stop the attach fsm if running
+  * Iu: implement a user inactivity timer
+  * gprs_ranap: release Iu UE Context when exiting PMM Connected
+
+-------------------------------------------------------------------
+Thu Oct 03 20:01:12 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.62:
+  * Avoid compiling unneeded files when building without Iu
+
+-------------------------------------------------------------------
+Sat Sep 28 20:02:58 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.61:
+  * sgsn: when receiving data PDU notify the Gb GMM fsm
+
+-------------------------------------------------------------------
+Fri Sep 20 20:02:06 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.60:
+  * Introduce TODO-RELEASE file
+
+-------------------------------------------------------------------
+Fri Sep 13 20:01:23 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.59:
+  * gprs_ranap: refactor REQUIRE_MM define
+  * mm_gb_fsm: unassign the llme when entering MM_IDLE
+  * gprs_ranap: send CommonId after receiving Security Mode Complete
+  * sgsn_pdp_ctx_terminate: check llme before accessing
+
+-------------------------------------------------------------------
+Mon Sep 09 20:01:16 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.55:
+  * sgsn: Reject PdpActReq if no GTP pdp ctx exists
+
+-------------------------------------------------------------------
+Fri Sep 06 20:01:19 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.54:
+  * Split out GPRS SM layer into its own file
+  * Implement GMM State using osmocom FSM
+  * enum gprs_gmm_state: Fix spec reference
+  * gmm: Move code handling GMM PTMSI Realloc Complete to its own function
+  * gmm: Move code handling GMM Routing Area Update Complete to its own function
+  * gmm: Move code handling GMM Attach Complete to its own function
+  * Move out sgsn to its own subdir
+  * Move out gtphub to its own subdir
+  * Move out gbproxy to its own subdir
+  * src/gprs/Makefile.am: Move build of shared .c files to an internal lib
+  * vty: Print MM state and RAN type in show mm-context
+  * Introduce FSM mm_state_iu_fsm
+  * Introduce FSM mm_state_gb_fsm
+
+-------------------------------------------------------------------
+Mon Sep 02 20:03:14 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.41:
+  * sgsn_vty: Print correct Iu mmctx id in 'show mm-context'
+  * sgsn_vty: Fix mmctx rate_ctr output indentation
+  * sgsn_cdr.c: Fix ip addr string buffer size
+  * gprs_gmm.c: Replace inet_ntoa with inet_ntop
+  * Merge common allocation steps for Gb and Iu ctx
+  * Split enum gprs_pmm_state into Iu and Gb counterparts
+  * Move llc->MM/SM Gb specific glue code to its own file
+  * Move lots of Iu/ranap specific code into its own file
+  * sgsn: gtp: Drop related pdp contexts on echo timeout against GGSN
+  * Introduce log helper LOGGGSN and log category DGTP
+  * gprs_gmm: gsm48_rx_gmm_att_req(): refactor duplicated code
+  * gprs_gmm: clarify comment of Iu follow-on request
+  * gprs_gmm: only update gb/iu cell information when Iu/Gb present
+
+-------------------------------------------------------------------
+Fri Aug 30 20:08:24 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.28:
+  * gtp: cb_delete_context(): Clarify why pdp->lib is set to NULL
+  * gtp: make echo_interval unsigned
+
+-------------------------------------------------------------------
+Fri Aug 23 20:03:28 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.26:
+  * gprs_gmm.c: Add spec document to function documentation
+  * gprs_gmm.c: Print value_string of reject cause
+
+-------------------------------------------------------------------
+Wed Aug 21 20:11:02 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.24:
+  * vty: Introduce cs7-instance-iu
+  * examples: Add osmo-sgsn_custom-sccp.cfg
+  * gprs_gmm.c: Use osmo_rai_name() in log line
+  * gprs/gprs_gmm: implement T3314. Timeout to reset MM state READY->STANDBY
+  * tests: Introduce vty-transcript-test tests
+  * Replace own timer infra with libosmocore osmo_tdef
+
+-------------------------------------------------------------------
+Tue Aug 20 20:02:49 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.18:
+  * tests: Verify that timers can be set over VTY
+  * gprs_gmm: Avoid spaces in fsm events and enum strings
+  * Introduce and use log macros when no mm ctx available
+  * gprs_gmm.c: Call mmctx_set_(p)mm_state only on related ran_type
+
+-------------------------------------------------------------------
+Mon Aug 19 20:08:26 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.14:
+  * gprs_gmm.c: Fix typo in log message
+  * sgsn: use sccp_simple_client API to setup ss7 id 0 instead of 1
+
+-------------------------------------------------------------------
+Sat Aug 17 20:04:01 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.12:
+  * gprs_gmm.c: Flag mmctx_set_(p)mm_state() functions static
+  * gprs_sgsn.h: Flag MM_CTX_T_GERAN_Iu as not supported
+  * gprs_gmm.c: Use correct function to set MM_IDLE state during cleanup
+  * gprs_gmm: Introduce assert to guard against unexpected condition
+
+-------------------------------------------------------------------
+Wed Aug 14 20:16:46 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.8:
+  * gprs_sgsn.c: Remove recently introduced assert
+  * gprs_gmm: Clarify comment during TLLI assignment
+
+-------------------------------------------------------------------
+Tue Aug 13 20:02:20 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.6:
+  * gprs_sgsn.c: Warn upon llme free unexpected scenarios
+  * Introduce define TLLI_UNASSIGNED
+  * gprs_gmm.c: Drop unneeded brackets
+  * gprs_gmm.c: Improve doc on nullable parameters
+  * gprs_llc.h: Improve documentation of some structs
+  * gprs_gmm: Introduce macros to access msgb's associated IU UE ctx
+
+-------------------------------------------------------------------
+Thu Aug 08 21:55:34 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.5.0.0:
+  * Bump version: 1.4.1 → 1.5.0
+  * Require newer versions of dependencies
+  * Remove undefined param passed to {logging,osmo_stats}_vty_add_cmds
+  * configuration.adoc: Add a section about encryption
+  * configuration.adoc: Small fixes
+  * osmo-gbproxy.cfg: fix conflict with osmo-sgsn.cfg
+
+-------------------------------------------------------------------
+Fri Jul 26 20:19:12 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.35:
+  * osmo-sgsn: Fix outdated information in usermanual
+  * Add/fix help string for version option
+
+-------------------------------------------------------------------
+Wed Jul 24 20:11:34 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.33:
+  * osmo-gtphub.cfg: fix conflict with osmo-sgsn.cfg
+  * manuals: Update vty/counter documentation
+
+-------------------------------------------------------------------
+Mon Jul 22 20:02:27 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.31:
+  * turn -Werror=null-dereference into a warning
+
+-------------------------------------------------------------------
+Mon Jul 22 10:29:26 UTC 2019 - Martin Hauke <mardnh@gmx.de>
+
+- Disable LTO for now since it breaks compilation of the tests
+  See: https://osmocom.org/issues/4116
+
+-------------------------------------------------------------------
+Thu Jul 18 20:05:15 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.30:
+  * sgsn_mm_ctx_find_ggsn_ctx(): fix: always set gsm_cause
+
+-------------------------------------------------------------------
+Wed Jul 17 19:04:03 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.29:
+  * Spelling fixes
+
+-------------------------------------------------------------------
+Thu Jul 11 20:11:53 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.28:
+  * contrib/jenkins.sh: run "make maintainer-clean"
+
+-------------------------------------------------------------------
+Wed Jun 19 20:15:57 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.27:
+  * manuals: Add script to regenerate vty/counter documentation
+
+-------------------------------------------------------------------
+Mon Jun 17 20:03:01 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.26:
+  * replace magic tmsi constant with define
+
+-------------------------------------------------------------------
+Sat Jun 15 20:10:05 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.25:
+  * sgsn: Have authentication required on by default
+
+-------------------------------------------------------------------
+Thu Jun 06 20:01:38 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.24:
+  * osmo-sgsn: add VTY parameter to toggle authentication
+  * sgsn_libgtp: Use new per-GSN libgtp API instead of deprecated API
+
+-------------------------------------------------------------------
+Wed Jun 05 20:01:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.22:
+  * doc/manuals/vty: regenerate sgsn_vty_reference.xml
+
+-------------------------------------------------------------------
+Fri May 31 20:01:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.21:
+  * debian: create -doc subpackage with pdf manuals
+
+-------------------------------------------------------------------
+Wed May 29 20:01:42 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.20:
+  * sgsn: Fix echo timer not started upon first pdp ctx created
+  * Document max retransmit times for T3395
+
+-------------------------------------------------------------------
+Mon May 27 20:01:39 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.18:
+  * sgsn: vty: Improve log warning content with spec section
+
+-------------------------------------------------------------------
+Sun May 12 20:01:38 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.17:
+  * Fix IMSI padding in imsi-acl
+
+-------------------------------------------------------------------
+Sat May 11 20:01:41 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.16:
+  * gprs_gmm: send Service Reject when no PDP ctxs are available.
+
+-------------------------------------------------------------------
+Thu May 02 20:01:47 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.15:
+  * Echo zero byte XID-Field of Type L3_PAR
+
+-------------------------------------------------------------------
+Tue Apr 30 20:02:35 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.14:
+  * gbproxy: parse dtap GSM48_MT_GSM_DEACT_PDP_REQ|ACK
+
+-------------------------------------------------------------------
+Sun Apr 28 20:01:46 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.13:
+  * gprs_sndcp_comp_free: Replace ifelse with switch and better handling of error
+
+-------------------------------------------------------------------
+Thu Apr 25 20:01:38 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.12:
+  * gb_proxy: cosmetic: Use 'bool' in data structures where applicable
+  * gb_proxy.h: Add missing comments; improve comments
+  * LLC: Store the XID inside the LLC Entity, not LLC Mgmg Entity
+  * gprs_llc: Correctly refuse any ABM command (SABM, DISC) with DM
+
+-------------------------------------------------------------------
+Wed Apr 24 20:01:52 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.8:
+  * LLC: Avoid NOTICE message on LLC NULL
+  * LLC: Don't blindly assume all LLC frames have data payload
+  * LLC XID: Fix string representation of N201_U
+
+-------------------------------------------------------------------
+Tue Apr 23 20:01:55 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.5:
+  * gprs_gmm: reintroduce calling gsm48_gmm_authorize when not handling GMM Attach Requests
+
+-------------------------------------------------------------------
+Tue Apr 09 20:02:02 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.4:
+  * gsm0408_rcv_gmm: send Iu-ReleaseCommand upon receiving Attach Complete.
+
+-------------------------------------------------------------------
+Wed Feb 27 21:01:38 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.3:
+  * gbproxy_test: Fix test expectations of gprs_ns_rcvmsg()
+
+-------------------------------------------------------------------
+Thu Feb 14 21:01:38 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.2:
+  * GMM: permit VLR_ANSWERED event in attach FSM
+  * Improve 'show subscriber cache' vty command
+
+-------------------------------------------------------------------
+Wed Jan 23 21:01:18 UTC 2019 - mardnh@gmx.de
+
+- Update to version 1.4.0.0:
+  * Bump version: 1.3.0.120-88220-dirty → 1.4.0
+
+-------------------------------------------------------------------
+Thu Dec 20 21:01:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.120:
+  * make gsup ipa name configurable in osmo-sgsn.cfg
+
+-------------------------------------------------------------------
+Mon Dec 17 21:01:16 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.119:
+  * remove pointless declaration of struct gsm_network
+
+-------------------------------------------------------------------
+Tue Dec 11 21:01:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.118:
+  * Use explicit parameter for sgsn_auth_init()
+
+-------------------------------------------------------------------
+Mon Dec 10 21:01:19 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.117:
+  * Use explicit length check
+  * Drop unused osmo-sgsn.pc
+  * Constify sgsn_acl_lookup() parameter
+  * Remove misleading comment
+
+-------------------------------------------------------------------
+Thu Dec 06 21:01:30 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.113:
+  * contrib: fix makedistcheck with disabled systemd
+
+-------------------------------------------------------------------
+Wed Dec 05 21:01:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.112:
+  * contrib/jenkins.sh: build and publish manuals
+
+-------------------------------------------------------------------
+Tue Dec 04 21:01:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.111:
+  * Fix DISTCHECK_CONFIGURE_FLAGS override
+
+-------------------------------------------------------------------
+Tue Nov 27 21:01:22 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.110:
+  * build manuals moved here from osmo-gsm-manuals.git
+  * sgsn: update vty reference
+  * vty-ref: Update URI of docbook 5.0 schema
+  * OsmoSGSN: update VTY reference
+  * OsmoSGSN: overview: Fix typo and reference OpenGGSN->OsmoGGSN
+  * share chapters/gsup.adoc from OsmoSGSN to OsmoMSC + OsmoHLR
+  * OsmoSGSN: add rate counter documentation
+  * OsmoSGSN: configuration: Document CDR CTRL interface
+  * OsmoSGSN: configuration: Add missing pdp-periodic event
+  * OsmoSGSN: configuration: Move pdp ctx specific CDR fields to its own table
+  * refactor Makefile build rules, don't use the FORCE
+  * Allow easily disabling GFDL references
+  * sgsn: Add charging characteristics to GSUP
+  * sgsn: Fix numbering of QoS and add basic description for APN
+  * osmo-sgsn: fix arrow tips in flow diagrams
+  * osmo-sgsn: Explain TCP/IP header compression
+  * osmo-sgsn: improve auth-policy explaination
+  * osmo-sgsn: Update VTY command reference
+  * GSUP, OAP: fix AUTS length to 14, not 16
+  * SGSN: add Auth. policy, NS Statistics and BSSGP state examples, tweaks
+  * fix 'make clean': shell glob, ignore failure
+  * add 'make check' target
+  * GSUP: Add ladder diagrams for protocol transactions / procedures
+  * Update GSUP chapter regarding UMTS AKA and other recent changes
+  * Add OsmoSGSN control interface description
+  * fix various typos across all manuals
+  * OsmoSGSN: Fix formatting/cross reference in CDR section
+  * Add link to Asciidoc source code of manual
+  * initial checkin of manuals to public repo
+
+-------------------------------------------------------------------
+Mon Nov 26 18:55:26 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.79:
+  * gbproxy: flush_stored_messages: Get rid of msg param
+  * gbproxy: flush_stored_messages: Log and route using stored_msg info
+  * gbproxy: flush_stored_messages: Move comment to func description
+  * gbproxy: Remove unneeded parse_ctx param
+  * gbproxy: Fix abort during APN patch
+  * Revert "gbproxy: fix formatting in gbproxy-state command"
+
+-------------------------------------------------------------------
+Thu Nov 22 18:59:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.73:
+  * gbproxy: flag gbproxy_assign_imsi as static
+  * gbproxy: add number-of-peers ctrl command
+  * gbproxy: fix formatting in gbproxy-state command
+  * consistently check the result of osmo_shift_v_fixed()
+
+-------------------------------------------------------------------
+Tue Nov 20 19:10:44 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.69:
+  * update gbproxy test expected output
+
+-------------------------------------------------------------------
+Mon Nov 19 18:32:12 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.68:
+  * Use safer functions for IMSI ACL
+
+-------------------------------------------------------------------
+Thu Nov 15 21:01:21 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.67:
+  * use enums consistently instead of falling back to int
+
+-------------------------------------------------------------------
+Thu Nov 15 14:30:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.66:
+  * fix bogus error check in gprs_sndcp_comp_create()
+
+-------------------------------------------------------------------
+Mon Nov 12 21:01:27 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.65:
+  * fix bogus assertion in encode_comp_field()
+
+-------------------------------------------------------------------
+Tue Nov 06 21:01:36 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.64:
+  * Cleanup non-existent files from debian/copyright
+
+-------------------------------------------------------------------
+Tue Oct 30 21:01:33 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.63:
+  * Remove local libgsupclient; Use libosmo-gsup-client from osmo-hlr
+  * Allocate sgsn_instance with talloc
+  * Update wrong references to bsc in sgsn code
+
+-------------------------------------------------------------------
+Sun Oct 21 17:24:09 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.60:
+  * gtphub: Add --version cmdline option
+
+-------------------------------------------------------------------
+Sun Oct 07 18:22:39 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.59:
+  * fix build: remove unused variable
+
+-------------------------------------------------------------------
+Thu Oct 04 20:01:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.58:
+  * gprs_llc: remove the FCS from the msgb by trim'ing the msgb
+  * sgsn_libgtp: fix a potential memleak when the GGSN is not reachable
+  * gprs_gmm: Fix missing Security Command for 3G when attaching
+
+-------------------------------------------------------------------
+Sat Sep 29 19:46:59 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.55:
+  * gprs_gmm: dont answer unknown IMSI/TMSI on Service Requests NET_FAIL
+
+-------------------------------------------------------------------
+Fri Sep 28 20:01:19 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.54:
+  * vty: add SCCP related vty commands
+
+-------------------------------------------------------------------
+Tue Sep 25 20:01:25 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.53:
+  * gbproxy-legacy: Ensure well-formed config file
+  * vty: fix doc str for 'reset sgsn state'
+
+-------------------------------------------------------------------
+Wed Sep 19 20:01:21 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.51:
+  * GTP: refactor the echo timer
+  * gprs_sgsn.h: fix wrong type of re-attempts
+  * sgsn_ggsn_ctx_drop_pdp: protect against nullpointer when MM is gone
+  * vty: restart sgsn state: improve output message
+
+-------------------------------------------------------------------
+Mon Sep 17 20:01:32 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.47:
+  * sgsn: use gtp_clear_queues() when reset sgsn state
+
+-------------------------------------------------------------------
+Fri Sep 14 20:01:18 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.46:
+  * debian: add missing build dependencies
+
+-------------------------------------------------------------------
+Thu Sep 13 20:01:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.45:
+  * gprs_gmm: introduce a GMM Attach Request FSM
+  * tests: remove gmm unit tests
+  * Install sample cfg file to /etc/osmocom
+  * Install systemd services with autotools
+  * debian: Fix typo in rules preventing build with IU support
+
+-------------------------------------------------------------------
+Thu Sep 06 20:01:29 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.40:
+  * Add osmo-gtphub systemd service file
+
+-------------------------------------------------------------------
+Tue Aug 21 20:01:34 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.39:
+  * use __FILE__, not __BASE_FILE__
+  * gbproxy: Replace '.' in counter names with ':'
+
+-------------------------------------------------------------------
+Fri Aug 17 20:04:06 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.37:
+  * gbproxy: Add new VTY-managed timer: link-list clean-stale-timer
+  * gbproxy: Add VTY parameter: link stored-msgs-max-length
+  * Use osmo_clock_gettime from libosmocore
+  * Drop gprs_msgb_resize_area with libosmocore replacement
+  * Drop gprs_msgb_copy with libosmocore replacement
+
+-------------------------------------------------------------------
+Mon Aug 13 20:01:24 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.32:
+  * vty: add cmd "reset sgsn state"
+
+-------------------------------------------------------------------
+Tue Jul 31 20:01:19 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.31:
+  * remove libcommon
+  * migrate to oap_client in libosmogsm
+
+-------------------------------------------------------------------
+Wed Jul 25 20:01:32 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.29:
+  * git-version-gen: Don't check for .git directory
+
+-------------------------------------------------------------------
+Tue Jul 24 20:01:26 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.28:
+  * gbproxy: Replace '.' in counter names with ':'
+  * sgsn: Fix crash using new libgtp cb_recovery2 API
+  * sgsn: gtp: Use new API to send PDP DEL CTX REQ without freeing ctx locally
+
+-------------------------------------------------------------------
+Thu Jul 19 20:01:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.25:
+  * sgsn: cdr: Fix uninitialized string access if ggsn is detached
+  * sgsn: subscriber: Avoid calling memcpy with NULL src
+
+-------------------------------------------------------------------
+Mon Jul 16 20:01:20 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.23:
+  * sgsn: Fix T3395 firing forever
+  * Forward GGSN originated DEACT PDP CTX REQ
+  * sgsn: Don't attempt to delete GTP pdp ctx if GGSN was restarted
+  * Add optional TearDownInd IE in PDP DEACT REQ towards PCU
+  * vty: Add cmd to disable echo loop explictly
+  * examples: Enable by default echo req towards active GGSNs
+  * Disarm T3395 when dettaching mmctx from pdpctx
+  * osmo-sgsn: ping GGSN periodically and check for restart counter
+
+-------------------------------------------------------------------
+Fri Jul 13 20:01:23 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.15:
+  * Maintain per ggsn pdp ctx list
+  * sgsn_libgtp.c: Log pointer of deleted context
+
+-------------------------------------------------------------------
+Mon Jun 25 20:01:22 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.13:
+  * finish gbproxy_parse_bssgp_unitdata test
+
+-------------------------------------------------------------------
+Fri Jun 22 20:01:18 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.12:
+  * Drop unused common_vty.c
+  * Drop all references of unused MGCP
+  * Drop all references of unused SMPP
+  * jenkins.sh: Remove non-existent configure options
+  * jenkins.sh: Use --enable-werror only when iu support is disabled
+
+-------------------------------------------------------------------
+Fri Jun 15 20:01:21 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.7:
+  * gb_proxy: Add ctrl interface and nsvc-state, gbproxy-state commands
+
+-------------------------------------------------------------------
+Fri Jun 08 20:01:22 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.6:
+  * add a test for OS#3178 (invalid unitdata message)
+
+-------------------------------------------------------------------
+Tue Jun 05 20:01:53 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.5:
+  * gprs_gmm: Cancel Location: use detach type IMSI
+
+-------------------------------------------------------------------
+Fri Jun 01 20:01:30 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.4:
+  * gb_proxy: tallocate memory for gbproxy cfg so it can be a talloc ctx
+
+-------------------------------------------------------------------
+Wed May 23 20:01:33 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.3:
+  * gprs_subscriber: gsup_auth_error: reject MS in all cases
+  * gprs_gmm: make functions relating to GMM Attach Request public
+  * gprs_gmm: make extract_subscr_msisdn extract_subscr_hlr public
+
+-------------------------------------------------------------------
+Thu May 03 20:01:50 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.3.0.0:
+  * GMM: dont reply to GMM_DETACH_REQ with POWER OFF when MS is unknown
+  * Bump version: 1.2.0.58-85ca87-dirty → 1.3.0
+
+-------------------------------------------------------------------
+Wed May 02 20:01:42 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.57:
+  * auth+ciph: log is_r99 and auth types
+  * log two RA Update Request failure causes
+  * GERAN: allow GSM SRES on UMTS AKA challenge
+
+-------------------------------------------------------------------
+Mon Apr 16 20:01:31 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.54:
+  * use osmo_init_logging2(), fix regression test memleaks
+
+-------------------------------------------------------------------
+Mon Apr  9 11:50:08 UTC 2018 - mardnh@gmx.de
+
+- Build with --enable-iu 
+
+-------------------------------------------------------------------
+Fri Mar 16 19:58:07 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.53:
+  * compiler warnings: use enum ranap_nsap_addr_enc, constify local var
+
+-------------------------------------------------------------------
+Thu Mar 15 18:46:03 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.52:
+  * implement support for 3-digit MNC with leading zeros
+  * osmo-gbproxy: use 'osmo-gbproxy.cfg' as default config name
+
+-------------------------------------------------------------------
+Wed Mar 14 21:27:04 UTC 2018 - mardnh@gmx.de
+
+- Update to version 1.2.0.50:
+  * configure.ac: Enable Wall in CFLAGS
+  * gtphub: check for gsn_addr_from_sockaddr() errors
+  * gtphub: check for gsn_addr_from_sockaddr() error
+  * mandatory depend on libc-ares and libgtp
+  * .gitignore: Add m4 files
+  * sgsn_libgtp.c: Fix typos and whitespace
+  * Add talloc context introspection via VTY
+  * sgsn_test: guard against struct gprs_ra_id changing
+  * vty: absorb command explanations from osmo-gsm-manuals
+  * configure: add --enable-werror
+
+-------------------------------------------------------------------
+Wed Feb 14 16:17:40 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.2.0.47
+
+-------------------------------------------------------------------
+Sat Feb 10 20:52:13 UTC 2018 - mardnh@gmx.de
+
+- Show testsuite.log when tests are failing
+
+-------------------------------------------------------------------
+Sat Feb 10 16:10:36 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.2.0.44
+
+-------------------------------------------------------------------
+Wed Jan 24 13:14:08 UTC 2018 - mardnh@gmx.de
+
+- Update to new upstream snapshot 1.2.0.41
+- Remove patch:
+  * osmo-sgsn-fix-includes.patch (fixed upstream)
+
+-------------------------------------------------------------------
+Fri Dec 29 17:38:20 UTC 2017 - mardnh@gmx.de
+
+- Add patch:
+  * osmo-sgsn-fix-includes.patch
+
+-------------------------------------------------------------------
+Fri Dec 29 12:18:40 UTC 2017 - jengelh@inai.de
+
+- %service_* already takes care of restart/removal
+  Compact %service_* since it incurs extra code.
+  Resolve package-name-repeated-in-summary.
+
+-------------------------------------------------------------------
+Thu Dec 28 10:37:26 UTC 2017 - mardnh@gmx.de
+
+- Initial package, version 1.2.0

@@ -1,0 +1,19 @@
+-------------------------------------------------------------------
+Sun Apr 08 18:52:40 UTC 2018 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1489787354.6fde8e1:
+  * remove second copy of mini-UICC FPC adapter
+  * add 'sysmocom' name to mini-UICC and nano-UICC adapters
+  * update README with current information + convert to Markdown
+
+-------------------------------------------------------------------
+Sat Feb 20 22:25:14 UTC 2016 - mardnh@gmx.de
+
+- Update to version 0.0.0.git1439989371.0a53049:
+  + Add 4FF (nanoSIM) adapter
+
+-------------------------------------------------------------------
+Sun Dec 21 22:56:28 UTC 2014 - mardnh@gmx.de
+
+- intial package, version 0.0.0.git1398882456.b8d4927
+
