@@ -35,7 +35,7 @@ build_pkg() {
 	local specfile="spec/$pkgname/$pkgname.spec"
 	local version
 
-	if [ -e ".build.$pkgname" ]; then
+	if [ -e ".build.package.$pkgname" ]; then
 		echo ":: $pkgname (already built)"
 		return
 	fi
@@ -79,3 +79,4 @@ require_path "$SRCDIR"
 build_docker_image "$IMAGE"
 
 build_pkg "libosmocore"
+build_pkg "libosmo-abis"
