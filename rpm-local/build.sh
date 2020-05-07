@@ -116,3 +116,20 @@ build_docker_image "$IMAGE"
 build_pkg_osmo "libosmocore"
 build_pkg_other "ortp" "ortp/ortp-0.24.2.tar.gz"
 build_pkg_osmo "libosmo-abis"
+build_pkg_osmo "libosmo-netif"
+build_pkg_osmo "libsmpp34"
+build_pkg_osmo "libasn1c"
+
+# RAN
+build_pkg_osmo "osmo-bts"
+build_pkg_osmo "osmo-trx"
+
+# CN
+build_pkg_osmo "osmo-ggsn"
+build_pkg_osmo "osmo-iuh"
+build_pkg_osmo "osmo-hlr"
+build_pkg_osmo "osmo-mgw"
+build_pkg_osmo "osmo-msc"
+build_pkg_osmo "osmo-bsc"
+build_pkg_osmo "osmo-sgsn"
+build_pkg_osmo "osmo-sip-connector"
