@@ -27,7 +27,9 @@ Source:         %{name}-%{version}.tar.xz
 Source99:       osmo-trx-rpmlintrc
 BuildRequires:  autoconf
 BuildRequires:  automake
+%if 0%{?suse_version}
 BuildRequires:  fdupes
+%endif
 BuildRequires:  gcc-c++
 BuildRequires:  libtool
 BuildRequires:  pkgconfig >= 0.20
@@ -145,7 +147,9 @@ make %{?_smp_mflags} check || (find . -name testsuite.log -exec cat {} +)
 
 %install
 %make_install
+%if 0%{?suse_version}
 %fdupes -s %{buildroot}/%{_datadir}
+%endif
 
 %pre    lms %service_add_pre    osmo-trx-lms.service
 %post   lms %service_add_post   osmo-trx-lms.service
