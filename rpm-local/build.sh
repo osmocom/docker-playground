@@ -137,27 +137,35 @@ require_path "$SRCDIR"
 require_path "$OSCDIR"
 build_docker_image "$IMAGE"
 
+#
+# Build packages
+#
+
 # Compatibility with build dependency available in openSUSE
 build_pkg_other "systemd-rpm-macros"
 
-build_pkg_osmo "libosmocore"
+# ortp (dependency of libosmo-abis)
 build_pkg_other "ortp" "ortp/ortp-0.24.2.tar.gz"
+
+# uhd (dependency of osmo-bts)
+build_pkg_other "uhd" "uhd/uhd_3.9.7-release.tar.gz" "uhd/uhd-images_003.009.007-release.tar.xz"
+
+# limesuite (dependency of osmo-bts)
+# needs wxwidgets
+# build_pkg_other "limesuite" "limesuite/limesuite-20.01.0.tar.xz"
+
+# Osmocom libraries
+build_pkg_osmo "libosmocore"
 build_pkg_osmo "libosmo-abis"
 build_pkg_osmo "libosmo-netif"
 build_pkg_osmo "libsmpp34"
 build_pkg_osmo "libasn1c"
 
-# RAN
+# Osmocom RAN
 build_pkg_osmo "osmo-bts"
-
-# needs wxwidgets
-# build_pkg_other "limesuite" "limesuite/limesuite-20.01.0.tar.xz"
-
-build_pkg_other "uhd" "uhd/uhd_3.9.7-release.tar.gz" "uhd/uhd-images_003.009.007-release.tar.xz"
-
 build_pkg_osmo "osmo-trx"
 
-# CN
+# Osmocom CN
 build_pkg_osmo "osmo-ggsn"
 build_pkg_osmo "osmo-iuh"
 build_pkg_osmo "osmo-hlr"
