@@ -112,7 +112,7 @@ build_pkg_osmo() {
 }
 
 # $1: pkgname (e.g. ortp)
-# $2: path to source in $OSCDIR (e.g. ortp/ortp-0.24.2.tar.gz)
+# $2: path to source in $OSCDIR (e.g. ortp/ortp-0.24.2.tar.gz, leave empty if no source needed)
 build_pkg_other() {
 	local pkgname="$1"
 	local tarball="$OSCDIR/$2"
@@ -120,8 +120,11 @@ build_pkg_other() {
 	skip_pkg "$pkgname" && return
 	mkdir_rpmbuild
 
-	require_path "$tarball"
-	cp "$tarball" "rpmbuild/SOURCES/"
+	if [ -n "$2" ]; then
+		require_path "$tarball"
+		echo "add source: $tarball"
+		cp "$tarball" "rpmbuild/SOURCES/"
+	fi
 
 	_build_pkg "$pkgname"
 }
@@ -129,6 +132,9 @@ build_pkg_other() {
 require_path "$SRCDIR"
 require_path "$OSCDIR"
 build_docker_image "$IMAGE"
+
+# Compatibility with build dependency available in openSUSE
+build_pkg_other "systemd-rpm-macros"
 
 build_pkg_osmo "libosmocore"
 build_pkg_other "ortp" "ortp/ortp-0.24.2.tar.gz"
