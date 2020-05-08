@@ -156,6 +156,9 @@ build_pkg_other "uhd"
 # needs wxwidgets
 # build_pkg_other "limesuite" "limesuite/limesuite-20.01.0.tar.xz"
 
+# libgtpnl (dependency of osmo-ggsn)
+build_pkg_other libgtpnl "libgtpnl/libgtpnl-1.2.1.0.tar.xz"
+
 # Osmocom libraries
 build_pkg_osmo "libosmocore"
 build_pkg_osmo "libosmo-abis"
