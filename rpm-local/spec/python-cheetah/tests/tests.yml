@@ -1,0 +1,2 @@
+---
+- include: builtin-tests.yml

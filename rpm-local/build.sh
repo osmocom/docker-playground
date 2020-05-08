@@ -70,7 +70,7 @@ _build_pkg() {
 			;;
 		*)
 			echo "add source: $i"
-			cp "$i" "rpmbuild/SOURCES/"
+			cp -r "$i" "rpmbuild/SOURCES/"
 		esac
 	done
 
@@ -148,6 +148,7 @@ build_pkg_other "systemd-rpm-macros"
 build_pkg_other "ortp" "ortp/ortp-0.24.2.tar.gz"
 
 # uhd (dependency of osmo-bts)
+build_pkg_other "python-cheetah"
 build_pkg_other "uhd" "uhd/uhd_3.9.7-release.tar.gz" "uhd/uhd-images_003.009.007-release.tar.xz"
 
 # limesuite (dependency of osmo-bts)
