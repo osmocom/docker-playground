@@ -5,7 +5,7 @@
 # cgit.  It recognizes certain patterns (such as a gerrit Change-Id, or
 # Related/Closed redmine issues.
 
-GERRIT_URL = 'https://gerrit.osmocom.org/r/%s'
+GERRIT_URL = 'https://gerrit.osmocom.org/q/%s'
 REDMINE_OS_URL = 'https://osmocom.org/issues/%s'
 REDMINE_SYS_URL = 'https://projects.sysmocom.de/redmine/issues/%s'
 RT_URL = 'https://rt.sysmocom.de/TicketDisplay.html?id=%s'
