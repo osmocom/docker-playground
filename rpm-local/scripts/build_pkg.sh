@@ -22,13 +22,14 @@ for arch in $ARCHES; do
 	fi
 done
 
-# HACK: install systemd-rpm-macros unless we are building it now, so the spec files can be parsed
-if [ "$1" != "systemd-rpm-macros" ]; then
+cd /home/user/rpmbuild/SPECS
+
+# Install systemd-rpm-macros if needed, so the .spec can be parsed
+if grep "^BuildRequires:" "$1.spec" | grep -q systemd-rpm-macros; then
 	dnf -y install systemd-rpm-macros
 fi
 
 # keepcache: /var/cache/dnf is mounted from outside docker dir, so downloaded rpm depends are cached
-cd /home/user/rpmbuild/SPECS
 dnf \
 	--setopt=keepcache=1 \
 	-y \
