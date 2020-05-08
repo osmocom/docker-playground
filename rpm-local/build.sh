@@ -32,6 +32,11 @@ spec_version() {
 }
 
 mkdir_rpmbuild() {
+	# Clean previous sources
+	if [ -d "rpmbuild/SOURCES" ]; then
+		rm -rf "rpmbuild/SOURCES"
+	fi
+
 	mkdir -p \
 		"rpmbuild/RPMS" \
 		"rpmbuild/SOURCES" \
@@ -54,8 +59,20 @@ _build_pkg() {
 	local pkgname="$1"
 	local specfile="spec/$pkgname/$pkgname.spec"
 
+	# Copy spec file
 	require_path "$specfile"
 	cp "$specfile" "rpmbuild/SPECS/$pkgname.spec"
+
+	# Copy source files (patches etc.)
+	for i in "spec/$pkgname/"*; do
+		case "$i" in
+		*.spec)
+			;;
+		*)
+			echo "add source: $i"
+			cp "$i" "rpmbuild/SOURCES/"
+		esac
+	done
 
 	# Install depends and build
 	mkdir -p "cache/$IMAGE/dnf"
@@ -82,7 +99,7 @@ build_pkg_osmo() {
 
 	version="$(spec_version "$specfile")"
 	tarball="rpmbuild/SOURCES/$pkgname-$version.tar.xz"
-	echo "creating tarball from git HEAD: $tarball"
+	echo "add source: git HEAD tarball: $tarball"
 
 	require_path "$SRCDIR/$pkgname"
 	git -C "$SRCDIR/$pkgname" archive \
