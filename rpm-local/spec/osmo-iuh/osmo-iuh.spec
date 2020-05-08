@@ -38,6 +38,7 @@ BuildRequires:  pkgconfig(libosmoctrl) >= 0.12.0
 BuildRequires:  pkgconfig(libosmogb)
 BuildRequires:  pkgconfig(libosmogsm) >= 0.12.0
 BuildRequires:  pkgconfig(libosmovty) >= 0.12.0
+BuildRequires:  systemd-rpm-macros
 
 %description
 Osmocom code for the Iuh interface (HNBAP, RUA, RANAP)
