@@ -26,9 +26,7 @@ Source:         %{name}-%{version}.tar.xz
 BuildRequires:  automake >= 1.9
 BuildRequires:  libtool >= 2
 BuildRequires:  pkgconfig >= 0.20
-%if 0%{?suse_version} >= 1210
 BuildRequires:  systemd-rpm-macros
-%endif
 BuildRequires:  pkgconfig(libosmo-netif) >= 0.6.0
 BuildRequires:  pkgconfig(libosmocore) >= 1.0.0
 BuildRequires:  pkgconfig(libosmoctrl) >= 1.1.0
