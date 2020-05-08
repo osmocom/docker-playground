@@ -35,5 +35,14 @@ dnf \
 	-y \
 	builddep $1.spec
 
+# Macros that are expected to be in the OBS prjconf
+# https://en.opensuse.org/openSUSE:Build_Service_cross_distribution_howto#Install_man_files
+# Without this, osmo-ggsn fails to build
+cat << EOF >> /etc/rpm/macros.dist
+# like OBS prjconf
+%ext_info .gz
+%ext_man .gz
+EOF
+
 # Continue building as user
 su user -c "/scripts/build_pkg_user.sh $1"
