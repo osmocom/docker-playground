@@ -165,6 +165,7 @@ build_pkg_osmo "libosmo-abis"
 build_pkg_osmo "libosmo-netif"
 build_pkg_osmo "libsmpp34"
 build_pkg_osmo "libasn1c"
+build_pkg_osmo "libosmo-sccp"
 
 # Osmocom RAN
 build_pkg_osmo "osmo-bts"
