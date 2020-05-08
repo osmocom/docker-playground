@@ -75,13 +75,14 @@ _build_pkg() {
 	done
 
 	# Install depends and build
-	mkdir -p "cache/$IMAGE/dnf"
+	mkdir -p "cache/$IMAGE/dnf" "cache/distfiles"
 	docker run \
 		-it \
 		--rm \
 		-v "$DIR/rpmbuild:/home/user/rpmbuild" \
 		-v "$DIR/scripts:/scripts" \
 		-v "$DIR/cache/$IMAGE/dnf:/var/cache/dnf" \
+		-v "$DIR/cache/distfiles:/home/user/distfiles" \
 		"$IMAGE:latest" \
 		/scripts/build_pkg.sh "$pkgname"
 

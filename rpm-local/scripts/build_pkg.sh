@@ -34,4 +34,5 @@ dnf \
 	-y \
 	builddep $1.spec
 
-su user -c "rpmbuild -bb $1.spec"
+# Continue building as user
+su user -c "/scripts/build_pkg_user.sh $1"

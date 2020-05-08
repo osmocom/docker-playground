@@ -4,10 +4,12 @@ ARG	UID
 RUN	useradd -m --uid=$UID user
 
 # dnf-plugins-core: for "dnf builddep"
+# rpmdevtools: for "spectool"
 RUN	dnf install -y \
 		createrepo \
 		dnf-plugins-core \
-		rpm-build
+		rpm-build \
+		rpmdevtools
 
 # enable repository with required -devel packages
 RUN	yum config-manager --set-enabled PowerTools
