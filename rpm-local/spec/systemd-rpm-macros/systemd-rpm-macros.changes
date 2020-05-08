@@ -1,0 +1,104 @@
+-------------------------------------------------------------------
+Wed Jun  1 11:54:44 UTC 2016 - Thomas.Blume@suse.com
+
+- %service_add_post() suppress daemon-reload when in installation 
+  system (bsc#982343)
+
+-------------------------------------------------------------------
+Fri Apr 15 07:41:29 UTC 2016 - idonmez@suse.com
+
+- Sync with Factory for Gnome 3.20 fate#318572
+- Version bumped to 3
+
+-------------------------------------------------------------------
+Thu Mar 10 13:05:19 UTC 2016 - werner@suse.de
+
+- Add %tmpfiles_create macro (bsc#956849) 
+- Allow the packagers to specify the options -f and -n on the
+  macros %service_del_preun(), %service_del_postun(), %systemd_post(),
+  and %systemd_preun() (boo#968405) 
+
+-------------------------------------------------------------------
+Fri Nov 20 16:53:23 UTC 2015 - werner@suse.de
+
+- Support of DISABLE_STOP_ON_REMOVAL and DISABLE_RESTART_ON_UPDATE 
+  from /etc/sysconfig/service (bsc#955996)
+
+-------------------------------------------------------------------
+Fri Sep 18 15:27:04 CEST 2015 - sbrabec@suse.com
+
+- Skip %systemd_preset_* during the clean installation to prevent
+  presetting of all services (boo#946216).
+
+-------------------------------------------------------------------
+Thu Aug 27 15:27:04 CEST 2015 - sbrabec@suse.com
+
+- Add %systemd_preset_pre and %systemd_preset_posttrans that will
+  do one shot presetting of all services with changed system
+  preset. It makes possible to to fix bad default service state
+  (bnc#900935#c46, FATE#318949, FATE#317727, bnc#921075).
+- Increment version to 2.1.
+
+-------------------------------------------------------------------
+Mon Jun 15 11:33:28 UTC 2015 - jengelh@inai.de
+
+- Check for presence/executability of systemd programs before
+  executing them, and do not suppress warnings/errors resulting
+  from them.
+
+-------------------------------------------------------------------
+Fri Jan  9 13:38:16 UTC 2015 - jengelh@inai.de
+
+- Update with new macros from systemd 218
+- Remove empty sections from specfile
+
+-------------------------------------------------------------------
+Tue Nov 18 15:16:13 UTC 2014 - werner@suse.de
+
+- Mark /etc/rpm/macros.systemd as configuration file 
+
+-------------------------------------------------------------------
+Tue Nov 18 13:30:37 UTC 2014 - werner@suse.de
+
+- Apply then delete patch systemd-daemon-reload-before-service-restart.patch
+- Add orignal systemd macros as well (boo#807164)
+
+-------------------------------------------------------------------
+Wed Oct 15 09:28:36 UTC 2014 - thomas.blume@suse.com
+
+- make systemd aware of changed unit file content after update
+  add systemd-daemon-reload-before-service-restart.patch 
+
+-------------------------------------------------------------------
+Thu Mar 27 14:44:53 UTC 2014 - werner@suse.de
+
+- Add a %_ntpunitsdir macro 
+
+-------------------------------------------------------------------
+Thu Mar 27 12:22:11 UTC 2014 - fcrozat@suse.com
+
+- Add support to not restart services if running in YaST2 or
+  if DISABLE_RESTART_ON_UPDATE is set to yes [bnc#858429]
+
+-------------------------------------------------------------------
+Fri Feb 28 10:10:24 UTC 2014 - werner@suse.de
+
+- Require coreutils as rm and touch are used
+
+-------------------------------------------------------------------
+Fri Feb  7 12:43:13 UTC 2014 - werner@suse.de
+
+- Make systemd rpm macros package a separate to avoid rebuild of
+  the full package tree if systemd package change 
+
+-------------------------------------------------------------------
+Thu Jul  4 13:59:43 CEST 2013 - fcrozat@suse.com
+
+- Resync with systemd v205 macros
+
+-------------------------------------------------------------------
+Mon Jun 17 10:49:50 UTC 2013 - mhrusecky@suse.com
+
+- New package with systemd rpm macros to avoid unnecessary build time
+  dependencies
+
