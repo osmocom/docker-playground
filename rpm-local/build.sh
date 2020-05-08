@@ -112,18 +112,22 @@ build_pkg_osmo() {
 }
 
 # $1: pkgname (e.g. ortp)
-# $2: path to source in $OSCDIR (e.g. ortp/ortp-0.24.2.tar.gz, leave empty if no source needed)
+# $2-$n: path to source in $OSCDIR (e.g. ortp/ortp-0.24.2.tar.gz, leave empty if no source needed)
 build_pkg_other() {
 	local pkgname="$1"
-	local tarball="$OSCDIR/$2"
 
 	skip_pkg "$pkgname" && return
 	mkdir_rpmbuild
 
-	if [ -n "$2" ]; then
-		require_path "$tarball"
-		echo "add source: $tarball"
-		cp "$tarball" "rpmbuild/SOURCES/"
+	shift
+	if [ -n "$1" ]; then
+		for i in "$@"; do
+			local tarball="$OSCDIR/$i"
+
+			require_path "$tarball"
+			echo "add source: $tarball"
+			cp "$tarball" "rpmbuild/SOURCES/"
+		done
 	fi
 
 	_build_pkg "$pkgname"
@@ -145,6 +149,12 @@ build_pkg_osmo "libasn1c"
 
 # RAN
 build_pkg_osmo "osmo-bts"
+
+# needs wxwidgets
+# build_pkg_other "limesuite" "limesuite/limesuite-20.01.0.tar.xz"
+
+build_pkg_other "uhd" "uhd/uhd_3.9.7-release.tar.gz" "uhd/uhd-images_003.009.007-release.tar.xz"
+
 build_pkg_osmo "osmo-trx"
 
 # CN
