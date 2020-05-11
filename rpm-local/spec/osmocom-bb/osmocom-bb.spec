@@ -21,6 +21,10 @@
 %define build_firmware 0
 %endif
 
+%if 0%{?centos_ver}
+%define build_firmware 0
+%endif
+
 %define osmocom_bb_dir /opt/osmocom-bb
 
 Name:           osmocom-bb
