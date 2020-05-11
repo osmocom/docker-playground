@@ -17,6 +17,12 @@
 
 %define build_freetds 0
 
+%if 0%{centos_ver}
+%define build_mysql 0
+%else
+%define build_mysql 1
+%endif
+
 Name:           libdbi-drivers
 Version:        0.9.0.g55
 Release:        0
@@ -37,7 +43,9 @@ BuildRequires:  freetds-devel
 %endif
 BuildRequires:  libdbi-devel >= 0.9.0.g30
 BuildRequires:  libtool
+%if %build_mysql
 BuildRequires:  mysql-devel
+%endif
 BuildRequires:  openjade
 BuildRequires:  postgresql-devel
 %if 0%{centos_ver}
@@ -73,6 +81,7 @@ a program's driver does not require recompilation or rewriting source
 code.
 %endif
 
+%if %build_mysql
 %package dbd-mysql
 Summary:        MySQL driver for libdbi
 Group:          System/Libraries
@@ -82,6 +91,7 @@ This driver provides connectivity to MySQL database servers through
 the libdbi database independent abstraction layer. Switching a
 program's driver does not require recompilation or rewriting source
 code.
+%endif
 
 %package dbd-pgsql
 Summary:        PostgreSQL driver for libdbi
@@ -122,7 +132,9 @@ export CFLAGS="%optflags -O0 -ggdb3"
 %if %build_freetds
 	--with-freetds				\
 %endif
+%if %build_mysql
 	--with-mysql 				\
+%endif
 	--with-pgsql 				\
 	--with-sqlite3				\
 	--with-dbi-incdir="%_includedir/dbi"	\
@@ -146,11 +158,13 @@ make check || :
 %_libdir/dbd/libdbdfreetds.so
 %endif
 
+%if %build_mysql
 %files dbd-mysql
 %defattr(-,root,root)
 %doc COPYING
 %dir %_libdir/dbd
 %_libdir/dbd/libdbdmysql.so
+%endif
 
 %files dbd-pgsql
 %defattr(-,root,root)
