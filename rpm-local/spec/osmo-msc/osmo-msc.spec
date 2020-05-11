@@ -31,7 +31,7 @@ URL:            https://osmocom.org/projects/osmomsc/wiki
 Source:         %{name}-%{version}.tar.xz
 BuildRequires:  autoconf
 BuildRequires:  automake
-BuildRequires:  libdbi-drivers-dbd-sqlite3
+BuildRequires:  libdbi-dbd-sqlite
 BuildRequires:  libtool
 BuildRequires:  pkgconfig >= 0.20
 BuildRequires:  pkgconfig(dbi)
