@@ -93,6 +93,7 @@ _build_pkg() {
 
 # $1: pkgname (e.g. libosmocore)
 # $2: osmocom git repo name (if different than $1)
+# $3-$n: path to additional source in $OSCDIR (e.g. gapk/0606_421.zip)
 build_pkg_osmo() {
 	local pkgname="$1"
 	local repo="$2"
@@ -116,6 +117,17 @@ build_pkg_osmo() {
 		--prefix="$repo-$version/" \
 		HEAD \
 		> "$tarball"
+
+	if [ -n "$2" ] && [ -n "$3" ]; then
+		shift 2
+		for i in "$@"; do
+			local tarball="$OSCDIR/$i"
+
+			require_path "$tarball"
+			echo "add source: $tarball"
+			cp "$tarball" "rpmbuild/SOURCES/"
+		done
+	fi
 
 	_build_pkg "$pkgname"
 }
@@ -207,8 +219,7 @@ build_pkg_osmo "osmo-sgsn"
 build_pkg_osmo "osmo-sip-connector"
 
 # Other
-# needs: libgsm-devel, libopencore-amr-devel
-# build_pkg_osmo "gapk"
+build_pkg_osmo "gapk" "gapk" "gapk/0606_421.zip"
 build_pkg_osmo "osmocom-bb"
 # needs: libulfius
 # build_pkg_osmo "osmo-cbc"
