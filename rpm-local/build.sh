@@ -174,6 +174,9 @@ build_pkg_other libgtpnl "libgtpnl/libgtpnl-1.2.1.0.tar.xz"
 # sofia-sip-ua-glib (dependency of osmo-sip-connector)
 build_pkg_other "sofia-sip"
 
+# liboping (dependency of osmo-sysmon)
+build_pkg_other "liboping"
+
 # Osmocom libraries
 build_pkg_osmo "libosmocore"
 build_pkg_osmo "libosmo-abis"
@@ -216,8 +219,7 @@ build_pkg_osmo "osmo-el2tpd"
 # needs: libosmo-simtrace2, libulfius
 # build_pkg_osmo "osmo-remsim"
 build_pkg_osmo "osmo-sim-auth"
-# needs: liboping
-# build_pkg_osmo "osmo-sysmon"
+build_pkg_osmo "osmo-sysmon"
 build_pkg_osmo "osmo-uecups"
 
 # needs: docbook_5, graphviz-gnome, libxslt-tools, mscgen, python3-nwdiag, texlive-scheme-medium
