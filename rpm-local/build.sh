@@ -165,6 +165,9 @@ build_pkg_other "libdbi-drivers"
 # libgtpnl (dependency of osmo-ggsn)
 build_pkg_other libgtpnl "libgtpnl/libgtpnl-1.2.1.0.tar.xz"
 
+# sofia-sip-ua-glib (dependency of osmo-sip-connector)
+build_pkg_other "sofia-sip"
+
 # Osmocom libraries
 build_pkg_osmo "libosmocore"
 build_pkg_osmo "libosmo-abis"
