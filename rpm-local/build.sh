@@ -195,14 +195,20 @@ build_pkg_osmo "osmo-sip-connector"
 # needs: libgsm-devel, libopencore-amr-devel
 # build_pkg_osmo "gapk"
 build_pkg_osmo "osmocom-bb"
-build_pkg_osmo "osmo-cbc"
+# needs: libulfius
+# build_pkg_osmo "osmo-cbc"
 build_pkg_osmo "osmo-e1d"
 build_pkg_osmo "osmo-e1-recorder"
-build_pkg_osmo "el2tp"
-build_pkg_osmo "osmo-pcap"
-build_pkg_osmo "osmo-python-tests"
-build_pkg_osmo "osmo-qcdiag"
-build_pkg_osmo "osmo-remsim"
+build_pkg_osmo "osmo-el2tpd"
+# needs: libzmq
+# build_pkg_osmo "osmo-pcap"
+# can't parse
+# build_pkg_osmo "osmo-python-tests"
+# needs: qmi-glib
+# build_pkg_osmo "osmo-qcdiag"
+
+# needs: libosmo-simtrace2, libulfius
+# build_pkg_osmo "osmo-remsim"
 build_pkg_osmo "osmo-sim-auth"
 build_pkg_osmo "osmo-sysmon"
 build_pkg_osmo "osmo-uecups"
