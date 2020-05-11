@@ -221,19 +221,20 @@ build_pkg_osmo "osmo-sip-connector"
 # Other
 build_pkg_osmo "gapk"
 build_pkg_osmo "osmocom-bb"
-# needs: libulfius
+# needs: libulfius, orcania, yder (orcania spec fails to build)
 # build_pkg_osmo "osmo-cbc"
 build_pkg_osmo "osmo-e1d"
 build_pkg_osmo "osmo-e1-recorder"
 build_pkg_osmo "osmo-el2tpd"
-# needs: libzmq
+# needs: zeromq (libunwind-devel, openpgm-devel, libsodium)
+# libunwind from fedora builds for centos8, but openpgm does not
 # build_pkg_osmo "osmo-pcap"
 # can't parse
 # build_pkg_osmo "osmo-python-tests"
-# needs: qmi-glib
+# needs: qmi-glib, zeromq (see above)
 # build_pkg_osmo "osmo-qcdiag"
 
-# needs: libosmo-simtrace2, libulfius
+# needs: libosmo-simtrace2, libulfius (see above)
 # build_pkg_osmo "osmo-remsim"
 build_pkg_osmo "osmo-sim-auth"
 build_pkg_osmo "osmo-sysmon"
