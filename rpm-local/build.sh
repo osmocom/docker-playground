@@ -177,6 +177,9 @@ build_pkg_other "sofia-sip"
 # liboping (dependency of osmo-sysmon)
 build_pkg_other "liboping"
 
+# libgsm-devel (dependency of gapk)
+build_pkg_other "libgsm"
+
 # Osmocom libraries
 build_pkg_osmo "libosmocore"
 build_pkg_osmo "libosmo-abis"
