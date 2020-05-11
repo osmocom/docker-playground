@@ -43,7 +43,7 @@ BuildRequires:  gcc-c++
 BuildRequires:  git-core
 BuildRequires:  libtool
 BuildRequires:  pkgconfig
-BuildRequires:  python
+BuildRequires:  python3
 # SLES does not provide gpsd-devel, so build without gps-support on those systems
 %if 0%{?is_opensuse}
 BuildRequires:  pkgconfig(libgps)
@@ -82,8 +82,9 @@ phones.
 %setup -q
 %patch2 -p1
 %patch3 -p1
-# HACK: Don't use /usr/bin/env as an interpreter
-sed -i 's|#!/usr/bin/env python2|#!/usr/bin/python2|g' src/target/trx_toolkit/*.py
+
+# fix python shebangs
+find . -type f -name "*.py" -exec sed -i '/^#!/ s|.*|#!%{__python3}|' {} \;
 
 %build
 echo "%{version}" >src/host/osmocon/.tarball-version
