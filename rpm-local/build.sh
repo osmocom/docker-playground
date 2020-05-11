@@ -192,7 +192,8 @@ build_pkg_osmo "osmo-sgsn"
 build_pkg_osmo "osmo-sip-connector"
 
 # Other
-build_pkg_osmo "gapk"
+# needs: libgsm-devel, libopencore-amr-devel
+# build_pkg_osmo "gapk"
 build_pkg_osmo "osmocom-bb"
 build_pkg_osmo "osmo-cbc"
 build_pkg_osmo "osmo-e1d"
