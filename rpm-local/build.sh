@@ -92,22 +92,28 @@ _build_pkg() {
 }
 
 # $1: pkgname (e.g. libosmocore)
+# $2: osmocom git repo name (if different than $1)
 build_pkg_osmo() {
 	local pkgname="$1"
+	local repo="$2"
 	local specfile="spec/$pkgname/$pkgname.spec"
 	local version
 
 	skip_pkg "$pkgname" && return
 	mkdir_rpmbuild
 
+	if [ -z "$repo" ]; then
+		repo="$pkgname"
+	fi
+
 	version="$(spec_version "$specfile")"
 	tarball="rpmbuild/SOURCES/$pkgname-$version.tar.xz"
 	echo "add source: git HEAD tarball: $tarball"
 
-	require_path "$SRCDIR/$pkgname"
-	git -C "$SRCDIR/$pkgname" archive \
+	require_path "$SRCDIR/$repo"
+	git -C "$SRCDIR/$repo" archive \
 		--format=tar \
-		--prefix="$pkgname-$version/" \
+		--prefix="$repo-$version/" \
 		HEAD \
 		> "$tarball"
 
@@ -210,6 +216,7 @@ build_pkg_osmo "osmo-el2tpd"
 # needs: libosmo-simtrace2, libulfius
 # build_pkg_osmo "osmo-remsim"
 build_pkg_osmo "osmo-sim-auth"
-build_pkg_osmo "osmo-sysmon"
+# needs: liboping
+# build_pkg_osmo "osmo-sysmon"
 build_pkg_osmo "osmo-uecups"
-build_pkg_osmo "osmo-gsm-manuals"
+build_pkg_osmo "osmo-gsm-manuals-devel" "osmo-gsm-manuals"
