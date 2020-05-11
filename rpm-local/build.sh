@@ -179,6 +179,7 @@ build_pkg_osmo "libosmo-sccp"
 # Osmocom RAN
 build_pkg_osmo "osmo-bts"
 build_pkg_osmo "osmo-trx"
+build_pkg_osmo "osmo-pcu"
 
 # Osmocom CN
 build_pkg_osmo "osmo-ggsn"
@@ -189,3 +190,19 @@ build_pkg_osmo "osmo-msc"
 build_pkg_osmo "osmo-bsc"
 build_pkg_osmo "osmo-sgsn"
 build_pkg_osmo "osmo-sip-connector"
+
+# Other
+build_pkg_osmo "gapk"
+build_pkg_osmo "osmocom-bb"
+build_pkg_osmo "osmo-cbc"
+build_pkg_osmo "osmo-e1d"
+build_pkg_osmo "osmo-e1-recorder"
+build_pkg_osmo "el2tp"
+build_pkg_osmo "osmo-pcap"
+build_pkg_osmo "osmo-python-tests"
+build_pkg_osmo "osmo-qcdiag"
+build_pkg_osmo "osmo-remsim"
+build_pkg_osmo "osmo-sim-auth"
+build_pkg_osmo "osmo-sysmon"
+build_pkg_osmo "osmo-uecups"
+build_pkg_osmo "osmo-gsm-manuals"
