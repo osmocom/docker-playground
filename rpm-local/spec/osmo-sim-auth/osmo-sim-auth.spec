@@ -34,6 +34,9 @@ reader to obtain GSM/UMTS authentication parameters from a SIM/USIM card.
 %prep
 %setup -q
 
+# fix python shebangs
+find . -type f -name "*.py" -exec sed -i '/^#!/ s|.*|#!%{__python3}|' {} \;
+
 %build
 
 %install
