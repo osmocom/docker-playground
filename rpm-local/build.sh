@@ -219,7 +219,7 @@ build_pkg_osmo "osmo-sgsn"
 build_pkg_osmo "osmo-sip-connector"
 
 # Other
-build_pkg_osmo "gapk" "gapk" "gapk/0606_421.zip"
+build_pkg_osmo "gapk"
 build_pkg_osmo "osmocom-bb"
 # needs: libulfius
 # build_pkg_osmo "osmo-cbc"

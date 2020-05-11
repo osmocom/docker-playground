@@ -28,14 +28,14 @@ Group:          Productivity/Multimedia/Sound/Editors and Convertors
 URL:            http://www.osmocom.org
 Source:         gapk-%{version}.tar.xz
 # License: for libgsmhr see 3gpp website
-Source1:        0606_421.zip
+Source1:        http://www.3gpp.org/ftp/Specs/archive/06_series/06.06/0606-421.zip
 Patch1:         gapk-disable-codec-dl-during-build.diff
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  libgsm-devel
 BuildRequires:  libtool
 BuildRequires:  pkgconfig
-BuildRequires:  python
+BuildRequires:  python3
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(libosmocodec)
 BuildRequires:  pkgconfig(libosmocore)
@@ -44,6 +44,7 @@ ExclusiveArch:  %{ix86} x86_64
 %if 0%{with_amr}
 BuildRequires:  libopencore-amr-devel
 %endif
+BuildRequires:  unzip
 
 %description
 gapk is intented to be the GSM Audio Pocket Knife.
@@ -97,7 +98,13 @@ library.
 %setup -q
 %if 0%{with_gsmhr}
 %patch1 -p1
-cp %{SOURCE1} libgsmhr/
+cd libgsmhr/
+unzip %{SOURCE1}
+unzip DISK.zip
+unzip -a -L Dir_C.zip -d refsrc
+
+# Disable downloading source script
+ln -sf /bin/true fetch_sources.py
 %endif
 
 %build
