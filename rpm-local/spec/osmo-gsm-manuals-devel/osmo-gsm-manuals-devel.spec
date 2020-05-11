@@ -38,7 +38,6 @@ BuildRequires:  libtool
 BuildRequires:  libxslt-tools
 BuildRequires:  mscgen
 BuildRequires:  pkg-config
-BuildRequires:  python2-PyChart
 BuildRequires:  python3-nwdiag
 BuildRequires:  texlive-scheme-medium
 Requires:       asciidoc
@@ -49,7 +48,6 @@ Requires:       graphviz-gnome
 Requires:       libxslt-tools
 Requires:       mscgen
 Requires:       pkg-config
-Requires:       python2-PyChart
 Requires:       python3-nwdiag
 Requires:       texlive-scheme-medium
 BuildArch:      noarch
