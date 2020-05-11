@@ -11,7 +11,7 @@ for arch in $ARCHES; do
 		createrepo .
 	
 		cat <<- EOF > /etc/yum.repos.d/rpmbuild-local-$arch.repo
-		[myrepo-$arch]
+		[osmocom-$arch]
 		name=Local Osmocom packages ($arch)
 		baseurl=file:///home/user/rpmbuild/RPMS/$arch
 		enabled=1
@@ -21,6 +21,9 @@ for arch in $ARCHES; do
 		cd ..
 	fi
 done
+
+# Remove local repo related cache
+rm -rf /var/cache/dnf/osmocom*
 
 cd /home/user/rpmbuild/SPECS
 
