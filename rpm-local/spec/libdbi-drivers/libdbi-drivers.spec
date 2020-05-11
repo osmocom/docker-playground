@@ -40,7 +40,11 @@ BuildRequires:  libtool
 BuildRequires:  mysql-devel
 BuildRequires:  openjade
 BuildRequires:  postgresql-devel
+%if 0%{centos_ver}
+BuildRequires:  sqlite-devel
+%else
 BuildRequires:  sqlite3-devel
+%endif
 BuildRequires:  xz
 %define build_doc 0
 %if %build_doc
