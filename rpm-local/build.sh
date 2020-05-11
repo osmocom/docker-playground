@@ -219,4 +219,6 @@ build_pkg_osmo "osmo-sim-auth"
 # needs: liboping
 # build_pkg_osmo "osmo-sysmon"
 build_pkg_osmo "osmo-uecups"
-build_pkg_osmo "osmo-gsm-manuals-devel" "osmo-gsm-manuals"
+
+# needs: docbook_5, graphviz-gnome, libxslt-tools, mscgen, python3-nwdiag, texlive-scheme-medium
+# build_pkg_osmo "osmo-gsm-manuals-devel" "osmo-gsm-manuals"
