@@ -153,8 +153,8 @@ build_pkg_other "python-cheetah"
 build_pkg_other "uhd"
 
 # libdbi-drivers-dbd-sqlite3 (dependency of osmo-msc)
-build_pkg_other "libdbi" "libdbi/libdbi-0.9.0.g33.tar.xz"
-build_pkg_other "libdbi-drivers" "libdbi-drivers/libdbi-drivers-0.9.0.g55.tar.xz"
+build_pkg_other "libdbi"
+build_pkg_other "libdbi-drivers"
 
 # limesuite (dependency of osmo-bts)
 # needs wxwidgets
