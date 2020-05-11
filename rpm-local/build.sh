@@ -32,10 +32,12 @@ spec_version() {
 }
 
 mkdir_rpmbuild() {
-	# Clean previous sources
-	if [ -d "rpmbuild/SOURCES" ]; then
-		rm -rf "rpmbuild/SOURCES"
-	fi
+	# Clean previous dirs
+	for dir in SOURCES BUILD; do
+		if [ -d "rpmbuild/$dir" ]; then
+			rm -rf "rpmbuild/$dir"
+		fi
+	done
 
 	mkdir -p \
 		"rpmbuild/RPMS" \
