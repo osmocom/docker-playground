@@ -17,4 +17,4 @@ docker run \
 	-v "$DIR/cache/yum_repos:/root/yum_repos" \
 	-v "$DIR/cache/distfiles:/home/user/distfiles" \
 	"$IMAGE:latest" \
-	/scripts/install_test.sh
+	/scripts/install_test_obs.sh
