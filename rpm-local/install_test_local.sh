@@ -7,6 +7,9 @@ if ! [ -e ".build.docker.$IMAGE" ]; then
 	exit 1
 fi
 
+# rebuild osmo-trx
+rm -f .build.package.osmo-trx
+./build.sh
 
 docker run \
 	-it \
