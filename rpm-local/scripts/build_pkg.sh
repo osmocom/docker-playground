@@ -29,7 +29,7 @@ cd /home/user/rpmbuild/SPECS
 
 # Install systemd-rpm-macros if needed, so the .spec can be parsed
 if grep "^BuildRequires:" "$1.spec" | grep -q systemd-rpm-macros; then
-	dnf -y install systemd-rpm-macros
+	dnf --setopt=keepcache=1 -y install systemd-rpm-macros
 fi
 
 # keepcache: /var/cache/dnf is mounted from outside docker dir, so downloaded rpm depends are cached
