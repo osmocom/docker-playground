@@ -12,5 +12,9 @@ for i in "$distfiles/"*; do
 	cp "$i" "/home/user/rpmbuild/SOURCES/"
 done
 
+
+# Print expanded spec file
+rpmspec -P $1.spec
+
 # Build the package
 rpmbuild -bb $1.spec
