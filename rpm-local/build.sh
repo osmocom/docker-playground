@@ -98,6 +98,7 @@ build_pkg_osmo() {
 	local pkgname="$1"
 	local repo="$2"
 	local specfile="spec/$pkgname/$pkgname.spec"
+	local specfile_git
 	local version
 
 	skip_pkg "$pkgname" && return
@@ -106,6 +107,12 @@ build_pkg_osmo() {
 	if [ -z "$repo" ]; then
 		repo="$pkgname"
 	fi
+
+	# Copy spec file from osmo git repo
+	specfile_git="$SRCDIR/$repo/contrib/$repo.spec"
+	require_path "$specfile_git"
+	cp "$specfile_git" "$specfile"
+
 
 	version="$(spec_version "$specfile")"
 	tarball="rpmbuild/SOURCES/$pkgname-$version.tar.xz"
