@@ -16,4 +16,18 @@ dnf --setopt=keepcache=1 -y check-update /etc/yum.repos.d/$REPO_FILE
 
 # install packages
 # somehow -y is not enough
-yes | dnf --setopt=keepcache=1 -y install osmo-trx-uhd
+yes | dnf --setopt=keepcache=1 -y install \
+	osmo-bsc \
+	osmo-bts \
+	osmo-ggsn \
+	osmo-hlr \
+	osmo-iuh \
+	osmo-mgw \
+	osmo-msc \
+	osmo-pcu \
+	osmo-sgsn \
+	osmo-trx \
+	osmo-trx-uhd
+
+
+bash
