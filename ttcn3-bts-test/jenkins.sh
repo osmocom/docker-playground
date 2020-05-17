@@ -53,7 +53,10 @@ start_fake_trx() {
 				--log-file-level DEBUG \
 				--log-file-time \
 				--log-level INFO \
-				-R 172.18.9.20 -r 172.18.9.22
+				-R 172.18.9.20 -r 172.18.9.22 \
+				--trx TRX1@172.18.9.20:5700/1 \
+				--trx TRX2@172.18.9.20:5700/2 \
+				--trx TRX3@172.18.9.20:5700/3
 }
 
 start_trxcon() {
