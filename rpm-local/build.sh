@@ -202,6 +202,8 @@ build_pkg_other "libgsm"
 # libopencore-amr-devel (dependency of gapk)
 build_pkg_other "opencore-amr"
 
+build_pkg_other "orcania"
+
 # Osmocom libraries
 build_pkg_osmo "libosmocore"
 build_pkg_osmo "libosmo-abis"

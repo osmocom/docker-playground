@@ -45,6 +45,8 @@ cat << EOF >> /etc/rpm/macros.dist
 # like OBS prjconf
 %ext_info .gz
 %ext_man .gz
+
+%cmake_install DESTDIR=%{buildroot} make install
 EOF
 
 # Continue building as user
