@@ -109,10 +109,15 @@ build_pkg_osmo() {
 	fi
 
 	# Copy spec file from osmo git repo
-	specfile_git="$SRCDIR/$repo/contrib/$repo.spec"
+	cd "$SRCDIR/$repo"
+	specfile_git="$(find -name "$repo.spec.in")"
 	require_path "$specfile_git"
-	cp "$specfile_git" "$specfile"
+	echo "update spec file from: $specfile_git"
+	cp "$specfile_git" "$DIR/$specfile"
+	cd "$DIR"
 
+	# Set version to 0.0.0
+	sed -i "s/^Version:.*/Version: 0.0.0/g" "$specfile"
 
 	version="$(spec_version "$specfile")"
 	tarball="rpmbuild/SOURCES/$pkgname-$version.tar.xz"
