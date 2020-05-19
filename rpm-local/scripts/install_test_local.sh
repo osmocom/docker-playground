@@ -24,4 +24,6 @@ done
 # Remove local repo related cache
 rm -rf /var/cache/dnf/osmocom*
 
-dnf --setopt=keepcache=1 -y install osmo-trx-uhd
+dnf --setopt=keepcache=1 -y install osmo-trx-uhd osmo-trx-ipc
+
+bash
