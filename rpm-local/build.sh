@@ -209,6 +209,9 @@ build_pkg_other "opencore-amr"
 
 build_pkg_other "orcania"
 
+# fdupes (builddependency of osmo-trx)
+build_pkg_other "fdupes"
+
 # Osmocom libraries
 build_pkg_osmo "libosmocore"
 build_pkg_osmo "libosmo-abis"
