@@ -1,11 +1,12 @@
 #!/bin/sh -ex
-REPO_FILE="home:osmith42.repo"
+REPO="network:osmocom:next"
+REPO_FILE="$REPO.repo"
 
 # Download repo file
 cd /root/yum_repos
 if ! [ -e "$REPO_FILE" ]; then
 	dnf --setopt=keepcache=1 -y install wget
-	wget https://download.opensuse.org/repositories/home:osmith42/CentOS_8_Stream/home:osmith42.repo
+	wget https://download.opensuse.org/repositories/$REPO/CentOS_8_Stream/$REPO_FILE
 fi
 
 # Enable repo
