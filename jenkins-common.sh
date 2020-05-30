@@ -2,12 +2,26 @@ docker_image_exists() {
 	test -n "$(docker images -q "$REPO_USER/$1")"
 }
 
+docker_depends() {
+	case "$1" in
+	osmo-*) echo "debian-stretch-build" ;;
+	ttcn3-*) echo "debian-stretch-titan" ;;
+	esac
+}
+
 docker_images_require() {
 	local i
 	local from_line
 	local pull_arg
+	local depends
 
 	for i in $@; do
+		# Build dependencies first
+		depends="$(docker_depends "$i")"
+		if [ -n "$depends" ]; then
+			docker_images_require $depends
+		fi
+
 		# Trigger image build (cache will be used when up-to-date)
 		if [ -z "$NO_DOCKER_IMAGE_BUILD" ]; then
 			# Pull upstream base images
