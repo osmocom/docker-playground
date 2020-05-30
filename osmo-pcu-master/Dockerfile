@@ -1,5 +1,8 @@
 ARG	USER
-FROM	$USER/debian-stretch-build
+ARG	DISTRO
+FROM	$USER/$DISTRO-build
+# Arguments used after FROM must be specified again
+ARG	DISTRO
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
@@ -7,16 +10,32 @@ ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/ni
 
 COPY	Release.key /tmp/Release.key
 
-RUN	apt-key add /tmp/Release.key && \
-	rm /tmp/Release.key && \
-	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-nightly.list
+RUN	case "$DISTRO" in \
+	debian*) \
+		apt-key add /tmp/Release.key && \
+		rm /tmp/Release.key && \
+		echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-nightly.list \
+		;; \
+	esac
 
 ADD	$OSMOCOM_REPO/Release /tmp/Release
-RUN	apt-get update && \
-	apt-get install -y --no-install-recommends \
-		telnet \
-		libosmocore-dev && \
-	apt-get clean
+RUN	case "$DISTRO" in \
+	debian*) \
+		apt-get update && \
+		apt-get install -y --no-install-recommends \
+			telnet \
+			libosmocore-dev && \
+		apt-get clean \
+		;; \
+	centos*) \
+		dnf install -y \
+			telnet \
+			"pkgconfig(libosmocore)" \
+			"pkgconfig(libosmogb)" \
+			"pkgconfig(libosmogsm)" \
+			"pkgconfig(libosmovty)" \
+		;; \
+	esac
 
 ADD	respawn.sh /usr/local/bin/respawn.sh
 
