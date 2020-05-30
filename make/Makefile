@@ -32,6 +32,7 @@ OSMO_SGSN_BRANCH?=master
 OSMO_SIP_BRANCH?=master
 OSMO_STP_BRANCH?=master
 PULL?=
+DISTRO?=debian-stretch
 
 RELEASE_SUPPORT := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))/.make-release-support
 IMAGE?=$(REGISTRY_HOST)/$(USER)/$(NAME)
@@ -55,7 +56,10 @@ post-push:
 
 
 docker-build: .release
-	docker build --build-arg USER=$(USERNAME) --build-arg OSMO_TTCN3_BRANCH=$(OSMO_TTCN3_BRANCH) \
+	docker build \
+		--build-arg USER=$(USERNAME) \
+		--build-arg OSMO_TTCN3_BRANCH=$(OSMO_TTCN3_BRANCH) \
+		--build-arg DISTRO=$(DISTRO) \
 		--build-arg OSMO_BB_BRANCH=$(OSMO_BB_BRANCH) \
 		--build-arg OSMO_BSC_BRANCH=$(OSMO_BSC_BRANCH) \
 		--build-arg OSMO_BTS_BRANCH=$(OSMO_BTS_BRANCH) \
