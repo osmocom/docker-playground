@@ -4,16 +4,41 @@ docker_image_exists() {
 
 docker_depends() {
 	case "$1" in
+	osmo-*-centos8) echo "centos8-build" ;;
 	osmo-*) echo "debian-stretch-build" ;;
 	ttcn3-*) echo "debian-stretch-titan" ;;
 	esac
 }
 
+docker_distro_from_image_name() {
+	case "$1" in
+	osmo-*-centos8) echo "centos8"; ;;
+	*) echo "debian-stretch" ;;
+	esac
+
+}
+
+docker_dir_from_image_name() {
+	case "$1" in
+	osmo-*-centos8) echo "$1" | sed 's/\-centos8$//' ;;
+	*) echo "$1" ;;
+	esac
+}
+
+# Make sure required images are available and build them if necessary.
+# $*: image names (e.g. "debian-stretch-build", "osmo-mgw-master", "osmo-mgw-master-centos8")
+#	The images are automatically built from the Dockerfile of the subdir of the same name. If there is a
+#	distribution name at the end of the image name (e.g. osmo-mgw-master-centos8), it gets removed from the subdir
+#	where the Dockerfile is taken from (e.g. osmo-mgw-master/Dockerfile) and DISTRO is passed accordingly
+#	(e.g. DISTRO=centos8). This allows one Dockerfile for multiple distributions, without duplicating configs for
+#	each distribution. Dependencies listed in docker_depends() are built automatically too.
 docker_images_require() {
 	local i
 	local from_line
 	local pull_arg
+	local distro_arg
 	local depends
+	local dir
 
 	for i in $@; do
 		# Build dependencies first
@@ -24,15 +49,22 @@ docker_images_require() {
 
 		# Trigger image build (cache will be used when up-to-date)
 		if [ -z "$NO_DOCKER_IMAGE_BUILD" ]; then
+			distro_arg="$(docker_distro_from_image_name "$i")"
+			dir="$(docker_dir_from_image_name "$i")"
+
 			# Pull upstream base images
 			pull_arg="--pull"
-			from_line="$(grep '^FROM' ../$i/Dockerfile)"
+			from_line="$(grep '^FROM' ../$dir/Dockerfile)"
 			if echo "$from_line" | grep -q '$USER'; then
 				pull_arg=""
 			fi
 
 			echo "Building image: $i (export NO_DOCKER_IMAGE_BUILD=1 to prevent this)"
-			PULL="$pull_arg" make -C "../$i" || exit 1
+			make -C "../$dir" \
+				PULL="$pull_arg" \
+				DISTRO="$distro_arg" \
+				IMAGE="$REPO_USER/$i" \
+				|| exit 1
 		fi
 
 		# Detect missing images (build skipped)
