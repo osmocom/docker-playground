@@ -4,9 +4,7 @@
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 # Always require osmo-stp-master since is the only with sccp_demo_user installed
 docker_images_require \
-	"debian-stretch-build" \
 	"osmo-stp-master" \
-	"debian-stretch-titan" \
 	"ttcn3-sccp-test"
 
 mkdir $VOL_BASE_DIR/sccp-tester

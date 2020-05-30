@@ -3,9 +3,7 @@
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
-	"debian-stretch-build" \
 	"osmo-pcu-$IMAGE_SUFFIX" \
-	"debian-stretch-titan" \
 	"ttcn3-pcu-test"
 
 network_create 172.18.14.0/24

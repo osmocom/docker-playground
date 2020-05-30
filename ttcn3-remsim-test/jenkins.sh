@@ -3,7 +3,6 @@
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
-	"debian-stretch-build" \
 	"osmo-remsim-$IMAGE_SUFFIX" \
 	"ttcn3-remsim-test"
 

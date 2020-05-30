@@ -3,9 +3,7 @@
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
-	"debian-stretch-build" \
 	"osmo-sip-$IMAGE_SUFFIX" \
-	"debian-stretch-titan" \
 	"ttcn3-sip-test"
 
 network_create 172.18.11.0/24

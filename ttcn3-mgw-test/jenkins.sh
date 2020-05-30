@@ -3,9 +3,7 @@
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
-	"debian-stretch-build" \
 	"osmo-mgw-$IMAGE_SUFFIX" \
-	"debian-stretch-titan" \
 	"ttcn3-mgw-test"
 
 mkdir $VOL_BASE_DIR/mgw-tester

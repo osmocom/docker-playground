@@ -3,11 +3,9 @@
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
-	"debian-stretch-build" \
 	"osmo-stp-$IMAGE_SUFFIX" \
 	"osmo-bsc-$IMAGE_SUFFIX" \
 	"osmo-bts-$IMAGE_SUFFIX" \
-	"debian-stretch-titan" \
 	"ttcn3-bsc-test"
 
 mkdir $VOL_BASE_DIR/bsc-tester
