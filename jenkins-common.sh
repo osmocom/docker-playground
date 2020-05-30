@@ -3,6 +3,7 @@ docker_image_exists() {
 }
 
 docker_images_require() {
+	local i
 	local from_line
 	local pull_arg
 
