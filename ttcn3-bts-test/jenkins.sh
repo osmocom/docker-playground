@@ -46,7 +46,7 @@ start_fake_trx() {
 			--name ${BUILD_TAG}-fake_trx -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmocom-bb-host-master \
-			/tmp/osmocom-bb/src/target/trx_toolkit/fake_trx.py \
+			/bin/sh -c "/tmp/osmocom-bb/src/target/trx_toolkit/fake_trx.py \
 				--log-file-name /data/fake_trx.log \
 				--log-file-level DEBUG \
 				--log-file-time \
@@ -54,7 +54,7 @@ start_fake_trx() {
 				-R 172.18.9.20 -r 172.18.9.22 \
 				--trx TRX1@172.18.9.20:5700/1 \
 				--trx TRX2@172.18.9.20:5700/2 \
-				--trx TRX3@172.18.9.20:5700/3
+				--trx TRX3@172.18.9.20:5700/3 >>/data/fake_trx.out 2>&1"
 }
 
 start_trxcon() {
