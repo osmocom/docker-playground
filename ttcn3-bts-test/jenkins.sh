@@ -73,11 +73,11 @@ start_virtphy() {
 	echo Starting container with virtphy
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.9.22 \
+			-v $VOL_BASE_DIR/virtphy:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			--name ${BUILD_TAG}-virtphy -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmocom-bb-host-master \
-			virtphy -s /data/unix/osmocom_l2
 			/bin/sh -c "virtphy -s /data/unix/osmocom_l2 >>/data/virtphy.log 2>&1"
 }
 
@@ -110,6 +110,7 @@ mkdir $VOL_BASE_DIR/unix
 
 mkdir $VOL_BASE_DIR/fake_trx
 mkdir $VOL_BASE_DIR/trxcon
+mkdir $VOL_BASE_DIR/virtphy
 
 # 1) classic test suite with BSC for OML and trxcon+fake_trx
 start_bsc
