@@ -99,6 +99,13 @@ mkdir $VOL_BASE_DIR/bts-tester
 mkdir $VOL_BASE_DIR/bts-tester/unix
 cp BTS_Tests.cfg $VOL_BASE_DIR/bts-tester/
 
+# Work around for a bug in osmo-bts when all transceivers use IPAC_PROTO_RSL_TRX0.
+# Enables patching of IPA stream ID. TODO: remove as soon as we make a new release.
+if [ "$IMAGE_SUFFIX" = "latest" ]; then
+	sed "s/RSL_Emulation.mp_rslem_patch_ipa_cid := false/RSL_Emulation.mp_rslem_patch_ipa_cid := true/g" -i \
+		"$VOL_BASE_DIR/bts-tester/BTS_Tests.cfg"
+fi
+
 mkdir $VOL_BASE_DIR/bsc
 cp osmo-bsc.cfg $VOL_BASE_DIR/bsc/
 
