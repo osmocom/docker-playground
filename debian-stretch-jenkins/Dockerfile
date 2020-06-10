@@ -103,6 +103,7 @@ RUN \
 		rsync \
 		sdcc \
 		sqlite3 \
+		source-highlight \
 		stow \
 		sudo \
 		systemd \
