@@ -81,7 +81,7 @@ docker run	--rm \
 
 echo Starting container with osmo-gsm-tester main unit
 OSMO_GSM_TESTER_CONF=${OSMO_GSM_TESTER_CONF:-/tmp/osmo-gsm-tester/sysmocom/main.conf}
-OSMO_GSM_TESTER_OPTS=${OSMO_GSM_TESTER_OPTS:--T -l dbg -s 4g:srsenb-rftype@zmq+srsue-rftype@zmq -t ping}
+OSMO_GSM_TESTER_OPTS=${OSMO_GSM_TESTER_OPTS:--T -l dbg -s 4g:srsue-rftype@zmq+srsenb-rftype@zmq+mod-enb-nprb@6 -t =ping.py}
 docker run	--rm \
 		--cap-add=NET_ADMIN \
 		--cap-add=SYS_ADMIN \
