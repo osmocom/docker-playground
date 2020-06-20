@@ -23,6 +23,7 @@ cp osmo-hlr.cfg $VOL_BASE_DIR/hlr/
 echo Starting container with HLR
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.10.20 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/hlr:/data \
 		--name ${BUILD_TAG}-hlr -d \
 		$DOCKER_ARGS \
@@ -32,6 +33,7 @@ docker run	--rm \
 echo Starting container with HLR testsuite
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.10.103 \
+		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/hlr-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-hlr-test \

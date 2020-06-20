@@ -17,6 +17,7 @@ network_create 172.18.4.0/24
 # start container with mgw in background
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.4.180 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/mgw:/data \
 		--name ${BUILD_TAG}-mgw -d \
 		$DOCKER_ARGS \
@@ -25,6 +26,7 @@ docker run	--rm \
 # start docker container with testsuite in foreground
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.4.181 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/mgw-tester:/data \
 		-e "TTCN3_PCAP_PATH=/data" \
 		--name ${BUILD_TAG}-ttcn3-mgw-test \

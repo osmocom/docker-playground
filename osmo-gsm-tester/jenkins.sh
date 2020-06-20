@@ -74,6 +74,7 @@ docker run	--rm \
 		--device /dev/net/tun:/dev/net/tun \
 		--network $NET_NAME \
 		--ip 172.18.50.100 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/ogt-slave:/data \
 		--name ${BUILD_TAG}-ogt-slave -d \
 		$REPO_USER/osmo-gsm-tester \
@@ -89,6 +90,7 @@ docker run	--rm \
 		--device /dev/net/tun:/dev/net/tun \
 		--network $NET_NAME \
 		--ip 172.18.50.2 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/ogt-master:/data \
 		-v "${TRIAL_DIR}:/tmp/trial" \
 		-e "OSMO_GSM_TESTER_CONF=${OSMO_GSM_TESTER_CONF}" \

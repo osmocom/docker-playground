@@ -21,6 +21,7 @@ network_create 172.18.7.0/24
 docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--network $NET_NAME --ip 172.18.7.200 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp \
 		-d $REPO_USER/osmo-stp-$IMAGE_SUFFIX
@@ -28,6 +29,7 @@ docker run	--rm \
 # start docker container with tests
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.7.2 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/m3ua-tester:/data \
 		--name ${BUILD_TAG}-m3ua-test \
 		$REPO_USER/nplab-m3ua-test > $VOL_BASE_DIR/junit-xml-m3ua.log

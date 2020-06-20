@@ -19,6 +19,7 @@ network_create 172.18.15.0/24
 echo Starting container with BSCNAT
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.15.20 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/bscnat:/data \
 		--name ${BUILD_TAG}-bscnat -d \
 		$DOCKER_ARGS \
@@ -28,6 +29,7 @@ docker run	--rm \
 echo Starting container with BSCNAT testsuite
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.15.203 \
+		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/bscnat-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-bscnat-test \

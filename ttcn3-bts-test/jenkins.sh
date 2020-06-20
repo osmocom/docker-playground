@@ -13,6 +13,7 @@ start_bsc() {
 	echo Starting container with BSC
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.9.11 \
+			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/bsc:/data \
 			--name ${BUILD_TAG}-bsc -d \
 			$DOCKER_ARGS \
@@ -30,6 +31,7 @@ start_bts() {
 	fi
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.9.20 \
+			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/bts:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			--name ${BUILD_TAG}-bts -d \
@@ -42,6 +44,7 @@ start_fake_trx() {
 	echo Starting container with fake_trx
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.9.21 \
+			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/fake_trx:/data \
 			--name ${BUILD_TAG}-fake_trx -d \
 			$DOCKER_ARGS \
@@ -61,6 +64,7 @@ start_trxcon() {
 	echo Starting container with trxcon
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.9.22 \
+			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/trxcon:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			--name ${BUILD_TAG}-trxcon -d \
@@ -73,6 +77,7 @@ start_virtphy() {
 	echo Starting container with virtphy
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.9.22 \
+			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/virtphy:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			--name ${BUILD_TAG}-virtphy -d \
@@ -85,6 +90,7 @@ start_testsuite() {
 	echo Starting container with BTS testsuite
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.9.10 \
+			--ulimit core=-1 \
 			-e "TTCN3_PCAP_PATH=/data" \
 			-v $VOL_BASE_DIR/bts-tester:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \

@@ -20,6 +20,7 @@ docker run	--cap-add=NET_ADMIN \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--rm \
 		--network $NET_NAME --ip 172.18.3.201 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/ggsn:/data \
 		--name ${BUILD_TAG}-ggsn -d \
 		$DOCKER_ARGS \
@@ -30,6 +31,7 @@ docker run	--cap-add=NET_ADMIN \
 docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--network $NET_NAME --ip 172.18.3.202 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/ggsn-tester:/data \
 		-e "TTCN3_PCAP_PATH=/data" \
 		--name ${BUILD_TAG}-ggsn-test \

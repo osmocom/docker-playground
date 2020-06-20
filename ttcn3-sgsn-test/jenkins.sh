@@ -23,6 +23,7 @@ mkdir $VOL_BASE_DIR/unix
 echo Starting container with STP
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.8.200 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp -d \
 		$DOCKER_ARGS \
@@ -31,6 +32,7 @@ docker run	--rm \
 echo Starting container with SGSN
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.8.10 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/sgsn:/data \
 		--name ${BUILD_TAG}-sgsn -d \
 		$DOCKER_ARGS \
@@ -40,6 +42,7 @@ docker run	--rm \
 echo Starting container with SGSN testsuite
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.8.103 \
+		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/sgsn-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-sgsn-test \
@@ -49,6 +52,7 @@ docker run	--rm \
 echo Starting container to merge logs
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.8.103 \
+		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/sgsn-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-sgsn-test-logmerge \

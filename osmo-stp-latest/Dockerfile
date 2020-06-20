@@ -21,7 +21,7 @@ RUN	apt-get update && \
 		telnet && \
 	apt-get clean
 
-WORKDIR	/tmp
+WORKDIR	/data
 
 VOLUME	/data
 COPY	osmo-stp.cfg /data/

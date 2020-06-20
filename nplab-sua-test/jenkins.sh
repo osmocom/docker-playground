@@ -21,6 +21,7 @@ network_create 172.18.6.0/24
 docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--network $NET_NAME --ip 172.18.6.200 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp \
 		-d $REPO_USER/osmo-stp-$IMAGE_SUFFIX
@@ -28,6 +29,7 @@ docker run	--rm \
 # start docker container with tests
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.6.3 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/sua-tester:/data \
 		--name ${BUILD_TAG}-sua-test \
 		$REPO_USER/nplab-sua-test > $VOL_BASE_DIR/junit-xml-sua.log

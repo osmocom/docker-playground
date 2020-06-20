@@ -22,6 +22,7 @@ network_create 172.18.2.0/24
 echo Starting container with STP
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.2.200 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp -d \
 		--ulimit core=-1 \
@@ -31,6 +32,7 @@ docker run	--rm \
 echo Starting container with BSC
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.2.20 \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/bsc:/data \
 		--name ${BUILD_TAG}-bsc -d \
 		$DOCKER_ARGS \
@@ -40,6 +42,7 @@ for i in `seq 0 2`; do
 	echo Starting container with OML for BTS$i
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.2.10$i \
+			--ulimit core=-1 \
 			--name ${BUILD_TAG}-bts$i -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
@@ -49,6 +52,7 @@ done
 echo Starting container with BSC testsuite
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.2.203 \
+		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/bsc-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-bsc-test \
