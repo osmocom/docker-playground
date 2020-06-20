@@ -38,7 +38,7 @@ RUN	case "$DISTRO" in \
 		;; \
 	esac
 
-WORKDIR	/tmp
+WORKDIR	/data
 
 ARG	OSMO_STP_BRANCH="master"
 
