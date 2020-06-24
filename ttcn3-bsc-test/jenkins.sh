@@ -17,6 +17,11 @@ cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 mkdir $VOL_BASE_DIR/bsc
 cp osmo-bsc.cfg $VOL_BASE_DIR/bsc/
 
+# Disable MSC pooling features until osmo-bsc.git release > 1.6.0 is available
+if [ "$IMAGE_SUFFIX" = "latest" ]; then
+	cp pre-mscpool-osmo-bsc.cfg $VOL_BASE_DIR/bsc/osmo-bsc.cfg
+fi
+
 network_create 172.18.2.0/24
 
 echo Starting container with STP
