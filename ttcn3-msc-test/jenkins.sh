@@ -13,6 +13,12 @@ mkdir $VOL_BASE_DIR/msc-tester
 mkdir $VOL_BASE_DIR/msc-tester/unix
 cp MSC_Tests.cfg $VOL_BASE_DIR/msc-tester/
 
+# Disable verification of VLR and conn Cell ID until osmo-msc.git release > 1.6.1 is available
+if [ "$IMAGE_SUFFIX" = "latest" ]; then
+	sed "s/MSC_Tests.mp_enable_cell_id_test := true/MSC_Tests.mp_enable_cell_id_test := false/" -i \
+		"$VOL_BASE_DIR/msc-tester/MSC_Tests.cfg"
+fi
+
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 
