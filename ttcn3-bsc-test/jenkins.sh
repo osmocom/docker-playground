@@ -17,6 +17,8 @@ cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 mkdir $VOL_BASE_DIR/bsc
 cp osmo-bsc.cfg $VOL_BASE_DIR/bsc/
 
+mkdir $VOL_BASE_DIR/bts-omldummy
+
 # Disable MSC pooling features until osmo-bsc.git release > 1.6.0 is available
 if [ "$IMAGE_SUFFIX" = "latest" ]; then
 	cp pre-mscpool-osmo-bsc.cfg $VOL_BASE_DIR/bsc/osmo-bsc.cfg
@@ -48,6 +50,7 @@ for i in `seq 0 2`; do
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.2.10$i \
 			--ulimit core=-1 \
+			-v $VOL_BASE_DIR/bts-omldummy:/data \
 			--name ${BUILD_TAG}-bts$i -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
