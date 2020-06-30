@@ -16,6 +16,7 @@
 REGISTRY_HOST?=docker.io
 USERNAME?=$(USER)
 NAME?=$(shell basename $(CURDIR))
+LIBOSMOCORE_BRANCH?=master
 OSMO_TTCN3_BRANCH?=master
 OSMO_BB_BRANCH?=master
 OSMO_BSC_BRANCH?=master
@@ -60,6 +61,7 @@ docker-build: .release
 		--build-arg USER=$(USERNAME) \
 		--build-arg OSMO_TTCN3_BRANCH=$(OSMO_TTCN3_BRANCH) \
 		--build-arg DISTRO=$(DISTRO) \
+		--build-arg LIBOSMOCORE_BRANCH=$(LIBOSMOCORE_BRANCH) \
 		--build-arg OSMO_BB_BRANCH=$(OSMO_BB_BRANCH) \
 		--build-arg OSMO_BSC_BRANCH=$(OSMO_BSC_BRANCH) \
 		--build-arg OSMO_BTS_BRANCH=$(OSMO_BTS_BRANCH) \
