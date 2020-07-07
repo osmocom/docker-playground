@@ -24,6 +24,7 @@ start_bsc() {
 start_bts() {
 	local variant
 	variant="$1"
+	sleep_time_respawn="$2"
 	echo Starting container with BTS
 	if [ -z "$variant" ]; then
 		echo ERROR: You have to specify a BTS variant
@@ -34,6 +35,7 @@ start_bts() {
 			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/bts:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
+			-e "SLEEP_BEFORE_RESPAWN=$sleep_time_respawn" \
 			--name ${BUILD_TAG}-bts -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
@@ -127,7 +129,7 @@ mkdir $VOL_BASE_DIR/virtphy
 
 # 1) classic test suite with BSC for OML and trxcon+fake_trx
 start_bsc
-start_bts trx
+start_bts trx 0
 start_fake_trx
 start_trxcon
 start_testsuite
@@ -139,7 +141,7 @@ docker container kill ${BUILD_TAG}-trxcon
 docker container kill ${BUILD_TAG}-fake_trx
 docker container kill ${BUILD_TAG}-bts
 cp virtphy/osmo-bts.cfg $VOL_BASE_DIR/bts/
-start_bts virtual
+start_bts virtual 0
 start_virtphy
 # ... and execute the testsuite again with different cfg
 cp virtphy/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester/
@@ -151,7 +153,7 @@ docker container kill ${BUILD_TAG}-bsc
 docker container kill ${BUILD_TAG}-virtphy
 docker container kill ${BUILD_TAG}-bts
 cp oml/osmo-bts.cfg $VOL_BASE_DIR/bts/
-start_bts trx
+start_bts trx 1
 start_fake_trx
 start_trxcon
 # ... and execute the testsuite again with different cfg
