@@ -68,7 +68,7 @@ RUN	cd osmo-sgsn && \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure --enable-iu && \
-	make -j8 install && \
+	make "-j$(nproc)" install && \
 	ldconfig
 
 VOLUME	/data

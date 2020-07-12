@@ -48,7 +48,7 @@ RUN	cd libasn1c && \
 	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
-	make -j8 && \
+	make "-j$(nproc)" && \
 	sudo make install && \
 	make clean && \
 	sudo ldconfig
@@ -59,7 +59,7 @@ RUN	cd libsmpp34 && \
 	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
-	make -j1 && \
+	make "-j$(nproc)" && \
 	sudo make install && \
 	make clean && \
 	sudo ldconfig
@@ -70,7 +70,7 @@ RUN	cd libosmocore && \
 	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
-	make -j8 && \
+	make "-j$(nproc)" && \
 	sudo make install && \
 	make clean && \
 	sudo ldconfig
@@ -82,7 +82,7 @@ RUN	cd libosmo-abis && \
 	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
-	make -j8 && \
+	make "-j$(nproc)" && \
 	sudo make install && \
 	make clean && \
 	sudo ldconfig
@@ -92,7 +92,7 @@ RUN	cd libosmo-netif && \
 	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
-	make -j8 && \
+	make "-j$(nproc)" && \
 	sudo make install && \
 	make clean && \
 	sudo ldconfig
@@ -102,7 +102,7 @@ RUN	cd libosmo-sccp && \
 	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
-	make -j8 && \
+	make "-j$(nproc)" && \
 	sudo make install && \
 	make clean && \
 	sudo ldconfig
@@ -112,7 +112,7 @@ RUN	cd osmo-mgw && \
 	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
-	make -j8 && \
+	make "-j$(nproc)" && \
 	sudo make install && \
 	make clean && \
 	sudo ldconfig
@@ -122,7 +122,7 @@ RUN	cd osmo-iuh && \
 	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
-	make -j8 && \
+	make "-j$(nproc)" && \
 	sudo make install && \
 	make clean && \
 	sudo ldconfig
@@ -132,11 +132,11 @@ RUN	cd osmo-ggsn && \
 	git fetch && git checkout -f -B master origin/master && \
 	autoreconf -fi && \
 	./configure && \
-	make -j8 && \
+	make "-j$(nproc)" && \
 	sudo make install && \
 	make clean && \
 	sudo ldconfig
 
 
 # example command which builds a single osmo-* application at 'docker run' time in tmpfs
-CMD	/bin/sh -c 'cd /tmpfs && git clone --reference /build/openbsc git://git.osmocom.org/openbsc.git && cd openbsc && git checkout -f -B master origin/master && cd openbsc && autoreconf -fi && ./configure --enable-nat --enable-osmo-bsc --enable-smpp --enable-vty-tests --enable-external-tests && make -j8 check'
+CMD	/bin/sh -c 'cd /tmpfs && git clone --reference /build/openbsc git://git.osmocom.org/openbsc.git && cd openbsc && git checkout -f -B master origin/master && cd openbsc && autoreconf -fi && ./configure --enable-nat --enable-osmo-bsc --enable-smpp --enable-vty-tests --enable-external-tests && make "-j$(nproc)" check'

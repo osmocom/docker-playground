@@ -33,12 +33,12 @@ RUN	cd osmocom-bb && \
 RUN	cd osmocom-bb/src/host/trxcon && \
 	autoreconf -fi && \
 	./configure && \
-	make -j8 install
+	make "-j$(nproc)" install
 
 RUN	cd osmocom-bb/src/host/virt_phy && \
 	autoreconf -fi && \
 	./configure && \
-	make -j8 install
+	make "-j$(nproc)" install
 
 RUN	mkdir -p /data/unix
 

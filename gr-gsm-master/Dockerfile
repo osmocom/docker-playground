@@ -57,7 +57,7 @@ RUN	cd libosmocore \
 		--disable-doxygen \
 		--disable-pcsc \
 		--prefix=/usr \
-	&& make -j5 \
+	&& make "-j$(nproc)" \
 	&& make install \
 	&& make distclean
 
@@ -74,7 +74,7 @@ RUN	cd gr-gsm \
 		-Wno-dev \
 		-DENABLE_GRCC=OFF \
 		../ \
-	&& make -j5 \
+	&& make "-j$(nproc)" \
 	&& make install \
 	&& cd ../ \
 	&& rm -rf build/

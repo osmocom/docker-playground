@@ -35,7 +35,7 @@ RUN	cd osmo-iuh && \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure && \
-	make -j8 install && \
+	make "-j$(nproc)" install && \
 	ldconfig
 
 VOLUME	/data

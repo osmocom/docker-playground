@@ -60,7 +60,7 @@ RUN	cd osmo-sip-connector && \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure --enable-smpp --enable-iu && \
-	make -j8 install
+	make "-j$(nproc)" install
 
 VOLUME	/data
 

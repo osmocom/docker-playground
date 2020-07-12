@@ -28,7 +28,7 @@ RUN	case "$DISTRO" in \
 
 # build virtualsmartcard
 RUN	git clone https://github.com/frankmorgner/vsmartcard.git
-RUN	cd vsmartcard/virtualsmartcard && autoreconf -fi && ./configure && make -j8 install
+RUN	cd vsmartcard/virtualsmartcard && autoreconf -fi && ./configure && make "-j$(nproc)" install
 
 
 ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_9.0/"
@@ -91,7 +91,7 @@ RUN	cd osmo-remsim && \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure && \
-	make -j8 install && \
+	make "-j$(nproc)" install && \
 	ldconfig
 
 VOLUME	/data

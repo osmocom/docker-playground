@@ -61,7 +61,7 @@ RUN	cd osmo-bsc && \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure && \
-	make -j8 install
+	make "-j$(nproc)" install
 
 VOLUME	/data
 

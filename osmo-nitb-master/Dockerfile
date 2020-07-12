@@ -36,7 +36,7 @@ RUN	cd openbsc/openbsc && \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure --enable-nat --enable-osmo-bsc --enable-smpp && \
-	make -j8 install && \
+	make "-j$(nproc)" install && \
 	ldconfig
 
 VOLUME	/data
