@@ -160,9 +160,23 @@ start_trxcon
 cp oml/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester/
 start_testsuite
 
+# 4) Frequency hopping tests require different configuration files
+cp fh/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester/
+cp fh/osmo-bsc.cfg $VOL_BASE_DIR/bsc/
+cp osmo-bts.cfg $VOL_BASE_DIR/bts/
+# restart the BSC/BTS and run the testsuite again
+docker container kill ${BUILD_TAG}-bts
+start_bsc
+start_bts trx 0
+start_testsuite
+# rename the test results, so they appear as 'BTS_Tests:hopping' in Jenkins
+sed -i "s#classname='BTS_Tests'#classname='BTS_Tests:hopping'#g" \
+	$VOL_BASE_DIR/bts-tester/junit-xml-hopping-*.log
+
 echo Stopping containers
 docker container kill ${BUILD_TAG}-trxcon
 docker container kill ${BUILD_TAG}-fake_trx
+docker container kill ${BUILD_TAG}-bsc
 docker container kill ${BUILD_TAG}-bts
 
 
