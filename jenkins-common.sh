@@ -135,6 +135,11 @@ else
 	mkdir -p "$VOL_BASE_DIR"
 fi
 
+if [ ! -d "$VOL_BASE_DIR" ]; then
+	echo "ERROR: \$VOL_BASE_DIR does not exist: '$VOL_BASE_DIR'"
+	exit 1
+fi
+
 # non-jenkins execution: put logs in /tmp
 if [ "x$BUILD_TAG" = "x" ]; then
 	BUILD_TAG=nonjenkins
