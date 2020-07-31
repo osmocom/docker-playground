@@ -29,6 +29,7 @@ RUN	apt-get update && \
 		gawk \
 		gcc \
 		gcc-arm-none-eabi \
+		gdb \
 		git \
 		git-buildpackage \
 		gnupg \
@@ -55,9 +56,11 @@ RUN	apt-get update && \
 		libusb-1.0-0-dev \
 		make \
 		pkg-config \
+		procps \
 		sqlite3 \
 		stow \
 		telnet \
+		vim \
 		wget && \
 	apt-get clean
 

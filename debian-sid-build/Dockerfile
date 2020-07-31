@@ -21,6 +21,7 @@ RUN	apt-get update && \
 		g++ \
 		gawk \
 		gcc \
+		gdb \
 		git \
 		git-buildpackage \
 		gnupg \
@@ -46,7 +47,9 @@ RUN	apt-get update && \
 		libusb-1.0-0-dev \
 		make \
 		pkg-config \
+		procps \
 		sqlite3 \
+		vim \
 		wget && \
 	apt-get clean
 
