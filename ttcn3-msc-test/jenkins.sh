@@ -29,7 +29,7 @@ if [ "x$1" = "x-h" ]; then
 	if [ -d "$3" ]; then
 		ADD_MSC_VOLUMES="$ADD_MSC_VOLUMES -v $3:/src"
 		MSC_RUN_CMD="sleep 9999999"
-		ADD_MSC_RUN_OPTS="--privileged"
+		#ADD_MSC_RUN_OPTS="--privileged"
 	fi
 fi
 
