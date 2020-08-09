@@ -28,7 +28,7 @@ if [ "x$1" = "x-h" ]; then
 	if [ -d "$3" ]; then
 		ADD_BSC_RUN_CMD="sleep 100000"
 		ADD_BSC_VOLUMES="$ADD_BSC_VOLUMES -v $3:/src"
-		ADD_BSC_RUN_OPTS="--privileged"
+		#ADD_BSC_RUN_OPTS="--privileged"
 	fi
 fi
 
