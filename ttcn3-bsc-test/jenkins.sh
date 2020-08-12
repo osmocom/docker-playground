@@ -24,6 +24,13 @@ if [ "$IMAGE_SUFFIX" = "latest" ]; then
 	cp pre-mscpool-osmo-bsc.cfg $VOL_BASE_DIR/bsc/osmo-bsc.cfg
 fi
 
+# Disable stats testing until libosmocore release > 1.4.0
+if [ "$IMAGE_SUFFIX" = "latest" ]; then
+	sed -i "s/^StatsD_Checker.mp_enable_stats.*/StatsD_Checker.mp_enable_stats := false;/" $VOL_BASE_DIR/bsc-tester/BSC_Tests.cfg
+	sed -i "s/stats interval 0//" $VOL_BASE_DIR/bsc/osmo-bsc.cfg
+	sed -i "s/flush-period 1//" $VOL_BASE_DIR/bsc/osmo-bsc.cfg
+fi
+
 network_create 2
 
 echo Starting container with STP
