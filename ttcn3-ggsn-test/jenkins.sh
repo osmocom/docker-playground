@@ -12,7 +12,7 @@ cp GGSN_Tests.cfg $VOL_BASE_DIR/ggsn-tester/
 mkdir $VOL_BASE_DIR/ggsn
 cp osmo-ggsn.cfg $VOL_BASE_DIR/ggsn/
 
-network_create 172.18.3.0/24
+network_create 3
 
 # start container with ggsn in background
 docker run	--cap-add=NET_ADMIN \

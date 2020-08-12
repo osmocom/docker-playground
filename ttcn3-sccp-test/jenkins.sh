@@ -13,7 +13,7 @@ cp SCCP_Tests.cfg $VOL_BASE_DIR/sccp-tester/
 mkdir $VOL_BASE_DIR/sccp
 cp sccp_demo_user.cfg $VOL_BASE_DIR/sccp/
 
-network_create 172.18.22.0/24
+network_create 22
 
 echo Starting container with sccp_demo_user
 docker run	--rm \

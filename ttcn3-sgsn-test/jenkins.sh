@@ -7,7 +7,7 @@ docker_images_require \
 	"osmo-sgsn-$IMAGE_SUFFIX" \
 	"ttcn3-sgsn-test"
 
-network_create 172.18.8.0/24
+network_create 8
 
 mkdir $VOL_BASE_DIR/sgsn-tester
 cp SGSN_Tests.cfg $VOL_BASE_DIR/sgsn-tester/

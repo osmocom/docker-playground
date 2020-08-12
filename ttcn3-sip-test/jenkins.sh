@@ -6,7 +6,7 @@ docker_images_require \
 	"osmo-sip-$IMAGE_SUFFIX" \
 	"ttcn3-sip-test"
 
-network_create 172.18.11.0/24
+network_create 11
 
 mkdir $VOL_BASE_DIR/sip-tester
 mkdir $VOL_BASE_DIR/sip-tester/unix

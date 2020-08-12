@@ -7,7 +7,7 @@ docker_images_require \
 	"osmo-msc-$IMAGE_SUFFIX" \
 	"ttcn3-msc-test"
 
-network_create 172.18.1.0/24
+network_create 1
 
 mkdir $VOL_BASE_DIR/msc-tester
 mkdir $VOL_BASE_DIR/msc-tester/unix

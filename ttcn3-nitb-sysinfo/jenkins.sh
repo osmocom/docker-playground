@@ -2,7 +2,7 @@
 
 . ../jenkins-common.sh
 
-network_create 172.18.5.0/24
+network_create 5
 
 # start container with nitb in background
 docker volume rm nitb-vol

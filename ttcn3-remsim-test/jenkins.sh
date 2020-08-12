@@ -56,7 +56,7 @@ start_testsuite() {
 			$REPO_USER/ttcn3-remsim-test
 }
 
-network_create 172.18.17.0/24
+network_create 17
 
 mkdir $VOL_BASE_DIR/remsim-tester
 

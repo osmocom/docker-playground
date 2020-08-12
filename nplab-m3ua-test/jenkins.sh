@@ -15,7 +15,7 @@ cp m3ua-param-testtool.scm all-sgp-tests.txt $VOL_BASE_DIR/m3ua-tester/
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 
-network_create 172.18.7.0/24
+network_create 7
 
 # start container with STP in background
 docker run	--rm \

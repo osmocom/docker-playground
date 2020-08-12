@@ -101,7 +101,7 @@ start_testsuite() {
 			$REPO_USER/ttcn3-bts-test
 }
 
-network_create 172.18.9.0/24
+network_create 9
 
 mkdir $VOL_BASE_DIR/bts-tester
 mkdir $VOL_BASE_DIR/bts-tester/unix

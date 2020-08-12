@@ -16,7 +16,7 @@ cp sccplite/BSC_Tests.cfg $VOL_BASE_DIR/bsc-tester/
 mkdir $VOL_BASE_DIR/bsc
 cp sccplite/osmo-bsc.cfg $VOL_BASE_DIR/bsc/
 
-network_create 172.18.12.0/24
+network_create 12
 
 echo Starting container with BSC
 docker run	--rm \

@@ -58,7 +58,7 @@ docker_images_require \
 	"debian-stretch-jenkins" \
 	"osmo-gsm-tester"
 
-network_create 172.18.50.0/24
+network_create 50
 
 mkdir $VOL_BASE_DIR/ogt-slave
 cp osmo-gsm-tester-slave.sh $VOL_BASE_DIR/ogt-slave/

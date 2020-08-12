@@ -24,7 +24,7 @@ if [ "$IMAGE_SUFFIX" = "latest" ]; then
 	cp pre-mscpool-osmo-bsc.cfg $VOL_BASE_DIR/bsc/osmo-bsc.cfg
 fi
 
-network_create 172.18.2.0/24
+network_create 2
 
 echo Starting container with STP
 docker run	--rm \

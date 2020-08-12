@@ -12,7 +12,7 @@ cp MGCP_Test.cfg $VOL_BASE_DIR/mgw-tester/
 mkdir $VOL_BASE_DIR/mgw
 cp osmo-mgw.cfg $VOL_BASE_DIR/mgw/
 
-network_create 172.18.4.0/24
+network_create 4
 
 # start container with mgw in background
 docker run	--rm \

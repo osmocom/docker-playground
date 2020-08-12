@@ -6,7 +6,7 @@ docker_images_require \
 	"osmo-pcu-$IMAGE_SUFFIX" \
 	"ttcn3-pcu-test"
 
-network_create 172.18.13.0/24
+network_create 13
 
 mkdir $VOL_BASE_DIR/pcu-tester
 mkdir $VOL_BASE_DIR/pcu-tester/unix

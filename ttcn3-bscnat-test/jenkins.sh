@@ -14,7 +14,7 @@ mkdir $VOL_BASE_DIR/bscnat
 cp osmo-bsc-nat.cfg $VOL_BASE_DIR/bscnat/
 cp bscs.config $VOL_BASE_DIR/bscnat/
 
-network_create 172.18.15.0/24
+network_create 15
 
 echo Starting container with BSCNAT
 docker run	--rm \

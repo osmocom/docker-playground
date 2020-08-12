@@ -6,7 +6,7 @@ docker_images_require \
 	"osmo-hlr-$IMAGE_SUFFIX" \
 	"ttcn3-hlr-test"
 
-network_create 172.18.10.0/24
+network_create 10
 
 mkdir $VOL_BASE_DIR/hlr-tester
 cp HLR_Tests.cfg $VOL_BASE_DIR/hlr-tester/
