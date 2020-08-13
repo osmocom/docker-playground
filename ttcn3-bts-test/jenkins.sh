@@ -120,6 +120,9 @@ if [ "$IMAGE_SUFFIX" = "latest" ]; then
 		"$VOL_BASE_DIR/bts-tester-generic/BTS_Tests.cfg"
 fi
 
+cp $VOL_BASE_DIR/bts-tester-generic/BTS_Tests.cfg \
+   $VOL_BASE_DIR/bts-tester-hopping/BTS_Tests.cfg.inc
+
 mkdir $VOL_BASE_DIR/bsc
 cp osmo-bsc.cfg $VOL_BASE_DIR/bsc/
 
