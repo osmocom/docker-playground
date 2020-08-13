@@ -90,11 +90,12 @@ start_virtphy() {
 
 start_testsuite() {
 	echo Starting container with BTS testsuite
+	variant=$1 # e.g 'generic', 'oml', 'hopping'
 	docker run	--rm \
 			--network $NET_NAME --ip 172.18.9.10 \
 			--ulimit core=-1 \
 			-e "TTCN3_PCAP_PATH=/data" \
-			-v $VOL_BASE_DIR/bts-tester:/data \
+			-v $VOL_BASE_DIR/bts-tester-${variant}:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			--name ${BUILD_TAG}-ttcn3-bts-test \
 			$DOCKER_ARGS \
@@ -103,14 +104,20 @@ start_testsuite() {
 
 network_create 9
 
-mkdir $VOL_BASE_DIR/bts-tester
-cp BTS_Tests.cfg $VOL_BASE_DIR/bts-tester/
+mkdir $VOL_BASE_DIR/bts-tester-generic
+cp BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-generic/
+mkdir $VOL_BASE_DIR/bts-tester-virtphy
+cp virtphy/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-virtphy/
+mkdir $VOL_BASE_DIR/bts-tester-oml
+cp oml/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-oml/
+mkdir $VOL_BASE_DIR/bts-tester-hopping
+cp fh/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-hopping/
 
 # Work around for a bug in osmo-bts when all transceivers use IPAC_PROTO_RSL_TRX0.
 # Enables patching of IPA stream ID. TODO: remove as soon as we make a new release.
 if [ "$IMAGE_SUFFIX" = "latest" ]; then
 	sed "s/RSL_Emulation.mp_rslem_patch_ipa_cid := false/RSL_Emulation.mp_rslem_patch_ipa_cid := true/g" -i \
-		"$VOL_BASE_DIR/bts-tester/BTS_Tests.cfg"
+		"$VOL_BASE_DIR/bts-tester-generic/BTS_Tests.cfg"
 fi
 
 mkdir $VOL_BASE_DIR/bsc
@@ -131,7 +138,7 @@ start_bsc
 start_bts trx 0
 start_fake_trx
 start_trxcon
-start_testsuite
+start_testsuite generic
 
 # 2) some GPRS tests require virt_phy
 echo "Changing to virtphy configuration"
@@ -143,8 +150,7 @@ cp virtphy/osmo-bts.cfg $VOL_BASE_DIR/bts/
 start_bts virtual 0
 start_virtphy
 # ... and execute the testsuite again with different cfg
-cp virtphy/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester/
-#start_testsuite
+#start_testsuite virtphy
 
 # 3) OML tests require us to run without BSC
 docker container kill ${BUILD_TAG}-bsc
@@ -156,21 +162,19 @@ start_bts trx 1
 start_fake_trx
 start_trxcon
 # ... and execute the testsuite again with different cfg
-cp oml/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester/
-start_testsuite
+start_testsuite oml
 
 # 4) Frequency hopping tests require different configuration files
-cp fh/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester/
 cp fh/osmo-bsc.cfg $VOL_BASE_DIR/bsc/
 cp osmo-bts.cfg $VOL_BASE_DIR/bts/
 # restart the BSC/BTS and run the testsuite again
 docker container kill ${BUILD_TAG}-bts
 start_bsc
 start_bts trx 0
-start_testsuite
+start_testsuite hopping
 # rename the test results, so they appear as 'BTS_Tests:hopping' in Jenkins
 sed -i "s#classname='BTS_Tests'#classname='BTS_Tests:hopping'#g" \
-	$VOL_BASE_DIR/bts-tester/junit-xml-hopping-*.log
+	$VOL_BASE_DIR/bts-tester-hopping/junit-xml-hopping-*.log
 
 echo Stopping containers
 docker container kill ${BUILD_TAG}-trxcon
