@@ -175,8 +175,11 @@ docker container kill ${BUILD_TAG}-bts
 start_bsc
 start_bts trx 0
 start_testsuite hopping
-# rename the test results, so they appear as 'BTS_Tests:hopping' in Jenkins
-sed -i "s#classname='BTS_Tests'#classname='BTS_Tests:hopping'#g" \
+# append ':hopping' to the classnames,
+# e.g. "classname='BTS_Tests'" => "classname='BTS_Tests:hopping'"
+# e.g. "classname='BTS_Tests_SMSCB'" => "classname='BTS_Tests_SMSCB:hopping'"
+# so the hopping test cases would not interfere with non-hopping ones in Jenkins
+sed -i "s/classname='\([^']\+\)'/classname='\1:hopping'/g" \
 	$VOL_BASE_DIR/bts-tester-hopping/junit-xml-hopping-*.log
 
 echo Stopping containers
