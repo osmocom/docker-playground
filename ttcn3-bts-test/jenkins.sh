@@ -104,7 +104,6 @@ start_testsuite() {
 network_create 9
 
 mkdir $VOL_BASE_DIR/bts-tester
-mkdir $VOL_BASE_DIR/bts-tester/unix
 cp BTS_Tests.cfg $VOL_BASE_DIR/bts-tester/
 
 # Work around for a bug in osmo-bts when all transceivers use IPAC_PROTO_RSL_TRX0.
