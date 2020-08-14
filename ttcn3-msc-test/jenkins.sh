@@ -7,7 +7,7 @@ docker_images_require \
 	"osmo-msc-$IMAGE_SUFFIX" \
 	"ttcn3-msc-test"
 
-network_create 1
+network_create 20
 
 mkdir $VOL_BASE_DIR/msc-tester
 mkdir $VOL_BASE_DIR/msc-tester/unix
@@ -30,7 +30,7 @@ mkdir $VOL_BASE_DIR/unix
 
 echo Starting container with STP
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.1.200 \
+		--network $NET_NAME --ip 172.18.20.200 \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp -d \
@@ -38,7 +38,7 @@ docker run	--rm \
 
 echo Starting container with MSC
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.1.10 \
+		--network $NET_NAME --ip 172.18.20.10 \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/msc:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
@@ -49,7 +49,7 @@ docker run	--rm \
 
 echo Starting container with MSC testsuite
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.1.103 \
+		--network $NET_NAME --ip 172.18.20.103 \
 		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/msc-tester:/data \
