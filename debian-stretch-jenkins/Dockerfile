@@ -100,6 +100,10 @@ RUN \
 		python3-setuptools \
 		python3-usb \
 		python3-yaml \
+		python2.7 \
+		python-pip \
+		python-setuptools \
+		python-yaml \
 		rsync \
 		sdcc \
 		sqlite3 \
@@ -127,9 +131,19 @@ RUN useradd --uid=1000 build
 RUN mkdir /build
 RUN chown build:build /build
 
-# Install osmo-python-tests
-ADD http://git.osmocom.org/python/osmo-python-tests/patch /tmp/commit
-RUN git clone git://git.osmocom.org/python/osmo-python-tests && cd osmo-python-tests && ./contrib/jenkins.sh
+# Install osmo-python-tests for python2 (when building old tags again new releases)
+ARG OSMO_PYTHON2_TESTS_COMMIT=fb4b813d4df62b7b2445bdced961eb1847267eed
+ADD http://git.osmocom.org/python/osmo-python-tests/patch/?id=$OSMO_PYTHON2_TESTS_COMMIT /tmp/osmo-python-tests2-commit
+RUN git clone https://git.osmocom.org/python/osmo-python-tests osmo-python-tests2 && \
+	cd osmo-python-tests2 && \
+	git checkout $OSMO_PYTHON2_TESTS_COMMIT && \
+	python2 setup.py clean build install
+
+# Install osmo-python-tests for python3
+ADD http://git.osmocom.org/python/osmo-python-tests/patch /tmp/osmo-python-tests3-commit
+RUN git clone https://git.osmocom.org/python/osmo-python-tests osmo-python-tests3 && \
+	cd osmo-python-tests3 && \
+	python3 setup.py clean build install
 
 # Set a UTF-8 locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
