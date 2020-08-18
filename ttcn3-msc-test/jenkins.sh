@@ -17,6 +17,8 @@ cp MSC_Tests.cfg $VOL_BASE_DIR/msc-tester/
 if [ "$IMAGE_SUFFIX" = "latest" ]; then
 	sed "s/MSC_Tests.mp_enable_cell_id_test := true/MSC_Tests.mp_enable_cell_id_test := false/" -i \
 		"$VOL_BASE_DIR/msc-tester/MSC_Tests.cfg"
+	sed "s/BSC_ConnectionHandler.mp_expect_common_id := true/BSC_ConnectionHandler.mp_expect_common_id := false/" -i \
+		"$VOL_BASE_DIR/msc-tester/MSC_Tests.cfg"
 fi
 
 mkdir $VOL_BASE_DIR/stp
