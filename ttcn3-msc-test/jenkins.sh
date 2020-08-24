@@ -29,6 +29,12 @@ mkdir $VOL_BASE_DIR/msc
 mkdir $VOL_BASE_DIR/msc/unix
 cp osmo-msc.cfg $VOL_BASE_DIR/msc/
 
+# Disable IPv6 until libosmo-sccp.git release > 1.3.0 is available
+if [ "$IMAGE_SUFFIX" = "latest" ]; then
+	sed "/fd02:db8/d" -i $VOL_BASE_DIR/stp/osmo-stp.cfg
+	sed "/fd02:db8/d" -i $VOL_BASE_DIR/msc/osmo-msc.cfg
+fi
+
 mkdir $VOL_BASE_DIR/unix
 
 echo Starting container with STP
