@@ -31,6 +31,12 @@ if [ "$IMAGE_SUFFIX" = "latest" ]; then
 	sed -i "s/flush-period 1//" $VOL_BASE_DIR/bsc/osmo-bsc.cfg
 fi
 
+# Disable IPv6 until libosmo-sccp.git release > 1.3.0 is available
+if [ "$IMAGE_SUFFIX" = "latest" ]; then
+	sed "/fd02:db8/d" -i $VOL_BASE_DIR/stp/osmo-stp.cfg
+	sed "/fd02:db8/d" -i $VOL_BASE_DIR/bsc/osmo-bsc.cfg
+fi
+
 SUBNET=2
 network_create $SUBNET
 
