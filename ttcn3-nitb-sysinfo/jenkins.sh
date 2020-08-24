@@ -2,13 +2,14 @@
 
 . ../jenkins-common.sh
 
-network_create 5
+SUBNET=5
+network_create $SUBNET
 
 # start container with nitb in background
 docker volume rm nitb-vol
 docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
-		--network $NET_NAME --ip 172.18.5.20 \
+		$(docker_network_params $SUBNET 20) \
 		--ulimit core=-1 \
 		-v nitb-vol:/data \
 		--name ${BUILD_TAG}-nitb -d \
@@ -18,7 +19,7 @@ docker run	--rm \
 docker volume rm bts-vol
 docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
-		--network $NET_NAME --ip 172.18.5.210 \
+		$(docker_network_params $SUBNET 210) \
 		--ulimit core=-1 \
 		-v bts-vol:/data \
 		--name ${BUILD_TAG}-bts -d \
@@ -29,7 +30,7 @@ docker run	--rm \
 docker volume rm ttcn3-nitb-sysinfo-vol
 docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
-		--network $NET_NAME --ip 172.18.5.230 \
+		$(docker_network_params $SUBNET 230) \
 		--ulimit core=-1 \
 		-v ttcn3-nitb-sysinfo-vol:/data \
 		--name ${BUILD_TAG}-ttcn3-nitb-sysinfo \

@@ -16,7 +16,8 @@ cp sccplite/BSC_Tests.cfg $VOL_BASE_DIR/bsc-tester/
 mkdir $VOL_BASE_DIR/bsc
 cp sccplite/osmo-bsc.cfg $VOL_BASE_DIR/bsc/
 
-network_create 12
+SUBNET=12
+network_create $SUBNET
 
 # Disable stats testing until libosmocore release > 1.4.0
 if [ "$IMAGE_SUFFIX" = "latest" ]; then
@@ -27,7 +28,7 @@ fi
 
 echo Starting container with BSC
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.12.20 \
+		$(docker_network_params $SUBNET 20) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/bsc:/data \
 		--name ${BUILD_TAG}-bsc -d \
@@ -37,7 +38,7 @@ docker run	--rm \
 for i in `seq 0 2`; do
 	echo Starting container with OML for BTS$i
 	docker run	--rm \
-			--network $NET_NAME --ip 172.18.12.10$i \
+			$(docker_network_params $SUBNET 10$i) \
 			--ulimit core=-1 \
 			--name ${BUILD_TAG}-bts$i -d \
 			$DOCKER_ARGS \
@@ -47,7 +48,7 @@ done
 
 echo Starting container with BSC testsuite
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.12.203 \
+		$(docker_network_params $SUBNET 203) \
 		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/bsc-tester:/data \

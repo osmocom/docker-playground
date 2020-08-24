@@ -9,7 +9,7 @@ docker_images_require \
 start_server() {
 	echo Starting container with osmo-remsim-server
 	docker run	--rm \
-			--network $NET_NAME --ip 172.18.17.20 \
+			$(docker_network_params $SUBNET 20) \
 			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/server:/data \
 			--name ${BUILD_TAG}-server -d \
@@ -21,7 +21,7 @@ start_server() {
 start_bankd() {
 	echo Starting container with osmo-remsim-bankd
 	docker run	--rm \
-			--network $NET_NAME --ip 172.18.17.30 \
+			$(docker_network_params $SUBNET 30) \
 			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/bankd:/data \
 			--name ${BUILD_TAG}-bankd -d \
@@ -33,7 +33,7 @@ start_bankd() {
 start_client() {
 	echo Starting container with osmo-remsim-client
 	docker run	--rm \
-			--network $NET_NAME --ip 172.18.17.40 \
+			$(docker_network_params $SUBNET 40) \
 			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/client:/data \
 			--name ${BUILD_TAG}-client-d \
@@ -47,7 +47,7 @@ start_client() {
 start_testsuite() {
 	echo Starting container with REMSIM testsuite
 	docker run	--rm \
-			--network $NET_NAME --ip 172.18.17.10 \
+			$(docker_network_params $SUBNET 10) \
 			--ulimit core=-1 \
 			-e "TTCN3_PCAP_PATH=/data" \
 			-v $VOL_BASE_DIR/remsim-tester:/data \
@@ -56,7 +56,8 @@ start_testsuite() {
 			$REPO_USER/ttcn3-remsim-test
 }
 
-network_create 17
+SUBNET=17
+network_create $SUBNET
 
 mkdir $VOL_BASE_DIR/remsim-tester
 

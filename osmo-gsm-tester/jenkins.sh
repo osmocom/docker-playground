@@ -58,7 +58,8 @@ docker_images_require \
 	"debian-stretch-jenkins" \
 	"osmo-gsm-tester"
 
-network_create 50
+SUBNET=50
+network_create $SUBNET
 
 mkdir $VOL_BASE_DIR/ogt-slave
 cp osmo-gsm-tester-slave.sh $VOL_BASE_DIR/ogt-slave/
@@ -72,8 +73,7 @@ docker run	--rm \
 		--cap-add=SYS_ADMIN \
 		--ulimit rtprio=99 \
 		--device /dev/net/tun:/dev/net/tun \
-		--network $NET_NAME \
-		--ip 172.18.50.100 \
+		$(docker_network_params $SUBNET 100) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/ogt-slave:/data \
 		--name ${BUILD_TAG}-ogt-slave -d \
@@ -88,8 +88,7 @@ docker run	--rm \
 		--cap-add=SYS_ADMIN \
 		--ulimit rtprio=99 \
 		--device /dev/net/tun:/dev/net/tun \
-		--network $NET_NAME \
-		--ip 172.18.50.2 \
+		$(docker_network_params $SUBNET 2) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/ogt-master:/data \
 		-v "${TRIAL_DIR}:/tmp/trial" \

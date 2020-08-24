@@ -12,7 +12,8 @@ cp MGCP_Test.cfg $VOL_BASE_DIR/mgw-tester/
 mkdir $VOL_BASE_DIR/mgw
 cp osmo-mgw.cfg $VOL_BASE_DIR/mgw/
 
-network_create 4
+SUBNET=4
+network_create $SUBNET
 
 # Disable e1 config options until osmo-mgw >= 1.8.0 release
 if [ "$IMAGE_SUFFIX" = "latest" ]; then
@@ -23,7 +24,7 @@ fi
 
 # start container with mgw in background
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.4.180 \
+		$(docker_network_params $SUBNET 180) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/mgw:/data \
 		--name ${BUILD_TAG}-mgw -d \
@@ -32,7 +33,7 @@ docker run	--rm \
 
 # start docker container with testsuite in foreground
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.4.181 \
+		$(docker_network_params $SUBNET 181) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/mgw-tester:/data \
 		-e "TTCN3_PCAP_PATH=/data" \

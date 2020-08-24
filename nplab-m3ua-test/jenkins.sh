@@ -15,12 +15,13 @@ cp m3ua-param-testtool.scm all-sgp-tests.txt $VOL_BASE_DIR/m3ua-tester/
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 
-network_create 7
+SUBNET=7
+network_create $SUBNET
 
 # start container with STP in background
 docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
-		--network $NET_NAME --ip 172.18.7.200 \
+		$(docker_network_params $SUBNET 200) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp \
@@ -28,7 +29,7 @@ docker run	--rm \
 
 # start docker container with tests
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.7.2 \
+		$(docker_network_params $SUBNET 2) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/m3ua-tester:/data \
 		--name ${BUILD_TAG}-m3ua-test \

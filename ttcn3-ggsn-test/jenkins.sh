@@ -12,14 +12,15 @@ cp GGSN_Tests.cfg $VOL_BASE_DIR/ggsn-tester/
 mkdir $VOL_BASE_DIR/ggsn
 cp osmo-ggsn.cfg $VOL_BASE_DIR/ggsn/
 
-network_create 3
+SUBNET=3
+network_create $SUBNET
 
 # start container with ggsn in background
 docker run	--cap-add=NET_ADMIN \
 		--device /dev/net/tun:/dev/net/tun \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--rm \
-		--network $NET_NAME --ip 172.18.3.201 --ip6 fd02:db8:3::201 \
+		$(docker_network_params $SUBNET 201) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/ggsn:/data \
 		--name ${BUILD_TAG}-ggsn -d \
@@ -30,7 +31,7 @@ docker run	--cap-add=NET_ADMIN \
 # start docker container with testsuite in foreground
 docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
-		--network $NET_NAME --ip 172.18.3.202 --ip6 fd02:db8:3::202 \
+		$(docker_network_params $SUBNET 202) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/ggsn-tester:/data \
 		-e "TTCN3_PCAP_PATH=/data" \

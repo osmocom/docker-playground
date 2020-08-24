@@ -6,7 +6,8 @@ docker_images_require \
 	"osmo-sip-$IMAGE_SUFFIX" \
 	"ttcn3-sip-test"
 
-network_create 11
+SUBNET=11
+network_create $SUBNET
 
 mkdir $VOL_BASE_DIR/sip-tester
 mkdir $VOL_BASE_DIR/sip-tester/unix
@@ -20,7 +21,7 @@ mkdir $VOL_BASE_DIR/unix
 
 echo Starting container with osmo-sip-connector
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.11.10 \
+		$(docker_network_params $SUBNET 10) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/sip:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
@@ -31,7 +32,7 @@ docker run	--rm \
 
 echo Starting container with SIP testsuite
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.11.103 \
+		$(docker_network_params $SUBNET 103) \
 		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/sip-tester:/data \

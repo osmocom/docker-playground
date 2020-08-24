@@ -6,7 +6,8 @@ docker_images_require \
 	"osmo-hlr-$IMAGE_SUFFIX" \
 	"ttcn3-hlr-test"
 
-network_create 10
+SUBNET=10
+network_create $SUBNET
 
 mkdir $VOL_BASE_DIR/hlr-tester
 cp HLR_Tests.cfg $VOL_BASE_DIR/hlr-tester/
@@ -22,7 +23,7 @@ cp osmo-hlr.cfg $VOL_BASE_DIR/hlr/
 
 echo Starting container with HLR
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.10.20 \
+		$(docker_network_params $SUBNET 20) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/hlr:/data \
 		--name ${BUILD_TAG}-hlr -d \
@@ -32,7 +33,7 @@ docker run	--rm \
 
 echo Starting container with HLR testsuite
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.10.103 \
+		$(docker_network_params $SUBNET 103) \
 		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/hlr-tester:/data \

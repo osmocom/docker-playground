@@ -19,11 +19,12 @@ if [ "$IMAGE_SUFFIX" = "latest" ]; then
 	sed 's/, "fd02:db8:19::200"//g' -i "$VOL_BASE_DIR/stp-tester/STP_Tests.cfg"
 fi
 
-network_create 19
+SUBNET=19
+network_create $SUBNET
 
 echo Starting container with STP
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.19.200 --ip6 fd02:db8:19::200 \
+		$(docker_network_params $SUBNET 200) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp -d \
@@ -32,7 +33,7 @@ docker run	--rm \
 
 echo Starting container with STP testsuite
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.19.203 --ip6 fd02:db8:19::203 \
+		$(docker_network_params $SUBNET 203) \
 		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/stp-tester:/data \

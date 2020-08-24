@@ -12,7 +12,7 @@ docker_images_require \
 start_bsc() {
 	echo Starting container with BSC
 	docker run	--rm \
-			--network $NET_NAME --ip 172.18.9.11 \
+			$(docker_network_params $SUBNET 11) \
 			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/bsc:/data \
 			--name ${BUILD_TAG}-bsc -d \
@@ -31,7 +31,7 @@ start_bts() {
 		exit 23
 	fi
 	docker run	--rm \
-			--network $NET_NAME --ip 172.18.9.20 \
+			$(docker_network_params $SUBNET 20) \
 			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/bts:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
@@ -45,7 +45,7 @@ start_bts() {
 start_fake_trx() {
 	echo Starting container with fake_trx
 	docker run	--rm \
-			--network $NET_NAME --ip 172.18.9.21 \
+			$(docker_network_params $SUBNET 21) \
 			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/fake_trx:/data \
 			--name ${BUILD_TAG}-fake_trx -d \
@@ -65,7 +65,7 @@ start_fake_trx() {
 start_trxcon() {
 	echo Starting container with trxcon
 	docker run	--rm \
-			--network $NET_NAME --ip 172.18.9.22 \
+			$(docker_network_params $SUBNET 22) \
 			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/trxcon:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
@@ -78,7 +78,7 @@ start_trxcon() {
 start_virtphy() {
 	echo Starting container with virtphy
 	docker run	--rm \
-			--network $NET_NAME --ip 172.18.9.22 \
+			$(docker_network_params $SUBNET 22) \
 			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/virtphy:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
@@ -92,7 +92,7 @@ start_testsuite() {
 	echo Starting container with BTS testsuite
 	variant=$1 # e.g 'generic', 'oml', 'hopping'
 	docker run	--rm \
-			--network $NET_NAME --ip 172.18.9.10 \
+			$(docker_network_params $SUBNET 10) \
 			--ulimit core=-1 \
 			-e "TTCN3_PCAP_PATH=/data" \
 			-v $VOL_BASE_DIR/bts-tester-${variant}:/data \
@@ -102,7 +102,8 @@ start_testsuite() {
 			$REPO_USER/ttcn3-bts-test
 }
 
-network_create 9
+SUBNET=9
+network_create $SUBNET
 
 mkdir $VOL_BASE_DIR/bts-tester-generic
 cp BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-generic/
@@ -160,6 +161,7 @@ docker container kill ${BUILD_TAG}-bsc
 # switch back from virtphy + osmo-bts-virtual to osmo-bts-trx
 docker container kill ${BUILD_TAG}-virtphy
 docker container kill ${BUILD_TAG}-bts
+
 cp oml/osmo-bts.cfg $VOL_BASE_DIR/bts/
 start_bts trx 1
 start_fake_trx
@@ -187,7 +189,7 @@ docker container kill ${BUILD_TAG}-trxcon
 docker container kill ${BUILD_TAG}-fake_trx
 docker container kill ${BUILD_TAG}-bsc
 docker container kill ${BUILD_TAG}-bts
-
+docker container kill ${BUILD_TAG}-bsc
 
 network_remove
 rm -rf $VOL_BASE_DIR/unix

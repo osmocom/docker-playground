@@ -13,11 +13,12 @@ cp SCCP_Tests.cfg $VOL_BASE_DIR/sccp-tester/
 mkdir $VOL_BASE_DIR/sccp
 cp sccp_demo_user.cfg $VOL_BASE_DIR/sccp/
 
-network_create 22
+SUBNET=22
+network_create $SUBNET
 
 echo Starting container with sccp_demo_user
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.22.200 \
+		$(docker_network_params $SUBNET 200) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/sccp:/data \
 		--name ${BUILD_TAG}-stp -d \
@@ -28,7 +29,7 @@ docker run	--rm \
 
 echo Starting container with SCCP testsuite
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.22.203 \
+		$(docker_network_params $SUBNET 203) \
 		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-v $VOL_BASE_DIR/sccp-tester:/data \

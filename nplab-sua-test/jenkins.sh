@@ -15,12 +15,13 @@ cp sua-param-testtool-sgp.scm some-sua-sgp-tests.txt $VOL_BASE_DIR/sua-tester/
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 
-network_create 6
+SUBNET=6
+network_create $SUBNET
 
 # start container with STP in background
 docker run	--rm \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
-		--network $NET_NAME --ip 172.18.6.200 \
+		$(docker_network_params $SUBNET 200) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp \
@@ -28,7 +29,7 @@ docker run	--rm \
 
 # start docker container with tests
 docker run	--rm \
-		--network $NET_NAME --ip 172.18.6.3 \
+		$(docker_network_params $SUBNET 3) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/sua-tester:/data \
 		--name ${BUILD_TAG}-sua-test \

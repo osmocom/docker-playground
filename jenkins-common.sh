@@ -98,6 +98,15 @@ network_remove() {
 	docker network remove $NET_NAME
 }
 
+# Generates list of params to pass to "docker run" to configure IP addresses
+# $1: SUBNET to use, same as passed to network_create()
+# $2: Address suffix from SUBNET to apply to the container
+docker_network_params() {
+	NET=$1
+	ADDR_SUFIX=$2
+	echo --network $NET_NAME --ip "172.18.$NET.$ADDR_SUFIX" --ip6 "fd02:db8:$NET::$ADDR_SUFIX"
+}
+
 fix_perms() {
 	if ! docker_image_exists "debian-stretch-build"; then
 		docker_images_require "debian-stretch-build"
