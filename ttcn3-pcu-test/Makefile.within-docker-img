@@ -1,0 +1,14 @@
+.PHONY: compile test log
+
+default: compile test
+
+compile:
+	$(MAKE) -C /osmo-ttcn3-hacks pcu/compile
+	$(MAKE) -C /osmo-ttcn3-hacks pcu -j
+
+test:
+	cd /data && \
+		/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/pcu/PCU_Tests; \
+		exit_code=$$?; \
+		/osmo-ttcn3-hacks/log_merge.sh PCU_Tests --rm; \
+		exit $$exit_code
