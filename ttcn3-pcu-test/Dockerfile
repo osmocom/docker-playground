@@ -9,5 +9,6 @@ RUN	ttcn3-docker-prepare "$OSMO_TTCN3_BRANCH" pcu
 VOLUME	/data
 
 COPY	PCU_Tests.cfg /data/PCU_Tests.cfg
+COPY	Makefile.within-docker-img /Makefile
 
-CMD	ttcn3-docker-run pcu PCU_Tests
+CMD	cd / && make test
