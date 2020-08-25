@@ -14,6 +14,13 @@ cp osmo-mgw.cfg $VOL_BASE_DIR/mgw/
 
 network_create 4
 
+# Disable e1 config options until osmo-mgw >= 1.8.0 release
+if [ "$IMAGE_SUFFIX" = "latest" ]; then
+       sed -i "s/e1_line.*//" $VOL_BASE_DIR/mgw/osmo-mgw.cfg
+       sed -i "s/e1_input.*//" $VOL_BASE_DIR/mgw/osmo-mgw.cfg
+       sed -i "s/line 0.*//" $VOL_BASE_DIR/mgw/osmo-mgw.cfg
+fi
+
 # start container with mgw in background
 docker run	--rm \
 		--network $NET_NAME --ip 172.18.4.180 \
