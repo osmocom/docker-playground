@@ -20,6 +20,8 @@ if [ "$IMAGE_SUFFIX" = "latest" ]; then
        sed -i "s/e1_line.*//" $VOL_BASE_DIR/mgw/osmo-mgw.cfg
        sed -i "s/e1_input.*//" $VOL_BASE_DIR/mgw/osmo-mgw.cfg
        sed -i "s/line 0.*//" $VOL_BASE_DIR/mgw/osmo-mgw.cfg
+       # Disable IPv6 until osmo-mgw .git release > 1.7.0 is available
+       sed "/fd02:db8/d" -i $VOL_BASE_DIR/mgw/osmo-mgw.cfg
 fi
 
 # start container with mgw in background
