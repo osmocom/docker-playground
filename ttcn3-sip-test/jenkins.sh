@@ -13,6 +13,12 @@ mkdir $VOL_BASE_DIR/sip-tester
 mkdir $VOL_BASE_DIR/sip-tester/unix
 cp SIP_Tests.cfg $VOL_BASE_DIR/sip-tester/
 
+# Can be removed once osmo-sip-connector > 1.4.1 is available
+if [ "$IMAGE_SUFFIX" = "latest" ]; then
+	sed "s/MNCC_Emulation.mp_mncc_version := 7/MNCC_Emulation.mp_mncc_version := 6/" -i \
+		"$VOL_BASE_DIR/sip-tester/SIP_Tests.cfg"
+fi
+
 mkdir $VOL_BASE_DIR/sip
 mkdir $VOL_BASE_DIR/sip/unix
 cp osmo-sip-connector.cfg $VOL_BASE_DIR/sip/
