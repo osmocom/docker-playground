@@ -52,8 +52,9 @@ docker run	--rm \
 		--name ${BUILD_TAG}-stp -d \
 		--ulimit core=-1 \
 		$DOCKER_ARGS \
-		$REPO_USER/osmo-stp-$IMAGE_SUFFIX \
-		sleep 9999999
+		$REPO_USER/osmo-stp-$IMAGE_SUFFIX
+		#\
+		#sleep 9999999
 
 echo Starting container with BSC
 docker run	--rm \
