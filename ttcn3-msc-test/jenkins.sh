@@ -22,6 +22,8 @@ if [ "$IMAGE_SUFFIX" = "latest" ]; then
 		"$VOL_BASE_DIR/msc-tester/MSC_Tests.cfg"
 	sed "s/MSC_Tests.mp_enable_crashing_tests := true/MSC_Tests.mp_enable_crashing_tests := false/" -i \
 		"$VOL_BASE_DIR/msc-tester/MSC_Tests.cfg"
+	sed "s/MNCC_Emulation.mp_mncc_version := 7/MNCC_Emulation.mp_mncc_version := 6/" -i \
+		"$VOL_BASE_DIR/msc-tester/MSC_Tests.cfg"
 fi
 
 mkdir $VOL_BASE_DIR/stp
