@@ -114,11 +114,14 @@ cp oml/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-oml/
 mkdir $VOL_BASE_DIR/bts-tester-hopping
 cp fh/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-hopping/
 
-# Work around for a bug in osmo-bts when all transceivers use IPAC_PROTO_RSL_TRX0.
-# Enables patching of IPA stream ID. TODO: remove as soon as we make a new release.
+# TODO: revisit this section every time we tag a new release
 if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	sed "s/RSL_Emulation.mp_rslem_patch_ipa_cid := false/RSL_Emulation.mp_rslem_patch_ipa_cid := true/g" -i \
-		"$VOL_BASE_DIR/bts-tester-generic/BTS_Tests.cfg"
+	# Work around for a bug in osmo-bts causing all transceivers to use IPAC_PROTO_RSL_TRX0
+	sed "s/RSL_Emulation.mp_rslem_patch_ipa_cid := false/RSL_Emulation.mp_rslem_patch_ipa_cid := true/g" \
+		-i "$VOL_BASE_DIR/bts-tester-generic/BTS_Tests.cfg"
+	# PCUIFv10 is not yet supported in the latest release
+	sed "/\[MODULE_PARAMETERS\]/ a PCUIF_Types.mp_pcuif_version := 9;" \
+		-i "$VOL_BASE_DIR/bts-tester-generic/BTS_Tests.cfg"
 fi
 
 cp $VOL_BASE_DIR/bts-tester-generic/BTS_Tests.cfg \
