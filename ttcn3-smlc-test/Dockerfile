@@ -9,5 +9,6 @@ RUN	ttcn3-docker-prepare "$OSMO_TTCN3_BRANCH" smlc
 VOLUME	/data
 
 COPY	SMLC_Tests.cfg /data/SMLC_Tests.cfg
+COPY	Makefile.within-docker-img /Makefile
 
-CMD	ttcn3-docker-run smlc SMLC_Tests
+CMD	cd / && make test
