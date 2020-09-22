@@ -19,6 +19,13 @@ cp sns/osmo-pcu.cfg $VOL_BASE_DIR/pcu/
 
 mkdir $VOL_BASE_DIR/unix
 
+# TODO: revisit this section every time we tag a new release
+if [ "$IMAGE_SUFFIX" = "latest" ]; then
+	# PCUIFv10 is not yet supported in the latest release
+	sed "/\[MODULE_PARAMETERS\]/ a PCUIF_Types.mp_pcuif_version := 9;" \
+		-i "$VOL_BASE_DIR/pcu-tester/PCU_Tests.cfg"
+fi
+
 echo Starting container with PCU
 docker run	--rm \
 		$(docker_network_params $SUBNET 101) \
