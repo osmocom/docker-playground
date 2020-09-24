@@ -35,6 +35,7 @@ fi
 if [ "$IMAGE_SUFFIX" = "latest" ]; then
 	sed "/fd02:db8/d" -i $VOL_BASE_DIR/stp/osmo-stp.cfg
 	sed "/fd02:db8/d" -i $VOL_BASE_DIR/bsc/osmo-bsc.cfg
+	sed -i "s/^BSC_Tests.mp_media_mgw_offer_ipv6.*/BSC_Tests.mp_media_mgw_offer_ipv6 := false;/" $VOL_BASE_DIR/bsc-tester/BSC_Tests.cfg
 fi
 
 SUBNET=2
