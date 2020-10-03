@@ -12,26 +12,26 @@ RT_URL = 'https://rt.sysmocom.de/TicketDisplay.html?id=%s'
 
 import re
 import sys
-import cgi
+import html
 
 def hyperlink(txt, url):
-    return '<a href="%s">%s</a>' % (url, cgi.escape(txt))
+    return '<a href="%s">%s</a>' % (url, html.escape(txt))
 
 def chgid_repl(matchobj):
     chg_id = matchobj.group(1)
-    url = GERRIT_URL % cgi.escape(chg_id)
+    url = GERRIT_URL % html.escape(chg_id)
     return hyperlink(chg_id, url)
 
 def relates_repl(matchobj):
     def process_item(x):
         def repl_os(m):
-            url = REDMINE_OS_URL % cgi.escape(m.group(1))
+            url = REDMINE_OS_URL % html.escape(m.group(1))
             return hyperlink(m.group(0), url)
         def repl_sys(m):
-            url = REDMINE_SYS_URL % cgi.escape(m.group(1))
+            url = REDMINE_SYS_URL % html.escape(m.group(1))
             return hyperlink(m.group(0), url)
         def repl_rt(m):
-            url = RT_URL % cgi.escape(m.group(1))
+            url = RT_URL % html.escape(m.group(1))
             return hyperlink(m.group(0), url)
         x = re.sub(r"OS#(\d+)", repl_os, x)
         x = re.sub(r"SYS#(\d+)", repl_sys, x)
