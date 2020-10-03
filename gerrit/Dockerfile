@@ -1,4 +1,4 @@
-FROM gerritcodereview/gerrit:2.16.18
+FROM gerritcodereview/gerrit:2.16.22
 
 USER root
 RUN yum -y install zip unzip patch
