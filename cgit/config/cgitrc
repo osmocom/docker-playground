@@ -1,0 +1,36 @@
+# CGIT config
+virtual-root=/
+
+css=/cgit.css
+# logo=/logo.png
+footer=
+
+source-filter=/usr/lib/cgit/filters/syntax-highlighting.sh
+root-title=Repositories
+root-desc=
+noplainemail=1
+
+# clone-prefix=http://example.com
+
+# Enable snapshots
+snapshots=tar.gz zip
+
+# Disable owner index
+enable-index-owner=0
+
+mimetype.git=image/git
+mimetype.html=text/html
+mimetype.jpg=image/jpeg
+mimetype.jpeg=image/jpeg
+mimetype.pdf=application/pdf
+mimetype.png=image/png
+mimetype.svg=image/svg+xml
+
+# Caching
+cache-dynamic-ttl=60
+cache-static-ttl=44640
+cache-root-ttl=6
+cache-repo-ttl=120
+
+scan-path=/git
+
