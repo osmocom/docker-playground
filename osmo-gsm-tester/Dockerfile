@@ -62,15 +62,15 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     update-locale LANG=en_US.UTF-8
 ENV LANG en_US.UTF-8
 
-# We require a newer patchelf for srsue (OS#4389)
-ADD     https://nixos.org/releases/patchelf/patchelf-0.10/patchelf-0.10.tar.bz2 /tmp/patchelf-0.10.tar.bz2
+# We require a newer patchelf 0.11 (OS#4389)
+ADD     https://github.com/NixOS/patchelf/archive/0.11.tar.gz /tmp/patchelf-0.11.tar.gz
 RUN     cd /tmp && \
-        tar -jxf /tmp/patchelf-0.10.tar.bz2 && \
-        cd patchelf-0.10 && \
-        ./configure --prefix=/opt && \
+        tar -zxf /tmp/patchelf-0.11.tar.gz && \
+        cd patchelf-0.11 && \
+	autoreconf -fi && \
+        ./configure --prefix=/usr/local && \
         make && \
-        mkdir -p /opt/bin/ && \
-        cp src/patchelf /opt/bin/patchelf-v0.10
+        make install
 
 ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_9.0/"
 
