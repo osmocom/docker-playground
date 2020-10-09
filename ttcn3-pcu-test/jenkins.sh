@@ -24,6 +24,10 @@ if [ "$IMAGE_SUFFIX" = "latest" ]; then
 	# PCUIFv10 is not yet supported in the latest release
 	sed "/\[MODULE_PARAMETERS\]/ a PCUIF_Types.mp_pcuif_version := 9;" \
 		-i "$VOL_BASE_DIR/pcu-tester/PCU_Tests.cfg"
+	# Tolerate CellId IE in BVC-RESET for BVCO=0
+	sed -e "/\[MODULE_PARAMETERS\]/ a BSSGP_Emulation.mp_tolerate_bvc_reset_cellid := true;" \
+	    -e "/\[MODULE_PARAMETERS\]/ a PCU_Tests_NS.mp_tolerate_bvc_reset_cellid := true;" \
+		-i "$VOL_BASE_DIR/pcu-tester/PCU_Tests.cfg"
 
 	# Disable stats testing until libosmocore release > 1.4.0
 	sed -i "s/^StatsD_Checker.mp_enable_stats.*/StatsD_Checker.mp_enable_stats := false;/" $VOL_BASE_DIR/pcu-tester/PCU_Tests.cfg
