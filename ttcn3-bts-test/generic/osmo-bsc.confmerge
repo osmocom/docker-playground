@@ -1,0 +1,7 @@
+line vty
+ bind 0.0.0.0
+e1_input
+ ipa bind 0.0.0.0
+network
+ bts 0
+  ip.access rsl-ip 172.18.9.10
