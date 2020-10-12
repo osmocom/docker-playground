@@ -30,7 +30,7 @@ start_bsc() {
 			--name ${BUILD_TAG}-bsc -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmo-bsc-$IMAGE_SUFFIX \
-			/bin/sh -c "osmo-bsc -c /data/osmo-bsc.cfg >>/data/osmo-bsc.log 2>&1"
+			/bin/sh -c "osmo-bsc -c /data/osmo-bsc.gen.cfg >>/data/osmo-bsc.log 2>&1"
 }
 
 start_bts() {
@@ -51,7 +51,7 @@ start_bts() {
 			--name ${BUILD_TAG}-bts -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
-			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-$variant -c /data/osmo-bts.cfg >>/data/osmo-bts.log 2>&1"
+			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-$variant -c /data/osmo-bts.gen.cfg >>/data/osmo-bts.log 2>&1"
 }
 
 start_fake_trx() {
@@ -135,12 +135,15 @@ write_mp_osmo_repo "$VOL_BASE_DIR/bts-tester-hopping/BTS_Tests.cfg"
 cp $VOL_BASE_DIR/bts-tester-generic/BTS_Tests.cfg \
    $VOL_BASE_DIR/bts-tester-hopping/BTS_Tests.cfg.inc
 
+# (re)generate the configuration files
+make cfg
+
 mkdir $VOL_BASE_DIR/bsc
-cp generic/osmo-bsc.cfg $VOL_BASE_DIR/bsc/
+cp generic/osmo-bsc.gen.cfg $VOL_BASE_DIR/bsc/
 
 mkdir $VOL_BASE_DIR/bts
 mkdir $VOL_BASE_DIR/bts/unix
-cp generic/osmo-bts.cfg $VOL_BASE_DIR/bts/
+cp generic/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
 
 mkdir $VOL_BASE_DIR/unix
 
@@ -161,7 +164,7 @@ echo "Changing to virtphy configuration"
 docker container kill ${BUILD_TAG}-trxcon
 docker container kill ${BUILD_TAG}-fake_trx
 docker container kill ${BUILD_TAG}-bts
-cp virtphy/osmo-bts.cfg $VOL_BASE_DIR/bts/
+cp virtphy/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
 start_bts virtual 0
 start_virtphy
 # ... and execute the testsuite again with different cfg
@@ -173,7 +176,7 @@ docker container kill ${BUILD_TAG}-bsc
 docker container kill ${BUILD_TAG}-virtphy
 docker container kill ${BUILD_TAG}-bts
 
-cp oml/osmo-bts.cfg $VOL_BASE_DIR/bts/
+cp oml/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
 start_bts trx 1
 start_fake_trx
 start_trxcon
@@ -181,8 +184,8 @@ start_trxcon
 start_testsuite oml
 
 # 4) Frequency hopping tests require different configuration files
-cp fh/osmo-bsc.cfg $VOL_BASE_DIR/bsc/
-cp generic/osmo-bts.cfg $VOL_BASE_DIR/bts/
+cp fh/osmo-bsc.gen.cfg $VOL_BASE_DIR/bsc/
+cp generic/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
 # restart the BSC/BTS and run the testsuite again
 docker container kill ${BUILD_TAG}-bts
 start_bsc

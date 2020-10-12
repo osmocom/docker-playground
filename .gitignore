@@ -1,4 +1,7 @@
 .release
 .common
 
+*.src.cfg
+*.gen.cfg
+
 /_cache
