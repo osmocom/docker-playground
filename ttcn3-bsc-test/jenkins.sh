@@ -38,6 +38,11 @@ if [ "$IMAGE_SUFFIX" = "latest" ]; then
 	sed -i "s/^BSC_Tests.mp_media_mgw_offer_ipv6.*/BSC_Tests.mp_media_mgw_offer_ipv6 := false;/" $VOL_BASE_DIR/bsc-tester/BSC_Tests.cfg
 fi
 
+# Disable LCS tests until osmo-bsc > 1.6.0
+if [ "$IMAGE_SUFFIX" = "latest" ]; then
+	sed -i 's/^BSC_Tests.mp_enable_lcs_tests.*/BSC_Tests.mp_enable_lcs_tests := false;/' $VOL_BASE_DIR/bsc-tester/BSC_Tests.cfg
+fi
+
 SUBNET=2
 network_create $SUBNET
 
