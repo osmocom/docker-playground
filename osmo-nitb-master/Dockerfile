@@ -11,7 +11,10 @@ RUN	apt-key add /tmp/Release.key && \
 	rm /tmp/Release.key && \
 	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-nightly.list
 
+# we need to add this to invalidate the cache once the repository is updated.
+# unfortunately Dockerfiles don't support a conditional ARG, so we need to add both DPKG + RPM
 ADD	$OSMOCOM_REPO/Release /tmp/Release
+ADD	http://download.opensuse.org/repositories/network:/osmocom:/nightly/CentOS_8_Stream/repodata/repomd.xml /tmp/repomd.xml
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		telnet \
