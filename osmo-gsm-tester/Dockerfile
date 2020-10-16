@@ -112,6 +112,12 @@ RUN	apt-get update && \
 		soapysdr0.7-module-lms7 && \
 	apt-get clean
 
+# install gnuradio runtime dependencies
+RUN	apt-get update && \
+	apt-get install -y --no-install-recommends \
+		gnuradio && \
+	apt-get clean
+
 WORKDIR	/tmp
 
 ARG	OSMO_GSM_TESTER_BRANCH="master"
