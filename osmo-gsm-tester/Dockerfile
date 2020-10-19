@@ -49,12 +49,14 @@ RUN     chmod -R 0700 /home/jenkins/.ssh /root/.ssh
 RUN	mkdir -p /osmo-gsm-tester-srsue \
                  /osmo-gsm-tester-srsenb \
                  /osmo-gsm-tester-srsepc \
-                 /osmo-gsm-tester-trx
+                 /osmo-gsm-tester-trx \
+		 /osmo-gsm-tester-grbroker
 RUN	chown -R jenkins:jenkins \
                  /osmo-gsm-tester-srsue \
                  /osmo-gsm-tester-srsenb \
                  /osmo-gsm-tester-srsepc \
-                 /osmo-gsm-tester-trx
+                 /osmo-gsm-tester-trx \
+		 /osmo-gsm-tester-grbroker
 
 # Set a UTF-8 locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
