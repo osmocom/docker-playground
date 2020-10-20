@@ -19,17 +19,17 @@ RUN	cd osmo-ttcn3-hacks && \
 	git checkout $OSMO_TTCN3_BRANCH && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_TTCN3_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
-	make bsc
+	make smlc
 
 VOLUME	/data
 
 RUN	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-start.sh / && \
 	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-stop.sh /
 
-COPY	BSC_Tests.cfg /data/BSC_Tests.cfg
+COPY	SMLC_Tests.cfg /data/SMLC_Tests.cfg
 
 CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/bsc/BSC_Tests; \
+	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/smlc/SMLC_Tests; \
 	exit_code=$?; \
-	/osmo-ttcn3-hacks/log_merge.sh BSC_Tests --rm; \
+	/osmo-ttcn3-hacks/log_merge.sh SMLC_Tests --rm; \
 	exit $exit_code
