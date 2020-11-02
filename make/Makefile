@@ -59,6 +59,7 @@ post-push:
 docker-build: .release
 	docker build \
 		--build-arg USER=$(USERNAME) \
+		--build-arg REGISTRY=$(REGISTRY_HOST) \
 		--build-arg OSMO_TTCN3_BRANCH=$(OSMO_TTCN3_BRANCH) \
 		--build-arg DISTRO=$(DISTRO) \
 		--build-arg LIBOSMOCORE_BRANCH=$(LIBOSMOCORE_BRANCH) \

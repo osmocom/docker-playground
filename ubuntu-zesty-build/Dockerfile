@@ -1,4 +1,5 @@
-FROM ubuntu:zesty
+ARG	REGISTRY=docker.io
+FROM	${REGISTRY}/ubuntu:zesty
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 

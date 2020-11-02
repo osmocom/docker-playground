@@ -1,5 +1,6 @@
 ARG	USER
-FROM	debian:stretch
+ARG	REGISTRY=docker.io
+FROM	${REGISTRY}/debian:stretch
 
 COPY	Release.key /tmp/Release.key
 

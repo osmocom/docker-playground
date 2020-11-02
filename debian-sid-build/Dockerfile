@@ -1,4 +1,5 @@
-FROM debian:sid
+ARG	REGISTRY=docker.io
+FROM	${REGISTRY}/debian:sid
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 

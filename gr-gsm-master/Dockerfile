@@ -1,4 +1,5 @@
-FROM 	archlinux/base
+ARG 	REGISTRY=docker.io
+FROM 	${REGISTRY}/archlinux/base
 
 MAINTAINER Vadim Yanitskiy <axilirator@gmail.com>
 

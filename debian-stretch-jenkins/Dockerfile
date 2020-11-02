@@ -1,8 +1,9 @@
 # Image used to run contrib/jenkins.sh scripts of most Osmocom projects.
 # See master-builds.yml, gerrit-verifications.yml in osmo-ci.git.
 
-ARG DEBIAN_VERSION=stretch
-FROM debian:${DEBIAN_VERSION}
+ARG	DEBIAN_VERSION=stretch
+ARG	REGISTRY=docker.io
+FROM	${REGISTRY}/debian:${DEBIAN_VERSION}
 
 # Make "$DEBIAN_VERSION" available after FROM
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact

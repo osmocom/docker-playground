@@ -1,4 +1,5 @@
-FROM alpine:3.6
+ARG	REGISTRY=docker.io
+FROM	${REGISTRY}/alpine:3.6
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 

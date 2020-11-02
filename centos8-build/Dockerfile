@@ -1,4 +1,5 @@
-FROM	centos:centos8
+ARG	REGISTRY=docker.io
+FROM	${REGISTRY}/centos:centos8
 
 # Let package metadata expire after 60 seconds instead of 48 hours
 RUN	echo "metadata_expire=60" >> /etc/dnf/dnf.conf && cat /etc/dnf/dnf.conf

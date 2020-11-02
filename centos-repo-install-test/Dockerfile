@@ -1,5 +1,6 @@
 ARG	USER
-FROM	centos:centos8
+ARG	REGISTRY=docker.io
+FROM	${REGISTRY}/centos:centos8
 
 # dnf-utils: for repoquery
 RUN	dnf install -y \

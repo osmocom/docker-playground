@@ -1,4 +1,5 @@
-FROM	debian:stretch
+ARG	REGISTRY=docker.io
+FROM	${REGISTRY}/debian:stretch
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 

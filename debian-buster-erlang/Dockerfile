@@ -1,4 +1,5 @@
-FROM debian:buster
+ARG	REGISTRY=docker.io
+FROM	${REGISTRY}/debian:buster
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 

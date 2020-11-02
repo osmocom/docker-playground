@@ -1,4 +1,5 @@
-FROM debian:jessie
+ARG	REGISTRY=docker.io
+FROM	${REGISTRY}/debian:jessie
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
