@@ -37,7 +37,6 @@ if [ "x$1" = "x-h" ]; then
 	if [ -d "$3" ]; then
 		BTS_JUST_IDLE="1"
 		ADD_BTS_VOLUMES="$ADD_BTS_VOLUMES -v $3:/src"
-		ADD_BTS_RUN_OPTS="--privileged"
 	fi
 fi
 
