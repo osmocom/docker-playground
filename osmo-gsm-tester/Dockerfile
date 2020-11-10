@@ -22,6 +22,7 @@ RUN	apt-get update && \
 		python3-gi \
 		python3-numpy \
 		python3-wheel \
+		python3-watchdog \
 		ofono \
 		patchelf \
 		sudo \
