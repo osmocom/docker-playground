@@ -38,7 +38,8 @@ RUN	sed -i 's/^#error/\/\/#error/' /usr/include/titan/cversion.h
 # binary-only transcoding library for RANAP/RUA/HNBAP to work around TITAN only implementing BER
 RUN	apt-get update && \
 	apt-get -y install wget
-RUN	wget https://ftp.osmocom.org/binaries/libfftranscode/libfftranscode0_0.3_amd64.deb && \
-	wget https://ftp.osmocom.org/binaries/libfftranscode/libfftranscode-dev_0.3_amd64.deb && \
-	apt install ./libfftranscode0_0.3_amd64.deb ./libfftranscode-dev_0.3_amd64.deb && \
+RUN	DPKG_ARCH="$(dpkg --print-architecture)" && export $DPKG_ARCH && \
+	wget https://ftp.osmocom.org/binaries/libfftranscode/libfftranscode0_0.3_${DPKG_ARCH}.deb && \
+	wget https://ftp.osmocom.org/binaries/libfftranscode/libfftranscode-dev_0.3_${DPKG_ARCH}.deb && \
+	apt install ./libfftranscode0_0.3_${DPKG_ARCH}.deb ./libfftranscode-dev_0.3_${DPKG_ARCH}.deb && \
 	rm libfftranscode*.deb
