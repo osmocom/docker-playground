@@ -1,10 +1,12 @@
 ARG	REGISTRY=docker.io
 ARG	UPSTREAM_DISTRO=debian:stretch
 FROM	${REGISTRY}/${UPSTREAM_DISTRO}
+# Arguments used after FROM must be specified again
+ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
 
 MAINTAINER Daniel Willmann <dwillmann@sysmocom.de>
 
-ARG OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/latest/Debian_9.0/"
+ARG OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/latest/Debian_9.0/"
 
 COPY	Release.key /tmp/Release.key
 

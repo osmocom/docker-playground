@@ -4,6 +4,8 @@
 ARG	DEBIAN_VERSION=stretch
 ARG	REGISTRY=docker.io
 FROM	${REGISTRY}/debian:${DEBIAN_VERSION}
+# Arguments used after FROM must be specified again
+ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
 
 # Make "$DEBIAN_VERSION" available after FROM
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
@@ -153,7 +155,7 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
 ENV LANG en_US.UTF-8
 
 # osmo-remsim needs libulfius which is built in osmocom OBS repos:
-ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_9.0/"
+ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/Debian_9.0/"
 COPY	Release.key /tmp/Release.key
 RUN	apt-key add /tmp/Release.key && \
 	rm /tmp/Release.key && \

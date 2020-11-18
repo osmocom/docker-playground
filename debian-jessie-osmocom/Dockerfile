@@ -1,9 +1,11 @@
 ARG	REGISTRY=docker.io
 FROM	${REGISTRY}/debian:jessie
+# Arguments used after FROM must be specified again
+ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
-ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/"
+ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/Debian_8.0/"
 
 COPY	Release.key /tmp/Release.key
 

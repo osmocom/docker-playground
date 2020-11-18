@@ -1,9 +1,11 @@
 ARG	REGISTRY=docker.io
 FROM	${REGISTRY}/debian:buster
+# Arguments used after FROM must be specified again
+ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
-ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/latest/Debian_10/"
+ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/latest/Debian_10/"
 
 # install the erlang vm and rebar (2)
 RUN	apt-get update && \

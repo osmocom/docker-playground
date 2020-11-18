@@ -1,5 +1,7 @@
 ARG	USER
 FROM	$USER/debian-stretch-jenkins
+# Arguments used after FROM must be specified again
+ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
 
 MAINTAINER Pau Espin Pedrol <pespin@sysmocom.de>
 
@@ -75,7 +77,7 @@ RUN     cd /tmp && \
         make && \
         make install
 
-ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_9.0/"
+ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/Debian_9.0/"
 
 COPY	Release.key /tmp/Release.key
 

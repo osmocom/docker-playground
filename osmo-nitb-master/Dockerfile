@@ -1,9 +1,14 @@
 ARG	USER
-FROM	$USER/debian-stretch-build
+ARG	DISTRO
+ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
+FROM	$USER/$DISTRO-build
+# Arguments used after FROM must be specified again
+ARG	DISTRO
+ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
-ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_9.0/"
+ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/Debian_9.0/"
 
 COPY	Release.key /tmp/Release.key
 
@@ -14,7 +19,7 @@ RUN	apt-key add /tmp/Release.key && \
 # we need to add this to invalidate the cache once the repository is updated.
 # unfortunately Dockerfiles don't support a conditional ARG, so we need to add both DPKG + RPM
 ADD	$OSMOCOM_REPO/Release /tmp/Release
-ADD	http://download.opensuse.org/repositories/network:/osmocom:/nightly/CentOS_8_Stream/repodata/repomd.xml /tmp/repomd.xml
+ADD	$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/CentOS_8_Stream/repodata/repomd.xml /tmp/repomd.xml
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		telnet \

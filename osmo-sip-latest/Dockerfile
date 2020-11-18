@@ -1,10 +1,12 @@
 ARG	REGISTRY=docker.io
 ARG	UPSTREAM_DISTRO=debian:stretch
 FROM	${REGISTRY}/${UPSTREAM_DISTRO}
+# Arguments used after FROM must be specified again
+ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
-ARG	OSMOCOM_REPO="http://download.opensuse.org/repositories/network:/osmocom:/latest/Debian_9.0/"
+ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/latest/Debian_9.0/"
 
 COPY	Release.key /tmp/Release.key
 
@@ -31,4 +33,4 @@ COPY	osmo-sip-connector.cfg /data/osmo-sip-connector.cfg
 WORKDIR	/data
 CMD	["/bin/sh", "-c", "/usr/bin/osmo-sip-connector -c /data/osmo-sip-connector.cfg >/data/osmo-sip-connector.log 2>&1"]
 
-#EXPOSE	
+#EXPOSE
