@@ -44,6 +44,7 @@ docker_dir_from_image_name() {
 #	Dockerfile for multiple distributions, without duplicating configs for
 #	each distribution. Dependencies listed in docker_depends() are built
 #	automatically too.
+IMAGE_DIR_PREFIX=".."
 docker_images_require() {
 	local i
 	local from_line
@@ -68,13 +69,13 @@ docker_images_require() {
 
 			# Pull upstream base images
 			pull_arg="--pull"
-			from_line="$(grep '^FROM' ../$dir/Dockerfile)"
+			from_line="$(grep '^FROM' ${IMAGE_DIR_PREFIX}/${dir}/Dockerfile)"
 			if echo "$from_line" | grep -q '$USER'; then
 				pull_arg=""
 			fi
 
 			echo "Building image: $i (export NO_DOCKER_IMAGE_BUILD=1 to prevent this)"
-			make -C "../$dir" \
+			make -C "${IMAGE_DIR_PREFIX}/${dir}" \
 				PULL="$pull_arg" \
 				UPSTREAM_DISTRO="$upstream_distro_arg" \
 				DISTRO="$distro_arg" \
@@ -106,6 +107,24 @@ network_create() {
 	SUB6="fd02:db8:$NET::/64"
 	echo Creating network $NET_NAME
 	docker network create --internal --subnet $SUB4 --ipv6 --subnet $SUB6 $NET_NAME
+}
+
+network_bridge_create() {
+	NET=$1
+	if docker network ls | grep -q $NET_NAME; then
+		echo removing stale network and containers...
+		network_clean
+		network_remove
+	fi
+	SUB4="172.18.$NET.0/24"
+	SUB6="fd02:db8:$NET::/64"
+	echo Creating network $NET_NAME
+	docker network create \
+		--driver=bridge \
+		--subnet $SUB4 \
+		--ipv6 --subnet $SUB6 \
+		-o "com.docker.network.bridge.host_binding_ipv4"="172.18.$NET.1" \
+		$NET_NAME
 }
 
 network_remove() {

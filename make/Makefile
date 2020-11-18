@@ -37,6 +37,8 @@ UPSTREAM_DISTRO?=debian:stretch
 DISTRO?=debian-stretch
 OSMOCOM_REPO_MIRROR?=http://download.opensuse.org
 # Use if down: OSMOCOM_REPO_MIRROR=http://ftp.uni-stuttgart.de/opensuse
+OSMOCOM_REPO_VERSION?=latest
+# Use "nightly" to use the nightly repo
 
 RELEASE_SUPPORT := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))/.make-release-support
 IMAGE?=$(REGISTRY_HOST)/$(USER)/$(NAME)
@@ -67,6 +69,7 @@ docker-build: .release
 		--build-arg UPSTREAM_DISTRO=$(UPSTREAM_DISTRO) \
 		--build-arg DISTRO=$(DISTRO) \
 		--build-arg OSMOCOM_REPO_MIRROR=$(OSMOCOM_REPO_MIRROR) \
+		--build-arg OSMOCOM_REPO_VERSION=$(OSMOCOM_REPO_VERSION) \
 		--build-arg LIBOSMOCORE_BRANCH=$(LIBOSMOCORE_BRANCH) \
 		--build-arg OSMO_BB_BRANCH=$(OSMO_BB_BRANCH) \
 		--build-arg OSMO_BSC_BRANCH=$(OSMO_BSC_BRANCH) \
