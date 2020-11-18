@@ -108,6 +108,24 @@ network_create() {
 	docker network create --internal --subnet $SUB4 --ipv6 --subnet $SUB6 $NET_NAME
 }
 
+network_bridge_create() {
+	NET=$1
+	if docker network ls | grep -q $NET_NAME; then
+		echo removing stale network and containers...
+		network_clean
+		network_remove
+	fi
+	SUB4="172.18.$NET.0/24"
+	SUB6="fd02:db8:$NET::/64"
+	echo Creating network $NET_NAME
+	docker network create \
+		--driver=bridge \
+		--subnet $SUB4 \
+		--ipv6 --subnet $SUB6 \
+		-o "com.docker.network.bridge.host_binding_ipv4"="172.18.$NET.1" \
+		$NET_NAME
+}
+
 network_remove() {
 	echo Removing network $NET_NAME
 	docker network remove $NET_NAME
