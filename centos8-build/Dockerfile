@@ -1,5 +1,6 @@
 ARG	REGISTRY=docker.io
-FROM	${REGISTRY}/centos:centos8
+ARG	UPSTREAM_DISTRO=centos:centos8
+FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 
 # Let package metadata expire after 60 seconds instead of 48 hours
 RUN	echo "metadata_expire=60" >> /etc/dnf/dnf.conf && cat /etc/dnf/dnf.conf

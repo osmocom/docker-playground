@@ -1,6 +1,7 @@
 ARG	USER
 ARG	REGISTRY=docker.io
-FROM	${REGISTRY}/debian:stretch
+ARG	UPSTREAM_DISTRO=debian:stretch
+FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 
 COPY	Release.key /tmp/Release.key
 

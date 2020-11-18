@@ -1,5 +1,6 @@
 ARG	REGISTRY=docker.io
-FROM	${REGISTRY}/debian:stretch
+ARG	UPSTREAM_DISTRO=debian:stretch
+FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 

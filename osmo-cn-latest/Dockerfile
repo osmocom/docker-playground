@@ -1,5 +1,6 @@
 ARG	REGISTRY=docker.io
-FROM	${REGISTRY}/debian:stretch
+ARG	UPSTREAM_DISTRO=debian:stretch
+FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 
 MAINTAINER Daniel Willmann <dwillmann@sysmocom.de>
 

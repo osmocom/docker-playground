@@ -1,6 +1,7 @@
 ARG	USER
 ARG	REGISTRY=docker.io
-FROM	${REGISTRY}/centos:centos8
+ARG	UPSTREAM_DISTRO=centos:centos8
+FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 
 # dnf-utils: for repoquery
 RUN	dnf install -y \
@@ -9,4 +10,3 @@ RUN	dnf install -y \
 
 # Make additional development libraries available
 RUN	yum config-manager --set-enabled PowerTools
-

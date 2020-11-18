@@ -12,10 +12,18 @@ docker_depends() {
 
 docker_distro_from_image_name() {
 	case "$1" in
-	osmo-*-centos8) echo "centos8"; ;;
+	osmo-*-centos8) echo "centos8" ;;
+	centos8-*) echo "centos8" ;;
 	*) echo "debian-stretch" ;;
 	esac
+}
 
+docker_upstream_distro_from_image_name() {
+	case "$1" in
+	osmo-*-centos8) echo "centos:centos8"; ;;
+	centos8-*) echo "centos:centos8" ;;
+	*) echo "debian:stretch" ;;
+	esac
 }
 
 docker_dir_from_image_name() {
@@ -27,15 +35,20 @@ docker_dir_from_image_name() {
 
 # Make sure required images are available and build them if necessary.
 # $*: image names (e.g. "debian-stretch-build", "osmo-mgw-master", "osmo-mgw-master-centos8")
-#	The images are automatically built from the Dockerfile of the subdir of the same name. If there is a
-#	distribution name at the end of the image name (e.g. osmo-mgw-master-centos8), it gets removed from the subdir
-#	where the Dockerfile is taken from (e.g. osmo-mgw-master/Dockerfile) and DISTRO is passed accordingly
-#	(e.g. DISTRO=centos8). This allows one Dockerfile for multiple distributions, without duplicating configs for
-#	each distribution. Dependencies listed in docker_depends() are built automatically too.
+#	The images are automatically built from the Dockerfile of the subdir of
+#	the same name. If there is a distribution name at the end of the image
+#	name (e.g. osmo-mgw-master-centos8), it gets removed from the subdir
+#	where the Dockerfile is taken from (e.g. osmo-mgw-master/Dockerfile)
+#	and UPSTREAM_DISTRO and DISTRO are passed accordingly (e.g.
+#	UPSTREAM_DISTRO=centos:centos8 DISTRO=centos8). This allows one
+#	Dockerfile for multiple distributions, without duplicating configs for
+#	each distribution. Dependencies listed in docker_depends() are built
+#	automatically too.
 docker_images_require() {
 	local i
 	local from_line
 	local pull_arg
+	local upstream_distro_arg
 	local distro_arg
 	local depends
 	local dir
@@ -49,6 +62,7 @@ docker_images_require() {
 
 		# Trigger image build (cache will be used when up-to-date)
 		if [ -z "$NO_DOCKER_IMAGE_BUILD" ]; then
+			upstream_distro_arg="$(docker_upstream_distro_from_image_name "$i")"
 			distro_arg="$(docker_distro_from_image_name "$i")"
 			dir="$(docker_dir_from_image_name "$i")"
 
@@ -62,6 +76,7 @@ docker_images_require() {
 			echo "Building image: $i (export NO_DOCKER_IMAGE_BUILD=1 to prevent this)"
 			make -C "../$dir" \
 				PULL="$pull_arg" \
+				UPSTREAM_DISTRO="$upstream_distro_arg" \
 				DISTRO="$distro_arg" \
 				IMAGE="$REPO_USER/$i" \
 				|| exit 1
