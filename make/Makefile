@@ -57,7 +57,7 @@ post-push:
 
 
 docker-build: .release
-	docker build \
+	podman build \
 		--build-arg USER=$(USERNAME) \
 		--build-arg REGISTRY=$(REGISTRY_HOST) \
 		--build-arg OSMO_TTCN3_BRANCH=$(OSMO_TTCN3_BRANCH) \
@@ -78,17 +78,10 @@ docker-build: .release
 		--build-arg OSMO_SIP_BRANCH=$(OSMO_SIP_BRANCH) \
 		--build-arg OSMO_STP_BRANCH=$(OSMO_STP_BRANCH) \
 		$(PULL) -t $(IMAGE):latest .
-	@DOCKER_MAJOR=$(shell docker -v | sed -e 's/.*version //' -e 's/,.*//' | cut -d\. -f1) ; \
-	DOCKER_MINOR=$(shell docker -v | sed -e 's/.*version //' -e 's/,.*//' | cut -d\. -f2) ; \
 
 tag: docker-build
-	if [ $$DOCKER_MAJOR -eq 1 ] && [ $$DOCKER_MINOR -lt 10 ] ; then \
-		echo docker tag -f $(IMAGE):latest $(IMAGE):$(VERSION) ;\
-		docker tag -f $(IMAGE):latest $(IMAGE):$(VERSION) ;\
-	else \
-		echo docker tag $(IMAGE):latest $(IMAGE):$(VERSION) ;\
-		docker tag $(IMAGE):latest $(IMAGE):$(VERSION) ; \
-	fi
+	echo podman tag $(IMAGE):latest $(IMAGE):$(VERSION) ;\
+	podman tag $(IMAGE):latest $(IMAGE):$(VERSION) ; \
 
 .release:
 	@echo "release=0.0.0" > .release
@@ -102,8 +95,8 @@ release: build push
 push: do-push post-push
 
 do-push:
-	docker push $(IMAGE):latest
-	[ -f .release ] && docker push $(IMAGE):$(VERSION)
+	podman push $(IMAGE):latest
+	[ -f .release ] && podman push $(IMAGE):$(VERSION)
 
 snapshot: build push
 
@@ -130,4 +123,4 @@ major-release: tag-major-release release
 
 
 run:
-	docker run $(RUN_ARGS) -it $(IMAGE)
+	podman run $(RUN_ARGS) -it $(IMAGE)
