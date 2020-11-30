@@ -27,9 +27,7 @@ RUN	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-start.sh / && \
 	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-stop.sh /
 
 COPY	GBProxy_Tests.cfg /data/GBProxy_Tests.cfg
+COPY	pipework /usr/bin/pipework
+COPY	docker-entrypoint.sh /docker-entrypoint.sh
 
-CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/gbproxy/GBProxy_Tests; \
-	exit_code=$?; \
-	/osmo-ttcn3-hacks/log_merge.sh GBProxy_Tests --rm; \
-	exit $exit_code
+ENTRYPOINT	["/docker-entrypoint.sh"]
