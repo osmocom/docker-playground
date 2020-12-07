@@ -1,6 +1,7 @@
 ARG	REGISTRY=docker.io
 ARG	UPSTREAM_DISTRO=centos:centos8
 FROM	${REGISTRY}/${UPSTREAM_DISTRO}
+ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
 
 # Let package metadata expire after 60 seconds instead of 48 hours
 RUN	echo "metadata_expire=60" >> /etc/dnf/dnf.conf && cat /etc/dnf/dnf.conf
@@ -9,7 +10,7 @@ RUN	echo "metadata_expire=60" >> /etc/dnf/dnf.conf && cat /etc/dnf/dnf.conf
 RUN	dnf install -y dnf-utils wget && \
 	yum config-manager --set-enabled powertools && \
 	cd /etc/yum.repos.d/ && \
-	wget https://download.opensuse.org/repositories/network:osmocom:nightly/CentOS_8_Stream/network:osmocom:nightly.repo
+	wget $OSMOCOM_REPO_MIRROR/repositories/network:osmocom:nightly/CentOS_8_Stream/network:osmocom:nightly.repo
 
 RUN	dnf install -y \
 		autoconf \
