@@ -45,13 +45,8 @@ RUN	case "$DISTRO" in \
 			tcpdump \
 			telnet \
 			vim \
-			osmo-bsc \
-			osmo-bsc-ipaccess-utils \
 			osmo-bts-trx \
-			osmo-mgw \
-			osmo-pcu \
-			osmo-trx-ipc \
-			osmo-trx-uhd && \
+			osmo-pcu && \
 		apt-get clean \
 		;; \
 	centos*) \
@@ -61,17 +56,12 @@ RUN	case "$DISTRO" in \
 			tcpdump \
 			telnet \
 			vim \
-			osmo-bsc \
-			osmo-bsc-ipaccess-utils \
 			osmo-bts \
-			osmo-mgw \
 			osmo-pcu \
-			osmo-trx-ipc \
-			osmo-trx-uhd \
 		;; \
 	esac
 
-RUN	systemctl enable osmo-bsc osmo-bts-trx osmo-mgw osmo-pcu
+RUN	systemctl enable osmo-bts-trx osmo-pcu
 
 WORKDIR	/tmp
 RUN	cp -r /etc/osmocom /etc/osmocom-default
@@ -82,13 +72,7 @@ COPY	osmocom/* /etc/osmocom/
 
 CMD	["/lib/systemd/systemd", "--system", "--unit=multi-user.target"]
 
-#osmo-bsc: VTY  CTRL
-EXPOSE     4242 4249
 #osmo-bts: VTY  CTRL
 EXPOSE     4241 4238
-#osmo-mgw: VTY  CTRL
-EXPOSE     4243 4267
 #osmo-pcu: VTY  CTRL
 EXPOSE     4240
-#osmo-trx: VTY  CTRL
-#EXPOSE    4237 4236

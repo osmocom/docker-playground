@@ -6,6 +6,7 @@ if [ "x$IMAGE_SUFFIX" != "x" ]; then
 	IMAGE_SUFFIX="-${IMAGE_SUFFIX}" # append dash
 fi
 docker_images_require \
+	"systemd" \
 	"osmo-ran$IMAGE_SUFFIX"
 
 SUBNET=${SUBNET:-25}
