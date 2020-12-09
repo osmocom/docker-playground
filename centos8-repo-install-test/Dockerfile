@@ -9,4 +9,4 @@ RUN	dnf install -y \
 		dnf-utils
 
 # Make additional development libraries available
-RUN	yum config-manager --set-enabled PowerTools
+RUN	yum config-manager --set-enabled powertools
