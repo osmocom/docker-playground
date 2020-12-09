@@ -142,7 +142,7 @@ mkdir $VOL_BASE_DIR/virtphy
 
 # 1) classic test suite with BSC for OML and trxcon+fake_trx
 start_bsc
-start_bts trx 0
+start_bts trx 1
 start_fake_trx
 start_trxcon
 start_testsuite generic
@@ -178,7 +178,7 @@ cp osmo-bts.cfg $VOL_BASE_DIR/bts/
 # restart the BSC/BTS and run the testsuite again
 docker container kill ${BUILD_TAG}-bts
 start_bsc
-start_bts trx 0
+start_bts trx 1
 start_testsuite hopping
 # append ':hopping' to the classnames,
 # e.g. "classname='BTS_Tests'" => "classname='BTS_Tests:hopping'"
