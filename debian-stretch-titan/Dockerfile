@@ -44,5 +44,6 @@ RUN	apt-get update && \
 RUN	DPKG_ARCH="$(dpkg --print-architecture)" && export $DPKG_ARCH && \
 	wget https://ftp.osmocom.org/binaries/libfftranscode/libfftranscode0_0.3_${DPKG_ARCH}.deb && \
 	wget https://ftp.osmocom.org/binaries/libfftranscode/libfftranscode-dev_0.3_${DPKG_ARCH}.deb && \
-	apt install ./libfftranscode0_0.3_${DPKG_ARCH}.deb ./libfftranscode-dev_0.3_${DPKG_ARCH}.deb && \
+	dpkg -i ./libfftranscode0_0.3_${DPKG_ARCH}.deb ./libfftranscode-dev_0.3_${DPKG_ARCH}.deb && \
+	apt install --fix-broken && \
 	rm libfftranscode*.deb
