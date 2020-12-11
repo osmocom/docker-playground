@@ -24,11 +24,12 @@ RUN	apt-get update && \
 
 RUN	apt-get update && \
 	apt-get upgrade -y && \
-	apt-get -y install \
+	DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends --no-install-suggests \
 		build-essential \
 		git \
 		procps \
 		tcpdump \
+		wireshark-common \
 		vim \
 		netcat-openbsd \
 		&& \
