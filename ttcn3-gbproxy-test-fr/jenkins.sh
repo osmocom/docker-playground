@@ -24,6 +24,8 @@ SUBNET=25
 network_create $SUBNET
 
 mkdir $VOL_BASE_DIR/gbproxy-tester
+# if we don't change permissiosn, dumpcap fails to write (despite starting it as root!)
+chmod a+w $VOL_BASE_DIR/gbproxy-tester
 cp GBProxy_Tests.cfg $VOL_BASE_DIR/gbproxy-tester/
 
 mkdir $VOL_BASE_DIR/gbproxy
