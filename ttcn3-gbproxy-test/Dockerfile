@@ -23,8 +23,8 @@ RUN	cd osmo-ttcn3-hacks && \
 
 VOLUME	/data
 
-RUN	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-start.sh / && \
-	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-stop.sh /
+RUN	ln -s /osmo-ttcn3-hacks/ttcn3-dumpcap-start.sh / && \
+	ln -s /osmo-ttcn3-hacks/ttcn3-dumpcap-stop.sh /
 
 COPY	GBProxy_Tests.cfg /data/GBProxy_Tests.cfg
 COPY	pipework /usr/bin/pipework
