@@ -16,6 +16,9 @@ RUN	apt-get update && \
 		graphviz \
 		inkscape \
 		mscgen \
+		python3-nwdiag \
+		rsync \
+		ssh \
 		wget \
 		xsltproc && \
 	apt-get clean
