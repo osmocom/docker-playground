@@ -29,8 +29,9 @@ RUN	wget --quiet https://github.com/xpack-dev-tools/riscv-none-embed-gcc-xpack/r
 RUN	tar -C /opt -xf /xpack-riscv-none-embed-gcc-${RISCV_TOOLCHAIN_VER}-linux-x64.tar.gz && \
 	rm xpack-riscv-none-embed-gcc-${RISCV_TOOLCHAIN_VER}-linux-x64.tar.gz
 
-RUN	useradd -m osmocom
-USER	osmocom
-WORKDIR	/home/osmocom
+# match the outside user
+RUN	useradd --uid=1000 build
+RUN	mkdir /build
+RUN	chown build:build /build
 
 ENV	PATH=/opt/fpga-toolchain/bin:/opt/xpack-riscv-none-embed-gcc-${RISCV_TOOLCHAIN_VER}/bin:${PATH}
