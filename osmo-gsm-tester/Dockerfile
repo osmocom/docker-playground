@@ -135,6 +135,14 @@ RUN	cd osmo-gsm-tester && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_GSM_TESTER_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD
 
+# Install osmo-ci.git/scripts to /usr/local/bin
+ADD http://git.osmocom.org/osmo-ci/patch /tmp/osmo-ci-commit
+RUN git clone https://git.osmocom.org/osmo-ci osmo-ci && \
+	cp -v $(find osmo-ci/scripts \
+		-maxdepth 1 \
+		-type f ) \
+	/usr/local/bin
+
 # Copy several scripts and permission for osmo-gsm-tester:
 RUN     mkdir -p /usr/local/bin/ && cp osmo-gsm-tester/utils/bin/* /usr/local/bin/
 RUN     mkdir -p /etc/sudoers.d/ && cp osmo-gsm-tester/utils/sudoers.d/* /etc/sudoers.d/

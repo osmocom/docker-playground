@@ -148,6 +148,14 @@ RUN git clone https://git.osmocom.org/python/osmo-python-tests osmo-python-tests
 	cd osmo-python-tests3 && \
 	python3 setup.py clean build install
 
+# Install osmo-ci.git/scripts to /usr/local/bin
+ADD http://git.osmocom.org/osmo-ci/patch /tmp/osmo-ci-commit
+RUN git clone https://git.osmocom.org/osmo-ci osmo-ci && \
+	cp -v $(find osmo-ci/scripts \
+		-maxdepth 1 \
+		-type f ) \
+	/usr/local/bin
+
 # Set a UTF-8 locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     dpkg-reconfigure --frontend=noninteractive locales && \
