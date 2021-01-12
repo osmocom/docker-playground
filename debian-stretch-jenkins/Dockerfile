@@ -156,6 +156,10 @@ RUN git clone https://git.osmocom.org/osmo-ci osmo-ci && \
 		-type f ) \
 	/usr/local/bin
 
+# Install osmo-gsm-manuals to /opt/osmo-gsm-manuals
+ADD http://git.osmocom.org/osmo-gsm-manuals/patch /tmp/osmo-gsm-manuals-commit
+RUN git -C /opt clone https://git.osmocom.org/osmo-gsm-manuals
+
 # Set a UTF-8 locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     dpkg-reconfigure --frontend=noninteractive locales && \
