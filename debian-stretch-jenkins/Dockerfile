@@ -154,7 +154,7 @@ RUN git clone https://git.osmocom.org/osmo-ci osmo-ci && \
 	cp -v $(find osmo-ci/scripts \
 		-maxdepth 1 \
 		-type f ) \
-	/usr/local/bin
+	   /usr/local/bin
 
 # Install osmo-gsm-manuals to /opt/osmo-gsm-manuals
 ADD http://git.osmocom.org/osmo-gsm-manuals/patch /tmp/osmo-gsm-manuals-commit

@@ -141,7 +141,7 @@ RUN git clone https://git.osmocom.org/osmo-ci osmo-ci && \
 	cp -v $(find osmo-ci/scripts \
 		-maxdepth 1 \
 		-type f ) \
-	/usr/local/bin
+	   /usr/local/bin
 
 # Copy several scripts and permission for osmo-gsm-tester:
 RUN     mkdir -p /usr/local/bin/ && cp osmo-gsm-tester/utils/bin/* /usr/local/bin/
