@@ -41,3 +41,11 @@ RUN	chown build:build /build
 RUN	echo "PATH=/opt/fpga-toolchain/bin:/opt/xpack-riscv-none-embed-gcc-${RISCV_TOOLCHAIN_VER}/bin:\$PATH" >> /etc/environment
 
 ENV	PATH=/opt/fpga-toolchain/bin:/opt/xpack-riscv-none-embed-gcc-${RISCV_TOOLCHAIN_VER}/bin:${PATH}
+
+# Install osmo-ci.git/scripts to /usr/local/bin
+ADD	http://git.osmocom.org/osmo-ci/patch /tmp/osmo-ci-commit
+RUN	git clone https://git.osmocom.org/osmo-ci osmo-ci && \
+	cp -v $(find osmo-ci/scripts \
+		-maxdepth 1 \
+		-type f ) \
+	   /usr/local/bin
