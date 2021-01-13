@@ -37,9 +37,6 @@ RUN	useradd --uid=1000 build
 RUN	mkdir /build
 RUN	chown build:build /build
 
-# ENV doesn't worrk for other users
-RUN	echo "PATH=/opt/fpga-toolchain/bin:/opt/xpack-riscv-none-embed-gcc-${RISCV_TOOLCHAIN_VER}/bin:\$PATH" >> /etc/environment
-
 ENV	PATH=/opt/fpga-toolchain/bin:/opt/xpack-riscv-none-embed-gcc-${RISCV_TOOLCHAIN_VER}/bin:${PATH}
 
 # Install osmo-ci.git/scripts to /usr/local/bin
