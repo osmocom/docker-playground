@@ -22,6 +22,7 @@ docker_upstream_distro_from_image_name() {
 	case "$1" in
 	osmo-*-centos8) echo "centos:centos8"; ;;
 	centos8-*) echo "centos:centos8" ;;
+	debian10-*) echo "debian:buster" ;;
 	*) echo "debian:stretch" ;;
 	esac
 }
