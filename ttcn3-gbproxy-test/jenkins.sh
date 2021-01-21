@@ -15,8 +15,8 @@ chmod a+w $VOL_BASE_DIR/gbproxy-tester
 
 cp GBProxy_Tests.cfg $VOL_BASE_DIR/gbproxy-tester/
 
-mkdir $VOL_BASE_DIR/sgsn
-cp osmo-gbproxy.cfg $VOL_BASE_DIR/sgsn/
+mkdir $VOL_BASE_DIR/gbproxy
+cp osmo-gbproxy.cfg $VOL_BASE_DIR/gbproxy/
 
 # Disable features not in latest yet
 if [ "$IMAGE_SUFFIX" = "latest" ]; then
@@ -25,17 +25,17 @@ fi
 
 mkdir $VOL_BASE_DIR/unix
 
-echo Starting container with SGSN
+echo Starting container with gbproxy
 docker run	--rm \
 		$(docker_network_params $SUBNET 10) \
 		--ulimit core=-1 \
-		-v $VOL_BASE_DIR/sgsn:/data \
-		--name ${BUILD_TAG}-sgsn -d \
+		-v $VOL_BASE_DIR/gbproxy:/data \
+		--name ${BUILD_TAG}-gbproxy -d \
 		$DOCKER_ARGS \
 		$REPO_USER/osmo-sgsn-$IMAGE_SUFFIX \
 		/bin/sh -c "osmo-gbproxy -c /data/osmo-gbproxy.cfg >/data/osmo-gbproxy.log 2>&1"
 
-echo Starting container with SGSN testsuite
+echo Starting container with gbproxy testsuite
 docker run	--rm \
 		$(docker_network_params $SUBNET 103) \
 		--ulimit core=-1 \
@@ -57,7 +57,7 @@ docker run	--rm \
 		$REPO_USER/ttcn3-gbproxy-test
 
 echo Stopping containers
-docker container kill ${BUILD_TAG}-sgsn
+docker container kill ${BUILD_TAG}-gbproxy
 
 network_remove
 collect_logs
