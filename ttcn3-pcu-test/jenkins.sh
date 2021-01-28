@@ -33,6 +33,9 @@ if [ "$IMAGE_SUFFIX" = "latest" ]; then
 	sed -i "s/^StatsD_Checker.mp_enable_stats.*/StatsD_Checker.mp_enable_stats := false;/" $VOL_BASE_DIR/pcu-tester/PCU_Tests.cfg
 	sed -i "s/stats interval 0//" $VOL_BASE_DIR/pcu/osmo-pcu.cfg
 	sed -i "s/flush-period 1//" $VOL_BASE_DIR/pcu/osmo-pcu.cfg
+
+	# neighbor resolution only available in osmo-pcu > 0.8.0
+	sed "/neighbor resolution/d" -i $VOL_BASE_DIR/pcu/osmo-pcu.cfg
 fi
 
 echo Starting container with PCU
