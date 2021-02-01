@@ -39,6 +39,7 @@ RUN	case "$DISTRO" in \
 			"pkgconfig(libosmogb)" \
 			"pkgconfig(libosmogsm)" \
 			"pkgconfig(libosmovty)" \
+			"pkgconfig(libosmoctrl)" \
 		;; \
 	esac
 
