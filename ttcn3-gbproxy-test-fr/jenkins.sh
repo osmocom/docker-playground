@@ -16,7 +16,6 @@
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
-	"osmo-sgsn-$IMAGE_SUFFIX" \
 	"osmo-gbproxy-$IMAGE_SUFFIX" \
 	"ttcn3-gbproxy-test"
 

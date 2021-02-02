@@ -3,7 +3,7 @@
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
-	"osmo-sgsn-$IMAGE_SUFFIX" \
+	"osmo-gbproxy-$IMAGE_SUFFIX" \
 	"ttcn3-gbproxy-test"
 
 SUBNET=24
@@ -32,7 +32,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/gbproxy:/data \
 		--name ${BUILD_TAG}-gbproxy -d \
 		$DOCKER_ARGS \
-		$REPO_USER/osmo-sgsn-$IMAGE_SUFFIX \
+		$REPO_USER/osmo-gbproxy-$IMAGE_SUFFIX \
 		/bin/sh -c "osmo-gbproxy -c /data/osmo-gbproxy.cfg >/data/osmo-gbproxy.log 2>&1"
 
 echo Starting container with gbproxy testsuite
