@@ -29,6 +29,7 @@ RUN	case "$DISTRO" in \
 		apt-get update && \
 		apt-get install -y --no-install-recommends \
 			telnet \
+			libgtpnl-dev \
 			libosmocore-dev && \
 		apt-get clean \
 		;; \
@@ -54,7 +55,7 @@ RUN	cd osmo-ggsn && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_GGSN_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
-	./configure && \
+	./configure --enable-gtp-linux && \
 	make "-j$(nproc)" install && \
 	ldconfig
 
