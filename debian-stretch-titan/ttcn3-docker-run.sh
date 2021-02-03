@@ -14,7 +14,20 @@ SUBDIR=$1
 SUITE=$2
 
 if [ -n "$WAIT_FOR_NETDEV" ]; then
+	echo "Waiting for ${WAIT_FOR_NETDEV} to appear"
 	pipework --wait -i "$WAIT_FOR_NETDEV"
+
+	while true; do
+		if [ ! -f /sys/class/net/${WAIT_FOR_NETDEV}/operstate ]; then
+			exit 23
+		fi
+		OPSTATE=$(cat /sys/class/net/${WAIT_FOR_NETDEV}/operstate)
+		if [ "$OPSTATE" = "up" ]; then
+			break
+		fi
+		echo "Waiting for ${WAIT_FOR_NETDEV} to become operational"
+		sleep 1
+	done
 fi
 
 cd /data
