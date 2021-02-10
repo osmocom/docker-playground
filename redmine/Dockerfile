@@ -11,3 +11,6 @@ RUN	apt-get update && \
 # no longer needed after ruby-openid-2.9.2 is used
 #ADD	hmac.diff /tmp/hmac.diff
 #RUN	cd / && patch -p0 < /tmp/hmac.diff
+
+ADD	commitlog-references-oshash.diff /tmp/commitlog-references-oshash.diff
+RUN	cd /usr/src/redmine && patch -p1 < /tmp/commitlog-references-oshash.diff
