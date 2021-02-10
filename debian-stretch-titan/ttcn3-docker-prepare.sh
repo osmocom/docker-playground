@@ -25,4 +25,11 @@ fi
 git rev-parse --abbrev-ref HEAD
 git rev-parse HEAD
 
+# Update deps if Makefile changed since last 'make deps' (e.g. because
+# OSMO_TTCN3_BRANCH is different). The Dockerfile does the initial 'make deps'
+# and downloads /tmp/deps-Makefile.
+if ! diff -q /tmp/deps-Makefile deps/Makefile; then
+	make deps
+fi
+
 make "$PROJECT"
