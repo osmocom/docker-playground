@@ -13,6 +13,10 @@ set -x
 SUBDIR=$1
 SUITE=$2
 
+if [ -n "$WAIT_FOR_NETDEV" ]; then
+	pipework --wait -i "$WAIT_FOR_NETDEV"
+fi
+
 cd /data
 
 /osmo-ttcn3-hacks/start-testsuite.sh "/osmo-ttcn3-hacks/$SUBDIR/$SUITE"

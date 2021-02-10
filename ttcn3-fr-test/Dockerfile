@@ -9,7 +9,5 @@ VOLUME	/data
 
 COPY	FR_Tests.cfg /data/FR_Tests.cfg
 COPY	FRNET_Tests.cfg /data/FRNET_Tests.cfg
-COPY	pipework /usr/bin/pipework
-COPY	docker-entrypoint.sh /docker-entrypoint.sh
 
-ENTRYPOINT	["/docker-entrypoint.sh"]
+ENTRYPOINT	["ttcn3-docker-run"]

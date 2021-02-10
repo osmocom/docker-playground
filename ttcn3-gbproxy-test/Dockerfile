@@ -8,7 +8,5 @@ RUN	ttcn3-docker-prepare "$OSMO_TTCN3_BRANCH" gbproxy
 VOLUME	/data
 
 COPY	GBProxy_Tests.cfg /data/GBProxy_Tests.cfg
-COPY	pipework /usr/bin/pipework
-COPY	docker-entrypoint.sh /docker-entrypoint.sh
 
-ENTRYPOINT	["/docker-entrypoint.sh"]
+ENTRYPOINT	["ttcn3-docker-run", "gbproxy", "GBProxy_Tests"]
