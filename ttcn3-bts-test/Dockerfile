@@ -7,9 +7,6 @@ RUN	ttcn3-docker-prepare "$OSMO_TTCN3_BRANCH" bts
 
 VOLUME	/data
 
-RUN	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-start.sh / && \
-	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-stop.sh /
-
 COPY	BTS_Tests.cfg /data/BTS_Tests.cfg
 
 CMD	cd /data && \

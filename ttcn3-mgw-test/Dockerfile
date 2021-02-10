@@ -7,9 +7,6 @@ RUN	ttcn3-docker-prepare "$OSMO_TTCN3_BRANCH" mgw
 
 VOLUME	/data
 
-RUN	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-start.sh / && \
-	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-stop.sh /
-
 COPY	MGCP_Test.cfg /data/MGCP_Test.cfg
 
 CMD	cd /data && \

@@ -7,9 +7,6 @@ RUN	ttcn3-docker-prepare "$OSMO_TTCN3_BRANCH" pcu
 
 VOLUME	/data
 
-RUN	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-start.sh / && \
-	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-stop.sh /
-
 COPY	PCU_Tests.cfg /data/PCU_Tests.cfg
 
 CMD	cd /data && \

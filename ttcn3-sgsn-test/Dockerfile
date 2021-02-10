@@ -7,9 +7,6 @@ RUN	ttcn3-docker-prepare "$OSMO_TTCN3_BRANCH" sgsn
 
 VOLUME	/data
 
-RUN	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-start.sh / && \
-	ln -s /osmo-ttcn3-hacks/ttcn3-tcpdump-stop.sh /
-
 COPY	SGSN_Tests.cfg /data/SGSN_Tests.cfg
 
 CMD	cd /data && \

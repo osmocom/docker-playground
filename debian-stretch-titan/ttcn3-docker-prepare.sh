@@ -32,4 +32,9 @@ if ! diff -q /tmp/deps-Makefile deps/Makefile; then
 	make deps
 fi
 
+# Link start/stop scripts to /
+for i in ttcn3-*-start.sh ttcn3-*-stop.sh; do
+	ln -sv "/osmo-ttcn3-hacks/$i" "/$i"
+done
+
 make "$PROJECT"
