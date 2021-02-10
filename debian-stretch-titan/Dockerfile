@@ -61,3 +61,5 @@ RUN	if ! diff -q /tmp/deps-Makefile /osmo-ttcn3-hacks/deps/Makefile; then \
 		git pull && \
 		make deps; \
 	fi
+
+ADD	ttcn3-docker-prepare.sh /usr/local/bin/ttcn3-docker-prepare
