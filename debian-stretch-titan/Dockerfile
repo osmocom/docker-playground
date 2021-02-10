@@ -48,3 +48,10 @@ RUN	DPKG_ARCH="$(dpkg --print-architecture)" && export $DPKG_ARCH && \
 	dpkg -i ./libfftranscode0_0.3_${DPKG_ARCH}.deb ./libfftranscode-dev_0.3_${DPKG_ARCH}.deb && \
 	apt install --fix-broken && \
 	rm libfftranscode*.deb
+
+RUN	git config --global user.email docker@dock.er && \
+	git config --global user.name "Dock Er"
+
+# clone osmo-ttcn3-hacks and deps
+RUN	git clone git://git.osmocom.org/osmo-ttcn3-hacks.git && \
+	make -C /osmo-ttcn3-hacks deps

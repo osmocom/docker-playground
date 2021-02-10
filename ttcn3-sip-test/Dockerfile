@@ -1,15 +1,5 @@
 ARG	USER
 FROM	$USER/debian-stretch-titan
-
-RUN	git clone git://git.osmocom.org/osmo-ttcn3-hacks.git
-
-RUN	cd osmo-ttcn3-hacks && \
-	git checkout -f -B master origin/master && \
-	make deps
-
-RUN	git config --global user.email docker@dock.er && \
-	git config --global user.name "Dock Er"
-
 ARG	OSMO_TTCN3_BRANCH="master"
 
 ADD	http://git.osmocom.org/osmo-ttcn3-hacks/patch?h=$OSMO_TTCN3_BRANCH /tmp/commit
