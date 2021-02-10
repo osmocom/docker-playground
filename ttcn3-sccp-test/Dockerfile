@@ -9,8 +9,4 @@ VOLUME	/data
 
 COPY	SCCP_Tests.cfg /data/SCCP_Tests.cfg
 
-CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/sccp/SCCP_Tests; \
-	exit_code=$?; \
-	/osmo-ttcn3-hacks/log_merge.sh SCCP_Tests --rm; \
-	exit $exit_code
+CMD	ttcn3-docker-run sccp SCCP_Tests

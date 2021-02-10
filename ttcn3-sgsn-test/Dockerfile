@@ -9,8 +9,4 @@ VOLUME	/data
 
 COPY	SGSN_Tests.cfg /data/SGSN_Tests.cfg
 
-CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/sgsn/SGSN_Tests; \
-	exit_code=$?; \
-	/osmo-ttcn3-hacks/log_merge.sh SGSN_Tests --rm; \
-	exit $exit_code
+CMD	ttcn3-docker-run sgsn SGSN_Tests

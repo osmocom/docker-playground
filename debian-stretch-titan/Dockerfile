@@ -63,3 +63,4 @@ RUN	if ! diff -q /tmp/deps-Makefile /osmo-ttcn3-hacks/deps/Makefile; then \
 	fi
 
 ADD	ttcn3-docker-prepare.sh /usr/local/bin/ttcn3-docker-prepare
+ADD	ttcn3-docker-run.sh /usr/local/bin/ttcn3-docker-run

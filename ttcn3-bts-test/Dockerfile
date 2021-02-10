@@ -9,8 +9,4 @@ VOLUME	/data
 
 COPY	BTS_Tests.cfg /data/BTS_Tests.cfg
 
-CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/bts/BTS_Tests; \
-	exit_code=$?; \
-	/osmo-ttcn3-hacks/log_merge.sh BTS_Tests --rm; \
-	exit $exit_code
+CMD	ttcn3-docker-run bts BTS_Tests

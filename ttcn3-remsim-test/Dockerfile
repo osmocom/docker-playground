@@ -9,8 +9,4 @@ VOLUME	/data
 
 COPY	REMSIM_Tests.cfg /data/REMSIM_Tests.cfg
 
-CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/remsim/REMSIM_Tests; \
-	exit_code=$?; \
-	/osmo-ttcn3-hacks/log_merge.sh REMSIM_Tests --rm; \
-	exit $exit_code
+CMD	ttcn3-docker-run remsim REMSIM_Tests

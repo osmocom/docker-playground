@@ -9,8 +9,4 @@ VOLUME	/data
 
 COPY	STP_Tests.cfg /data/STP_Tests.cfg
 
-CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/stp/STP_Tests; \
-	exit_code=$?; \
-	/osmo-ttcn3-hacks/log_merge.sh STP_Tests --rm; \
-	exit $exit_code
+CMD	ttcn3-docker-run stp STP_Tests

@@ -9,8 +9,4 @@ VOLUME	/data
 
 COPY	BSC_Tests.cfg /data/BSC_Tests.cfg
 
-CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/bsc/BSC_Tests; \
-	exit_code=$?; \
-	/osmo-ttcn3-hacks/log_merge.sh BSC_Tests --rm; \
-	exit $exit_code
+CMD	ttcn3-docker-run bsc BSC_Tests

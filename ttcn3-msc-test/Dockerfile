@@ -9,8 +9,4 @@ VOLUME	/data
 
 COPY	MSC_Tests.cfg /data/MSC_Tests.cfg
 
-CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/msc/MSC_Tests; \
-	exit_code=$?; \
-	/osmo-ttcn3-hacks/log_merge.sh MSC_Tests --rm; \
-	exit $exit_code
+CMD	ttcn3-docker-run msc MSC_Tests

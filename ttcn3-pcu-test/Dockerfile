@@ -9,8 +9,4 @@ VOLUME	/data
 
 COPY	PCU_Tests.cfg /data/PCU_Tests.cfg
 
-CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/pcu/PCU_Tests; \
-	exit_code=$?; \
-	/osmo-ttcn3-hacks/log_merge.sh PCU_Tests --rm; \
-	exit $exit_code
+CMD	ttcn3-docker-run pcu PCU_Tests

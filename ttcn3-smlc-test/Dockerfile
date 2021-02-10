@@ -9,8 +9,4 @@ VOLUME	/data
 
 COPY	SMLC_Tests.cfg /data/SMLC_Tests.cfg
 
-CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/smlc/SMLC_Tests; \
-	exit_code=$?; \
-	/osmo-ttcn3-hacks/log_merge.sh SMLC_Tests --rm; \
-	exit $exit_code
+CMD	ttcn3-docker-run smlc SMLC_Tests

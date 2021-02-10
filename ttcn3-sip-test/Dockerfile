@@ -9,8 +9,4 @@ VOLUME	/data
 
 COPY	SIP_Tests.cfg /data/SIP_Tests.cfg
 
-CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/sip/SIP_Tests; \
-	exit_code=$?; \
-	/osmo-ttcn3-hacks/log_merge.sh SIP_Tests --rm; \
-	exit $exit_code
+CMD	ttcn3-docker-run sip SIP_Tests

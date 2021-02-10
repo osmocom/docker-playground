@@ -9,8 +9,4 @@ VOLUME	/data
 
 COPY	BSCNAT_Tests.cfg /data/BSCNAT_Tests.cfg
 
-CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/bsc-nat/BSCNAT_Tests; \
-	exit_code=$?; \
-	/osmo-ttcn3-hacks/log_merge.sh BSCNAT_Tests --rm; \
-	exit $exit_code
+CMD	ttcn3-docker-run bsc-nat BSCNAT_Tests

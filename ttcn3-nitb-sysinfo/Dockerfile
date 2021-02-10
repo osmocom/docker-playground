@@ -9,8 +9,4 @@ VOLUME	/data
 
 COPY	Test.cfg /data/Test.cfg
 
-CMD	cd /data && \
-	/osmo-ttcn3-hacks/start-testsuite.sh /osmo-ttcn3-hacks/sysinfo/Test; \
-	exit_code=$?; \
-	/osmo-ttcn3-hacks/log_merge.sh Test --rm; \
-	exit $exit_code
+CMD	ttcn3-docker-run sysinfo Test
