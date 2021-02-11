@@ -28,18 +28,8 @@ RUN	case "$DISTRO" in \
 	debian*) \
 		apt-get update && \
 		apt-get install -y --no-install-recommends \
-			libasn1c-dev \
-			libdbd-sqlite3 \
-			libdbi-dev \
-			libosmo-abis-dev \
-			libosmo-mgcp-client-dev \
-			libosmo-netif-dev \
-			libosmo-ranap-dev \
-			libosmo-sccp-dev \
-			libosmo-sigtran-dev \
 			libosmocore-dev \
-			libsmpp34-dev \
-			telnet && \
+			libsofia-sip-ua-glib-dev && \
 		apt-get clean \
 		;; \
 	centos*) \
