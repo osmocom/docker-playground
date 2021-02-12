@@ -56,17 +56,6 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/sgsn-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-sgsn-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-sgsn-test $@
-
-echo Starting container to merge logs
-docker run	--rm \
-		$(docker_network_params $SUBNET 103) \
-		--ulimit core=-1 \
-		-e "TTCN3_PCAP_PATH=/data" \
-		-v $VOL_BASE_DIR/sgsn-tester:/data \
-		--name ${BUILD_TAG}-ttcn3-sgsn-test-logmerge \
-		--entrypoint /osmo-ttcn3-hacks/log_merge.sh SGSN_Tests --rm \
-		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-sgsn-test
 
 echo Stopping containers
