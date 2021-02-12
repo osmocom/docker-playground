@@ -69,7 +69,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-ttcn3-msc-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-msc-test
+		$REPO_USER/ttcn3-msc-test "$@"
 
 echo Stopping containers
 docker container kill ${BUILD_TAG}-msc

@@ -10,4 +10,4 @@ VOLUME	/data
 
 COPY	MGCP_Test.cfg /data/MGCP_Test.cfg
 
-CMD	ttcn3-docker-run mgw MGCP_Test
+ENTRYPOINT	["ttcn3-docker-run", "mgw", "MGCP_Test"]

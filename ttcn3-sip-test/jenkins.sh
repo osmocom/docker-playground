@@ -45,7 +45,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-ttcn3-sip-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-sip-test
+		$REPO_USER/ttcn3-sip-test "$@"
 
 echo Stopping containers
 docker container kill ${BUILD_TAG}-sip-connector

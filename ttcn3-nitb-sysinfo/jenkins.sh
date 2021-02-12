@@ -34,7 +34,7 @@ docker run	--rm \
 		--ulimit core=-1 \
 		-v ttcn3-nitb-sysinfo-vol:/data \
 		--name ${BUILD_TAG}-ttcn3-nitb-sysinfo \
-		$REPO_USER/ttcn3-nitb-sysinfo
+		$REPO_USER/ttcn3-nitb-sysinfo "$@"
 
 # stop bts + nitb after test has completed
 docker container stop ${BUILD_TAG}-bts

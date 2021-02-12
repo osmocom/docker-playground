@@ -35,7 +35,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/bscnat-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-bscnat-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-bscnat-test
+		$REPO_USER/ttcn3-bscnat-test "$@"
 
 echo Stopping containers
 docker container kill ${BUILD_TAG}-bscnat

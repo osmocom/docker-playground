@@ -91,6 +91,7 @@ start_virtphy() {
 start_testsuite() {
 	echo Starting container with BTS testsuite
 	variant=$1 # e.g 'generic', 'oml', 'hopping'
+	shift
 	docker run	--rm \
 			$(docker_network_params $SUBNET 10) \
 			--ulimit core=-1 \
@@ -99,7 +100,7 @@ start_testsuite() {
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			--name ${BUILD_TAG}-ttcn3-bts-test \
 			$DOCKER_ARGS \
-			$REPO_USER/ttcn3-bts-test
+			$REPO_USER/ttcn3-bts-test "$@"
 }
 
 SUBNET=9
@@ -145,7 +146,7 @@ start_bsc
 start_bts trx 1
 start_fake_trx
 start_trxcon
-start_testsuite generic
+start_testsuite generic "$@"
 
 # 2) some GPRS tests require virt_phy
 echo "Changing to virtphy configuration"
@@ -157,7 +158,7 @@ cp virtphy/osmo-bts.cfg $VOL_BASE_DIR/bts/
 start_bts virtual 0
 start_virtphy
 # ... and execute the testsuite again with different cfg
-#start_testsuite virtphy
+#start_testsuite virtphy "$@"
 
 # 3) OML tests require us to run without BSC
 docker container kill ${BUILD_TAG}-bsc
@@ -170,7 +171,7 @@ start_bts trx 1
 start_fake_trx
 start_trxcon
 # ... and execute the testsuite again with different cfg
-start_testsuite oml
+start_testsuite oml "$@"
 
 # 4) Frequency hopping tests require different configuration files
 cp fh/osmo-bsc.cfg $VOL_BASE_DIR/bsc/
@@ -179,7 +180,7 @@ cp osmo-bts.cfg $VOL_BASE_DIR/bts/
 docker container kill ${BUILD_TAG}-bts
 start_bsc
 start_bts trx 1
-start_testsuite hopping
+start_testsuite hopping "$@"
 # append ':hopping' to the classnames,
 # e.g. "classname='BTS_Tests'" => "classname='BTS_Tests:hopping'"
 # e.g. "classname='BTS_Tests_SMSCB'" => "classname='BTS_Tests_SMSCB:hopping'"

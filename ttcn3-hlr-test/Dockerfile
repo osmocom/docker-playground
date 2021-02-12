@@ -10,4 +10,4 @@ VOLUME	/data
 
 COPY	HLR_Tests.cfg /data/HLR_Tests.cfg
 
-CMD	ttcn3-docker-run hlr HLR_Tests
+ENTRYPOINT	["ttcn3-docker-run", "hlr", "HLR_Tests"]

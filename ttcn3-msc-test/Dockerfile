@@ -10,4 +10,4 @@ VOLUME	/data
 
 COPY	MSC_Tests.cfg /data/MSC_Tests.cfg
 
-CMD	ttcn3-docker-run msc MSC_Tests
+ENTRYPOINT	["ttcn3-docker-run", "msc", "MSC_Tests"]

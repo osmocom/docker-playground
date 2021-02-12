@@ -10,4 +10,4 @@ VOLUME	/data
 
 COPY	REMSIM_Tests.cfg /data/REMSIM_Tests.cfg
 
-CMD	ttcn3-docker-run remsim REMSIM_Tests
+ENTRYPOINT	["ttcn3-docker-run", "remsim", "REMSIM_Tests"]

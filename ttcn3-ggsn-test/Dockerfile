@@ -10,4 +10,4 @@ VOLUME	/data
 
 COPY	GGSN_Tests.cfg /data/GGSN_Tests.cfg
 
-CMD	ttcn3-docker-run ggsn_tests GGSN_Tests
+ENTRYPOINT	["ttcn3-docker-run", "ggsn_tests", "GGSN_Tests"]

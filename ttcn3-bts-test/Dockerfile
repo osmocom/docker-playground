@@ -10,4 +10,4 @@ VOLUME	/data
 
 COPY	BTS_Tests.cfg /data/BTS_Tests.cfg
 
-CMD	ttcn3-docker-run bts BTS_Tests
+ENTRYPOINT	["ttcn3-docker-run", "bts", "BTS_Tests"]

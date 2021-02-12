@@ -10,4 +10,4 @@ VOLUME	/data
 
 COPY	SIP_Tests.cfg /data/SIP_Tests.cfg
 
-CMD	ttcn3-docker-run sip SIP_Tests
+ENTRYPOINT	["ttcn3-docker-run", "sip", "SIP_Tests"]

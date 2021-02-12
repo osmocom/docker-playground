@@ -41,7 +41,7 @@ docker run	--rm \
 		-e "TTCN3_PCAP_PATH=/data" \
 		--name ${BUILD_TAG}-ttcn3-mgw-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-mgw-test
+		$REPO_USER/ttcn3-mgw-test "$@"
 
 # stop mgw after test has completed
 docker container stop ${BUILD_TAG}-mgw

@@ -52,7 +52,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/fr-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-fr-test -d \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-fr-test fr FR_Tests
+		$REPO_USER/ttcn3-fr-test fr FR_Tests "$@"
 
 # move all hdlcnetX net-devices into container
 for i in `seq 1 8`; do

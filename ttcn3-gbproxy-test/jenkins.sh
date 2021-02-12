@@ -43,7 +43,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/gbproxy-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-gbproxy-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-gbproxy-test $@
+		$REPO_USER/ttcn3-gbproxy-test "$@"
 
 echo Stopping containers
 docker container kill ${BUILD_TAG}-gbproxy

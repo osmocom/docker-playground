@@ -10,4 +10,4 @@ VOLUME	/data
 
 COPY	STP_Tests.cfg /data/STP_Tests.cfg
 
-CMD	ttcn3-docker-run stp STP_Tests
+ENTRYPOINT	["ttcn3-docker-run", "stp", "STP_Tests"]

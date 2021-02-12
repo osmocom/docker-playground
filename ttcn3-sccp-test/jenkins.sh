@@ -35,7 +35,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/sccp-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-sccp-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-sccp-test
+		$REPO_USER/ttcn3-sccp-test "$@"
 
 docker container kill ${BUILD_TAG}-stp
 

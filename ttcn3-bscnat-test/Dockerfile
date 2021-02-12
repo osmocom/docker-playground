@@ -10,4 +10,4 @@ VOLUME	/data
 
 COPY	BSCNAT_Tests.cfg /data/BSCNAT_Tests.cfg
 
-CMD	ttcn3-docker-run bsc-nat BSCNAT_Tests
+ENTRYPOINT	["ttcn3-docker-run", "bsc-nat", "BSCNAT_Tests"]

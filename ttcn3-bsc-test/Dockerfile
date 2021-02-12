@@ -10,4 +10,4 @@ VOLUME	/data
 
 COPY	BSC_Tests.cfg /data/BSC_Tests.cfg
 
-CMD	ttcn3-docker-run bsc BSC_Tests
+ENTRYPOINT	["ttcn3-docker-run", "bsc", "BSC_Tests"]

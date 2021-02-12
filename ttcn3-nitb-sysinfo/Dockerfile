@@ -10,4 +10,4 @@ VOLUME	/data
 
 COPY	Test.cfg /data/Test.cfg
 
-CMD	ttcn3-docker-run sysinfo Test
+ENTRYPOINT	["ttcn3-docker-run", "sysinfo", "Test"]

@@ -53,7 +53,7 @@ start_testsuite() {
 			-v $VOL_BASE_DIR/remsim-tester:/data \
 			--name ${BUILD_TAG}-ttcn3-remsim-test \
 			$DOCKER_ARGS \
-			$REPO_USER/ttcn3-remsim-test
+			$REPO_USER/ttcn3-remsim-test "$@"
 }
 
 SUBNET=17
@@ -72,21 +72,21 @@ mkdir $VOL_BASE_DIR/client
 # 1) server test suite
 start_server
 cp REMSIM_Tests.cfg $VOL_BASE_DIR/remsim-tester/
-start_testsuite
+start_testsuite "$@"
 docker container kill ${BUILD_TAG}-server
 
 # 2) bankd test suite
 echo "Changing to bankd configuration"
 start_bankd
 cp bankd/REMSIM_Tests.cfg $VOL_BASE_DIR/remsim-tester/
-start_testsuite
+start_testsuite "$@"
 docker container kill ${BUILD_TAG}-bankd
 
 # 3) client test suite
 echo "Changing to client configuration"
 start_client
 cp client/REMSIM_Tests.cfg $VOL_BASE_DIR/remsim-tester/
-start_testsuite
+start_testsuite "$@"
 docker container kill ${BUILD_TAG}-client
 
 network_remove

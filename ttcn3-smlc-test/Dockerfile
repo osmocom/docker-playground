@@ -10,4 +10,4 @@ VOLUME	/data
 
 COPY	SMLC_Tests.cfg /data/SMLC_Tests.cfg
 
-CMD	ttcn3-docker-run smlc SMLC_Tests
+ENTRYPOINT	["ttcn3-docker-run", "smlc", "SMLC_Tests"]

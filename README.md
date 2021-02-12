@@ -14,6 +14,11 @@ $ cd ttcn3-mgw-test
 $ ./jenkins.sh
 ```
 
+Arguments to `jenkins.sh` are passed to the TTCN-3 testsuite executable.
+With the following example, only a single test gets started:
+
+FIXME
+
 Environment variables:
 * `IMAGE_SUFFIX`: the version of the Osmocom stack to run the testsuite
   against. Default is `master`, set this to `latest` to test the last

@@ -85,7 +85,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/bsc-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-bsc-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-bsc-test
+		$REPO_USER/ttcn3-bsc-test "$@"
 
 echo Stopping containers
 for i in `seq 0 2`; do

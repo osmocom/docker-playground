@@ -10,4 +10,4 @@ VOLUME	/data
 
 COPY	PCU_Tests.cfg /data/PCU_Tests.cfg
 
-CMD	ttcn3-docker-run pcu PCU_Tests
+ENTRYPOINT	["ttcn3-docker-run", "pcu" ,"PCU_Tests"]

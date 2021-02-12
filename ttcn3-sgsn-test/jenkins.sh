@@ -56,7 +56,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/sgsn-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-sgsn-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-sgsn-test
+		$REPO_USER/ttcn3-sgsn-test "$@"
 
 echo Stopping containers
 docker container kill ${BUILD_TAG}-sgsn

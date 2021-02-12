@@ -46,7 +46,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/smlc-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-smlc-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-smlc-test
+		$REPO_USER/ttcn3-smlc-test "$@"
 
 echo Stopping containers
 docker container kill ${BUILD_TAG}-smlc

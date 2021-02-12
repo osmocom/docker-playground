@@ -10,4 +10,4 @@ VOLUME	/data
 
 COPY	SCCP_Tests.cfg /data/SCCP_Tests.cfg
 
-CMD	ttcn3-docker-run sccp SCCP_Tests
+ENTRYPOINT	["ttcn3-docker-run", "sccp", "SCCP_Tests"]

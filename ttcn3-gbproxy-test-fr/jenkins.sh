@@ -65,7 +65,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/gbproxy-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-gbproxy-test -d \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-gbproxy-test $@
+		$REPO_USER/ttcn3-gbproxy-test "$@"
 
 # move all hdlcnetX net-devices into container
 for i in `seq 1 8`; do

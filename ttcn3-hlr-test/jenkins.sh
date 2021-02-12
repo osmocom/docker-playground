@@ -39,7 +39,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/hlr-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-hlr-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-hlr-test
+		$REPO_USER/ttcn3-hlr-test "$@"
 
 echo Stopping containers
 docker container kill ${BUILD_TAG}-hlr

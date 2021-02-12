@@ -39,7 +39,7 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/stp-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-stp-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-stp-test
+		$REPO_USER/ttcn3-stp-test "$@"
 
 docker container kill ${BUILD_TAG}-stp
 
