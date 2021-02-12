@@ -78,18 +78,6 @@ done
 # must shift the net-devices into the container _after_ it is started
 docker logs	-f ${BUILD_TAG}-ttcn3-gbproxy-test
 
-
-echo Starting container to merge logs
-docker run	--rm \
-		$(docker_network_params $SUBNET 103) \
-		--ulimit core=-1 \
-		-e "TTCN3_PCAP_PATH=/data" \
-		-v $VOL_BASE_DIR/gbproxy-tester:/data \
-		--name ${BUILD_TAG}-ttcn3-gbproxy-test-logmerge \
-		--entrypoint /osmo-ttcn3-hacks/log_merge.sh GBProxy_Tests --rm \
-		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-gbproxy-test
-
 echo Stopping containers
 docker container kill ${BUILD_TAG}-gbproxy
 
