@@ -9,6 +9,7 @@ docker_images_require \
 	"ttcn3-bsc-test"
 
 set_clean_up_trap
+set -e
 
 mkdir $VOL_BASE_DIR/bsc-tester
 cp BSC_Tests.cfg $VOL_BASE_DIR/bsc-tester/

@@ -10,6 +10,7 @@ docker_images_require \
 	"nplab-sua-test"
 
 set_clean_up_trap
+set -e
 
 mkdir $VOL_BASE_DIR/sua-tester
 cp sua-param-testtool-sgp.scm some-sua-sgp-tests.txt $VOL_BASE_DIR/sua-tester/

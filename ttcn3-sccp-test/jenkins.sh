@@ -8,6 +8,7 @@ docker_images_require \
 	"ttcn3-sccp-test"
 
 set_clean_up_trap
+set -e
 
 mkdir $VOL_BASE_DIR/sccp-tester
 cp SCCP_Tests.cfg $VOL_BASE_DIR/sccp-tester/

@@ -7,6 +7,7 @@ docker_images_require \
 	"ttcn3-pcu-test"
 
 set_clean_up_trap
+set -e
 
 SUBNET=13
 network_create $SUBNET

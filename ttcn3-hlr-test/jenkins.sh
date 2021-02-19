@@ -7,6 +7,7 @@ docker_images_require \
 	"ttcn3-hlr-test"
 
 set_clean_up_trap
+set -e
 
 SUBNET=10
 network_create $SUBNET

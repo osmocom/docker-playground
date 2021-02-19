@@ -3,6 +3,7 @@
 . ../jenkins-common.sh
 
 set_clean_up_trap
+set -e
 
 clean_up() {
 	# start some stupid helper container so we can access the volume

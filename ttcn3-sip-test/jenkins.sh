@@ -7,6 +7,7 @@ docker_images_require \
 	"ttcn3-sip-test"
 
 set_clean_up_trap
+set -e
 
 SUBNET=11
 network_create $SUBNET

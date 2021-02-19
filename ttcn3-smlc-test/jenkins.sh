@@ -8,6 +8,7 @@ docker_images_require \
 	"ttcn3-smlc-test"
 
 set_clean_up_trap
+set -e
 
 mkdir $VOL_BASE_DIR/smlc-tester
 cp SMLC_Tests.cfg $VOL_BASE_DIR/smlc-tester/

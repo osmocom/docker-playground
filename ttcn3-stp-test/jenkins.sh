@@ -7,6 +7,7 @@ docker_images_require \
 	"ttcn3-stp-test"
 
 set_clean_up_trap
+set -e
 
 mkdir $VOL_BASE_DIR/stp-tester
 cp STP_Tests.cfg $VOL_BASE_DIR/stp-tester/

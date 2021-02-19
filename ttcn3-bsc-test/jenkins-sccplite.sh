@@ -8,6 +8,7 @@ docker_images_require \
 	"ttcn3-bsc-test"
 
 set_clean_up_trap
+set -e
 
 #Make sure NET_NAME doesn't clash with the AoIP BSC test
 NET_NAME=ttcn3-bsc_sccplite-test

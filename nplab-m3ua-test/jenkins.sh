@@ -10,6 +10,7 @@ docker_images_require \
 	"nplab-m3ua-test"
 
 set_clean_up_trap
+set -e
 
 mkdir $VOL_BASE_DIR/m3ua-tester
 cp m3ua-param-testtool.scm all-sgp-tests.txt $VOL_BASE_DIR/m3ua-tester/

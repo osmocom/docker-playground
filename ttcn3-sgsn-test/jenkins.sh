@@ -8,6 +8,7 @@ docker_images_require \
 	"ttcn3-sgsn-test"
 
 set_clean_up_trap
+set -e
 
 SUBNET=8
 network_create $SUBNET

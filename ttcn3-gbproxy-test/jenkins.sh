@@ -7,6 +7,7 @@ docker_images_require \
 	"ttcn3-gbproxy-test"
 
 set_clean_up_trap
+set -e
 
 SUBNET=24
 network_create $SUBNET

@@ -7,6 +7,7 @@ docker_images_require \
 	"ttcn3-ggsn-test"
 
 set_clean_up_trap
+set -e
 
 mkdir $VOL_BASE_DIR/ggsn-tester
 cp GGSN_Tests.cfg $VOL_BASE_DIR/ggsn-tester/

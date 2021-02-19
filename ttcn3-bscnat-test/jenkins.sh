@@ -7,6 +7,7 @@ docker_images_require \
 	"ttcn3-bscnat-test"
 
 set_clean_up_trap
+set -e
 
 mkdir $VOL_BASE_DIR/bscnat-tester
 cp BSCNAT_Tests.cfg $VOL_BASE_DIR/bscnat-tester/

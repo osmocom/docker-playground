@@ -7,6 +7,7 @@ docker_images_require \
 	"ttcn3-cbc-test"
 
 set_clean_up_trap
+set -e
 
 mkdir $VOL_BASE_DIR/cbc-tester
 cp CBC_Tests.cfg $VOL_BASE_DIR/cbc-tester/

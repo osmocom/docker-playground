@@ -6,6 +6,7 @@ docker_images_require \
 	"ttcn3-fr-test"
 
 set_clean_up_trap
+set -e
 
 SUBNET=26
 network_create $SUBNET

@@ -10,6 +10,7 @@ docker_images_require \
 	"ttcn3-bts-test"
 
 set_clean_up_trap
+set -e
 
 clean_up() {
 	# append ':hopping' to the classnames,

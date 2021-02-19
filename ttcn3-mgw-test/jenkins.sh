@@ -7,6 +7,7 @@ docker_images_require \
 	"ttcn3-mgw-test"
 
 set_clean_up_trap
+set -e
 
 mkdir $VOL_BASE_DIR/mgw-tester
 cp MGCP_Test.cfg $VOL_BASE_DIR/mgw-tester/

@@ -59,6 +59,7 @@ docker_images_require \
 	"osmo-gsm-tester"
 
 set_clean_up_trap
+set -e
 
 SUBNET=50
 network_create $SUBNET
