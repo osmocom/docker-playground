@@ -24,13 +24,23 @@ RUN	case "$DISTRO" in \
 # unfortunately Dockerfiles don't support a conditional ARG, so we need to add both DPKG + RPM
 ADD	$OSMOCOM_REPO/Release /tmp/Release
 ADD	$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/CentOS_8/repodata/repomd.xml /tmp/repomd.xml
+# Disable update-initramfs to save time during apt-get install
 RUN	case "$DISTRO" in \
 	debian*) \
+		ln -s /bin/true /usr/local/bin/update-initramfs && \
 		apt-get update && \
 		apt-get install -y --no-install-recommends \
-			telnet \
+			bc \
+			bridge-utils \
+			busybox-static \
+			ca-certificates \
+			libelf-dev \
 			libgtpnl-dev \
-			libosmocore-dev && \
+			libosmocore-dev \
+			linux-image-amd64 \
+			pax-utils \
+			qemu-system-x86 \
+			telnet && \
 		apt-get clean \
 		;; \
 	centos*) \

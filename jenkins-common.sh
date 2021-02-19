@@ -1,3 +1,6 @@
+CACHE_DIR="$(realpath ../_cache)"
+KERNEL_TEST_DIR="$(realpath ../scripts/kernel-test)"
+
 docker_image_exists() {
 	test -n "$(docker images -q "$REPO_USER/$1")"
 }
@@ -150,9 +153,10 @@ fix_perms() {
 	echo Fixing permissions
 	docker run 	--rm \
 			-v $VOL_BASE_DIR:/data \
+			-v $CACHE_DIR:/cache \
 			--name ${BUILD_TAG}-cleaner \
 			$REPO_USER/debian-stretch-build \
-			chmod -R a+rX /data/
+			chmod -R a+rX /data/ /cache/
 }
 
 collect_logs() {
@@ -188,6 +192,47 @@ clean_up_common() {
 # function.
 set_clean_up_trap() {
 	trap clean_up_common EXIT INT TERM 0
+}
+
+# Generate the initrd, and optionally build a kernel, for tests that involve
+# kernel modules. Boot the kernel once in QEMU inside docker to verify that it
+# works. See README.md for description of the KERNEL_* environment variables.
+# $1: kernel config base (e.g. defconfig, tinyconfig, allnoconfig)
+# $2: path to kernel config fragment
+# $3: path to project specific initrd build script, which adds the osmo
+#     program, kernel modules etc. to the initrd (gets sourced by
+#     scripts/kernel-test/initrd-build.sh)
+# $4: docker image name
+# $5-n: (optional) additional arguments to "docker run", like a volume
+#       containing a config file
+kernel_test_prepare() {
+	local kernel_config_base="$1"
+	local kernel_config_fragment="$2"
+	local initrd_project_script="$3"
+	local docker_image="$4"
+	shift 4
+
+	mkdir -p "$CACHE_DIR/kernel-test"
+
+	cp "$kernel_config_fragment" \
+		"$CACHE_DIR/kernel-test/fragment.config"
+	cp "$initrd_project_script" \
+		"$CACHE_DIR/kernel-test/initrd-project-script.sh"
+
+	docker run \
+		--cap-add=NET_ADMIN \
+		--device /dev/kvm:/dev/kvm \
+		--device /dev/net/tun:/dev/net/tun \
+		-v "$CACHE_DIR:/cache" \
+		-v "$KERNEL_TEST_DIR:/kernel-test:ro" \
+		-e "KERNEL_BRANCH=$KERNEL_BRANCH" \
+		-e "KERNEL_BUILD=$KERNEL_BUILD" \
+		-e "KERNEL_CONFIG_BASE=$kernel_config_base" \
+		-e "KERNEL_REMOTE_NAME=$KERNEL_REMOTE_NAME" \
+		-e "KERNEL_URL=$KERNEL_URL" \
+		"$@" \
+		"$docker_image" \
+		"/kernel-test/prepare.sh"
 }
 
 set -x

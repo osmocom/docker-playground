@@ -19,10 +19,20 @@ RUN	apt-key add /tmp/Release.key && \
 	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-latest.list
 
 ADD	$OSMOCOM_REPO/Release /tmp/Release
-RUN	apt-get update && \
+# Disable update-initramfs to save time during apt-get install
+RUN	ln -s /bin/true /usr/local/bin/update-initramfs && \
+	apt-get update && \
 	apt-get install -y --no-install-recommends \
-		telnet \
-		osmo-ggsn && \
+		bc \
+		bridge-utils \
+		busybox-static \
+		ca-certificates \
+		libelf-dev \
+		linux-image-amd64 \
+		osmo-ggsn \
+		pax-utils \
+		qemu-system-x86 \
+		telnet && \
 	apt-get clean
 
 WORKDIR	/tmp

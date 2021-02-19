@@ -1,6 +1,14 @@
 #!/bin/sh
+# Environment variables:
+# * KERNEL_TEST: set to 1 to run osmo-ggsn with the kernel module in QEMU
+# * KERNEL_BUILD: set to 1 to build the kernel instead of using a pre-built one
+# * KERNEL_REMOTE_NAME: git remote name (to add multiple repos in the same local linux clone)
+# * KERNEL_URL: git remote url
+# * KERNEL_BRANCH: branch to checkout
 
 . ../jenkins-common.sh
+
+KERNEL_TEST="${KERNEL_TEST:-0}"
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
 	"osmo-ggsn-$IMAGE_SUFFIX" \
@@ -13,23 +21,48 @@ mkdir $VOL_BASE_DIR/ggsn-tester
 cp GGSN_Tests.cfg $VOL_BASE_DIR/ggsn-tester/
 
 mkdir $VOL_BASE_DIR/ggsn
-cp osmo-ggsn.cfg $VOL_BASE_DIR/ggsn/
 
 SUBNET=3
 network_create $SUBNET
 
 # start container with ggsn in background
+GGSN_CMD="osmo-ggsn -c /data/osmo-ggsn.cfg"
+GGSN_DOCKER_ARGS=""
+if [ "$KERNEL_TEST" = "1" ]; then
+	cp osmo-ggsn-kernel-gtp.cfg $VOL_BASE_DIR/ggsn/osmo-ggsn.cfg
+
+	kernel_test_prepare \
+		"defconfig" \
+		"fragment.config" \
+		"initrd-ggsn.sh" \
+		"$REPO_USER/osmo-ggsn-$IMAGE_SUFFIX" \
+		-v $VOL_BASE_DIR/ggsn:/data
+
+	GGSN_CMD="/kernel-test/run-qemu.sh"
+	GGSN_DOCKER_ARGS="
+		$(docker_network_params $SUBNET 200)
+		--device /dev/kvm:/dev/kvm
+		-v "$KERNEL_TEST_DIR:/kernel-test:ro"
+		-v "$CACHE_DIR:/cache"
+		"
+else
+	cp osmo-ggsn.cfg $VOL_BASE_DIR/ggsn/
+
+	GGSN_DOCKER_ARGS="
+		$(docker_network_params $SUBNET 201)
+		"
+fi
 docker run	--cap-add=NET_ADMIN \
 		--device /dev/net/tun:/dev/net/tun \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--rm \
-		$(docker_network_params $SUBNET 201) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/ggsn:/data \
 		--name ${BUILD_TAG}-ggsn -d \
 		$DOCKER_ARGS \
+		$GGSN_DOCKER_ARGS \
 		$REPO_USER/osmo-ggsn-$IMAGE_SUFFIX \
-		/bin/sh -c "osmo-ggsn -c /data/osmo-ggsn.cfg >/data/osmo-ggsn.log 2>&1"
+		/bin/sh -c "$GGSN_CMD >/data/osmo-ggsn.log 2>&1"
 
 # start docker container with testsuite in foreground
 docker run	--rm \

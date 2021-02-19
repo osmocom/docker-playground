@@ -24,6 +24,45 @@ Environment variables:
 * `NO_DOCKER_IMAGE_BUILD`: when set to `1`, it won't try to update the
   containers (see "caching" below)
 
+## Kernel test
+OsmoGGSN can be configured to either run completely in userspace, or to
+use the GTP-U kernel module. To test the kernel module, OsmoGGSN and
+the kernel module will run with a Linux kernel (either the pre-built
+one from Debian, or a custom built one) in QEMU inside docker. As of
+writing, `ttcn3-ggsn-test` is the only testsuite where it makes
+sense to test kernel modules. But the same environment variables could
+be used for other testsuites in the future.
+
+Environment variables:
+* `KERNEL_TEST`: set to 1 to run the SUT in QEMU
+* `KERNEL_BUILD`: set to 1 to build the kernel instead of using the
+  pre-built one
+* `KERNEL_REMOTE_NAME`: git remote name (to add multiple git
+  repositories in the same local linux clone, default: net-next)
+* `KERNEL_URL`: git remote url (default: net-next.git on kernel.org)
+* `KERNEL_BRANCH` branch to checkout (default: master)
+
+### Creating kernel config fragments
+For the kernel tests, we are storing kernel config fragments in the git
+repository instead of full kernel configs. Generate them as follows:
+
+```
+$ cd _cache/linux
+$ cp custom.config .config
+$ make olddefconfig
+$ cp .config custom-updated.config
+$ make defconfig  # config to which to diff
+$ scripts/diffconfig -m .config custom-updated.config > fragment.config
+```
+
+Verify that it was done right:
+```
+$ make defconfig
+$ scripts/kconfig/merge_config.sh -m .config fragment.config
+$ make olddefconfig
+$ diff .config custom-updated.config  # should be the same
+```
+
 ## Building containers manually
 Most folders in this repository contain a `Dockerfile`. Build a docker
 container with the same name as the folder like this:
