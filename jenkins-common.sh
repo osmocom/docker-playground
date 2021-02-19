@@ -156,7 +156,6 @@ fix_perms() {
 }
 
 collect_logs() {
-	fix_perms
 	cat "$VOL_BASE_DIR"/*/junit-*.log || true
 }
 
@@ -180,6 +179,7 @@ clean_up_common() {
 	network_clean
 	network_remove
 	rm -rf "$VOL_BASE_DIR"/unix
+	fix_perms
 	collect_logs
 }
 
