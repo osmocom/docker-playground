@@ -7,6 +7,8 @@ docker_images_require \
 	"osmo-stp-master" \
 	"ttcn3-sccp-test"
 
+set_clean_up_trap
+
 mkdir $VOL_BASE_DIR/sccp-tester
 cp SCCP_Tests.cfg $VOL_BASE_DIR/sccp-tester/
 
@@ -36,8 +38,3 @@ docker run	--rm \
 		--name ${BUILD_TAG}-ttcn3-sccp-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-sccp-test
-
-docker container kill ${BUILD_TAG}-stp
-
-network_remove
-collect_logs

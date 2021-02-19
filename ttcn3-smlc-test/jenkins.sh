@@ -7,6 +7,8 @@ docker_images_require \
 	"osmo-smlc-$IMAGE_SUFFIX" \
 	"ttcn3-smlc-test"
 
+set_clean_up_trap
+
 mkdir $VOL_BASE_DIR/smlc-tester
 cp SMLC_Tests.cfg $VOL_BASE_DIR/smlc-tester/
 
@@ -47,10 +49,3 @@ docker run	--rm \
 		--name ${BUILD_TAG}-ttcn3-smlc-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-smlc-test
-
-echo Stopping containers
-docker container kill ${BUILD_TAG}-smlc
-docker container kill ${BUILD_TAG}-stp
-
-network_remove
-collect_logs

@@ -160,6 +160,36 @@ collect_logs() {
 	cat "$VOL_BASE_DIR"/*/junit-*.log || true
 }
 
+clean_up_common() {
+	set +e
+
+	set +x
+	echo
+	echo "### Clean up ###"
+	echo
+	set -x
+
+	# Clear trap
+	trap - EXIT INT TERM 0
+
+	# Run clean_up() from ttcn3-*/jenkins.sh, if defined
+	if type clean_up >/dev/null; then
+		clean_up
+	fi
+
+	network_clean
+	network_remove
+	rm -rf "$VOL_BASE_DIR"/unix
+	collect_logs
+}
+
+# Run clean up code when the script stops (either by failing command, by ^C, or
+# after running through successfully). The caller can define a custom clean_up
+# function.
+set_clean_up_trap() {
+	trap clean_up_common EXIT INT TERM 0
+}
+
 set -x
 
 # non-jenkins execution: assume local user name

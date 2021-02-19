@@ -7,6 +7,8 @@ docker_images_require \
 	"osmo-msc-$IMAGE_SUFFIX" \
 	"ttcn3-msc-test"
 
+set_clean_up_trap
+
 SUBNET=20
 network_create $SUBNET
 
@@ -52,11 +54,3 @@ docker run	--rm \
 		--name ${BUILD_TAG}-ttcn3-msc-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-msc-test
-
-echo Stopping containers
-docker container kill ${BUILD_TAG}-msc
-docker container kill ${BUILD_TAG}-stp
-
-network_remove
-rm -rf $VOL_BASE_DIR/unix
-collect_logs

@@ -6,6 +6,8 @@ docker_images_require \
 	"osmo-sip-$IMAGE_SUFFIX" \
 	"ttcn3-sip-test"
 
+set_clean_up_trap
+
 SUBNET=11
 network_create $SUBNET
 
@@ -40,10 +42,3 @@ docker run	--rm \
 		--name ${BUILD_TAG}-ttcn3-sip-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-sip-test
-
-echo Stopping containers
-docker container kill ${BUILD_TAG}-sip-connector
-
-network_remove
-rm -rf $VOL_BASE_DIR/unix
-collect_logs

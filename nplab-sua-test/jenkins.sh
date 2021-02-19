@@ -9,6 +9,8 @@ docker_images_require \
 	"sigtran-tests" \
 	"nplab-sua-test"
 
+set_clean_up_trap
+
 mkdir $VOL_BASE_DIR/sua-tester
 cp sua-param-testtool-sgp.scm some-sua-sgp-tests.txt $VOL_BASE_DIR/sua-tester/
 
@@ -34,8 +36,3 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/sua-tester:/data \
 		--name ${BUILD_TAG}-sua-test \
 		$REPO_USER/nplab-sua-test > $VOL_BASE_DIR/junit-xml-sua.log
-
-docker container stop -t 1 ${BUILD_TAG}-stp
-
-network_remove
-collect_logs

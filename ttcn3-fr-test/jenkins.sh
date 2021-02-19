@@ -5,6 +5,8 @@ IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
 	"ttcn3-fr-test"
 
+set_clean_up_trap
+
 SUBNET=26
 network_create $SUBNET
 
@@ -59,10 +61,3 @@ done
 # emulate running container in foreground, which is no longer possible as we
 # must shift the net-devices into the container _after_ it is started
 docker logs	-f ${BUILD_TAG}-ttcn3-fr-test
-
-
-echo Stopping containers
-docker container kill ${BUILD_TAG}-frnet
-
-network_remove
-collect_logs

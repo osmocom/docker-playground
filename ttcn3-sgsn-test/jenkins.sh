@@ -7,6 +7,8 @@ docker_images_require \
 	"osmo-sgsn-$IMAGE_SUFFIX" \
 	"ttcn3-sgsn-test"
 
+set_clean_up_trap
+
 SUBNET=8
 network_create $SUBNET
 
@@ -49,10 +51,3 @@ docker run	--rm \
 		--name ${BUILD_TAG}-ttcn3-sgsn-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-sgsn-test
-
-echo Stopping containers
-docker container kill ${BUILD_TAG}-sgsn
-docker container kill ${BUILD_TAG}-stp
-
-network_remove
-collect_logs

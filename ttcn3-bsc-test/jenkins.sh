@@ -8,6 +8,8 @@ docker_images_require \
 	"osmo-bts-$IMAGE_SUFFIX" \
 	"ttcn3-bsc-test"
 
+set_clean_up_trap
+
 mkdir $VOL_BASE_DIR/bsc-tester
 cp BSC_Tests.cfg $VOL_BASE_DIR/bsc-tester/
 
@@ -62,13 +64,3 @@ docker run	--rm \
 		--name ${BUILD_TAG}-ttcn3-bsc-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-bsc-test
-
-echo Stopping containers
-for i in `seq 0 2`; do
-	docker container kill ${BUILD_TAG}-bts$i
-done
-docker container kill ${BUILD_TAG}-bsc
-docker container kill ${BUILD_TAG}-stp
-
-network_remove
-collect_logs

@@ -6,6 +6,8 @@ docker_images_require \
 	"osmo-gbproxy-$IMAGE_SUFFIX" \
 	"ttcn3-gbproxy-test"
 
+set_clean_up_trap
+
 SUBNET=24
 network_create $SUBNET
 
@@ -39,9 +41,3 @@ docker run	--rm \
 		--name ${BUILD_TAG}-ttcn3-gbproxy-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-gbproxy-test $@
-
-echo Stopping containers
-docker container kill ${BUILD_TAG}-gbproxy
-
-network_remove
-collect_logs

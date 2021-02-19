@@ -6,6 +6,8 @@ docker_images_require \
 	"osmo-mgw-$IMAGE_SUFFIX" \
 	"ttcn3-mgw-test"
 
+set_clean_up_trap
+
 mkdir $VOL_BASE_DIR/mgw-tester
 cp MGCP_Test.cfg $VOL_BASE_DIR/mgw-tester/
 
@@ -33,9 +35,3 @@ docker run	--rm \
 		--name ${BUILD_TAG}-ttcn3-mgw-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-mgw-test
-
-# stop mgw after test has completed
-docker container stop ${BUILD_TAG}-mgw
-
-network_remove
-collect_logs

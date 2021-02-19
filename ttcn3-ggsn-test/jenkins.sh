@@ -6,6 +6,8 @@ docker_images_require \
 	"osmo-ggsn-$IMAGE_SUFFIX" \
 	"ttcn3-ggsn-test"
 
+set_clean_up_trap
+
 mkdir $VOL_BASE_DIR/ggsn-tester
 cp GGSN_Tests.cfg $VOL_BASE_DIR/ggsn-tester/
 
@@ -38,9 +40,3 @@ docker run	--rm \
 		--name ${BUILD_TAG}-ggsn-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-ggsn-test
-
-# stop GGSN after test has completed
-docker container stop ${BUILD_TAG}-ggsn
-
-network_remove
-collect_logs

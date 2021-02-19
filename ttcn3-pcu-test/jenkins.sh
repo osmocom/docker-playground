@@ -6,6 +6,8 @@ docker_images_require \
 	"osmo-pcu-$IMAGE_SUFFIX" \
 	"ttcn3-pcu-test"
 
+set_clean_up_trap
+
 SUBNET=13
 network_create $SUBNET
 
@@ -40,10 +42,3 @@ docker run	--rm \
 		--name ${BUILD_TAG}-ttcn3-pcu-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-pcu-test
-
-echo Stopping containers
-docker container kill ${BUILD_TAG}-pcu
-
-network_remove
-rm -rf $VOL_BASE_DIR/unix
-collect_logs

@@ -6,6 +6,8 @@ docker_images_require \
 	"osmo-cbc-$IMAGE_SUFFIX" \
 	"ttcn3-cbc-test"
 
+set_clean_up_trap
+
 mkdir $VOL_BASE_DIR/cbc-tester
 cp CBC_Tests.cfg $VOL_BASE_DIR/cbc-tester/
 
@@ -36,9 +38,3 @@ docker run	--rm \
 		--name ${BUILD_TAG}-ttcn3-cbc-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-cbc-test
-
-echo Stopping containers
-docker container kill ${BUILD_TAG}-cbc
-
-network_remove
-collect_logs

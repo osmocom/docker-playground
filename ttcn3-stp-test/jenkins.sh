@@ -6,6 +6,8 @@ docker_images_require \
 	"osmo-stp-$IMAGE_SUFFIX" \
 	"ttcn3-stp-test"
 
+set_clean_up_trap
+
 mkdir $VOL_BASE_DIR/stp-tester
 cp STP_Tests.cfg $VOL_BASE_DIR/stp-tester/
 
@@ -33,8 +35,3 @@ docker run	--rm \
 		--name ${BUILD_TAG}-ttcn3-stp-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-stp-test
-
-docker container kill ${BUILD_TAG}-stp
-
-network_remove
-collect_logs

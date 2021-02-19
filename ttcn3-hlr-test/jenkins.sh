@@ -6,6 +6,8 @@ docker_images_require \
 	"osmo-hlr-$IMAGE_SUFFIX" \
 	"ttcn3-hlr-test"
 
+set_clean_up_trap
+
 SUBNET=10
 network_create $SUBNET
 
@@ -34,9 +36,3 @@ docker run	--rm \
 		--name ${BUILD_TAG}-ttcn3-hlr-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-hlr-test
-
-echo Stopping containers
-docker container kill ${BUILD_TAG}-hlr
-
-network_remove
-collect_logs

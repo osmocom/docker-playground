@@ -2,6 +2,22 @@
 
 . ../jenkins-common.sh
 
+set_clean_up_trap
+
+clean_up() {
+	# start some stupid helper container so we can access the volume
+	docker run	--rm \
+		-v ttcn3-nitb-sysinfo-vol:/ttcn3-nitb-sysinfo \
+		-v nitb-vol:/nitb \
+		-v bts-vol:/bts \
+		--name ${BUILD_TAG}-sysinfo-helper -d \
+		busybox /bin/sh -c 'sleep 1000 & wait'
+	docker cp ${BUILD_TAG}-sysinfo-helper:/ttcn3-nitb-sysinfo $VOL_BASE_DIR
+	docker cp ${BUILD_TAG}-sysinfo-helper:/nitb $VOL_BASE_DIR
+	docker cp ${BUILD_TAG}-sysinfo-helper:/bts $VOL_BASE_DIR
+	docker container stop -t 0 ${BUILD_TAG}-sysinfo-helper
+}
+
 SUBNET=5
 network_create $SUBNET
 
@@ -35,22 +51,3 @@ docker run	--rm \
 		-v ttcn3-nitb-sysinfo-vol:/data \
 		--name ${BUILD_TAG}-ttcn3-nitb-sysinfo \
 		$REPO_USER/ttcn3-nitb-sysinfo
-
-# stop bts + nitb after test has completed
-docker container stop ${BUILD_TAG}-bts
-docker container stop ${BUILD_TAG}-nitb
-
-# start some stupid helper container so we can access the volume
-docker run	--rm \
-		-v ttcn3-nitb-sysinfo-vol:/ttcn3-nitb-sysinfo \
-		-v nitb-vol:/nitb \
-		-v bts-vol:/bts \
-		--name ${BUILD_TAG}-sysinfo-helper -d \
-		busybox /bin/sh -c 'sleep 1000 & wait'
-docker cp ${BUILD_TAG}-sysinfo-helper:/ttcn3-nitb-sysinfo $VOL_BASE_DIR
-docker cp ${BUILD_TAG}-sysinfo-helper:/nitb $VOL_BASE_DIR
-docker cp ${BUILD_TAG}-sysinfo-helper:/bts $VOL_BASE_DIR
-docker container stop -t 0 ${BUILD_TAG}-sysinfo-helper
-
-network_remove
-collect_logs

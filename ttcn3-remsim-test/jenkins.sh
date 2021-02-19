@@ -6,6 +6,8 @@ docker_images_require \
 	"osmo-remsim-$IMAGE_SUFFIX" \
 	"ttcn3-remsim-test"
 
+set_clean_up_trap
+
 start_server() {
 	echo Starting container with osmo-remsim-server
 	docker run	--rm \
@@ -87,7 +89,3 @@ echo "Changing to client configuration"
 start_client
 cp client/REMSIM_Tests.cfg $VOL_BASE_DIR/remsim-tester/
 start_testsuite
-docker container kill ${BUILD_TAG}-client
-
-network_remove
-collect_logs

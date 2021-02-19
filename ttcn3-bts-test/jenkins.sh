@@ -9,6 +9,17 @@ docker_images_require \
 	"osmocom-bb-host-master" \
 	"ttcn3-bts-test"
 
+set_clean_up_trap
+
+clean_up() {
+	# append ':hopping' to the classnames,
+	# e.g. "classname='BTS_Tests'" => "classname='BTS_Tests:hopping'"
+	# e.g. "classname='BTS_Tests_SMSCB'" => "classname='BTS_Tests_SMSCB:hopping'"
+	# so the hopping test cases would not interfere with non-hopping ones in Jenkins
+	sed -i "s/classname='\([^']\+\)'/classname='\1:hopping'/g" \
+		$VOL_BASE_DIR/bts-tester-hopping/junit-xml-hopping-*.log
+}
+
 start_bsc() {
 	echo Starting container with BSC
 	docker run	--rm \
@@ -170,20 +181,3 @@ docker container kill ${BUILD_TAG}-bts
 start_bsc
 start_bts trx 1
 start_testsuite hopping
-# append ':hopping' to the classnames,
-# e.g. "classname='BTS_Tests'" => "classname='BTS_Tests:hopping'"
-# e.g. "classname='BTS_Tests_SMSCB'" => "classname='BTS_Tests_SMSCB:hopping'"
-# so the hopping test cases would not interfere with non-hopping ones in Jenkins
-sed -i "s/classname='\([^']\+\)'/classname='\1:hopping'/g" \
-	$VOL_BASE_DIR/bts-tester-hopping/junit-xml-hopping-*.log
-
-echo Stopping containers
-docker container kill ${BUILD_TAG}-trxcon
-docker container kill ${BUILD_TAG}-fake_trx
-docker container kill ${BUILD_TAG}-bsc
-docker container kill ${BUILD_TAG}-bts
-docker container kill ${BUILD_TAG}-bsc
-
-network_remove
-rm -rf $VOL_BASE_DIR/unix
-collect_logs

@@ -19,6 +19,8 @@ docker_images_require \
 	"osmo-gbproxy-$IMAGE_SUFFIX" \
 	"ttcn3-gbproxy-test"
 
+set_clean_up_trap
+
 SUBNET=25
 network_create $SUBNET
 
@@ -72,9 +74,3 @@ done
 # emulate runnign container in foreground, which is no longer possible as we
 # must shift the net-devices into the container _after_ it is started
 docker logs	-f ${BUILD_TAG}-ttcn3-gbproxy-test
-
-echo Stopping containers
-docker container kill ${BUILD_TAG}-gbproxy
-
-network_remove
-collect_logs

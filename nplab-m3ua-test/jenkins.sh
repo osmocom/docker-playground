@@ -9,6 +9,8 @@ docker_images_require \
 	"debian-stretch-titan" \
 	"nplab-m3ua-test"
 
+set_clean_up_trap
+
 mkdir $VOL_BASE_DIR/m3ua-tester
 cp m3ua-param-testtool.scm all-sgp-tests.txt $VOL_BASE_DIR/m3ua-tester/
 
@@ -34,8 +36,3 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/m3ua-tester:/data \
 		--name ${BUILD_TAG}-m3ua-test \
 		$REPO_USER/nplab-m3ua-test > $VOL_BASE_DIR/junit-xml-m3ua.log
-
-docker container stop -t 1 ${BUILD_TAG}-stp
-
-network_remove
-collect_logs
