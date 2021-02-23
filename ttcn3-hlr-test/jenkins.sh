@@ -12,12 +12,6 @@ network_create $SUBNET
 mkdir $VOL_BASE_DIR/hlr-tester
 cp HLR_Tests.cfg $VOL_BASE_DIR/hlr-tester/
 
-# Disable D-GSM tests until osmo-hlr.git release > 1.2.0 is available
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	sed "s/HLR_Tests.mp_hlr_supports_dgsm := true/HLR_Tests.mp_hlr_supports_dgsm := false/g" -i \
-		"$VOL_BASE_DIR/hlr-tester/HLR_Tests.cfg"
-fi
-
 mkdir $VOL_BASE_DIR/hlr
 cp osmo-hlr.cfg $VOL_BASE_DIR/hlr/
 

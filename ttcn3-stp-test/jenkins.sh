@@ -12,13 +12,6 @@ cp STP_Tests.cfg $VOL_BASE_DIR/stp-tester/
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 
-# Disable IPv6 until libosmo-sccp.git release > 1.3.0 is available
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	sed "/fd02:db8/d" -i "$VOL_BASE_DIR/stp/osmo-stp.cfg"
-	sed 's/, "fd02:db8:19::203"//g' -i "$VOL_BASE_DIR/stp-tester/STP_Tests.cfg"
-	sed 's/, "fd02:db8:19::200"//g' -i "$VOL_BASE_DIR/stp-tester/STP_Tests.cfg"
-fi
-
 SUBNET=19
 network_create $SUBNET
 

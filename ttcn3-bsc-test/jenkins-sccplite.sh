@@ -19,13 +19,6 @@ cp sccplite/osmo-bsc.cfg $VOL_BASE_DIR/bsc/
 SUBNET=12
 network_create $SUBNET
 
-# Disable stats testing until libosmocore release > 1.4.0
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	sed -i "s/^StatsD_Checker.mp_enable_stats.*/StatsD_Checker.mp_enable_stats := false;/" $VOL_BASE_DIR/bsc-tester/BSC_Tests.cfg
-	sed -i "s/stats interval 0//" $VOL_BASE_DIR/bsc/osmo-bsc.cfg
-	sed -i "s/flush-period 1//" $VOL_BASE_DIR/bsc/osmo-bsc.cfg
-fi
-
 echo Starting container with BSC
 docker run	--rm \
 		$(docker_network_params $SUBNET 20) \

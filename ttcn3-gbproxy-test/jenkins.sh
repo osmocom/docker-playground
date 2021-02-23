@@ -18,11 +18,6 @@ cp GBProxy_Tests.cfg $VOL_BASE_DIR/gbproxy-tester/
 mkdir $VOL_BASE_DIR/gbproxy
 cp osmo-gbproxy.cfg $VOL_BASE_DIR/gbproxy/
 
-# Disable features not in latest yet
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	true;
-fi
-
 mkdir $VOL_BASE_DIR/unix
 
 echo Starting container with gbproxy

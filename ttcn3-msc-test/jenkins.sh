@@ -14,30 +14,12 @@ mkdir $VOL_BASE_DIR/msc-tester
 mkdir $VOL_BASE_DIR/msc-tester/unix
 cp MSC_Tests.cfg $VOL_BASE_DIR/msc-tester/
 
-# Disable verification of VLR and conn Cell ID until osmo-msc.git release > 1.6.1 is available
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	sed "s/MSC_Tests.mp_enable_cell_id_test := true/MSC_Tests.mp_enable_cell_id_test := false/" -i \
-		"$VOL_BASE_DIR/msc-tester/MSC_Tests.cfg"
-	sed "s/BSC_ConnectionHandler.mp_expect_common_id := true/BSC_ConnectionHandler.mp_expect_common_id := false/" -i \
-		"$VOL_BASE_DIR/msc-tester/MSC_Tests.cfg"
-	sed "s/MSC_Tests.mp_enable_crashing_tests := true/MSC_Tests.mp_enable_crashing_tests := false/" -i \
-		"$VOL_BASE_DIR/msc-tester/MSC_Tests.cfg"
-	sed "s/MNCC_Emulation.mp_mncc_version := 7/MNCC_Emulation.mp_mncc_version := 6/" -i \
-		"$VOL_BASE_DIR/msc-tester/MSC_Tests.cfg"
-fi
-
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 
 mkdir $VOL_BASE_DIR/msc
 mkdir $VOL_BASE_DIR/msc/unix
 cp osmo-msc.cfg $VOL_BASE_DIR/msc/
-
-# Disable IPv6 until libosmo-sccp.git release > 1.3.0 is available
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	sed "/fd02:db8/d" -i $VOL_BASE_DIR/stp/osmo-stp.cfg
-	sed "/fd02:db8/d" -i $VOL_BASE_DIR/msc/osmo-msc.cfg
-fi
 
 mkdir $VOL_BASE_DIR/unix
 

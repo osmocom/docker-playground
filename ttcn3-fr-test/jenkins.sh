@@ -17,11 +17,6 @@ cp FR_Tests.cfg $VOL_BASE_DIR/fr-tester/
 mkdir $VOL_BASE_DIR/frnet
 cp FRNET_Tests.cfg $VOL_BASE_DIR/frnet/
 
-# Disable features not in latest yet
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	true;
-fi
-
 mkdir $VOL_BASE_DIR/unix
 
 echo Starting container with FRNET

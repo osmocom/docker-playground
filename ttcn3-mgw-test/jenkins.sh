@@ -15,15 +15,6 @@ cp osmo-mgw.cfg $VOL_BASE_DIR/mgw/
 SUBNET=4
 network_create $SUBNET
 
-# Disable e1 config options until osmo-mgw >= 1.8.0 release
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-       sed -i "s/e1_line.*//" $VOL_BASE_DIR/mgw/osmo-mgw.cfg
-       sed -i "s/e1_input.*//" $VOL_BASE_DIR/mgw/osmo-mgw.cfg
-       sed -i "s/line 0.*//" $VOL_BASE_DIR/mgw/osmo-mgw.cfg
-       # Disable IPv6 until osmo-mgw .git release > 1.7.0 is available
-       sed "/fd02:db8/d" -i $VOL_BASE_DIR/mgw/osmo-mgw.cfg
-fi
-
 # start container with mgw in background
 docker run	--rm \
 		$(docker_network_params $SUBNET 180) \

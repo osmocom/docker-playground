@@ -19,30 +19,6 @@ cp osmo-bsc.cfg $VOL_BASE_DIR/bsc/
 
 mkdir $VOL_BASE_DIR/bts-omldummy
 
-# Disable MSC pooling features until osmo-bsc.git release > 1.6.0 is available
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	cp pre-mscpool-osmo-bsc.cfg $VOL_BASE_DIR/bsc/osmo-bsc.cfg
-fi
-
-# Disable stats testing until libosmocore release > 1.4.0
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	sed -i "s/^StatsD_Checker.mp_enable_stats.*/StatsD_Checker.mp_enable_stats := false;/" $VOL_BASE_DIR/bsc-tester/BSC_Tests.cfg
-	sed -i "s/stats interval 0//" $VOL_BASE_DIR/bsc/osmo-bsc.cfg
-	sed -i "s/flush-period 1//" $VOL_BASE_DIR/bsc/osmo-bsc.cfg
-fi
-
-# Disable IPv6 until libosmo-sccp.git release > 1.3.0 is available
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	sed "/fd02:db8/d" -i $VOL_BASE_DIR/stp/osmo-stp.cfg
-	sed "/fd02:db8/d" -i $VOL_BASE_DIR/bsc/osmo-bsc.cfg
-	sed -i "s/^BSC_Tests.mp_media_mgw_offer_ipv6.*/BSC_Tests.mp_media_mgw_offer_ipv6 := false;/" $VOL_BASE_DIR/bsc-tester/BSC_Tests.cfg
-fi
-
-# Disable LCS tests until osmo-bsc > 1.6.0
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
-	sed -i 's/^BSC_Tests.mp_enable_lcs_tests.*/BSC_Tests.mp_enable_lcs_tests := false;/' $VOL_BASE_DIR/bsc-tester/BSC_Tests.cfg
-fi
-
 SUBNET=2
 network_create $SUBNET
 
