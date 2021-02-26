@@ -22,6 +22,8 @@ fi
 ip link set lo up
 ip link set eth0 up
 
+echo "KERNEL_TEST_VM_IS_READY"
+
 if grep -q SMOKE_TEST /proc/cmdline; then
 	# Called from scripts/kernel-test/prepare.sh:kernel_smoke_test() to
 	# verify that the kernel + initramfs boot up properly. Output this

@@ -194,6 +194,12 @@ set_clean_up_trap() {
 	trap clean_up_common EXIT INT TERM 0
 }
 
+docker_kvm_param() {
+	if [ "$KERNEL_TEST_KVM" != 0 ]; then
+		echo "--device /dev/kvm:/dev/kvm"
+	fi
+}
+
 # Generate the initrd, and optionally build a kernel, for tests that involve
 # kernel modules. Boot the kernel once in QEMU inside docker to verify that it
 # works. See README.md for description of the KERNEL_* environment variables.
@@ -212,6 +218,15 @@ kernel_test_prepare() {
 	local docker_image="$4"
 	shift 4
 
+	# Store KVM availibility in global KERNEL_TEST_KVM
+	if [ -z "$KERNEL_TEST_KVM" ]; then
+		if [ -e "/dev/kvm" ]; then
+			KERNEL_TEST_KVM=1
+		else
+			KERNEL_TEST_KVM=0
+		fi
+	fi
+
 	mkdir -p "$CACHE_DIR/kernel-test"
 
 	cp "$kernel_config_fragment" \
@@ -221,7 +236,7 @@ kernel_test_prepare() {
 
 	docker run \
 		--cap-add=NET_ADMIN \
-		--device /dev/kvm:/dev/kvm \
+		$(docker_kvm_param) \
 		--device /dev/net/tun:/dev/net/tun \
 		-v "$CACHE_DIR:/cache" \
 		-v "$KERNEL_TEST_DIR:/kernel-test:ro" \
@@ -233,6 +248,31 @@ kernel_test_prepare() {
 		"$@" \
 		"$docker_image" \
 		"/kernel-test/prepare.sh"
+}
+
+# Wait until the linux kernel is booted inside QEMU inside docker, and the
+# initrd is right before running the project-specific commands (e.g. starting
+# osmo-ggsn). This may take a few seconds if running without KVM.
+# $1: path to the VM's log file
+kernel_test_wait_for_vm() {
+	local log="$1"
+	local i
+
+	if [ "$KERNEL_TEST" != 1 ]; then
+		return
+	fi
+
+	for i in $(seq 1 10); do
+		sleep 1
+
+		if grep -q KERNEL_TEST_VM_IS_READY "$log"; then
+			return
+		fi
+	done
+
+	# Let clean_up_common kill the VM
+	echo "Timeout while waiting for kernel test VM"
+	exit 1
 }
 
 set -x

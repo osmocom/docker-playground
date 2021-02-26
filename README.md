@@ -35,6 +35,7 @@ be used for other testsuites in the future.
 
 Environment variables:
 * `KERNEL_TEST`: set to 1 to run the SUT in QEMU
+* `KERNEL_TEST_KVM`: set to 0 to disable KVM acceleration
 * `KERNEL_BUILD`: set to 1 to build the kernel instead of using the
   pre-built one
 * `KERNEL_REMOTE_NAME`: git remote name (to add multiple git
