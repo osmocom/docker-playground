@@ -41,7 +41,7 @@ if [ "$KERNEL_TEST" = "1" ]; then
 	GGSN_CMD="/kernel-test/run-qemu.sh"
 	GGSN_DOCKER_ARGS="
 		$(docker_network_params $SUBNET 200)
-		--device /dev/kvm:/dev/kvm
+		$(docker_kvm_param) \
 		-v "$KERNEL_TEST_DIR:/kernel-test:ro"
 		-v "$CACHE_DIR:/cache"
 		"
@@ -63,6 +63,10 @@ docker run	--cap-add=NET_ADMIN \
 		$GGSN_DOCKER_ARGS \
 		$REPO_USER/osmo-ggsn-$IMAGE_SUFFIX \
 		/bin/sh -c "$GGSN_CMD >/data/osmo-ggsn.log 2>&1"
+
+if [ "$KERNEL_TEST" = 1 ] && [ "$KERNEL_TEST_KVM" = 0 ]; then
+	sleep 5
+fi
 
 # start docker container with testsuite in foreground
 docker run	--rm \

@@ -194,6 +194,12 @@ set_clean_up_trap() {
 	trap clean_up_common EXIT INT TERM 0
 }
 
+docker_kvm_param() {
+	if [ "$KERNEL_TEST_KVM" != 0 ]; then
+		echo "--device /dev/kvm:/dev/kvm"
+	fi
+}
+
 # Generate the initrd, and optionally build a kernel, for tests that involve
 # kernel modules. Boot the kernel once in QEMU inside docker to verify that it
 # works. See README.md for description of the KERNEL_* environment variables.
@@ -212,6 +218,11 @@ kernel_test_prepare() {
 	local docker_image="$4"
 	shift 4
 
+	if [ "$KERNEL_TEST_KVM" != 0 ] && ! [ -e /dev/kvm ]; then
+		echo "ERROR: /dev/kvm not found! Consider running with: KERNEL_TEST_KVM=0"
+		exit 1
+	fi
+
 	mkdir -p "$CACHE_DIR/kernel-test"
 
 	cp "$kernel_config_fragment" \
@@ -221,7 +232,7 @@ kernel_test_prepare() {
 
 	docker run \
 		--cap-add=NET_ADMIN \
-		--device /dev/kvm:/dev/kvm \
+		$(docker_kvm_param) \
 		--device /dev/net/tun:/dev/net/tun \
 		-v "$CACHE_DIR:/cache" \
 		-v "$KERNEL_TEST_DIR:/kernel-test:ro" \

@@ -13,8 +13,14 @@ KERNEL_CMDLINE="
 	$@
 "
 
+if [ -e /dev/kvm ]; then
+	MACHINE_ARG="-machine pc,accel=kvm"
+else
+	MACHINE_ARG="-machine pc"
+fi
+
 qemu-system-x86_64 \
-	-machine pc,accel=kvm \
+	$MACHINE_ARG \
 	-smp 1 \
 	-m 512M \
 	-nodefconfig -no-user-config -nodefaults -display none \
