@@ -12,9 +12,6 @@ set -e
 mkdir $VOL_BASE_DIR/cbc-tester
 cp CBC_Tests.cfg $VOL_BASE_DIR/cbc-tester/
 
-mkdir $VOL_BASE_DIR/stp
-cp osmo-stp.cfg $VOL_BASE_DIR/stp/
-
 mkdir $VOL_BASE_DIR/cbc
 cp osmo-cbc.cfg $VOL_BASE_DIR/cbc/
 
