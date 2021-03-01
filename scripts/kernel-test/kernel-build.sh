@@ -9,6 +9,8 @@ KERNEL_DIR=/cache/linux
 
 # Add the kernel repository as git remote, fetch it, checkout the given branch
 prepare_git_repo() {
+	local url
+
 	if ! [ -d "$KERNEL_DIR" ]; then
 		mkdir -p "$KERNEL_DIR"
 		git -C "$KERNEL_DIR" init
@@ -18,6 +20,23 @@ prepare_git_repo() {
 
 	if ! git remote | grep -q "^$KERNEL_REMOTE_NAME$"; then
 		git remote add "$KERNEL_REMOTE_NAME" "$KERNEL_URL"
+	else
+		url="$(git remote get-url "$KERNEL_REMOTE_NAME")"
+		if [ "$url" != "$KERNEL_URL" ]; then
+			set +x
+			echo "ERROR: the checked out repository already has" \
+				"a remote with the same name, pointing to a" \
+				"different URL!"
+			echo
+			echo "KERNEL_REMOTE_NAME:       $KERNEL_REMOTE_NAME"
+			echo "KERNEL_URL (parameter):   $KERNEL_URL"
+			echo "KERNEL_URL (checked out): $url"
+			echo
+			echo "Please restart the job, and either change the" \
+				"KERNEL_URL parameter to the same value, or" \
+				"use a different KERNEL_REMOTE_NAME."
+			exit 1
+		fi
 	fi
 
 	git fetch "$KERNEL_REMOTE_NAME"
