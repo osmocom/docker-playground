@@ -21,6 +21,8 @@ Environment variables:
 * `OSMO_TTCN3_BRANCH`: [osmo-ttcn3-hacks.git](https://git.osmocom.org/osmo-ttcn3-hacks/)
   branch, which will be used when building a `ttcn3-*` docker image.
   Defaults to `master`.
+* `OSMO_BSC_BRANCH`, `OSMO_MSC_BRANCH`, ...: branch of the appropriate
+  Osmocom project. Defaults to `master`.
 * `NO_DOCKER_IMAGE_BUILD`: when set to `1`, it won't try to update the
   containers (see "caching" below)
 
