@@ -1,28 +1,18 @@
-ARG	REGISTRY=docker.io
-ARG	UPSTREAM_DISTRO=debian:stretch
-FROM	${REGISTRY}/${UPSTREAM_DISTRO}
+ARG	USER
+ARG	DISTRO
+FROM	$USER/$DISTRO-obs-latest
 # Arguments used after FROM must be specified again
-ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
-
-MAINTAINER Daniel Willmann <dwillmann@sysmocom.de>
-
-ARG OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/latest/Debian_9.0/"
-
-COPY	Release.key /tmp/Release.key
 
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
-		gnupg
-
-RUN	apt-key add /tmp/Release.key && \
-	rm /tmp/Release.key && \
-	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-latest.list
-
-ADD	$OSMOCOM_REPO/Release /tmp/Release
-RUN	apt-get update && \
-	apt-get install -y --no-install-recommends \
-		osmo-msc osmo-hlr osmo-sgsn osmo-ggsn osmo-mgw osmo-stp \
-		runit telnet iptables && \
+		iptables \
+		osmo-ggsn \
+		osmo-hlr \
+		osmo-mgw \
+		osmo-msc \
+		osmo-sgsn \
+		osmo-stp \
+		runit && \
 	apt-get clean
 
 WORKDIR	/tmp
