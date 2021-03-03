@@ -2,28 +2,38 @@ ARG	USER
 ARG	DISTRO
 FROM	$USER/$DISTRO-obs-latest
 # Arguments used after FROM must be specified again
+ARG	DISTRO
 
+# Install additional debian depends for kernel module test (OS#3208)
 # Disable update-initramfs to save time during apt-get install
-RUN	ln -s /bin/true /usr/local/bin/update-initramfs && \
-	apt-get update && \
-	apt-get install -y --no-install-recommends \
-		bc \
-		bison \
-		bridge-utils \
-		busybox-static \
-		ca-certificates \
-		flex \
-		gcc \
-		git \
-		libc6-dev \
-		libelf-dev \
-		libssl-dev \
-		linux-image-amd64 \
-		make \
-		osmo-ggsn \
-		pax-utils \
-		qemu-system-x86 && \
-	apt-get clean
+RUN	case "$DISTRO" in \
+	debian*) \
+		ln -s /bin/true /usr/local/bin/update-initramfs && \
+		apt-get update && \
+		apt-get install -y --no-install-recommends \
+			bc \
+			bison \
+			bridge-utils \
+			busybox-static \
+			ca-certificates \
+			flex \
+			gcc \
+			git \
+			libc6-dev \
+			libelf-dev \
+			libssl-dev \
+			linux-image-amd64 \
+			make \
+			osmo-ggsn \
+			pax-utils \
+			qemu-system-x86 && \
+		apt-get clean \
+		;; \
+	centos*) \
+		dnf install -y \
+			osmo-ggsn \
+		;; \
+	esac
 
 WORKDIR	/tmp
 

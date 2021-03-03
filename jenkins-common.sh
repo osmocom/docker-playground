@@ -7,6 +7,7 @@ docker_image_exists() {
 
 docker_depends() {
 	case "$1" in
+	osmo-*-latest-centos8) echo "centos8-obs-latest" ;;
 	osmo-*-centos8) echo "centos8-build" ;;
 	osmo-*-latest) echo "debian-stretch-obs-latest" ;;
 	osmo-*) echo "debian-stretch-build" ;;

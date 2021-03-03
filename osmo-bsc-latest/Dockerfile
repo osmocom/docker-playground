@@ -2,12 +2,22 @@ ARG	USER
 ARG	DISTRO
 FROM	$USER/$DISTRO-obs-latest
 # Arguments used after FROM must be specified again
+ARG	DISTRO
 
-RUN	apt-get update && \
-	apt-get install -y --no-install-recommends \
-		osmo-bsc \
-		osmo-bsc-ipaccess-utils && \
-	apt-get clean
+RUN	case "$DISTRO" in \
+	debian*) \
+		apt-get update && \
+		apt-get install -y --no-install-recommends \
+			osmo-bsc \
+			osmo-bsc-ipaccess-utils && \
+		apt-get clean \
+		;; \
+	centos*) \
+		dnf install -y \
+			osmo-bsc \
+			osmo-bsc-ipaccess-utils \
+		;; \
+	esac
 
 WORKDIR	/tmp
 

@@ -2,12 +2,22 @@ ARG	USER
 ARG	DISTRO
 FROM	$USER/$DISTRO-obs-latest
 # Arguments used after FROM must be specified again
+ARG	DISTRO
 
-RUN	apt-get update && \
-	apt-get install -y --no-install-recommends \
-		osmo-bts-trx \
-		osmo-bts-virtual && \
-	apt-get clean
+RUN	case "$DISTRO" in \
+	debian*) \
+		apt-get update && \
+		apt-get install -y --no-install-recommends \
+			osmo-bts-trx \
+			osmo-bts-virtual && \
+		apt-get clean \
+		;; \
+	centos*) \
+		dnf install -y \
+			osmo-bts \
+			osmo-bts-virtual \
+		;; \
+	esac
 
 ADD	respawn.sh /usr/local/bin/respawn.sh
 
