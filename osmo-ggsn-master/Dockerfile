@@ -1,29 +1,9 @@
 ARG	USER
 ARG	DISTRO
-ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
 FROM	$USER/$DISTRO-build
 # Arguments used after FROM must be specified again
 ARG	DISTRO
-ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
 
-MAINTAINER Harald Welte <laforge@gnumonks.org>
-
-ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/Debian_9.0/"
-
-COPY	Release.key /tmp/Release.key
-
-RUN	case "$DISTRO" in \
-	debian*) \
-		apt-key add /tmp/Release.key && \
-		rm /tmp/Release.key && \
-		echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-nightly.list \
-		;; \
-	esac
-
-# we need to add this to invalidate the cache once the repository is updated.
-# unfortunately Dockerfiles don't support a conditional ARG, so we need to add both DPKG + RPM
-ADD	$OSMOCOM_REPO/Release /tmp/Release
-ADD	$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/CentOS_8/repodata/repomd.xml /tmp/repomd.xml
 # Disable update-initramfs to save time during apt-get install
 RUN	case "$DISTRO" in \
 	debian*) \
@@ -39,13 +19,11 @@ RUN	case "$DISTRO" in \
 			libosmocore-dev \
 			linux-image-amd64 \
 			pax-utils \
-			qemu-system-x86 \
-			telnet && \
+			qemu-system-x86 && \
 		apt-get clean \
 		;; \
 	centos*) \
 		dnf install -y \
-			telnet \
 			"pkgconfig(libgtpnl)" \
 			"pkgconfig(libmnl)" \
 			"pkgconfig(libosmocore)" \

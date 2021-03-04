@@ -1,6 +1,7 @@
 ARG	REGISTRY=docker.io
 ARG	UPSTREAM_DISTRO=centos:centos8
 FROM	${REGISTRY}/${UPSTREAM_DISTRO}
+# Arguments used after FROM must be specified again
 ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
 
 # Let package metadata expire after 60 seconds instead of 48 hours
@@ -46,4 +47,8 @@ RUN	dnf install -y \
 		pkg-config \
 		readline-devel \
 		sqlite \
-		sqlite-devel
+		sqlite-devel \
+		telnet
+
+# Invalidate cache once the repository is updated
+ADD	$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/latest/CentOS_8/repodata/repomd.xml /tmp/repomd.xml

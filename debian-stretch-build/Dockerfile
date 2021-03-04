@@ -1,8 +1,9 @@
 ARG	REGISTRY=docker.io
 ARG	UPSTREAM_DISTRO=debian:stretch
 FROM	${REGISTRY}/${UPSTREAM_DISTRO}
-
-MAINTAINER Harald Welte <laforge@gnumonks.org>
+# Arguments used after FROM must be specified again
+ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
+ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/Debian_9.0/"
 
 RUN	apt-get update && \
 	apt-get upgrade -y && \
@@ -53,5 +54,14 @@ RUN	apt-get update && \
 		pkg-config \
 		sqlite3 \
 		stow \
+		telnet \
 		wget && \
 	apt-get clean
+
+COPY	Release.key /tmp/Release.key
+RUN	apt-key add /tmp/Release.key && \
+	rm /tmp/Release.key && \
+	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-nightly.list
+
+# Invalidate cache once the repository is updated
+ADD	$OSMOCOM_REPO/Release /tmp/Release
