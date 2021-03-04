@@ -24,11 +24,18 @@ RUN	ln -s /bin/true /usr/local/bin/update-initramfs && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		bc \
+		bison \
 		bridge-utils \
 		busybox-static \
 		ca-certificates \
+		flex \
+		gcc \
+		git \
+		libc6-dev \
 		libelf-dev \
+		libssl-dev \
 		linux-image-amd64 \
+		make \
 		osmo-ggsn \
 		pax-utils \
 		qemu-system-x86 \
