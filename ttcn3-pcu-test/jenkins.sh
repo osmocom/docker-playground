@@ -16,6 +16,11 @@ mkdir $VOL_BASE_DIR/pcu-tester
 mkdir $VOL_BASE_DIR/pcu-tester/unix
 cp PCU_Tests.cfg $VOL_BASE_DIR/pcu-tester/
 
+# Disable until osmo-pcu release > 0.9.0
+if [ "$IMAGE_SUFFIX" = "latest" ]; then
+	sed -i "s/^PCUIF_Components.mp_send_all_data_ind.*/PCUIF_Components.mp_send_all_data_ind := false;/" $VOL_BASE_DIR/pcu-tester/PCU_Tests.cfg
+fi
+
 mkdir $VOL_BASE_DIR/pcu
 mkdir $VOL_BASE_DIR/pcu/unix
 cp osmo-pcu.cfg $VOL_BASE_DIR/pcu/
