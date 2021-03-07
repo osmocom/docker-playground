@@ -45,6 +45,7 @@ RUN	case "$DISTRO" in \
 		;; \
 	centos*) \
 		dnf install -y \
+			libcsv-devel \
 			"pkgconfig(libasn1c)" \
 			"pkgconfig(libosmoabis)" \
 			"pkgconfig(libosmocore)" \
