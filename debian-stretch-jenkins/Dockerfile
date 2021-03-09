@@ -166,7 +166,9 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     update-locale LANG=en_US.UTF-8
 ENV LANG en_US.UTF-8
 
-# osmo-remsim needs libulfius which is built in osmocom OBS repos:
+# Install packages from Osmocom OBS repositories:
+# * osmo-remsim: libulfius
+# * osmo-trx: liblimesuite-dev, libuhd-dev
 ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/Debian_9.0/"
 COPY	Release.key /tmp/Release.key
 RUN	apt-key add /tmp/Release.key && \
@@ -175,6 +177,8 @@ RUN	apt-key add /tmp/Release.key && \
 ADD	$OSMOCOM_REPO/Release /tmp/Release
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
+		liblimesuite-dev \
+		libuhd-dev \
 		libulfius-dev && \
 	apt-get clean
 
