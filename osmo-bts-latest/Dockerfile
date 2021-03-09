@@ -16,6 +16,7 @@ RUN	case "$DISTRO" in \
 		dnf install -y \
 			osmo-bts \
 			osmo-bts-virtual \
+			osmo-bts-omldummy \
 		;; \
 	esac
 
