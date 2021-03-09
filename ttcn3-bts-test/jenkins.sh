@@ -51,7 +51,7 @@ start_bts() {
 			--name ${BUILD_TAG}-bts -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
-			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-$variant -c /data/osmo-bts.cfg -i 172.18.9.10 >>/data/osmo-bts.log 2>&1"
+			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-$variant -c /data/osmo-bts.cfg >>/data/osmo-bts.log 2>&1"
 }
 
 start_fake_trx() {
