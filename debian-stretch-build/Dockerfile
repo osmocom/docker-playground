@@ -58,7 +58,7 @@ RUN	apt-get update && \
 		wget && \
 	apt-get clean
 
-COPY	Release.key /tmp/Release.key
+COPY	.common/Release.key /tmp/Release.key
 RUN	apt-key add /tmp/Release.key && \
 	rm /tmp/Release.key && \
 	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-nightly.list

@@ -10,7 +10,7 @@ MAINTAINER Pau Espin Pedrol <pespin@sysmocom.de>
 ARG	OSMOCOM_REPO_DEBIAN="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/$OSMOCOM_REPO_VERSION/Debian_9.0/"
 ARG	OSMOCOM_REPO_CENTOS="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/$OSMOCOM_REPO_VERSION/CentOS_8/"
 
-COPY	Release.key /tmp/Release.key
+COPY	.common/Release.key /tmp/Release.key
 
 RUN	case "$DISTRO" in \
 	debian*) \

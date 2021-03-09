@@ -11,7 +11,7 @@ ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/latest/Deb
 RUN	apt-get update && apt-get install -y \
 		gnupg
 
-COPY	Release.key /tmp/Release.key
+COPY	.common/Release.key /tmp/Release.key
 
 RUN	apt-key add /tmp/Release.key && \
 	rm /tmp/Release.key && \

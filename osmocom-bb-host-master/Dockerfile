@@ -12,7 +12,7 @@ ARG	OSMO_BB_BRANCH="master"
 
 ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/Debian_9.0/"
 
-COPY	Release.key /tmp/Release.key
+COPY	.common/Release.key /tmp/Release.key
 
 RUN	apt-key add /tmp/Release.key && \
 	rm /tmp/Release.key && \
