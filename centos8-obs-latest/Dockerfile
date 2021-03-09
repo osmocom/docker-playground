@@ -17,5 +17,8 @@ RUN	dnf install -y dnf-utils wget && \
 RUN	dnf install -y \
 		telnet
 
+# Make respawn.sh part of this image, so it can be used by other images based on it
+COPY	.common/respawn.sh /usr/local/bin/respawn.sh
+
 # Invalidate cache once the repository is updated
 ADD	$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/latest/CentOS_8/repodata/repomd.xml /tmp/repomd.xml

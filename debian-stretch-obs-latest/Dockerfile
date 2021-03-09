@@ -18,5 +18,8 @@ RUN	apt-key add /tmp/Release.key && \
 	rm /tmp/Release.key && \
 	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-latest.list
 
+# Make respawn.sh part of this image, so it can be used by other images based on it
+COPY	.common/respawn.sh /usr/local/bin/respawn.sh
+
 # Invalidate cache once the repository is updated
 ADD	$OSMOCOM_REPO/Release /tmp/Release

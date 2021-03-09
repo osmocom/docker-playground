@@ -20,8 +20,6 @@ RUN	case "$DISTRO" in \
 		;; \
 	esac
 
-ADD	respawn.sh /usr/local/bin/respawn.sh
-
 WORKDIR	/tmp
 
 VOLUME	/data

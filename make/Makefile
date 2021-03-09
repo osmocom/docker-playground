@@ -55,9 +55,12 @@ SHELL=/bin/bash
 build: pre-build docker-build post-build
 
 pre-build:
+	rm -rf .common
+	cp -r $(ROOT_DIR)/common .common
 
 
 post-build:
+	rm -rf .common
 
 
 post-push:

@@ -52,3 +52,6 @@ RUN	apt-get update && \
 		stow \
 		wget && \
 	apt-get clean
+
+# Make respawn.sh part of this image, so it can be used by other images based on it
+COPY	.common/respawn.sh /usr/local/bin/respawn.sh

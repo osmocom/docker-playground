@@ -21,8 +21,6 @@ RUN	case "$DISTRO" in \
 		;; \
 	esac
 
-ADD	respawn.sh /usr/local/bin/respawn.sh
-
 WORKDIR	/tmp
 
 ARG	OSMO_PCU_BRANCH="master"
