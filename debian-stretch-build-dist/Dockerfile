@@ -1,40 +1,59 @@
 ARG	USER
-FROM	$USER/debian-stretch-build
+FROM	$USER/debian-stretch-obs-latest
 # Arguments used after FROM must be specified again
-ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
 
-ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/latest/Debian_9.0/"
-
-COPY	Release.key /tmp/Release.key
-
-RUN	apt-key add /tmp/Release.key && \
-	rm /tmp/Release.key && \
-	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-latest.list
-
-ADD	$OSMOCOM_REPO/Release /tmp/Release
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
+		autoconf \
+		autoconf-archive \
+		autogen \
+		automake \
+		bison \
+		build-essential \
 		ca-certificates \
-		libboost-all-dev \
-		liboping-dev \
-		libuhd-dev \
-		\
+		dahdi-source \
+		git \
 		libasn1c-dev \
+		libboost-all-dev \
+		libc-ares-dev \
+		libdbd-sqlite3 \
+		libdbi-dev \
+		libfftw3-dev \
+		libgnutls28-dev \
+		libgps-dev \
+		libgsm1-dev \
 		libgtp-dev \
 		libgtpnl-dev \
 		liblimesuite-dev \
+		libncurses5-dev \
+		liboping-dev \
 		liborcania-dev \
+		libortp-dev \
 		libosmo-abis-dev \
-		libosmocore-dev \
-		libosmodsp-dev \
 		libosmo-gsup-client-dev \
 		libosmo-mgcp-client-dev \
 		libosmo-netif-dev \
 		libosmo-ranap-dev \
 		libosmo-sccp-dev \
 		libosmo-sigtran-dev \
+		libosmocore-dev \
+		libosmodsp-dev \
+		libpcap-dev \
+		libpcsclite-dev \
+		libreadline-dev \
+		libsctp-dev \
 		libsmpp34-dev \
+		libsofia-sip-ua-glib-dev \
+		libsqlite3-dev \
+		libssl-dev \
+		libtalloc-dev \
+		libtool \
+		libuhd-dev \
 		libulfius-dev \
+		libusb-1.0-0-dev \
+		libusb-dev \
 		libusrp-dev \
-		libyder-dev && \
+		libyder-dev \
+		make \
+		&& \
 	apt-get clean
