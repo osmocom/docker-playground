@@ -41,7 +41,8 @@ OSMOCOM_REPO_MIRROR?=http://download.opensuse.org
 OSMOCOM_REPO_VERSION?=latest
 # Use "nightly" to use the nightly repo
 
-RELEASE_SUPPORT := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))/.make-release-support
+ROOT_DIR=$(shell git rev-parse --show-toplevel)
+RELEASE_SUPPORT := $(ROOT_DIR)/make/.make-release-support
 IMAGE?=$(REGISTRY_HOST)/$(USER)/$(NAME)
 
 VERSION?=$(shell . $(RELEASE_SUPPORT) ; getRelease)
