@@ -23,7 +23,7 @@ cp FRNET_Tests.cfg $VOL_BASE_DIR/frnet/
 mkdir $VOL_BASE_DIR/unix
 
 echo Starting container with FRNET
-docker run	--rm \
+docker run	\
 		--cap-add=NET_RAW --cap-add=SYS_RAWIO \
 		$(docker_network_params $SUBNET 10) \
 		--ulimit core=-1 \
@@ -42,7 +42,7 @@ for i in `seq 1 8`; do
 done
 
 echo Starting container with FR testsuite
-docker run	--rm \
+docker run	\
 		--cap-add=NET_RAW --cap-add=SYS_RAWIO \
 		$(docker_network_params $SUBNET 103) \
 		--ulimit core=-1 \
@@ -63,3 +63,8 @@ done
 # emulate running container in foreground, which is no longer possible as we
 # must shift the net-devices into the container _after_ it is started
 docker logs	-f ${BUILD_TAG}-ttcn3-fr-test
+
+# store execution logs for both containers
+docker logs --timestamps ${BUILD_TAG}-ttcn3-fr-test > $VOL_BASE_DIR/fr-tester/exec.log
+docker logs --timestamps ${BUILD_TAG}-frnet > $VOL_BASE_DIR/frnet/exec.log
+docker container rm ${BUILD_TAG}-frnet ${BUILD_TAG}-ttcn3-fr-test
