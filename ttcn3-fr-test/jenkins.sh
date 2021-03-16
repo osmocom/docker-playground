@@ -63,6 +63,8 @@ done
 # emulate running container in foreground, which is no longer possible as we
 # must shift the net-devices into the container _after_ it is started
 docker logs	-f ${BUILD_TAG}-ttcn3-fr-test
+# kill the frnet container to avoid "You cannot remove a running container " below in 'rm'
+docker kill ${BUILD_TAG}-frnet
 
 # store execution logs for both containers
 docker logs --timestamps ${BUILD_TAG}-ttcn3-fr-test > $VOL_BASE_DIR/fr-tester/exec.log
