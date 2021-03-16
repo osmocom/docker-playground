@@ -11,7 +11,7 @@ fi
 
 set -x
 OSMO_TTCN3_BRANCH=$1
-PROJECT=$2
+shift
 
 cd /osmo-ttcn3-hacks
 
@@ -37,4 +37,4 @@ for i in ttcn3-*-start.sh ttcn3-*-stop.sh; do
 	ln -sv "/osmo-ttcn3-hacks/$i" "/$i"
 done
 
-make "$PROJECT"
+make $@
