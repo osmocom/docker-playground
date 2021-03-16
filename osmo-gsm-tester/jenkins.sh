@@ -28,34 +28,45 @@ TRIAL_DIR="${TRIAL_DIR:-/tmp/trial}"
 SRS_LTE_BRANCH=${SRS_LTE_BRANCH:-master}
 SRS_LTE_REPO_PREFIX=${SRS_LTE_REPO_PREFIX:-git@github.com:srsLTE}
 SRS_LTE_REPO_NAME=${SRS_LTE_REPO_NAME:-srsLTE}
-have_repo_srslte() {
+OPEN5GS_REPO_PREFIX=${OPEN5GS_REPO_PREFIX:-git@github.com:open5gs}
+OPEN5GS_BRANCH=${OPEN5GS_BRANCH:-main}
+have_repo() {
+	repo_prefix=$1
+	repo_name=$2
+	branch=$3
 	echo "srsLTE inst not provided, fetching it now and it will be build in container"
-	if [ -d "${TRIAL_DIR}/${SRS_LTE_REPO_NAME}" ]; then
-		git fetch -C ${TRIAL_DIR}/${SRS_LTE_REPO_NAME}
+	if [ -d "${TRIAL_DIR}/${repo_name}" ]; then
+		git fetch -C ${TRIAL_DIR}/${repo_name}
 	else
 		mkdir -p ${TRIAL_DIR}
-		git clone "${SRS_LTE_REPO_PREFIX}/${SRS_LTE_REPO_NAME}" "${TRIAL_DIR}/${SRS_LTE_REPO_NAME}"
+		git clone "${repo_prefix}/${repo_name}" "${TRIAL_DIR}/${repo_name}"
 	fi
 	# Figure out whether we need to prepend origin/ to find branches in upstream.
 	# Doing this allows using git hashes instead of a branch name.
-	if git -C "${TRIAL_DIR}/${SRS_LTE_REPO_NAME}" rev-parse "origin/$SRS_LTE_BRANCH"; then
-	  SRS_LTE_BRANCH="origin/$SRS_LTE_BRANCH"
+	if git -C "${TRIAL_DIR}/${repo_name}" rev-parse "origin/$branch"; then
+	  branch="origin/$branch"
 	fi
 
-	git -C "${TRIAL_DIR}/${SRS_LTE_REPO_NAME}" checkout -B build_branch "$SRS_LTE_BRANCH"
-	rm -rf "${TRIAL_DIR:?}/${SRS_LTE_REPO_NAME}/*"
-	git -C "${TRIAL_DIR}/${SRS_LTE_REPO_NAME}" reset --hard "$SRS_LTE_BRANCH"
+	git -C "${TRIAL_DIR}/${repo_name}" checkout -B build_branch "$branch"
+	rm -rf "${TRIAL_DIR:?}/${repo_name}/*"
+	git -C "${TRIAL_DIR}/${repo_name}" reset --hard "$branch"
 }
-
 # If srsLTE trial not provided by user, fetch srsLTE git repo and let the container build it:
 if [ "x$(ls ${TRIAL_DIR}/srslte.*.tgz 2>/dev/null | wc -l)" = "x0" ]; then
-	have_repo_srslte
+	have_repo  $SRS_LTE_REPO_PREFIX $SRS_LTE_REPO_NAME $SRS_LTE_BRANCH
+fi
+
+# If open5gs trial not provided by user, fetch srsLTE git repo and let the container build it:
+if [ "x$(ls ${TRIAL_DIR}/open5gs.*.tgz 2>/dev/null | wc -l)" = "x0" ]; then
+	have_repo $OPEN5GS_REPO_PREFIX "open5gs" $OPEN5GS_BRANCH
+	have_repo "https://github.com/open5gs" "freeDiameter" "r1.5.0"
+	mv "${TRIAL_DIR}/freeDiameter" "${TRIAL_DIR}/open5gs/subprojects"
 fi
 
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
-	"debian-stretch-jenkins" \
+	"debian-buster-jenkins" \
 	"osmo-gsm-tester"
 
 set_clean_up_trap

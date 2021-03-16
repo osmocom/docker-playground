@@ -1,5 +1,6 @@
 ARG	USER
 FROM	$USER/debian-buster-jenkins
+ARG	OGT_MASTER_ADDR="172.18.50.2"
 
 MAINTAINER Pau Espin Pedrol <pespin@sysmocom.de>
 
@@ -37,7 +38,8 @@ RUN	pip3 install \
 		"git+https://github.com/podshumok/python-smpplib.git@master#egg=smpplib" \
 		pydbus \
 		pyusb \
-		pysispm
+		pysispm \
+		pymongo
 
 # Intall sshd:
 RUN	apt-get update && apt-get install -y openssh-server
@@ -51,13 +53,10 @@ RUN	mkdir -p /osmo-gsm-tester-srsue \
                  /osmo-gsm-tester-srsenb \
                  /osmo-gsm-tester-srsepc \
                  /osmo-gsm-tester-trx \
-		 /osmo-gsm-tester-grbroker
+		 /osmo-gsm-tester-grbroker \
+		 /osmo-gsm-tester-open5gs
 RUN	chown -R jenkins:jenkins \
-                 /osmo-gsm-tester-srsue \
-                 /osmo-gsm-tester-srsenb \
-                 /osmo-gsm-tester-srsepc \
-                 /osmo-gsm-tester-trx \
-		 /osmo-gsm-tester-grbroker
+                 /osmo-gsm-tester-*
 
 # Set a UTF-8 locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
@@ -110,6 +109,45 @@ RUN	apt-get update && \
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		gnuradio && \
+	apt-get clean
+
+# install open5gs dependencies: (mongodb not available in Debian)
+# systemctl stuff: workaround for https://jira.mongodb.org/browse/SERVER-54386
+ADD	https://www.mongodb.org/static/pgp/server-4.4.asc /tmp/mongodb-server-4.4.asc
+RUN	apt-key add /tmp/mongodb-server-4.4.asc && \
+	echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" > /etc/apt/sources.list.d/mongodb-org-4.4.list
+RUN	apt-get update && \
+	systemctl_path=$(which systemctl) && \
+	mv $systemctl_path /tmp/systemctl && \
+	apt-get install -y --no-install-recommends mongodb-org && \
+	apt-get clean && \
+	mv /tmp/systemctl $systemctl_path && \
+	sed -i "s/127.0.0.1/$OGT_MASTER_ADDR/g" /etc/mongod.conf
+
+# install open5gs dependencies:
+RUN	apt-get update && \
+	apt-get install -y --no-install-recommends \
+		python3-pip \
+		python3-setuptools \
+		python3-wheel \
+		ninja-build \
+		build-essential \
+		flex \
+		bison \
+		git \
+		libsctp-dev \
+		libgnutls28-dev \
+		libgcrypt-dev \
+		libssl-dev \
+		libidn11-dev \
+		libmongoc-dev \
+		libbson-dev \
+		libyaml-dev \
+		libnghttp2-dev \
+		libmicrohttpd-dev \
+		libcurl4-gnutls-dev \
+		libnghttp2-dev \
+		meson && \
 	apt-get clean
 
 WORKDIR	/tmp

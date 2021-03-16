@@ -34,9 +34,45 @@ build_srslte() {
         popd
 }
 
+build_open5gs() {
+        git_repo_dir="/tmp/trial/open5gs"
+        if [ ! -d "$git_repo_dir" ]; then
+                echo "No external trial nor git repo provided for Open5GS!"
+                exit 1
+        fi
+        pushd "/tmp/trial"
+        rm -rf sysroot && mkdir sysroot
+        rm -rf build && mkdir build && cd build || exit 1
+        meson "${git_repo_dir}" --prefix="/tmp/trial/sysroot" --libdir="lib"
+        set +x; echo; echo; set -x
+        ninja "-j$(nproc)"
+        set +x; echo; echo; set -x
+        ninja install
+        find "/tmp/trial/sysroot/lib" -depth -type f -name "lib*.so.*" -exec patchelf --set-rpath '$ORIGIN/' {} \;
+        cd ..
+        this="open5gs.build-${BUILD_NUMBER-$(date +%Y-%m-%d_%H_%M_%S)}"
+        tar="${this}.tgz"
+        tar czf "/tmp/trial/$tar" -C "/tmp/trial/sysroot" .
+        rm -rf build sysroot
+        md5sum "$tar" >>checksums.md5
+        popd
+}
+
 # Build srsLTE.git if not provided by host system:
 if [ "x$(ls /tmp/trial/srslte.*.tgz 2>/dev/null | wc -l)" = "x0" ]; then
         build_srslte
+fi
+
+# Build open5gs.git if not provided by host system:
+if [ "x$(ls /tmp/trial/open5gs.*.tgz 2>/dev/null | wc -l)" = "x0" ]; then
+        build_open5gs
+fi
+
+# If open5gs is available, start mongodb in the background:
+if [ "x$(ls /tmp/trial/open5gs.*.tgz 2>/dev/null | wc -l)" != "x0" ]; then
+        echo "Starting mongodb in the background..."
+        /usr/bin/mongod --fork --config /etc/mongod.conf --logpath /data/mongodb.log
+        chown "${HOST_USER_ID}:${HOST_GROUP_ID}" /data/mongodb.log
 fi
 
 # Make trial dir avaialable to jenkins user inside container:
