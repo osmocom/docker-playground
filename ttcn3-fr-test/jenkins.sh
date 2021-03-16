@@ -27,6 +27,7 @@ docker run	--rm \
 		--cap-add=NET_RAW --cap-add=SYS_RAWIO \
 		$(docker_network_params $SUBNET 10) \
 		--ulimit core=-1 \
+		-e "TTCN3_PCAP_PATH=/data" \
 		-e "WAIT_FOR_NETDEV=hdlcnet8" \
 		-v $VOL_BASE_DIR/frnet:/data \
 		--name ${BUILD_TAG}-frnet -d \
