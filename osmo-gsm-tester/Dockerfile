@@ -1,7 +1,5 @@
 ARG	USER
-FROM	$USER/debian-stretch-jenkins
-# Arguments used after FROM must be specified again
-ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
+FROM	$USER/debian-buster-jenkins
 
 MAINTAINER Pau Espin Pedrol <pespin@sysmocom.de>
 
@@ -77,15 +75,6 @@ RUN     cd /tmp && \
         make && \
         make install
 
-ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/Debian_9.0/"
-
-COPY	.common/Release.key /tmp/Release.key
-
-RUN	apt-key add /tmp/Release.key && \
-	rm /tmp/Release.key && \
-	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-nightly.list
-
-ADD	$OSMOCOM_REPO/Release /tmp/Release
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		telnet \
@@ -134,14 +123,6 @@ RUN	cd osmo-gsm-tester && \
 	git fetch && git checkout $OSMO_GSM_TESTER_BRANCH && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_GSM_TESTER_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD
-
-# Install osmo-ci.git/scripts to /usr/local/bin
-ADD http://git.osmocom.org/osmo-ci/patch /tmp/osmo-ci-commit
-RUN git clone https://git.osmocom.org/osmo-ci osmo-ci && \
-	cp -v $(find osmo-ci/scripts \
-		-maxdepth 1 \
-		-type f ) \
-	   /usr/local/bin
 
 # Copy several scripts and permission for osmo-gsm-tester:
 RUN     mkdir -p /usr/local/bin/ && cp osmo-gsm-tester/utils/bin/* /usr/local/bin/
