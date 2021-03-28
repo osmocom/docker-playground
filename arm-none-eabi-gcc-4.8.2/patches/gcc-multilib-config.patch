@@ -1,0 +1,15 @@
+diff --git a/gcc/config/arm/t-arm-elf b/gcc/config/arm/t-arm-elf
+index 60747d3..3427939 100644
+--- a/gcc/config/arm/t-arm-elf
++++ b/gcc/config/arm/t-arm-elf
+@@ -56,8 +56,8 @@ MULTILIB_EXCEPTIONS    += *mthumb/*mfloat-abi=hard*
+ # MULTILIB_DIRNAMES   += fpu soft
+ # MULTILIB_EXCEPTIONS += *mthumb/*mfloat-abi=hard*
+ # 
+-# MULTILIB_OPTIONS    += mno-thumb-interwork/mthumb-interwork
+-# MULTILIB_DIRNAMES   += normal interwork
++MULTILIB_OPTIONS      += mno-thumb-interwork/mthumb-interwork
++MULTILIB_DIRNAMES     += normal interwork
+ # 
+ # MULTILIB_OPTIONS    += fno-leading-underscore/fleading-underscore
+ # MULTILIB_DIRNAMES   += elf under

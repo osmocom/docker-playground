@@ -1,0 +1,14 @@
+diff --git a/gcc/cp/cfns.h b/gcc/cp/cfns.h
+index 42dd3cf..ba48bbd 100644
+--- a/gcc/cp/cfns.h
++++ b/gcc/cp/cfns.h
+@@ -124,9 +124,6 @@ hash (register const char *str, register unsigned int len)
+ 
+ #ifdef __GNUC__
+ __inline
+-#ifdef __GNUC_STDC_INLINE__
+-__attribute__ ((__gnu_inline__))
+-#endif
+ #endif
+ const char *
+ libc_name_p (register const char *str, register unsigned int len)
