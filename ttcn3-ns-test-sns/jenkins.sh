@@ -1,0 +1,1 @@
+../ttcn3-ns-test/jenkins-sns.sh
