@@ -39,6 +39,40 @@ docker_dir_from_image_name() {
 	esac
 }
 
+# $1: distro name, from docker_distro_from_image_name()
+# $2: docker image name (without $REPO_USER/ prefix)
+list_osmo_packages() {
+	local distro="$1"
+	local image="$2"
+	local docker_run_sh="docker run --rm --entrypoint=/bin/sh $REPO_USER/$image -c"
+
+	# Don't run on all images
+	case "$image" in
+	osmo-*) ;;
+	*) return ;;
+	esac
+
+	set +x
+	echo
+	echo "### Installed Osmocom packages in: $image ###"
+	echo
+
+	case "$distro" in
+	centos*)
+		$docker_run_sh "rpm -qa | grep osmo"
+		;;
+	debian*)
+		$docker_run_sh "dpkg -l | grep osmo"
+		;;
+	*)
+		echo "ERROR: don't know how to list installed packages for distro=$distro"
+		;;
+	esac
+
+	echo
+	set -x
+}
+
 # Make sure required images are available and build them if necessary.
 # $*: image names (e.g. "debian-stretch-build", "osmo-mgw-master", "osmo-mgw-master-centos8")
 #	The images are automatically built from the Dockerfile of the subdir of
@@ -67,10 +101,11 @@ docker_images_require() {
 			docker_images_require $depends
 		fi
 
+		distro_arg="$(docker_distro_from_image_name "$i")"
+
 		# Trigger image build (cache will be used when up-to-date)
 		if [ -z "$NO_DOCKER_IMAGE_BUILD" ]; then
 			upstream_distro_arg="$(docker_upstream_distro_from_image_name "$i")"
-			distro_arg="$(docker_distro_from_image_name "$i")"
 			dir="$(docker_dir_from_image_name "$i")"
 
 			# Pull upstream base images
@@ -94,6 +129,8 @@ docker_images_require() {
 			echo "ERROR: missing image: $i"
 			exit 1
 		fi
+
+		list_osmo_packages "$distro_arg" "$i"
 	done
 }
 
