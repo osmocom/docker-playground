@@ -77,10 +77,12 @@ for i in `seq 0 2`; do
 			$(docker_network_params $SUBNET 10$i) \
 			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/bts-omldummy:/data \
+			$ADD_BSC_VOLUMES \
 			--name ${BUILD_TAG}-bts$i -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
-			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-omldummy $BTS_FEATURES 172.18.31.20 $((i + 1234)) 1" # >>/data/osmo-bts-omldummy-${i}.log 2>&1"
+			sleep 9999999
+			#/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-omldummy $BTS_FEATURES 172.18.31.20 $((i + 1234)) 1" # >>/data/osmo-bts-omldummy-${i}.log 2>&1"
 done
 
 echo Starting container with BSC testsuite
