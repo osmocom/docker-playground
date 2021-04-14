@@ -114,41 +114,48 @@ RUN	apt-get update && \
 # install open5gs dependencies: (mongodb not available in Debian)
 # systemctl stuff: workaround for https://jira.mongodb.org/browse/SERVER-54386
 ADD	https://www.mongodb.org/static/pgp/server-4.4.asc /tmp/mongodb-server-4.4.asc
-RUN	apt-key add /tmp/mongodb-server-4.4.asc && \
-	echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" > /etc/apt/sources.list.d/mongodb-org-4.4.list
-RUN	apt-get update && \
-	systemctl_path=$(which systemctl) && \
-	mv $systemctl_path /tmp/systemctl && \
-	apt-get install -y --no-install-recommends mongodb-org && \
-	apt-get clean && \
-	mv /tmp/systemctl $systemctl_path && \
-	sed -i "s/127.0.0.1/$OGT_MASTER_ADDR/g" /etc/mongod.conf
+RUN	if [ "$(arch)" = "x86_64" ]; then \
+		apt-key add /tmp/mongodb-server-4.4.asc && \
+		echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" \
+			> /etc/apt/sources.list.d/mongodb-org-4.4.list; \
+	fi
+RUN	if [ "$(arch)" = "x86_64" ]; then \
+		apt-get update && \
+		systemctl_path=$(which systemctl) && \
+		mv $systemctl_path /tmp/systemctl && \
+		apt-get install -y --no-install-recommends mongodb-org && \
+		apt-get clean && \
+		mv /tmp/systemctl $systemctl_path && \
+		sed -i "s/127.0.0.1/$OGT_MASTER_ADDR/g" /etc/mongod.conf; \
+	fi
 
 # install open5gs dependencies:
-RUN	apt-get update && \
-	apt-get install -y --no-install-recommends \
-		python3-pip \
-		python3-setuptools \
-		python3-wheel \
-		ninja-build \
-		build-essential \
-		flex \
-		bison \
-		git \
-		libsctp-dev \
-		libgnutls28-dev \
-		libgcrypt-dev \
-		libssl-dev \
-		libidn11-dev \
-		libmongoc-dev \
-		libbson-dev \
-		libyaml-dev \
-		libnghttp2-dev \
-		libmicrohttpd-dev \
-		libcurl4-gnutls-dev \
-		libnghttp2-dev \
-		meson && \
-	apt-get clean
+RUN	if [ "$(arch)" = "x86_64" ]; then \
+		apt-get update && \
+		apt-get install -y --no-install-recommends \
+			python3-pip \
+			python3-setuptools \
+			python3-wheel \
+			ninja-build \
+			build-essential \
+			flex \
+			bison \
+			git \
+			libsctp-dev \
+			libgnutls28-dev \
+			libgcrypt-dev \
+			libssl-dev \
+			libidn11-dev \
+			libmongoc-dev \
+			libbson-dev \
+			libyaml-dev \
+			libnghttp2-dev \
+			libmicrohttpd-dev \
+			libcurl4-gnutls-dev \
+			libnghttp2-dev \
+			meson && \
+		apt-get clean; \
+	fi
 
 WORKDIR	/tmp
 
