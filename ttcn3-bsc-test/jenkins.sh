@@ -80,7 +80,7 @@ for i in "0 1" "1 1" "2 4"; do
 			--name ${BUILD_TAG}-bts$1 -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
-			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-omldummy $BTS_FEATURES 172.18.2.20 $(($1 + 1234)) $2" # >>/data/osmo-bts-omldummy-$1.log 2>&1"
+			/bin/sh -c "SLEEP_BEFORE_RESPAWN=1 /usr/local/bin/respawn.sh osmo-bts-omldummy $BTS_FEATURES 172.18.2.20 $(($1 + 1234)) $2" # >>/data/osmo-bts-omldummy-$1.log 2>&1"
 done
 
 echo Starting container with BSC testsuite
