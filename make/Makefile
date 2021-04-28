@@ -15,6 +15,7 @@
 #
 REGISTRY_HOST?=docker.io
 USERNAME?=$(USER)
+UID=$(shell id -u)
 NAME?=$(shell basename $(CURDIR))
 LIBOSMOCORE_BRANCH?=master
 OSMO_TTCN3_BRANCH?=master
@@ -69,6 +70,7 @@ post-push:
 docker-build: .release
 	docker build \
 		--build-arg USER=$(USERNAME) \
+		--build-arg UID=$(UID) \
 		--build-arg REGISTRY=$(REGISTRY_HOST) \
 		--build-arg OSMO_TTCN3_BRANCH=$(OSMO_TTCN3_BRANCH) \
 		--build-arg UPSTREAM_DISTRO=$(UPSTREAM_DISTRO) \
