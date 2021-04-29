@@ -7,7 +7,8 @@ test automation.
 
 ## Running a testsuite
 All testsuite folders start with `ttcn3` or `nplab`. Run the following
-to build/update all required containers and start a specific testsuite:
+to build/update all required containers from the "master" branch and
+start a specific testsuite:
 
 ```
 $ cd ttcn3-mgw-test
@@ -25,6 +26,33 @@ Environment variables:
   Osmocom project. Defaults to `master`.
 * `NO_DOCKER_IMAGE_BUILD`: when set to `1`, it won't try to update the
   containers (see "caching" below)
+
+### More examples
+
+latest (debian):
+```
+$ export IMAGE_SUFFIX="latest"
+$ cd ttcn3-mgw-test
+$ ./jenkins.sh
+```
+
+latest-centos8:
+```
+$ export IMAGE_SUFFIX="latest-centos8"
+$ cd ttcn3-mgw-test
+$ ./jenkins.sh
+```
+
+2021q1-centos8:
+```
+export OSMOCOM_REPO_TESTSUITE_MIRROR="http://download.opensuse.org"
+export OSMOCOM_REPO_MIRROR="https://downloads.osmocom.org"
+export OSMOCOM_REPO_PATH="osmo-maintained"
+export OSMOCOM_REPO_VERSION="2021q1"
+export IMAGE_SUFFIX="2021q1-centos8"
+$ cd ttcn3-mgw-test
+$ ./jenkins.sh
+```
 
 ## Kernel test
 OsmoGGSN can be configured to either run completely in userspace, or to

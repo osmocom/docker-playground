@@ -6,7 +6,15 @@ docker_image_exists() {
 }
 
 docker_depends() {
+	local feed
+
 	case "$1" in
+	osmo-*-20*q*-centos8)
+		# e.g. osmo-mgw-2021q1-centos8 -> centos8-obs-2021q1
+		feed="$(echo "$1" | grep -o -P -- "20\d\dq.*$")"  # e.g. "2021q1-centos8"
+		feed="$(echo "$feed" | sed 's/\-centos8$//')" # e.g. "2021q1"
+		echo "centos8-obs-$feed"
+		;;
 	osmo-*-latest-centos8) echo "centos8-obs-latest" ;;
 	osmo-*-centos8) echo "centos8-build" ;;
 	osmo-*-latest) echo "debian-stretch-obs-latest" ;;
@@ -34,8 +42,21 @@ docker_upstream_distro_from_image_name() {
 
 docker_dir_from_image_name() {
 	case "$1" in
-	osmo-*-centos8) echo "$1" | sed 's/\-centos8$//' ;;
-	*) echo "$1" ;;
+	osmo-*-20*q*-centos8)
+		# e.g. osmo-mgw-2021q1-centos8 -> osmo-mgw-latest
+		echo "$1" | sed 's/20[0-9][0-9]q.*\-centos8$/latest/'
+		;;
+	osmo-*-centos8)
+		# e.g. osmo-mgw-latest-centos8 -> osmo-mgw-latest
+		echo "$1" | sed 's/\-centos8$//'
+		;;
+	centos8-obs-20*q*)
+		# e.g. centos8-obs-2021q1 -> centos8-obs-latest
+		echo "$1" | sed 's/20[0-9][0-9]q.*$/latest/'
+		;;
+	*)
+		echo "$1"
+		;;
 	esac
 }
 
