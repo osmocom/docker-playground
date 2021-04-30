@@ -47,6 +47,13 @@ OSMOCOM_REPO_MIRROR?=http://download.opensuse.org
 OSMOCOM_REPO_PATH?=repositories/network:/osmocom:
 # Use "nightly" to use the nightly feed
 OSMOCOM_REPO_VERSION?=latest
+# Build the testsuite with the following mirror. In jenkins we always want to
+# point this to http://download.opensuse.org, so the same testsuite can be
+# used no matter which OSMOCOM_REPO_MIRROR is set. This avoids rebuilding the
+# testsuite when we only want to change OSMOCOM_REPO_MIRROR to build different
+# subjects under test, and it works even if the OSMOCOM_REPO_MIRROR only has
+# a subset of the network:osmocom:latest packages (i.e. no eclipse-titan).
+OSMOCOM_REPO_TESTSUITE_MIRROR?=$(OSMOCOM_REPO_MIRROR)
 
 ROOT_DIR=$(shell git rev-parse --show-toplevel)
 RELEASE_SUPPORT := $(ROOT_DIR)/make/.make-release-support
@@ -84,6 +91,7 @@ docker-build: .release
 		--build-arg OSMOCOM_REPO_MIRROR=$(OSMOCOM_REPO_MIRROR) \
 		--build-arg OSMOCOM_REPO_PATH=$(OSMOCOM_REPO_PATH) \
 		--build-arg OSMOCOM_REPO_VERSION=$(OSMOCOM_REPO_VERSION) \
+		--build-arg OSMOCOM_REPO_TESTSUITE_MIRROR=$(OSMOCOM_REPO_TESTSUITE_MIRROR) \
 		--build-arg LIBOSMOCORE_BRANCH=$(LIBOSMOCORE_BRANCH) \
 		--build-arg OSMO_BB_BRANCH=$(OSMO_BB_BRANCH) \
 		--build-arg OSMO_BSC_BRANCH=$(OSMO_BSC_BRANCH) \

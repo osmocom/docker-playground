@@ -4,13 +4,13 @@ ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
 FROM	$USER/$DISTRO-build
 # Arguments used after FROM must be specified again
 ARG	DISTRO
-ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
+ARG	OSMOCOM_REPO_TESTSUITE_MIRROR="http://download.opensuse.org"
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 ARG	OSMO_BB_BRANCH="master"
 
-ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/Debian_9.0/"
+ARG	OSMOCOM_REPO="$OSMOCOM_REPO_TESTSUITE_MIRROR/repositories/network:/osmocom:/nightly/Debian_9.0/"
 
 COPY	.common/Release.key /tmp/Release.key
 
