@@ -10,8 +10,15 @@ RUN	echo "metadata_expire=60" >> /etc/dnf/dnf.conf && cat /etc/dnf/dnf.conf
 # Make additional development libraries available from PowerTools and Osmocom nightly (e.g. libdbi)
 RUN	dnf install -y dnf-utils wget && \
 	yum config-manager --set-enabled powertools && \
-	cd /etc/yum.repos.d/ && \
-	wget $OSMOCOM_REPO_MIRROR/repositories/network:osmocom:nightly/CentOS_8/network:osmocom:nightly.repo
+	export MIRROR_HTTPS="$(echo $OSMOCOM_REPO_MIRROR | sed s/^http:/https:/)" && \
+	{ echo "[network_osmocom_nightly]"; \
+	  echo "name=Nightly packages of the Osmocom project (CentOS_8)"; \
+	  echo "type=rpm-md"; \
+	  echo "baseurl=${OSMOCOM_REPO_MIRROR}/repositories/network:/osmocom:/nightly/CentOS_8/"; \
+	  echo "gpgcheck=1"; \
+	  echo "gpgkey=${MIRROR_HTTPS}/repositories/network:/osmocom:/nightly/CentOS_8/repodata/repomd.xml.key"; \
+	  echo "enabled=1"; \
+	} > /etc/yum.repos.d/network:osmocom:nightly.repo
 
 RUN	dnf install -y \
 		autoconf \

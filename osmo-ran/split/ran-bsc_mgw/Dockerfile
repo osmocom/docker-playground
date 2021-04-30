@@ -26,7 +26,15 @@ RUN	case "$DISTRO" in \
 		dnf install -y dnf-utils wget && \
 		yum config-manager --set-enabled PowerTools && \
 		cd /etc/yum.repos.d/ && \
-		wget ${OSMOCOM_REPO_CENTOS}/network:osmocom:$OSMOCOM_REPO_VERSION.repo \
+		export MIRROR_HTTPS="$(echo $OSMOCOM_REPO_CENTOS | sed s/^http:/https:/)" && \
+		{ echo "[network_osmocom_${OSMOCOM_REPO_VERSION}]"; \
+		  echo "name=Osmocom ${OSMOCOM_REPO_VERSION}"; \
+		  echo "type=rpm-md"; \
+		  echo "baseurl=${OSMOCOM_REPO_CENTOS}"; \
+		  echo "gpgcheck=1"; \
+		  echo "gpgkey=${MIRROR_HTTPS}repodata/repomd.xml.key"; \
+		  echo "enabled=1"; \
+		} > "/etc/yum.repos.d/network:osmocom:${OSMOCOM_REPO_VERSION}.repo" \
 		;; \
 	esac
 
