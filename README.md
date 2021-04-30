@@ -45,6 +45,10 @@ Environment variables:
 * `KERNEL_URL`: git remote url (default: net-next.git on kernel.org)
 * `KERNEL_BRANCH` branch to checkout (default: master)
 
+The OBS repository mirror consists of
+`${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/${OSMOCOM_REPO_VERSION}`,
+e.g. `https://download.opensuse.org/repositories/network:/osmocom:/latest/`.
+
 ### Creating kernel config fragments
 For the kernel tests, we are storing kernel config fragments in the git
 repository instead of full kernel configs. Generate them as follows:

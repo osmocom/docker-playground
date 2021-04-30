@@ -6,6 +6,7 @@ ARG	REGISTRY=docker.io
 FROM	${REGISTRY}/debian:${DEBIAN_VERSION}
 # Arguments used after FROM must be specified again
 ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
+ARG	OSMOCOM_REPO_PATH="repositories/network:/osmocom:"
 
 # Make "$DEBIAN_VERSION" available after FROM
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
@@ -169,7 +170,7 @@ ENV LANG en_US.UTF-8
 # Install packages from Osmocom OBS repositories:
 # * osmo-remsim: libulfius
 # * osmo-trx: liblimesuite-dev, libuhd-dev
-ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/Debian_9.0/"
+ARG	OSMOCOM_REPO="${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/nightly/Debian_9.0/"
 COPY	.common/Release.key /tmp/Release.key
 RUN	apt-key add /tmp/Release.key && \
 	rm /tmp/Release.key && \

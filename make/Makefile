@@ -37,10 +37,16 @@ OSMO_STP_BRANCH?=master
 PULL?=
 UPSTREAM_DISTRO?=debian:stretch
 DISTRO?=debian-stretch
-OSMOCOM_REPO_MIRROR?=http://download.opensuse.org
+
+# Full OBS repository mirror consists of:
+# ${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/${OSMOCOM_REPO_VERSION}
+# e.g. "https://download.opensuse.org/repositories/network:/osmocom:/latest/"
+#
 # Use if down: OSMOCOM_REPO_MIRROR=http://ftp.uni-stuttgart.de/opensuse
+OSMOCOM_REPO_MIRROR?=http://download.opensuse.org
+OSMOCOM_REPO_PATH?=repositories/network:/osmocom:
+# Use "nightly" to use the nightly feed
 OSMOCOM_REPO_VERSION?=latest
-# Use "nightly" to use the nightly repo
 
 ROOT_DIR=$(shell git rev-parse --show-toplevel)
 RELEASE_SUPPORT := $(ROOT_DIR)/make/.make-release-support
@@ -76,6 +82,7 @@ docker-build: .release
 		--build-arg UPSTREAM_DISTRO=$(UPSTREAM_DISTRO) \
 		--build-arg DISTRO=$(DISTRO) \
 		--build-arg OSMOCOM_REPO_MIRROR=$(OSMOCOM_REPO_MIRROR) \
+		--build-arg OSMOCOM_REPO_PATH=$(OSMOCOM_REPO_PATH) \
 		--build-arg OSMOCOM_REPO_VERSION=$(OSMOCOM_REPO_VERSION) \
 		--build-arg LIBOSMOCORE_BRANCH=$(LIBOSMOCORE_BRANCH) \
 		--build-arg OSMO_BB_BRANCH=$(OSMO_BB_BRANCH) \

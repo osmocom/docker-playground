@@ -3,6 +3,7 @@ ARG	UPSTREAM_DISTRO=centos:centos8
 FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 # Arguments used after FROM must be specified again
 ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
+ARG	OSMOCOM_REPO_PATH="repositories/network:/osmocom:"
 
 # Let package metadata expire after 60 seconds instead of 48 hours
 RUN	echo "metadata_expire=60" >> /etc/dnf/dnf.conf && cat /etc/dnf/dnf.conf
@@ -15,9 +16,9 @@ RUN	dnf install -y dnf-utils wget && \
 	{ echo "[network_osmocom_latest]"; \
 	  echo "name=Latest tagged versions of osmocom cellular network elements (CentOS_8)"; \
 	  echo "type=rpm-md"; \
-	  echo "baseurl=${OSMOCOM_REPO_MIRROR}/repositories/network:/osmocom:/latest/CentOS_8/"; \
+	  echo "baseurl=${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/latest/CentOS_8/"; \
 	  echo "gpgcheck=1"; \
-	  echo "gpgkey=${MIRROR_HTTPS}/repositories/network:/osmocom:/latest/CentOS_8/repodata/repomd.xml.key"; \
+	  echo "gpgkey=${MIRROR_HTTPS}/${OSMOCOM_REPO_PATH}/latest/CentOS_8/repodata/repomd.xml.key"; \
 	  echo "enabled=1"; \
 	} > /etc/yum.repos.d/network:osmocom:latest.repo
 
@@ -28,4 +29,4 @@ RUN	dnf install -y \
 COPY	.common/respawn.sh /usr/local/bin/respawn.sh
 
 # Invalidate cache once the repository is updated
-ADD	$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/latest/CentOS_8/repodata/repomd.xml /tmp/repomd.xml
+ADD	${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/latest/CentOS_8/repodata/repomd.xml /tmp/repomd.xml

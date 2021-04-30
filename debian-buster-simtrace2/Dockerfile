@@ -2,10 +2,11 @@ ARG	USER
 FROM	$USER/debian-buster-build
 # Arguments used after FROM must be specified again
 ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
+ARG	OSMOCOM_REPO_PATH="repositories/network:/osmocom:"
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
-ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/Debian_10/"
+ARG	OSMOCOM_REPO="${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/nightly/Debian_10/"
 
 COPY	.common/Release.key /tmp/Release.key
 

@@ -3,12 +3,13 @@ FROM	$USER/systemd
 # Arguments used after FROM must be specified again
 ARG	DISTRO
 ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
+ARG	OSMOCOM_REPO_PATH="repositories/network:/osmocom:"
 ARG	OSMOCOM_REPO_VERSION=latest
 
 MAINTAINER Pau Espin Pedrol <pespin@sysmocom.de>
 
-ARG	OSMOCOM_REPO_DEBIAN="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/$OSMOCOM_REPO_VERSION/Debian_9.0/"
-ARG	OSMOCOM_REPO_CENTOS="$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/$OSMOCOM_REPO_VERSION/CentOS_8/"
+ARG	OSMOCOM_REPO_DEBIAN="$OSMOCOM_REPO_MIRROR/$OSMOCOM_REPO_PATH/$OSMOCOM_REPO_VERSION/Debian_9.0/"
+ARG	OSMOCOM_REPO_CENTOS="$OSMOCOM_REPO_MIRROR/$OSMOCOM_REPO_PATH/$OSMOCOM_REPO_VERSION/CentOS_8/"
 
 COPY	.common/Release.key /tmp/Release.key
 
