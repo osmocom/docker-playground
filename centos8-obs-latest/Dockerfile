@@ -4,23 +4,24 @@ FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 # Arguments used after FROM must be specified again
 ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
 ARG	OSMOCOM_REPO_PATH="repositories/network:/osmocom:"
+ARG	OSMOCOM_REPO_VERSION="latest"
 
 # Let package metadata expire after 60 seconds instead of 48 hours
 RUN	echo "metadata_expire=60" >> /etc/dnf/dnf.conf && cat /etc/dnf/dnf.conf
 
 # Make additional development libraries available from PowerTools and set up
-# Osmocom latest OBS repository
+# Osmocom OBS repository
 RUN	dnf install -y dnf-utils wget && \
 	yum config-manager --set-enabled powertools && \
 	export MIRROR_HTTPS="$(echo $OSMOCOM_REPO_MIRROR | sed s/^http:/https:/)" && \
-	{ echo "[network_osmocom_latest]"; \
-	  echo "name=Latest tagged versions of osmocom cellular network elements (CentOS_8)"; \
+	{ echo "[network_osmocom_${OSMOCOM_REPO_VERSION}]"; \
+	  echo "name=Osmocom ${OSMOCOM_REPO_VERSION}"; \
 	  echo "type=rpm-md"; \
-	  echo "baseurl=${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/latest/CentOS_8/"; \
+	  echo "baseurl=${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/${OSMOCOM_REPO_VERSION}/CentOS_8/"; \
 	  echo "gpgcheck=1"; \
-	  echo "gpgkey=${MIRROR_HTTPS}/${OSMOCOM_REPO_PATH}/latest/CentOS_8/repodata/repomd.xml.key"; \
+	  echo "gpgkey=${MIRROR_HTTPS}/${OSMOCOM_REPO_PATH}/${OSMOCOM_REPO_VERSION}/CentOS_8/repodata/repomd.xml.key"; \
 	  echo "enabled=1"; \
-	} > /etc/yum.repos.d/network:osmocom:latest.repo
+	} > "/etc/yum.repos.d/network:osmocom:${OSMOCOM_REPO_VERSION}.repo"
 
 RUN	dnf install -y \
 		telnet
@@ -29,4 +30,4 @@ RUN	dnf install -y \
 COPY	.common/respawn.sh /usr/local/bin/respawn.sh
 
 # Invalidate cache once the repository is updated
-ADD	${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/latest/CentOS_8/repodata/repomd.xml /tmp/repomd.xml
+ADD	${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/${OSMOCOM_REPO_VERSION}/CentOS_8/repodata/repomd.xml /tmp/repomd.xml
