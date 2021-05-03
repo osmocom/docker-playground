@@ -20,7 +20,11 @@ RUN	apt update && apt install -y \
 		flex \
 		curl \
 		patch \
-		file
+		file \
+		python2.7-minimal \
+		autoconf \
+		libtool \
+		git
 
 # Stage 0: Download and patch the source code
 RUN	curl -SL ${BINUTILS_SRC} | tar -xj -C /usr/src && \
