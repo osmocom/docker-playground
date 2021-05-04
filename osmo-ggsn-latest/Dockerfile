@@ -1,6 +1,7 @@
 ARG	USER
 ARG	DISTRO
-FROM	$USER/$DISTRO-obs-latest
+ARG	OSMOCOM_REPO_VERSION="latest"
+FROM	$USER/$DISTRO-obs-$OSMOCOM_REPO_VERSION
 # Arguments used after FROM must be specified again
 ARG	DISTRO
 
