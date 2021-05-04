@@ -54,4 +54,4 @@ RUN	dnf install -y \
 COPY	.common/respawn.sh /usr/local/bin/respawn.sh
 
 # Invalidate cache once the repository is updated
-ADD	$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/latest/CentOS_8/repodata/repomd.xml /tmp/repomd.xml
+ADD	$OSMOCOM_REPO_MIRROR/repositories/network:/osmocom:/nightly/CentOS_8/repodata/repomd.xml /tmp/repomd.xml
