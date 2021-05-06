@@ -24,6 +24,13 @@ cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 
 mkdir $VOL_BASE_DIR/unix
 
+# Disable until osmo-sgsn.git release > 1.7.0 is available
+if [ "$IMAGE_SUFFIX" = "latest" ]; then
+	sed "/mme test-mme0/d" -i $VOL_BASE_DIR/stp/osmo-sgsn.cfg
+	sed "/gtp remote-ip/d" -i $VOL_BASE_DIR/sgsn/osmo-sgsn.cfg
+	sed "/gtp ran-info-relay/d" -i $VOL_BASE_DIR/sgsn/osmo-sgsn.cfg
+fi
+
 echo Starting container with STP
 docker run	--rm \
 		$(docker_network_params $SUBNET 200) \
