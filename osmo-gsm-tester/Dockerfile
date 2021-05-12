@@ -89,7 +89,7 @@ RUN	apt-get update && \
 		libasn1c-dev && \
 	apt-get clean
 
-# install srsLTE runtime dependencies
+# install srsRAN runtime dependencies
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		cmake \

@@ -11,10 +11,10 @@ ip addr add 172.18.50.8/24 dev eth0
 ip addr add 172.18.50.9/24 dev eth0
 ip addr add 172.18.50.10/24 dev eth0
 
-build_srslte() {
-        git_repo_dir="/tmp/trial/${SRS_LTE_REPO_NAME}"
+build_srsran() {
+        git_repo_dir="/tmp/trial/${SRS_RAN_REPO_NAME}"
         if [ ! -d "$git_repo_dir" ]; then
-                echo "No external trial nor git repo provided for srsLTE!"
+                echo "No external trial nor git repo provided for srsRAN!"
                 exit 1
         fi
         pushd "/tmp/trial"
@@ -26,6 +26,7 @@ build_srslte() {
         set +x; echo; echo; set -x
         make install
         cd ..
+        # REMARK: OGT still uses old naming "srslte" for the trial.
         this="srslte.build-${BUILD_NUMBER-$(date +%Y-%m-%d_%H_%M_%S)}"
         tar="${this}.tgz"
         tar czf "/tmp/trial/$tar" -C "/tmp/trial/sysroot" .
@@ -58,9 +59,9 @@ build_open5gs() {
         popd
 }
 
-# Build srsLTE.git if not provided by host system:
+# Build srsRAN.git if not provided by host system:
 if [ "x$(ls /tmp/trial/srslte.*.tgz 2>/dev/null | wc -l)" = "x0" ]; then
-        build_srslte
+        build_srsran
 fi
 
 # Build open5gs.git if not provided by host system:
