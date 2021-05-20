@@ -335,6 +335,14 @@ kernel_test_wait_for_vm() {
 	exit 1
 }
 
+# Check if IMAGE_SUFFIX starts with "latest" (e.g. "latest-centos8")
+image_suffix_is_latest() {
+	case "$IMAGE_SUFFIX" in
+	latest*) return 0 ;;
+	*) return 1 ;;
+	esac
+}
+
 set -x
 
 # non-jenkins execution: assume local user name

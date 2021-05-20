@@ -16,7 +16,7 @@ mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 
 # Disable until osmo-stp release > 1.4.0
-if [ "$IMAGE_SUFFIX" = "latest" ]; then
+if image_suffix_is_latest; then
 	sed -i "s/^STP_Tests_M3UA.mp_stp_has_asp_quirk.*/STP_Tests_M3UA.mp_stp_has_asp_quirk := false;/" $VOL_BASE_DIR/stp-tester/STP_Tests.cfg
 fi
 
