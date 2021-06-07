@@ -53,6 +53,7 @@ RUN \
 		libasound2-dev \
 		libboost-all-dev \
 		libc-ares-dev \
+		libcdk5-dev \
 		libcsv-dev \
 		libdbd-sqlite3 \
 		libdbi-dev \
