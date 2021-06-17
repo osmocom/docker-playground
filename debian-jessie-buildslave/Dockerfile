@@ -3,7 +3,7 @@ FROM	$USER/debian-jessie-build
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
-RUN	dpkg --add-architecture i386 && \
+RUN	[ "$(arch)" = "x86_64" ] && dpkg --add-architecture i386; \
 	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		asciidoc \

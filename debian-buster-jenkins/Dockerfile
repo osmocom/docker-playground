@@ -14,7 +14,7 @@ ARG DEBIAN_VERSION
 
 # Install apt dependencies (keep in alphabetic order)
 RUN \
-	dpkg --add-architecture i386 && \
+	[ "$(arch)" = "x86_64" ] && dpkg --add-architecture i386; \
 	DEBIAN_FRONTEND=noninteractive apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get upgrade -y && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
