@@ -343,6 +343,14 @@ image_suffix_is_latest() {
 	esac
 }
 
+# Check if IMAGE_SUFFIX starts with "master" (e.g. "master-centos8")
+image_suffix_is_master() {
+	case "$IMAGE_SUFFIX" in
+	master*) return 0 ;;
+	*) return 1 ;;
+	esac
+}
+
 set -x
 
 # non-jenkins execution: assume local user name
