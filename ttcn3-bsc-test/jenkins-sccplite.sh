@@ -19,6 +19,12 @@ cp sccplite/BSC_Tests.cfg $VOL_BASE_DIR/bsc-tester/
 mkdir $VOL_BASE_DIR/bsc
 cp sccplite/osmo-bsc.cfg $VOL_BASE_DIR/bsc/
 
+# Exclude A5/4 for non-master versions of the IUT
+if ! image_suffix_is_master; then
+	sed "s/encryption a5 0 1 3 4/encryption a5 0 1 3/" \
+		-i $VOL_BASE_DIR/bsc/osmo-bsc.cfg
+fi
+
 SUBNET=12
 network_create $SUBNET
 
