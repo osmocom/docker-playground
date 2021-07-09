@@ -67,6 +67,10 @@ list_osmo_packages() {
 	local image="$2"
 	local docker_run_sh="docker run --rm --entrypoint=/bin/sh $REPO_USER/$image -c"
 
+	if [ -n "$NO_LIST_OSMO_PACKAGES" ]; then
+		return
+	fi
+
 	# Don't run on all images
 	case "$image" in
 	osmo-*) ;;
