@@ -14,6 +14,11 @@ set -e
 mkdir $VOL_BASE_DIR/bsc-tester
 cp BSC_Tests.cfg $VOL_BASE_DIR/bsc-tester/
 
+# Dynamic TS SDCCH8 must be disabled until release AFTER osmo-bsc 1.7.0 is tagged
+if image_suffix_is_latest; then
+	sed "s/BSC_Tests.mp_enable_dyn_sdcch8_test := true;/BSC_Tests.mp_enable_dyn_sdcch8_test := false;/g" -i $VOL_BASE_DIR/bsc-tester/BSC_Tests.cfg
+fi
+
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 
