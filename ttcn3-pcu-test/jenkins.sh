@@ -18,7 +18,9 @@ cp PCU_Tests.cfg $VOL_BASE_DIR/pcu-tester/
 
 # Disable until osmo-pcu release > 0.9.0
 if image_suffix_is_latest; then
-	sed -i "s/^PCUIF_Components.mp_send_all_data_ind.*/PCUIF_Components.mp_send_all_data_ind := false;/" $VOL_BASE_DIR/pcu-tester/PCU_Tests.cfg
+	cfg="$VOL_BASE_DIR/pcu-tester/PCU_Tests.cfg"
+	sed -i "s/^PCUIF_Components.mp_send_all_data_ind.*/PCUIF_Components.mp_send_all_data_ind := false;/" "$cfg"
+	sed -i "s/^PCU_Tests.mp_osmo_pcu_newer_than_0_9_0.*/PCU_Tests.mp_osmo_pcu_newer_than_0_9_0 := false;/" "$cfg"
 fi
 
 mkdir $VOL_BASE_DIR/pcu
