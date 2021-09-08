@@ -21,11 +21,17 @@ if image_suffix_is_latest; then
 	cfg="$VOL_BASE_DIR/pcu-tester/PCU_Tests.cfg"
 	sed -i "s/^PCUIF_Components.mp_send_all_data_ind.*/PCUIF_Components.mp_send_all_data_ind := false;/" "$cfg"
 	sed -i "s/^PCU_Tests.mp_osmo_pcu_newer_than_0_9_0.*/PCU_Tests.mp_osmo_pcu_newer_than_0_9_0 := false;/" "$cfg"
+else
+	sed "/PCU_Tests.mp_ctrl_neigh_ip/d" -i "$VOL_BASE_DIR/pcu-tester/PCU_Tests.cfg"
 fi
 
 mkdir $VOL_BASE_DIR/pcu
 mkdir $VOL_BASE_DIR/pcu/unix
 cp osmo-pcu.cfg $VOL_BASE_DIR/pcu/
+# Disable until osmo-pcu release > 0.9.0
+if image_suffix_is_master; then
+	sed "/neighbor resolution/d" -i "$VOL_BASE_DIR/pcu/osmo-pcu.cfg"
+fi
 
 mkdir $VOL_BASE_DIR/unix
 
