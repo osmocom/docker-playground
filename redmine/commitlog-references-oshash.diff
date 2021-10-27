@@ -1,18 +1,22 @@
 diff --git a/app/models/changeset.rb b/app/models/changeset.rb
-index 4256f0589..b5ef7b298 100644
+index f1580ce33..748c66ddc 100644
 --- a/app/models/changeset.rb
 +++ b/app/models/changeset.rb
-@@ -126,11 +126,11 @@ class Changeset < ActiveRecord::Base
- 
-     referenced_issues = []
- 
--    comments.scan(/([\s\(\[,-]|^)((#{kw_regexp})[\s:]+)?(#\d+(\s+@#{TIMELOG_RE})?([\s,;&]+#\d+(\s+@#{TIMELOG_RE})?)*)(?=[[:punct:]]|\s|<|$)/i) do |match|
-+    comments.scan(/([\s\(\[,-]|^)((#{kw_regexp})[\s:]+)?(OS#\d+(\s+@#{TIMELOG_RE})?([\s,;&]+#\d+(\s+@#{TIMELOG_RE})?)*)(?=[[:punct:]]|\s|<|$)/i) do |match|
-       action, refs = match[2].to_s.downcase, match[3]
+@@ -136,7 +136,7 @@ class Changeset < ActiveRecord::Base
+     regexp =
+       %r{
+         ([\s\(\[,-]|^)((#{kw_regexp})[\s:]+)?
+-        (\#\d+(\s+@#{TIMELOG_RE})?([\s,;&]+\#\d+(\s+@#{TIMELOG_RE})?)*)
++        (OS\#\d+(\s+@#{TIMELOG_RE})?([\s,;&]+\#\d+(\s+@#{TIMELOG_RE})?)*)
+         (?=[[:punct:]]|\s|<|$)
+       }xi
+     comments.scan(regexp) do |match|
+@@ -144,7 +144,7 @@ class Changeset < ActiveRecord::Base
+       refs   = match[3]
        next unless action.present? || ref_keywords_any
  
 -      refs.scan(/#(\d+)(\s+@#{TIMELOG_RE})?/).each do |m|
 +      refs.scan(/OS#(\d+)(\s+@#{TIMELOG_RE})?/).each do |m|
-         issue, hours = find_referenced_issue_by_id(m[0].to_i), m[2]
+         issue = find_referenced_issue_by_id(m[0].to_i)
+         hours = m[2]
          if issue && !issue_linked_to_same_commit?(issue)
-           referenced_issues << issue

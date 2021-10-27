@@ -1,4 +1,4 @@
-FROM redmine:4.1-passenger
+FROM redmine:4.2-passenger
 
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
