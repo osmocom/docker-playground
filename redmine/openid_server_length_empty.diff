@@ -1,0 +1,13 @@
+diff --git a/lib/openid/server.rb b/lib/openid/server.rb
+index 8fa1513..3a86e7d 100644
+--- a/lib/openid/server.rb
++++ b/lib/openid/server.rb
+@@ -1240,7 +1240,7 @@ module OpenID
+       # Raises ProtocolError when the query does not seem to be a valid
+       # OpenID request.
+       def decode(query)
+-        if query.nil? or query.length == 0
++        if query.nil? or query.empty? == 0
+           return nil
+         end
+ 
