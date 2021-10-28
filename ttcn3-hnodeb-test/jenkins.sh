@@ -1,0 +1,41 @@
+#!/bin/sh
+
+. ../jenkins-common.sh
+IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
+docker_images_require \
+	"osmo-hnodeb-$IMAGE_SUFFIX" \
+	"ttcn3-hnodeb-test"
+
+set_clean_up_trap
+set -e
+
+mkdir $VOL_BASE_DIR/hnodeb-tester
+cp HNB_Tests.cfg $VOL_BASE_DIR/hnodeb-tester/
+
+mkdir $VOL_BASE_DIR/hnodeb
+cp osmo-hnodeb.cfg $VOL_BASE_DIR/hnodeb/
+
+SUBNET=33
+network_create $SUBNET
+
+echo Starting container with HNodeB
+docker run	--rm \
+		$(docker_network_params $SUBNET 20) \
+		--ulimit core=-1 \
+		-v $VOL_BASE_DIR/hnodeb:/data \
+		--name ${BUILD_TAG}-hnodeb -d \
+		$DOCKER_ARGS \
+		$REPO_USER/osmo-hnodeb-$IMAGE_SUFFIX
+
+echo Starting container with HNodeB testsuite
+docker run	--rm \
+		$(docker_network_params $SUBNET 203) \
+		--ulimit core=-1 \
+		-e "TTCN3_PCAP_PATH=/data" \
+		-v $VOL_BASE_DIR/hnodeb-tester:/data \
+		--name ${BUILD_TAG}-ttcn3-hnodeb-test \
+		$DOCKER_ARGS \
+		$REPO_USER/ttcn3-hnodeb-test
+
+echo Stopping containers
+docker container kill ${BUILD_TAG}-hnodeb
