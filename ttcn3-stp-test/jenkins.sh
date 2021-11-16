@@ -15,11 +15,6 @@ cp STP_Tests.cfg $VOL_BASE_DIR/stp-tester/
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 
-# Disable until osmo-stp release > 1.4.0
-if image_suffix_is_latest; then
-	sed -i "s/^STP_Tests_M3UA.mp_osmo_stp_newer_than_1_4_0.*/STP_Tests_M3UA.mp_osmo_stp_newer_than_1_4_0 := false;/" $VOL_BASE_DIR/stp-tester/STP_Tests.cfg
-fi
-
 SUBNET=19
 network_create $SUBNET
 
