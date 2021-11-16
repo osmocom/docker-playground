@@ -16,13 +16,6 @@ mkdir $VOL_BASE_DIR/sip-tester
 mkdir $VOL_BASE_DIR/sip-tester/unix
 cp SIP_Tests.cfg $VOL_BASE_DIR/sip-tester/
 
-# TODO: remove this block once we release a new version of the SUT
-if image_suffix_is_latest; then
-	# Use MNCCv7 for the '-latest'
-	sed -i "/MODULE_PARAMETERS/a MNCC_Emulation.mp_mncc_version := 7" \
-		"$VOL_BASE_DIR/sip-tester/SIP_Tests.cfg"
-fi
-
 mkdir $VOL_BASE_DIR/sip
 mkdir $VOL_BASE_DIR/sip/unix
 cp osmo-sip-connector.cfg $VOL_BASE_DIR/sip/
