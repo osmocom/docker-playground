@@ -60,7 +60,7 @@ WORKDIR /home/${username}
 
 ARG GITHUB_USER=open5gs
 ARG GITHUB_REPO=open5gs
-ARG OPEN5GS_BRANCH=master
+ARG OPEN5GS_BRANCH=main
 RUN git clone https://github.com/$GITHUB_USER/$GITHUB_REPO
 ADD https://api.github.com/repos/$GITHUB_USER/$GITHUB_REPO/git/refs/heads/$OPEN5GS_BRANCH /root/open5gs-ver.json
 
