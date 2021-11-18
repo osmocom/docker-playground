@@ -22,6 +22,9 @@ RUN apt-get update && \
         libmongoc-dev \
         libbson-dev \
         libyaml-dev \
+        libnghttp2-dev \
+        libmicrohttpd-dev \
+        libcurl4-gnutls-dev \
         iproute2 \
         ca-certificates \
         netbase \
