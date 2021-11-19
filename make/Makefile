@@ -161,4 +161,4 @@ major-release: tag-major-release release
 
 
 run:
-	docker run $(RUN_ARGS) -it $(IMAGE)
+	docker run $(RUN_ARGS) -it $(IMAGE) $(RUN_CMD)
