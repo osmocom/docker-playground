@@ -19,6 +19,7 @@ set -e
 
 mkdir $VOL_BASE_DIR/ggsn-tester
 cp GGSN_Tests.cfg $VOL_BASE_DIR/ggsn-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/ggsn-tester/GGSN_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/ggsn
 

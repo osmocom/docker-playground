@@ -14,6 +14,7 @@ network_create $SUBNET
 
 mkdir $VOL_BASE_DIR/ns-tester
 cp NS_Tests.cfg $VOL_BASE_DIR/ns-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/ns-tester/NS_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/ns
 cp osmo-ns-dummy.cfg $VOL_BASE_DIR/ns/

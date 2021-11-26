@@ -16,6 +16,7 @@ network_create $SUBNET
 mkdir $VOL_BASE_DIR/msc-tester
 mkdir $VOL_BASE_DIR/msc-tester/unix
 cp MSC_Tests.cfg $VOL_BASE_DIR/msc-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/msc-tester/MSC_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/

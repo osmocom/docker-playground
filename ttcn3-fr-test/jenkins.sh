@@ -16,6 +16,7 @@ mkdir $VOL_BASE_DIR/fr-tester
 chmod a+w $VOL_BASE_DIR/fr-tester
 
 cp FR_Tests.cfg $VOL_BASE_DIR/fr-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/fr-tester/FR_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/frnet
 cp FRNET_Tests.cfg $VOL_BASE_DIR/frnet/

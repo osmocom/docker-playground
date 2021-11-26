@@ -15,6 +15,7 @@ network_create $SUBNET
 mkdir $VOL_BASE_DIR/pcu-tester
 mkdir $VOL_BASE_DIR/pcu-tester/unix
 cp PCU_Tests.cfg $VOL_BASE_DIR/pcu-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/pcu-tester/PCU_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/pcu
 mkdir $VOL_BASE_DIR/pcu/unix

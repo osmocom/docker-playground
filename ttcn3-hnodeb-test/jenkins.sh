@@ -11,6 +11,7 @@ set -e
 
 mkdir $VOL_BASE_DIR/hnodeb-tester
 cp HNB_Tests.cfg $VOL_BASE_DIR/hnodeb-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/hnodeb-tester/HNB_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/hnodeb
 cp osmo-hnodeb.cfg $VOL_BASE_DIR/hnodeb/

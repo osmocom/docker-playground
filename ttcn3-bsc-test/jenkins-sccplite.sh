@@ -15,6 +15,7 @@ NET_NAME=ttcn3-bsc_sccplite-test
 
 mkdir $VOL_BASE_DIR/bsc-tester
 cp sccplite/BSC_Tests.cfg $VOL_BASE_DIR/bsc-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/bsc-tester/BSC_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/bsc
 cp sccplite/osmo-bsc.cfg $VOL_BASE_DIR/bsc/

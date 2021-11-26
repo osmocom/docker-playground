@@ -15,6 +15,7 @@ network_create $SUBNET
 
 mkdir $VOL_BASE_DIR/sgsn-tester
 cp SGSN_Tests.cfg $VOL_BASE_DIR/sgsn-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/sgsn-tester/SGSN_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/sgsn
 cp osmo-sgsn.cfg $VOL_BASE_DIR/sgsn/

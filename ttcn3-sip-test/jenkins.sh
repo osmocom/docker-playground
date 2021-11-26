@@ -15,6 +15,7 @@ network_create $SUBNET
 mkdir $VOL_BASE_DIR/sip-tester
 mkdir $VOL_BASE_DIR/sip-tester/unix
 cp SIP_Tests.cfg $VOL_BASE_DIR/sip-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/sip-tester/SIP_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/sip
 mkdir $VOL_BASE_DIR/sip/unix

@@ -12,6 +12,7 @@ set -e
 
 mkdir $VOL_BASE_DIR/smlc-tester
 cp SMLC_Tests.cfg $VOL_BASE_DIR/smlc-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/smlc-tester/SMLC_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/

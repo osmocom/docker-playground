@@ -11,6 +11,7 @@ set -e
 
 mkdir $VOL_BASE_DIR/stp-tester
 cp STP_Tests.cfg $VOL_BASE_DIR/stp-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/stp-tester/STP_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/

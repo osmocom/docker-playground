@@ -14,6 +14,7 @@ network_create $SUBNET
 
 mkdir $VOL_BASE_DIR/hlr-tester
 cp HLR_Tests.cfg $VOL_BASE_DIR/hlr-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/hlr-tester/HLR_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/hlr
 cp osmo-hlr.cfg $VOL_BASE_DIR/hlr/

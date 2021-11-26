@@ -119,12 +119,16 @@ network_create $SUBNET
 
 mkdir $VOL_BASE_DIR/bts-tester-generic
 cp BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-generic/
+write_mp_osmo_repo "$VOL_BASE_DIR/bts-tester-generic/BTS_Tests.cfg"
 mkdir $VOL_BASE_DIR/bts-tester-virtphy
 cp virtphy/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-virtphy/
+write_mp_osmo_repo "$VOL_BASE_DIR/bts-tester-virtphy/BTS_Tests.cfg"
 mkdir $VOL_BASE_DIR/bts-tester-oml
 cp oml/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-oml/
+write_mp_osmo_repo "$VOL_BASE_DIR/bts-tester-oml/BTS_Tests.cfg"
 mkdir $VOL_BASE_DIR/bts-tester-hopping
 cp fh/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-hopping/
+write_mp_osmo_repo "$VOL_BASE_DIR/bts-tester-hopping/BTS_Tests.cfg"
 
 cp $VOL_BASE_DIR/bts-tester-generic/BTS_Tests.cfg \
    $VOL_BASE_DIR/bts-tester-hopping/BTS_Tests.cfg.inc

@@ -29,6 +29,7 @@ mkdir $VOL_BASE_DIR/gbproxy-tester
 # if we don't change permissions, dumpcap fails to write (despite starting it as root!)
 chmod a+w $VOL_BASE_DIR/gbproxy-tester
 cp GBProxy_Tests.cfg $VOL_BASE_DIR/gbproxy-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/gbproxy-tester/GBProxy_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/gbproxy
 cp osmo-gbproxy.cfg $VOL_BASE_DIR/gbproxy/

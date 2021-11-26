@@ -11,6 +11,7 @@ set -e
 
 mkdir $VOL_BASE_DIR/cbc-tester
 cp CBC_Tests.cfg $VOL_BASE_DIR/cbc-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/cbc-tester/CBC_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/cbc
 cp osmo-cbc.cfg $VOL_BASE_DIR/cbc/

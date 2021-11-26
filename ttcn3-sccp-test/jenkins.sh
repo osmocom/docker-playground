@@ -12,6 +12,7 @@ set -e
 
 mkdir $VOL_BASE_DIR/sccp-tester
 cp SCCP_Tests.cfg $VOL_BASE_DIR/sccp-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/scpp-tester/SCCP_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/sccp
 cp sccp_demo_user.cfg $VOL_BASE_DIR/sccp/

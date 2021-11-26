@@ -75,6 +75,7 @@ mkdir $VOL_BASE_DIR/client
 # 1) server test suite
 start_server
 cp REMSIM_Tests.cfg $VOL_BASE_DIR/remsim-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/remsim-tester/REMSIM_Tests.cfg"
 start_testsuite
 docker container kill ${BUILD_TAG}-server
 
@@ -82,6 +83,7 @@ docker container kill ${BUILD_TAG}-server
 echo "Changing to bankd configuration"
 start_bankd
 cp bankd/REMSIM_Tests.cfg $VOL_BASE_DIR/remsim-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/remsim-tester/REMSIM_Tests.cfg"
 start_testsuite
 docker container kill ${BUILD_TAG}-bankd
 
@@ -89,4 +91,5 @@ docker container kill ${BUILD_TAG}-bankd
 echo "Changing to client configuration"
 start_client
 cp client/REMSIM_Tests.cfg $VOL_BASE_DIR/remsim-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/remsim-tester/REMSIM_Tests.cfg"
 start_testsuite

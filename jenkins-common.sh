@@ -355,6 +355,41 @@ image_suffix_is_master() {
 	esac
 }
 
+# Write the Osmocom repository to the TTCN3 config file, so the tests may take
+# different code paths (OS#5327)
+# $1: path to TTCN3 config file (e.g. BSC_Tests.cfg)
+write_mp_osmo_repo() {
+	local repo="nightly"
+	local config="$1"
+	local line
+
+	if ! [ -e "$config" ]; then
+		set +x
+		echo
+		echo "ERROR: TTCN3 config file '$config' not found in $PWD"
+		echo
+		exit 1
+	fi
+
+	case "$IMAGE_SUFFIX" in
+	latest*)
+		repo="latest"
+		;;
+	20*q*-*)  # e.g. 2021q1-centos8
+		repo="$(echo "$IMAGE_SUFFIX" | cut -d- -f 1)"  # e.g. 2021q1
+		;;
+	*)
+		;;
+	esac
+
+	line="Misc_Helpers.mp_osmo_repo := \"$repo\""
+
+	sed \
+		-i \
+		"s/\[MODULE_PARAMETERS\]/\[MODULE_PARAMETERS\]\n$line/g" \
+		"$config"
+}
+
 set -x
 
 # non-jenkins execution: assume local user name

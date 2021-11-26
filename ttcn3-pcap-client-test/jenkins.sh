@@ -11,6 +11,7 @@ set -e
 
 mkdir $VOL_BASE_DIR/pcap-client-tester
 cp OPCAP_CLIENT_Tests.cfg $VOL_BASE_DIR/pcap-client-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/pcap-client-tester/OPCAP_CLIENT_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/pcap-client
 cp osmo-pcap-client.cfg $VOL_BASE_DIR/pcap-client/

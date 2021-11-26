@@ -11,6 +11,7 @@ set -e
 
 mkdir $VOL_BASE_DIR/mgw-tester
 cp MGCP_Test.cfg $VOL_BASE_DIR/mgw-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/mgw-tester/MGCP_Test.cfg"
 
 mkdir $VOL_BASE_DIR/mgw
 cp osmo-mgw.cfg $VOL_BASE_DIR/mgw/

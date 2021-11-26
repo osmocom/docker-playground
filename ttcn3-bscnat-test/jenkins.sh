@@ -11,6 +11,7 @@ set -e
 
 mkdir $VOL_BASE_DIR/bscnat-tester
 cp BSCNAT_Tests.cfg $VOL_BASE_DIR/bscnat-tester/
+write_mp_osmo_repo "$VOL_BASE_DIR/bscnat-tester/BSCNAT_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/bscnat
 cp osmo-bsc-nat.cfg $VOL_BASE_DIR/bscnat/
