@@ -34,6 +34,8 @@ docker run	--rm \
 		$(docker_network_params $SUBNET 103) \
 		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
+		-e "OSMO_SUT_HOST=172.18.$SUBNET.20" \
+		-e "OSMO_SUT_PORT=4258" \
 		-v $VOL_BASE_DIR/hlr-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-hlr-test \
 		$DOCKER_ARGS \
