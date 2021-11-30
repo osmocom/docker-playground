@@ -32,8 +32,13 @@ RUN	apt-get update && \
 		wireshark-common \
 		vim \
 		netcat-openbsd \
+		python3-setuptools \
+		python3-pip \
 		&& \
 	apt-get clean
+
+# This is required for obtaining talloc reports from the SUT
+RUN	pip3 install git+git://git.osmocom.org/python/osmo-python-tests
 
 # somehow Debian folks updated the gcc version but not titan :/
 RUN	sed -i 's/^#error/\/\/#error/' /usr/include/titan/cversion.h
