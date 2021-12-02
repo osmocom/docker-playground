@@ -18,11 +18,10 @@ RUN	apt-key add /tmp/Release.key && \
 	rm /tmp/Release.key && \
 	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-nightly.list
 
-# python-enum34 is a dependecy of fake_trx as long we're using python2
 ADD	$OSMOCOM_REPO/Release /tmp/Release
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
-		libosmocore-dev python-enum34 && \
+		libosmocore-dev && \
 	apt-get clean
 
 WORKDIR	/tmp
