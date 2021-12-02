@@ -3,9 +3,6 @@ FROM	${REGISTRY}/debian:buster
 
 MAINTAINER Vadim Yanitskiy <vyanitskiy@sysmocom.de>
 
-# TODO: remove me!
-ADD sources.list /etc/apt/sources.list
-
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		ca-certificates \
