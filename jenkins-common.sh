@@ -120,6 +120,16 @@ docker_images_require() {
 	local dir
 
 	for i in $@; do
+		# Don't build images that are available on the private
+		# registry, if using it.
+		if [ "$REGISTRY_HOST" = "registry.osmocom.org" ]; then
+			case "$i" in
+			debian-stretch-titan)
+				continue
+				;;
+			esac
+		fi
+
 		# Build dependencies first
 		depends="$(docker_depends "$i")"
 		if [ -n "$depends" ]; then
