@@ -121,10 +121,12 @@ docker_images_require() {
 
 	for i in $@; do
 		# Don't build images that are available on the private
-		# registry, if using it.
+		# registry, if using it. Instead, pull the images to make sure
+		# they are up-to-date.
 		if [ "$REGISTRY_HOST" = "registry.osmocom.org" ]; then
 			case "$i" in
 			debian-stretch-titan)
+				docker pull "$REGISTRY_HOST/$USER/$i"
 				continue
 				;;
 			esac
