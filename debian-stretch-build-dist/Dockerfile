@@ -20,6 +20,7 @@ RUN	apt-get update && \
 		libasn1c-dev \
 		libboost-all-dev \
 		libc-ares-dev \
+		libcsv-dev \
 		libdbd-sqlite3 \
 		libdbi-dev \
 		libfftw3-dev \
@@ -42,6 +43,7 @@ RUN	apt-get update && \
 		libosmo-rua-dev \
 		libosmo-sccp-dev \
 		libosmo-sigtran-dev \
+		libosmo-simtrace2-dev \
 		libosmocore-dev \
 		libosmodsp-dev \
 		libpcap-dev \
