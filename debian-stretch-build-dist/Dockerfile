@@ -60,6 +60,7 @@ RUN	apt-get update && \
 		libusb-dev \
 		libusrp-dev \
 		libyder-dev \
+		libzmq3-dev \
 		make \
 		mscgen \
 		python-nwdiag \
