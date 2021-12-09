@@ -4,6 +4,7 @@ FROM	$USER/debian-stretch-obs-latest
 
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
+		asciidoc \
 		autoconf \
 		autoconf-archive \
 		autogen \
@@ -12,7 +13,10 @@ RUN	apt-get update && \
 		build-essential \
 		ca-certificates \
 		dahdi-source \
+		dblatex \
 		git \
+		graphviz \
+		inkscape \
 		libasn1c-dev \
 		libboost-all-dev \
 		libc-ares-dev \
@@ -55,5 +59,9 @@ RUN	apt-get update && \
 		libusrp-dev \
 		libyder-dev \
 		make \
+		mscgen \
+		python-nwdiag \
+		python-pychart \
+		xsltproc \
 		&& \
 	apt-get clean
