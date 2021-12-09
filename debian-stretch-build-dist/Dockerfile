@@ -40,6 +40,7 @@ RUN	apt-get update && \
 		libosmo-mgcp-client-dev \
 		libosmo-netif-dev \
 		libosmo-ranap-dev \
+		libnl-route-3-dev \
 		libosmo-rua-dev \
 		libosmo-sccp-dev \
 		libosmo-sigtran-dev \
