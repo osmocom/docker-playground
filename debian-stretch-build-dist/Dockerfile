@@ -35,9 +35,11 @@ RUN	apt-get update && \
 		libortp-dev \
 		libosmo-abis-dev \
 		libosmo-gsup-client-dev \
+		libosmo-hnbap-dev \
 		libosmo-mgcp-client-dev \
 		libosmo-netif-dev \
 		libosmo-ranap-dev \
+		libosmo-rua-dev \
 		libosmo-sccp-dev \
 		libosmo-sigtran-dev \
 		libosmocore-dev \
