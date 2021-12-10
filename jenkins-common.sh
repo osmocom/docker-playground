@@ -15,7 +15,9 @@ docker_depends() {
 		feed="$(echo "$feed" | sed 's/\-centos8$//')" # e.g. "2021q1"
 		echo "centos8-obs-$feed"
 		;;
+	osmo-*-latest-centos7) echo "centos7-obs-latest" ;;
 	osmo-*-latest-centos8) echo "centos8-obs-latest" ;;
+	osmo-*-centos7) echo "centos7-build" ;;
 	osmo-*-centos8) echo "centos8-build" ;;
 	osmo-*-latest) echo "debian-stretch-obs-latest" ;;
 	osmo-*) echo "debian-stretch-build" ;;
@@ -25,7 +27,9 @@ docker_depends() {
 
 docker_distro_from_image_name() {
 	case "$1" in
+	osmo-*-centos7) echo "centos7" ;;
 	osmo-*-centos8) echo "centos8" ;;
+	centos7-*) echo "centos7" ;;
 	centos8-*) echo "centos8" ;;
 	*) echo "debian-stretch" ;;
 	esac
@@ -33,7 +37,9 @@ docker_distro_from_image_name() {
 
 docker_upstream_distro_from_image_name() {
 	case "$1" in
+	osmo-*-centos7) echo "centos:centos7"; ;;
 	osmo-*-centos8) echo "centos:centos8"; ;;
+	centos7-*) echo "centos:centos7" ;;
 	centos8-*) echo "centos:centos8" ;;
 	debian10-*) echo "debian:buster" ;;
 	*) echo "debian:stretch" ;;
@@ -45,6 +51,10 @@ docker_dir_from_image_name() {
 	osmo-*-20*q*-centos8)
 		# e.g. osmo-mgw-2021q1-centos8 -> osmo-mgw-latest
 		echo "$1" | sed 's/20[0-9][0-9]q.*\-centos8$/latest/'
+		;;
+	osmo-*-centos7)
+		# e.g. osmo-mgw-latest-centos7 -> osmo-mgw-latest
+		echo "$1" | sed 's/\-centos7$//'
 		;;
 	osmo-*-centos8)
 		# e.g. osmo-mgw-latest-centos8 -> osmo-mgw-latest
