@@ -14,7 +14,7 @@ RUN	case "$DISTRO" in \
 		;; \
 	centos*) \
 		dnf install -y \
-			osmo-pcap-client osmo-pcap-server \
+			osmo-pcap \
 		;; \
 	esac
 
