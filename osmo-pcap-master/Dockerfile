@@ -9,16 +9,15 @@ RUN	case "$DISTRO" in \
 		apt-get update && \
 		apt-get install -y --no-install-recommends \
 			libosmocore-dev \
-			libosmo-netif-dev \
 			libzmq3-dev \
 			&& \
 		apt-get clean \
 		;; \
 	centos*) \
 		dnf install -y \
-			"pkgconfig(libosmo-netif)" \
 			"pkgconfig(libosmocore)" \
 			"pkgconfig(libosmoctrl)" \
+			"pkgconfig(libosmogb)" \
 			"pkgconfig(libosmogsm)" \
 			"pkgconfig(libosmovty)" \
 			"pkgconfig(libzmq)" \
