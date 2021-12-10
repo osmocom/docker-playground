@@ -24,6 +24,6 @@ VOLUME	/data
 COPY	osmo-pcap-client.cfg /data/
 #COPY	osmo-pcap-server.cfg /data/
 
-CMD	["/bin/sh", "-c", "/usr/bin/osmo-pcap-clint -c /data/osmo-pcap-client.cfg >/data/osmo-pcap-client.log 2>&1"]
+CMD	["/bin/sh", "-c", "/usr/bin/osmo-pcap-client -c /data/osmo-pcap-client.cfg >/data/osmo-pcap-client.log 2>&1"]
 
 EXPOSE	4237
