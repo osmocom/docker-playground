@@ -10,6 +10,7 @@ RUN	apt-get update && \
 		libosmo-abis-dev \
 		libosmo-netif-dev \
 		libosmo-sigtran-dev \
+		libgtp-dev \
 		libasn1c-dev && \
 	apt-get clean
 
