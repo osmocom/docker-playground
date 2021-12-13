@@ -68,6 +68,7 @@ RUN	apt-get update && \
 		mscgen \
 		python-nwdiag \
 		python-pychart \
+		python3-nwdiag \
 		xsltproc \
 		&& \
 	apt-get clean
