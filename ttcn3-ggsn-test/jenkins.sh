@@ -46,12 +46,14 @@ if [ "$KERNEL_TEST" = "1" ]; then
 		-v "$KERNEL_TEST_DIR:/kernel-test:ro"
 		-v "$CACHE_DIR:/cache"
 		"
+	OSMO_SUT_HOST="172.18.$SUBNET.200"
 else
 	cp osmo-ggsn.cfg $VOL_BASE_DIR/ggsn/
 
 	GGSN_DOCKER_ARGS="
 		$(docker_network_params $SUBNET 201)
 		"
+	OSMO_SUT_HOST="172.18.$SUBNET.201"
 fi
 docker run	--cap-add=NET_ADMIN \
 		--device /dev/net/tun:/dev/net/tun \
@@ -74,6 +76,8 @@ docker run	--rm \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/ggsn-tester:/data \
 		-e "TTCN3_PCAP_PATH=/data" \
+		-e "OSMO_SUT_HOST=$OSMO_SUT_HOST" \
+		-e "OSMO_SUT_PORT=4260" \
 		--name ${BUILD_TAG}-ggsn-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-ggsn-test
