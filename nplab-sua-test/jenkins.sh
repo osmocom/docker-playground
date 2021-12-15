@@ -3,9 +3,9 @@
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
-	"debian-stretch-build" \
+	"debian-buster-build" \
 	"osmo-stp-$IMAGE_SUFFIX" \
-	"debian-stretch-titan" \
+	"debian-bullseye-titan" \
 	"sigtran-tests" \
 	"nplab-sua-test"
 

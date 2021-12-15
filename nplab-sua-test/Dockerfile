@@ -4,9 +4,10 @@ FROM $USER/sigtran-tests
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 RUN	cd /tmp && git clone git://git.osmocom.org/nplab/sua-testtool
-ADD	http://git.osmocom.org/nplab/sua-testtool/patch /tmp/commit
+ADD	http://git.osmocom.org/nplab/sua-testtool/patch/?h=laforge/python3 /tmp/commit
 RUN	cd /tmp/sua-testtool && \
-	git pull && \
+	git fetch && \
+	git checkout -f laforge/python3 && \
 	cp runtest-junitxml.py /usr/local/bin/
 
 COPY	dotguile /root/.guile

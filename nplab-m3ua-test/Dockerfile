@@ -4,9 +4,10 @@ FROM $USER/sigtran-tests
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 RUN	cd /tmp && git clone git://git.osmocom.org/nplab/m3ua-testtool
-ADD	http://git.osmocom.org/nplab/m3ua-testtool/patch /tmp/commit
+ADD	http://git.osmocom.org/nplab/m3ua-testtool/patch/?h=laforge/python3 /tmp/commit
 RUN	cd /tmp/m3ua-testtool && \
-	git pull && \
+	git fetch && \
+	git checkout -f laforge/python3 && \
 	cp runtest-junitxml.py /usr/local/bin/
 
 COPY	dotguile /root/.guile
