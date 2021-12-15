@@ -6,7 +6,7 @@ docker_images_require \
 	"debian-stretch-build" \
 	"sigtran-tests" \
 	"osmo-stp-$IMAGE_SUFFIX" \
-	"debian-stretch-titan" \
+	"debian-bullseye-titan" \
 	"nplab-m3ua-test"
 
 set_clean_up_trap

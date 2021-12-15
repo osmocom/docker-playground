@@ -21,7 +21,7 @@ docker_depends() {
 	osmo-*-centos8) echo "centos8-build" ;;
 	osmo-*-latest) echo "debian-stretch-obs-latest" ;;
 	osmo-*) echo "debian-stretch-build" ;;
-	ttcn3-*) echo "debian-stretch-titan" ;;
+	ttcn3-*) echo "debian-bullseye-titan" ;;
 	esac
 }
 
@@ -135,7 +135,7 @@ docker_images_require() {
 		# they are up-to-date.
 		if [ "$REGISTRY_HOST" = "registry.osmocom.org" ]; then
 			case "$i" in
-			debian-stretch-titan)
+			debian-bullseye-titan)
 				docker pull "$REGISTRY_HOST/$USER/$i"
 				continue
 				;;
