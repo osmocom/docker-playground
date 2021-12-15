@@ -36,8 +36,8 @@ OSMO_SGSN_BRANCH?=master
 OSMO_SIP_BRANCH?=master
 OSMO_STP_BRANCH?=master
 PULL?=
-UPSTREAM_DISTRO?=debian:stretch
-DISTRO?=debian-stretch
+UPSTREAM_DISTRO?=debian:bullseye
+DISTRO?=debian-bullseye
 
 # Full OBS repository mirror consists of:
 # ${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/${OSMOCOM_REPO_VERSION}

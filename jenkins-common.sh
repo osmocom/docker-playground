@@ -20,7 +20,7 @@ docker_depends() {
 	osmo-*-centos7) echo "centos7-build" ;;
 	osmo-*-centos8) echo "centos8-build" ;;
 	osmo-*-latest) echo "debian-stretch-obs-latest" ;;
-	osmo-*) echo "debian-stretch-build" ;;
+	osmo-*) echo "debian-bullseye-build" ;;
 	ttcn3-*) echo "debian-bullseye-titan" ;;
 	esac
 }
@@ -31,7 +31,8 @@ docker_distro_from_image_name() {
 	osmo-*-centos8) echo "centos8" ;;
 	centos7-*) echo "centos7" ;;
 	centos8-*) echo "centos8" ;;
-	*) echo "debian-stretch" ;;
+	debian-buster-*) echo "debian-buster" ;;
+	*) echo "debian-bullseye" ;;
 	esac
 }
 
@@ -42,7 +43,10 @@ docker_upstream_distro_from_image_name() {
 	centos7-*) echo "centos:centos7" ;;
 	centos8-*) echo "centos:centos8" ;;
 	debian10-*) echo "debian:buster" ;;
-	*) echo "debian:stretch" ;;
+	debian11-*) echo "debian:bullseye" ;;
+	debian-stretch-*) echo "debian:stretch" ;;
+	debian-buster-*) echo "debian:buster" ;;
+	*) echo "debian:bullseye" ;;
 	esac
 }
 
@@ -109,7 +113,7 @@ list_osmo_packages() {
 }
 
 # Make sure required images are available and build them if necessary.
-# $*: image names (e.g. "debian-stretch-build", "osmo-mgw-master", "osmo-mgw-master-centos8")
+# $*: image names (e.g. "debian-bullseye-build", "osmo-mgw-master", "osmo-mgw-master-centos8")
 #	The images are automatically built from the Dockerfile of the subdir of
 #	the same name. If there is a distribution name at the end of the image
 #	name (e.g. osmo-mgw-master-centos8), it gets removed from the subdir
@@ -232,8 +236,8 @@ docker_network_params() {
 }
 
 fix_perms() {
-	if ! docker_image_exists "debian-stretch-build"; then
-		docker_images_require "debian-stretch-build"
+	if ! docker_image_exists "debian-bullseye-build"; then
+		docker_images_require "debian-bullseye-build"
 	fi
 
 	echo Fixing permissions
@@ -241,7 +245,7 @@ fix_perms() {
 			-v $VOL_BASE_DIR:/data \
 			-v $CACHE_DIR:/cache \
 			--name ${BUILD_TAG}-cleaner \
-			$REPO_USER/debian-stretch-build \
+			$REPO_USER/debian-bullseye-build \
 			chmod -R a+rX /data/ /cache/
 }
 
