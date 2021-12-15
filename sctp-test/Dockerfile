@@ -1,5 +1,5 @@
 ARG	USER
-FROM	$USER/debian-stretch-build
+FROM	$USER/debian-bullseye-build
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
@@ -17,10 +17,10 @@ RUN	git config --global user.email "nobody@localhost" && \
 
 WORKDIR	/tmp
 
-# Commit from 2018-08-28
+# Commit from 2021-08-24
 RUN	git clone https://github.com/nplab/packetdrill && \
 	cd packetdrill && \
-	git checkout 89bb4f35393187d0d34a84170de529d688421be7 && \
+	git checkout c6810864095558f5df77e9f06941191cbd41d7e2 && \
 	git am /tmp/*.patch && \
 	cd gtests/net/packetdrill && \
 	./configure && \
