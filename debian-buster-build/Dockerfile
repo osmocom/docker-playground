@@ -1,7 +1,10 @@
 ARG	REGISTRY=docker.io
-FROM	${REGISTRY}/debian:buster
-
-MAINTAINER Harald Welte <laforge@gnumonks.org>
+ARG	UPSTREAM_DISTRO=debian:buster
+FROM	${REGISTRY}/${UPSTREAM_DISTRO}
+# Arguments used after FROM must be specified again
+ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
+ARG	OSMOCOM_REPO_PATH="repositories/network:/osmocom:"
+ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/${OSMOCOM_REPO_PATH}/nightly/Debian_10/"
 
 RUN	apt-get update && \
 	apt-get upgrade -y && \
@@ -13,6 +16,7 @@ RUN	apt-get update && \
 		bison \
 		build-essential \
 		cppcheck \
+		dahdi-source \
 		debhelper \
 		devscripts \
 		dh-autoreconf \
@@ -25,6 +29,7 @@ RUN	apt-get update && \
 		gcc-arm-none-eabi \
 		git \
 		git-buildpackage \
+		gnupg \
 		libc-ares-dev \
 		libdbd-sqlite3 \
 		libdbi-dev \
@@ -50,8 +55,17 @@ RUN	apt-get update && \
 		pkg-config \
 		sqlite3 \
 		stow \
+		telnet \
 		wget && \
 	apt-get clean
 
 # Make respawn.sh part of this image, so it can be used by other images based on it
 COPY	.common/respawn.sh /usr/local/bin/respawn.sh
+
+COPY	.common/Release.key /tmp/Release.key
+RUN	apt-key add /tmp/Release.key && \
+	rm /tmp/Release.key && \
+	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-nightly.list
+
+# Invalidate cache once the repository is updated
+ADD	$OSMOCOM_REPO/Release /tmp/Release
