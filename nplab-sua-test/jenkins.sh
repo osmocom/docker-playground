@@ -36,4 +36,4 @@ docker run	--rm \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/sua-tester:/data \
 		--name ${BUILD_TAG}-sua-test \
-		$REPO_USER/nplab-sua-test > $VOL_BASE_DIR/junit-xml-sua.log
+		$REPO_USER/nplab-sua-test > $VOL_BASE_DIR/sua-tester/junit-xml-sua.log
