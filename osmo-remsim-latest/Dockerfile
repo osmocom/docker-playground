@@ -7,7 +7,7 @@ FROM	$USER/$DISTRO-obs-$OSMOCOM_REPO_VERSION
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		osmo-remsim-server \
-		osmo-remsim-client \
+		osmo-remsim-client-st2 \
 		osmo-remsim-bankd && \
 	apt-get clean
 
