@@ -438,9 +438,9 @@ if [ ! -d "$VOL_BASE_DIR" ]; then
 	exit 1
 fi
 
-# non-jenkins execution: put logs in /tmp
+# non-jenkins execution: set a unique BUILD_TAG to avoid collisions (OS#5358)
 if [ "x$BUILD_TAG" = "x" ]; then
-	BUILD_TAG=nonjenkins
+	BUILD_TAG="nonjenkins-$(date +%N)"
 fi
 
 SUITE_NAME=`basename $PWD`
