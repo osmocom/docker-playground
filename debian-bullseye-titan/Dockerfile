@@ -27,13 +27,13 @@ RUN	apt-get update && \
 	DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends --no-install-suggests \
 		build-essential \
 		git \
-		procps \
-		tcpdump \
-		wireshark-common \
-		vim \
 		netcat-openbsd \
-		python3-setuptools \
+		procps \
 		python3-pip \
+		python3-setuptools \
+		tcpdump \
+		vim \
+		wireshark-common \
 		&& \
 	apt-get clean
 
