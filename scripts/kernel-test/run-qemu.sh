@@ -23,7 +23,7 @@ qemu-system-x86_64 \
 	$MACHINE_ARG \
 	-smp 1 \
 	-m 512M \
-	-nodefconfig -no-user-config -nodefaults -display none \
+	-no-user-config -nodefaults -display none \
 	-gdb unix:/cache/kernel-test/gdb.pipe,server,nowait \
 	-no-reboot \
 	-kernel /cache/kernel-test/linux \
