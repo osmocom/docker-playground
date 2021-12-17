@@ -20,6 +20,7 @@ RUN	case "$DISTRO" in \
 			flex \
 			gcc \
 			git \
+			iproute2 \
 			libc6-dev \
 			libelf-dev \
 			libssl-dev \

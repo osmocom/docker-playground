@@ -14,6 +14,7 @@ RUN	case "$DISTRO" in \
 			bridge-utils \
 			busybox-static \
 			ca-certificates \
+			iproute2 \
 			libelf-dev \
 			libgtpnl-dev \
 			libosmocore-dev \
