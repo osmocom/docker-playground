@@ -42,6 +42,7 @@ docker_upstream_distro_from_image_name() {
 	osmo-*-centos8) echo "centos:centos8"; ;;
 	centos7-*) echo "centos:centos7" ;;
 	centos8-*) echo "centos:centos8" ;;
+	debian9-*) echo "debian:stretch" ;;
 	debian10-*) echo "debian:buster" ;;
 	debian11-*) echo "debian:bullseye" ;;
 	debian-stretch-*) echo "debian:stretch" ;;
