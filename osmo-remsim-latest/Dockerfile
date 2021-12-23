@@ -10,6 +10,7 @@ RUN	case "$DISTRO" in \
 		apt-get update && \
 		apt-get install -y --no-install-recommends \
 			osmo-remsim-server \
+			osmo-remsim-client-shell \
 			osmo-remsim-client-st2 \
 			osmo-remsim-bankd && \
 		apt-get clean \
@@ -17,6 +18,7 @@ RUN	case "$DISTRO" in \
 	centos*) \
 		dnf install -y \
 			osmo-remsim-server \
+			osmo-remsim-client-shell \
 			osmo-remsim-client-st2 \
 			osmo-remsim-bankd \
 		;; \
