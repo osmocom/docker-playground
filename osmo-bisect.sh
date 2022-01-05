@@ -20,10 +20,7 @@ TESTCASE=$2
 COMMIT=$(git log -1 --format=format:%H)
 
 case $COMP_LOWER in
-	"hnbgw")
-		BRANCH="OSMO_IUH_BRANCH"
-		SUITE="ttcn3-hnbgw-test"
-		;;
+	"hnbgw"|\
 	"bsc"|\
 	"bts"|\
 	"ggsn"|\
