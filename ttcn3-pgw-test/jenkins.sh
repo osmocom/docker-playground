@@ -23,6 +23,7 @@ network_create $SUBNET
 # start container with open5gs-nrfd in background
 docker run	--rm \
 		$(docker_network_params $SUBNET 10) \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/pgw:/data \
 		--name ${BUILD_TAG}-nrf -d \
 		$DOCKER_ARGS \
@@ -35,6 +36,7 @@ docker run	--cap-add=NET_ADMIN \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--rm \
 		$(docker_network_params $SUBNET 7) \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/pgw:/data \
 		--name ${BUILD_TAG}-upf -d \
 		$DOCKER_ARGS \
@@ -47,6 +49,7 @@ docker run	--cap-add=NET_ADMIN \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--rm \
 		$(docker_network_params $SUBNET 4) \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/pgw:/data \
 		--name ${BUILD_TAG}-smf -d \
 		$DOCKER_ARGS \
