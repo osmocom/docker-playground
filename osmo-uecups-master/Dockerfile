@@ -16,14 +16,14 @@ RUN	apt-get update && \
 
 WORKDIR	/tmp
 
-ARG	OSMO_BSC_BRANCH="master"
+ARG	OSMO_UECUPS_BRANCH="master"
 
 RUN	git clone git://git.osmocom.org/osmo-uecups.git
-ADD	http://git.osmocom.org/osmo-uecups/patch?h=$OSMO_BSC_BRANCH /tmp/commit-osmo-uecups
+ADD	http://git.osmocom.org/osmo-uecups/patch?h=$OSMO_UECUPS_BRANCH /tmp/commit-osmo-uecups
 
 RUN	cd osmo-uecups && \
-	git fetch && git checkout $OSMO_BSC_BRANCH && \
-	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_BSC_BRANCH || exit 1); \
+	git fetch && git checkout $OSMO_UECUPS_BRANCH && \
+	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_UECUPS_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure && \
