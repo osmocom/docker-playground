@@ -32,7 +32,6 @@ docker run	--rm \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp -d \
-		--ulimit core=-1 \
 		$DOCKER_ARGS \
 		$REPO_USER/osmo-stp-$IMAGE_SUFFIX
 
