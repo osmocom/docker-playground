@@ -62,6 +62,7 @@ docker run	--cap-add=NET_ADMIN --cap-add=SYS_ADMIN \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		--rm \
 		$(docker_network_params $SUBNET 20) \
+		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/osmo-uecups:/data \
 		-e "WORKDIR=/data" \
 		--name ${BUILD_TAG}-uecups -d \
