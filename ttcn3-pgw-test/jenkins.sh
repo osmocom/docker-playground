@@ -15,7 +15,7 @@ cp osmo-uecups-daemon.cfg $VOL_BASE_DIR/osmo-uecups/
 
 mkdir $VOL_BASE_DIR/pgw
 cp freeDiameter-smf.conf $VOL_BASE_DIR/pgw/
-cp open5gs-{smf,upf,nrf}.yaml $VOL_BASE_DIR/pgw/
+cp open5gs-*.yaml $VOL_BASE_DIR/pgw/
 
 SUBNET=18
 network_create $SUBNET
