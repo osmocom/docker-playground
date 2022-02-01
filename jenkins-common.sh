@@ -39,9 +39,9 @@ docker_distro_from_image_name() {
 docker_upstream_distro_from_image_name() {
 	case "$1" in
 	osmo-*-centos7) echo "centos:centos7"; ;;
-	osmo-*-centos8) echo "centos:centos8"; ;;
+	osmo-*-centos8) echo "almalinux:8"; ;;
 	centos7-*) echo "centos:centos7" ;;
-	centos8-*) echo "centos:centos8" ;;
+	centos8-*) echo "almalinux:8" ;;
 	debian9-*) echo "debian:stretch" ;;
 	debian10-*) echo "debian:buster" ;;
 	debian11-*) echo "debian:bullseye" ;;
@@ -120,7 +120,7 @@ list_osmo_packages() {
 #	name (e.g. osmo-mgw-master-centos8), it gets removed from the subdir
 #	where the Dockerfile is taken from (e.g. osmo-mgw-master/Dockerfile)
 #	and UPSTREAM_DISTRO and DISTRO are passed accordingly (e.g.
-#	UPSTREAM_DISTRO=centos:centos8 DISTRO=centos8). This allows one
+#	UPSTREAM_DISTRO=almalinux:8 DISTRO=centos8). This allows one
 #	Dockerfile for multiple distributions, without duplicating configs for
 #	each distribution. Dependencies listed in docker_depends() are built
 #	automatically too.

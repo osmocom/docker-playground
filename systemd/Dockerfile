@@ -1,5 +1,5 @@
 ARG	REGISTRY=docker.io
-ARG	UPSTREAM_DISTRO=centos:centos8
+ARG	UPSTREAM_DISTRO=almalinux:8
 FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 # Arguments used after FROM must be specified again
 ARG	DISTRO

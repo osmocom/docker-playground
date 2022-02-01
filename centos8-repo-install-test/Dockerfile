@@ -1,6 +1,6 @@
 ARG	USER
 ARG	REGISTRY=docker.io
-ARG	UPSTREAM_DISTRO=centos:centos8
+ARG	UPSTREAM_DISTRO=almalinux:8
 FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 
 # dnf-utils: for repoquery
