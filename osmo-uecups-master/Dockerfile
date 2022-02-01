@@ -11,6 +11,7 @@ RUN	apt-get update && \
 		libosmocore-dev \
 		libosmo-netif-dev \
 		libsctp-dev \
+		iputils-ping \
 		strace && \
 	apt-get clean
 
