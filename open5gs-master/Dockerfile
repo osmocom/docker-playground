@@ -47,9 +47,6 @@ RUN apt-get update && \
         net-tools && \
     apt-get clean
 
-COPY setup.sh /root
-COPY pgw.sh /root
-
 # crate user
 ARG username=osmocom
 RUN useradd -m --uid=1000 ${username} && \
