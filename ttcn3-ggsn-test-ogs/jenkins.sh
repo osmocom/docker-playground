@@ -1,0 +1,1 @@
+../ttcn3-ggsn-test/jenkins-ogs.sh
