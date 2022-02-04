@@ -29,7 +29,7 @@ git rev-parse HEAD
 # OSMO_TTCN3_BRANCH is different). The Dockerfile does the initial 'make deps'
 # and downloads /tmp/deps-Makefile.
 if ! diff -q /tmp/deps-Makefile deps/Makefile; then
-	make deps
+	make -j8 deps
 fi
 
 # Link start/stop scripts to /

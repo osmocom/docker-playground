@@ -65,7 +65,7 @@ ADD	https://git.osmocom.org/osmo-ttcn3-hacks/plain/deps/Makefile /tmp/deps-Makef
 RUN	if ! diff -q /tmp/deps-Makefile /osmo-ttcn3-hacks/deps/Makefile; then \
 		cd /osmo-ttcn3-hacks && \
 		git pull && \
-		make deps; \
+		make -j8 deps; \
 	fi
 
 ADD	ttcn3-docker-prepare.sh /usr/local/bin/ttcn3-docker-prepare
