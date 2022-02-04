@@ -21,6 +21,7 @@ RUN	apt-get update && \
 		devscripts \
 		dh-autoreconf \
 		doxygen \
+		equivs \
 		flex \
 		g++ \
 		gawk \
