@@ -1,19 +1,14 @@
 ARG	REGISTRY=docker.io
-FROM	${REGISTRY}/debian:buster
+ARG	USER
+FROM	$USER/debian-bullseye-build
 
 MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
-        python3-pip \
-        python3-setuptools \
-        python3-wheel \
+        meson \
         ninja-build \
-        build-essential \
-        flex \
-        bison \
-        git \
         libsctp-dev \
         libgnutls28-dev \
         libgcrypt-dev \
@@ -27,20 +22,13 @@ RUN apt-get update && \
         libcurl4-gnutls-dev \
         iproute2 \
         ca-certificates \
-        netbase \
-        pkg-config && \
+        netbase && \
     apt-get clean
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install meson
-
 
 RUN apt-get update && \
     apt-get upgrade -y && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
-        git-buildpackage \
-        debhelper \
-        devscripts \
         vim \
         sudo \
         iputils-ping \
