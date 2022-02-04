@@ -6,31 +6,11 @@ MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends \
-        meson \
-        ninja-build \
-        libsctp-dev \
-        libgnutls28-dev \
-        libgcrypt-dev \
-        libssl-dev \
-        libidn11-dev \
-        libmongoc-dev \
-        libbson-dev \
-        libyaml-dev \
-        libnghttp2-dev \
-        libmicrohttpd-dev \
-        libcurl4-gnutls-dev \
-        iproute2 \
-        ca-certificates \
-        netbase && \
-    apt-get clean
-
-RUN apt-get update && \
-    apt-get upgrade -y && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
         vim \
         sudo \
+        iproute2 \
         iputils-ping \
         net-tools && \
     apt-get clean
@@ -44,14 +24,27 @@ RUN useradd -m --uid=1000 ${username} && \
 WORKDIR /home/${username}
 
 
-# build + install open5gs
-
+# clone open5gs
 ARG GITHUB_USER=open5gs
 ARG GITHUB_REPO=open5gs
 ARG OPEN5GS_BRANCH=main
 RUN git clone https://github.com/$GITHUB_USER/$GITHUB_REPO
+
+# install dependencies specified in debian/control (cache them)
+RUN cd $GITHUB_REPO && \
+    git checkout $OPEN5GS_BRANCH && \
+    apt-get build-dep -y .
+
 ADD https://api.github.com/repos/$GITHUB_USER/$GITHUB_REPO/git/refs/heads/$OPEN5GS_BRANCH /root/open5gs-ver.json
 
+# update the source code (if needed)
 RUN cd $GITHUB_REPO && \
- git fetch && git checkout -f -B $OPEN5GS_BRANCH origin/$OPEN5GS_BRANCH && \
+    git fetch && git checkout -f -B $OPEN5GS_BRANCH origin/$OPEN5GS_BRANCH
+
+# update installed dependencies, install missing (if any)
+RUN cd $GITHUB_REPO && \
+    apt-get build-dep -y .
+
+# build + install open5gs
+RUN cd $GITHUB_REPO && \
     meson build && ninja -C build install
