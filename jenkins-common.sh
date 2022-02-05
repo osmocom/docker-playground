@@ -169,7 +169,7 @@ docker_images_require() {
 
 			echo "Building image: $i (export NO_DOCKER_IMAGE_BUILD=1 to prevent this)"
 			make -C "${IMAGE_DIR_PREFIX}/${dir}" \
-				PULL="$pull_arg" \
+				BUILD_ARGS="$pull_arg" \
 				UPSTREAM_DISTRO="$upstream_distro_arg" \
 				DISTRO="$distro_arg" \
 				IMAGE="$REPO_USER/$i" \

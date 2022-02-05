@@ -37,7 +37,7 @@ OSMO_SGSN_BRANCH?=master
 OSMO_SIP_BRANCH?=master
 OSMO_STP_BRANCH?=master
 OPEN5GS_BRANCH?=main
-PULL?=
+BUILD_ARGS?=
 UPSTREAM_DISTRO?=debian:bullseye
 DISTRO?=debian-bullseye
 
@@ -114,7 +114,7 @@ docker-build: .release
 		--build-arg OSMO_SIP_BRANCH=$(OSMO_SIP_BRANCH) \
 		--build-arg OSMO_STP_BRANCH=$(OSMO_STP_BRANCH) \
 		--build-arg OPEN5GS_BRANCH=$(OPEN5GS_BRANCH) \
-		$(PULL) -t $(IMAGE):latest .
+		$(BUILD_ARGS) -t $(IMAGE):latest .
 	@DOCKER_MAJOR=$(shell docker -v | sed -e 's/.*version //' -e 's/,.*//' | cut -d\. -f1) ; \
 	DOCKER_MINOR=$(shell docker -v | sed -e 's/.*version //' -e 's/,.*//' | cut -d\. -f2) ; \
 
