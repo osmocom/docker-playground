@@ -47,4 +47,10 @@ RUN cd $GITHUB_REPO && \
 
 # build + install open5gs
 RUN cd $GITHUB_REPO && \
-    meson build && ninja -C build install
+    meson build \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --localstatedir=/var \
+        --libdir=lib/x86_64-linux-gnu \
+        --libexecdir=lib/x86_64-linux-gnu && \
+    ninja -C build install
