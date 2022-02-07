@@ -349,9 +349,9 @@ smf:
         dnn: inet46
 
     dns:
-      - 172.18.3.201
+      - 172.18.3.222
       - 8.8.8.8
-      - fd02:db8:3::201
+      - fd02:db8:3::222
       - 2001:4860:4860::8844
     mtu: 1400
     freeDiameter: /data/freediameter.conf
