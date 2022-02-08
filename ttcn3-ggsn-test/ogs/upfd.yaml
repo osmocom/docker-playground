@@ -159,11 +159,13 @@ upf:
       - addr: 176.16.222.1/24
         dnn: internet
         dev: ogstun4
-      - addr: 2001:780:44:2000:0:0:0:1/64
+      - addr: 2001:780:44:2000:0:0:0:1/56
         dnn: inet6
         dev: ogstun6
       - addr: 176.16.46.1/24
-        addr: 2001:780:44:2100:0:0:0:1/64
+        dnn: inet46
+        dev: ogstun46
+      - addr: 2001:780:44:2100:0:0:0:1/56
         dnn: inet46
         dev: ogstun46
 
