@@ -120,7 +120,7 @@ SUBNET=9
 network_create $SUBNET
 
 mkdir $VOL_BASE_DIR/bts-tester-generic
-cp BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-generic/
+cp generic/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-generic/
 write_mp_osmo_repo "$VOL_BASE_DIR/bts-tester-generic/BTS_Tests.cfg"
 mkdir $VOL_BASE_DIR/bts-tester-virtphy
 cp virtphy/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-virtphy/
@@ -136,11 +136,11 @@ cp $VOL_BASE_DIR/bts-tester-generic/BTS_Tests.cfg \
    $VOL_BASE_DIR/bts-tester-hopping/BTS_Tests.cfg.inc
 
 mkdir $VOL_BASE_DIR/bsc
-cp osmo-bsc.cfg $VOL_BASE_DIR/bsc/
+cp generic/osmo-bsc.cfg $VOL_BASE_DIR/bsc/
 
 mkdir $VOL_BASE_DIR/bts
 mkdir $VOL_BASE_DIR/bts/unix
-cp osmo-bts.cfg $VOL_BASE_DIR/bts/
+cp generic/osmo-bts.cfg $VOL_BASE_DIR/bts/
 
 mkdir $VOL_BASE_DIR/unix
 
@@ -182,7 +182,7 @@ start_testsuite oml
 
 # 4) Frequency hopping tests require different configuration files
 cp fh/osmo-bsc.cfg $VOL_BASE_DIR/bsc/
-cp osmo-bts.cfg $VOL_BASE_DIR/bts/
+cp generic/osmo-bts.cfg $VOL_BASE_DIR/bts/
 # restart the BSC/BTS and run the testsuite again
 docker container kill ${BUILD_TAG}-bts
 start_bsc
