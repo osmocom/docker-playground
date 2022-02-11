@@ -38,6 +38,7 @@ OSMO_SIP_BRANCH?=master
 OSMO_STP_BRANCH?=master
 OPEN5GS_BRANCH?=main
 BUILD_ARGS?=
+RUN_ARGS?=-it
 UPSTREAM_DISTRO?=debian:bullseye
 DISTRO?=debian-bullseye
 
@@ -167,4 +168,4 @@ major-release: tag-major-release release
 
 
 run:
-	docker run $(RUN_ARGS) -it $(IMAGE) $(RUN_CMD)
+	docker run $(RUN_ARGS) $(IMAGE) $(RUN_CMD)

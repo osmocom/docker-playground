@@ -1,3 +1,3 @@
-RUN_ARGS?=--rm
+RUN_ARGS?=-it --rm
 
 include ../make/Makefile
