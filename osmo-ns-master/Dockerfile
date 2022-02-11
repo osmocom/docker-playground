@@ -41,7 +41,7 @@ COPY	osmo-ns-dummy.cfg /data/osmo-ns-dummy.cfg
 
 # work-around for stupid docker not being able to properly deal with host netdevices or start
 # containers in pre-existing netns
-COPY	pipework		/usr/bin/pipework
+COPY	.common/pipework	/usr/bin/pipework
 COPY	docker-entrypoint.sh	/docker-entrypoint.sh
 
 WORKDIR	/data

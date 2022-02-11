@@ -70,4 +70,4 @@ RUN	if ! diff -q /tmp/deps-Makefile /osmo-ttcn3-hacks/deps/Makefile; then \
 
 ADD	ttcn3-docker-prepare.sh /usr/local/bin/ttcn3-docker-prepare
 ADD	ttcn3-docker-run.sh /usr/local/bin/ttcn3-docker-run
-ADD	pipework /usr/local/bin/pipework
+ADD	.common/pipework /usr/local/bin/pipework
