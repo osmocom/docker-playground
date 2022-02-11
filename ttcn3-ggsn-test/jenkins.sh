@@ -55,10 +55,10 @@ else
 		"
 	OSMO_SUT_HOST="172.18.$SUBNET.201"
 fi
-docker run	--cap-add=NET_ADMIN \
+docker run	--rm \
+		--cap-add=NET_ADMIN \
 		--device /dev/net/tun:/dev/net/tun \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
-		--rm \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/ggsn:/data \
 		--name ${BUILD_TAG}-ggsn -d \

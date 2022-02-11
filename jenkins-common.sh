@@ -326,6 +326,7 @@ kernel_test_prepare() {
 		"$CACHE_DIR/kernel-test/initrd-project-script.sh"
 
 	docker run \
+		--rm \
 		--cap-add=NET_ADMIN \
 		$(docker_kvm_param) \
 		--device /dev/net/tun:/dev/net/tun \
