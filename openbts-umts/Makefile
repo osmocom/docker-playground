@@ -1,5 +1,5 @@
 RUN_ARGS?= \
-	-it --rm \
+	-it \
 	--privileged \
 	-v /dev/bus/usb:/dev/bus/usb
 

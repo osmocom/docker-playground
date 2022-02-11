@@ -166,6 +166,7 @@ minor-release: tag-minor-release release
 major-release: tag-major-release release
 	@echo $(VERSION)
 
-
+# Always use --rm, so we don't waste disk space
+# https://osmocom.org/projects/osmocom-servers/wiki/Docker_cache_clean_up
 run:
-	docker run $(RUN_ARGS) $(IMAGE) $(RUN_CMD)
+	docker run --rm $(RUN_ARGS) $(IMAGE) $(RUN_CMD)
