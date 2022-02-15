@@ -16,8 +16,12 @@ RUN	apt-get update && \
 		rebar
 
 # add rebar3
-ADD	https://s3.amazonaws.com/rebar3/rebar3 /usr/bin/rebar3
-RUN	chmod 0755 /usr/bin/rebar3
+ARG	REBAR3_VERSION="3.18.0"
+ADD https://github.com/erlang/rebar3/archive/refs/tags/${REBAR3_VERSION}.tar.gz /tmp/rebar3.tar.gz
+RUN tar -zxf /tmp/rebar3.tar.gz && \
+		cd rebar3-${REBAR3_VERSION} && \
+		./bootstrap && \
+		install -Dm0755 "rebar3" "/usr/bin/rebar3"
 
 # install ninimal build utilities as well as system utilities
 RUN	apt-get update && \
