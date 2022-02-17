@@ -8,6 +8,7 @@ RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		libosmocore-dev \
 		libosmo-abis-dev \
+		libosmo-mgcp-client-dev \
 		libosmo-netif-dev \
 		libosmo-sigtran-dev \
 		libosmo-ranap-dev \
@@ -21,7 +22,7 @@ WORKDIR	/tmp
 ARG	OSMO_HNBGW_BRANCH="master"
 
 RUN	git clone git://git.osmocom.org/osmo-hnbgw.git
-ADD	http://git.osmocom.org/osmo-iuh/patch?h=$OSMO_HNBGW_BRANCH /tmp/commit-osmo-hnbgw
+ADD	http://git.osmocom.org/osmo-hnbgw/patch?h=$OSMO_HNBGW_BRANCH /tmp/commit-osmo-hnbgw
 
 RUN	cd osmo-hnbgw && \
 	git fetch && git checkout $OSMO_HNBGW_BRANCH && \
