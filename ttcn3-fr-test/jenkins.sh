@@ -8,6 +8,16 @@ docker_images_require \
 set_clean_up_trap
 set -e
 
+clean_up() {
+	# kill the frnet container to avoid "You cannot remove a running container " below in 'rm'
+	docker kill ${BUILD_TAG}-frnet || true
+
+	# store execution logs for both containers
+	docker logs --timestamps ${BUILD_TAG}-ttcn3-fr-test > $VOL_BASE_DIR/fr-tester/exec.log || true
+	docker logs --timestamps ${BUILD_TAG}-frnet > $VOL_BASE_DIR/frnet/exec.log || true
+	docker container rm ${BUILD_TAG}-frnet ${BUILD_TAG}-ttcn3-fr-test
+}
+
 SUBNET=26
 network_create $SUBNET
 
@@ -25,7 +35,7 @@ mkdir $VOL_BASE_DIR/unix
 
 echo Starting container with FRNET
 docker run	\
-		`# --rm is done in below` \
+		`# --rm is done in clean_up()` \
 		--cap-add=NET_RAW --cap-add=SYS_RAWIO \
 		$(docker_network_params $SUBNET 10) \
 		--ulimit core=-1 \
@@ -45,7 +55,7 @@ done
 
 echo Starting container with FR testsuite
 docker run	\
-		`# --rm is done in below` \
+		`# --rm is done in clean_up()` \
 		--cap-add=NET_RAW --cap-add=SYS_RAWIO \
 		$(docker_network_params $SUBNET 103) \
 		--ulimit core=-1 \
@@ -66,10 +76,3 @@ done
 # emulate running container in foreground, which is no longer possible as we
 # must shift the net-devices into the container _after_ it is started
 docker logs	-f ${BUILD_TAG}-ttcn3-fr-test
-# kill the frnet container to avoid "You cannot remove a running container " below in 'rm'
-docker kill ${BUILD_TAG}-frnet
-
-# store execution logs for both containers
-docker logs --timestamps ${BUILD_TAG}-ttcn3-fr-test > $VOL_BASE_DIR/fr-tester/exec.log
-docker logs --timestamps ${BUILD_TAG}-frnet > $VOL_BASE_DIR/frnet/exec.log
-docker container rm ${BUILD_TAG}-frnet ${BUILD_TAG}-ttcn3-fr-test
