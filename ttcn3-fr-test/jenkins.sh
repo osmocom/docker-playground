@@ -25,7 +25,7 @@ mkdir $VOL_BASE_DIR/unix
 
 echo Starting container with FRNET
 docker run	\
-		--rm \
+		`# --rm is done in below` \
 		--cap-add=NET_RAW --cap-add=SYS_RAWIO \
 		$(docker_network_params $SUBNET 10) \
 		--ulimit core=-1 \
@@ -45,7 +45,7 @@ done
 
 echo Starting container with FR testsuite
 docker run	\
-		--rm \
+		`# --rm is done in below` \
 		--cap-add=NET_RAW --cap-add=SYS_RAWIO \
 		$(docker_network_params $SUBNET 103) \
 		--ulimit core=-1 \
