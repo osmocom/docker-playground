@@ -140,20 +140,20 @@ RUN chown build:build /build
 # Install osmo-python-tests for python2 (when building old tags again new releases)
 ARG OSMO_PYTHON2_TESTS_COMMIT=fb4b813d4df62b7b2445bdced961eb1847267eed
 ADD http://git.osmocom.org/python/osmo-python-tests/patch/?id=$OSMO_PYTHON2_TESTS_COMMIT /tmp/osmo-python-tests2-commit
-RUN git clone https://git.osmocom.org/python/osmo-python-tests osmo-python-tests2 && \
+RUN git clone https://gerrit.osmocom.org/python/osmo-python-tests osmo-python-tests2 && \
 	cd osmo-python-tests2 && \
 	git checkout $OSMO_PYTHON2_TESTS_COMMIT && \
 	python2 setup.py clean build install
 
 # Install osmo-python-tests for python3
 ADD http://git.osmocom.org/python/osmo-python-tests/patch /tmp/osmo-python-tests3-commit
-RUN git clone https://git.osmocom.org/python/osmo-python-tests osmo-python-tests3 && \
+RUN git clone https://gerrit.osmocom.org/python/osmo-python-tests osmo-python-tests3 && \
 	cd osmo-python-tests3 && \
 	python3 setup.py clean build install
 
 # Install osmo-ci.git/scripts to /usr/local/bin
 ADD http://git.osmocom.org/osmo-ci/patch /tmp/osmo-ci-commit
-RUN git clone https://git.osmocom.org/osmo-ci osmo-ci && \
+RUN git clone https://gerrit.osmocom.org/osmo-ci osmo-ci && \
 	cp -v $(find osmo-ci/scripts \
 		-maxdepth 1 \
 		-type f ) \
