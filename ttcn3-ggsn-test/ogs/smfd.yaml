@@ -336,9 +336,13 @@ smf:
       - addr: 172.18.3.201
     gtpc:
       - addr: 172.18.3.201
+        option:
+          so_bindtodevice: eth0
     gtpu:
       - addr: 172.18.3.201
         port: 2152
+        option:
+          so_bindtodevice: eth0
     subnet:
       - addr: 176.16.16.1/20
         dnn: internet
