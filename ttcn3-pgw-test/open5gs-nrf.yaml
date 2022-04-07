@@ -21,7 +21,7 @@ db_uri: mongodb://localhost/open5gs
 #    domain: core,sbi,nrf,event,mem,sock
 #
 logger:
-    file: /data/open5gs-nrfd.log
+    level: info
 
 #
 # nrf:

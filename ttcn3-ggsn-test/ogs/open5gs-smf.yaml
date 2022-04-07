@@ -19,7 +19,6 @@
 #    domain: core,pfcp,fd,pfcp,gtp,smf,event,tlv,mem,sock
 #
 logger:
-    file: /data/open5gs-smfd.log
     level: info
 #
 # smf:

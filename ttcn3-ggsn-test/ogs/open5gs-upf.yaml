@@ -19,7 +19,6 @@
 #    domain: core,pfcp,gtp,upf,event,tlv,mem,sock
 #
 logger:
-    file: /data/open5gs-upfd.log
     level: info
 
 #
