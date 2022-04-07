@@ -42,7 +42,7 @@ docker run	--cap-add=NET_ADMIN \
 		--name ${BUILD_TAG}-upf -d \
 		$DOCKER_ARGS \
 		$REPO_USER/open5gs-$IMAGE_SUFFIX \
-		open5gs-upfd -c /data/open5gs-upf.yaml
+		/bin/sh -c "open5gs-upfd -c /data/open5gs-upf.yaml >/data/open5gs-upfd.out 2>&1"
 
 # configure the 'ogstun' device for open5gs-upfd
 docker exec	${BUILD_TAG}-upf /data/ogstun-setup.sh
@@ -58,7 +58,7 @@ docker run	--cap-add=NET_ADMIN \
 		--name ${BUILD_TAG}-smf -d \
 		$DOCKER_ARGS \
 		$REPO_USER/open5gs-$IMAGE_SUFFIX \
-		open5gs-smfd -c /data/open5gs-smf.yaml
+		/bin/sh -c "open5gs-smfd -c /data/open5gs-smf.yaml >/data/open5gs-smfd.out 2>&1"
 
 # start container with osmo-ugcups-daemon in background; SYS_ADMIN required for CLONE_NEWNS
 docker run	--cap-add=NET_ADMIN --cap-add=SYS_ADMIN \
