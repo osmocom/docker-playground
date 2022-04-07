@@ -16,7 +16,8 @@ cp osmo-uecups-daemon.cfg $VOL_BASE_DIR/osmo-uecups/
 mkdir $VOL_BASE_DIR/pgw
 cp freeDiameter-smf.conf $VOL_BASE_DIR/pgw/
 cp open5gs-*.yaml $VOL_BASE_DIR/pgw/
-cp ogstun-setup.sh $VOL_BASE_DIR/pgw/
+cp upfd.sh $VOL_BASE_DIR/pgw/
+cp upfd-setup.sh $VOL_BASE_DIR/pgw/
 
 SUBNET=18
 network_create $SUBNET
@@ -42,10 +43,7 @@ docker run	--cap-add=NET_ADMIN \
 		--name ${BUILD_TAG}-upf -d \
 		$DOCKER_ARGS \
 		$REPO_USER/open5gs-$IMAGE_SUFFIX \
-		/bin/sh -c "open5gs-upfd -c /data/open5gs-upf.yaml >/data/open5gs-upfd.out 2>&1"
-
-# configure the 'ogstun' device for open5gs-upfd
-docker exec	${BUILD_TAG}-upf /data/ogstun-setup.sh
+		/bin/sh -c "/data/upfd.sh -c /data/open5gs-upf.yaml >/data/open5gs-upfd.out 2>&1"
 
 # start container with open5gs-smfd in background
 docker run	--cap-add=NET_ADMIN \

@@ -155,7 +155,11 @@ upf:
       - addr: 172.18.18.7
     subnet:
       - addr: 10.45.0.1/16
+        dnn: internet
+        dev: ogstun46
       - addr: cafe::1/64
+        dnn: internet
+        dev: ogstun46
 
 #
 # smf:
