@@ -30,7 +30,7 @@ docker run	--rm \
 		--name ${BUILD_TAG}-nrf -d \
 		$DOCKER_ARGS \
 		$REPO_USER/open5gs-$IMAGE_SUFFIX \
-		open5gs-nrfd -c /data/open5gs-nrf.yaml
+		/bin/sh -c "open5gs-nrfd -c /data/open5gs-nrf.yaml >/data/open5gs-nrf.out 2>&1"
 
 # start container with open5gs-upfd in background
 docker run	--cap-add=NET_ADMIN \
