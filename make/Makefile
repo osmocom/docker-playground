@@ -36,6 +36,7 @@ OSMO_PCU_BRANCH?=master
 OSMO_SGSN_BRANCH?=master
 OSMO_SIP_BRANCH?=master
 OSMO_STP_BRANCH?=master
+OSMO_UECUPS_BRANCH?=master
 OPEN5GS_BRANCH?=main
 BUILD_ARGS?=
 RUN_ARGS?=-it
@@ -114,6 +115,7 @@ docker-build: .release
 		--build-arg OSMO_SGSN_BRANCH=$(OSMO_SGSN_BRANCH) \
 		--build-arg OSMO_SIP_BRANCH=$(OSMO_SIP_BRANCH) \
 		--build-arg OSMO_STP_BRANCH=$(OSMO_STP_BRANCH) \
+		--build-arg OSMO_UECUPS_BRANCH=$(OSMO_UECUPS_BRANCH) \
 		--build-arg OPEN5GS_BRANCH=$(OPEN5GS_BRANCH) \
 		$(BUILD_ARGS) -t $(IMAGE):latest .
 	@DOCKER_MAJOR=$(shell docker -v | sed -e 's/.*version //' -e 's/,.*//' | cut -d\. -f1) ; \
