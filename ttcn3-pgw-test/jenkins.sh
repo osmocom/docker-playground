@@ -84,10 +84,11 @@ docker run	--rm \
 		$REPO_USER/ttcn3-pgw-test
 
 # stop uecups + PGW after test has completed
-docker container stop ${BUILD_TAG}-uecups
-docker container stop ${BUILD_TAG}-smf
-docker container stop ${BUILD_TAG}-upf
-docker container stop ${BUILD_TAG}-nrf
+docker container stop \
+	${BUILD_TAG}-uecups \
+	${BUILD_TAG}-smf \
+	${BUILD_TAG}-upf \
+	${BUILD_TAG}-nrf
 
 network_remove
 collect_logs
