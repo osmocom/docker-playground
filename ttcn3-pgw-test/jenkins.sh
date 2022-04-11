@@ -71,7 +71,7 @@ docker run	--cap-add=NET_ADMIN --cap-add=SYS_ADMIN \
 		--name ${BUILD_TAG}-uecups -d \
 		$DOCKER_ARGS \
 		$REPO_USER/osmo-uecups-master \
-		/bin/sh -c "osmo-uecups-daemon >/data/osmo-uecups-daemon.log 2>&1"
+		/bin/sh -c "osmo-uecups-daemon -c /data/osmo-uecups-daemon.cfg >/data/osmo-uecups-daemon.log 2>&1"
 
 # start docker container with testsuite in foreground
 docker run	--rm \
