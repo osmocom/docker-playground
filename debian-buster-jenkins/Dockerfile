@@ -56,6 +56,7 @@ RUN \
 		libcsv-dev \
 		libdbd-sqlite3 \
 		libdbi-dev \
+		libelf-dev \
 		libffi-dev \
 		libfftw3-dev \
 		libgmp-dev \
