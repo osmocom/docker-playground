@@ -12,6 +12,7 @@ RUN apt-get update && \
         sudo \
         iproute2 \
         iputils-ping \
+        libcap2-bin \
         net-tools && \
     apt-get clean
 
