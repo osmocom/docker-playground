@@ -32,6 +32,8 @@ docker run	--rm \
 		$DOCKER_ARGS \
 		$REPO_USER/osmo-bsc-$IMAGE_SUFFIX
 
+BTS_FEATURES="-fCCN,EGPRS,GPRS,IPv6_NSVC,PAGING_COORDINATION"
+
 for i in `seq 0 2`; do
 	echo Starting container with OML for BTS$i
 	docker run	--rm \
@@ -40,7 +42,7 @@ for i in `seq 0 2`; do
 			--name ${BUILD_TAG}-bts$i -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
-			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-omldummy 172.18.12.20 $((i + 1234)) 1 >>/data/osmo-bts-omldummy-${i}.log 2>&1"
+			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-omldummy $BTS_FEATURES 172.18.12.20 $((i + 1234)) 1 >>/data/osmo-bts-omldummy-${i}.log 2>&1"
 done
 
 echo Starting container with BSC testsuite
