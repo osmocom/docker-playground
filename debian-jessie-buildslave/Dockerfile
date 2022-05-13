@@ -1,7 +1,6 @@
 ARG	USER
 FROM	$USER/debian-jessie-build
 
-MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 RUN	[ "$(arch)" = "x86_64" ] && dpkg --add-architecture i386; \
 	apt-get update && \

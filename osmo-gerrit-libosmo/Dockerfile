@@ -6,7 +6,6 @@
 ARG	USER
 FROM	$USER/debian-jessie-buildslave
 
-MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 USER	build
 WORKDIR	/build

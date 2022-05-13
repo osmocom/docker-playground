@@ -2,7 +2,6 @@ ARG	REGISTRY=docker.io
 ARG	USER
 FROM 	$USER/debian-bullseye-build
 
-MAINTAINER Vadim Yanitskiy <axilirator@gmail.com>
 
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \

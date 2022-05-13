@@ -4,7 +4,6 @@ FROM	$USER/debian-buster-build
 ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
 ARG	OSMOCOM_REPO_PATH="repositories/network:/osmocom:"
 
-MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 ARG	OSMOCOM_REPO="${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/nightly/Debian_10/"
 

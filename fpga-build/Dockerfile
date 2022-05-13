@@ -1,7 +1,6 @@
 ARG	USER
 FROM	$USER/debian-buster-build
 
-MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 ARG	FPGA_TOOLCHAIN_DATE=20200914
 ARG	RISCV_TOOLCHAIN_VER=8.3.0-1.2

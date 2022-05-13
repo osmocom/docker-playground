@@ -2,7 +2,6 @@ ARG	USER
 FROM	$USER/debian-buster-jenkins
 ARG	OGT_MASTER_ADDR="172.18.50.2"
 
-MAINTAINER Pau Espin Pedrol <pespin@sysmocom.de>
 
 # Create jenkins user
 RUN     useradd -ms /bin/bash jenkins

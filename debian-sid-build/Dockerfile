@@ -1,7 +1,6 @@
 ARG	REGISTRY=docker.io
 FROM	${REGISTRY}/debian:sid
 
-MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 RUN	apt-get update && \
 	apt-get upgrade -y && \

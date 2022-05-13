@@ -1,7 +1,6 @@
 ARG	REGISTRY=docker.io
 FROM	${REGISTRY}/debian:buster
 
-MAINTAINER Vadim Yanitskiy <vyanitskiy@sysmocom.de>
 
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \

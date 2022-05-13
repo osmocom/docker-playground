@@ -1,6 +1,5 @@
 FROM 	debian:stretch
 
-MAINTAINER Vadim Yanitskiy <axilirator@gmail.com>
 
 ENV	BINUTILS_SRC=http://ftp.gnu.org/gnu/binutils/binutils-2.21.1a.tar.bz2
 ENV	NEWLIB_SRC=https://sourceware.org/pub/newlib/newlib-1.19.0.tar.gz

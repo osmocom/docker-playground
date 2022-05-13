@@ -3,7 +3,6 @@
 # Ancient software requires ancient distro
 FROM	debian:jessie
 
-MAINTAINER Vadim Yanitskiy <axilirator@gmail.com>
 
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \

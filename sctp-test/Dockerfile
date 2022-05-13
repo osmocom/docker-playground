@@ -1,7 +1,6 @@
 ARG	USER
 FROM	$USER/debian-bullseye-build
 
-MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \

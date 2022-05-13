@@ -1,5 +1,4 @@
 FROM debian:latest
-MAINTAINER laforge@gnumonks.org
 
 ENV DEBIAN_FRONTEND noninteractive
 

@@ -1,6 +1,5 @@
 FROM neels/debian-sid-build
 
-MAINTAINER Neels Hofmeyr <nhofmeyr@sysmocom.de>
 
 WORKDIR	/build
 

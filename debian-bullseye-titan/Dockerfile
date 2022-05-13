@@ -4,7 +4,6 @@ FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 # Arguments used after FROM must be specified again
 ARG	OSMOCOM_REPO_TESTSUITE_MIRROR="http://download.opensuse.org"
 
-MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 ARG	OSMOCOM_REPO="$OSMOCOM_REPO_TESTSUITE_MIRROR/repositories/network:/osmocom:/latest/Debian_11/"
 

@@ -1,7 +1,6 @@
 ARG	REGISTRY=docker.io
 FROM	${REGISTRY}/ubuntu:zesty
 
-MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 RUN	apt-get update && \
 	apt-get upgrade -y && \

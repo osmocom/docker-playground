@@ -1,5 +1,4 @@
 FROM		alpine:latest
-MAINTAINER 	Harald Welte <laforge@gnumonks.org>
 
 EXPOSE		80
 

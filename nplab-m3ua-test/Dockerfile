@@ -1,7 +1,6 @@
 ARG USER=osmocom-build
 FROM $USER/sigtran-tests
 
-MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 RUN	cd /tmp && git clone git://git.osmocom.org/nplab/m3ua-testtool
 ADD	http://git.osmocom.org/nplab/m3ua-testtool/patch/?h=laforge/python3 /tmp/commit

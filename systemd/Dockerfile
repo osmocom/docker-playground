@@ -4,7 +4,6 @@ FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 # Arguments used after FROM must be specified again
 ARG	DISTRO
 
-MAINTAINER Pau Espin Pedrol <pespin@sysmocom.de>
 
 # set up systemd
 # container=docker: systemd likes to know it is running inside a container

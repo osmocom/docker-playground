@@ -1,7 +1,6 @@
 ARG	REGISTRY=docker.io
 FROM	${REGISTRY}/alpine:3.6
 
-MAINTAINER Harald Welte <laforge@gnumonks.org>
 
 RUN	apk update && \
 	apk upgrade
