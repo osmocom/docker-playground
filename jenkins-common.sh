@@ -21,6 +21,7 @@ docker_depends() {
 	osmo-*-centos8) echo "centos8-build" ;;
 	osmo-*-latest) echo "debian-bullseye-obs-latest" ;;
 	osmo-*) echo "debian-bullseye-build" ;;
+	open5gs-*) echo "debian-bullseye-build" ;;
 	ttcn3-*) echo "debian-bullseye-titan" ;;
 	esac
 }
