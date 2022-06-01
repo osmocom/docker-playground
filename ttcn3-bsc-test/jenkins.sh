@@ -46,16 +46,17 @@ docker run	--rm \
 
 BTS_FEATURES="-fCCN,EGPRS,GPRS,IPv6_NSVC,PAGING_COORDINATION"
 
-for i in `seq 0 2`; do
-	echo Starting container with OML for BTS$i
+for i in "0 1" "1 1" "2 4"; do
+	set -- $i # convert the {BTS, TRXN} "tuple" into the param args $1 $2
+	echo "Starting container with OML for BTS$1 (TRXN = $2)"
 	docker run	--rm \
-			$(docker_network_params $SUBNET 10$i) \
+			$(docker_network_params $SUBNET 10$1) \
 			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/bts-omldummy:/data \
-			--name ${BUILD_TAG}-bts$i -d \
+			--name ${BUILD_TAG}-bts$1 -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
-			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-omldummy $BTS_FEATURES 172.18.2.20 $((i + 1234)) 1 >>/data/osmo-bts-omldummy-${i}.log 2>&1"
+			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-omldummy $BTS_FEATURES 172.18.2.20 $(($1 + 1234)) $2 >>/data/osmo-bts-omldummy-$1.log 2>&1"
 done
 
 echo Starting container with BSC testsuite
