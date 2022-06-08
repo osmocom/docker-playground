@@ -7,6 +7,7 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
+        cmake \
         vim \
         sudo \
         iproute2 \
@@ -53,4 +54,5 @@ RUN cd $GITHUB_REPO && \
         --localstatedir=/var \
         --libdir=lib/x86_64-linux-gnu \
         --libexecdir=lib/x86_64-linux-gnu && \
+    meson configure -Dmetrics_impl=prometheus build && \
     ninja -C build install
