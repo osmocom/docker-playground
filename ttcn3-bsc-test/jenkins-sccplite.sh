@@ -20,6 +20,8 @@ write_mp_osmo_repo "$VOL_BASE_DIR/bsc-tester/BSC_Tests.cfg"
 mkdir $VOL_BASE_DIR/bsc
 cp sccplite/osmo-bsc.cfg $VOL_BASE_DIR/bsc/
 
+mkdir $VOL_BASE_DIR/bts-omldummy
+
 SUBNET=12
 network_create $SUBNET
 
@@ -40,6 +42,7 @@ for i in "0 1" "1 1" "2 4"; do
 	docker run	--rm \
 			$(docker_network_params $SUBNET 10$1) \
 			--ulimit core=-1 \
+			-v $VOL_BASE_DIR/bts-omldummy:/data \
 			--name ${BUILD_TAG}-bts$1 -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
