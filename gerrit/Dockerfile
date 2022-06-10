@@ -1,4 +1,4 @@
-FROM gerritcodereview/gerrit:3.4.3
+FROM gerritcodereview/gerrit:3.4.5
 
 USER root
 RUN yum -y install zip unzip patch
