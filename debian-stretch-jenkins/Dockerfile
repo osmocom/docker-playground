@@ -5,8 +5,8 @@ ARG	DEBIAN_VERSION=stretch
 ARG	REGISTRY=docker.io
 FROM	${REGISTRY}/debian:${DEBIAN_VERSION}
 # Arguments used after FROM must be specified again
-ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
-ARG	OSMOCOM_REPO_PATH="repositories/network:/osmocom:"
+ARG	OSMOCOM_REPO_MIRROR="https://downloads.osmocom.org"
+ARG	OSMOCOM_REPO_PATH="packages/osmocom:"
 
 # Make "$DEBIAN_VERSION" available after FROM
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact

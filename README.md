@@ -45,7 +45,7 @@ $ ./jenkins.sh
 
 2021q1-centos8:
 ```
-export OSMOCOM_REPO_TESTSUITE_MIRROR="http://download.opensuse.org"
+export OSMOCOM_REPO_TESTSUITE_MIRROR="https://downloads.osmocom.org"
 export OSMOCOM_REPO_MIRROR="https://downloads.osmocom.org"
 export OSMOCOM_REPO_PATH="osmo-maintained"
 export OSMOCOM_REPO_VERSION="2021q1"
@@ -75,7 +75,7 @@ Environment variables:
 
 The OBS repository mirror consists of
 `${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/${OSMOCOM_REPO_VERSION}`,
-e.g. `https://download.opensuse.org/repositories/network:/osmocom:/latest/`.
+e.g. `https://downloads.osmocom.org/packages/osmocom:/latest/`.
 
 ### Creating kernel config fragments
 For the kernel tests, we are storing kernel config fragments in the git

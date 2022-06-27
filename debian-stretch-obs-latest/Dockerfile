@@ -2,8 +2,8 @@ ARG	REGISTRY=docker.io
 ARG	UPSTREAM_DISTRO=debian:stretch
 FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 # Arguments used after FROM must be specified again
-ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
-ARG	OSMOCOM_REPO_PATH="repositories/network:/osmocom:"
+ARG	OSMOCOM_REPO_MIRROR="https://downloads.osmocom.org"
+ARG	OSMOCOM_REPO_PATH="packages/osmocom:"
 ARG	OSMOCOM_REPO="${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/latest/Debian_9.0/"
 
 RUN	apt-get update && \

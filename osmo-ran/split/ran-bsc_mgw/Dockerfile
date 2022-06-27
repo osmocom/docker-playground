@@ -2,8 +2,8 @@ ARG     USER
 FROM	$USER/systemd
 # Arguments used after FROM must be specified again
 ARG	DISTRO
-ARG	OSMOCOM_REPO_MIRROR="http://download.opensuse.org"
-ARG	OSMOCOM_REPO_PATH="repositories/network:/osmocom:"
+ARG	OSMOCOM_REPO_MIRROR="https://downloads.osmocom.org"
+ARG	OSMOCOM_REPO_PATH="packages/osmocom:"
 ARG	OSMOCOM_REPO_VERSION=latest
 
 

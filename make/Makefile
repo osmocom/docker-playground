@@ -46,15 +46,15 @@ DISTRO?=debian-bullseye
 
 # Full OBS repository mirror consists of:
 # ${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/${OSMOCOM_REPO_VERSION}
-# e.g. "https://download.opensuse.org/repositories/network:/osmocom:/latest/"
+# e.g. "https://downloads.osmocom.org/packages/osmocom:/latest/"
 #
 # Use if down: OSMOCOM_REPO_MIRROR=http://ftp.uni-stuttgart.de/opensuse
-OSMOCOM_REPO_MIRROR?=http://download.opensuse.org
-OSMOCOM_REPO_PATH?=repositories/network:/osmocom:
+OSMOCOM_REPO_MIRROR?=https://downloads.osmocom.org
+OSMOCOM_REPO_PATH?=packages/osmocom:
 # Use "nightly" to use the nightly feed
 OSMOCOM_REPO_VERSION?=latest
 # Build the testsuite with the following mirror. In jenkins we always want to
-# point this to http://download.opensuse.org, so the same testsuite can be
+# point this to http://downloads.osmocom.org, so the same testsuite can be
 # used no matter which OSMOCOM_REPO_MIRROR is set. This avoids rebuilding the
 # testsuite when we only want to change OSMOCOM_REPO_MIRROR to build different
 # subjects under test, and it works even if the OSMOCOM_REPO_MIRROR only has
