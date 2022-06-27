@@ -44,6 +44,7 @@ RUN	apt-get update && \
 
 # add osmocom latest repo, should we ever require packages from there
 RUN	apt-get update && apt-get install -y \
+		ca-certificates \
 		gnupg
 COPY	.common/Release.key /tmp/Release.key
 RUN	apt-key add /tmp/Release.key && \

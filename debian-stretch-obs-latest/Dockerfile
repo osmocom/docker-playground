@@ -9,6 +9,7 @@ ARG	OSMOCOM_REPO="${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/latest/Debian_9.0/
 RUN	apt-get update && \
 	apt-get upgrade -y && \
 	apt-get install -y --no-install-recommends \
+		ca-certificates \
 		telnet \
 		gnupg \
 		&& \

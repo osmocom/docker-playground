@@ -16,6 +16,7 @@ RUN	case "$DISTRO" in \
 	debian*) \
 		apt-get update && \
 		apt-get install -y --no-install-recommends \
+			ca-certificates \
 			gnupg && \
 		apt-key add /tmp/Release.key && \
 		rm /tmp/Release.key && \

@@ -10,6 +10,7 @@ RUN	apt-get update && \
 	apt-get upgrade -y && \
 	apt-get install -y --no-install-recommends \
 		telnet \
+		ca-certificates \
 		gnupg \
 		&& \
 	apt-get clean

@@ -15,6 +15,7 @@ RUN	apt-get update && \
 		automake \
 		bison \
 		build-essential \
+		ca-certificates \
 		cppcheck \
 		dahdi-source \
 		debhelper \

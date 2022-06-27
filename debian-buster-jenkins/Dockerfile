@@ -26,6 +26,7 @@ RUN \
 		bc \
 		bison \
 		bzip2 \
+		ca-certificates \
 		cmake \
 		coccinelle \
 		cppcheck \

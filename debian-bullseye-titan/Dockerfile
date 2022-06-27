@@ -8,6 +8,7 @@ ARG	OSMOCOM_REPO_TESTSUITE_MIRROR="http://download.opensuse.org"
 ARG	OSMOCOM_REPO="$OSMOCOM_REPO_TESTSUITE_MIRROR/repositories/network:/osmocom:/latest/Debian_11/"
 
 RUN	apt-get update && apt-get install -y \
+		ca-certificates \
 		gnupg
 
 COPY	.common/Release.key /tmp/Release.key

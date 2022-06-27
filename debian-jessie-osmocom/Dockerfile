@@ -9,6 +9,9 @@ ARG	OSMOCOM_REPO="${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/nightly/Debian_8.0
 
 COPY	.common/Release.key /tmp/Release.key
 
+RUN	apt-get update && apt-get install -y \
+		ca-certificates
+
 RUN	apt-key add /tmp/Release.key && \
 	rm /tmp/Release.key && \
 	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-nightly.list
