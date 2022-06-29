@@ -101,7 +101,7 @@ RUN	apt-get update && \
 		libuhd-dev \
 		libczmq-dev \
 		libsoapysdr-dev \
-		soapysdr0.7-module-lms7 && \
+		soapysdr-module-lms7 && \
 	apt-get clean
 
 # install gnuradio runtime dependencies
