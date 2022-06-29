@@ -1,5 +1,5 @@
 ARG	USER
-FROM	$USER/debian-stretch-obs-latest
+FROM	$USER/debian-bullseye-obs-latest
 # Arguments used after FROM must be specified again
 
 RUN	apt-get update && \
@@ -66,8 +66,6 @@ RUN	apt-get update && \
 		libzmq3-dev \
 		make \
 		mscgen \
-		python-nwdiag \
-		python-pychart \
 		python3-nwdiag \
 		xsltproc \
 		&& \
