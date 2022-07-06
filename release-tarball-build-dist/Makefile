@@ -1,3 +1,3 @@
-UPSTREAM_DISTRO=debian:stretch
-DISTRO=debian-stretch
+UPSTREAM_DISTRO=debian:bullseye
+DISTRO=debian-bullseye
 include ../make/Makefile
