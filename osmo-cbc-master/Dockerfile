@@ -38,7 +38,8 @@ RUN	cd osmo-cbc && \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
 	./configure && \
-	make "-j$(nproc)" install
+	make "-j$(nproc)" install && \
+	ldconfig
 
 VOLUME	/data
 
