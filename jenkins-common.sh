@@ -238,16 +238,12 @@ docker_network_params() {
 }
 
 fix_perms() {
-	if ! docker_image_exists "debian-bullseye-build"; then
-		docker_images_require "debian-bullseye-build"
-	fi
-
 	echo Fixing permissions
 	docker run 	--rm \
 			-v $VOL_BASE_DIR:/data \
 			-v $CACHE_DIR:/cache \
 			--name ${BUILD_TAG}-cleaner \
-			$REPO_USER/debian-bullseye-build \
+			debian:bullseye \
 			chmod -R a+rX /data/ /cache/
 }
 
