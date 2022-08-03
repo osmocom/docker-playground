@@ -20,6 +20,7 @@ docker_depends() {
 	osmo-*-centos7) echo "centos7-build" ;;
 	osmo-*-centos8) echo "centos8-build" ;;
 	osmo-*-latest) echo "debian-bullseye-obs-latest" ;;
+	osmo-*-asan) echo "debian-bullseye-obs-asan" ;;
 	osmo-*) echo "debian-bullseye-build" ;;
 	open5gs-master) echo "debian-bullseye-build" ;;
 	ttcn3-*) echo "debian-bullseye-titan" ;;
@@ -69,6 +70,12 @@ docker_dir_from_image_name() {
 	centos8-obs-20*q*)
 		# e.g. centos8-obs-2021q1 -> centos8-obs-latest
 		echo "$1" | sed 's/20[0-9][0-9]q.*$/latest/'
+		;;
+	osmo-*-asan)
+		# e.g. osmo-mgw-asan -> osmo-mgw-latest
+		# Using latest and not master, so the binary packages from
+		# the asan repository are not only used for libraries.
+		echo "$1" | sed 's/-asan/-latest/'
 		;;
 	*)
 		echo "$1"
