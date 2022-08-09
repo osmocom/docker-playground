@@ -46,6 +46,10 @@ docker run	--rm \
 		$REPO_USER/osmo-bsc-$IMAGE_SUFFIX
 
 BTS_FEATURES="-fCCN,EGPRS,GPRS,IPv6_NSVC,PAGING_COORDINATION,VAMOS"
+# Disable until libosmocore release > 1.7.0
+if image_suffix_is_master; then
+	BTS_FEATURES="${BTS_FEATURES},OSMUX"
+fi
 
 for i in `seq 0 2`; do
 	echo Starting container with OML for BTS$i
