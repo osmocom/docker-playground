@@ -7,5 +7,7 @@ bts 0
  oml remote-ip 172.18.9.11
  gsmtap-remote-host 172.18.9.10
  pcu-socket /data/unix/pcu_sock
+ osmux
+  local-ip 172.18.9.20
 ctrl
  bind 0.0.0.0
