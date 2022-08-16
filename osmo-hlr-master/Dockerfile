@@ -8,7 +8,7 @@ RUN	case "$DISTRO" in \
 	debian*) \
 		apt-get update && \
 		apt-get install -y --no-install-recommends \
-			libdbd-sqlite3 \
+			libsqlite3-dev \
 			libosmo-abis-dev \
 			libosmo-netif-dev \
 			libosmo-sigtran-dev \
@@ -22,6 +22,7 @@ RUN	case "$DISTRO" in \
 			"pkgconfig(libosmoctrl)" \
 			"pkgconfig(libosmogsm)" \
 			"pkgconfig(libosmovty)" \
+			sqlite-devel \
 			python3 \
 		;; \
 	esac
