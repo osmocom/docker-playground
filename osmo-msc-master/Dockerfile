@@ -9,8 +9,7 @@ RUN	case "$DISTRO" in \
 		apt-get update && \
 		apt-get install -y --no-install-recommends \
 			libasn1c-dev \
-			libdbd-sqlite3 \
-			libdbi-dev \
+			libsqlite3-dev \
 			libosmo-abis-dev \
 			libosmo-mgcp-client-dev \
 			libosmo-gsup-client-dev \
@@ -37,6 +36,7 @@ RUN	case "$DISTRO" in \
 			"pkgconfig(libosmogsm)" \
 			"pkgconfig(libosmovty)" \
 			"pkgconfig(libsmpp34)" \
+			sqlite-devel \
 		;; \
 	esac
 
