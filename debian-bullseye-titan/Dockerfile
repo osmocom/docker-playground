@@ -37,7 +37,7 @@ RUN	apt-get update && \
 	apt-get clean
 
 # This is required for obtaining talloc reports from the SUT
-RUN	pip3 install git+git://git.osmocom.org/python/osmo-python-tests
+RUN	pip3 install git+https://gitea.osmocom.org/cellular-infrastructure/osmo-python-tests
 
 # somehow Debian folks updated the gcc version but not titan :/
 RUN	sed -i 's/^#error/\/\/#error/' /usr/include/titan/cversion.h
@@ -57,7 +57,7 @@ RUN	git config --global user.email docker@dock.er && \
 	git config --global user.name "Dock Er"
 
 # clone osmo-ttcn3-hacks and deps, invalidate cache if deps change (OS#5017)
-RUN	git clone git://git.osmocom.org/osmo-ttcn3-hacks.git && \
+RUN	git clone https://gitea.osmocom.org/ttcn3/osmo-ttcn3-hacks && \
 	make -j8 -C /osmo-ttcn3-hacks deps
 ADD	https://gitea.osmocom.org/ttcn3/osmo-ttcn3-hacks/raw/branch/master/deps/Makefile /tmp/deps-Makefile
 RUN	if ! diff -q /tmp/deps-Makefile /osmo-ttcn3-hacks/deps/Makefile; then \
