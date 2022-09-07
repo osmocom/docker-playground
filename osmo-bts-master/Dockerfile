@@ -25,6 +25,7 @@ RUN	case "$DISTRO" in \
 			"pkgconfig(libosmoctrl)" \
 			"pkgconfig(libosmogb)" \
 			"pkgconfig(libosmogsm)" \
+			"pkgconfig(libosmo-netif)" \
 			"pkgconfig(libosmotrau)" \
 			"pkgconfig(libosmovty)" \
 		;; \
