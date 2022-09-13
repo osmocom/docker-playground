@@ -10,53 +10,71 @@ docker_images_require \
 set_clean_up_trap
 set -e
 
-mkdir $VOL_BASE_DIR/hnbgw-tester
-mkdir $VOL_BASE_DIR/hnbgw-tester/unix
-cp HNBGW_Tests.cfg $VOL_BASE_DIR/hnbgw-tester/
-write_mp_osmo_repo "$VOL_BASE_DIR/hnbgw-tester/HNBGW_Tests.cfg"
-
-mkdir $VOL_BASE_DIR/stp
-cp osmo-stp.cfg $VOL_BASE_DIR/stp/
-
-mkdir $VOL_BASE_DIR/hnbgw
-mkdir $VOL_BASE_DIR/hnbgw/unix
-cp osmo-hnbgw.cfg $VOL_BASE_DIR/hnbgw/
-
-mkdir $VOL_BASE_DIR/unix
-
 SUBNET=35
 network_create $SUBNET
 
-echo Starting container with STP
-docker run	--rm \
-		$(docker_network_params $SUBNET 200) \
-		--ulimit core=-1 \
-		-v $VOL_BASE_DIR/stp:/data \
-		--name ${BUILD_TAG}-stp -d \
-		$DOCKER_ARGS \
-		$REPO_USER/osmo-stp-$IMAGE_SUFFIX
+run_tests() {
+	base_dir="$1"
+	tests_cfg="$2"
+	stp_cfg="$3"
+	hnbgw_cfg="$4"
 
-echo Starting container with HNBGW
-docker run	--rm \
-		$(docker_network_params $SUBNET 20) \
-		--ulimit core=-1 \
-		-v $VOL_BASE_DIR/hnbgw:/data \
-		-v $VOL_BASE_DIR/unix:/data/unix \
-		--name ${BUILD_TAG}-hnbgw -d \
-		$DOCKER_ARGS \
-		$REPO_USER/osmo-hnbgw-$IMAGE_SUFFIX
+	mkdir $base_dir/hnbgw-tester
+	mkdir $base_dir/hnbgw-tester/unix
+	cp "$tests_cfg" $base_dir/hnbgw-tester/
+	write_mp_osmo_repo "$base_dir/hnbgw-tester/HNBGW_Tests.cfg"
 
-echo Starting container with HNBGW testsuite
-docker run	--rm \
-		$(docker_network_params $SUBNET 203) \
-		--ulimit core=-1 \
-		-e "TTCN3_PCAP_PATH=/data" \
-		-v $VOL_BASE_DIR/hnbgw-tester:/data \
-		-v $VOL_BASE_DIR/unix:/data/unix \
-		--name ${BUILD_TAG}-ttcn3-hnbgw-test \
-		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-hnbgw-test
+	mkdir $base_dir/stp
+	cp "$stp_cfg" $base_dir/stp/
 
-echo Stopping containers
-docker container kill ${BUILD_TAG}-hnbgw
-docker container kill ${BUILD_TAG}-stp
+	mkdir $base_dir/hnbgw
+	mkdir $base_dir/hnbgw/unix
+	cp "$hnbgw_cfg" $base_dir/hnbgw/
+
+	mkdir $base_dir/unix
+
+	echo Starting container with STP
+	docker run	--rm \
+			$(docker_network_params $SUBNET 200) \
+			--ulimit core=-1 \
+			-v $base_dir/stp:/data \
+			--name ${BUILD_TAG}-stp -d \
+			$DOCKER_ARGS \
+			$REPO_USER/osmo-stp-$IMAGE_SUFFIX
+
+	echo Starting container with HNBGW
+	docker run	--rm \
+			$(docker_network_params $SUBNET 20) \
+			--ulimit core=-1 \
+			-v $base_dir/hnbgw:/data \
+			-v $base_dir/unix:/data/unix \
+			--name ${BUILD_TAG}-hnbgw -d \
+			$DOCKER_ARGS \
+			$REPO_USER/osmo-hnbgw-$IMAGE_SUFFIX
+
+	echo Starting container with HNBGW testsuite
+	docker run	--rm \
+			$(docker_network_params $SUBNET 203) \
+			--ulimit core=-1 \
+			-e "TTCN3_PCAP_PATH=/data" \
+			-v $base_dir/hnbgw-tester:/data \
+			-v $base_dir/unix:/data/unix \
+			--name ${BUILD_TAG}-ttcn3-hnbgw-test \
+			$DOCKER_ARGS \
+			$REPO_USER/ttcn3-hnbgw-test
+
+	echo Stopping containers
+	docker container kill ${BUILD_TAG}-hnbgw
+	docker container kill ${BUILD_TAG}-stp
+}
+
+echo Testing without PFCP
+run_tests "$VOL_BASE_DIR" "HNBGW_Tests.cfg" "osmo-stp.cfg" "osmo-hnbgw.cfg"
+
+echo Testing with PFCP
+VOL_BASE_DIR_PFCP="$VOL_BASE_DIR/with-pfcp"
+mkdir "$VOL_BASE_DIR_PFCP"
+run_tests "$VOL_BASE_DIR_PFCP" "with-pfcp/HNBGW_Tests.cfg" "osmo-stp.cfg" "with-pfcp/osmo-hnbgw.cfg"
+# Make jenkins results show ':with-pfcp': append ':with-pfcp' to the jenkins results classnames
+sed -i "s/classname='\([^']\+\)'/classname='\1:with-pfcp'/g" \
+	    $VOL_BASE_DIR_PFCP/hnbgw-tester/junit-xml-*.log
