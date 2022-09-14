@@ -14,7 +14,9 @@ RUN	apt-get update && \
 		libosmo-ranap-dev \
 		libosmo-rua-dev \
 		libosmo-hnbap-dev \
-		libasn1c-dev && \
+		libasn1c-dev \
+		libosmo-pfcp-dev \
+		&& \
 	apt-get clean
 
 WORKDIR	/tmp
@@ -29,7 +31,7 @@ RUN	cd osmo-hnbgw && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_HNBGW_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
-	./configure && \
+	./configure --enable-pfcp && \
 	make "-j$(nproc)" install && \
 	ldconfig
 
