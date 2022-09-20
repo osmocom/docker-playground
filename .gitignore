@@ -8,3 +8,5 @@
 
 /release-tarball-build-dist/_release_tarballs
 /release-tarball-build-dist/_temp
+
+.*.sw?
