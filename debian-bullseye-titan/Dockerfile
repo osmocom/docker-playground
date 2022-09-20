@@ -57,9 +57,9 @@ RUN	git config --global user.email docker@dock.er && \
 	git config --global user.name "Dock Er"
 
 # clone osmo-ttcn3-hacks and deps, invalidate cache if deps change (OS#5017)
-RUN	git clone https://gitea.osmocom.org/ttcn3/osmo-ttcn3-hacks && \
+RUN	git clone https://gerrit.osmocom.org/osmo-ttcn3-hacks && \
 	make -j8 -C /osmo-ttcn3-hacks deps
-ADD	https://gitea.osmocom.org/ttcn3/osmo-ttcn3-hacks/raw/branch/master/deps/Makefile /tmp/deps-Makefile
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-ttcn3-hacks/+/refs/heads/master/deps/Makefile?format=TEXT /tmp/deps-Makefile
 RUN	if ! diff -q /tmp/deps-Makefile /osmo-ttcn3-hacks/deps/Makefile; then \
 		cd /osmo-ttcn3-hacks && \
 		git pull && \
