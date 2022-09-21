@@ -10,6 +10,15 @@ docker_images_require \
 set_clean_up_trap
 set -e
 
+VOL_BASE_DIR_PFCP="$VOL_BASE_DIR/with-pfcp"
+clean_up() {
+	# append ':with-pfcp' to the classnames,
+	# e.g. "classname='HNBGW_Tests'" => "classname='HNBGW_Tests:with-pfcp'"
+	# so the with-pfcp test cases would not interfere without pfcp ones in Jenkins
+	sed -i "s/classname='\([^']\+\)'/classname='\1:with-pfcp'/g" \
+		$VOL_BASE_DIR_PFCP/hnbgw-tester/junit-xml-with-pfcp-*.log
+}
+
 SUBNET=35
 network_create $SUBNET
 
@@ -72,9 +81,5 @@ echo Testing without PFCP
 run_tests "$VOL_BASE_DIR" "HNBGW_Tests.cfg" "osmo-stp.cfg" "osmo-hnbgw.cfg"
 
 echo Testing with PFCP
-VOL_BASE_DIR_PFCP="$VOL_BASE_DIR/with-pfcp"
 mkdir "$VOL_BASE_DIR_PFCP"
 run_tests "$VOL_BASE_DIR_PFCP" "with-pfcp/HNBGW_Tests.cfg" "osmo-stp.cfg" "with-pfcp/osmo-hnbgw.cfg"
-# Make jenkins results show ':with-pfcp': append ':with-pfcp' to the jenkins results classnames
-sed -i "s/classname='\([^']\+\)'/classname='\1:with-pfcp'/g" \
-	    $VOL_BASE_DIR_PFCP/hnbgw-tester/junit-xml-with-pfcp-*.log
