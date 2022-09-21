@@ -77,4 +77,4 @@ mkdir "$VOL_BASE_DIR_PFCP"
 run_tests "$VOL_BASE_DIR_PFCP" "with-pfcp/HNBGW_Tests.cfg" "osmo-stp.cfg" "with-pfcp/osmo-hnbgw.cfg"
 # Make jenkins results show ':with-pfcp': append ':with-pfcp' to the jenkins results classnames
 sed -i "s/classname='\([^']\+\)'/classname='\1:with-pfcp'/g" \
-	    $VOL_BASE_DIR_PFCP/hnbgw-tester/junit-xml-*.log
+	    $VOL_BASE_DIR_PFCP/hnbgw-tester/junit-xml-with-pfcp-*.log
