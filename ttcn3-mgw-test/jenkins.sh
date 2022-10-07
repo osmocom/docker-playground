@@ -16,7 +16,7 @@ write_mp_osmo_repo "$VOL_BASE_DIR/mgw-tester/MGCP_Test.cfg"
 mkdir $VOL_BASE_DIR/mgw
 cp osmo-mgw.cfg $VOL_BASE_DIR/mgw/
 # Can be dropped once released osmo-mgw is >1.10.0:
-if image_suffix_is_latest; then
+if ! image_suffix_is_master; then
 	sed -i "/^ osmux bind-ip-v6 fd02:db8:4::180/d" $VOL_BASE_DIR/mgw/osmo-mgw.cfg
 fi
 
