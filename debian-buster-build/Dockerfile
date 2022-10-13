@@ -6,6 +6,9 @@ ARG	OSMOCOM_REPO_MIRROR="https://downloads.osmocom.org"
 ARG	OSMOCOM_REPO_PATH="packages/osmocom:"
 ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/${OSMOCOM_REPO_PATH}/nightly/Debian_10/"
 
+# LLVM-embedded-toolchain-for-Arm version
+ARG	LLVM_VERSION="14.0.0"
+
 RUN	apt-get update && \
 	apt-get upgrade -y && \
 	apt-get install -y --no-install-recommends \
@@ -50,6 +53,7 @@ RUN	apt-get update && \
 		libsqlite3-dev \
 		libssl-dev \
 		libtalloc-dev \
+		libtinfo5 \
 		libtool \
 		libusb-1.0-0-dev \
 		libusb-dev \
@@ -60,6 +64,14 @@ RUN	apt-get update && \
 		telnet \
 		wget && \
 	apt-get clean
+
+RUN	set -x && \
+	wget -q https://github.com/ARM-software/LLVM-embedded-toolchain-for-Arm/releases/download/release-${LLVM_VERSION}/LLVMEmbeddedToolchainForArm-${LLVM_VERSION}-linux.tar.gz && \
+	tar -xf LLVMEmbeddedToolchainForArm-${LLVM_VERSION}-linux.tar.gz && \
+	rm LLVMEmbeddedToolchainForArm-${LLVM_VERSION}-linux.tar.gz && \
+	mv LLVMEmbeddedToolchainForArm-${LLVM_VERSION} /opt/llvm-arm && \
+	/opt/llvm-arm/bin/clang --version && \
+	/opt/llvm-arm/bin/clang --print-targets
 
 # Make respawn.sh part of this image, so it can be used by other images based on it
 COPY	.common/respawn.sh /usr/local/bin/respawn.sh
