@@ -12,6 +12,9 @@ ARG	OSMOCOM_REPO_PATH="packages/osmocom:"
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
 ARG DEBIAN_VERSION
 
+# LLVM-embedded-toolchain-for-Arm version
+ARG	LLVM_VERSION="14.0.0"
+
 # Install apt dependencies (keep in alphabetic order)
 RUN \
 	[ "$(arch)" = "x86_64" ] && dpkg --add-architecture i386; \
@@ -83,6 +86,7 @@ RUN \
 		libsqlite3-dev \
 		libssl-dev \
 		libtalloc-dev \
+		libtinfo5 \
 		libtool \
 		libusb-1.0-0-dev \
 		libusb-dev \
@@ -122,6 +126,14 @@ RUN \
 		unzip \
 		wget \
 		xsltproc
+
+RUN	set -x && \
+	wget -q https://github.com/ARM-software/LLVM-embedded-toolchain-for-Arm/releases/download/release-${LLVM_VERSION}/LLVMEmbeddedToolchainForArm-${LLVM_VERSION}-linux.tar.gz && \
+	tar -xf LLVMEmbeddedToolchainForArm-${LLVM_VERSION}-linux.tar.gz && \
+	rm LLVMEmbeddedToolchainForArm-${LLVM_VERSION}-linux.tar.gz && \
+	mv LLVMEmbeddedToolchainForArm-${LLVM_VERSION} /opt/llvm-arm && \
+	/opt/llvm-arm/bin/clang --version && \
+	/opt/llvm-arm/bin/clang --print-targets
 
 # Install pip dependencies (keep in alphabetic order)
 RUN pip3 install \
