@@ -97,6 +97,10 @@ RUN \
 		osc \
 		patchelf \
 		pkg-config \
+		python-pip \
+		python-setuptools \
+		python-yaml \
+		python2.7 \
 		python3 \
 		python3-gi \
 		python3-mako \
@@ -106,14 +110,10 @@ RUN \
 		python3-setuptools \
 		python3-usb \
 		python3-yaml \
-		python2.7 \
-		python-pip \
-		python-setuptools \
-		python-yaml \
 		rsync \
 		sdcc \
-		sqlite3 \
 		source-highlight \
+		sqlite3 \
 		stow \
 		sudo \
 		systemd \
