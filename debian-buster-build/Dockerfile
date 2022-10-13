@@ -44,15 +44,15 @@ RUN	apt-get update && \
 		libortp-dev \
 		libpcap-dev \
 		libpcsclite-dev \
-		libtalloc-dev \
-		libtool \
 		libreadline-dev \
 		libsctp-dev \
 		libsofia-sip-ua-glib-dev \
 		libsqlite3-dev \
 		libssl-dev \
-		libusb-dev \
+		libtalloc-dev \
+		libtool \
 		libusb-1.0-0-dev \
+		libusb-dev \
 		make \
 		pkg-config \
 		sqlite3 \
