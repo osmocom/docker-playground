@@ -128,6 +128,7 @@ RUN \
 		xsltproc
 
 RUN	set -x && \
+	[ "$(arch)" = "x86_64" ] || exit 0; \
 	wget -q https://github.com/ARM-software/LLVM-embedded-toolchain-for-Arm/releases/download/release-${LLVM_VERSION}/LLVMEmbeddedToolchainForArm-${LLVM_VERSION}-linux.tar.gz && \
 	tar -xf LLVMEmbeddedToolchainForArm-${LLVM_VERSION}-linux.tar.gz && \
 	rm LLVMEmbeddedToolchainForArm-${LLVM_VERSION}-linux.tar.gz && \
