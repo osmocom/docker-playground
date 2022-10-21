@@ -52,6 +52,7 @@ RUN \
 		graphviz \
 		htop \
 		inkscape \
+		latexmk \
 		lcov \
 		libaio-dev \
 		libasound2-dev \
@@ -122,6 +123,7 @@ RUN \
 		sudo \
 		systemd \
 		tcpdump \
+		tex-gyre \
 		texinfo \
 		unzip \
 		wget \
@@ -138,10 +140,17 @@ RUN	set -x && \
 
 # Install pip dependencies (keep in alphabetic order)
 RUN pip3 install \
-	git+https://github.com/podshumok/python-smpplib.git \
-	git+https://github.com/eriwen/lcov-to-cobertura-xml.git \
-	pydbus \
-	pysispm
+	'git+https://github.com/eriwen/lcov-to-cobertura-xml.git' \
+	'git+https://github.com/osmocom/sphinx-argparse@master#egg=sphinx-argparse' \
+	'git+https://github.com/podshumok/python-smpplib.git' \
+	'construct>=2.9.51' \
+	'pydbus' \
+	'pylint' \
+	'pysispm' \
+	'pytlv' \
+	'pyyaml>=5.1' \
+	'sphinx' \
+	'sphinxcontrib-napoleon'
 
 # match the outside user
 RUN useradd --uid=1000 build
