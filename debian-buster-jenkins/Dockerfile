@@ -143,14 +143,14 @@ RUN pip3 install \
 	'git+https://github.com/eriwen/lcov-to-cobertura-xml.git' \
 	'git+https://github.com/osmocom/sphinx-argparse@master#egg=sphinx-argparse' \
 	'git+https://github.com/podshumok/python-smpplib.git' \
-	'construct>=2.9.51' \
 	'pydbus' \
 	'pylint' \
 	'pysispm' \
-	'pytlv' \
-	'pyyaml>=5.1' \
 	'sphinx' \
-	'sphinxcontrib-napoleon'
+	'sphinxcontrib-napoleon' \
+	'swig'
+ADD https://gitea.osmocom.org/sim-card/pysim/raw/branch/master/requirements.txt /tmp/pysim_requirements.txt
+RUN pip3 install -r /tmp/pysim_requirements.txt
 
 # match the outside user
 RUN useradd --uid=1000 build
