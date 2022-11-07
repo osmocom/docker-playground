@@ -80,6 +80,9 @@ run_tests() {
 echo Testing without PFCP
 run_tests "$VOL_BASE_DIR" "HNBGW_Tests.cfg" "osmo-stp.cfg" "osmo-hnbgw.cfg"
 
-echo Testing with PFCP
-mkdir "$VOL_BASE_DIR_PFCP"
-run_tests "$VOL_BASE_DIR_PFCP" "with-pfcp/HNBGW_Tests.cfg" "osmo-stp.cfg" "with-pfcp/osmo-hnbgw.cfg"
+# Disable until osmo-hnbgw release >1.3.0
+if image_suffix_is_master; then
+	echo Testing with PFCP
+	mkdir "$VOL_BASE_DIR_PFCP"
+	run_tests "$VOL_BASE_DIR_PFCP" "with-pfcp/HNBGW_Tests.cfg" "osmo-stp.cfg" "with-pfcp/osmo-hnbgw.cfg"
+fi
