@@ -1,6 +1,7 @@
 ARG	USER
 FROM	$USER/debian-bullseye-obs-latest
 # Arguments used after FROM must be specified again
+ARG	UID
 
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
@@ -71,3 +72,6 @@ RUN	apt-get update && \
 		xsltproc \
 		&& \
 	apt-get clean
+
+RUN	useradd --uid=${UID} -m user
+USER	user
