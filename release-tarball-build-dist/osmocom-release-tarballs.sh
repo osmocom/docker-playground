@@ -6,6 +6,7 @@
 # Environment variables:
 # * KEEP_TEMP: do not delete cloned repositories (use for development)
 # * PARALLEL_MAKE: -jN argument for make (default: -j5).
+SSH_COMMAND="ssh -o UserKnownHostsFile=/build/known_hosts -p 48"
 OSMO_GIT_URL="https://git.osmocom.org"
 OSMO_RELEASE_REPOS="
 	libasn1c
@@ -315,6 +316,11 @@ create_move_tarball() {
 	esac
 }
 
+upload() {
+	cd _release_tarballs
+	rsync -avz --delete -e "$SSH_COMMAND" . releases@ftp.osmocom.org:web-files/
+}
+
 remove_temp_dir
 mkdir -p "$TEMP/repos"
 echo "Temp dir: $TEMP"
@@ -346,4 +352,5 @@ for repo in $OSMO_RELEASE_REPOS; do
 done
 
 remove_temp_dir
+upload
 echo "done!"
