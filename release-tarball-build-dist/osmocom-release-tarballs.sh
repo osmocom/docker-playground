@@ -326,6 +326,11 @@ create_move_tarball() {
 }
 
 upload() {
+	if ! [ -d _release_tarballs ]; then
+		echo "upload: no tarballs generated, nothing to do."
+		return
+	fi
+
 	cd _release_tarballs
 	rsync -avz -e "$SSH_COMMAND" . releases@ftp.osmocom.org:web-files/
 }
