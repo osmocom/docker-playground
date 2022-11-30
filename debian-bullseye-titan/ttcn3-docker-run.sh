@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 if [ $# -lt 2 ]; then
 	echo
 	echo "usage: ttcn3-docker-run SUBDIR SUITE"
@@ -18,11 +18,12 @@ if [ -n "$WAIT_FOR_NETDEV" ]; then
 	pipework --wait -i "$WAIT_FOR_NETDEV"
 
 	while true; do
-		if [ ! -f /sys/class/net/${WAIT_FOR_NETDEV}/operstate ]; then
+		if [ ! -f /sys/class/net/${WAIT_FOR_NETDEV}/flags ]; then
 			exit 23
 		fi
-		OPSTATE=$(cat /sys/class/net/${WAIT_FOR_NETDEV}/operstate)
-		if [ "$OPSTATE" = "up" ]; then
+		FLAGS=$(cat /sys/class/net/${WAIT_FOR_NETDEV}/flags)
+		let FLAG_UP=$FLAGS\&1
+		if [ "$FLAG_UP" = "1" ]; then
 			break
 		fi
 		echo "Waiting for ${WAIT_FOR_NETDEV} to become operational"
