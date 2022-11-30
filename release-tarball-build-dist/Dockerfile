@@ -31,6 +31,7 @@ RUN	apt-get update && \
 		libgtpnl-dev \
 		liblimesuite-dev \
 		libncurses5-dev \
+		libnl-route-3-dev \
 		liboping-dev \
 		liborcania-dev \
 		libortp-dev \
@@ -40,7 +41,6 @@ RUN	apt-get update && \
 		libosmo-mgcp-client-dev \
 		libosmo-netif-dev \
 		libosmo-ranap-dev \
-		libnl-route-3-dev \
 		libosmo-rua-dev \
 		libosmo-sccp-dev \
 		libosmo-sigtran-dev \
