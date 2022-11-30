@@ -191,6 +191,15 @@ remove_temp_dir() {
 	fi
 }
 
+get_existing_tarballs() {
+	if ! $SSH_COMMAND releases@ftp.osmocom.org -- \
+			find web-files -name '*.tar.bz2' \
+			> "$TEMP"/existing_tarballs; then
+		echo "ERROR: getting existing tarballs from remote failed!"
+		exit 1
+	fi
+}
+
 # Clone an Osmocom repository to $TEMP/repos/$repo, clean it, checkout a tag.
 # $1: Osmocom repository (may end in subdir, e.g. simtrace2/host)
 # $2: tag (optional, default: master)
@@ -318,12 +327,14 @@ create_move_tarball() {
 
 upload() {
 	cd _release_tarballs
-	rsync -avz --delete -e "$SSH_COMMAND" . releases@ftp.osmocom.org:web-files/
+	rsync -avz -e "$SSH_COMMAND" . releases@ftp.osmocom.org:web-files/
 }
 
 remove_temp_dir
 mkdir -p "$TEMP/repos"
 echo "Temp dir: $TEMP"
+
+get_existing_tarballs
 
 for repo in $OSMO_RELEASE_REPOS; do
 	echo "$repo"
@@ -342,7 +353,10 @@ for repo in $OSMO_RELEASE_REPOS; do
 			echo "  $tarball (ignored)"
 			continue
 		elif [ -e "$OUTPUT/$repo/$tarball" ]; then
-			echo "  $tarball (exists)"
+			echo "  $tarball (exists locally)"
+			continue
+		elif grep -q "^web-files/$repo/$tarball$" "$TEMP"/existing_tarballs; then
+			echo "  $tarball (exists on server)"
 			continue
 		fi
 
