@@ -160,8 +160,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_GSM_TESTER_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-gsm-tester.git
-ADD	http://git.osmocom.org/osmo-gsm-tester/patch?h=$OSMO_GSM_TESTER_BRANCH /tmp/commit
+RUN	git clone https://gerrit.osmocom.org/osmo-gsm-tester.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-gsm-tester/+/$OSMO_GSM_TESTER_BRANCH?format=TEXT /tmp/commit
 
 RUN	cd osmo-gsm-tester && \
 	git fetch && git checkout $OSMO_GSM_TESTER_BRANCH && \

@@ -6,6 +6,7 @@
 # Environment variables:
 # * KEEP_TEMP: do not delete cloned repositories (use for development)
 # * PARALLEL_MAKE: -jN argument for make (default: -j5).
+SSH_COMMAND="ssh -o UserKnownHostsFile=/build/known_hosts -p 48"
 OSMO_GIT_URL="https://git.osmocom.org"
 OSMO_RELEASE_REPOS="
 	libasn1c
@@ -190,6 +191,15 @@ remove_temp_dir() {
 	fi
 }
 
+get_existing_tarballs() {
+	if ! $SSH_COMMAND releases@ftp.osmocom.org -- \
+			find web-files -name '*.tar.bz2' \
+			> "$TEMP"/existing_tarballs; then
+		echo "ERROR: getting existing tarballs from remote failed!"
+		exit 1
+	fi
+}
+
 # Clone an Osmocom repository to $TEMP/repos/$repo, clean it, checkout a tag.
 # $1: Osmocom repository (may end in subdir, e.g. simtrace2/host)
 # $2: tag (optional, default: master)
@@ -315,9 +325,21 @@ create_move_tarball() {
 	esac
 }
 
+upload() {
+	if ! [ -d _release_tarballs ]; then
+		echo "upload: no tarballs generated, nothing to do."
+		return
+	fi
+
+	cd _release_tarballs
+	rsync -avz -e "$SSH_COMMAND" . releases@ftp.osmocom.org:web-files/
+}
+
 remove_temp_dir
 mkdir -p "$TEMP/repos"
 echo "Temp dir: $TEMP"
+
+get_existing_tarballs
 
 for repo in $OSMO_RELEASE_REPOS; do
 	echo "$repo"
@@ -336,7 +358,10 @@ for repo in $OSMO_RELEASE_REPOS; do
 			echo "  $tarball (ignored)"
 			continue
 		elif [ -e "$OUTPUT/$repo/$tarball" ]; then
-			echo "  $tarball (exists)"
+			echo "  $tarball (exists locally)"
+			continue
+		elif grep -q "^web-files/$repo/$tarball$" "$TEMP"/existing_tarballs; then
+			echo "  $tarball (exists on server)"
 			continue
 		fi
 
@@ -346,4 +371,5 @@ for repo in $OSMO_RELEASE_REPOS; do
 done
 
 remove_temp_dir
+upload
 echo "done!"

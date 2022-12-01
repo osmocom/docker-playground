@@ -1,6 +1,7 @@
 ARG	USER
 FROM	$USER/debian-bullseye-obs-latest
 # Arguments used after FROM must be specified again
+ARG	UID
 
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
@@ -31,6 +32,7 @@ RUN	apt-get update && \
 		libgtpnl-dev \
 		liblimesuite-dev \
 		libncurses5-dev \
+		libnl-route-3-dev \
 		liboping-dev \
 		liborcania-dev \
 		libortp-dev \
@@ -40,7 +42,6 @@ RUN	apt-get update && \
 		libosmo-mgcp-client-dev \
 		libosmo-netif-dev \
 		libosmo-ranap-dev \
-		libnl-route-3-dev \
 		libosmo-rua-dev \
 		libosmo-sccp-dev \
 		libosmo-sigtran-dev \
@@ -67,6 +68,10 @@ RUN	apt-get update && \
 		make \
 		mscgen \
 		python3-nwdiag \
+		rsync \
 		xsltproc \
 		&& \
 	apt-get clean
+
+RUN	useradd --uid=${UID} -m user
+USER	user
