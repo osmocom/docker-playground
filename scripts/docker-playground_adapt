@@ -103,7 +103,7 @@ while [ "$1" != "" ]; do
 			shift
 			# Loop through testcases until none given or until next option comes
 			TESTCASES="$2"
-			while [ -n "$3" ] && ! echo "$3" | grep -q "^-.*"; do
+			while [ -n "$3" ] && ! printf "%s\n" "$3" | grep -q -- '^-.*'; do
 				shift
 				TESTCASES="$TESTCASES $2"
 			done
