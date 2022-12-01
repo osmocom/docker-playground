@@ -2,13 +2,14 @@
 
 usage () {
 	USAGE_STR=""
-	USAGE_STR="${USAGE_STR}usage: $(basename $0) [-l|--list-files] [-h|--help] [-r|--restore] [-n|--no-prompt] [-b|--branch) <BRANCH>] [-t|--testcases <TESTSUITE>[/<SUBDIR] <TTCN3_TESTCASE>...]\n"
+	USAGE_STR="${USAGE_STR}usage: $(basename $0) [-l|--list-files] [-h|--help] [-r|--restore] [-a|--append] [-b|--branch) <BRANCH>] [[-n|--no-prompt] [-a|--append] -t|--testcases <TESTSUITE>[/<SUBDIR] <TTCN3_TESTCASE>...]\n"
 	USAGE_STR="${USAGE_STR}Adapt Osmocom docker-playground to custom needs (branch pointed to, testcomponent and testcases to run).\n"
 	USAGE_STR="${USAGE_STR}\n"
 	USAGE_STR="${USAGE_STR}	-r, --restore		Restore target files from docker-playground to point to current commit of repository.\n"
-	USAGE_STR="${USAGE_STR}	-b|--branch		Point to branch BRANCH of osmo-ttcn3-hacks repo.\n"
+	USAGE_STR="${USAGE_STR}	-b, --branch		Point to branch BRANCH of osmo-ttcn3-hacks repo.\n"
 	USAGE_STR="${USAGE_STR}	-l, --list-files	List target files that will be changed/restored.\n"
 	USAGE_STR="${USAGE_STR}	-n, --no-prompt		Don't prompt for changes.\n"
+	USAGE_STR="${USAGE_STR}	-a, --append		Don't prompt for changes.\n"
 	USAGE_STR="${USAGE_STR}	-t, --testcases		Give testcase(s) to run in TESTSUITE. Will prompt for files to manipulate since there are subdirectories sometimes with alternative config files\n"
 	USAGE_STR="${USAGE_STR}				Will not prompt for anything, if docker-playground repository subdirectory SUBDIR with the TTCN3 testconfig is given\n"
 	USAGE_STR="${USAGE_STR}				Example:\n"
@@ -106,6 +107,9 @@ while [ "$1" != "" ]; do
 				shift
 				TESTCASES="$TESTCASES $2"
 			done
+			;;
+		--)
+			break
 			;;
 		-* | --*)
 			echo "Error: Unknown option: $PARAM" >&2
