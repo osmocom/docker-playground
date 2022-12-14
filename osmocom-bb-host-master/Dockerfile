@@ -7,6 +7,7 @@ ARG	OSMO_BB_BRANCH="master"
 
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
+		gdb \
 		libosmocore-dev && \
 	apt-get clean
 
@@ -22,7 +23,10 @@ RUN	cd osmocom-bb && \
 
 RUN	cd osmocom-bb/src/host/trxcon && \
 	autoreconf -fi && \
-	./configure && \
+	export CPPFLAGS="-g -O0 -fno-omit-frame-pointer" && \
+	export CFLAGS="-g -O0 -fno-omit-frame-pointer" && \
+	export CXXFLAGS="-g -O0 -fno-omit-frame-pointer" && \
+	./configure --enable-sanitize && \
 	make "-j$(nproc)" install
 
 RUN	cd osmocom-bb/src/host/virt_phy && \

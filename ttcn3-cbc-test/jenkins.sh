@@ -26,7 +26,8 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/cbc:/data \
 		--name ${BUILD_TAG}-cbc -d \
 		$DOCKER_ARGS \
-		$REPO_USER/osmo-cbc-$IMAGE_SUFFIX
+		$REPO_USER/osmo-cbc-$IMAGE_SUFFIX \
+		/bin/sh -c "gdb -ex 'run' -ex 'bt' --arg osmo-cbc -c /data/osmo-cbc.cfg >/data/osmo-cbc.log 2>&1"
 
 echo Starting container with CBC testsuite
 docker run	--rm \

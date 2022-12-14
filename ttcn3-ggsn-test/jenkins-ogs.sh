@@ -32,12 +32,13 @@ docker run	--cap-add=NET_ADMIN \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/ggsn:/data \
 		--name ${BUILD_TAG}-ggsn-ogs-smf -d \
+		--expose 9090 \
 		$DOCKER_ARGS \
 		$(docker_network_params $SUBNET 201) \
 		$REPO_USER/open5gs-$IMAGE_SUFFIX \
-		/bin/sh -c "open5gs-smfd -c /data/open5gs-smf-$IMAGE_SUFFIX.yaml >/data/open5gs-smfd.out 2>&1"
-		#/bin/sh -c "gdb -ex 'handle SIG32 pass nostop noprint' -ex 'run' -ex 'bt' --arg open5gs-smfd -c /data/open5gs-smf-$IMAGE_SUFFIX.yaml >/data/open5gs-smfd.out 2>&1"
-		#/bin/sh -c "valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes open5gs-smfd -c /data/open5gs-smf-$IMAGE_SUFFIX.yaml >/data/open5gs-smfd.out 2>&1"
+		/bin/sh -c "gdb -ex 'handle SIG32 pass nostop noprint' -ex 'run' -ex 'bt' --arg open5gs-smfd -c /data/open5gs-smf-$IMAGE_SUFFIX.yaml >/data/open5gs-smfd.out 2>&1"
+		#/bin/sh -c "valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes open5gs-smfd -c /data/open5gs-smf.yaml >/data/open5gs-smfd.out 2>&1"
+#/bin/sh -c "open5gs-smfd -c /data/open5gs-smf.yaml >/data/open5gs-smfd.out 2>&1"
 
 docker run	--cap-add=NET_ADMIN \
 		--device /dev/net/tun:/dev/net/tun \
@@ -61,3 +62,8 @@ docker run	--rm \
 		--name ${BUILD_TAG}-ggsn-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-ggsn-test
+
+# let some time to tcpdump upf.pcap to fill
+sleep 5
+#echo "press a key"
+#read
