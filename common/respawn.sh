@@ -8,7 +8,7 @@ i=0
 max_i=500
 while [ $i -lt $max_i ]; do
 	echo "$i: starting: $*"
-	$* &
+	gdb -ex 'handle SIG32 pass nostop noprint' -ex 'run' -ex 'bt full' --arg $* &
 	LAST_PID=$!
 	wait $LAST_PID
 	echo "$i: stopped pid $LAST_PID with status $?"

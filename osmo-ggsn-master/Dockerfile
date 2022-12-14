@@ -33,7 +33,34 @@ RUN	case "$DISTRO" in \
 		;; \
 	esac
 
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    DEBIAN_FRONTEND=noninteractive \
+    apt-get install -y --no-install-recommends \
+        gdb \
+        libtalloc-dev \
+        tcpdump && \
+    apt-get clean
+
 WORKDIR	/tmp
+
+# Download, build and install libosmocore
+ARG     LIBOSMOCORE_BRANCH="master"
+RUN     git clone https://gerrit.osmocom.org/libosmocore
+ADD     https://gerrit.osmocom.org/plugins/gitiles/libosmocore/+/$LIBOSMOCORE_BRANCH?format=TEXT /tmp/commit-libosmocore
+
+RUN     cd libosmocore \
+        && git fetch && git checkout -f -B $LIBOSMOCORE_BRANCH origin/$LIBOSMOCORE_BRANCH \
+        && git rev-parse --abbrev-ref HEAD && git rev-parse HEAD \
+        && autoreconf -fi \
+        && ./configure \
+                --disable-doxygen \
+                --disable-pcsc \
+                --prefix=/usr/local \
+                --enable-sanitize \
+        && make -j5 \
+        && make install \
+        && make distclean && ldconfig
 
 ARG	OSMO_GGSN_BRANCH="master"
 
@@ -45,7 +72,7 @@ RUN	cd osmo-ggsn && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_GGSN_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
-	./configure --enable-gtp-linux && \
+	./configure --enable-gtp-linux --enable-sanitize && \
 	make "-j$(nproc)" install && \
 	ldconfig
 

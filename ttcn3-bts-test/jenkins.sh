@@ -261,6 +261,6 @@ mkdir $VOL_BASE_DIR/trxcon
 mkdir $VOL_BASE_DIR/virtphy
 
 start_config_generic
-start_config_virtphy
-start_config_oml
-start_config_hopping
+#start_config_virtphy
+#start_config_oml
+#start_config_hopping
