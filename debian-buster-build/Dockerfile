@@ -39,6 +39,7 @@ RUN	apt-get update && \
 		libgnutls28-dev \
 		libgps-dev \
 		libgsm1-dev \
+		libmnl-dev \
 		libncurses5-dev \
 		libnewlib-arm-none-eabi \
 		libortp-dev \

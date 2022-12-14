@@ -43,6 +43,16 @@ RUN	apt-get update && \
 	apt-get install -y \
 		mongodb-org
 
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    DEBIAN_FRONTEND=noninteractive \
+    apt-get install -y --no-install-recommends \
+        gdb \
+        libtalloc-dev \
+        valgrind \
+        tcpdump && \
+    apt-get clean
+
 # create a user
 ARG	username=osmocom
 RUN	useradd -m ${username} && \

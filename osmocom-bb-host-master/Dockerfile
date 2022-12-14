@@ -7,6 +7,7 @@ ARG	OSMO_BB_BRANCH="master"
 
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
+		gdb \
 		libosmocore-dev && \
 	apt-get clean
 

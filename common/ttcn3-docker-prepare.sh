@@ -14,7 +14,7 @@ OSMO_TTCN3_BRANCH=$1
 shift
 
 cd /osmo-ttcn3-hacks
-
+git remote set-url origin "https://gerrit.osmocom.org/osmo-ttcn3-hacks"
 git fetch
 git checkout "$OSMO_TTCN3_BRANCH"
 

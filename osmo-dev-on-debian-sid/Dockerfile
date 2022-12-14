@@ -13,7 +13,7 @@ RUN	cd osmo-dev && \
 ADD	http://git.osmocom.org/libosmocore/patch /build/commit-libosmocore
 ADD	http://git.osmocom.org/libosmo-abis/patch /build/commit-libosmo-abis
 ADD	http://git.osmocom.org/libosmo-netif/patch /build/commit-libosmo-netif
-ADD	http://git.osmocom.org/libosmo-sccp/patch /build/commit-libosmo-sccp
+ADD	http://git.osmocom.org/libosmo-sigtran/patch /build/commit-libosmo-sigtran
 ADD	http://git.osmocom.org/libsmpp34/patch /build/commit-libsmpp34
 ADD	http://git.osmocom.org/libasn1c/patch /build/commit-libasn1c
 ADD	http://git.osmocom.org/osmo-ggsn/patch /build/commit-osmo-ggsn
