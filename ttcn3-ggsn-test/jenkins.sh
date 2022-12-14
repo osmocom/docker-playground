@@ -79,7 +79,8 @@ start_ggsn() {
 			$DOCKER_ARGS \
 			$GGSN_DOCKER_ARGS \
 			$REPO_USER/osmo-ggsn-$IMAGE_SUFFIX \
-			/bin/sh -c "$GGSN_CMD >/data/osmo-ggsn.log 2>&1"
+			/bin/sh -c "gdb -ex 'run' -ex 'bt' --arg $GGSN_CMD >/data/osmo-ggsn.log 2>&1"
+#			/bin/sh -c "$GGSN_CMD >/data/osmo-ggsn.log 2>&1"
 
 	kernel_test_wait_for_vm "$VOL_BASE_DIR/ggsn-$test_config/osmo-ggsn.log"
 }

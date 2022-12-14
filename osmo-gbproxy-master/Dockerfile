@@ -28,6 +28,56 @@ RUN	case "$DISTRO" in \
 
 WORKDIR	/tmp
 
+# Download, build and install libosmocore
+ARG     LIBOSMOCORE_BRANCH="master"
+RUN     git clone https://gerrit.osmocom.org/libosmocore
+ADD     https://gerrit.osmocom.org/plugins/gitiles/libosmocore/+/$LIBOSMOCORE_BRANCH /tmp/commit-libosmocore
+
+RUN     cd libosmocore \
+        && git fetch && git checkout -f -B $LIBOSMOCORE_BRANCH origin/$LIBOSMOCORE_BRANCH?format=TEXT \
+        && git rev-parse --abbrev-ref HEAD && git rev-parse HEAD \
+        && autoreconf -fi \
+        && ./configure \
+                --disable-doxygen \
+                --disable-pcsc \
+                --prefix=/usr/local \
+                --enable-sanitize \
+        && make -j5 \
+        && make install \
+        && make distclean && ldconfig
+
+ARG	LIBOSMOABIS_BRANCH="master"
+RUN	git clone https://gerrit.osmocom.org/libosmo-abis
+ADD	https://gerrit.osmocom.org/plugins/gitiles/libosmo-abis/+/$LIBOSMOABIS_BRANCH?format=TEXT /tmp/commit-libosmoabis
+
+RUN	cd libosmo-abis \
+	&& git fetch && git checkout -f -B $LIBOSMOABIS_BRANCH origin/$LIBOSMOABIS_BRANCH \
+	&& git rev-parse --abbrev-ref HEAD && git rev-parse HEAD \
+	&& autoreconf -fi \
+	&& ./configure \
+		--disable-doxygen \
+		--prefix=/usr/local \
+		--enable-sanitize \
+	&& make -j5 \
+	&& make install \
+	&& make distclean && ldconfig
+
+ARG     LIBOSMONETIF_BRANCH="master"
+RUN     git clone https://gerrit.osmocom.org/libosmo-netif
+ADD     https://gerrit.osmocom.org/plugins/gitiles/libosmo-netif/+/$LIBOSMONETIF_BRANCH?format=TEXT /tmp/commit-libosmonetif
+
+RUN     cd libosmo-netif \
+        && git fetch && git checkout -f -B $LIBOSMONETIF_BRANCH origin/$LIBOSMONETIF_BRANCH \
+        && git rev-parse --abbrev-ref HEAD && git rev-parse HEAD \
+        && autoreconf -fi \
+        && ./configure \
+               --disable-doxygen \
+               --prefix=/usr/local \
+               --enable-sanitize \
+        && make -j8 \
+        && make install \
+        && make distclean && ldconfig
+
 ARG	OSMO_GBPROXY_BRANCH="master"
 
 RUN	git clone https://gerrit.osmocom.org/osmo-gbproxy.git
@@ -38,7 +88,7 @@ RUN	cd osmo-gbproxy && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_GBPROXY_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
-	./configure && \
+	./configure --enable-sanitize && \
 	make "-j$(nproc)" install && \
 	ldconfig
 

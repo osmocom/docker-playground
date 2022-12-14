@@ -23,6 +23,8 @@ add_addr "ogstun6" "2001:780:44:2000:0:0:0:1/56"
 add_addr "ogstun46" "176.16.32.1/20"
 add_addr "ogstun46" "2001:780:44:2100:0:0:0:1/56"
 
+#echo "0" > /proc/sys/net/ipv6/conf/ogstun4/accept_ra
+
 ip link set ogstun4 up
 ip link set ogstun6 up
 ip link set ogstun46 up

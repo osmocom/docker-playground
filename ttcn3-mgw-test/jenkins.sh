@@ -26,7 +26,8 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/mgw:/data \
 		--name ${BUILD_TAG}-mgw -d \
 		$DOCKER_ARGS \
-		$REPO_USER/osmo-mgw-$IMAGE_SUFFIX
+		$REPO_USER/osmo-mgw-$IMAGE_SUFFIX \
+		/bin/sh -c "gdb -ex 'run' -ex 'bt' --arg osmo-mgw -c /data/osmo-mgw.cfg >/data/osmo-mgw.log 2>&1"
 
 # start docker container with testsuite in foreground
 docker run	--rm \
