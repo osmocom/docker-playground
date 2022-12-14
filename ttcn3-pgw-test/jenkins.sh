@@ -59,10 +59,10 @@ docker run	--cap-add=NET_ADMIN \
 		--name ${BUILD_TAG}-smf -d \
 		$DOCKER_ARGS \
 		$REPO_USER/open5gs-$IMAGE_SUFFIX \
-		/bin/sh -c "open5gs-smfd -c /data/open5gs-smf-$IMAGE_SUFFIX.yaml >/data/open5gs-smfd.out 2>&1"
-		#/bin/sh -c "gdb -ex 'handle SIG32 pass nostop noprint' -ex 'run' -ex 'bt' --arg open5gs-smfd -c /data/open5gs-smf-$IMAGE_SUFFIX.yaml >/data/open5gs-smfd.out 2>&1"
+		/bin/sh -c "gdb -ex 'handle SIG32 pass nostop noprint' -ex 'run' -ex 'bt' --arg open5gs-smfd -c /data/open5gs-smf-$IMAGE_SUFFIX.yaml >/data/open5gs-smfd.out 2>&1"
+#		/bin/sh -c "open5gs-smfd -c /data/open5gs-smf.yaml >/data/open5gs-smfd.out 2>&1"
 
-# start container with osmo-ugcups-daemon in background; SYS_ADMIN required for CLONE_NEWNS
+# start container with osmo-uecups-daemon in background; SYS_ADMIN required for CLONE_NEWNS
 docker run	--cap-add=NET_ADMIN --cap-add=SYS_ADMIN \
 		--device /dev/net/tun:/dev/net/tun \
 		--sysctl net.ipv6.conf.all.disable_ipv6=0 \
@@ -71,10 +71,12 @@ docker run	--cap-add=NET_ADMIN --cap-add=SYS_ADMIN \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/osmo-uecups:/data \
 		-e "WORKDIR=/data" \
+		-e "ASAN_OPTIONS=print_stacktrace=1:abort_on_error=1:fast_unwind_on_fatal=1" \
 		--name ${BUILD_TAG}-uecups -d \
 		$DOCKER_ARGS \
 		$REPO_USER/osmo-uecups-$IMAGE_SUFFIX \
-		/bin/sh -c "osmo-uecups-daemon -c /data/osmo-uecups-daemon.cfg >/data/osmo-uecups-daemon.log 2>&1"
+		/bin/sh -c "gdb -ex 'handle SIG32 pass nostop noprint' -ex 'run' -ex 'bt' --arg osmo-uecups-daemon -c /data/osmo-uecups-daemon.cfg >/data/osmo-uecups-daemon.log 2>&1"
+#		/bin/sh -c "osmo-uecups-daemon -c /data/osmo-uecups-daemon.cfg >/data/osmo-uecups-daemon.log 2>&1"
 
 # start docker container with testsuite in foreground
 docker run	--rm \
