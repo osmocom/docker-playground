@@ -18,8 +18,8 @@ cp sua-param-testtool-sgp.scm some-sua-sgp-tests.txt $VOL_BASE_DIR/sua-tester/
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 
-SUBNET=6
-network_create $SUBNET
+network_create
+network_replace_subnet_in_configs
 
 # start container with STP in background
 docker run	--rm \

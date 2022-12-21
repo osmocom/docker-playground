@@ -19,8 +19,8 @@ cp open5gs-*.yaml $VOL_BASE_DIR/pgw/
 cp upfd.sh $VOL_BASE_DIR/pgw/
 cp upfd-setup.sh $VOL_BASE_DIR/pgw/
 
-SUBNET=18
-network_create $SUBNET
+network_create
+network_replace_subnet_in_configs
 
 # start container with open5gs-nrfd in background
 docker run	--rm \

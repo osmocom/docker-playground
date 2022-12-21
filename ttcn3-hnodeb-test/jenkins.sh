@@ -20,8 +20,8 @@ cp osmo-hnodeb.cfg $VOL_BASE_DIR/hnodeb/
 
 mkdir $VOL_BASE_DIR/unix
 
-SUBNET=33
-network_create $SUBNET
+network_create
+network_replace_subnet_in_configs
 
 echo Starting container with HNodeB
 docker run	--rm \

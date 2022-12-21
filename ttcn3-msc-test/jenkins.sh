@@ -10,9 +10,6 @@ docker_images_require \
 set_clean_up_trap
 set -e
 
-SUBNET=20
-network_create $SUBNET
-
 mkdir $VOL_BASE_DIR/msc-tester
 mkdir $VOL_BASE_DIR/msc-tester/unix
 cp MSC_Tests.cfg $VOL_BASE_DIR/msc-tester/
@@ -26,6 +23,9 @@ mkdir $VOL_BASE_DIR/msc/unix
 cp osmo-msc.cfg $VOL_BASE_DIR/msc/
 
 mkdir $VOL_BASE_DIR/unix
+
+network_create
+network_replace_subnet_in_configs
 
 echo Starting container with STP
 docker run	--rm \

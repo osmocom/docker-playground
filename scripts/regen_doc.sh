@@ -21,8 +21,7 @@ fi
 docker_images_require \
 	"$NAME-$IMAGE_SUFFIX"
 
-SUBNET=16
-network_create "$SUBNET"
+network_create
 
 container_create() {
 	CONTAINERNAME=$1

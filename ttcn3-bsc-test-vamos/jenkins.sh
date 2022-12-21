@@ -23,8 +23,8 @@ cp osmo-bsc.cfg $VOL_BASE_DIR/bsc/
 
 mkdir $VOL_BASE_DIR/bts-omldummy
 
-SUBNET=31
-network_create $SUBNET
+network_create
+network_replace_subnet_in_configs
 
 echo Starting container with STP
 docker run	--rm \

@@ -9,9 +9,6 @@ docker_images_require \
 set_clean_up_trap
 set -e
 
-SUBNET=14
-network_create $SUBNET
-
 mkdir $VOL_BASE_DIR/pcu-tester
 mkdir $VOL_BASE_DIR/pcu-tester/unix
 cp sns/PCU_Tests.cfg $VOL_BASE_DIR/pcu-tester/
@@ -22,6 +19,9 @@ mkdir $VOL_BASE_DIR/pcu/unix
 cp sns/osmo-pcu.cfg $VOL_BASE_DIR/pcu/
 
 mkdir $VOL_BASE_DIR/unix
+
+network_create
+network_replace_subnet_in_configs
 
 echo Starting container with PCU
 docker run	--rm \

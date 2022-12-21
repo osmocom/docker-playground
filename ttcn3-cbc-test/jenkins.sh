@@ -16,8 +16,8 @@ write_mp_osmo_repo "$VOL_BASE_DIR/cbc-tester/CBC_Tests.cfg"
 mkdir $VOL_BASE_DIR/cbc
 cp osmo-cbc.cfg $VOL_BASE_DIR/cbc/
 
-SUBNET=27
-network_create $SUBNET
+network_create
+network_replace_subnet_in_configs
 
 echo Starting container with CBC
 docker run	--rm \

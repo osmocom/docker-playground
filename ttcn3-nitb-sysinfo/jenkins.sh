@@ -19,8 +19,8 @@ clean_up() {
 	docker container stop -t 0 ${BUILD_TAG}-sysinfo-helper
 }
 
-SUBNET=5
-network_create $SUBNET
+network_create
+network_replace_subnet_in_configs
 
 # start container with nitb in background
 docker volume rm nitb-vol

@@ -9,15 +9,15 @@ docker_images_require \
 set_clean_up_trap
 set -e
 
-SUBNET=32
-network_create $SUBNET
-
 mkdir $VOL_BASE_DIR/ns-tester
 cp sgsn-sns/NS_Tests.cfg $VOL_BASE_DIR/ns-tester/
 write_mp_osmo_repo "$VOL_BASE_DIR/ns-tester/NS_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/ns
 cp sgsn-sns/osmo-ns-dummy.cfg $VOL_BASE_DIR/ns/
+
+network_create
+network_replace_subnet_in_configs
 
 echo Starting container with osmo-ns-dummy
 docker run	--rm \

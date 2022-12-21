@@ -9,9 +9,6 @@ docker_images_require \
 set_clean_up_trap
 set -e
 
-SUBNET=11
-network_create $SUBNET
-
 mkdir $VOL_BASE_DIR/sip-tester
 mkdir $VOL_BASE_DIR/sip-tester/unix
 cp SIP_Tests.cfg $VOL_BASE_DIR/sip-tester/
@@ -22,6 +19,9 @@ mkdir $VOL_BASE_DIR/sip/unix
 cp osmo-sip-connector.cfg $VOL_BASE_DIR/sip/
 
 mkdir $VOL_BASE_DIR/unix
+
+network_create
+network_replace_subnet_in_configs
 
 echo Starting container with osmo-sip-connector
 docker run	--rm \

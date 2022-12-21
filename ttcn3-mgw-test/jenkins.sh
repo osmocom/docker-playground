@@ -20,8 +20,8 @@ if ! image_suffix_is_master; then
 	sed -i "/^ osmux bind-ip-v6 fd02:db8:4::180/d" $VOL_BASE_DIR/mgw/osmo-mgw.cfg
 fi
 
-SUBNET=4
-network_create $SUBNET
+network_create
+network_replace_subnet_in_configs
 
 # start container with mgw in background
 docker run	--rm \

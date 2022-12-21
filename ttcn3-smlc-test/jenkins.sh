@@ -20,8 +20,8 @@ cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 mkdir $VOL_BASE_DIR/smlc
 cp osmo-smlc.cfg $VOL_BASE_DIR/smlc/
 
-SUBNET=23
-network_create $SUBNET
+network_create
+network_replace_subnet_in_configs
 
 echo Starting container with STP
 docker run	--rm \

@@ -121,8 +121,7 @@ start_testsuite() {
 			$REPO_USER/ttcn3-bts-test
 }
 
-SUBNET=9
-network_create $SUBNET
+network_create
 
 mkdir $VOL_BASE_DIR/bts-tester-generic
 cp generic/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-generic/
@@ -162,6 +161,7 @@ mkdir $VOL_BASE_DIR/trxcon
 mkdir $VOL_BASE_DIR/virtphy
 
 # 1) classic test suite with BSC for OML and trxcon+fake_trx
+network_replace_subnet_in_configs
 start_bsc
 start_bts trx 1
 start_fake_trx
@@ -180,6 +180,7 @@ if ! image_suffix_is_master; then
 	sed -i "/^ logging level osmux info/d" $VOL_BASE_DIR/bts/osmo-bts.gen.cfg
 	sed -i "/^ osmux/{N;N;N;N;d;}" $VOL_BASE_DIR/bts/osmo-bts.gen.cfg
 fi
+network_replace_subnet_in_configs
 start_bts virtual 0
 start_virtphy
 # ... and execute the testsuite again with different cfg
@@ -197,6 +198,7 @@ if ! image_suffix_is_master; then
 	sed -i "/^ logging level osmux info/d" $VOL_BASE_DIR/bts/osmo-bts.gen.cfg
 	sed -i "/^ osmux/{N;N;N;N;d;}" $VOL_BASE_DIR/bts/osmo-bts.gen.cfg
 fi
+network_replace_subnet_in_configs
 start_bts trx 1
 start_fake_trx
 start_trxcon
@@ -213,6 +215,7 @@ if ! image_suffix_is_master; then
 fi
 # restart the BSC/BTS and run the testsuite again
 docker container kill ${BUILD_TAG}-bts
+network_replace_subnet_in_configs
 start_bsc
 start_bts trx 1
 start_testsuite hopping

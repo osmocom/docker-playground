@@ -9,15 +9,15 @@ docker_images_require \
 set_clean_up_trap
 set -e
 
-SUBNET=10
-network_create $SUBNET
-
 mkdir $VOL_BASE_DIR/hlr-tester
 cp HLR_Tests.cfg $VOL_BASE_DIR/hlr-tester/
 write_mp_osmo_repo "$VOL_BASE_DIR/hlr-tester/HLR_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/hlr
 cp osmo-hlr.cfg $VOL_BASE_DIR/hlr/
+
+network_create
+network_replace_subnet_in_configs
 
 echo Starting container with HLR
 docker run	--rm \

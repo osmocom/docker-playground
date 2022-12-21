@@ -62,8 +62,7 @@ start_testsuite() {
 			$REPO_USER/ttcn3-remsim-test
 }
 
-SUBNET=17
-network_create $SUBNET
+network_create
 
 mkdir $VOL_BASE_DIR/remsim-tester
 
@@ -76,23 +75,26 @@ mkdir $VOL_BASE_DIR/client
 
 
 # 1) server test suite
-start_server
 cp REMSIM_Tests.cfg $VOL_BASE_DIR/remsim-tester/
 write_mp_osmo_repo "$VOL_BASE_DIR/remsim-tester/REMSIM_Tests.cfg"
+network_replace_subnet_in_configs
+start_server
 start_testsuite
 docker container kill ${BUILD_TAG}-server
 
 # 2) bankd test suite
 echo "Changing to bankd configuration"
-start_bankd
 cp bankd/REMSIM_Tests.cfg $VOL_BASE_DIR/remsim-tester/
 write_mp_osmo_repo "$VOL_BASE_DIR/remsim-tester/REMSIM_Tests.cfg"
+network_replace_subnet_in_configs
+start_bankd
 start_testsuite
 docker container kill ${BUILD_TAG}-bankd
 
 # 3) client test suite
 echo "Changing to client configuration"
-start_client
 cp client/REMSIM_Tests.cfg $VOL_BASE_DIR/remsim-tester/
 write_mp_osmo_repo "$VOL_BASE_DIR/remsim-tester/REMSIM_Tests.cfg"
+network_replace_subnet_in_configs
+start_client
 start_testsuite

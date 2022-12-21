@@ -19,8 +19,7 @@ clean_up() {
 		$VOL_BASE_DIR_PFCP/hnbgw-tester/junit-xml-with-pfcp-*.log
 }
 
-SUBNET=35
-network_create $SUBNET
+network_create
 
 run_tests() {
 	base_dir="$1"
@@ -41,6 +40,8 @@ run_tests() {
 	cp "$hnbgw_cfg" $base_dir/hnbgw/
 
 	mkdir $base_dir/unix
+
+	network_replace_subnet_in_configs
 
 	echo Starting container with STP
 	docker run	--rm \

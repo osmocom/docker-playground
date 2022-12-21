@@ -16,8 +16,8 @@ write_mp_osmo_repo "$VOL_BASE_DIR/stp-tester/STP_Tests.cfg"
 mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 
-SUBNET=19
-network_create $SUBNET
+network_create
+network_replace_subnet_in_configs
 
 echo Starting container with STP
 docker run	--rm \

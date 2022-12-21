@@ -24,8 +24,8 @@ cp ogs/freediameter.conf $VOL_BASE_DIR/ggsn/
 cp ogs/upfd.sh $VOL_BASE_DIR/ggsn/
 cp ogs/upfd-setup.sh $VOL_BASE_DIR/ggsn/
 
-SUBNET=3
-network_create $SUBNET
+network_create
+network_replace_subnet_in_configs
 
 # start container with ggsn (smf+upf) in background
 docker run	--cap-add=NET_ADMIN \

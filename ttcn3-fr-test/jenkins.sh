@@ -18,9 +18,6 @@ clean_up() {
 	docker container rm ${BUILD_TAG}-frnet ${BUILD_TAG}-ttcn3-fr-test
 }
 
-SUBNET=26
-network_create $SUBNET
-
 mkdir $VOL_BASE_DIR/fr-tester
 # if we don't change permissions, dumpcap fails to write (despite starting it as root!)
 chmod a+w $VOL_BASE_DIR/fr-tester
@@ -32,6 +29,9 @@ mkdir $VOL_BASE_DIR/frnet
 cp FRNET_Tests.cfg $VOL_BASE_DIR/frnet/
 
 mkdir $VOL_BASE_DIR/unix
+
+network_create
+network_replace_subnet_in_configs
 
 echo Starting container with FRNET
 docker run	\

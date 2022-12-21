@@ -10,9 +10,6 @@ docker_images_require \
 set_clean_up_trap
 set -e
 
-SUBNET=8
-network_create $SUBNET
-
 mkdir $VOL_BASE_DIR/sgsn-tester
 cp SGSN_Tests.cfg $VOL_BASE_DIR/sgsn-tester/
 write_mp_osmo_repo "$VOL_BASE_DIR/sgsn-tester/SGSN_Tests.cfg"
@@ -24,6 +21,9 @@ mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 
 mkdir $VOL_BASE_DIR/unix
+
+network_create
+network_replace_subnet_in_configs
 
 echo Starting container with STP
 docker run	--rm \

@@ -72,14 +72,14 @@ docker_images_require \
 set_clean_up_trap
 set -e
 
-SUBNET=50
-network_create $SUBNET
-
 mkdir $VOL_BASE_DIR/ogt-slave
 cp osmo-gsm-tester-slave.sh $VOL_BASE_DIR/ogt-slave/
 
 mkdir $VOL_BASE_DIR/ogt-master
 cp osmo-gsm-tester-master.sh $VOL_BASE_DIR/ogt-master/
+
+network_create
+network_replace_subnet_in_configs
 
 echo Starting container with osmo-gsm-tester slave
 docker run	--rm \

@@ -195,8 +195,9 @@ network_clean() {
 	docker network inspect $NET_NAME | grep Name | cut -d : -f2 | awk -F\" 'NR>1{print $2}' | xargs -rn1 docker kill
 }
 
+# Create network and find a free subnet automatically. The global variable
+# SUBNET gets set to the subnet number that has been used.
 network_create() {
-	NET=$1
 	if docker network ls | grep -q $NET_NAME; then
 		set +x
 		echo "Removing stale network and containers..."
@@ -204,12 +205,33 @@ network_create() {
 		network_clean
 		network_remove
 	fi
-	SUB4="172.18.$NET.0/24"
-	SUB6="fd02:db8:$NET::/64"
+
+	SUBNET="$PPID"
+	for i in $(seq 1 30); do
+		SUBNET="$(echo "($SUBNET + 1) % 256" | bc)"
+		SUB4="172.18.$SUBNET.0/24"
+		SUB6="fd02:db8:$SUBNET::/64"
+		set +x
+		echo "Creating network $NET_NAME, trying SUBNET=$SUBNET..."
+		set -x
+		if docker network create \
+				--internal \
+				--subnet "$SUB4" \
+				--ipv6 \
+				--subnet "$SUB6" \
+				"$NET_NAME"; then
+			set +x
+			echo
+			echo "### Network $NET_NAME created (SUBNET=$SUBNET) ###"
+			echo
+			set -x
+			return
+		fi
+	done
+
 	set +x
-	echo "Creating network $NET_NAME"
-	set -x
-	docker network create --internal --subnet $SUB4 --ipv6 --subnet $SUB6 $NET_NAME
+	echo "ERROR: failed to create docker network"
+	exit 1
 }
 
 network_bridge_create() {
@@ -241,8 +263,40 @@ network_remove() {
 	docker network remove $NET_NAME
 }
 
+network_replace_subnet_in_configs() {
+	set +x
+
+	local i
+	local files="$(find \
+		"$VOL_BASE_DIR" \
+		-name '*.cfg' -o \
+		-name '*.conf' -o \
+		-name '*.sh' -o \
+		-name '*.txt' -o \
+		-name '*.yaml' \
+	)"
+
+	if [ -z "$files" ]; then
+		echo "ERROR: network_replace_subnet_in_configs:" \
+			"no config files found!"
+		exit 1
+	fi
+
+	for i in $files; do
+		echo "Applying SUBNET=$SUBNET to: $i"
+		sed \
+			-i \
+			-E \
+			-e "s/172\.18\.[0-9]{1,3}\./172.18.$SUBNET./g" \
+			-e "s/fd02:db8:[0-9]{1,3}:/fd02:db8:$SUBNET:/g" \
+			"$i"
+	done
+
+	set -x
+}
+
 # Generates list of params to pass to "docker run" to configure IP addresses
-# $1: SUBNET to use, same as passed to network_create()
+# $1: SUBNET to use, same as set by network_create()
 # $2: Address suffix from SUBNET to apply to the container
 docker_network_params() {
 	NET=$1

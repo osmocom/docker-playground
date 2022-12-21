@@ -17,8 +17,8 @@ write_mp_osmo_repo "$VOL_BASE_DIR/sccp-tester/SCCP_Tests.cfg"
 mkdir $VOL_BASE_DIR/sccp
 cp sccp_demo_user.cfg $VOL_BASE_DIR/sccp/
 
-SUBNET=22
-network_create $SUBNET
+network_create
+network_replace_subnet_in_configs
 
 echo Starting container with sccp_demo_user
 docker run	--rm \
