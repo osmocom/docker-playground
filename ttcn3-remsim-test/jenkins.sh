@@ -30,7 +30,10 @@ start_bankd() {
 			--name ${BUILD_TAG}-bankd -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmo-remsim-$IMAGE_SUFFIX \
-			/bin/sh -c "pcscd; osmo-remsim-bankd -i 172.18.17.10 >/data/osmo-remsim-bankd.log 2>&1"
+			/bin/sh -c "pcscd; \
+				osmo-remsim-bankd \
+					-i 172.18.$SUBNET.10 \
+					>/data/osmo-remsim-bankd.log 2>&1"
 }
 
 start_client() {

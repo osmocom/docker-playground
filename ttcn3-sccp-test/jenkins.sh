@@ -28,7 +28,11 @@ docker run	--rm \
 		--name ${BUILD_TAG}-stp -d \
 		$DOCKER_ARGS \
 		$REPO_USER/osmo-stp-master \
-		/bin/sh -c "sccp_demo_user -l 172.18.22.200 -r 172.18.22.203 -C /data/sccp_demo_user.cfg >>/data/sccp_demo_user.log 2>&1"
+		/bin/sh -c "sccp_demo_user \
+			-l 172.18.$SUBNET.200 \
+			-r 172.18.$SUBNET.203 \
+			-C /data/sccp_demo_user.cfg \
+			>>/data/sccp_demo_user.log 2>&1"
 
 
 echo Starting container with SCCP testsuite

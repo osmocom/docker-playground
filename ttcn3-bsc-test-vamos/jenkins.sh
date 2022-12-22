@@ -60,7 +60,13 @@ for i in `seq 0 2`; do
 			--name ${BUILD_TAG}-bts$i -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
-			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-omldummy $BTS_FEATURES 172.18.31.20 $((i + 1234)) 1 >>/data/osmo-bts-omldummy-${i}.log 2>&1"
+			/bin/sh -c "/usr/local/bin/respawn.sh \
+				osmo-bts-omldummy \
+					$BTS_FEATURES \
+					172.18.$SUBNET.20 \
+					$((i + 1234)) \
+					1 \
+				>>/data/osmo-bts-omldummy-${i}.log 2>&1"
 done
 
 echo Starting container with BSC testsuite

@@ -68,10 +68,12 @@ start_fake_trx() {
 				--log-file-level DEBUG \
 				--log-file-time \
 				--log-level INFO \
-				-R 172.18.9.20 -r 172.18.9.22 \
-				--trx TRX1@172.18.9.20:5700/1 \
-				--trx TRX2@172.18.9.20:5700/2 \
-				--trx TRX3@172.18.9.20:5700/3 >>/data/fake_trx.out 2>&1"
+				-R 172.18.$SUBNET.20 \
+				-r 172.18.$SUBNET.22 \
+				--trx TRX1@172.18.$SUBNET.20:5700/1 \
+				--trx TRX2@172.18.$SUBNET.20:5700/2 \
+				--trx TRX3@172.18.$SUBNET.20:5700/3 \
+				>>/data/fake_trx.out 2>&1"
 }
 
 start_trxcon() {
@@ -84,7 +86,10 @@ start_trxcon() {
 			--name ${BUILD_TAG}-trxcon -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmocom-bb-host-master \
-			/bin/sh -c "trxcon -i 172.18.9.21 -s /data/unix/osmocom_l2 >>/data/trxcon.log 2>&1"
+			/bin/sh -c "trxcon \
+				-i 172.18.$SUBNET.21 \
+				-s /data/unix/osmocom_l2 \
+				>>/data/trxcon.log 2>&1"
 }
 
 start_virtphy() {
