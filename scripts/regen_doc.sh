@@ -21,7 +21,8 @@ fi
 docker_images_require \
 	"$NAME-$IMAGE_SUFFIX"
 
-network_create 16
+SUBNET=16
+network_create "$SUBNET"
 
 container_create() {
 	CONTAINERNAME=$1
@@ -35,15 +36,21 @@ container_create() {
 
 }
 
-container_create "$NAME-$IMAGE_SUFFIX" 172.18.16.23
+container_create "$NAME-$IMAGE_SUFFIX" "172.18.$SUBNET.23"
 
 # Get asciidoc counter info
 ${OSMO_INTERACT_VTY} \
-	-c "enable;show asciidoc counters" -p "$PORT" -H 172.18.16.23 -O "$COUNTERFILE"
+	-c "enable;show asciidoc counters" \
+	-p "$PORT" \
+	-H "172.18.$SUBNET.23" \
+	-O "$COUNTERFILE"
 
 # Get vty reference
 ${OSMO_INTERACT_VTY} \
-	-X -p "$PORT" -H 172.18.16.23 -O "$VTYFILE"
+	-X \
+	-p "$PORT" \
+	-H "172.18.$SUBNET.23" \
+	-O "$VTYFILE"
 
 docker container kill "${BUILD_TAG}-$NAME-$IMAGE_SUFFIX"
 
