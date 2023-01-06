@@ -25,8 +25,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_PCU_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-pcu.git
-ADD	http://git.osmocom.org/osmo-pcu/patch?h=$OSMO_PCU_BRANCH /tmp/commit-osmo-pcu
+RUN	git clone https://gerrit.osmocom.org/osmo-pcu.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-pcu/+/$OSMO_PCU_BRANCH?format=TEXT /tmp/commit-osmo-pcu
 
 RUN	cd osmo-pcu && \
 	git fetch && git checkout $OSMO_PCU_BRANCH && \

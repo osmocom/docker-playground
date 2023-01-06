@@ -30,8 +30,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_SMLC_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-smlc.git
-ADD	http://git.osmocom.org/osmo-smlc/patch?h=$OSMO_SMLC_BRANCH /tmp/commit-osmo-smlc
+RUN	git clone https://gerrit.osmocom.org/osmo-smlc.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-smlc/+/$OSMO_SMLC_BRANCH?format=TEXT /tmp/commit-osmo-smlc
 
 RUN	cd osmo-smlc && \
 	git fetch && git checkout $OSMO_SMLC_BRANCH && \

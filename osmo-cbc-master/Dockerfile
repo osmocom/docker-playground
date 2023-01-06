@@ -29,8 +29,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_CBC_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-cbc.git
-ADD	http://git.osmocom.org/osmo-cbc/patch?h=$OSMO_CBC_BRANCH /tmp/commit-osmo-cbc
+RUN	git clone https://gerrit.osmocom.org/osmo-cbc.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-cbc/+/$OSMO_CBC_BRANCH?format=TEXT /tmp/commit-osmo-cbc
 
 RUN	cd osmo-cbc && \
 	git fetch && git checkout $OSMO_CBC_BRANCH && \

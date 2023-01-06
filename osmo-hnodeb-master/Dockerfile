@@ -17,8 +17,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_IUH_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-iuh.git
-ADD	http://git.osmocom.org/osmo-iuh/patch?h=$OSMO_IUH_BRANCH /tmp/commit-osmo-iuh
+RUN	git clone https://gerrit.osmocom.org/osmo-iuh.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-iuh/+/$OSMO_IUH_BRANCH?format=TEXT /tmp/commit-osmo-iuh
 
 RUN	cd osmo-iuh && \
 	git fetch && git checkout $OSMO_IUH_BRANCH && \
@@ -31,8 +31,8 @@ RUN	cd osmo-iuh && \
 
 ARG	OSMO_HNODEB_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-hnodeb.git
-ADD	http://git.osmocom.org/osmo-hnodeb/patch?h=$OSMO_HNODEB_BRANCH /tmp/commit-osmo-hnodeb
+RUN	git clone https://gerrit.osmocom.org/osmo-hnodeb.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-hnodeb/+/$OSMO_HNODEB_BRANCH?format=TEXT /tmp/commit-osmo-hnodeb
 
 RUN	cd osmo-hnodeb && \
 	git fetch && git checkout $OSMO_HNODEB_BRANCH && \

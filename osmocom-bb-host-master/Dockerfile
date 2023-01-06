@@ -12,9 +12,9 @@ RUN	apt-get update && \
 
 WORKDIR	/tmp
 
-RUN	git clone git://git.osmocom.org/osmocom-bb.git
+RUN	git clone https://gerrit.osmocom.org/osmocom-bb.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmocom-bb/+/$OSMO_BB_BRANCH?format=TEXT /tmp/commit-osmocom-bb
 
-ADD	http://git.osmocom.org/osmocom-bb/patch?h=$OSMO_BB_BRANCH /tmp/commit
 RUN	cd osmocom-bb && \
 	git fetch && git checkout $OSMO_BB_BRANCH && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_BB_BRANCH || exit 1); \

@@ -23,8 +23,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_HNBGW_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-hnbgw.git
-ADD	http://git.osmocom.org/osmo-hnbgw/patch?h=$OSMO_HNBGW_BRANCH /tmp/commit-osmo-hnbgw
+RUN	git clone https://gerrit.osmocom.org/osmo-hnbgw.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-hnbgw/+/$OSMO_HNBGW_BRANCH?format=TEXT /tmp/commit-osmo-hnbgw
 
 RUN	cd osmo-hnbgw && \
 	git fetch && git checkout $OSMO_HNBGW_BRANCH && \

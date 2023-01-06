@@ -35,8 +35,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_BTS_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-bts.git
-ADD	http://git.osmocom.org/osmo-bts/patch?h=$OSMO_BTS_BRANCH /tmp/commit-osmo-bts
+RUN	git clone https://gerrit.osmocom.org/osmo-bts.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-bts/+/$OSMO_BTS_BRANCH?format=TEXT /tmp/commit-osmo-bts
 
 RUN	cd osmo-bts && \
 	git fetch && git checkout $OSMO_BTS_BRANCH && \

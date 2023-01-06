@@ -44,8 +44,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_MSC_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-msc.git
-ADD	http://git.osmocom.org/osmo-msc/patch?h=$OSMO_MSC_BRANCH /tmp/commit-osmo-msc
+RUN	git clone https://gerrit.osmocom.org/osmo-msc.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-msc/+/$OSMO_MSC_BRANCH?format=TEXT /tmp/commit-osmo-msc
 
 RUN	cd osmo-msc && \
 	git fetch && git checkout $OSMO_MSC_BRANCH && \

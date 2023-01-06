@@ -31,8 +31,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_HLR_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-hlr.git
-ADD	http://git.osmocom.org/osmo-hlr/patch?h=$OSMO_HLR_BRANCH /tmp/commit-osmo-hlr
+RUN	git clone https://gerrit.osmocom.org/osmo-hlr.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-hlr/+/$OSMO_HLR_BRANCH?format=TEXT /tmp/commit-osmo-hlr
 
 RUN	cd osmo-hlr && \
 	git fetch && git checkout $OSMO_HLR_BRANCH && \

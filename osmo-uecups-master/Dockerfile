@@ -19,8 +19,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_UECUPS_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-uecups.git
-ADD	http://git.osmocom.org/osmo-uecups/patch?h=$OSMO_UECUPS_BRANCH /tmp/commit-osmo-uecups
+RUN	git clone https://gerrit.osmocom.org/osmo-uecups.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-uecups/+/$OSMO_UECUPS_BRANCH?format=TEXT /tmp/commit-osmo-uecups
 
 RUN	cd osmo-uecups && \
 	git fetch && git checkout $OSMO_UECUPS_BRANCH && \

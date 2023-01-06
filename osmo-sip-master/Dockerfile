@@ -25,8 +25,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_SIP_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-sip-connector.git
-ADD	http://git.osmocom.org/osmo-sip-connector/patch?h=$OSMO_SIP_BRANCH /tmp/commit-osmo-sip-connector
+RUN	git clone https://gerrit.osmocom.org/osmo-sip-connector.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-sip-connector/+/$OSMO_SIP_BRANCH?format=TEXT /tmp/commit-osmo-sip-connector
 
 RUN	cd osmo-sip-connector && \
 	git fetch && git checkout $OSMO_SIP_BRANCH && \

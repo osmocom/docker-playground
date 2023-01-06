@@ -25,8 +25,9 @@ WORKDIR	/data
 
 ARG	OSMO_STP_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/libosmo-sccp.git
-ADD	http://git.osmocom.org/libosmo-sccp/patch?h=$OSMO_STP_BRANCH /tmp/commit
+RUN	git clone https://gerrit.osmocom.org/libosmo-sccp.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/libosmo-sccp/+/$OSMO_STP_BRANCH?format=TEXT /tmp/commit-libosmo-sccp
+
 RUN	cd libosmo-sccp && \
 	git fetch && git checkout $OSMO_STP_BRANCH && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_STP_BRANCH || exit 1); \

@@ -28,8 +28,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_PCAP_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-pcap.git
-ADD	http://git.osmocom.org/osmo-pcap/patch?h=$OSMO_PCAP_BRANCH /tmp/commit-osmo-pcap
+RUN	git clone https://gerrit.osmocom.org/osmo-pcap.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-pcap/+/$OSMO_PCAP_BRANCH?format=TEXT /tmp/commit-osmo-pcap
 
 RUN	cd osmo-pcap && \
 	git fetch && git checkout $OSMO_PCAP_BRANCH && \

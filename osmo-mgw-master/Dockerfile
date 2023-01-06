@@ -31,8 +31,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_MGW_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-mgw.git
-ADD	http://git.osmocom.org/osmo-mgw/patch?h=$OSMO_MGW_BRANCH /tmp/commit-osmo-mgw
+RUN	git clone https://gerrit.osmocom.org/osmo-mgw.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-mgw/+/$OSMO_MGW_BRANCH?format=TEXT /tmp/commit-osmo-mgw
 
 
 RUN	cd osmo-mgw && \

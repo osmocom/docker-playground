@@ -65,8 +65,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_REMSIM_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-remsim.git
-ADD	http://git.osmocom.org/osmo-remsim/patch?h=$OSMO_REMSIM_BRANCH /tmp/commit-osmo-remsim
+RUN	git clone https://gerrit.osmocom.org/osmo-remsim.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-remsim/+/$OSMO_REMSIM_BRANCH?format=TEXT /tmp/commit-osmo-remsim
 
 RUN	cd osmo-remsim && \
 	git fetch && git checkout $OSMO_REMSIM_BRANCH && \

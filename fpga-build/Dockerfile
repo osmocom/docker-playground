@@ -39,13 +39,13 @@ RUN	chown build:build /build
 ENV	PATH=/opt/fpga-toolchain/bin:/opt/xpack-riscv-none-embed-gcc-${RISCV_TOOLCHAIN_VER}/bin:${PATH}
 
 # Install osmo-ci.git/scripts to /usr/local/bin
-ADD	http://git.osmocom.org/osmo-ci/patch /tmp/osmo-ci-commit
-RUN	git clone https://git.osmocom.org/osmo-ci osmo-ci && \
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-ci/+/master?format=TEXT /tmp/osmo-ci-commit
+RUN	git clone https://gerrit.osmocom.org/osmo-ci.git && \
 	cp -v $(find osmo-ci/scripts \
 		-maxdepth 1 \
 		-type f ) \
 	   /usr/local/bin
 
 # Install osmo-gsm-manuals to /opt/osmo-gsm-manuals
-ADD	http://git.osmocom.org/osmo-gsm-manuals/patch /tmp/osmo-gsm-manuals-commit
-RUN	git -C /opt clone https://git.osmocom.org/osmo-gsm-manuals
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-gsm-manuals/+/master?format=TEXT /tmp/osmo-gsm-manuals-commit
+RUN	git -C /opt clone https://gerrit.osmocom.org/osmo-gsm-manuals

@@ -42,8 +42,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_SGSN_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-sgsn.git
-ADD	http://git.osmocom.org/osmo-sgsn/patch?h=$OSMO_SGSN_BRANCH /tmp/commit
+RUN	git clone https://gerrit.osmocom.org/osmo-sgsn.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-sgsn/+/$OSMO_SGSN_BRANCH?format=TEXT /tmp/commit-osmo-sgsn
 
 RUN	cd osmo-sgsn && \
 	git fetch && git checkout $OSMO_SGSN_BRANCH && \

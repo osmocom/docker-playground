@@ -2,7 +2,7 @@ ARG USER=osmocom-build
 FROM $USER/sigtran-tests
 
 
-RUN	cd /tmp && git clone git://git.osmocom.org/nplab/sua-testtool
+RUN	cd /tmp && git clone https://git.osmocom.org/nplab/sua-testtool
 ADD	http://git.osmocom.org/nplab/sua-testtool/patch/?h=laforge/python3 /tmp/commit
 RUN	cd /tmp/sua-testtool && \
 	git fetch && \

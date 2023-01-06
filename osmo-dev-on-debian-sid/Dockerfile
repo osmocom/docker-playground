@@ -3,12 +3,13 @@ FROM neels/debian-sid-build
 
 WORKDIR	/build
 
-ADD	http://git.osmocom.org/osmo-dev/patch /build/commit-osmo-dev
-RUN	git clone git://git.osmocom.org/osmo-dev.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-dev/+/master?format=TEXT /build/commit-osmo-dev
+RUN	git clone https://gerrit.osmocom.org/osmo-dev.git
 
 RUN	cd osmo-dev && \
 	./gen_makefile.py 3G+2G.deps default.opts iu.opts -m make --ldconfig-without-sudo
 
+# Not using gitiles plugin here because gen_makefile.py clones from git.osmocom.org
 ADD	http://git.osmocom.org/libosmocore/patch /build/commit-libosmocore
 ADD	http://git.osmocom.org/libosmo-abis/patch /build/commit-libosmo-abis
 ADD	http://git.osmocom.org/libosmo-netif/patch /build/commit-libosmo-netif

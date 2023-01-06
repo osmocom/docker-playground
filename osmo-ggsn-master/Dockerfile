@@ -37,8 +37,9 @@ WORKDIR	/tmp
 
 ARG	OSMO_GGSN_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-ggsn.git
-ADD	http://git.osmocom.org/osmo-ggsn/patch/?h=$OSMO_GGSN_BRANCH /tmp/commit
+RUN	git clone https://gerrit.osmocom.org/osmo-ggsn.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-ggsn/+/$OSMO_GGSN_BRANCH?format=TEXT /tmp/commit-osmo-ggsn
+
 RUN	cd osmo-ggsn && \
 	git fetch && git checkout $OSMO_GGSN_BRANCH && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_GGSN_BRANCH || exit 1); \

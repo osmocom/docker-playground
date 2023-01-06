@@ -30,8 +30,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_GBPROXY_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-gbproxy.git
-ADD	http://git.osmocom.org/osmo-gbproxy/patch?h=$OSMO_GBPROXY_BRANCH /tmp/commit
+RUN	git clone https://gerrit.osmocom.org/osmo-gbproxy.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-gbproxy/+/$OSMO_GBPROXY_BRANCH?format=TEXT /tmp/commit-osmo-gbproxy
 
 RUN	cd osmo-gbproxy && \
 	git fetch && git checkout $OSMO_GBPROXY_BRANCH && \

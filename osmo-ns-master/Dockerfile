@@ -22,8 +22,8 @@ WORKDIR	/tmp
 
 ARG	LIBOSMOCORE_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/libosmocore.git
-ADD	http://git.osmocom.org/libosmocore/patch?h=$LIBOSMOCORE_BRANCH /tmp/commit-libosmocore
+RUN	git clone https://gerrit.osmocom.org/libosmocore.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/libosmocore/+/$LIBOSMOCORE_BRANCH?format=TEXT /tmp/commit-libosmocore
 
 RUN	cd libosmocore && \
 	git fetch && git checkout $LIBOSMOCORE_BRANCH && \

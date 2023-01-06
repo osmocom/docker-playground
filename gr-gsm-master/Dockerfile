@@ -13,8 +13,8 @@ RUN	apt-get update && \
 
 ARG	GR_GSM_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/gr-gsm
-ADD     http://git.osmocom.org/gr-gsm/patch?h=$GR_GSM_BRANCH /tmp/commit-gr-gsm
+RUN	git clone https://gerrit.osmocom.org/gr-gsm
+ADD	https://gerrit.osmocom.org/plugins/gitiles/gr-gsm/+/$GR_GSM_BRANCH?format=TEXT /tmp/commit-gr-gsm
 
 RUN	cd gr-gsm \
 	&& git fetch && git checkout -f -B $GR_GSM_BRANCH origin/$GR_GSM_BRANCH \

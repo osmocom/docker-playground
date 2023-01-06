@@ -29,8 +29,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_UPF_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/osmo-upf.git
-ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-upf/+/refs/heads/$OSMO_UPF_BRANCH /tmp/commit-osmo-upf
+RUN	git clone https://gerrit.osmocom.org/osmo-upf.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-upf/+/$OSMO_UPF_BRANCH?format=TEXT /tmp/commit-osmo-upf
 
 RUN	cd osmo-upf && \
 	git fetch && git checkout $OSMO_UPF_BRANCH && \

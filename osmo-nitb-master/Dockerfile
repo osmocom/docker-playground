@@ -18,8 +18,8 @@ WORKDIR	/tmp
 
 ARG	OSMO_NITB_BRANCH="master"
 
-RUN	git clone git://git.osmocom.org/openbsc.git
-ADD	http://git.osmocom.org/openbsc/patch?h=$OSMO_NITB_BRANCH /tmp/commit-openbsc
+RUN	git clone https://gerrit.osmocom.org/openbsc.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/openbsc/+/$OSMO_NITB_BRANCH?format=TEXT /tmp/commit-openbsc
 
 RUN	cd openbsc/openbsc && \
 	git fetch && git checkout $OSMO_NITB_BRANCH && \
