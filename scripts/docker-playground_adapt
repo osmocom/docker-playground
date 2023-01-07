@@ -2,11 +2,11 @@
 
 usage () {
 	USAGE_STR=""
-	USAGE_STR="${USAGE_STR}usage: $(basename $0) [-l|--list-files] [-h|--help] [-r|--restore] [-a|--append] [-b|--branch) <BRANCH>] [[-n|--no-prompt] [-a|--append] -t|--testcases <TESTSUITE>[/<SUBDIR] <TTCN3_TESTCASE>...]\n"
+	USAGE_STR="${USAGE_STR}usage: $(basename $0) [-l|--list-files] [-h|--help] [-r|--restore] [-a|--append] [-o|--osmo-ttcn3-branch <OSMO_TTCN3_BRANCH>] [[-n|--no-prompt] [-a|--append] -t|--testcases <TESTSUITE>[/<SUBDIR] <TTCN3_TESTCASE>...]\n"
 	USAGE_STR="${USAGE_STR}Adapt Osmocom docker-playground to custom needs (branch pointed to, testcomponent and testcases to run).\n"
 	USAGE_STR="${USAGE_STR}\n"
 	USAGE_STR="${USAGE_STR}	-r, --restore		Restore target files from docker-playground to point to current commit of repository.\n"
-	USAGE_STR="${USAGE_STR}	-b, --branch		Point to branch BRANCH of osmo-ttcn3-hacks repo.\n"
+	USAGE_STR="${USAGE_STR}	-o, --osmo-ttcn3-branch	Point to branch OSMO_TTCN3_BRANCH of osmo-ttcn3-hacks repo.\n"
 	USAGE_STR="${USAGE_STR}	-l, --list-files	List target files that will be changed/restored.\n"
 	USAGE_STR="${USAGE_STR}	-n, --no-prompt		Don't prompt for changes.\n"
 	USAGE_STR="${USAGE_STR}	-a, --append		Append testcase to existing list of testcases.\n"
@@ -18,9 +18,9 @@ usage () {
 }
 
 # Actions besides printing usage
-BRANCH=""
-BRANCH_OPT=""
-BRANCH_ESCAPED=""
+OSMO_TTCN3_BRANCH=""
+OSMO_TTCN3_BRANCH_OPT=""
+OSMO_TTCN3_BRANCH_ESCAPED=""
 RESTORE=""
 LIST_FILES=""
 NO_PROMPT=""
@@ -71,15 +71,15 @@ while [ "$1" != "" ]; do
 		-a|--append)
 			APPEND="yes"
 			;;
-		-b | --branch)
-			BRANCH_OPT="$PARAM"
+		-o | --osmo-ttcn3-branch)
+			OSMO_TTCN3_BRANCH_OPT="$PARAM"
 			if [ -n "$VALUE" ]; then
 				if echo $VALUE | grep -q "^-.*"; then
 					shift
 					continue; # Restoring is also possible without any given branch, this might indicate the next option
 				fi
-				BRANCH=$VALUE
-				BRANCH_ESCAPED="$(echo $BRANCH | sed 's/\//\\\//g')" # Escape slashes for sed
+				OSMO_TTCN3_BRANCH=$VALUE
+				OSMO_TTCN3_BRANCH_ESCAPED="$(echo $OSMO_TTCN3_BRANCH | sed 's/\//\\\//g')" # Escape slashes for sed
 				shift
 			fi
 			;;
@@ -128,7 +128,7 @@ if [ -n "$TESTSUITE_OPT" ] && [ -z "$TESTSUITE" ] && [ -z "$RESTORE" ]; then
 	exit 1
 fi
 
-ACTIONS="$BRANCH_ESCAPED\
+ACTIONS="$OSMO_TTCN3_BRANCH_ESCAPED\
 $RESTORE\
 $LIST_FILES\
 $TESTSUITE"
@@ -153,7 +153,7 @@ elif ! REPO_ROOT="$(git rev-parse --show-toplevel 2>&1)"; then
 fi
 
 RESTORE_ERR=0
-if [ -n "$BRANCH_OPT" ]; then
+if [ -n "$OSMO_TTCN3_BRANCH_OPT" ]; then
 	DOCKERFILE="./Dockerfile"
 	if ! [ -f "$DOCKERFILE" ]; then
 		echo "No file $DOCKERFILE found"
@@ -180,23 +180,23 @@ if [ -n "$BRANCH_OPT" ]; then
 				RESTORE_ERR=1
 			fi
 		done
-	elif [ -n "$BRANCH_ESCAPED" ]; then
+	elif [ -n "$OSMO_TTCN3_BRANCH_ESCAPED" ]; then
 		REPLACE_ERR=0
 		TMP_FILE="/tmp/$$_file"
 		for file in $FILE_LIST; do
-			if ! sed -i 's/\(OSMO_TTCN3_BRANCH[?]\?=\)[^\\]*\(\\\?\)$/\1'"\"$BRANCH_ESCAPED\""'\2/g' $file; then
+			if ! sed -i 's/\(OSMO_TTCN3_BRANCH[?]\?=\)[^\\]*\(\\\?\)$/\1'"\"$OSMO_TTCN3_BRANCH_ESCAPED\""'\2/g' $file; then
 				REPLACE_ERR=1
 			fi
-			# if ! sed 's/\(OSMO_TTCN3_BRANCH[?]\?=\)[^\\]*\(\\\?\)$/\1'"\"$BRANCH_ESCAPED\""'\2/g' $file >$TMP_FILE 2>&1; then
+			# if ! sed 's/\(OSMO_TTCN3_BRANCH[?]\?=\)[^\\]*\(\\\?\)$/\1'"\"$OSMO_TTCN3_BRANCH_ESCAPED\""'\2/g' $file >$TMP_FILE 2>&1; then
 			# 	REPLACE_ERR=1
-			# elif ! grep -q $BRANCH $TMP_FILE; then
+			# elif ! grep -q $OSMO_TTCN3_BRANCH $TMP_FILE; then
 			# 	REPLACE_ERR=1
 			# 	echo "Error replacing branchnames in file $file" >&2
 			# elif ! cp $TMP_FILE $file; then
 			# 	REPLACE_ERR=1
 			# fi
 			if [ "$REPLACE_ERR" = "1" ]; then
-				echo "Couldn't point docker-playground to branch $BRANCH_ESCAPED" >&2
+				echo "Couldn't point docker-playground to branch $OSMO_TTCN3_BRANCH_ESCAPED" >&2
 			fi
 		done
 		rm -f $TMP_FILE
