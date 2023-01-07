@@ -2,7 +2,7 @@
 
 usage () {
 	USAGE_STR=""
-	USAGE_STR="${USAGE_STR}usage: $(basename $0) [-l|--list-files] [-h|--help] [-r|--restore] [-a|--append] [-o|--osmo-ttcn3-branch <OSMO_TTCN3_BRANCH>] [[-n|--no-prompt] [-a|--append] -t|--testcases <TESTSUITE>[/<SUBDIR] <TTCN3_TESTCASE>...]\n"
+	USAGE_STR="${USAGE_STR}usage: $(basename $0) [-l|--list-files] [-h|--help] [-r|--restore] [-a|--append] [-o|--osmo-ttcn3-branch <OSMO_TTCN3_BRANCH>] [[-n|--no-prompt] [-a|--append] -t|--testcases <TTCN3_TESTCASE>...]\n"
 	USAGE_STR="${USAGE_STR}Adapt Osmocom docker-playground to custom needs (branch pointed to, testcomponent and testcases to run).\n"
 	USAGE_STR="${USAGE_STR}\n"
 	USAGE_STR="${USAGE_STR}	-r, --restore		Restore target files from docker-playground to point to current commit of repository.\n"
@@ -10,10 +10,10 @@ usage () {
 	USAGE_STR="${USAGE_STR}	-l, --list-files	List target files that will be changed/restored.\n"
 	USAGE_STR="${USAGE_STR}	-n, --no-prompt		Don't prompt for changes.\n"
 	USAGE_STR="${USAGE_STR}	-a, --append		Append testcase to existing list of testcases.\n"
-	USAGE_STR="${USAGE_STR}	-t, --testcases		Give testcase(s) to run in TESTSUITE. Will prompt for files to manipulate since there are subdirectories sometimes with alternative config files\n"
+	USAGE_STR="${USAGE_STR}	-t, --testcases		Give testcase(s) TTCN3_TESTCASE of format <TTCN3_TESTSTUITE.TC_NAME>. For each '-t' option item, the testsuite prefix (including the dot) need to be given only once. Will prompt for files to manipulate since there are subdirectories sometimes with alternative config files.\n"
 	USAGE_STR="${USAGE_STR}				Will not prompt for anything, if docker-playground repository subdirectory SUBDIR with the TTCN3 testconfig is given\n"
 	USAGE_STR="${USAGE_STR}				Example:\n"
-	USAGE_STR="${USAGE_STR}				-t NS_Tests/sgsn-sns TC_sns_sgsn_add\n"
+	USAGE_STR="${USAGE_STR}				-t NS_Tests.TC_sns_sgsn_add TC_sns_sgsn_second_add\n"
 	echo -ne "$USAGE_STR"
 }
 
@@ -24,11 +24,12 @@ OSMO_TTCN3_BRANCH_ESCAPED=""
 RESTORE=""
 LIST_FILES=""
 NO_PROMPT=""
-TESTSUITE_OPT=""
+TESTCASE_OPT=""
 TESTSUITE=""
 TESTCASES=""
 TEST_SUBDIR=""
 APPEND=""
+TESTSUITES=""
 
 user_wants() {
 	if [ -n "$NO_PROMPT" ]; then
@@ -84,28 +85,30 @@ while [ "$1" != "" ]; do
 			fi
 			;;
 		-t | --testcases)
-			TESTSUITE_OPT="$PARAM"
+			TESTCASE_OPT="$PARAM"
 			if echo $VALUE | grep -q "^-.*"; then
 				shift
 				continue; # Restoring is also possible without any given branch, this might indicate the next option
 			fi
-			TESTSUITE="$(echo $VALUE | sed 's/\([^/]\+\)\/.*/\1/')" # Get everything before the slash if there is one
-			if echo $TESTSUITE | grep -q '\.'; then
-				echo "Invalid character in testsuite $TESTSUITE" >&2
-				echo "No dots allowed (did you give a specific testcase instead)?" >&2
-				echo "See $(basename $0) -h for help" >&2
-				exit 1
-			fi
-			if echo $VALUE | grep -q '/'; then
-				# TODO: Forget this, this is stupid, make the subdir a real option
-				TEST_SUBDIR="$(echo $VALUE | sed 's/^'$TESTSUITE'\/\(.*\)/\1/')"
-			fi
-			shift
 			# Loop through testcases until none given or until next option comes
-			TESTCASES="$2"
-			while [ -n "$3" ] && ! printf "%s\n" "$3" | grep -q -- '^-.*'; do
+			TESTSUITE_PREV="$(echo $VALUE | grep '\.' | sed 's/\([^\.]\+\)\..*/\1/')" # Get everything before the dot if there is one
+			TESTSUITES="$TESTSUITE_PREV"
+			while [ -n "$2" ] && ! printf "%s\n" "$2" | grep -q -- '^-.*'; do
+				TESTSUITE="$(echo $2 | grep '\.' | sed 's/\([^\.]\+\)\..*/\1/')"
+				if [ -z "$TESTSUITE" ] && [ -z "$TESTSUITE_PREV" ]; then # This should only happen in the first loop, if no testsuite prefix was given
+					echo "Error: Testsuite prefix missing (including dot '.') for testcase string $2" >&2
+					echo "Need such a prefix at least once for each series of testcases for one testsuite" >&2
+					exit 1
+				elif [ -n "$TESTSUITE" ]; then
+					TESTCASES="$TESTCASES $2"
+					if [ $TESTSUITE_PREV != $TESTSUITE ]; then
+						TESTSUITES="$TESTSUITES $TESTSUITE"
+					fi
+					TESTSUITE_PREV="$TESTSUITE"
+				elif [ -z "$TESTSUITE" ]; then
+					TESTCASES="$TESTCASES $TESTSUITE_PREV.$2"
+				fi
 				shift
-				TESTCASES="$TESTCASES $2"
 			done
 			;;
 		--)
@@ -123,7 +126,7 @@ while [ "$1" != "" ]; do
 done
 TOPIC_SUFFIx="%topix=$TOPIC" REPO_SUFFIX="docker-playground.git"
 
-if [ -n "$TESTSUITE_OPT" ] && [ -z "$TESTSUITE" ] && [ -z "$RESTORE" ]; then
+if [ -n "$TESTCASE_OPT" ] && [ -z "$TESTCASES" ] && [ -z "$RESTORE" ]; then
 	echo "Error: No Testcomponent given for option $PARAM" >&2
 	exit 1
 fi
@@ -131,7 +134,7 @@ fi
 ACTIONS="$OSMO_TTCN3_BRANCH_ESCAPED\
 $RESTORE\
 $LIST_FILES\
-$TESTSUITE"
+$TESTCASES"
 if [ -z "$ACTIONS" ]; then
 	echo "Nothing to do"
 	exit 0
@@ -204,50 +207,54 @@ if [ -n "$OSMO_TTCN3_BRANCH_OPT" ]; then
 fi
 
 # TODO: Adapt testcases, restore them
-if [ -n "$TESTSUITE_OPT" ]; then
-	if [ -z $TESTSUITE ]; then # Set wildcard
-		TESTSUITE="*"
-	fi
-	TESTSUITE_CFG="$TESTSUITE.cfg"
-	FILE_LIST="$(find $REPO_ROOT -name "$TESTSUITE_CFG" -exec readlink -f {} \;)"
-	FILES="$(echo "$FILE_LIST" | wc -l)"
-	for file in $FILE_LIST; do
-		if [ -n "$RESTORE" ]; then
-			if ! git checkout -q "$file"; then
-				echo "Error restoring file $FILE" >&2
-				RESTORE_ERR=1
-			fi
-			continue
-		fi
-		if [ -z "$TEST_SUBDIR" ]; then
-			FNAME_STR="/$TESTSUITE_CFG"
-		else
-			FNAME_STR="/$TEST_SUBDIR/$TESTSUITE_CFG"
-		fi
-		if [ -n "$TESTCASES" ] && echo "$file" | grep -q "[^/]*$FNAME_STR"; then
-			if ! ( ([ -z "$TEST_SUBDIR" ] && user_wants "Adapt file $file?") ||  # Multiple cfg files possible, so we prompt
-				[ -n "$TEST_SUBDIR" ] ); then # UNVERIFIED ASSUMPTION: Only expecting one cfg file in each subdir
-				break; # Avoid too many nested ifs...
-			fi
-			TMP_FILE="/tmp/$$_file"
-			TESTCASE_REGEX="$TESTSUITE"'\.[^\t ]*'
-			EXECUTE_LINE="^[ \t]*\[EXECUTE\][ \t\\]*$"
-			NEXT_SECTION_LINE="\[[A-Z_a-z0-9]\+\]"
-			# Delete all lines of the EXECUTE cfg section
-			if [ -z "$APPEND" ]; then
-				if ! sed -i '/'"$EXECUTE_LINE"'/,/^'"$NEXT_SECTION_LINE"'/{/^'"$EXECUTE_LINE"'/!{/^'"$NEXT_SECTION_LINE"'/!d}}' $file; then
-					echo "Error removing existing testcases from file $file" >&2
-					REPLACE_ERR=1
+if [ -n "$TESTCASE_OPT" ]; then
+	# TESTSUITE LOOP. Maybe not the most elegant solution
+	for testsuite in $TESTSUITES; do
+		TESTSUITE_CFG="$testsuite.cfg"
+		FILE_LIST="$(find $REPO_ROOT -name "$TESTSUITE_CFG" -exec readlink -f {} \;)"
+		FILES="$(echo "$FILE_LIST" | wc -l)"
+		for file in $FILE_LIST; do
+			if [ -n "$RESTORE" ]; then
+				if ! git checkout -q "$file"; then
+					echo "Error restoring file $FILE" >&2
+					RESTORE_ERR=1
 				fi
+				continue
 			fi
-			# Append testcase lines
-			for tc in $TESTCASES; do
-				if ! sed -i '/'"$EXECUTE_LINE"'/a '"$TESTSUITE.$tc" $file; then
-					echo "Error appending testcase lines" >&2
-					REPLACE_ERR=1
+			if [ -z "$TEST_SUBDIR" ]; then
+				FNAME_STR="/$TESTSUITE_CFG"
+			else
+				FNAME_STR="/$TEST_SUBDIR/$TESTSUITE_CFG"
+			fi
+			if [ -n "$TESTCASES" ] && echo "$file" | grep -q "[^/]*$FNAME_STR"; then
+				if ! ( ([ -z "$TEST_SUBDIR" ] && user_wants "Adapt file $file?") ||  # Multiple cfg files possible, so we prompt
+					[ -n "$TEST_SUBDIR" ] ); then # UNVERIFIED ASSUMPTION: Only expecting one cfg file in each subdir
+					break; # Avoid too many nested ifs...
 				fi
-			done
-		fi
+				TMP_FILE="/tmp/$$_file"
+				TESTCASE_REGEX="$testsuite"'\.[^\t ]*'
+				EXECUTE_LINE="^[ \t]*\[EXECUTE\][ \t\\]*$"
+				NEXT_SECTION_LINE="\[[A-Z_a-z0-9]\+\]"
+				# Delete all lines of the EXECUTE cfg section
+				if [ -z "$APPEND" ]; then
+					if ! sed -i '/'"$EXECUTE_LINE"'/,/^'"$NEXT_SECTION_LINE"'/{/^'"$EXECUTE_LINE"'/!{/^'"$NEXT_SECTION_LINE"'/!d}}' $file; then
+						echo "Error removing existing testcases from file $file" >&2
+						REPLACE_ERR=1
+					fi
+				fi
+				# Append testcase lines
+				for tc in $TESTCASES; do
+					tc_testsuite="$(echo $tc | grep '\.' | sed 's/\([^\.]\+\)\..*/\1/')"
+					if [ $testsuite != $tc_testsuite ]; then
+						continue
+					fi
+					if ! sed -i '/'"$EXECUTE_LINE"'/a '"$tc" $file; then
+						echo "Error appending testcase lines" >&2
+						REPLACE_ERR=1
+					fi
+				done
+			fi
+		done
 	done
 	exit $REPLACE_ERR
 fi
