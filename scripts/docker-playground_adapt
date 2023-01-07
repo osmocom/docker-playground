@@ -9,7 +9,7 @@ usage () {
 	USAGE_STR="${USAGE_STR}	-b, --branch		Point to branch BRANCH of osmo-ttcn3-hacks repo.\n"
 	USAGE_STR="${USAGE_STR}	-l, --list-files	List target files that will be changed/restored.\n"
 	USAGE_STR="${USAGE_STR}	-n, --no-prompt		Don't prompt for changes.\n"
-	USAGE_STR="${USAGE_STR}	-a, --append		Don't prompt for changes.\n"
+	USAGE_STR="${USAGE_STR}	-a, --append		Append testcase to existing list of testcases.\n"
 	USAGE_STR="${USAGE_STR}	-t, --testcases		Give testcase(s) to run in TESTSUITE. Will prompt for files to manipulate since there are subdirectories sometimes with alternative config files\n"
 	USAGE_STR="${USAGE_STR}				Will not prompt for anything, if docker-playground repository subdirectory SUBDIR with the TTCN3 testconfig is given\n"
 	USAGE_STR="${USAGE_STR}				Example:\n"
@@ -156,9 +156,9 @@ RESTORE_ERR=0
 if [ -n "$BRANCH_OPT" ]; then
 	DOCKERFILE="./Dockerfile"
 	if ! [ -f "$DOCKERFILE" ]; then
-		echo "No file $DOCKERFILE found" >&2
-		echo "Try to run this in a docker-playground subdirectory with a Dockerfile" >&2
-		exit 1
+		echo "No file $DOCKERFILE found"
+		echo "You might want to try to run this in a docker-playground subdirectory with a Dockerfile"
+		DOCKERFILE=""
 	fi
 
 	# Files in which to put branch name
