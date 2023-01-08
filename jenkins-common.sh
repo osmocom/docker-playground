@@ -168,7 +168,9 @@ docker_images_require() {
 				pull_arg=""
 			fi
 
+			set +x
 			echo "Building image: $i (export NO_DOCKER_IMAGE_BUILD=1 to prevent this)"
+			set -x
 			make -C "${IMAGE_DIR_PREFIX}/${dir}" \
 				BUILD_ARGS="$pull_arg" \
 				UPSTREAM_DISTRO="$upstream_distro_arg" \
@@ -179,6 +181,7 @@ docker_images_require() {
 
 		# Detect missing images (build skipped)
 		if ! docker_image_exists "$i"; then
+			set +x
 			echo "ERROR: missing image: $i"
 			exit 1
 		fi
@@ -195,26 +198,34 @@ network_clean() {
 network_create() {
 	NET=$1
 	if docker network ls | grep -q $NET_NAME; then
-		echo removing stale network and containers...
+		set +x
+		echo "Removing stale network and containers..."
+		set -x
 		network_clean
 		network_remove
 	fi
 	SUB4="172.18.$NET.0/24"
 	SUB6="fd02:db8:$NET::/64"
-	echo Creating network $NET_NAME
+	set +x
+	echo "Creating network $NET_NAME"
+	set -x
 	docker network create --internal --subnet $SUB4 --ipv6 --subnet $SUB6 $NET_NAME
 }
 
 network_bridge_create() {
 	NET=$1
 	if docker network ls | grep -q $NET_NAME; then
-		echo removing stale network and containers...
+		set +x
+		echo "Removing stale network and containers..."
+		set -x
 		network_clean
 		network_remove
 	fi
 	SUB4="172.18.$NET.0/24"
 	SUB6="fd02:db8:$NET::/64"
-	echo Creating network $NET_NAME
+	set +x
+	echo "Creating network $NET_NAME"
+	set -x
 	docker network create \
 		--driver=bridge \
 		--subnet $SUB4 \
@@ -224,7 +235,9 @@ network_bridge_create() {
 }
 
 network_remove() {
-	echo Removing network $NET_NAME
+	set +x
+	echo "Removing network $NET_NAME"
+	set -x
 	docker network remove $NET_NAME
 }
 
@@ -238,7 +251,9 @@ docker_network_params() {
 }
 
 fix_perms() {
-	echo Fixing permissions
+	set +x
+	echo "Fixing permissions"
+	set -x
 	docker run 	--rm \
 			-v $VOL_BASE_DIR:/data \
 			-v $CACHE_DIR:/cache \
@@ -360,6 +375,7 @@ kernel_test_wait_for_vm() {
 	done
 
 	# Let clean_up_common kill the VM
+	set +x
 	echo "Timeout while waiting for kernel test VM"
 	exit 1
 }
@@ -437,6 +453,7 @@ else
 fi
 
 if [ ! -d "$VOL_BASE_DIR" ]; then
+	set +x
 	echo "ERROR: \$VOL_BASE_DIR does not exist: '$VOL_BASE_DIR'"
 	exit 1
 fi

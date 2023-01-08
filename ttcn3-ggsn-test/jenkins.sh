@@ -31,11 +31,12 @@ GGSN_CMD="osmo-ggsn -c /data/osmo-ggsn.cfg"
 GGSN_DOCKER_ARGS=""
 if [ "$KERNEL_TEST" = "1" ]; then
 	cp osmo-ggsn-kernel-gtp.cfg $VOL_BASE_DIR/ggsn/osmo-ggsn.cfg
+	cp initrd-ggsn.sh $VOL_BASE_DIR/ggsn/
 
 	kernel_test_prepare \
 		"defconfig" \
 		"fragment.config" \
-		"initrd-ggsn.sh" \
+		"$VOL_BASE_DIR/ggsn/initrd-ggsn.sh" \
 		"$REPO_USER/osmo-ggsn-$IMAGE_SUFFIX" \
 		-v $VOL_BASE_DIR/ggsn:/data
 
