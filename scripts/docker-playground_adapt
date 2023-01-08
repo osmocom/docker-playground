@@ -233,13 +233,12 @@ if [ -n "$TESTCASE_OPT" ]; then
 				continue
 			fi
 			if [ -z "$SUBDIR" ]; then
-				FNAME_STR="/$TESTSUITE_CFG"
+				FNAME_REGEX="/$TESTSUITE_CFG"
 			else
-				FNAME_STR="/$SUBDIR/$TESTSUITE_CFG"
+				FNAME_REGEX="/$SUBDIR/.*/\?$TESTSUITE_CFG"
 			fi
-			if [ -n "$TESTCASES" ] && echo "$file" | grep -q "[^/]*$FNAME_STR"; then
-				if ! ( ([ -z "$SUBDIR" ] && user_wants "Adapt file $file?") ||  # Multiple cfg files possible, so we prompt
-					[ -n "$SUBDIR" ] ); then # UNVERIFIED ASSUMPTION: Only expecting one cfg file in each subdir
+			if [ -n "$TESTCASES" ] && echo "$file" | grep -q "[^/]*$FNAME_REGEX"; then
+				if ! user_wants "Adapt file $file?"; then # Multiple cfg files possible, so we prompt
 					break; # Avoid too many nested ifs...
 				fi
 				TMP_FILE="/tmp/$$_file"
