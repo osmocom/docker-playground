@@ -29,7 +29,7 @@ NO_PROMPT=""
 TESTCASE_OPT=""
 TESTSUITE=""
 TESTCASES=""
-TEST_SUBDIR=""
+SUBDIR=""
 APPEND=""
 TESTSUITES=""
 
@@ -87,7 +87,7 @@ while [ "$1" != "" ]; do
 			fi
 			;;
 		-d|--subdir)
-			TEST_SUBDIR="$VALUE"
+			SUBDIR="$VALUE"
 			;;
 		-t | --testcases)
 			TESTCASE_OPT="$PARAM"
@@ -212,8 +212,8 @@ if [ -n "$OSMO_TTCN3_BRANCH_OPT" ]; then
 fi
 
 
-if [ -n "$TEST_SUBDIR" ] && ! [ -d $REPO_ROOT/$TEST_SUBDIR ]; then
-	echo "Error: Couldn't find subdirectory $TEST_SUBDIR" >&2
+if [ -n "$SUBDIR" ] && ! [ -d $REPO_ROOT/$SUBDIR ]; then
+	echo "Error: Couldn't find subdirectory $SUBDIR" >&2
 	exit 1
 fi
 
@@ -232,14 +232,14 @@ if [ -n "$TESTCASE_OPT" ]; then
 				fi
 				continue
 			fi
-			if [ -z "$TEST_SUBDIR" ]; then
+			if [ -z "$SUBDIR" ]; then
 				FNAME_STR="/$TESTSUITE_CFG"
 			else
-				FNAME_STR="/$TEST_SUBDIR/$TESTSUITE_CFG"
+				FNAME_STR="/$SUBDIR/$TESTSUITE_CFG"
 			fi
 			if [ -n "$TESTCASES" ] && echo "$file" | grep -q "[^/]*$FNAME_STR"; then
-				if ! ( ([ -z "$TEST_SUBDIR" ] && user_wants "Adapt file $file?") ||  # Multiple cfg files possible, so we prompt
-					[ -n "$TEST_SUBDIR" ] ); then # UNVERIFIED ASSUMPTION: Only expecting one cfg file in each subdir
+				if ! ( ([ -z "$SUBDIR" ] && user_wants "Adapt file $file?") ||  # Multiple cfg files possible, so we prompt
+					[ -n "$SUBDIR" ] ); then # UNVERIFIED ASSUMPTION: Only expecting one cfg file in each subdir
 					break; # Avoid too many nested ifs...
 				fi
 				TMP_FILE="/tmp/$$_file"
