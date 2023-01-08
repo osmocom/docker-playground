@@ -2,14 +2,16 @@
 
 usage () {
 	USAGE_STR=""
-	USAGE_STR="${USAGE_STR}usage: $(basename $0) [-l|--list-files] [-h|--help] [-r|--restore] [-a|--append] [-o|--osmo-ttcn3-branch <OSMO_TTCN3_BRANCH>] [-d|--subdir <SUBDIR>] [[-n|--no-prompt] [-a|--append] -t|--testcases <TTCN3_TESTCASE>...]\n"
+	USAGE_STR="${USAGE_STR}usage: $(basename $0) [-l|--list-files] [-h|--help] [-r|--restore] [-a|--append] [-o|--osmo-ttcn3-branch <OSMO_TTCN3_BRANCH>] [-d|--subdir <SUBDIR> [-A|--ADD [<REPO_DIR>]] [-n|--no-prompt]] ] [[-a|--append] -t|--testcases <TTCN3_TESTCASE>... [-n|--no-prompt]] \n"
 	USAGE_STR="${USAGE_STR}Adapt Osmocom docker-playground to custom needs (branch pointed to, testcomponent and testcases to run).\n"
 	USAGE_STR="${USAGE_STR}\n"
 	USAGE_STR="${USAGE_STR}	-r, --restore		Restore target files from docker-playground to point to current commit of repository.\n"
 	USAGE_STR="${USAGE_STR}	-o, --osmo-ttcn3-branch	Point to branch OSMO_TTCN3_BRANCH of osmo-ttcn3-hacks repo.\n"
 	USAGE_STR="${USAGE_STR}	-l, --list-files	List target files that will be changed/restored.\n"
 	USAGE_STR="${USAGE_STR}	-d, --subdir		Operate on target subdir SUBDIR of docker-playground. Has different effects depending on the actions taken (e.g. for TTCN3 branch adaption, it doesn't change anything)\n"
-	USAGE_STR="${USAGE_STR}	-n, --no-prompt		Don't prompt for changes.\n"
+	USAGE_STR="${USAGE_STR}	-A, --ADD		Adapt Dockerfile: Essentially exchange 'git clone' command with a Dockerfile ADD. Only for 'osmo-*-master' folders, if REPO_DIR isn't given, a default repo folder \n"
+	USAGE_STR="${USAGE_STR}				(e.g. SUBDIR/osmo-bts-repo for SUBDIR osmo-bts-master) will be expected to already exist.\n"
+	USAGE_STR="${USAGE_STR}	-n, --no-prompt		Don't prompt for changes. Applies to the previous option used (for testcases: Don't prompt if multiple cfg files are possibly found. for --ADD: Don't prompt if subdir already exists.\n"
 	USAGE_STR="${USAGE_STR}	-a, --append		Append testcase to existing list of testcases.\n"
 	USAGE_STR="${USAGE_STR}	-t, --testcases		Give testcase(s) TTCN3_TESTCASE of format <TTCN3_TESTSTUITE.TC_NAME>. For each '-t' option item, the testsuite prefix (including the dot) need to be given only once.\n"
 	USAGE_STR="${USAGE_STR} 			Will prompt for files to manipulate since there are subdirectories sometimes with alternative config files.\n"
@@ -25,16 +27,19 @@ OSMO_TTCN3_BRANCH_OPT=""
 OSMO_TTCN3_BRANCH_ESCAPED=""
 RESTORE=""
 LIST_FILES=""
-NO_PROMPT=""
 TESTCASE_OPT=""
+NO_PROMPT_TC=""
 TESTSUITE=""
 TESTCASES=""
 SUBDIR=""
 APPEND=""
 TESTSUITES=""
+ADD=""
+ADD_REPO_PATH=""
+NO_PROMPT_ADD=""
 
 user_wants() {
-	if [ -n "$NO_PROMPT" ]; then
+	if [ -n "$2" ]; then
 		return 0
 	fi
 	PROMPT="$1"
@@ -69,7 +74,7 @@ while [ "$1" != "" ]; do
 			LIST_FILES="yes"
 			;;
 		-n | --no-prompt)
-			NO_PROMPT="yes"
+			# Ignore, is processed in respective options it applies to
 			;;
 		-a|--append)
 			APPEND="yes"
@@ -86,8 +91,25 @@ while [ "$1" != "" ]; do
 				shift
 			fi
 			;;
-		-d|--subdir)
+		-d | --subdir)
 			SUBDIR="$VALUE"
+			;;
+		-A | --ADD)
+			if [ -z "$SUBDIR" ]; then
+				echo "Error: Need preceding subdir argument for --ADD" >&2
+				usage >&2
+				exit 1
+			fi
+			ADD="yes"
+			if [ -n "$VALUE" ] && ! echo $VALUE | grep -q "^-.*"; then
+				ADD_REPO_PATH="$(readlink -f $VALUE)"
+				if ! [ -d "$ADD_REPO_PATH" ]; then
+					echo "Error: Couldn't find path $ADD_REPO_PATH" >&2
+				fi
+			fi
+			if [ -n "$3" ] && ( [ "$2" = "-n" ] || [ "$2" = "--no-prompt" ] ); then
+				NO_PROMPT_ADD="yes"
+			fi
 			;;
 		-t | --testcases)
 			TESTCASE_OPT="$PARAM"
@@ -115,6 +137,9 @@ while [ "$1" != "" ]; do
 				fi
 				shift
 			done
+			if [ -n "$2" ] && ( [ "$2" = "-n" ] || [ "$2" = "--no-prompt" ] ); then
+				NO_PROMPT_TC="yes"
+			fi
 			;;
 		--)
 			break
@@ -139,7 +164,9 @@ fi
 ACTIONS="$OSMO_TTCN3_BRANCH_ESCAPED\
 $RESTORE\
 $LIST_FILES\
-$TESTCASES"
+$TESTCASES\
+$ADD"
+
 if [ -z "$ACTIONS" ]; then
 	echo "Nothing to do"
 	exit 0
@@ -238,7 +265,7 @@ if [ -n "$TESTCASE_OPT" ]; then
 				FNAME_REGEX="/$SUBDIR/.*/\?$TESTSUITE_CFG"
 			fi
 			if [ -n "$TESTCASES" ] && echo "$file" | grep -q "[^/]*$FNAME_REGEX"; then
-				if ! user_wants "Adapt file $file?"; then # Multiple cfg files possible, so we prompt
+				if ! user_wants "Adapt file $file?" "$NO_PROMPT"; then # Multiple cfg files possible, so we prompt
 					break; # Avoid too many nested ifs...
 				fi
 				TMP_FILE="/tmp/$$_file"
@@ -267,4 +294,48 @@ if [ -n "$TESTCASE_OPT" ]; then
 		done
 	done
 	exit $REPLACE_ERR
+fi
+
+if [ -n "$ADD" ]; then
+	if ! pushd $REPO_ROOT/$SUBDIR; then
+		echo "Error entering path $REPO_ROOT/$SUBDIR" >&2
+		exit 1
+	fi
+	trap "rv=\$?; popd >/dev/null 2>&1; exit \$?" EXIT
+	DOCKERFILE="./Dockerfile"
+	if ! [ -f "$DOCKERFILE" ]; then
+		echo "No file $DOCKERFILE found"
+		echo "You need to run this for a docker-playground subdirectory with a Dockerfile"
+		exit 1
+	fi
+	if ! echo "$SUBDIR" | grep -q '.*-master'; then
+		if ! user_wants "$SUBDIR doesn't end on '-master', are you sure you want to proceed with adapting the Dockerfile in $pwd?"; then
+			echo "Exiting because there is nothing else to be done" # Keep this as the last action
+			exit 0
+		fi
+	fi
+	DOCKER_SUBDIR="$(echo $SUBDIR | sed 's/-master//')" #TODO: Make subdir adaptable in case some dirs don't play nice... I think our docker playground scripts are adapted to play nice though
+	if [ -n "$ADD_REPO_PATH" ]; then
+		if [ -d "$DOCKER_SUBDIR" ]; then
+			if ! user_wants "$DOCKER_SUBDIR already exists. Do you want to update its contents with contents from $ADD_REPO_PATH?" "$NO_PROMPT_ADD"; then
+				exit 0
+			fi
+		fi
+		set -x
+		rsync -avz "$ADD_REPO_PATH/" "$DOCKER_SUBDIR" >/dev/null
+		set +x
+		rc=$?
+		if [ "$rc" = 1 ]; then
+			echo "Error rsyncing" >&2
+			exit 1
+		fi
+	fi
+	if (( $(cat Dockerfile | grep 'RUN.*git clone' | wc -l) > 1 )); then
+		echo "Found more than one line entry matching 'CMD.*git clone' in '"$(pwd)"'/Dockerfile, not proceeding" >&2
+		exit 1
+	fi
+	set -x
+	sed -i 's:RUN.*git clone.*$:ADD\t'"$DOCKER_SUBDIR"' '"$DOCKER_SUBDIR"':g' Dockerfile # Should fit the Dockerfile, e.g. 'osmo-bts' still being used inside Docker
+	sed -i '/ADD.*http.* .*commit-.*$/d' Dockerfile
+	set +x
 fi
