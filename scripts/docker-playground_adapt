@@ -358,6 +358,18 @@ if [ -n "$ADD" ]; then
 	fi
 	set -x
 	sed -i 's:RUN.*git clone.*$:ADD\t'"$DOCKER_SUBDIR"' '"$DOCKER_SUBDIR"':g' Dockerfile # Should fit the Dockerfile, e.g. 'osmo-bts' still being used inside Docker
+	CD_LINE="RUN.*cd $DOCKER_SUBDIR"
+	INSTALL_LINE=".*make.*install$"
+	if ! sed -i '/'"$CD_LINE"'/,/^'"$INSTALL_LINE"'/{/^'"$CD_LINE"'/!{/^'"$INSTALL_LINE"'/!d}}' Dockerfile; then
+		echo "Couldn't remove lines between line matching pattern '$CD_LINE' and pattern '$INSTALL_LINE'" >&2
+	else
+		echo "Beware that you might have to configure your repository so that it conforms to the test demands! Lines removed:" >&2
+		git diff -- Dockerfile
+		if ! echo "$SUBDIR" | grep -q '-master$'; then
+			echo "=================== Warning! ======================"
+			echo "Directory $SUBDIR doesn't end on '-master', some things may have to be adapted manually (how things are installed)"
+		fi
+	fi
 	sed -i '/ADD.*http.* .*commit-.*$/d' Dockerfile
 	set +x
 fi
