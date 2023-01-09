@@ -2,10 +2,14 @@
 
 usage () {
 	USAGE_STR=""
-	USAGE_STR="${USAGE_STR}usage: $(basename $0) [-l|--list-files] [-h|--help] [-r|--restore] [-a|--append] [-o|--osmo-ttcn3-branch <OSMO_TTCN3_BRANCH>] [-d|--subdir <SUBDIR> [-A|--ADD [<REPO_DIR>]] [-n|--no-prompt]] ] [[-a|--append] -t|--testcases <TTCN3_TESTCASE>... [-n|--no-prompt]] \n"
+	USAGE_STR="${USAGE_STR}usage: $(basename $0) [-l|--list-files] [-h|--help] [-r|--restore] [-a|--append] [-c|--config-file <CONFIG_FILE>] [-o|--osmo-ttcn3-branch <OSMO_TTCN3_BRANCH>] [-d|--subdir <SUBDIR> [-A|--ADD [<REPO_DIR>]] [-n|--no-prompt]] ] [[-a|--append] -t|--testcases <TTCN3_TESTCASE>... [-n|--no-prompt]] \n"
 	USAGE_STR="${USAGE_STR}Adapt Osmocom docker-playground to custom needs (branch pointed to, testcomponent and testcases to run).\n"
 	USAGE_STR="${USAGE_STR}\n"
 	USAGE_STR="${USAGE_STR}	-r, --restore		Restore target files from docker-playground to point to current commit of repository.\n"
+	USAGE_STR="${USAGE_STR}	-c, --config-file	Name of config file (basename only, no path components): Only give this if the testsuite config file doesn't derive from the testcase name\n"
+	USAGE_STR="${USAGE_STR}				(e.g. for '-t Testcase BTS_Tests_SMSCB.TC_etws_pcu', we need to give the config file option '-c BTS_Tests.cfg', \n"
+	USAGE_STR="${USAGE_STR}				because the testsuite prefix doesn't follow a clear pattern. For testcases matching '-t NS_Tests.*',\n"
+	USAGE_STR="${USAGE_STR}				this isn't true, NS_Tests.cfg is the (expected) config file indeed). This will only work if a single testsuite is targeted!\n"
 	USAGE_STR="${USAGE_STR}	-o, --osmo-ttcn3-branch	Point to branch OSMO_TTCN3_BRANCH of osmo-ttcn3-hacks repo.\n"
 	USAGE_STR="${USAGE_STR}	-l, --list-files	List target files that will be changed/restored.\n"
 	USAGE_STR="${USAGE_STR}	-d, --subdir		Operate on target subdir SUBDIR of docker-playground. Has different effects depending on the actions taken (e.g. for TTCN3 branch adaption, it doesn't change anything)\n"
@@ -30,6 +34,7 @@ LIST_FILES=""
 TESTCASE_OPT=""
 NO_PROMPT_TC=""
 TESTSUITE=""
+TESTSUITE_CFG=""
 TESTCASES=""
 SUBDIR=""
 APPEND=""
@@ -79,6 +84,14 @@ while [ "$1" != "" ]; do
 		-a|--append)
 			APPEND="yes"
 			;;
+		-c |--config-file)
+			if [ -n "$VALUE" ] && ! echo $VALUE | grep -q "^-.*"; then
+				TESTSUITE_CFG="$VALUE"
+			else
+				echo "Error: Missing config file name (basename) for option $PARAM" >&2
+				exit 1
+			fi
+			;;
 		-o | --osmo-ttcn3-branch)
 			OSMO_TTCN3_BRANCH_OPT="$PARAM"
 			if [ -n "$VALUE" ]; then
@@ -92,7 +105,7 @@ while [ "$1" != "" ]; do
 			fi
 			;;
 		-d | --subdir)
-			SUBDIR="$VALUE"
+			SUBDIR="$(echo $VALUE | sed 's:/*$::')"
 			;;
 		-A | --ADD)
 			if [ -z "$SUBDIR" ]; then
@@ -154,7 +167,8 @@ while [ "$1" != "" ]; do
 	esac
 	shift
 done
-TOPIC_SUFFIx="%topix=$TOPIC" REPO_SUFFIX="docker-playground.git"
+TOPIC_SUFFIx="%topix=$TOPIC"
+REPO_SUFFIX="docker-playground\(\.git\)\?$"
 
 if [ -n "$TESTCASE_OPT" ] && [ -z "$TESTCASES" ] && [ -z "$RESTORE" ]; then
 	echo "Error: No Testcomponent given for option $PARAM" >&2
@@ -177,7 +191,7 @@ if ! URL="$(git config --get remote.origin.url 2>&1)"; then
 	echo "Error message from 'git':" >&2
 	echo "$URL" >&2
 	exit 1
-elif ! echo "$URL" | grep -q ".*$REPO_SUFFIX$"; then
+elif ! echo "$URL" | grep -q '.*'$REPO_SUFFIX; then
 	echo "Error: This is not the 'docker-playground' repository" >&2
 	echo "Repository URL is $URL, should end on $REPO_SUFFIX" >&2
 	exit 1
@@ -247,8 +261,15 @@ fi
 # TODO: Adapt testcases, restore them
 if [ -n "$TESTCASE_OPT" ]; then
 	# TESTSUITE LOOP. Maybe not the most elegant solution
+	inital_run="yes"
 	for testsuite in $TESTSUITES; do
-		TESTSUITE_CFG="$testsuite.cfg"
+		if [ -n "$initial_run" ] && [ -n "$TESTSUITE_CFG" ] && (( $(echo $TESTSUITES | wc -w) > 1 )); then
+			echo "Error: Cannot have multiple testsuites ($TESTSUITES) together with option -c" >&2
+			exit 1
+		fi
+		if (( $(echo $TESTSUITES | wc -w) == 1 )) && [ -z "$TESTSUITE_CFG" ]; then
+			TESTSUITE_CFG="$testsuite.cfg"
+		fi
 		FILE_LIST="$(find $REPO_ROOT -name "$TESTSUITE_CFG" -exec readlink -f {} \;)"
 		FILES="$(echo "$FILE_LIST" | wc -l)"
 		for file in $FILE_LIST; do
@@ -292,6 +313,7 @@ if [ -n "$TESTCASE_OPT" ]; then
 				done
 			fi
 		done
+		initial_run=""
 	done
 	exit $REPLACE_ERR
 fi
