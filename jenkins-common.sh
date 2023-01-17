@@ -420,7 +420,7 @@ kernel_test_wait_for_vm() {
 		return
 	fi
 
-	for i in $(seq 1 10); do
+	for i in $(seq 1 15); do
 		sleep 1
 
 		if grep -q KERNEL_TEST_VM_IS_READY "$log"; then
