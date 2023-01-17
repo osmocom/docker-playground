@@ -30,6 +30,7 @@ RUN \
 		bison \
 		bzip2 \
 		ca-certificates \
+		ccache \
 		cmake \
 		coccinelle \
 		cppcheck \
