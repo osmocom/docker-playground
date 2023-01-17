@@ -200,8 +200,8 @@ network_clean() {
 network_create() {
 	SUBNET="$PPID"
 	for i in $(seq 1 30); do
-		NET_NAME="$SUITE_NAME-$SUBNET"
 		SUBNET="$(echo "($SUBNET + 1) % 256" | bc)"
+		NET_NAME="$SUITE_NAME-$SUBNET"
 		SUB4="172.18.$SUBNET.0/24"
 		SUB6="fd02:db8:$SUBNET::/64"
 		set +x
