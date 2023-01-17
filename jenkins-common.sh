@@ -270,6 +270,7 @@ network_replace_subnet_in_configs() {
 		"$VOL_BASE_DIR" \
 		-name '*.cfg' -o \
 		-name '*.conf' -o \
+		-name '*.scm' -o \
 		-name '*.sh' -o \
 		-name '*.txt' -o \
 		-name '*.yaml' \
