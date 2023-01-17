@@ -10,9 +10,6 @@ docker_images_require \
 set_clean_up_trap
 set -e
 
-#Make sure NET_NAME doesn't clash with the AoIP BSC test
-NET_NAME=ttcn3-bsc_sccplite-test
-
 mkdir $VOL_BASE_DIR/bsc-tester
 cp sccplite/BSC_Tests.cfg $VOL_BASE_DIR/bsc-tester/
 write_mp_osmo_repo "$VOL_BASE_DIR/bsc-tester/BSC_Tests.cfg"

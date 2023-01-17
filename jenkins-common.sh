@@ -195,19 +195,12 @@ network_clean() {
 	docker network inspect $NET_NAME | grep Name | cut -d : -f2 | awk -F\" 'NR>1{print $2}' | xargs -rn1 docker kill
 }
 
-# Create network and find a free subnet automatically. The global variable
-# SUBNET gets set to the subnet number that has been used.
+# Create network and find a free subnet automatically. The global variables
+# SUBNET (subnet number) and NET_NAME (name of the docker network) get set.
 network_create() {
-	if docker network ls | grep -q $NET_NAME; then
-		set +x
-		echo "Removing stale network and containers..."
-		set -x
-		network_clean
-		network_remove
-	fi
-
 	SUBNET="$PPID"
 	for i in $(seq 1 30); do
+		NET_NAME="$SUITE_NAME-$SUBNET"
 		SUBNET="$(echo "($SUBNET + 1) % 256" | bc)"
 		SUB4="172.18.$SUBNET.0/24"
 		SUB6="fd02:db8:$SUBNET::/64"
@@ -235,6 +228,12 @@ network_create() {
 }
 
 network_bridge_create() {
+	if [ -z "$NET_NAME" ]; then
+		set +x
+		echo "ERROR: network_bridge_create: NET_NAME needs to be set"
+		exit 1
+	fi
+
 	NET=$1
 	if docker network ls | grep -q $NET_NAME; then
 		set +x
@@ -518,5 +517,3 @@ if [ "x$BUILD_TAG" = "x" ]; then
 fi
 
 SUITE_NAME=`basename $PWD`
-
-NET_NAME=$SUITE_NAME
