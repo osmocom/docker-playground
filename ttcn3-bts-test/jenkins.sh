@@ -140,7 +140,9 @@ cp $VOL_BASE_DIR/bts-tester-generic/BTS_Tests.cfg \
    $VOL_BASE_DIR/bts-tester-hopping/BTS_Tests.cfg.inc
 
 # (re)generate the configuration files
-make cfg
+cp Makefile $VOL_BASE_DIR/Makefile
+network_replace_subnet_in_configs
+make -f $VOL_BASE_DIR/Makefile cfg
 
 mkdir $VOL_BASE_DIR/bsc
 cp generic/osmo-bsc.gen.cfg $VOL_BASE_DIR/bsc/

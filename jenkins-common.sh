@@ -270,10 +270,13 @@ network_replace_subnet_in_configs() {
 		"$VOL_BASE_DIR" \
 		-name '*.cfg' -o \
 		-name '*.conf' -o \
+		-name '*.confmerge' -o \
+		-name '*.inc' -o \
 		-name '*.scm' -o \
 		-name '*.sh' -o \
 		-name '*.txt' -o \
-		-name '*.yaml' \
+		-name '*.yaml' -o \
+		-name 'Makefile' \
 	)"
 
 	if [ -z "$files" ]; then
