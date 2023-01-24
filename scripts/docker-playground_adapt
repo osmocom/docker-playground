@@ -1,5 +1,7 @@
 #!/bin/bash
 
+RESTORE_NOTE_TC="Note: If --restore is given, then for restoring purposes, it suffices to append a dot to the testsuite name \(<TTCN3_TESTSUITE>.\)"
+
 usage () {
 	USAGE_STR=""
 	USAGE_STR="${USAGE_STR}usage: $(basename $0) [-l|--list-files] [-h|--help] [-r|--restore] [-a|--append] [-c|--config-file <CONFIG_FILE>] [-o|--osmo-ttcn3-branch <OSMO_TTCN3_BRANCH>] [-d|--subdir <SUBDIR> [-A|--ADD [<REPO_DIR>]] [-n|--no-prompt]] ] [[-a|--append] -t|--testcases <TTCN3_TESTCASE>... [-n|--no-prompt]] \n"
@@ -17,11 +19,12 @@ usage () {
 	USAGE_STR="${USAGE_STR}				(e.g. SUBDIR/osmo-bts-repo for SUBDIR osmo-bts-master) will be expected to already exist.\n"
 	USAGE_STR="${USAGE_STR}	-n, --no-prompt		Don't prompt for changes. Applies to the previous option used (for testcases: Don't prompt if multiple cfg files are possibly found. for --ADD: Don't prompt if subdir already exists.\n"
 	USAGE_STR="${USAGE_STR}	-a, --append		Append testcase to existing list of testcases.\n"
-	USAGE_STR="${USAGE_STR}	-t, --testcases		Give testcase(s) TTCN3_TESTCASE of format <TTCN3_TESTSTUITE.TC_NAME>. For each '-t' option item, the testsuite prefix (including the dot) need to be given only once.\n"
-	USAGE_STR="${USAGE_STR} 			Will prompt for files to manipulate since there are subdirectories sometimes with alternative config files.\n"
+	USAGE_STR="${USAGE_STR}	-t, --testcases		Give testcase(s) TTCN3_TESTCASE of format <TTCN3_TESTSUITE>.<TC_NAME>. For each '-t' option item, the testsuite prefix (including the dot) need to be given only once.\n"
+	USAGE_STR="${USAGE_STR}				Will prompt for files to manipulate since there are subdirectories sometimes with alternative config files.\n"
 	USAGE_STR="${USAGE_STR}				Will not prompt for anything, if docker-playground repository subdirectory SUBDIR with the TTCN3 testconfig is given\n"
 	USAGE_STR="${USAGE_STR}				Example:\n"
 	USAGE_STR="${USAGE_STR}				-t NS_Tests.TC_sns_sgsn_add TC_sns_sgsn_second_add\n"
+	USAGE_STR="${USAGE_STR}				$RESTORE_NOTE_TC\n"
 	echo -ne "$USAGE_STR"
 }
 
@@ -37,6 +40,7 @@ TESTSUITE=""
 TESTSUITE_CFG=""
 TESTCASES=""
 SUBDIR=""
+SUBDIR_DEFAULT=""
 APPEND=""
 TESTSUITES=""
 ADD=""
@@ -61,6 +65,153 @@ user_wants() {
 		;;
 	    esac
 	done
+}
+
+list_files() {
+	log="$1"
+	echo "$log"
+	shift
+	for file in $@; do
+		echo "$(readlink -f $file)"
+	done
+	echo ""
+}
+
+adapt_ttcn3_branches() {
+	local FILE_LIST_LOC="$@"
+	# Branch replacement
+	if [ -n "$RESTORE" ]; then
+		for file in $FILE_LIST_LOC; do
+			if ! git checkout -q $file; then
+				echo "Error restoring file $FILE" >&2
+				RESTORE_ERR=1
+			fi
+		done
+	elif [ -n "$OSMO_TTCN3_BRANCH_ESCAPED" ]; then
+		TMP_FILE="/tmp/$$_file"
+		for file in $FILE_LIST_LOC; do
+			if ! sed -i 's/\(OSMO_TTCN3_BRANCH[?]\?=\)[^\\]*\(\\\?\)$/\1'"\"$OSMO_TTCN3_BRANCH_ESCAPED\""'\2/g' $file; then
+				REPLACE_ERR=1
+			fi
+			# if ! sed 's/\(OSMO_TTCN3_BRANCH[?]\?=\)[^\\]*\(\\\?\)$/\1'"\"$OSMO_TTCN3_BRANCH_ESCAPED\""'\2/g' $file >$TMP_FILE 2>&1; then
+			# 	REPLACE_ERR=1
+			# elif ! grep -q $OSMO_TTCN3_BRANCH $TMP_FILE; then
+			# 	REPLACE_ERR=1
+			# 	echo "Error replacing branchnames in file $file" >&2
+			# elif ! cp $TMP_FILE $file; then
+			# 	REPLACE_ERR=1
+			# fi
+			if [ "$REPLACE_ERR" = "1" ]; then
+				echo "Couldn't point docker-playground to branch $OSMO_TTCN3_BRANCH_ESCAPED" >&2
+			fi
+		done
+		rm -f $TMP_FILE
+	fi
+}
+
+adapt_ttcn3_testcases() {
+	local FILE_LIST_LOC="$@"
+	for file in $FILE_LIST_LOC; do
+		if [ -n "$RESTORE" ]; then
+			if ! git checkout -q "$file"; then
+				echo "Error restoring file $FILE" >&2
+				RESTORE_ERR=1
+			fi
+			continue
+		fi
+		if [ -z "$SUBDIR" ]; then
+			FNAME_REGEX="/$TESTSUITE_CFG"
+		else
+			FNAME_REGEX="/$SUBDIR/.*/\?$TESTSUITE_CFG"
+		fi
+		if [ -n "$TESTCASES" ] && echo "$file" | grep -q "[^/]*$FNAME_REGEX"; then
+			if ! user_wants "Adapt file $file?" "$NO_PROMPT"; then # Multiple cfg files possible, so we prompt
+				break; # Avoid too many nested ifs...
+			fi
+			TMP_FILE="/tmp/$$_file"
+			TESTCASE_REGEX="$testsuite"'\.[^\t ]*'
+			EXECUTE_LINE="^[ \t]*\[EXECUTE\][ \t\\]*$"
+			NEXT_SECTION_LINE="\[[A-Z_a-z0-9]\+\]"
+			# Delete all lines of the EXECUTE cfg section
+			if [ -z "$APPEND" ]; then
+				if ! sed -i '/'"$EXECUTE_LINE"'/,/^'"$NEXT_SECTION_LINE"'/{/^'"$EXECUTE_LINE"'/!{/^'"$NEXT_SECTION_LINE"'/!d}}' $file; then
+					echo "Error removing existing testcases from file $file" >&2
+					REPLACE_ERR=1
+				fi
+			fi
+			# Append testcase lines
+			for tc in $TESTCASES; do
+				tc_testsuite="$(echo $tc | grep '\.' | sed 's/\([^\.]\+\)\..*/\1/')"
+				if [ $testsuite != $tc_testsuite ]; then
+					continue
+				fi
+				if ! sed -i '/'"$EXECUTE_LINE"'/a '"$tc" $file; then
+					echo "Error appending testcase lines" >&2
+					REPLACE_ERR=1
+				fi
+			done
+		fi
+	done
+	initial_run=""
+}
+
+adapt_dockerfile() {
+	if ! echo "$SUBDIR_ADD" | grep -q '.*-master'; then
+		if [ -n "$RESTORE" ]; then
+			local adapt_restore="restoring"
+		else
+			local adapt_restore="adapting"
+		fi
+		if ! user_wants "$SUBDIR_ADD doesn't end on '-master', are you sure you want to proceed with $adapt_restore the Dockerfile in $(pwd)?"; then
+			echo "Exiting because there is nothing else to be done" # Keep this as the last action
+			exit 0
+		fi
+	fi
+	if [ -n "$RESTORE" ]; then
+		if ! git checkout -q Dockerfile; then
+			echo "Error restoring file Dockerfile" >&2
+			RESTORE_ERR=1
+		fi
+		return 0
+	fi
+
+	DOCKER_SUBDIR="$(echo $SUBDIR_ADD | sed 's/-master//')" #TODO: Make subdir adaptable in case some dirs don't play nice... I think our docker playground scripts are adapted to play nice though
+	if [ -n "$ADD_REPO_PATH" ]; then
+		if [ -d "$DOCKER_SUBDIR" ]; then
+			if ! user_wants "$DOCKER_SUBDIR already exists. Do you want to update its contents with contents from $ADD_REPO_PATH?" "$NO_PROMPT_ADD"; then
+				exit 0
+			fi
+		fi
+		set -x
+		rsync -avz "$ADD_REPO_PATH/" "$DOCKER_SUBDIR" >/dev/null
+		set +x
+		rc=$?
+		if [ "$rc" = 1 ]; then
+			echo "Error rsyncing" >&2
+			exit 1
+		fi
+	fi
+	if (( $(cat Dockerfile | grep 'RUN.*git clone' | wc -l) > 1 )); then
+		echo "Found more than one line entry matching 'CMD.*git clone' in '"$(pwd)"'/Dockerfile, not proceeding" >&2
+		exit 1
+	fi
+	set -x
+	sed -i 's:RUN.*git clone.*$:ADD\t'"$DOCKER_SUBDIR"' '"$DOCKER_SUBDIR"':g' Dockerfile # Should fit the Dockerfile, e.g. 'osmo-bts' still being used inside Docker
+	CD_LINE="RUN.*cd $DOCKER_SUBDIR"
+	# INSTALL_LINE=".*make.*install$"
+	AUTORECONF_LINE=".*autoreconf.*fi"
+	if ! sed -i '/'"$CD_LINE"'/,/^'"$AUTORECONF_LINE"'/{/^'"$CD_LINE"'/!{/^'"$AUTORECONF_LINE"'/!d}}' Dockerfile; then
+		echo "Couldn't remove lines between line matching pattern '$CD_LINE' and pattern '$AUTORECONF_LINE'" >&2
+	else
+		echo "Beware that you might have to configure your repository so that it conforms to the test demands! Lines removed:" >&2
+		git diff -- Dockerfile
+		if ! echo "$SUBDIR_ADD" | grep -q '-master$'; then
+			echo "=================== Warning! ======================"
+			echo "Directory $SUBDIR_ADD doesn't end on '-master', some things may have to be adapted manually (how things are installed)"
+		fi
+	fi
+	sed -i '/ADD.*http.* .*commit-.*$/d' Dockerfile
+	set +x
 }
 
 # Use to test if anything is to be done
@@ -109,9 +260,10 @@ while [ "$1" != "" ]; do
 			;;
 		-A | --ADD)
 			if [ -z "$SUBDIR" ]; then
-				echo "Error: Need preceding subdir argument for --ADD" >&2
-				usage >&2
-				exit 1
+				SUBDIR_ADD="$(basename $(pwd))"
+				echo "Using subdir $SUBDIR_DEFAULT for adapting Dockerfile"
+			else
+				SUBDIR_ADD="$(basename $(readlink -f $SUBDIR))"
 			fi
 			ADD="yes"
 			if [ -n "$VALUE" ] && ! echo $VALUE | grep -q "^-.*"; then
@@ -138,6 +290,7 @@ while [ "$1" != "" ]; do
 				if [ -z "$TESTSUITE" ] && [ -z "$TESTSUITE_PREV" ]; then # This should only happen in the first loop, if no testsuite prefix was given
 					echo "Error: Testsuite prefix missing (including dot '.') for testcase string $2" >&2
 					echo "Need such a prefix at least once for each series of testcases for one testsuite" >&2
+					echo "$RESTORE_NOTE_TC" >&2
 					exit 1
 				elif [ -n "$TESTSUITE" ]; then
 					TESTCASES="$TESTCASES $2"
@@ -214,41 +367,10 @@ if [ -n "$OSMO_TTCN3_BRANCH_OPT" ]; then
 	FILE_LIST="$REPO_ROOT/make/Makefile $(pwd)/$DOCKERFILE"
 
 	if [ -n "$LIST_FILES" ]; then
-		echo "Target files:"
-		for file in $FILE_LIST; do
-			echo "$file"
-		done
-		exit 0
-	fi
-
-	# Branch replacement
-	if [ -n "$RESTORE" ]; then
-		for file in $FILE_LIST; do
-			if ! git checkout -q $file; then
-				echo "Error restoring file $FILE" >&2
-				RESTORE_ERR=1
-			fi
-		done
-	elif [ -n "$OSMO_TTCN3_BRANCH_ESCAPED" ]; then
+		list_files "Target files for adapting the osmo-ttcn3-hacks branch to be used" $FILE_LIST
+	else
 		REPLACE_ERR=0
-		TMP_FILE="/tmp/$$_file"
-		for file in $FILE_LIST; do
-			if ! sed -i 's/\(OSMO_TTCN3_BRANCH[?]\?=\)[^\\]*\(\\\?\)$/\1'"\"$OSMO_TTCN3_BRANCH_ESCAPED\""'\2/g' $file; then
-				REPLACE_ERR=1
-			fi
-			# if ! sed 's/\(OSMO_TTCN3_BRANCH[?]\?=\)[^\\]*\(\\\?\)$/\1'"\"$OSMO_TTCN3_BRANCH_ESCAPED\""'\2/g' $file >$TMP_FILE 2>&1; then
-			# 	REPLACE_ERR=1
-			# elif ! grep -q $OSMO_TTCN3_BRANCH $TMP_FILE; then
-			# 	REPLACE_ERR=1
-			# 	echo "Error replacing branchnames in file $file" >&2
-			# elif ! cp $TMP_FILE $file; then
-			# 	REPLACE_ERR=1
-			# fi
-			if [ "$REPLACE_ERR" = "1" ]; then
-				echo "Couldn't point docker-playground to branch $OSMO_TTCN3_BRANCH_ESCAPED" >&2
-			fi
-		done
-		rm -f $TMP_FILE
+		adapt_ttcn3_branches $FILE_LIST
 	fi
 fi
 
@@ -271,56 +393,17 @@ if [ -n "$TESTCASE_OPT" ]; then
 			TESTSUITE_CFG="$testsuite.cfg"
 		fi
 		FILE_LIST="$(find $REPO_ROOT -name "$TESTSUITE_CFG" -exec readlink -f {} \;)"
-		FILES="$(echo "$FILE_LIST" | wc -l)"
-		for file in $FILE_LIST; do
-			if [ -n "$RESTORE" ]; then
-				if ! git checkout -q "$file"; then
-					echo "Error restoring file $FILE" >&2
-					RESTORE_ERR=1
-				fi
-				continue
-			fi
-			if [ -z "$SUBDIR" ]; then
-				FNAME_REGEX="/$TESTSUITE_CFG"
-			else
-				FNAME_REGEX="/$SUBDIR/.*/\?$TESTSUITE_CFG"
-			fi
-			if [ -n "$TESTCASES" ] && echo "$file" | grep -q "[^/]*$FNAME_REGEX"; then
-				if ! user_wants "Adapt file $file?" "$NO_PROMPT"; then # Multiple cfg files possible, so we prompt
-					break; # Avoid too many nested ifs...
-				fi
-				TMP_FILE="/tmp/$$_file"
-				TESTCASE_REGEX="$testsuite"'\.[^\t ]*'
-				EXECUTE_LINE="^[ \t]*\[EXECUTE\][ \t\\]*$"
-				NEXT_SECTION_LINE="\[[A-Z_a-z0-9]\+\]"
-				# Delete all lines of the EXECUTE cfg section
-				if [ -z "$APPEND" ]; then
-					if ! sed -i '/'"$EXECUTE_LINE"'/,/^'"$NEXT_SECTION_LINE"'/{/^'"$EXECUTE_LINE"'/!{/^'"$NEXT_SECTION_LINE"'/!d}}' $file; then
-						echo "Error removing existing testcases from file $file" >&2
-						REPLACE_ERR=1
-					fi
-				fi
-				# Append testcase lines
-				for tc in $TESTCASES; do
-					tc_testsuite="$(echo $tc | grep '\.' | sed 's/\([^\.]\+\)\..*/\1/')"
-					if [ $testsuite != $tc_testsuite ]; then
-						continue
-					fi
-					if ! sed -i '/'"$EXECUTE_LINE"'/a '"$tc" $file; then
-						echo "Error appending testcase lines" >&2
-						REPLACE_ERR=1
-					fi
-				done
-			fi
-		done
-		initial_run=""
+		if [ -n "$LIST_FILES" ]; then
+			list_files "Target files for adapting testcases (testsuite $testsuite)" $FILE_LIST
+		else
+			adapt_ttcn3_testcases $FILE_LIST
+		fi
 	done
-	exit $REPLACE_ERR
 fi
 
-if [ -n "$ADD" ]; then
-	if ! pushd $REPO_ROOT/$SUBDIR; then
-		echo "Error entering path $REPO_ROOT/$SUBDIR" >&2
+if [ -n "$ADD" ]; then # No files to list
+	if ! pushd $REPO_ROOT/$SUBDIR_ADD >/dev/null; then
+		echo "Error entering path $REPO_ROOT/$SUBDIR_ADD" >&2
 		exit 1
 	fi
 	trap "rv=\$?; popd >/dev/null 2>&1; exit \$?" EXIT
@@ -330,46 +413,10 @@ if [ -n "$ADD" ]; then
 		echo "You need to run this for a docker-playground subdirectory with a Dockerfile"
 		exit 1
 	fi
-	if ! echo "$SUBDIR" | grep -q '.*-master'; then
-		if ! user_wants "$SUBDIR doesn't end on '-master', are you sure you want to proceed with adapting the Dockerfile in $pwd?"; then
-			echo "Exiting because there is nothing else to be done" # Keep this as the last action
-			exit 0
-		fi
-	fi
-	DOCKER_SUBDIR="$(echo $SUBDIR | sed 's/-master//')" #TODO: Make subdir adaptable in case some dirs don't play nice... I think our docker playground scripts are adapted to play nice though
-	if [ -n "$ADD_REPO_PATH" ]; then
-		if [ -d "$DOCKER_SUBDIR" ]; then
-			if ! user_wants "$DOCKER_SUBDIR already exists. Do you want to update its contents with contents from $ADD_REPO_PATH?" "$NO_PROMPT_ADD"; then
-				exit 0
-			fi
-		fi
-		set -x
-		rsync -avz "$ADD_REPO_PATH/" "$DOCKER_SUBDIR" >/dev/null
-		set +x
-		rc=$?
-		if [ "$rc" = 1 ]; then
-			echo "Error rsyncing" >&2
-			exit 1
-		fi
-	fi
-	if (( $(cat Dockerfile | grep 'RUN.*git clone' | wc -l) > 1 )); then
-		echo "Found more than one line entry matching 'CMD.*git clone' in '"$(pwd)"'/Dockerfile, not proceeding" >&2
-		exit 1
-	fi
-	set -x
-	sed -i 's:RUN.*git clone.*$:ADD\t'"$DOCKER_SUBDIR"' '"$DOCKER_SUBDIR"':g' Dockerfile # Should fit the Dockerfile, e.g. 'osmo-bts' still being used inside Docker
-	CD_LINE="RUN.*cd $DOCKER_SUBDIR"
-	INSTALL_LINE=".*make.*install$"
-	if ! sed -i '/'"$CD_LINE"'/,/^'"$INSTALL_LINE"'/{/^'"$CD_LINE"'/!{/^'"$INSTALL_LINE"'/!d}}' Dockerfile; then
-		echo "Couldn't remove lines between line matching pattern '$CD_LINE' and pattern '$INSTALL_LINE'" >&2
+	if [ -n "$LIST_FILES" ]; then
+		list_files "Target Dockerfile to adapt:" "./Dockerfile"
 	else
-		echo "Beware that you might have to configure your repository so that it conforms to the test demands! Lines removed:" >&2
-		git diff -- Dockerfile
-		if ! echo "$SUBDIR" | grep -q '-master$'; then
-			echo "=================== Warning! ======================"
-			echo "Directory $SUBDIR doesn't end on '-master', some things may have to be adapted manually (how things are installed)"
-		fi
+		adapt_dockerfile
 	fi
-	sed -i '/ADD.*http.* .*commit-.*$/d' Dockerfile
-	set +x
 fi
+exit $REPLACE_ERR
