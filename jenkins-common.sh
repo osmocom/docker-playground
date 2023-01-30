@@ -262,6 +262,35 @@ network_remove() {
 	docker network remove $NET_NAME
 }
 
+# Clean and remove all docker networks related to ttcn3 testing. This prevents
+# running testsuites in parallel, so usually we don't want this and rely on the
+# clean_up_trap to clean the network. But on e.g. gtp0-deb10fr this gets used
+# as we only run one testsuite at once and it has dahdi netdevices attached.
+# Due connection loss, it may not be cleaned up there and so another testsuite
+# cannot start.
+network_clean_remove_all_ttcn3() {
+	local networks
+	local i
+
+	networks="$(docker network ls --format '{{.Name}}' | grep ^ttcn3- || true)"
+
+	if [ -z "$networks" ]; then
+		return
+	fi
+
+	set +x
+	echo "Removing stale network and containers..."
+	set -x
+
+	for i in $networks; do
+		NET_NAME="$i"
+		network_clean
+		network_remove
+	done
+
+	unset NET_NAME
+}
+
 network_replace_subnet_in_configs() {
 	set +x
 

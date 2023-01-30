@@ -30,6 +30,7 @@ cp FRNET_Tests.cfg $VOL_BASE_DIR/frnet/
 
 mkdir $VOL_BASE_DIR/unix
 
+network_clean_remove_all_ttcn3
 network_create
 network_replace_subnet_in_configs
 
