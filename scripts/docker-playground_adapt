@@ -125,7 +125,7 @@ adapt_ttcn3_testcases() {
 			FNAME_REGEX="/$SUBDIR/.*/\?$TESTSUITE_CFG"
 		fi
 		if [ -n "$TESTCASES" ] && echo "$file" | grep -q "[^/]*$FNAME_REGEX"; then
-			if ! user_wants "Adapt file $file?" "$NO_PROMPT"; then # Multiple cfg files possible, so we prompt
+			if [ -z "$NO_PROMPT_TC" ] && ! user_wants "Adapt file $file?" "$NO_PROMPT"; then # Multiple cfg files possible, so we prompt
 				break; # Avoid too many nested ifs...
 			fi
 			TMP_FILE="/tmp/$$_file"
@@ -139,8 +139,12 @@ adapt_ttcn3_testcases() {
 					REPLACE_ERR=1
 				fi
 			fi
-			# Append testcase lines
-			for tc in $TESTCASES; do
+			# Insert testcase lines after [EXECUTE] block. This means the list of testcases
+			# has to be reversed. We use tac, which only works like we want if we
+			#  - prepend and append a space
+			#  - echo without a trailing newline
+			TESTCASES_FOR_REVERSAL=" $TESTCASES "
+			for tc in $(echo -n "$TESTCASES_FOR_REVERSAL" | tac -s' '); do
 				tc_testsuite="$(echo $tc | grep '\.' | sed 's/\([^\.]\+\)\..*/\1/')"
 				if [ $testsuite != $tc_testsuite ]; then
 					continue
@@ -195,7 +199,6 @@ adapt_dockerfile() {
 		echo "Found more than one line entry matching 'CMD.*git clone' in '"$(pwd)"'/Dockerfile, not proceeding" >&2
 		exit 1
 	fi
-	set -x
 	sed -i 's:RUN.*git clone.*$:ADD\t'"$DOCKER_SUBDIR"' '"$DOCKER_SUBDIR"':g' Dockerfile # Should fit the Dockerfile, e.g. 'osmo-bts' still being used inside Docker
 	CD_LINE="RUN.*cd $DOCKER_SUBDIR"
 	# INSTALL_LINE=".*make.*install$"
@@ -211,7 +214,6 @@ adapt_dockerfile() {
 		fi
 	fi
 	sed -i '/ADD.*http.* .*commit-.*$/d' Dockerfile
-	set +x
 }
 
 # Use to test if anything is to be done
@@ -395,6 +397,9 @@ if [ -n "$TESTCASE_OPT" ]; then
 		FILE_LIST="$(find $REPO_ROOT -name "$TESTSUITE_CFG" -exec readlink -f {} \;)"
 		if [ -n "$LIST_FILES" ]; then
 			list_files "Target files for adapting testcases (testsuite $testsuite)" $FILE_LIST
+		elif [ -z "$FILE_LIST" ]; then
+			echo "Empty file list for adapting testcases. Maybe you need to adapt the config file basename via the '-c'-flag" >&2
+			echo "Current config file basename searched for: $TESTSUITE_CFG" >&2
 		else
 			adapt_ttcn3_testcases $FILE_LIST
 		fi
