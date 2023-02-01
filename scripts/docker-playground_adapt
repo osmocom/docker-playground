@@ -4,7 +4,8 @@ RESTORE_NOTE_TC="Note: If --restore is given, then for restoring purposes, it su
 
 usage () {
 	USAGE_STR=""
-	USAGE_STR="${USAGE_STR}usage: $(basename $0) [-l|--list-files] [-h|--help] [-r|--restore] [-a|--append] [-c|--config-file <CONFIG_FILE>] [-o|--osmo-ttcn3-branch <OSMO_TTCN3_BRANCH>] [-d|--subdir <SUBDIR> [-A|--ADD [<REPO_DIR>]] [-n|--no-prompt]] ] [[-a|--append] -t|--testcases <TTCN3_TESTCASE>... [-n|--no-prompt]] \n"
+	USAGE_STR="${USAGE_STR}usage: $(basename $0) [-l|--list-files] [-h|--help] [-r|--restore] [-a|--append] [-c|--config-file <CONFIG_FILE>] [-o|--osmo-ttcn3-branch <OSMO_TTCN3_BRANCH>] "
+	USAGE_STR="${USAGE_STR}[-n|--no-prompt] [-d|--subdir <SUBDIR> [-i|--install PKG] [-A|--ADD [<REPO_DIR>]]] ] [[-a|--append] -t|--testcases <TTCN3_TESTCASE>... [-n|--no-prompt]] \n"
 	USAGE_STR="${USAGE_STR}Adapt Osmocom docker-playground to custom needs (branch pointed to, testcomponent and testcases to run).\n"
 	USAGE_STR="${USAGE_STR}\n"
 	USAGE_STR="${USAGE_STR}	-r, --restore		Restore target files from docker-playground to point to current commit of repository.\n"
@@ -12,12 +13,13 @@ usage () {
 	USAGE_STR="${USAGE_STR}				(e.g. for '-t Testcase BTS_Tests_SMSCB.TC_etws_pcu', we need to give the config file option '-c BTS_Tests.cfg', \n"
 	USAGE_STR="${USAGE_STR}				because the testsuite prefix doesn't follow a clear pattern. For testcases matching '-t NS_Tests.*',\n"
 	USAGE_STR="${USAGE_STR}				this isn't true, NS_Tests.cfg is the (expected) config file indeed). This will only work if a single testsuite is targeted!\n"
+	USAGE_STR="${USAGE_STR}	-i, --install		Install target package PKG on Docker image - (debian*) only.\n"
 	USAGE_STR="${USAGE_STR}	-o, --osmo-ttcn3-branch	Point to branch OSMO_TTCN3_BRANCH of osmo-ttcn3-hacks repo.\n"
 	USAGE_STR="${USAGE_STR}	-l, --list-files	List target files that will be changed/restored.\n"
 	USAGE_STR="${USAGE_STR}	-d, --subdir		Operate on target subdir SUBDIR of docker-playground. Has different effects depending on the actions taken (e.g. for TTCN3 branch adaption, it doesn't change anything)\n"
 	USAGE_STR="${USAGE_STR}	-A, --ADD		Adapt Dockerfile: Essentially exchange 'git clone' command with a Dockerfile ADD. Only for 'osmo-*-master' folders, if REPO_DIR isn't given, a default repo folder \n"
 	USAGE_STR="${USAGE_STR}				(e.g. SUBDIR/osmo-bts-repo for SUBDIR osmo-bts-master) will be expected to already exist.\n"
-	USAGE_STR="${USAGE_STR}	-n, --no-prompt		Don't prompt for changes. Applies to the previous option used (for testcases: Don't prompt if multiple cfg files are possibly found. for --ADD: Don't prompt if subdir already exists.\n"
+	USAGE_STR="${USAGE_STR}	-n, --no-prompt		Don't prompt for changes.\n" # "Applies to the previous option used (for testcases: Don't prompt if multiple cfg files are possibly found. for --ADD: Don't prompt if subdir already exists.\n"
 	USAGE_STR="${USAGE_STR}	-a, --append		Append testcase to existing list of testcases.\n"
 	USAGE_STR="${USAGE_STR}	-t, --testcases		Give testcase(s) TTCN3_TESTCASE of format <TTCN3_TESTSUITE>.<TC_NAME>. For each '-t' option item, the testsuite prefix (including the dot) need to be given only once.\n"
 	USAGE_STR="${USAGE_STR}				Will prompt for files to manipulate since there are subdirectories sometimes with alternative config files.\n"
@@ -35,7 +37,6 @@ OSMO_TTCN3_BRANCH_ESCAPED=""
 RESTORE=""
 LIST_FILES=""
 TESTCASE_OPT=""
-NO_PROMPT_TC=""
 TESTSUITE=""
 TESTSUITE_CFG=""
 TESTCASES=""
@@ -45,7 +46,8 @@ APPEND=""
 TESTSUITES=""
 ADD=""
 ADD_REPO_PATH=""
-NO_PROMPT_ADD=""
+NO_PROMPT=""
+INSTALL_PKGS=""
 
 user_wants() {
 	if [ -n "$2" ]; then
@@ -125,7 +127,7 @@ adapt_ttcn3_testcases() {
 			FNAME_REGEX="/$SUBDIR/.*/\?$TESTSUITE_CFG"
 		fi
 		if [ -n "$TESTCASES" ] && echo "$file" | grep -q "[^/]*$FNAME_REGEX"; then
-			if [ -z "$NO_PROMPT_TC" ] && ! user_wants "Adapt file $file?" "$NO_PROMPT"; then # Multiple cfg files possible, so we prompt
+			if [ -z "$NO_PROMPT" ] && ! user_wants "Adapt file $file?" "$NO_PROMPT"; then # Multiple cfg files possible, so we prompt
 				break; # Avoid too many nested ifs...
 			fi
 			TMP_FILE="/tmp/$$_file"
@@ -139,6 +141,7 @@ adapt_ttcn3_testcases() {
 					REPLACE_ERR=1
 				fi
 			fi
+			# [1]
 			# Insert testcase lines after [EXECUTE] block. This means the list of testcases
 			# has to be reversed. We use tac, which only works like we want if we
 			#  - prepend and append a space
@@ -159,48 +162,56 @@ adapt_ttcn3_testcases() {
 	initial_run=""
 }
 
-adapt_dockerfile() {
-	if ! echo "$SUBDIR_ADD" | grep -q '.*-master'; then
+adapt_dockerfile_checkdir() {
+	if ! echo "$SUBDIR_DOCKER" | grep -q '.*-master'; then
 		if [ -n "$RESTORE" ]; then
 			local adapt_restore="restoring"
 		else
 			local adapt_restore="adapting"
 		fi
-		if ! user_wants "$SUBDIR_ADD doesn't end on '-master', are you sure you want to proceed with $adapt_restore the Dockerfile in $(pwd)?"; then
+		if ! user_wants "$SUBDIR_DOCKER doesn't end on '-master', are you sure you want to proceed with $adapt_restore the Dockerfile in $(pwd)?"; then
 			echo "Exiting because there is nothing else to be done" # Keep this as the last action
 			exit 0
 		fi
 	fi
-	if [ -n "$RESTORE" ]; then
-		if ! git checkout -q Dockerfile; then
-			echo "Error restoring file Dockerfile" >&2
-			RESTORE_ERR=1
-		fi
-		return 0
-	fi
+}
 
-	DOCKER_SUBDIR="$(echo $SUBDIR_ADD | sed 's/-master//')" #TODO: Make subdir adaptable in case some dirs don't play nice... I think our docker playground scripts are adapted to play nice though
+adapt_dockerfile_install() {
+	APT_GET_INST_LINE="apt-get install"
+	if (( $(cat Dockerfile | grep "'$APT_GET_INST_LINE'" | wc -l) > 1 )); then
+		echo "Found more than one line entry matching 'CMD.*git clone' in '"$(pwd)"'/Dockerfile, not proceeding" >&2
+		exit 1
+	fi
+	# See [1]
+	PKGS_FOR_REVERSAL=" $INSTALL_PKGS "
+	for pkg in $(echo -n "$PKGS_FOR_REVERSAL" | tac -s' '); do
+		if ! sed -i '/'"$APT_GET_INST_LINE"'/a '"$pkg"' \\' Dockerfile; then
+			echo "Error inserting package install line for package $pkg" >&2
+		fi
+	done
+}
+
+adapt_dockerfile_add() {
+	DST_REPO_SUBDIR="$(echo $SUBDIR_DOCKER | sed 's/-master//')" #TODO: Make subdir adaptable in case some dirs don't play nice... I think our docker playground scripts are adapted to play nice though
 	if [ -n "$ADD_REPO_PATH" ]; then
-		if [ -d "$DOCKER_SUBDIR" ]; then
-			if ! user_wants "$DOCKER_SUBDIR already exists. Do you want to update its contents with contents from $ADD_REPO_PATH?" "$NO_PROMPT_ADD"; then
+		if [ -d "$DST_REPO_SUBDIR" ]; then
+			if ! user_wants "$DST_REPO_SUBDIR already exists. Do you want to update its contents with contents from $ADD_REPO_PATH?" "$NO_PROMPT"; then
 				exit 0
 			fi
 		fi
-		set -x
-		rsync -avz "$ADD_REPO_PATH/" "$DOCKER_SUBDIR" >/dev/null
-		set +x
-		rc=$?
-		if [ "$rc" = 1 ]; then
+		rsync -avz "$ADD_REPO_PATH/" "$DST_REPO_SUBDIR" >/dev/null
+		if [ $? -ne 0 ]; then
 			echo "Error rsyncing" >&2
 			exit 1
 		fi
+		echo -e "Source dir: $ADD_REPO_PATH\nSynced: $(date)" > "$DST_REPO_SUBDIR/source_dir.txt"
 	fi
 	if (( $(cat Dockerfile | grep 'RUN.*git clone' | wc -l) > 1 )); then
 		echo "Found more than one line entry matching 'CMD.*git clone' in '"$(pwd)"'/Dockerfile, not proceeding" >&2
 		exit 1
 	fi
-	sed -i 's:RUN.*git clone.*$:ADD\t'"$DOCKER_SUBDIR"' '"$DOCKER_SUBDIR"':g' Dockerfile # Should fit the Dockerfile, e.g. 'osmo-bts' still being used inside Docker
-	CD_LINE="RUN.*cd $DOCKER_SUBDIR"
+	sed -i 's:RUN.*git clone.*$:ADD\t'"$DST_REPO_SUBDIR"' '"$DST_REPO_SUBDIR"':g' Dockerfile # Should fit the Dockerfile, e.g. 'osmo-bts' still being used inside Docker
+	CD_LINE="RUN.*cd $DST_REPO_SUBDIR"
 	# INSTALL_LINE=".*make.*install$"
 	AUTORECONF_LINE=".*autoreconf.*fi"
 	if ! sed -i '/'"$CD_LINE"'/,/^'"$AUTORECONF_LINE"'/{/^'"$CD_LINE"'/!{/^'"$AUTORECONF_LINE"'/!d}}' Dockerfile; then
@@ -208,12 +219,21 @@ adapt_dockerfile() {
 	else
 		echo "Beware that you might have to configure your repository so that it conforms to the test demands! Lines removed:" >&2
 		git diff -- Dockerfile
-		if ! echo "$SUBDIR_ADD" | grep -q '-master$'; then
+		if ! echo "$SUBDIR_DOCKER" | grep -q '-master$'; then
 			echo "=================== Warning! ======================"
-			echo "Directory $SUBDIR_ADD doesn't end on '-master', some things may have to be adapted manually (how things are installed)"
+			echo "Directory $SUBDIR_DOCKER doesn't end on '-master', some things may have to be adapted manually (how things are installed)"
 		fi
 	fi
 	sed -i '/ADD.*http.* .*commit-.*$/d' Dockerfile
+}
+
+determine_subdir_docker() {
+	if [ -z "$SUBDIR" ]; then
+		SUBDIR_DOCKER="$(basename $(pwd))"
+		echo "Using subdir $SUBDIR_DEFAULT for adapting Dockerfile"
+	else
+		SUBDIR_DOCKER="$(basename $(readlink -f $SUBDIR))"
+	fi
 }
 
 # Use to test if anything is to be done
@@ -228,11 +248,28 @@ while [ "$1" != "" ]; do
 		-r | --restore)
 			RESTORE="yes"
 			;;
+		-i | --install)
+			determine_subdir_docker
+			while [ -n "$2" ] && ! printf "%s\n" "$2" | grep -q -- '^-.*'; do
+				INSTALL_PKGS="$INSTALL_PKGS $2"
+				shift
+			done
+			if [ -z "$INSTALL_PKGS" ]; then
+				echo "Error: flag -i needs at least one Debian package name as option argument" >&2
+				usage >&2
+				exit 1
+			fi
+			# See commented change for -n option in usage() output string
+			# if [ -n "$3" ] && ( [ "$3" = "-n" ] || [ "$3" = "--no-prompt" ] ); then
+			# 	NO_PROMPT="yes"
+			# fi
+			;;
 		-l | --list-files)
 			LIST_FILES="yes"
 			;;
 		-n | --no-prompt)
 			# Ignore, is processed in respective options it applies to
+			NO_PROMPT="yes"
 			;;
 		-a|--append)
 			APPEND="yes"
@@ -261,22 +298,19 @@ while [ "$1" != "" ]; do
 			SUBDIR="$(echo $VALUE | sed 's:/*$::')"
 			;;
 		-A | --ADD)
-			if [ -z "$SUBDIR" ]; then
-				SUBDIR_ADD="$(basename $(pwd))"
-				echo "Using subdir $SUBDIR_DEFAULT for adapting Dockerfile"
-			else
-				SUBDIR_ADD="$(basename $(readlink -f $SUBDIR))"
-			fi
+			determine_subdir_docker
 			ADD="yes"
 			if [ -n "$VALUE" ] && ! echo $VALUE | grep -q "^-.*"; then
 				ADD_REPO_PATH="$(readlink -f $VALUE)"
 				if ! [ -d "$ADD_REPO_PATH" ]; then
 					echo "Error: Couldn't find path $ADD_REPO_PATH" >&2
+					exit 1
 				fi
 			fi
-			if [ -n "$3" ] && ( [ "$2" = "-n" ] || [ "$2" = "--no-prompt" ] ); then
-				NO_PROMPT_ADD="yes"
-			fi
+			# See commented change for -n option in usage() output string
+			# if [ -n "$3" ] && ( [ "$3" = "-n" ] || [ "$3" = "--no-prompt" ] ); then
+			# 	NO_PROMPT="yes"
+			# fi
 			;;
 		-t | --testcases)
 			TESTCASE_OPT="$PARAM"
@@ -305,9 +339,10 @@ while [ "$1" != "" ]; do
 				fi
 				shift
 			done
-			if [ -n "$2" ] && ( [ "$2" = "-n" ] || [ "$2" = "--no-prompt" ] ); then
-				NO_PROMPT_TC="yes"
-			fi
+			# See commented change for -n option in usage() output string
+			# if [ -n "$2" ] && ( [ "$2" = "-n" ] || [ "$2" = "--no-prompt" ] ); then
+			# 	NO_PROMPT_TC="yes"
+			# fi
 			;;
 		--)
 			break
@@ -334,7 +369,8 @@ ACTIONS="$OSMO_TTCN3_BRANCH_ESCAPED\
 $RESTORE\
 $LIST_FILES\
 $TESTCASES\
-$ADD"
+$ADD\
+$INSTALL_PKGS"
 
 if [ -z "$ACTIONS" ]; then
 	echo "Nothing to do"
@@ -406,9 +442,9 @@ if [ -n "$TESTCASE_OPT" ]; then
 	done
 fi
 
-if [ -n "$ADD" ]; then # No files to list
-	if ! pushd $REPO_ROOT/$SUBDIR_ADD >/dev/null; then
-		echo "Error entering path $REPO_ROOT/$SUBDIR_ADD" >&2
+if [ -n "$ADD" ] || [ -n "$INSTALL_PKGS" ]; then # No files to list
+	if ! pushd $REPO_ROOT/$SUBDIR_DOCKER >/dev/null; then
+		echo "Error entering path $REPO_ROOT/$SUBDIR_DOCKER" >&2
 		exit 1
 	fi
 	trap "rv=\$?; popd >/dev/null 2>&1; exit \$?" EXIT
@@ -421,7 +457,21 @@ if [ -n "$ADD" ]; then # No files to list
 	if [ -n "$LIST_FILES" ]; then
 		list_files "Target Dockerfile to adapt:" "./Dockerfile"
 	else
-		adapt_dockerfile
+		adapt_dockerfile_checkdir
+		if [ -n "$RESTORE" ]; then
+			if ! git checkout -q Dockerfile; then
+				echo "Error restoring file Dockerfile" >&2
+				RESTORE_ERR=1
+			fi
+			return 0
+		fi
+		if [ -n "$ADD" ]; then
+			adapt_dockerfile_add
+		fi
+		if [ -n "$INSTALL_PKGS" ]; then
+			adapt_dockerfile_install
+		fi
 	fi
 fi
+
 exit $REPLACE_ERR
