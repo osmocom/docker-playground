@@ -219,7 +219,7 @@ adapt_dockerfile_add() {
 	else
 		echo "Beware that you might have to configure your repository so that it conforms to the test demands! Lines removed:" >&2
 		git diff -- Dockerfile
-		if ! echo "$SUBDIR_DOCKER" | grep -q '-master$'; then
+		if ! echo "$SUBDIR_DOCKER" | grep -q -- '-master$'; then
 			echo "=================== Warning! ======================"
 			echo "Directory $SUBDIR_DOCKER doesn't end on '-master', some things may have to be adapted manually (how things are installed)"
 		fi
