@@ -156,6 +156,23 @@ prepare_depends() {
 	esac
 }
 
+# Run ./configure, with arguments if needed.
+# $1: Osmocom repository
+run_configure() {
+	case "$1" in
+		osmo-trx)
+			# Avoid pointing LIBTRXCON_DIR to an empty directory:
+			# https://gerrit.osmocom.org/c/osmo-trx/+/30792
+			if grep -q with_mstrx configure.ac; then
+				./configure --with-mstrx
+			fi
+			;;
+		*)
+			./configure
+			;;
+	esac
+}
+
 # Apply workarounds for bugs that break too many releases. This function runs between ./configure and make dist-bzip2.
 # $1: Osmocom repository
 fix_repo() {
@@ -243,7 +260,7 @@ create_tarball() {
 
 	cd "$TEMP/repos/$repo"
 	autoreconf -fi
-	./configure
+	run_configure "$repo"
 	fix_repo "$repo"
 	make dist-bzip2
 
