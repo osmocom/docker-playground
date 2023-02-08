@@ -5,7 +5,6 @@
 #
 # Environment variables:
 # * KEEP_TEMP: do not delete cloned repositories (use for development)
-# * PARALLEL_MAKE: -jN argument for make (default: -j5).
 SSH_COMMAND="ssh -o UserKnownHostsFile=/build/known_hosts -p 48"
 OSMO_GIT_URL="https://git.osmocom.org"
 OSMO_RELEASE_REPOS="
@@ -73,7 +72,6 @@ osmo_git_last_commits_tags() {
 
 
 cd "$(dirname "$0")"
-PARALLEL_MAKE="${PARALLEL_MAKE:--j5}"
 OUTPUT="/build/_release_tarballs"
 TEMP="/build/_temp"
 
