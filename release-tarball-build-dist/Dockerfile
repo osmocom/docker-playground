@@ -69,6 +69,7 @@ RUN	apt-get update && \
 		mscgen \
 		python3-nwdiag \
 		rsync \
+		wget \
 		xsltproc \
 		&& \
 	apt-get clean

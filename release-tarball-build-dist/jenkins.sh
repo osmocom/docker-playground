@@ -10,6 +10,7 @@ docker run \
 	-v "$PWD:/build" \
 	-v "$(readlink -f $SSH_AUTH_SOCK)":/ssh-agent \
 	-w /osmo-ci \
+	-e EXISTING_TARBALLS_FROM_JENKINS="$EXISTING_TARBALLS_FROM_JENKINS" \
 	-e KEEP_TEMP="$KEEP_TEMP" \
 	-e SSH_AUTH_SOCK=/ssh-agent \
 	"$USER/release-tarball-build-dist" sh -e /build/osmocom-release-tarballs.sh

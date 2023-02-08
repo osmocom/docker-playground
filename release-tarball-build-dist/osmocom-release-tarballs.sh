@@ -5,6 +5,8 @@
 #
 # Environment variables:
 # * KEEP_TEMP: do not delete cloned repositories (use for development)
+# * EXISTING_TARBALLS_FROM_JENKINS: set to 1 to get the existing tarballs from
+#                                   the last run of the jenkins job
 SSH_COMMAND="ssh -o UserKnownHostsFile=/build/known_hosts -p 48"
 OSMO_GIT_URL="https://git.osmocom.org"
 OSMO_RELEASE_REPOS="
@@ -207,7 +209,10 @@ remove_temp_dir() {
 }
 
 get_existing_tarballs() {
-	if ! $SSH_COMMAND releases@ftp.osmocom.org -- \
+	if [ -n "$EXISTING_TARBALLS_FROM_JENKINS" ]; then
+		wget -O "$TEMP"/existing_tarballs \
+			https://jenkins.osmocom.org/jenkins/job/Osmocom-release-tarballs/ws/release-tarball-build-dist/_temp/existing_tarballs
+	elif ! $SSH_COMMAND releases@ftp.osmocom.org -- \
 			find web-files -name '*.tar.bz2' \
 			> "$TEMP"/existing_tarballs; then
 		echo "ERROR: getting existing tarballs from remote failed!"
