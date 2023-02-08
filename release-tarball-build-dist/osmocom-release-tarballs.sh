@@ -208,13 +208,14 @@ prepare_repo() {
 	local tag="${2:-master}"
 
 	if ! [ -d "$TEMP/repos/$repo" ]; then
-		git -C "$TEMP/repos" clone "$OSMO_GIT_URL/$repo"
+		git -C "$TEMP/repos" clone --recursive "$OSMO_GIT_URL/$repo"
 	fi
 
 	cd "$TEMP/repos/$repo"
 	git clean -qdxf
 	git reset --hard HEAD # in case the tracked files were modified (e.g. libsmpp34 1.10)
 	git checkout -q "$tag"
+	git submodule update --recursive
 }
 
 
