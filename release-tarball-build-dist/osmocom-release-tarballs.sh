@@ -11,8 +11,10 @@ SSH_COMMAND="ssh -o UserKnownHostsFile=/build/known_hosts -p 48"
 OSMO_GIT_URL="https://git.osmocom.org"
 OSMO_RELEASE_REPOS="
 	libasn1c
+	libgtpnl
 	libosmo-abis
 	libosmo-netif
+	libosmo-pfcp
 	libosmo-sccp
 	libosmocore
 	libsmpp34
