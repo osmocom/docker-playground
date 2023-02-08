@@ -370,6 +370,7 @@ for repo in $OSMO_RELEASE_REPOS; do
 	done
 done
 
+cd /build
 remove_temp_dir
 upload
 echo "done!"
