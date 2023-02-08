@@ -150,11 +150,6 @@ cp generic/osmo-bsc.gen.cfg $VOL_BASE_DIR/bsc/
 mkdir $VOL_BASE_DIR/bts
 mkdir $VOL_BASE_DIR/bts/unix
 cp generic/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
-# Disable until osmo-bts release > 1.5.0
-if ! image_suffix_is_master; then
-	sed -i "/^ logging level osmux info/d" $VOL_BASE_DIR/bts/osmo-bts.gen.cfg
-	sed -i "/^ osmux/{N;N;N;N;d;}" $VOL_BASE_DIR/bts/osmo-bts.gen.cfg
-fi
 
 mkdir $VOL_BASE_DIR/unix
 
@@ -177,11 +172,6 @@ docker container kill ${BUILD_TAG}-trxcon
 docker container kill ${BUILD_TAG}-fake_trx
 docker container kill ${BUILD_TAG}-bts
 cp virtphy/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
-# Disable until osmo-bts release > 1.5.0
-if ! image_suffix_is_master; then
-	sed -i "/^ logging level osmux info/d" $VOL_BASE_DIR/bts/osmo-bts.gen.cfg
-	sed -i "/^ osmux/{N;N;N;N;d;}" $VOL_BASE_DIR/bts/osmo-bts.gen.cfg
-fi
 network_replace_subnet_in_configs
 start_bts virtual 0
 start_virtphy
@@ -195,11 +185,6 @@ docker container kill ${BUILD_TAG}-virtphy
 docker container kill ${BUILD_TAG}-bts
 
 cp oml/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
-# Disable until osmo-bts release > 1.5.0
-if ! image_suffix_is_master; then
-	sed -i "/^ logging level osmux info/d" $VOL_BASE_DIR/bts/osmo-bts.gen.cfg
-	sed -i "/^ osmux/{N;N;N;N;d;}" $VOL_BASE_DIR/bts/osmo-bts.gen.cfg
-fi
 network_replace_subnet_in_configs
 start_bts trx 1
 start_fake_trx
@@ -210,11 +195,6 @@ start_testsuite oml
 # 4) Frequency hopping tests require different configuration files
 cp fh/osmo-bsc.gen.cfg $VOL_BASE_DIR/bsc/
 cp generic/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
-# Disable until osmo-bts release > 1.5.0
-if ! image_suffix_is_master; then
-	sed -i "/^ logging level osmux info/d" $VOL_BASE_DIR/bts/osmo-bts.gen.cfg
-	sed -i "/^ osmux/{N;N;N;N;d;}" $VOL_BASE_DIR/bts/osmo-bts.gen.cfg
-fi
 # restart the BSC/BTS and run the testsuite again
 docker container kill ${BUILD_TAG}-bts
 network_replace_subnet_in_configs

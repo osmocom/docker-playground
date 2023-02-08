@@ -44,11 +44,7 @@ docker run	--rm \
 		$DOCKER_ARGS \
 		$REPO_USER/osmo-bsc-$IMAGE_SUFFIX
 
-BTS_FEATURES="-fCCN,EGPRS,GPRS,IPv6_NSVC,PAGING_COORDINATION"
-# Disable until libosmocore release > 1.7.0
-if image_suffix_is_master; then
-	BTS_FEATURES="${BTS_FEATURES},OSMUX"
-fi
+BTS_FEATURES="-fCCN,EGPRS,GPRS,IPv6_NSVC,PAGING_COORDINATION,OSMUX"
 
 for i in "0 1" "1 1" "2 4"; do
 	set -- $i # convert the {BTS, TRXN} "tuple" into the param args $1 $2
