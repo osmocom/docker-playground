@@ -65,6 +65,10 @@ for i in "0 1" "1 1" "2 4"; do
 				>>/data/osmo-bts-omldummy-$1.log 2>&1"
 done
 
+# Give OsmoBSC time to connect to OsmoSTP, so BSSMAP RESET from the testsuite
+# doesn't fail in OsmoSTP with "MTP-TRANSFER.req for DPC 187: no route!"
+sleep 1
+
 echo Starting container with BSC testsuite
 docker run	--rm \
 		$(docker_network_params $SUBNET 203) \
