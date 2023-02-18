@@ -64,10 +64,9 @@ RUN	apt-get update && \
 # Make respawn.sh part of this image, so it can be used by other images based on it
 COPY	.common/respawn.sh /usr/local/bin/respawn.sh
 
-COPY	.common/Release.key /tmp/Release.key
-RUN	apt-key add /tmp/Release.key && \
-	rm /tmp/Release.key && \
-	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-nightly.list
+COPY	.common/Release.key /usr/share/keyrings/osmocom-nightly.asc
+RUN	echo "deb [signed-by=/usr/share/keyrings/osmocom-nightly.asc] $OSMOCOM_REPO ./" \
+		> /etc/apt/sources.list.d/osmocom-nightly.list
 
 # Invalidate cache once the repository is updated
 ADD	$OSMOCOM_REPO/Release /tmp/Release

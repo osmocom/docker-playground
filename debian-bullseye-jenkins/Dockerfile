@@ -161,10 +161,9 @@ ENV LANG en_US.UTF-8
 # * osmo-remsim: libulfius
 # * osmo-trx: liblimesuite-dev, libuhd-dev
 ARG	OSMOCOM_REPO="${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/nightly/Debian_11/"
-COPY	.common/Release.key /tmp/Release.key
-RUN	apt-key add /tmp/Release.key && \
-	rm /tmp/Release.key && \
-	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-nightly.list
+COPY	.common/Release.key /usr/share/keyrings/osmocom-nightly.asc
+RUN	echo "deb [signed-by=/usr/share/keyrings/osmocom-nightly.asc] $OSMOCOM_REPO ./" \
+		> /etc/apt/sources.list.d/osmocom-nightly.list
 ADD	$OSMOCOM_REPO/Release /tmp/Release
 RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \

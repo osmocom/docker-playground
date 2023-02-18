@@ -44,10 +44,9 @@ RUN	apt-get update && \
 RUN	apt-get update && apt-get install -y \
 		ca-certificates \
 		gnupg
-COPY	.common/Release.key /tmp/Release.key
-RUN	apt-key add /tmp/Release.key && \
-	rm /tmp/Release.key && \
-	echo "deb " $OSMOCOM_REPO " ./" > /etc/apt/sources.list.d/osmocom-latest.list
+COPY	.common/Release.key /usr/share/keyrings/osmocom-latest.asc
+RUN	echo "deb [signed-by=/usr/share/keyrings/osmocom-latest.asc] $OSMOCOM_REPO ./" \
+		> /etc/apt/sources.list.d/osmocom-latest.list
 ADD	$OSMOCOM_REPO/Release /tmp/Release
 
 # add a non-root user under which we will normaly execute build tests
