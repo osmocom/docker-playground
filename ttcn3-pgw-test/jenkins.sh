@@ -4,7 +4,7 @@
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
 	"open5gs-$IMAGE_SUFFIX" \
-	"osmo-uecups-master" \
+	"osmo-uecups-$IMAGE_SUFFIX" \
 	"ttcn3-pgw-test"
 
 mkdir $VOL_BASE_DIR/pgw-tester
@@ -70,7 +70,7 @@ docker run	--cap-add=NET_ADMIN --cap-add=SYS_ADMIN \
 		-e "WORKDIR=/data" \
 		--name ${BUILD_TAG}-uecups -d \
 		$DOCKER_ARGS \
-		$REPO_USER/osmo-uecups-master \
+		$REPO_USER/osmo-uecups-$IMAGE_SUFFIX \
 		/bin/sh -c "osmo-uecups-daemon -c /data/osmo-uecups-daemon.cfg >/data/osmo-uecups-daemon.log 2>&1"
 
 # start docker container with testsuite in foreground
