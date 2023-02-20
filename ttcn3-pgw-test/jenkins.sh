@@ -19,6 +19,9 @@ cp open5gs-*.yaml $VOL_BASE_DIR/pgw/
 cp upfd.sh $VOL_BASE_DIR/pgw/
 cp upfd-setup.sh $VOL_BASE_DIR/pgw/
 
+# make the testsuite dir writable by all users
+chmod 777 $VOL_BASE_DIR/pgw-tester/
+
 network_create
 network_replace_subnet_in_configs
 
