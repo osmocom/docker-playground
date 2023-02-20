@@ -30,3 +30,9 @@ RUN	apt-get update && \
 	apt-get install -y \
 		mongodb-org \
 		open5gs
+
+# create a user
+ARG	username=osmocom
+RUN	useradd -m --uid=1000 ${username} && \
+	echo "${username} ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/${username} && \
+	chmod 0440 /etc/sudoers.d/${username}
