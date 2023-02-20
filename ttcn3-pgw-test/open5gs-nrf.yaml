@@ -38,7 +38,7 @@ logger:
 #          - ::0
 #        port: 7777
 #
-#  o SBI Server(https://<all address avaiable>:443)
+#  o SBI Server(https://<all address available>:443)
 #    sbi:
 #        tls:
 #          key: nrf.key
@@ -65,6 +65,28 @@ logger:
 #    sbi:
 #      dev: eth0
 #
+#  o SBI Option (Default)
+#    - tcp_nodelay : true
+#    - so_linger.l_onoff : false
+#
+#    sbi:
+#      addr: 127.0.0.10
+#      option:
+#        tcp_nodelay: false
+#        so_linger:
+#          l_onoff: true
+#          l_linger: 10
+#
+#  <NF Service>
+#
+#  o NF Service Name(Default : all NF services available)
+#    service_name:
+#
+#  o NF Service Name(Only some NF services are available)
+#    service_name:
+#      - nnrf-nfm
+#      - nnrf-disc
+#
 nrf:
     sbi:
       addr:
@@ -72,10 +94,51 @@ nrf:
       port: 7777
 
 #
-# parameter:
+# scp:
 #
-#  o Number of output streams per SCTP associations.
-#      sctp_streams: 30
+#  <SBI Client>>
+#
+#  o SBI Client(http://127.0.1.10:7777)
+#    sbi:
+#      addr: 127.0.1.10
+#      port: 7777
+#
+#  o SBI Client(https://127.0.1.10:443, http://scp.open5gs.org:80)
+#    sbi:
+#      - addr: 127.0.1.10
+#        tls:
+#          key: scp.key
+#          pem: scp.pem
+#      - name: scp.open5gs.org
+#
+#  o SBI Client(http://[fd69:f21d:873c:fb::1]:80)
+#    If prefer_ipv4 is true, http://127.0.1.10:80 is selected.
+#
+#    sbi:
+#      addr:
+#        - 127.0.1.10
+#        - fd69:f21d:873c:fb::1
+#
+#  o SBI Option (Default)
+#    - tcp_nodelay : true
+#    - so_linger.l_onoff : false
+#
+#    sbi:
+#      addr: 127.0.1.10
+#      option:
+#        tcp_nodelay: false
+#        so_linger:
+#          l_onoff: true
+#          l_linger: 10
+#
+#
+scp:
+    sbi:
+      - addr: 127.0.1.10
+        port: 7777
+
+#
+# parameter:
 #
 #  o Disable use of IPv4 addresses (only IPv6)
 #      no_ipv4: true
@@ -91,36 +154,12 @@ parameter:
 #
 # max:
 #
-# o Maximum Number of UE per AMF/MME
+# o Maximum Number of UE
 #    ue: 1024
-# o Maximum Number of gNB/eNB per AMF/MME
-#    gnb: 64
+# o Maximum Number of Peer(S1AP/NGAP, DIAMETER, GTP, PFCP or SBI)
+#    peer: 64
 #
 max:
-
-#
-# pool:
-#
-# o The default memory pool size was set assuming 1024 UEs.
-#   To connect more UEs, you need to increase the size further.
-#
-#   - Pool-size 128         => 65536 Number
-#   - Pool-size 256         => 16384 Number
-#   - Pool-size 512         => 4096 Number
-#   - Pool-size 1024        => 1024 Number
-#   - Pool-size 2048        => 512 Number
-#   - Pool-size 8192        => 128 Number
-#   - Pool-size 1024*1024   => 8 Number
-#
-#    128:  65536
-#    256:  16384
-#    512:  4096
-#    1024: 1024
-#    2048: 512
-#    8192: 128
-#    big:  8
-#
-pool:
 
 #
 # time:
