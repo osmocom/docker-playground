@@ -11,6 +11,11 @@ RUN	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		ca-certificates \
 		gnupg \
+		iproute2 \
+		iputils-ping \
+		libcap2-bin \
+		net-tools \
+		sudo \
 		wget
 
 RUN	echo "deb [signed-by=$OPEN5GS_KEY] $OPEN5GS_REPO/ ./" \
