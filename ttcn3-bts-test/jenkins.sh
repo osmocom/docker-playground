@@ -168,9 +168,9 @@ start_testsuite generic
 # 2) some GPRS tests require virt_phy
 echo "Changing to virtphy configuration"
 # switch from osmo-bts-trx + trxcon + faketrx to virtphy + osmo-bts-virtual
-docker container kill ${BUILD_TAG}-trxcon
-docker container kill ${BUILD_TAG}-fake_trx
-docker container kill ${BUILD_TAG}-bts
+docker_kill_wait ${BUILD_TAG}-trxcon
+docker_kill_wait ${BUILD_TAG}-fake_trx
+docker_kill_wait ${BUILD_TAG}-bts
 cp virtphy/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
 network_replace_subnet_in_configs
 start_bts virtual 0
@@ -179,10 +179,10 @@ start_virtphy
 #start_testsuite virtphy
 
 # 3) OML tests require us to run without BSC
-docker container kill ${BUILD_TAG}-bsc
+docker_kill_wait ${BUILD_TAG}-bsc
 # switch back from virtphy + osmo-bts-virtual to osmo-bts-trx
-docker container kill ${BUILD_TAG}-virtphy
-docker container kill ${BUILD_TAG}-bts
+docker_kill_wait ${BUILD_TAG}-virtphy
+docker_kill_wait ${BUILD_TAG}-bts
 
 cp oml/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
 network_replace_subnet_in_configs
@@ -196,7 +196,7 @@ start_testsuite oml
 cp fh/osmo-bsc.gen.cfg $VOL_BASE_DIR/bsc/
 cp generic/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
 # restart the BSC/BTS and run the testsuite again
-docker container kill ${BUILD_TAG}-bts
+docker_kill_wait ${BUILD_TAG}-bts
 network_replace_subnet_in_configs
 start_bsc
 start_bts trx 1

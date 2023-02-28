@@ -190,9 +190,19 @@ docker_images_require() {
 	done
 }
 
+# Kill a docker container and ensure it has actually stopped (OS#5928)
+docker_kill_wait() {
+	docker kill "$@"
+	docker wait "$@" || true
+}
+
 #kills all containers attached to network
 network_clean() {
-	docker network inspect $NET_NAME | grep Name | cut -d : -f2 | awk -F\" 'NR>1{print $2}' | xargs -rn1 docker kill
+	local containers="$(docker network inspect $NET_NAME | grep Name | cut -d : -f2 | awk -F\" 'NR>1{print $2}')"
+
+	if [ -n "$containers" ]; then
+		docker_kill_wait $containers
+	fi
 }
 
 # Create network and find a free subnet automatically. The global variables

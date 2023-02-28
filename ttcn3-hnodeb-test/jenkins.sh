@@ -45,4 +45,4 @@ docker run	--rm \
 		$REPO_USER/ttcn3-hnodeb-test
 
 echo Stopping containers
-docker container kill ${BUILD_TAG}-hnodeb
+docker_kill_wait ${BUILD_TAG}-hnodeb

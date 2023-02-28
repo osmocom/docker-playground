@@ -28,6 +28,6 @@ docker run	--rm \
 
 echo Stopping containers
 
-docker container kill osmo-cn
+docker_kill_wait osmo-cn
 
 network_remove

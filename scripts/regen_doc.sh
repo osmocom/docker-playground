@@ -51,6 +51,6 @@ ${OSMO_INTERACT_VTY} \
 	-H "172.18.$SUBNET.23" \
 	-O "$VTYFILE"
 
-docker container kill "${BUILD_TAG}-$NAME-$IMAGE_SUFFIX"
+docker_kill_wait "${BUILD_TAG}-$NAME-$IMAGE_SUFFIX"
 
 network_remove

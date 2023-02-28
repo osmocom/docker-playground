@@ -74,8 +74,8 @@ run_tests() {
 			$REPO_USER/ttcn3-hnbgw-test
 
 	echo Stopping containers
-	docker container kill ${BUILD_TAG}-hnbgw
-	docker container kill ${BUILD_TAG}-stp
+	docker_kill_wait ${BUILD_TAG}-hnbgw
+	docker_kill_wait ${BUILD_TAG}-stp
 }
 
 echo Testing without PFCP

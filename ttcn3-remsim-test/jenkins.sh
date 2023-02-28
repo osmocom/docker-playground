@@ -80,7 +80,7 @@ write_mp_osmo_repo "$VOL_BASE_DIR/remsim-tester/REMSIM_Tests.cfg"
 network_replace_subnet_in_configs
 start_server
 start_testsuite
-docker container kill ${BUILD_TAG}-server
+docker_kill_wait ${BUILD_TAG}-server
 
 # 2) bankd test suite
 echo "Changing to bankd configuration"
@@ -89,7 +89,7 @@ write_mp_osmo_repo "$VOL_BASE_DIR/remsim-tester/REMSIM_Tests.cfg"
 network_replace_subnet_in_configs
 start_bankd
 start_testsuite
-docker container kill ${BUILD_TAG}-bankd
+docker_kill_wait ${BUILD_TAG}-bankd
 
 # 3) client test suite
 echo "Changing to client configuration"

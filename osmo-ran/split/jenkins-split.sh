@@ -68,9 +68,7 @@ run_image() {
 }
 
 kill_containers() {
-	for i in "${docker_names[@]}"; do
-		docker kill $i
-	done
+	docker_kill_wait "${docker_names[@]}"
 }
 
 remove_networks() {
