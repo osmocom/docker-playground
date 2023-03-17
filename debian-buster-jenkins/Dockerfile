@@ -48,6 +48,7 @@ RUN \
 		gawk \
 		gcc \
 		gcc-arm-none-eabi \
+		ghostscript \
 		git \
 		git-buildpackage \
 		graphviz \
