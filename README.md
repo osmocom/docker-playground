@@ -27,6 +27,16 @@ Environment variables:
 * `NO_DOCKER_IMAGE_BUILD`: when set to `1`, it won't try to update the
   containers (see "caching" below)
 
+### Using nightly packages from a different date
+
+Pick a date from [here](https://downloads.osmocom.org/obs-mirror/) and use it:
+
+```
+$ export OSMOCOM_REPO_PATH="obs-mirror/20230316-061901"
+$ cd ttcn3-bsc-test
+$ ./jenkins.sh
+```
+
 ### More examples
 
 latest (debian):
