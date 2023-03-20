@@ -12,6 +12,9 @@ ARG	OSMOCOM_REPO_PATH="packages/osmocom:"
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
 ARG DEBIAN_VERSION
 
+# LLVM-embedded-toolchain-for-Arm version
+ARG	LLVM_VERSION="14.0.0"
+
 # Install apt dependencies (keep in alphabetic order)
 RUN \
 	[ "$(arch)" = "x86_64" ] && dpkg --add-architecture i386; \
@@ -27,6 +30,7 @@ RUN \
 		bison \
 		bzip2 \
 		ca-certificates \
+		ccache \
 		cmake \
 		coccinelle \
 		cppcheck \
@@ -43,11 +47,13 @@ RUN \
 		gawk \
 		gcc \
 		gcc-arm-none-eabi \
+		ghostscript \
 		git \
 		git-buildpackage \
 		graphviz \
 		htop \
 		inkscape \
+		latexmk \
 		lcov \
 		libaio-dev \
 		libasound2-dev \
@@ -82,6 +88,7 @@ RUN \
 		libsqlite3-dev \
 		libssl-dev \
 		libtalloc-dev \
+		libtinfo5 \
 		libtool \
 		libusb-1.0-0-dev \
 		libusb-dev \
@@ -97,6 +104,8 @@ RUN \
 		patchelf \
 		picolibc-arm-none-eabi \
 		pkg-config \
+		python-setuptools \
+		python2.7 \
 		python3 \
 		python3-gi \
 		python3-mako \
@@ -114,17 +123,34 @@ RUN \
 		sudo \
 		systemd \
 		tcpdump \
+		tex-gyre \
 		texinfo \
 		unzip \
 		wget \
 		xsltproc
 
+RUN	set -x && \
+	[ "$(arch)" = "x86_64" ] || exit 0; \
+	wget -q https://github.com/ARM-software/LLVM-embedded-toolchain-for-Arm/releases/download/release-${LLVM_VERSION}/LLVMEmbeddedToolchainForArm-${LLVM_VERSION}-linux.tar.gz && \
+	tar -xf LLVMEmbeddedToolchainForArm-${LLVM_VERSION}-linux.tar.gz && \
+	rm LLVMEmbeddedToolchainForArm-${LLVM_VERSION}-linux.tar.gz && \
+	mv LLVMEmbeddedToolchainForArm-${LLVM_VERSION} /opt/llvm-arm && \
+	/opt/llvm-arm/bin/clang --version && \
+	/opt/llvm-arm/bin/clang --print-targets
+
 # Install pip dependencies (keep in alphabetic order)
 RUN pip3 install \
-	git+https://github.com/podshumok/python-smpplib.git \
-	git+https://github.com/eriwen/lcov-to-cobertura-xml.git \
-	pydbus \
-	pysispm
+	'git+https://github.com/eriwen/lcov-to-cobertura-xml.git' \
+	'git+https://github.com/osmocom/sphinx-argparse@master#egg=sphinx-argparse' \
+	'git+https://github.com/podshumok/python-smpplib.git' \
+	'pydbus' \
+	'pylint' \
+	'pysispm' \
+	'sphinx' \
+	'sphinxcontrib-napoleon' \
+	'swig'
+ADD https://gitea.osmocom.org/sim-card/pysim/raw/branch/master/requirements.txt /tmp/pysim_requirements.txt
+RUN pip3 install -r /tmp/pysim_requirements.txt
 
 # match the outside user
 RUN useradd --uid=1000 build
@@ -132,6 +158,14 @@ RUN useradd --uid=1000 build
 
 RUN mkdir /build
 RUN chown build:build /build
+
+# Install osmo-python-tests for python2 (OS#5950)
+ARG OSMO_PYTHON2_TESTS_COMMIT=fb4b813d4df62b7b2445bdced961eb1847267eed
+ADD http://git.osmocom.org/python/osmo-python-tests/patch/?id=$OSMO_PYTHON2_TESTS_COMMIT /tmp/osmo-python-tests2-commit
+RUN git clone https://gerrit.osmocom.org/python/osmo-python-tests osmo-python-tests2 && \
+	cd osmo-python-tests2 && \
+	git checkout $OSMO_PYTHON2_TESTS_COMMIT && \
+	python2 setup.py clean build install
 
 # Install osmo-python-tests for python3
 ADD http://git.osmocom.org/python/osmo-python-tests/patch /tmp/osmo-python-tests3-commit
