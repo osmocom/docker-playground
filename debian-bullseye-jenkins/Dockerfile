@@ -53,6 +53,7 @@ RUN \
 		graphviz \
 		htop \
 		inkscape \
+		iproute2 \
 		latexmk \
 		lcov \
 		libaio-dev \
