@@ -1,6 +1,10 @@
 #!/bin/bash
+# set -x
+# PS4='Line ${LINENO}: '
 
 RESTORE_NOTE_TC="Note: If --restore is given, then for restoring purposes, it suffices to append a dot to the testsuite name \(<TTCN3_TESTSUITE>.\)"
+
+# TODO: --install-dbg option for installing dbg packages for osmo related libs (?)
 
 usage () {
 	USAGE_STR=""
@@ -206,7 +210,7 @@ adapt_dockerfile_add() {
 			fi
 		fi
 		if [ -n "$wants" ]; then
-			rsync -avz "$ADD_REPO_PATH" . >/dev/null
+			rsync -avz --delete "$ADD_REPO_PATH" . >/dev/null
 			echo "$ADD_REPO_PATH" > "$DST_REPO_SUBDIR/COPY_SRC.txt"
 			if [ $? -ne 0 ]; then
 				echo "Error rsyncing" >&2
@@ -224,7 +228,7 @@ adapt_dockerfile_add() {
 	if echo "$SUBDIR_DOCKER" | grep -q '.*-titan'; then
 		echo "Deactivating some error checks related to Git procedures in Docker prepare script in order for Docker to use custom osmo-ttcn3-hacks folder"
 		# Change line for running make
-		sed -i 's:\(\tmake -j8 -C /osmo-ttcn3-hacks deps\):RUN\1:g' Dockerfile
+		sed -i 's:\(^\tmake -j8 -C /osmo-ttcn3-hacks deps\):RUN\1:g' Dockerfile
 		sed -i 's:if ! diff -q /tmp/deps-Makefile /osmo-ttcn3-hacks/deps/Makefile;:if false;:g' Dockerfile
 		# sed -i 's:\(\#!/bin/sh\) -e:\1:g' Dockerfile
 		# Add noop so as not to break if-else due to empty if-body
@@ -439,9 +443,12 @@ if [ -n "$OSMO_TTCN3_BRANCH_OPT" ]; then
 fi
 
 
-if [ -n "$SUBDIR" ] && ! [ -d $REPO_ROOT/$SUBDIR ]; then
-	echo "Error: Couldn't find subdirectory $SUBDIR" >&2
-	exit 1
+if [ -n "$SUBDIR" ]; then
+	determine_subdir_docker
+	if ! [ -d "$REPO_ROOT/$SUBDIR_DOCKER" ]; then
+		echo "Error: Couldn't find subdirectory $REPO_ROOT/$SUBDIR_DOCKER" >&2
+		exit 1
+	fi
 fi
 
 # TODO: Adapt testcases, restore them
