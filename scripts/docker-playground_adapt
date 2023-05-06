@@ -12,7 +12,7 @@ usage () {
 	USAGE_STR="${USAGE_STR}[-n|--no-prompt] [-d|--subdir <SUBDIR> [-i|--install PKG] [-A|--ADD [<REPO_DIR>]]] ] [[-a|--append] -t|--testcases <TTCN3_TESTCASE>... [-n|--no-prompt]] \n"
 	USAGE_STR="${USAGE_STR}Adapt Osmocom docker-playground to custom needs (branch pointed to, testcomponent and testcases to run).\n"
 	USAGE_STR="${USAGE_STR}\n"
-	USAGE_STR="${USAGE_STR}	-r, --restore		Restore target files from docker-playground to point to current commit of repository.\n"
+	USAGE_STR="${USAGE_STR}	-r, --restore		Restore files from docker-playground to point to current commit of repository.\n"
 	USAGE_STR="${USAGE_STR}	-c, --config-file	Name of config file (basename only, no path components): Only give this if the testsuite config file doesn't derive from the testcase name\n"
 	USAGE_STR="${USAGE_STR}				(e.g. for '-t Testcase BTS_Tests_SMSCB.TC_etws_pcu', we need to give the config file option '-c BTS_Tests.cfg', \n"
 	USAGE_STR="${USAGE_STR}				because the testsuite prefix doesn't follow a clear pattern. For testcases matching '-t NS_Tests.*',\n"
@@ -182,12 +182,13 @@ adapt_dockerfile_checkdir() {
 			exit 0
 		fi
 	fi
+# set +x
 }
 
 adapt_dockerfile_install() {
 	APT_GET_INST_LINE="apt-get install"
 	if (( $(cat Dockerfile | grep "'$APT_GET_INST_LINE'" | wc -l) > 1 )); then
-		echo "Found more than one line entry matching 'CMD.*git clone' in '"$(pwd)"'/Dockerfile, not proceeding" >&2
+		echo "Found more than one line entry matching $APT_GET_INST_LINE' in '"$(pwd)"'/Dockerfile, not proceeding" >&2
 		exit 1
 	fi
 	# See [1]
@@ -199,6 +200,7 @@ adapt_dockerfile_install() {
 	done
 }
 
+DOCKER_PREPARE_SCRIPT="../common/ttcn3-docker-prepare.sh"
 adapt_dockerfile_add() {
 	# DST_REPO_SUBDIR="$(echo $SUBDIR_DOCKER | sed 's/-master//')" #TODO: Make subdir adaptable in case some dirs don't play nice... I think our docker playground scripts are adapted to play nice though
 	DST_REPO_SUBDIR="$(basename $ADD_REPO_PATH)"
@@ -219,12 +221,14 @@ adapt_dockerfile_add() {
 			echo -e "Source dir: $ADD_REPO_PATH\nSynced: $(date)" > "$DST_REPO_SUBDIR/source_dir.txt"
 		fi
 	fi
-	if (( $(cat Dockerfile | grep 'RUN.*git clone' | wc -l) > 1 )); then
-		echo "Found more than one line entry matching 'CMD.*git clone' in '"$(pwd)"'/Dockerfile, not proceeding" >&2
+	RUN_GIT_CLONE_TTCN3='RUN.*git clone https://gerrit.osmocom.org/osmo-ttcn3-hacks'
+	if (( $(cat Dockerfile | grep "$RUN_GIT_CLONE_TTCN3"  | wc -l) > 1 )); then
+		echo "Found more than one line entry matching '$RUN_GIT_CLONE_TTCN3' in '"$(pwd)"'/Dockerfile, not proceeding" >&2
 		exit 1
 	fi
 
-	sed -i 's:RUN.*git clone.*$:ADD\t'"$DST_REPO_SUBDIR"' '"$DST_REPO_SUBDIR"':g' Dockerfile # Should fit the Dockerfile, e.g. 'osmo-bts' still being used inside Docker
+	# prepend '/' because that's where the Dockerfile expects the repo
+	sed -i 's:RUN.*git clone.*$:ADD\t'"$DST_REPO_SUBDIR"' '"/$DST_REPO_SUBDIR"':g' Dockerfile # Should fit the Dockerfile, e.g. 'osmo-bts' still being used inside Docker
 	if echo "$SUBDIR_DOCKER" | grep -q '.*-titan'; then
 		echo "Deactivating some error checks related to Git procedures in Docker prepare script in order for Docker to use custom osmo-ttcn3-hacks folder"
 		# Change line for running make
@@ -232,7 +236,7 @@ adapt_dockerfile_add() {
 		sed -i 's:if ! diff -q /tmp/deps-Makefile /osmo-ttcn3-hacks/deps/Makefile;:if false;:g' Dockerfile
 		# sed -i 's:\(\#!/bin/sh\) -e:\1:g' Dockerfile
 		# Add noop so as not to break if-else due to empty if-body
-		sed -i 's/\(^[\t ]*git\)/: #\1/g' ttcn3-docker-prepare.sh
+		sed -i 's/\(^[\t ]*git\)/: #\1/g' "$DOCKER_PREPARE_SCRIPT"
 	fi
 
 
@@ -275,7 +279,24 @@ while [ "$1" != "" ]; do
 			exit
 			;;
 		-r | --restore)
-			RESTORE="yes"
+			OLD_IFS="$IFS"; IFS=$'\n';
+			for fileline in `git status --porcelain | grep -v "^??"`; do
+				file="$(echo $fileline | awk '{print $2}')"
+				if echo "$file" | grep -q "$(basename $0)"; then
+					continue;
+				fi
+				rc=$?
+				if ! git checkout -- $file; then
+					echo "Error restoring file $file" >&2
+					rc=1
+				fi
+			done;
+			if [ $? -ne 0 ]; then
+				echo "Error restoring files" >&2
+				rc=1
+			fi
+			IFS="$OLD_IFS"
+			exit $rc
 			;;
 		-i | --install)
 			determine_subdir_docker
@@ -325,13 +346,20 @@ while [ "$1" != "" ]; do
 			;;
 		-d | --subdir)
 			SUBDIR="$(echo $VALUE | sed 's:/*$::')"
+			determine_subdir_docker
 			;;
 		-A | --ADD)
 			determine_subdir_docker
 			ADD="yes"
 			if [ -n "$VALUE" ] && ! echo $VALUE | grep -q "^-.*"; then
 				# sed: Remove trailing slashes for rsync
-				ADD_REPO_PATH="$(echo $(readlink -f $VALUE) | sed -s 's:\([^/]*\)/*$:\1:g')"
+				if ! [ -d "$VALUE" ]; then
+					echo "Error: Couldn't find path $VALUE" >&2
+				fi
+				if echo $VALUE | grep -q "^\."; then
+					VALUE="$(pwd)/$VALUE"
+				fi
+				ADD_REPO_PATH="$(echo $(realpath -s $VALUE) | sed -s 's:\([^/]*\)/*$:\1:g')"
 				if ! [ -d "$ADD_REPO_PATH" ]; then
 					echo "Error: Couldn't find path $ADD_REPO_PATH" >&2
 					exit 1
@@ -492,7 +520,7 @@ if [ -n "$ADD" ] || [ -n "$INSTALL_PKGS" ]; then # No files to list
 	else
 		adapt_dockerfile_checkdir
 		if [ -n "$RESTORE" ]; then
-			if ! git checkout -q -- Dockerfile ttcn3-docker-prepare.sh; then
+			if ! git checkout -q -- Dockerfile "$DOCKER_PREPARE_SCRIPT"; then
 				echo "Error restoring files Dockerfile ttcn3-docker-prepare.sh" >&2
 				RESTORE_ERR=1
 			fi
