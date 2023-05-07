@@ -212,13 +212,15 @@ adapt_dockerfile_add() {
 			fi
 		fi
 		if [ -n "$wants" ]; then
-			rsync -avz --delete "$ADD_REPO_PATH" . >/dev/null
-			echo "$ADD_REPO_PATH" > "$DST_REPO_SUBDIR/COPY_SRC.txt"
+			rsync -avz --delete "$ADD_REPO_PATH/" "$DST_REPO_SUBDIR" >/dev/null
 			if [ $? -ne 0 ]; then
 				echo "Error rsyncing" >&2
 				exit 1
 			fi
+			echo "$ADD_REPO_PATH" > "$DST_REPO_SUBDIR/COPY_SRC.txt"
 			echo -e "Source dir: $ADD_REPO_PATH\nSynced: $(date)" > "$DST_REPO_SUBDIR/source_dir.txt"
+			echo "NOTE: If compilation unexpectedly fails, note that the script running in Docker won't necessarily give accurate error messages/running "
+			echo "the make command on the host machine might however give better feedback! Try running make clean in $DST_REPO_SUBDIR"
 		fi
 	fi
 	RUN_GIT_CLONE_TTCN3='RUN.*git clone https://gerrit.osmocom.org/osmo-ttcn3-hacks'
@@ -239,6 +241,10 @@ adapt_dockerfile_add() {
 		sed -i 's/\(^[\t ]*git\)/: #\1/g' "$DOCKER_PREPARE_SCRIPT"
 	fi
 
+	echo "Link deps-Makefile instead of downloading it (maybe not necessary)"
+	if ! sed -i $'s;ADD\thttps://gerrit.osmocom.org/plugins/gitiles/osmo-ttcn3-hacks/+/refs/heads/master/deps/Makefile?format=TEXT /tmp/deps-Makefile;RUN\tln -s /osmo-ttcn3-hacks/deps/Makefile /tmp/deps-Makefile;g' Dockerfile; then
+		echo "Error replacing download line for deps-Makefile" >&2
+	fi
 
 	if echo "$SUBDIR_DOCKER" | grep -q '.*-titan'; then
 		return
