@@ -18,9 +18,12 @@ cfg: $(CFG_SRC_FILES) $(CFG_GEN_FILES)
 # Ensure that we always fetch up-to-date configuration files.
 # See https://www.gnu.org/software/make/manual/make.html#Force-Targets
 %src.cfg: FORCE_FETCH
-	$(MAKE) run \
-		RUN_ARGS="-v $(CURDIR):/data --user $(UID)" \
-		RUN_CMD="cp /osmo-ttcn3-hacks/bts/$(@:%.src.cfg=%.cfg) /data/$@"
+	docker run \
+		--rm \
+		--user $(UID) \
+		-v $(CURDIR):/data \
+		$(USER)/ttcn3-bts-test \
+		cp /osmo-ttcn3-hacks/bts/$(@:%.src.cfg=%.cfg) /data/$@
 FORCE_FETCH:
 
 generic/osmo-bts.gen.cfg: osmo-bts.src.cfg generic/osmo-bts.confmerge
