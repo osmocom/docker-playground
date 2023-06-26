@@ -15,15 +15,15 @@ shift
 
 cd /osmo-ttcn3-hacks
 
-git fetch
-git checkout "$OSMO_TTCN3_BRANCH"
+: #git fetch
+: #git checkout "$OSMO_TTCN3_BRANCH"
 
 if git symbolic-ref -q HEAD; then
-	git reset --hard origin/"$OSMO_TTCN3_BRANCH"
+: #	git reset --hard origin/"$OSMO_TTCN3_BRANCH"
 fi
 
-git rev-parse --abbrev-ref HEAD
-git rev-parse HEAD
+: #git rev-parse --abbrev-ref HEAD
+: #git rev-parse HEAD
 
 # Update deps if Makefile changed since last 'make deps' (e.g. because
 # OSMO_TTCN3_BRANCH is different). The Dockerfile does the initial 'make deps'

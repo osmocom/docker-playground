@@ -1,6 +1,6 @@
 #!/bin/bash
 # set -x
-# PS4='Line ${LINENO}: '
+ PS4='Line ${LINENO}: '
 
 RESTORE_NOTE_TC="Note: If --restore is given, then for restoring purposes, it suffices to append a dot to the testsuite name \(<TTCN3_TESTSUITE>.\)"
 
