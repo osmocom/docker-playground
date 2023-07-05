@@ -7,7 +7,7 @@
 	sleep 10m
 	echo
 	echo "=== Fetching git repositories (OS#5331) ==="
-	su redmine -c 'rails runner "Repository.fetch_changesets" -e production'
+	rails runner "Repository.fetch_changesets" -e production
 	echo
 done &) &
 
