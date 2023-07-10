@@ -82,9 +82,19 @@ run_tests() {
 	docker_kill_wait ${BUILD_TAG}-stp
 }
 
+osmo_stp_cfg="osmo-stp.cfg"
+osmo_hnbgw_cfg="osmo-hnbgw.cfg"
+osmo_hnbgw_with_pfcp_cfg="with-pfcp/osmo-hnbgw.cfg"
+
+if image_suffix_is_latest; then
+	osmo_stp_cfg="osmo-stp-legacy.cfg"
+	osmo_hnbgw_cfg="osmo-hnbgw-legacy.cfg"
+	osmo_hnbgw_with_pfcp_cfg="with-pfcp/osmo-hnbgw-legacy.cfg"
+fi
+
 echo Testing without PFCP
-run_tests "$VOL_BASE_DIR" "HNBGW_Tests.cfg" "osmo-stp.cfg" "osmo-hnbgw.cfg"
+run_tests "$VOL_BASE_DIR" "HNBGW_Tests.cfg" $osmo_stp_cfg $osmo_hnbgw_cfg
 
 echo Testing with PFCP
 mkdir "$VOL_BASE_DIR_PFCP"
-run_tests "$VOL_BASE_DIR_PFCP" "with-pfcp/HNBGW_Tests.cfg" "osmo-stp.cfg" "with-pfcp/osmo-hnbgw.cfg"
+run_tests "$VOL_BASE_DIR_PFCP" "with-pfcp/HNBGW_Tests.cfg" $osmo_stp_cfg $osmo_hnbgw_with_pfcp_cfg
