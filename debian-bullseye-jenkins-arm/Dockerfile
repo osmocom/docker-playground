@@ -33,6 +33,7 @@ RUN \
 		libsctp-dev \
 		libtalloc-dev \
 		libtool \
+		liburing-dev \
 		libusb-1.0-0-dev \
 		make \
 		pkg-config \

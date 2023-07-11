@@ -45,6 +45,7 @@ RUN	dnf install -y \
 		libsofia-sip-ua-glib3 \
 		libtalloc-devel \
 		libtool \
+		liburing-devel \
 		libusb1-devel \
 		lksctp-tools-devel \
 		make \

@@ -92,6 +92,7 @@ RUN \
 		libtalloc-dev \
 		libtinfo5 \
 		libtool \
+		liburing-dev \
 		libusb-1.0-0-dev \
 		libusb-dev \
 		libxml2-utils \

@@ -51,6 +51,7 @@ RUN	apt-get update && \
 		libsofia-sip-ua-glib-dev \
 		libsqlite3-dev \
 		libssl-dev \
+		liburing-dev \
 		libusb-dev \
 		libusb-1.0-0-dev \
 		make \
