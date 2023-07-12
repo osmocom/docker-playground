@@ -1,5 +1,6 @@
 CACHE_DIR="$(realpath ../_cache)"
 KERNEL_TEST_DIR="$(realpath ../scripts/kernel-test)"
+DEBIAN_DEFAULT="bookworm"
 
 docker_image_exists() {
 	test -n "$(docker images -q "$REPO_USER/$1")"
@@ -19,9 +20,9 @@ docker_depends() {
 	osmo-*-latest-centos8) echo "centos8-obs-latest" ;;
 	osmo-*-centos7) echo "centos7-build" ;;
 	osmo-*-centos8) echo "centos8-build" ;;
-	osmo-*-latest) echo "debian-bullseye-obs-latest" ;;
-	osmo-*) echo "debian-bullseye-build" ;;
-	open5gs-master) echo "debian-bullseye-build" ;;
+	osmo-*-latest) echo "debian-$DEBIAN_DEFAULT-obs-latest" ;;
+	osmo-*) echo "debian-$DEBIAN_DEFAULT-build" ;;
+	open5gs-master) echo "debian-$DEBIAN_DEFAULT-build" ;;
 	ttcn3-*) echo "debian-bullseye-titan" ;;
 	esac
 }
@@ -33,7 +34,9 @@ docker_distro_from_image_name() {
 	centos7-*) echo "centos7" ;;
 	centos8-*) echo "centos8" ;;
 	debian-buster-*) echo "debian-buster" ;;
-	*) echo "debian-bullseye" ;;
+	debian-bullseye-*) echo "debian-bullseye" ;;
+	debian-bookworm-*) echo "debian-bookworm" ;;
+	*) echo "debian-$DEBIAN_DEFAULT" ;;
 	esac
 }
 
@@ -46,9 +49,12 @@ docker_upstream_distro_from_image_name() {
 	debian9-*) echo "debian:stretch" ;;
 	debian10-*) echo "debian:buster" ;;
 	debian11-*) echo "debian:bullseye" ;;
+	debian12-*) echo "debian:bookworm" ;;
 	debian-stretch-*) echo "debian:stretch" ;;
 	debian-buster-*) echo "debian:buster" ;;
-	*) echo "debian:bullseye" ;;
+	debian-bullseye-*) echo "debian:bullseye" ;;
+	debian-bookworm-*) echo "debian:bookworm" ;;
+	*) echo "debian:$DEBIAN_DEFAULT" ;;
 	esac
 }
 
@@ -354,7 +360,7 @@ fix_perms() {
 			-v $VOL_BASE_DIR:/data \
 			-v $CACHE_DIR:/cache \
 			--name ${BUILD_TAG}-cleaner \
-			debian:bullseye \
+			"debian:$DEBIAN_DEFAULT" \
 			chmod -R a+rX /data/ /cache/
 }
 
