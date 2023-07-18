@@ -1,7 +1,7 @@
 ARG	REGISTRY=docker.io
 ARG	USER
-FROM	$USER/debian-bullseye-build
-
+ARG	DISTRO
+FROM	$USER/$DISTRO-build
 
 RUN apt-get update && \
     apt-get upgrade -y && \
