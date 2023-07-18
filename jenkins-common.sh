@@ -452,6 +452,7 @@ kernel_test_prepare() {
 		-e "KERNEL_REMOTE_NAME=$KERNEL_REMOTE_NAME" \
 		-e "KERNEL_URL=$KERNEL_URL" \
 		-e "KERNEL_SKIP_REBUILD=$KERNEL_SKIP_REBUILD" \
+		-e "KERNEL_SKIP_SMOKE_TEST=$KERNEL_SKIP_SMOKE_TEST" \
 		"$@" \
 		"$docker_image" \
 		"/kernel-test/prepare.sh"

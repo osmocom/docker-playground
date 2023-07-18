@@ -20,4 +20,6 @@ else
 	cp /boot/vmlinuz-* /cache/kernel-test/linux
 fi
 
-kernel_smoke_test
+if [ "$KERNEL_SKIP_SMOKE_TEST" != 1 ]; then
+	kernel_smoke_test
+fi

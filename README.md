@@ -84,6 +84,8 @@ Environment variables:
 * `KERNEL_BRANCH` branch to checkout (default: master)
 * `KERNEL_SKIP_REBUILD`: set to 1 to not build the kernel again if already
   built with `KERNEL_BUILD=1`
+* `KERNEL_SKIP_SMOKE_TEST`: don't boot up the kernel in QEMU once before
+  running the testsuite
 
 The OBS repository mirror consists of
 `${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/${OSMOCOM_REPO_VERSION}`,
