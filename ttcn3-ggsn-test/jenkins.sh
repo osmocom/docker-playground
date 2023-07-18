@@ -1,11 +1,5 @@
 #!/bin/sh
-# Environment variables:
-# * KERNEL_TEST: set to 1 to run osmo-ggsn with the kernel module in QEMU
-# * KERNEL_BUILD: set to 1 to build the kernel instead of using a pre-built one
-# * KERNEL_REMOTE_NAME: git remote name (to add multiple repos in the same local linux clone)
-# * KERNEL_URL: git remote url
-# * KERNEL_BRANCH: branch to checkout
-
+# Environment variables: see "Kernel test" section in README.md
 . ../jenkins-common.sh
 
 KERNEL_TEST="${KERNEL_TEST:-0}"
