@@ -25,13 +25,13 @@ qemu-system-x86_64 \
 	-smp 1 \
 	-m 512M \
 	-no-user-config -nodefaults -display none \
-	-gdb unix:/cache/kernel-test/gdb.pipe,server,nowait \
+	-gdb unix:/cache/kernel-test/gdb.pipe,server=on,wait=off \
 	-no-reboot \
 	-kernel /cache/kernel-test/linux \
 	-initrd /cache/kernel-test/initrd \
 	-append "${KERNEL_CMDLINE}" \
 	-serial stdio \
-	-chardev socket,id=charserial1,path=/cache/kernel-test/gdb-serial.pipe,server,nowait \
+	-chardev socket,id=charserial1,path=/cache/kernel-test/gdb-serial.pipe,server=on,wait=off \
 	-device isa-serial,chardev=charserial1,id=serial1 \
 	-netdev tap,id=nettest,script=/kernel-test/qemu-ifup.sh,downscript=/kernel-test/qemu-ifdown.sh \
 	-device virtio-net-pci,netdev=nettest,mac="$(random_mac)"
