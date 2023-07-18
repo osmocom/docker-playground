@@ -10,10 +10,10 @@ initrd_add_file() {
 	for i in "$@"; do
 		case "$i" in
 		/bin/*|/sbin/*|/lib/*|/lib64/*)
-			cp -a --parents "$@" /tmp/initrd/usr
+			cp -a --parents "$i" /tmp/initrd/usr
 			;;
 		*)
-			cp -a --parents "$@" /tmp/initrd
+			cp -a --parents "$i" /tmp/initrd
 			;;
 		esac
 	done
