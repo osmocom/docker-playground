@@ -61,8 +61,13 @@ update_kernel_config() {
 	cp .config "$previous"
 }
 
-prepare_git_repo
-update_kernel_config
+output="$KERNEL_DIR"/arch/x86/boot/bzImage
 
-make "-j$(nproc)"
-cp arch/x86/boot/bzImage /cache/kernel-test/linux
+if [ ! -e "$output" ] || [ "$KERNEL_SKIP_REBUILD" != 1 ]; then
+	prepare_git_repo
+	update_kernel_config
+
+	make "-j$(nproc)"
+fi
+
+cp "$output" /cache/kernel-test/linux

@@ -82,6 +82,8 @@ Environment variables:
   repositories in the same local linux clone, default: net-next)
 * `KERNEL_URL`: git remote url (default: net-next.git on kernel.org)
 * `KERNEL_BRANCH` branch to checkout (default: master)
+* `KERNEL_SKIP_REBUILD`: set to 1 to not build the kernel again if already
+  built with `KERNEL_BUILD=1`
 
 The OBS repository mirror consists of
 `${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/${OSMOCOM_REPO_VERSION}`,
