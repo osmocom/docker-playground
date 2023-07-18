@@ -31,6 +31,10 @@ run_tests() {
 	mkdir $base_dir/hnbgw-tester/unix
 	cp "$tests_cfg" $base_dir/hnbgw-tester/
 	write_mp_osmo_repo "$base_dir/hnbgw-tester/HNBGW_Tests.cfg"
+	# Can be removed once a new release osmo-hnbgw > 1.4.0 is avilable:
+	if ! image_suffix_is_master; then
+		sed -i 's/HNBGW_Tests.mp_validate_talloc_asn1 := true/HNBGW_Tests.mp_validate_talloc_asn1 := false/g' "$base_dir/hnbgw-tester/HNBGW_Tests.cfg"
+	fi
 
 	mkdir $base_dir/stp
 	cp "$stp_cfg" $base_dir/stp/
