@@ -10,6 +10,7 @@ KERNEL_CMDLINE="
 	root=/dev/ram0
 	console=ttyS0
 	panic=-1
+	init=/init
 	$@
 "
 
