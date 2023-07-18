@@ -1,9 +1,22 @@
 #!/bin/sh -ex
 
-# Add one or more files to the initramfs, with parent directories
+# Add one or more files to the initramfs, with parent directories.
+# usr-merge: resolve symlinks for /lib -> /usr/lib etc. so "cp --parents" does
+# not fail with "cp: cannot make directory '/tmp/initrd/lib': File exists"
 # $@: path to files
 initrd_add_file() {
-	cp -a --parents "$@" /tmp/initrd
+	local i
+
+	for i in "$@"; do
+		case "$i" in
+		/bin/*|/sbin/*|/lib/*|/lib64/*)
+			cp -a --parents "$@" /tmp/initrd/usr
+			;;
+		*)
+			cp -a --parents "$@" /tmp/initrd
+			;;
+		esac
+	done
 }
 
 # Add kernel module files with dependencies
@@ -82,10 +95,13 @@ initrd_add_cmd() {
 mkdir -p /tmp/initrd
 cd /tmp/initrd
 
+for dir in bin sbin lib lib64; do
+	ln -s usr/"$dir" "$dir"
+done
+
 mkdir -p \
 	dev/net \
 	proc \
-	sbin \
 	sys \
 	tmp \
 	usr/bin \
