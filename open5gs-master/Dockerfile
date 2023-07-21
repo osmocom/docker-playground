@@ -54,5 +54,5 @@ RUN cd $GITHUB_REPO && \
         --localstatedir=/var \
         --libdir=lib/x86_64-linux-gnu \
         --libexecdir=lib/x86_64-linux-gnu && \
-    meson configure -Dmetrics_impl=prometheus build && \
+    meson configure build && \
     ninja -C build install
