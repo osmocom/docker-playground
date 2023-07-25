@@ -23,7 +23,7 @@ RUN	apt-get update && \
 	DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends --no-install-suggests \
 		build-essential \
 		git \
-		inetutils-ping \
+		iputils-ping \
 		netcat-openbsd \
 		procps \
 		python3-pip \
