@@ -34,6 +34,8 @@ VOLUME	/data
 
 COPY	osmo-uecups-daemon.cfg /data/osmo-uecups-daemon.cfg
 
+RUN	usermod -l osmocom build
+
 WORKDIR	/data
 CMD	["/bin/sh", "-c", "/usr/local/bin/osmo-uecups-daemon -c /data/osmo-uecups-daemon.cfg >/data/osmo-uecups-daemon.log 2>&1"]
 
