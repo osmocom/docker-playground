@@ -66,6 +66,7 @@ RUN	set -x && \
 	git clone --depth=1 https://gerrit.osmocom.org/python/osmo-python-tests osmo-python-tests && \
 	cd osmo-python-tests && \
 	python3 setup.py clean build install && \
+	cd .. && \
 	rm -rf osmo-python-tests
 
 # Install osmo-ci.git/scripts to /usr/local/bin
