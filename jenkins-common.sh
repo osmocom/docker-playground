@@ -23,7 +23,7 @@ docker_depends() {
 	osmo-*-latest) echo "debian-$DEBIAN_DEFAULT-obs-latest" ;;
 	osmo-*) echo "debian-$DEBIAN_DEFAULT-build" ;;
 	open5gs-master) echo "debian-$DEBIAN_DEFAULT-build" ;;
-	ttcn3-*) echo "debian-bullseye-titan" ;;
+	ttcn3-*) echo "debian-bookworm-titan" ;;
 	esac
 }
 
@@ -147,7 +147,7 @@ docker_images_require() {
 		# they are up-to-date.
 		if [ "$REGISTRY_HOST" = "registry.osmocom.org" ]; then
 			case "$i" in
-			debian-bullseye-titan)
+			debian-bookworm-titan)
 				docker pull "$REGISTRY_HOST/$USER/$i"
 				continue
 				;;

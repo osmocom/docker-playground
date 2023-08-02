@@ -6,7 +6,7 @@ docker_images_require \
 	"debian-buster-build" \
 	"sigtran-tests" \
 	"osmo-stp-$IMAGE_SUFFIX" \
-	"debian-bullseye-titan" \
+	"debian-bookworm-titan" \
 	"nplab-m3ua-test"
 
 set_clean_up_trap

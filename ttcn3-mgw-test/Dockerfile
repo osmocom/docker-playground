@@ -1,6 +1,6 @@
 ARG	REGISTRY
 ARG	USER
-FROM	$REGISTRY/$USER/debian-bullseye-titan
+FROM	$REGISTRY/$USER/debian-bookworm-titan
 ARG	OSMO_TTCN3_BRANCH="master"
 
 ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-ttcn3-hacks/+/$OSMO_TTCN3_BRANCH?format=TEXT /tmp/commit

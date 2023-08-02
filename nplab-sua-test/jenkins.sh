@@ -5,7 +5,7 @@ IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
 	"debian-buster-build" \
 	"osmo-stp-$IMAGE_SUFFIX" \
-	"debian-bullseye-titan" \
+	"debian-bookworm-titan" \
 	"sigtran-tests" \
 	"nplab-sua-test"
 

@@ -1,6 +1,6 @@
 ARG	REGISTRY
 ARG	USER
-FROM	$REGISTRY/$USER/debian-bullseye-titan
+FROM	$REGISTRY/$USER/debian-bookworm-titan
 
 RUN	apt-get update && \
 	apt-get upgrade -y && \
