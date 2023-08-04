@@ -474,6 +474,57 @@ smf:
         - 172.18.3.201
         - ::1
 
+
+# <GTP-C Client>
+#
+#  o Specify SGSN addresses the GTP-C must connect to
+#
+#  o One SGSN is defined.
+#    If prefer_ipv4 is not true, [fd69:f21d:873c:fa::2] is selected.
+#  sgsn:
+#    - gtpc:
+#        addr:
+#          - 127.0.0.3
+#          - fd69:f21d:873c:fa::2
+#      routes:
+#       - rai: XYZ
+#         ci: XYZ
+#
+#  o Three SGW are defined. MME selects SGW with round-robin manner per UE
+#  sgsn:
+#    - gtpc:
+#        addr:
+#          - 127.0.0.3
+#          - fd69:f21d:873c:fa::2
+#      routes:
+#       - rai: XYZ
+#         ci: XYZ
+#    - gtpc:
+#        addr
+#          - 127.0.0.22
+#          - fd69:f21d:873c:fa::12
+#      routes:
+#       - rai: XYZ
+#         ci: XYZ
+#    - name: sgsn3.open5gs.org
+#      routes:
+#       - rai: XYZ
+#         ci: XYZ
+#
+sgsn:
+  - gtpc:
+      addr:
+        - 172.18.3.202
+    routes:
+      - rai:
+          lai:
+            plmn_id:
+              mcc: 262
+              mnc: 42
+            lac: 43690
+          rac: 187
+        ci: 1223
+
 #
 #  o Disable use of IPv4 addresses (only IPv6)
 #  parameter:
