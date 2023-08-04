@@ -84,7 +84,6 @@ RUN	set -x && \
 		gnupg \
 		graphviz \
 		htop \
-		inkscape \
 		iproute2 \
 		latexmk \
 		lcov \
@@ -97,6 +96,7 @@ RUN	set -x && \
 		libdbd-sqlite3 \
 		libdbi-dev \
 		libelf-dev \
+		librsvg2-bin \
 		libffi-dev \
 		libfftw3-dev \
 		libgmp-dev \
