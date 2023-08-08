@@ -41,7 +41,7 @@ run_tests() {
 
 	mkdir $base_dir/hnbgw
 	mkdir $base_dir/hnbgw/unix
-	cp "$hnbgw_cfg" $base_dir/hnbgw/
+	cp "$hnbgw_cfg" $base_dir/hnbgw/osmo-hnbgw.cfg
 
 	mkdir $base_dir/unix
 
