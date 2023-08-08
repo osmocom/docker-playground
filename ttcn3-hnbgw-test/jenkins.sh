@@ -37,7 +37,7 @@ run_tests() {
 	fi
 
 	mkdir $base_dir/stp
-	cp "$stp_cfg" $base_dir/stp/
+	cp "$stp_cfg" $base_dir/stp/osmo-stp.cfg
 
 	mkdir $base_dir/hnbgw
 	mkdir $base_dir/hnbgw/unix
