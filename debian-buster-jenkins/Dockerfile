@@ -1,4 +1,4 @@
-# Image used to run contrib/jenkins.sh scripts of most Osmocom projects.
+# osmo-gsm-tester is still using this (OS#6126).
 # See master-builds.yml, gerrit-verifications.yml in osmo-ci.git.
 
 ARG	DEBIAN_VERSION=buster
