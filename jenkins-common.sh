@@ -315,6 +315,7 @@ network_replace_subnet_in_configs() {
 		"$VOL_BASE_DIR" \
 		-name '*.cfg' -o \
 		-name '*.conf' -o \
+		-name '*.config' -o \
 		-name '*.confmerge' -o \
 		-name '*.inc' -o \
 		-name '*.scm' -o \
