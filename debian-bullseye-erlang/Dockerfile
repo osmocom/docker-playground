@@ -37,6 +37,7 @@ RUN	apt-get update && \
 RUN	apt-get update && \
 	apt-get -y install \
 		libpcap-dev \
+		libsctp1 \
 		&& \
 	apt-get clean
 
