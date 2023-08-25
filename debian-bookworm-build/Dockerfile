@@ -96,7 +96,6 @@ RUN	set -x && \
 		libdbd-sqlite3 \
 		libdbi-dev \
 		libelf-dev \
-		librsvg2-bin \
 		libffi-dev \
 		libfftw3-dev \
 		libgmp-dev \
@@ -108,6 +107,7 @@ RUN	set -x && \
 		libmnl-dev \
 		libncurses5-dev \
 		libnewlib-arm-none-eabi \
+		libnftables-dev \
 		libnl-3-dev \
 		libnl-route-3-dev \
 		liboping-dev \
@@ -115,6 +115,7 @@ RUN	set -x && \
 		libpcap-dev \
 		libpcsclite-dev \
 		libreadline-dev \
+		librsvg2-bin \
 		libsctp-dev \
 		libsigsegv-dev \
 		libsnmp-dev \
