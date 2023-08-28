@@ -65,6 +65,7 @@ RUN	set -x && \
 		cmake \
 		coccinelle \
 		cppcheck \
+		curl \
 		dahdi-source \
 		dblatex \
 		dbus \
