@@ -23,6 +23,6 @@ VOLUME	/data
 COPY	osmo_dia2gsup.config /data/osmo_dia2gsup.config
 
 WORKDIR	/data
-CMD	["/bin/sh", "-c", "ERL_FLAGS='-config /data/osmo_dia2gsup.config' /tmp/osmo_dia2gsup/_build/default/bin/osmo-dia2gsup > /data/osmo_dia2gsup.config.log 2>&1"]
+CMD	["/bin/sh", "-c", "ERL_FLAGS='-config /data/osmo_dia2gsup.config' /tmp/osmo_dia2gsup/_build/default/bin/osmo-dia2gsup > /data/osmo_dia2gsup.log 2>&1"]
 
 #EXPOSE
