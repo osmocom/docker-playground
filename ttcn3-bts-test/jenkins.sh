@@ -121,31 +121,17 @@ start_testsuite() {
 			$REPO_USER/ttcn3-bts-test
 }
 
-set_pcuif_version() {
-    # This changes the PCUIF module parameter of the TTCN3 testsuite when the testsuite is
-    # executed for current master. For latest the PCUIF module parameter must stay at v.10
-    # since in osmo-btw-latest PCUIF v.11 is not yet supported. After the next release PCUIF
-    # v.11 will be supported in osmo-bts-latest as well and this function, including the
-    # PCUIF_Types.mp_pcuif_version setting in the configuration files can be removed.
-    if image_suffix_is_master; then
-	sed -i 's/PCUIF_Types.mp_pcuif_version := 10/PCUIF_Types.mp_pcuif_version := 11/g' $1
-    fi
-}
-
 network_create
 
 mkdir $VOL_BASE_DIR/bts-tester-generic
 cp generic/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-generic/
 write_mp_osmo_repo "$VOL_BASE_DIR/bts-tester-generic/BTS_Tests.cfg"
-set_pcuif_version "$VOL_BASE_DIR/bts-tester-generic/BTS_Tests.cfg"
 mkdir $VOL_BASE_DIR/bts-tester-virtphy
 cp virtphy/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-virtphy/
 write_mp_osmo_repo "$VOL_BASE_DIR/bts-tester-virtphy/BTS_Tests.cfg"
-set_pcuif_version "$VOL_BASE_DIR/bts-tester-virtphy/BTS_Tests.cfg"
 mkdir $VOL_BASE_DIR/bts-tester-oml
 cp oml/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-oml/
 write_mp_osmo_repo "$VOL_BASE_DIR/bts-tester-oml/BTS_Tests.cfg"
-set_pcuif_version "$VOL_BASE_DIR/bts-tester-oml/BTS_Tests.cfg"
 mkdir $VOL_BASE_DIR/bts-tester-hopping
 cp fh/BTS_Tests.cfg $VOL_BASE_DIR/bts-tester-hopping/
 write_mp_osmo_repo "$VOL_BASE_DIR/bts-tester-hopping/BTS_Tests.cfg"
