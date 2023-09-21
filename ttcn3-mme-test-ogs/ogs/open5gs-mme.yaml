@@ -515,6 +515,7 @@ sgsn:
   - gtpc:
       addr:
         - 172.18.3.202
+      port: 2124
     routes:
       - rai:
           lai:
