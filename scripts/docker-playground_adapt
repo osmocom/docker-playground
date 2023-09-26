@@ -136,7 +136,7 @@ adapt_ttcn3_testcases() {
 		fi
 		if [ -n "$TESTCASES" ] && echo "$file" | grep -q "[^/]*$FNAME_REGEX"; then
 			if [ -z "$NO_PROMPT" ] && ! user_wants "Adapt file $file?" "$NO_PROMPT"; then # Multiple cfg files possible, so we prompt
-				break; # Avoid too many nested ifs...
+				continue; # Avoid too many nested ifs...
 			fi
 			TMP_FILE="/tmp/$$_file"
 			TESTCASE_REGEX="$testsuite"'\.[^\t ]*'
