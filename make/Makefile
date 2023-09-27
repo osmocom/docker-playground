@@ -42,8 +42,8 @@ OSMO_UECUPS_BRANCH?=master
 OPEN5GS_BRANCH?=main
 BUILD_ARGS?=
 RUN_ARGS?=-it
-UPSTREAM_DISTRO?=debian:bullseye
-DISTRO?=debian-bullseye
+UPSTREAM_DISTRO?=debian:bookworm
+DISTRO?=debian-bookworm
 
 # Full OBS repository mirror consists of:
 # ${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/${OSMOCOM_REPO_VERSION}
