@@ -1,6 +1,7 @@
 FROM redmine:4.2-passenger
 
 RUN	apt-get update && \
+	apt-get -y upgrade && \
 	apt-get install -y --no-install-recommends \
 		graphviz \
 		imagemagick \
