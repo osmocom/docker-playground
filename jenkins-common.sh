@@ -21,6 +21,7 @@ docker_depends() {
 	osmo-*-centos7) echo "centos7-build" ;;
 	osmo-*-centos8) echo "centos8-build" ;;
 	osmo-*-latest) echo "debian-$DEBIAN_DEFAULT-obs-latest" ;;
+	osmo_dia2gsup-*) echo "debian-$DEBIAN_DEFAULT-erlang" ;;
 	osmo-*) echo "debian-$DEBIAN_DEFAULT-build" ;;
 	open5gs-master) echo "debian-$DEBIAN_DEFAULT-build" ;;
 	ttcn3-*) echo "debian-bookworm-titan" ;;
