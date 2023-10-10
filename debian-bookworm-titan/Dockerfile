@@ -19,6 +19,7 @@ RUN	set -x && \
 	apt-get install -y --no-install-recommends \
 		build-essential \
 		ca-certificates \
+		ccache \
 		git \
 		iputils-ping \
 		netcat-openbsd \
@@ -30,6 +31,10 @@ RUN	set -x && \
 		wireshark-common \
 		&& \
 	apt-get clean
+
+# Ccache is installed above so it can be optionally used when rebuilding the
+# testsuites inside the docker containers. Don't use it by default.
+ENV	USE_CCACHE=0
 
 # Binary-only transcoding library for RANAP/RUA/HNBAP to work around TITAN only implementing BER
 RUN	set -x && \
