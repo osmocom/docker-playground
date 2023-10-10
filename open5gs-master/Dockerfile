@@ -55,4 +55,5 @@ RUN	cd $GITHUB_REPO && \
 		--libdir=lib/x86_64-linux-gnu \
 		--libexecdir=lib/x86_64-linux-gnu && \
 	meson configure build && \
-	ninja -C build install
+	ninja -C build install && \
+	install -m 0755 build/misc/db/open5gs-dbctl /usr/bin/open5gs-dbctl
