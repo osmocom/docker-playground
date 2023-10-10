@@ -2,6 +2,8 @@ ARG	REGISTRY=docker.io
 ARG	USER
 ARG	DISTRO
 FROM	$USER/$DISTRO-build
+# Arguments used after FROM must be specified again
+ARG	DISTRO
 
 RUN	apt-get update && \
 	apt-get upgrade -y && \
@@ -13,8 +15,33 @@ RUN	apt-get update && \
 		iproute2 \
 		iputils-ping \
 		libcap2-bin \
-		net-tools && \
+		net-tools \
+		wget && \
 	apt-get clean
+
+ARG	MONGODB_KEY=/usr/share/keyrings/mongodb-org.asc
+RUN	wget "https://pgp.mongodb.com/server-5.0.asc" -O "$MONGODB_KEY"
+RUN	case "$DISTRO" in \
+	debian-*) \
+		DEBIAN_VERSION=$(echo "$DISTRO" | cut -d "-" -f2); \
+		if [ "x${DEBIAN_VERSION}" = "xbookworm" ]; then \
+			echo "Using bullseye since bookworm mongodb-org package is not available. Furthermore, manually install required libssl1.1." && \
+			DEBIAN_VERSION="bullseye" && \
+			wget "http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.1_1.1.1n-0+deb10u6_amd64.deb" && \
+			dpkg -i "libssl1.1_1.1.1n-0+deb10u6_amd64.deb" && \
+			rm "libssl1.1_1.1.1n-0+deb10u6_amd64.deb"; \
+		fi; \
+		echo "deb [signed-by=$MONGODB_KEY] http://repo.mongodb.org/apt/debian ${DEBIAN_VERSION}/mongodb-org/5.0 main" \
+		> /etc/apt/sources.list.d/mongodb-org.list \
+		;; \
+	centos*) \
+		echo "TODO: centos" && \
+		exit 1 \
+		;; \
+	esac
+RUN	apt-get update && \
+	apt-get install -y \
+		mongodb-org
 
 # create a user
 ARG	username=osmocom
