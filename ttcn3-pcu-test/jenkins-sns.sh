@@ -9,10 +9,17 @@ docker_images_require \
 set_clean_up_trap
 set -e
 
+set_pcuif_version() {
+	if image_suffix_is_2023q1; then
+		sed -i 's/PCUIF_Types.mp_pcuif_version := 11/PCUIF_Types.mp_pcuif_version := 10/g' $1
+	fi
+}
+
 mkdir $VOL_BASE_DIR/pcu-tester
 mkdir $VOL_BASE_DIR/pcu-tester/unix
 cp sns/PCU_Tests.cfg $VOL_BASE_DIR/pcu-tester/
 write_mp_osmo_repo "$VOL_BASE_DIR/pcu-tester/PCU_Tests.cfg"
+set_pcuif_version "$VOL_BASE_DIR/pcu-tester/PCU_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/pcu
 mkdir $VOL_BASE_DIR/pcu/unix

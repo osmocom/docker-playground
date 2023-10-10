@@ -503,6 +503,14 @@ image_suffix_is_master() {
 	esac
 }
 
+# Check if IMAGE_SUFFIX starts with "2023q1" (e.g. "2023q1-centos8")
+image_suffix_is_2023q1() {
+	case "$IMAGE_SUFFIX" in
+	2023q1*) return 0 ;;
+	*) return 1 ;;
+	esac
+}
+
 # Write the Osmocom repository to the TTCN3 config file, so the tests may take
 # different code paths (OS#5327)
 # $1: path to TTCN3 config file (e.g. BSC_Tests.cfg)
