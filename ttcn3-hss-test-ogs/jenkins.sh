@@ -24,6 +24,9 @@ cp ogs/freediameter.conf $VOL_BASE_DIR/hss/
 network_create
 network_replace_subnet_in_configs
 
+MONGOD_ADDR="172.18.$SUBNET.103"
+DBCTL="open5gs-dbctl --db_uri=mongodb://$MONGOD_ADDR/open5gs"
+
 # start container with mongod in background
 docker run	--rm --user $(id -u) \
 		$(docker_network_params $SUBNET 103) \
@@ -35,16 +38,22 @@ docker run	--rm --user $(id -u) \
 		/bin/sh -c "mongod -f /data/mongod.conf >/data/mongod.out 2>&1"
 
 # mongod needs some time to bootstrap...
-while ! nc -z 172.18.$SUBNET.103 27017; do sleep 1; done
+while ! nc -z $MONGOD_ADDR 27017; do sleep 1; done
 
 # create a test subscriber with IMSI=001010000000000
 docker run	--rm \
 		$(docker_network_params $SUBNET 8) \
 		$REPO_USER/open5gs-$IMAGE_SUFFIX \
-		open5gs-dbctl --db_uri=mongodb://172.18.$SUBNET.103/open5gs \
-			add 001010000000000 \
-				3c6e0b8a9c15224a8228b9a98ca1531d \
-				762a2206fe0b4151ace403c86a11e479
+		$DBCTL add 001010000000000 3c6e0b8a9c15224a8228b9a98ca1531d 762a2206fe0b4151ace403c86a11e479
+
+# Mark test subscriber with IMSI=001010000000001 as:
+# Subscriber-Status=OPERATOR_DETERMINED_BARRING (1)
+# Operator-Determined-Barring="Barring of all outgoing inter-zonal calls except those directed to the home PLMN country" (7)
+docker run	--rm \
+		$(docker_network_params $SUBNET 8) \
+		$REPO_USER/open5gs-$IMAGE_SUFFIX \
+		/bin/sh -c "$DBCTL add 001010000000001 3c6e0b8a9c15224a8228b9a98ca1531d 762a2206fe0b4151ace403c86a11e479 &&
+			    $DBCTL subscriber_status 001010000000001 1 7"
 
 # start container with hss in background
 docker run	--sysctl net.ipv6.conf.all.disable_ipv6=0 \
