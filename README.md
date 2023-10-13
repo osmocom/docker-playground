@@ -26,6 +26,16 @@ Environment variables:
   Osmocom project. Defaults to `master`.
 * `NO_DOCKER_IMAGE_BUILD`: when set to `1`, it won't try to update the
   containers (see "caching" below)
+* `DOCKER_ARGS`: pass extra arguments to docker, e.g. to mount local sources
+  for building as done in osmo-dev.git/ttcn3/ttcn3.sh
+
+### Run only one test
+
+```
+$ cd ttcn3-hlr-test
+$ export DOCKER_ARGS="-e TEST_NAME=TC_gsup_sai"
+$ ./jenkins.sh
+```
 
 ### Using nightly packages from a different date
 

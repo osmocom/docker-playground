@@ -33,7 +33,21 @@ fi
 
 cd /data
 
-/osmo-ttcn3-hacks/start-testsuite.sh "/osmo-ttcn3-hacks/$SUBDIR/$SUITE"
+# Use TEST_NAME to only run one test instead of all. Set it like this:
+# $ cd ttcn3-hlr-test
+# $ export DOCKER_ARGS="-e TEST_NAME=TC_gsup_sai"
+# $ ./jenkins.sh
+
+EXTRA_ARGS=""
+if [ -n "$TEST_NAME" ]; then
+	EXTRA_ARGS="$SUITE.$TEST_NAME"
+fi
+
+/osmo-ttcn3-hacks/start-testsuite.sh \
+	"/osmo-ttcn3-hacks/$SUBDIR/$SUITE" \
+	"$SUITE.cfg" \
+	$EXTRA_ARGS
+
 exit_code=$?
 
 /osmo-ttcn3-hacks/log_merge.sh "$SUITE" --rm
