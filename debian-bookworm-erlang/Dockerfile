@@ -8,24 +8,15 @@ ARG	OSMOCOM_REPO_PATH="packages/osmocom:"
 ARG	OSMOCOM_REPO="${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/latest/Debian_12/"
 ARG	UID
 
-# Install the erlang vm and rebar (2)
+# Install the erlang vm and rebar (2 and 3)
 RUN	set -x && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		erlang \
 		rebar \
+		rebar3 \
 		&& \
 	apt-get clean
-
-# Add rebar3
-ARG	REBAR3_VERSION="3.18.0"
-ADD	https://github.com/erlang/rebar3/archive/refs/tags/${REBAR3_VERSION}.tar.gz /tmp/rebar3.tar.gz
-RUN	set -x && \
-	tar -zxf /tmp/rebar3.tar.gz && \
-	cd rebar3-${REBAR3_VERSION} && \
-	./bootstrap && \
-	install -Dm0755 "rebar3" "/usr/bin/rebar3" && \
-	rm /tmp/rebar3.tar.gz
 
 # Install minimal build utilities as well as system utilities
 RUN	set -x && \
