@@ -1,4 +1,7 @@
 ARG	USER
+# needs buster as the code *really* requires old guile-2.0
+# which is not available in more modern distributions, see
+# https://github.com/nplab/m3ua-testtool/issues/2 for more info
 FROM	$USER/debian-buster-build
 
 
