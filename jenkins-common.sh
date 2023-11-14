@@ -122,6 +122,27 @@ list_osmo_packages() {
 	set -x
 }
 
+# Get the osmo-ttcn3-hacks branch to use, based on the IMAGE_SUFFIX we are
+# testing. This allows e.g. running 2023q1 SUTs against the 2023q1 branch of
+# osmo-ttcn3-hacks.git (SYS#6638). The OSMO_TTCN3_BRANCH env var can be used to
+# override it in any case.
+# $IMAGE_SUFFIX: e.g. 2023q1-centos8
+docker_osmo_ttcn3_branch() {
+	if [ -n "$OSMO_TTCN3_BRANCH" ]; then
+		echo "$OSMO_TTCN3_BRANCH"
+		return
+	fi
+
+	case "$IMAGE_SUFFIX" in
+	20*q*)
+		echo "$IMAGE_SUFFIX" | cut -d- -f 1
+		;;
+	*)
+		echo "master"
+		;;
+	esac
+}
+
 # Make sure required images are available and build them if necessary.
 # $*: image names (e.g. "debian-bullseye-build", "osmo-mgw-master", "osmo-mgw-master-centos8")
 #	The images are automatically built from the Dockerfile of the subdir of
@@ -184,6 +205,7 @@ docker_images_require() {
 				UPSTREAM_DISTRO="$upstream_distro_arg" \
 				DISTRO="$distro_arg" \
 				IMAGE="$REPO_USER/$i" \
+				OSMO_TTCN3_BRANCH="$(docker_osmo_ttcn3_branch)" \
 				|| exit 1
 		fi
 
