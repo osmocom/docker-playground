@@ -5,6 +5,10 @@ db_uri: mongodb://localhost/open5gs
 logger:
     level: info
 
+global:
+  max:
+    ue: 1024
+
 sbi:
     server:
       no_tls: true
@@ -19,9 +23,9 @@ sbi:
 
 nrf:
     sbi:
-      addr:
-        - 172.18.18.10
-      port: 7777
+      server:
+        - address: 172.18.18.10
+          port: 7777
 
 scp:
     sbi:

@@ -3,6 +3,10 @@
 logger:
     level: info
 
+global:
+  max:
+    ue: 1024
+
 sbi:
     server:
       no_tls: true
@@ -17,21 +21,34 @@ sbi:
 
 smf:
     sbi:
-      - addr: 172.18.18.4
-        port: 7777
+      server:
+        - address: 172.18.18.4
+          port: 7777
+      client:
+        nrf:
+          - uri: http://172.18.18.10:7777
+        scp:
+          - uri: http://127.0.1.10:7777
     pfcp:
-      - addr: 172.18.18.4
+      server:
+        - address: 172.18.18.4
+      client:
+        upf:
+          - address: 172.18.18.7
     gtpc:
-      - addr: 172.18.18.4
+      server:
+        - address: 172.18.18.4
     gtpu:
-      - addr: 172.18.18.4
+      server:
+        - address: 172.18.18.4
     metrics:
-        addr: 172.18.18.4
-        port: 9090
-    subnet:
-      - addr: 10.45.0.1/16
+      server:
+        - address: 172.18.18.4
+          port: 9090
+    session:
+      - subnet: 10.45.0.1/16
         dnn: internet
-      - addr: cafe::1/64
+      - subnet: cafe::1/64
         dnn: internet
     dns:
       - 8.8.8.8
@@ -42,20 +59,6 @@ smf:
     ctf:
       enabled: auto
     freeDiameter: /data/freeDiameter-smf.conf
-
-scp:
-    sbi:
-      - addr: 127.0.1.10
-        port: 7777
-nrf:
-    sbi:
-      - addr:
-          - 172.18.18.10
-        port: 7777
-
-upf:
-    pfcp:
-      - addr: 172.18.18.7
 
 parameter:
 

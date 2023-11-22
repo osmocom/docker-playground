@@ -3,22 +3,27 @@
 logger:
     level: info
 
+global:
+  max:
+    ue: 1024
+
 upf:
     pfcp:
-      - addr: 172.18.18.7
+      server:
+        - address: 172.18.18.7
+      client:
+        smf:
+          - address: 172.18.18.4
     gtpu:
-      - addr: 172.18.18.7
-    subnet:
-      - addr: 10.45.0.1/16
+      server:
+        - address: 172.18.18.7
+    session:
+      - subnet: 10.45.0.1/16
         dnn: internet
         dev: ogstun46
-      - addr: cafe::1/64
+      - subnet: cafe::1/64
         dnn: internet
         dev: ogstun46
-
-smf:
-    pfcp:
-      addr: 172.18.18.4
 
 parameter:
 

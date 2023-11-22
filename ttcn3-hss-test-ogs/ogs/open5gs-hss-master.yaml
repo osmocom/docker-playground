@@ -5,6 +5,10 @@ db_uri: mongodb://172.18.3.103/open5gs
 logger:
     level: trace
 
+global:
+  max:
+    ue: 1024
+
 hss:
     freeDiameter: /data/freediameter.conf
 
