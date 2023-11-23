@@ -15,7 +15,7 @@ cp osmo-uecups-daemon.cfg $VOL_BASE_DIR/osmo-uecups/
 
 mkdir $VOL_BASE_DIR/pgw
 cp freeDiameter-smf.conf $VOL_BASE_DIR/pgw/
-cp open5gs-*.yaml $VOL_BASE_DIR/pgw/
+cp open5gs-*-$IMAGE_SUFFIX.yaml $VOL_BASE_DIR/pgw/
 cp upfd.sh $VOL_BASE_DIR/pgw/
 cp upfd-setup.sh $VOL_BASE_DIR/pgw/
 
@@ -33,7 +33,7 @@ docker run	--rm \
 		--name ${BUILD_TAG}-nrf -d \
 		$DOCKER_ARGS \
 		$REPO_USER/open5gs-$IMAGE_SUFFIX \
-		/bin/sh -c "open5gs-nrfd -c /data/open5gs-nrf.yaml >/data/open5gs-nrf.out 2>&1"
+		/bin/sh -c "open5gs-nrfd -c /data/open5gs-nrf-$IMAGE_SUFFIX.yaml >/data/open5gs-nrf.out 2>&1"
 
 # start container with open5gs-upfd in background
 docker run	--cap-add=NET_ADMIN \
@@ -46,7 +46,7 @@ docker run	--cap-add=NET_ADMIN \
 		--name ${BUILD_TAG}-upf -d \
 		$DOCKER_ARGS \
 		$REPO_USER/open5gs-$IMAGE_SUFFIX \
-		/bin/sh -c "/data/upfd.sh -c /data/open5gs-upf.yaml >/data/open5gs-upfd.out 2>&1"
+		/bin/sh -c "/data/upfd.sh -c /data/open5gs-upf-$IMAGE_SUFFIX.yaml >/data/open5gs-upfd.out 2>&1"
 
 # start container with open5gs-smfd in background
 docker run	--cap-add=NET_ADMIN \
@@ -59,8 +59,8 @@ docker run	--cap-add=NET_ADMIN \
 		--name ${BUILD_TAG}-smf -d \
 		$DOCKER_ARGS \
 		$REPO_USER/open5gs-$IMAGE_SUFFIX \
-		/bin/sh -c "open5gs-smfd -c /data/open5gs-smf.yaml >/data/open5gs-smfd.out 2>&1"
-		#/bin/sh -c "gdb -ex 'handle SIG32 pass nostop noprint' -ex 'run' -ex 'bt' --arg open5gs-smfd -c /data/open5gs-smf.yaml >/data/open5gs-smfd.out 2>&1"
+		/bin/sh -c "open5gs-smfd -c /data/open5gs-smf-$IMAGE_SUFFIX.yaml >/data/open5gs-smfd.out 2>&1"
+		#/bin/sh -c "gdb -ex 'handle SIG32 pass nostop noprint' -ex 'run' -ex 'bt' --arg open5gs-smfd -c /data/open5gs-smf-$IMAGE_SUFFIX.yaml >/data/open5gs-smfd.out 2>&1"
 
 # start container with osmo-ugcups-daemon in background; SYS_ADMIN required for CLONE_NEWNS
 docker run	--cap-add=NET_ADMIN --cap-add=SYS_ADMIN \

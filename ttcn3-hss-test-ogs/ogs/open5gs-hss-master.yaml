@@ -1,0 +1,13 @@
+# See https://github.com/open5gs/open5gs/blob/main/configs/open5gs/hss.yaml.in
+
+db_uri: mongodb://172.18.3.103/open5gs
+
+logger:
+    level: trace
+
+hss:
+    freeDiameter: /data/freediameter.conf
+
+parameter:
+
+max:

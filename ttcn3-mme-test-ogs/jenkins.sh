@@ -15,7 +15,7 @@ cp ogs/MME_Tests.cfg $VOL_BASE_DIR/mme-tester/
 write_mp_osmo_repo "$VOL_BASE_DIR/mme-tester/MME_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/mme
-cp ogs/open5gs-*.yaml $VOL_BASE_DIR/mme/
+cp ogs/open5gs-*-$IMAGE_SUFFIX.yaml $VOL_BASE_DIR/mme/
 cp ogs/freediameter.conf $VOL_BASE_DIR/mme/
 cp ogs/mme.sh $VOL_BASE_DIR/mme/
 
@@ -31,7 +31,7 @@ docker run	--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		$DOCKER_ARGS \
 		$(docker_network_params $SUBNET 201) \
 		$REPO_USER/open5gs-$IMAGE_SUFFIX \
-		/bin/sh -c "open5gs-mmed -c /data/open5gs-mme.yaml >/data/open5gs-mmed.out 2>&1"
+		/bin/sh -c "open5gs-mmed -c /data/open5gs-mme-$IMAGE_SUFFIX.yaml >/data/open5gs-mmed.out 2>&1"
 
 # start docker container with testsuite in foreground
 docker run	--rm \

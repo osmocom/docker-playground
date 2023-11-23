@@ -1,0 +1,27 @@
+# See https://github.com/open5gs/open5gs/blob/main/configs/open5gs/upf.yaml.in
+
+logger:
+    level: info
+
+upf:
+    pfcp:
+      - addr: 172.18.18.7
+    gtpu:
+      - addr: 172.18.18.7
+    subnet:
+      - addr: 10.45.0.1/16
+        dnn: internet
+        dev: ogstun46
+      - addr: cafe::1/64
+        dnn: internet
+        dev: ogstun46
+
+smf:
+    pfcp:
+      addr: 172.18.18.4
+
+parameter:
+
+max:
+
+time:

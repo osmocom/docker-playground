@@ -1,0 +1,64 @@
+# See https://github.com/open5gs/open5gs/blob/main/configs/open5gs/mme.yaml.in
+
+logger:
+    level: info
+
+mme:
+    freeDiameter: /data/freediameter.conf
+    s1ap:
+      - addr: 172.18.3.201
+    gtpc:
+      - addr: 172.18.3.201
+    metrics:
+      - addr: 172.18.3.201
+        port: 9090
+    gummei:
+      plmn_id:
+        mcc: 001
+        mnc: 01
+      mme_gid: 2
+      mme_code: 1
+    tai:
+      plmn_id:
+        mcc: 001
+        mnc: 01
+      tac: 12345
+    security:
+        integrity_order : [ EIA2, EIA1, EIA0 ]
+        ciphering_order : [ EEA0, EEA1, EEA2 ]
+    network_name:
+        full: Open5GS
+    mme_name: open5gs-mme0
+
+sgwc:
+    gtpc:
+      - addr: 172.18.3.202
+
+smf:
+    gtpc:
+      - addr:
+        - 172.18.3.201
+        - ::1
+
+sgsn:
+  - gtpc:
+      addr:
+        - 172.18.3.202
+      port: 2124
+    routes:
+      - rai:
+          lai:
+            plmn_id:
+              mcc: 262
+              mnc: 42
+            lac: 43690
+          rac: 187
+        ci: 1223
+
+parameter:
+
+max:
+
+usrsctp:
+
+time:

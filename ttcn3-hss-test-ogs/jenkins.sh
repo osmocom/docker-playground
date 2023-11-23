@@ -18,7 +18,7 @@ cp ogs/HSS_Tests.cfg $VOL_BASE_DIR/hss-tester/
 write_mp_osmo_repo "$VOL_BASE_DIR/hss-tester/HSS_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/hss
-cp ogs/open5gs-*.yaml $VOL_BASE_DIR/hss/
+cp ogs/open5gs-*-$IMAGE_SUFFIX.yaml $VOL_BASE_DIR/hss/
 cp ogs/freediameter.conf $VOL_BASE_DIR/hss/
 
 network_create
@@ -64,7 +64,7 @@ docker run	--sysctl net.ipv6.conf.all.disable_ipv6=0 \
 		$DOCKER_ARGS \
 		$(docker_network_params $SUBNET 201) \
 		$REPO_USER/open5gs-$IMAGE_SUFFIX \
-		/bin/sh -c "open5gs-hssd -c /data/open5gs-hss.yaml >/data/open5gs-hssd.out 2>&1"
+		/bin/sh -c "open5gs-hssd -c /data/open5gs-hss-$IMAGE_SUFFIX.yaml >/data/open5gs-hssd.out 2>&1"
 
 # start docker container with testsuite in foreground
 docker run	--rm \
