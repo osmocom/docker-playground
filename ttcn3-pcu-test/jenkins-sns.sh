@@ -11,7 +11,7 @@ set -e
 
 set_pcuif_version() {
 	if image_suffix_is_2023q1; then
-		sed -i 's/PCUIF_Types.mp_pcuif_version := 11/PCUIF_Types.mp_pcuif_version := 10/g' $1
+		sed -i 's/PCUIF_Types.mp_pcuif_version := 12/PCUIF_Types.mp_pcuif_version := 10/g' $1
 	fi
 }
 
