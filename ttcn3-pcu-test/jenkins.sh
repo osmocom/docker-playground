@@ -11,16 +11,7 @@ set -e
 
 set_pcuif_version() {
 	if image_suffix_is_2023q1; then
-		sed -i 's/PCUIF_Types.mp_pcuif_version := 11/PCUIF_Types.mp_pcuif_version := 10/g' $1
-	fi
-
-	# This changes the PCUIF module parameter of the TTCN3 testsuite when the testsuite is
-	# executed for current master. For latest the PCUIF module parameter must stay at v.11
-	# since in osmo-pcu-latest PCUIF v.12 is not yet supported. After the next release, PCUIF
-	# v.12 will be supported in osmo-pcu-latest as well and this function, including the
-	# PCUIF_Types.mp_pcuif_version setting in the configuration files can be removed.
-	if image_suffix_is_master; then
-		sed -i 's/PCUIF_Types.mp_pcuif_version := 11/PCUIF_Types.mp_pcuif_version := 12/g' $1
+		sed -i 's/PCUIF_Types.mp_pcuif_version := 12/PCUIF_Types.mp_pcuif_version := 10/g' $1
 	fi
 }
 
