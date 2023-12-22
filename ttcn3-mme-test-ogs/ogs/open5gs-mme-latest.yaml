@@ -51,7 +51,7 @@ sgsn:
             plmn_id:
               mcc: 262
               mnc: 42
-            lac: 43690
+            lac: 39594
           rac: 187
         ci: 1223
 
