@@ -1,7 +1,7 @@
 # See https://github.com/open5gs/open5gs/blob/main/configs/open5gs/mme.yaml.in
 
 logger:
-    level: info
+    level: debug
 
 mme:
     freeDiameter: /data/freediameter.conf
