@@ -110,6 +110,7 @@ RUN \
 		python-setuptools \
 		python2.7 \
 		python3 \
+		python3-cryptography \
 		python3-gi \
 		python3-mako \
 		python3-nwdiag \
