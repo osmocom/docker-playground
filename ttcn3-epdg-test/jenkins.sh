@@ -22,7 +22,10 @@ network_replace_subnet_in_configs
 echo Starting container with osmo-epdg
 docker run	--rm \
 		$(docker_network_params $SUBNET 20) \
+		-u root \
 		--ulimit core=-1 \
+		--cap-add=NET_ADMIN \
+		--device /dev/net/tun:/dev/net/tun \
 		-v $VOL_BASE_DIR/epdg:/data \
 		--name ${BUILD_TAG}-epdg -d \
 		$DOCKER_ARGS \
