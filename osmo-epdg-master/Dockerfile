@@ -15,6 +15,7 @@ RUN	cd osmo-epdg && \
 	git fetch && git checkout $OSMO_EPDG_BRANCH && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_EPDG_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
+	rm -f rebar.lock && \
 	rebar3 compile && \
 	rebar3 escriptize
 
