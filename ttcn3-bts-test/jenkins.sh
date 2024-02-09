@@ -182,8 +182,11 @@ docker_kill_wait ${BUILD_TAG}-fake_trx
 docker_kill_wait ${BUILD_TAG}-bts
 cp virtphy/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
 network_replace_subnet_in_configs
-start_bts virtual 0
-start_virtphy
+# FIXME: multicast to/from a docker bridge network is currently not possible.
+# See https://github.com/moby/libnetwork/issues/2397.
+echo "XXX: not running the virtphy configuration"
+#start_bts virtual 0
+#start_virtphy
 # ... and execute the testsuite again with different cfg
 #start_testsuite virtphy
 
