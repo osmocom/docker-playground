@@ -193,8 +193,8 @@ echo "XXX: not running the virtphy configuration"
 # 3) OML tests require us to run without BSC
 docker_kill_wait ${BUILD_TAG}-bsc
 # switch back from virtphy + osmo-bts-virtual to osmo-bts-trx
-docker_kill_wait ${BUILD_TAG}-virtphy
-docker_kill_wait ${BUILD_TAG}-bts
+#docker_kill_wait ${BUILD_TAG}-virtphy
+#docker_kill_wait ${BUILD_TAG}-bts
 
 cp oml/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
 network_replace_subnet_in_configs
