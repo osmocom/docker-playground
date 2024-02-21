@@ -31,6 +31,9 @@ docker run	--rm \
 		$DOCKER_ARGS \
 		$REPO_USER/osmo-epdg-$IMAGE_SUFFIX
 
+# Give some time to osmo-epdg to be fully started; it's a bit slow...
+sleep 2
+
 echo Starting container with EPDG testsuite
 docker run	--rm \
 		$(docker_network_params $SUBNET 103) \
