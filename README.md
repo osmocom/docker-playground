@@ -28,12 +28,26 @@ Environment variables:
   containers (see "caching" below)
 * `DOCKER_ARGS`: pass extra arguments to docker, e.g. to mount local sources
   for building as done in osmo-dev.git/ttcn3/ttcn3.sh
+* `TEST_CONFIGS`: for tests that can run with multiple config sets (e.g.
+  `ttcn3-bts-test`), run only some of them. See `TEST_CONFIGS_ALL` in the
+  `jenkins.sh` for possible values.
 
 ### Run only one test
+
+Run only `TC_gsup_sai` in `ttcn3-hlr-test`:
 
 ```
 $ cd ttcn3-hlr-test
 $ export DOCKER_ARGS="-e TEST_NAME=TC_gsup_sai"
+$ ./jenkins.sh
+```
+
+Run only `TC_est_dchan` in `ttcn3-bts-test`, with the `generic` configuration:
+
+```
+$ cd ttcn3-bts-test
+$ export DOCKER_ARGS="-e TEST_NAME=TC_est_dchan"
+$ export TEST_CONFIGS="generic"
 $ ./jenkins.sh
 ```
 

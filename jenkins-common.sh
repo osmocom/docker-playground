@@ -569,6 +569,43 @@ write_mp_osmo_repo() {
 		"$config"
 }
 
+# Output the name of the test config and check if it is enabled. Use this
+# function in jenkins.sh, after setting TEST_CONFIGS_ALL, e.g.:
+#   TEST_CONFIGS_ALL="generic oml hopping"
+# The user can then set TEST_CONFIGS to only run one of the test
+# configurations.
+# $1: one of TEST_CONFIGS_ALL, e.g. "classic"
+test_config_enabled() {
+	local config="$1"
+	local i
+	local valid=0
+
+	for i in $TEST_CONFIGS_ALL; do
+		if [ "$config" = "$i" ]; then
+			valid=1
+			break
+		fi
+	done
+
+	if [ "$valid" != "1" ]; then
+		set +x
+		echo "ERROR: config name '$config' is not one of '$TEST_CONFIGS_ALL'"
+		exit 1
+	fi
+
+	if [ -z "$TEST_CONFIGS" ]; then
+		return 0
+	fi
+
+	for i in $TEST_CONFIGS; do
+		if [ "$config" = "$i" ]; then
+			return 0
+		fi
+	done
+
+	return 1
+}
+
 set -x
 
 # non-jenkins execution: assume local user name

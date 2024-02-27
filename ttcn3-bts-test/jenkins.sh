@@ -1,4 +1,6 @@
 #!/bin/sh
+TEST_CONFIGS_ALL="generic virtphy oml hopping"
+TEST_CONFIGS="${TEST_CONFIGS:-"generic oml hopping"}"
 
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
@@ -13,12 +15,14 @@ set_clean_up_trap
 set -e
 
 clean_up() {
-	# append ':hopping' to the classnames,
-	# e.g. "classname='BTS_Tests'" => "classname='BTS_Tests:hopping'"
-	# e.g. "classname='BTS_Tests_SMSCB'" => "classname='BTS_Tests_SMSCB:hopping'"
-	# so the hopping test cases would not interfere with non-hopping ones in Jenkins
-	sed -i "s/classname='\([^']\+\)'/classname='\1:hopping'/g" \
-		$VOL_BASE_DIR/bts-tester-hopping/junit-xml-hopping-*.log
+	if test_config_enabled "hopping"; then
+		# append ':hopping' to the classnames,
+		# e.g. "classname='BTS_Tests'" => "classname='BTS_Tests:hopping'"
+		# e.g. "classname='BTS_Tests_SMSCB'" => "classname='BTS_Tests_SMSCB:hopping'"
+		# so the hopping test cases would not interfere with non-hopping ones in Jenkins
+		sed -i "s/classname='\([^']\+\)'/classname='\1:hopping'/g" \
+			$VOL_BASE_DIR/bts-tester-hopping/junit-xml-hopping-*.log
+	fi
 }
 
 start_bsc() {
@@ -167,49 +171,77 @@ mkdir $VOL_BASE_DIR/trxcon
 mkdir $VOL_BASE_DIR/virtphy
 
 # 1) classic test suite with BSC for OML and trxcon+fake_trx
-network_replace_subnet_in_configs
-start_bsc
-start_bts trx 1
-start_fake_trx
-start_trxcon
-start_testsuite generic
+if test_config_enabled "generic"; then
+	network_replace_subnet_in_configs
+
+	start_bsc
+	start_bts trx 1
+	start_fake_trx
+	start_trxcon
+
+	start_testsuite generic
+
+	docker_kill_wait ${BUILD_TAG}-trxcon
+	docker_kill_wait ${BUILD_TAG}-fake_trx
+	docker_kill_wait ${BUILD_TAG}-bts
+	docker_kill_wait ${BUILD_TAG}-bsc
+fi
 
 # 2) some GPRS tests require virt_phy
-echo "Changing to virtphy configuration"
-# switch from osmo-bts-trx + trxcon + faketrx to virtphy + osmo-bts-virtual
-docker_kill_wait ${BUILD_TAG}-trxcon
-docker_kill_wait ${BUILD_TAG}-fake_trx
-docker_kill_wait ${BUILD_TAG}-bts
-cp virtphy/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
-network_replace_subnet_in_configs
-# FIXME: multicast to/from a docker bridge network is currently not possible.
-# See https://github.com/moby/libnetwork/issues/2397.
-echo "XXX: not running the virtphy configuration"
-#start_bts virtual 0
-#start_virtphy
-# ... and execute the testsuite again with different cfg
-#start_testsuite virtphy
+if test_config_enabled "virtphy"; then
+	# FIXME: multicast to/from a docker bridge network is currently not possible.
+	# See https://github.com/moby/libnetwork/issues/2397.
+	set +x
+	echo "ERROR: not running the virtphy configuration"
+	exit 1
+
+	cp virtphy/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
+	network_replace_subnet_in_configs
+
+	start_bsc
+	start_bts virtual 0
+	start_virtphy
+
+	start_testsuite virtphy
+
+	docker_kill_wait ${BUILD_TAG}-virtphy
+	docker_kill_wait ${BUILD_TAG}-bts
+	docker_kill_wait ${BUILD_TAG}-bsc
+fi
 
 # 3) OML tests require us to run without BSC
-docker_kill_wait ${BUILD_TAG}-bsc
-# switch back from virtphy + osmo-bts-virtual to osmo-bts-trx
-#docker_kill_wait ${BUILD_TAG}-virtphy
-#docker_kill_wait ${BUILD_TAG}-bts
+if test_config_enabled "oml"; then
+	cp oml/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
+	network_replace_subnet_in_configs
 
-cp oml/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
-network_replace_subnet_in_configs
-start_bts trx 1
-start_fake_trx
-start_trxcon
-# ... and execute the testsuite again with different cfg
-start_testsuite oml
+	start_bsc
+	start_bts trx 1
+	start_fake_trx
+	start_trxcon
+
+	start_testsuite oml
+
+	docker_kill_wait ${BUILD_TAG}-trxcon
+	docker_kill_wait ${BUILD_TAG}-fake_trx
+	docker_kill_wait ${BUILD_TAG}-bts
+	docker_kill_wait ${BUILD_TAG}-bsc
+fi
 
 # 4) Frequency hopping tests require different configuration files
-cp fh/osmo-bsc.gen.cfg $VOL_BASE_DIR/bsc/
-cp generic/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
-# restart the BSC/BTS and run the testsuite again
-docker_kill_wait ${BUILD_TAG}-bts
-network_replace_subnet_in_configs
-start_bsc
-start_bts trx 1
-start_testsuite hopping
+if test_config_enabled "hopping"; then
+	cp fh/osmo-bsc.gen.cfg $VOL_BASE_DIR/bsc/
+	cp generic/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
+	network_replace_subnet_in_configs
+
+	start_bsc
+	start_bts trx 1
+	start_fake_trx
+	start_trxcon
+
+	start_testsuite hopping
+
+	docker_kill_wait ${BUILD_TAG}-trxcon
+	docker_kill_wait ${BUILD_TAG}-fake_trx
+	docker_kill_wait ${BUILD_TAG}-bsc
+	docker_kill_wait ${BUILD_TAG}-bts
+fi
