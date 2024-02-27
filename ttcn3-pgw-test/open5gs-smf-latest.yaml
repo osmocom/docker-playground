@@ -1,7 +1,7 @@
 # See https://github.com/open5gs/open5gs/blob/main/configs/open5gs/smf.yaml.in
 
 logger:
-    level: info
+    level: debug
 
 sbi:
     server:
@@ -39,6 +39,9 @@ smf:
       - 2001:4860:4860::8888
       - 2001:4860:4860::8844
     mtu: 1400
+    p-cscf:
+      - 172.18.18.7
+      - fd02:db8:18::7
     ctf:
       enabled: auto
     freeDiameter: /data/freeDiameter-smf.conf
