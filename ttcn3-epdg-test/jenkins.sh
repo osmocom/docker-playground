@@ -18,6 +18,9 @@ cp osmo-epdg.config $VOL_BASE_DIR/epdg/
 
 network_create
 network_replace_subnet_in_configs
+# gtp_u_kmod has the IP addresses as usual erlang-tuple format. Patch them too:
+sed -i -E -e "s/172\,18\,[0-9]{1,3}\,/172,18,$SUBNET,/g" $VOL_BASE_DIR/epdg/osmo-epdg.config
+#TODO: Patch IPv6 address once it's supported.
 
 echo Starting container with osmo-epdg
 docker run	--rm \
