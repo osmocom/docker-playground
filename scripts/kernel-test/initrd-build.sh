@@ -117,6 +117,8 @@ initrd_add_mod \
 initrd_add_file \
 	/lib/modules/*/modules.dep
 
+mknod dev/null c 1 3
+
 # Required for osmo-ggsn
 mknod dev/net/tun c 10 200
 
