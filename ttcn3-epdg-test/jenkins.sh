@@ -15,6 +15,8 @@ write_mp_osmo_repo "$VOL_BASE_DIR/epdg-tester/EPDG_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/epdg
 cp osmo-epdg.config $VOL_BASE_DIR/epdg/
+cp epdg.sh $VOL_BASE_DIR/epdg/
+cp ../common/pipework $VOL_BASE_DIR/epdg/
 
 network_create
 network_replace_subnet_in_configs
@@ -32,7 +34,10 @@ docker run	--rm \
 		-v $VOL_BASE_DIR/epdg:/data \
 		--name ${BUILD_TAG}-epdg -d \
 		$DOCKER_ARGS \
-		$REPO_USER/osmo-epdg-$IMAGE_SUFFIX
+		--sysctl net.ipv4.conf.all.rp_filter=0 \
+		--sysctl net.ipv4.conf.default.rp_filter=0 \
+		$REPO_USER/osmo-epdg-$IMAGE_SUFFIX \
+		/bin/sh -c "/data/epdg.sh >/data/osmo-epdg.log 2>&1"
 
 # Give some time to osmo-epdg to be fully started; it's a bit slow...
 sleep 2
