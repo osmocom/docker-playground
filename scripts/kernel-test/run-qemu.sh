@@ -11,6 +11,7 @@ KERNEL_CMDLINE="
 	console=ttyS0
 	panic=-1
 	init=/init
+	loglevel=8
 	$@
 "
 
