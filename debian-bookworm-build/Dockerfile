@@ -90,6 +90,7 @@ RUN	set -x && \
 		lcov \
 		libaio-dev \
 		libasound2-dev \
+		libbladerf-dev \
 		libboost-all-dev \
 		libc-ares-dev \
 		libcdk5-dev \

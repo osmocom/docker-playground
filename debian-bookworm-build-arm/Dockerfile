@@ -37,6 +37,7 @@ RUN	set -x && \
 		g++ \
 		gcc \
 		git \
+		libbladerf-dev \
 		libboost-dev \
 		libboost-filesystem-dev \
 		libboost-program-options-dev \
