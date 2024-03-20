@@ -50,6 +50,8 @@ docker run	--rm \
 		$(docker_network_params $SUBNET 10) \
 		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
+		-e "OSMO_SUT_HOST=172.18.$SUBNET.101" \
+		-e "OSMO_SUT_PORT=4240" \
 		-v $VOL_BASE_DIR/pcu-tester:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-ttcn3-pcu-test-sns \

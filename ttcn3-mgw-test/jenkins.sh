@@ -34,6 +34,8 @@ docker run	--rm \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/mgw-tester:/data \
 		-e "TTCN3_PCAP_PATH=/data" \
+		-e "OSMO_SUT_HOST=172.18.$SUBNET.180" \
+		-e "OSMO_SUT_PORT=4243" \
 		--name ${BUILD_TAG}-ttcn3-mgw-test \
 		$DOCKER_ARGS \
 		$REPO_USER/ttcn3-mgw-test

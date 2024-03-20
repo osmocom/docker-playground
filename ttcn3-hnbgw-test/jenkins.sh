@@ -67,6 +67,8 @@ run_tests() {
 			$(docker_network_params $SUBNET 203) \
 			--ulimit core=-1 \
 			-e "TTCN3_PCAP_PATH=/data" \
+			-e "OSMO_SUT_HOST=172.18.$SUBNET.20" \
+			-e "OSMO_SUT_PORT=4261" \
 			-v $base_dir/hnbgw-tester:/data \
 			-v $base_dir/unix:/data/unix \
 			--name ${BUILD_TAG}-ttcn3-hnbgw-test \
