@@ -1,0 +1,4 @@
+# https://unix.stackexchange.com/a/755022
+# Keys Expired But I ~~Want~~ Need To Hold On To The Past
+deb [trusted=yes] http://archive.debian.org/debian jessie main
+deb [trusted=yes] http://archive.debian.org/debian-security jessie/updates main
