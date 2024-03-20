@@ -8,6 +8,6 @@ RUN	ttcn3-docker-prepare "$OSMO_TTCN3_BRANCH" ggsn_tests
 
 VOLUME	/data
 
-COPY	GGSN_Tests.cfg /data/GGSN_Tests.cfg
+COPY	ttcn3/GGSN_Tests.cfg /data/GGSN_Tests.cfg
 
 CMD	ttcn3-docker-run ggsn_tests GGSN_Tests

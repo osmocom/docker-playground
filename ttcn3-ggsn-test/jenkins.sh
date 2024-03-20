@@ -16,13 +16,12 @@ start_ggsn() {
 	GGSN_CMD="osmo-ggsn -c /data/osmo-ggsn.cfg"
 	GGSN_DOCKER_ARGS=""
 	if [ "$KERNEL_TEST" = "1" ]; then
-		cp osmo-ggsn-kernel-gtp.cfg $VOL_BASE_DIR/ggsn/osmo-ggsn.cfg
-		cp initrd-ggsn.sh $VOL_BASE_DIR/ggsn/
+		cp osmo-ggsn-kernel/initrd-ggsn.sh $VOL_BASE_DIR/ggsn/
 		network_replace_subnet_in_configs
 
 		kernel_test_prepare \
 			"defconfig" \
-			"fragment.config" \
+			"osmo-ggsn-kernel/fragment.config" \
 			"$VOL_BASE_DIR/ggsn/initrd-ggsn.sh" \
 			"$REPO_USER/osmo-ggsn-$IMAGE_SUFFIX" \
 			-v $VOL_BASE_DIR/ggsn:/data
@@ -36,8 +35,6 @@ start_ggsn() {
 			"
 		OSMO_SUT_HOST="172.18.$SUBNET.200"
 	else
-		cp osmo-ggsn.cfg $VOL_BASE_DIR/ggsn/
-		network_replace_subnet_in_configs
 
 		GGSN_DOCKER_ARGS="
 			$(docker_network_params $SUBNET 201)
@@ -75,11 +72,21 @@ start_testsuite() {
 }
 
 mkdir $VOL_BASE_DIR/ggsn-tester
-cp GGSN_Tests.cfg $VOL_BASE_DIR/ggsn-tester/
+cp ttcn3/GGSN_Tests.cfg $VOL_BASE_DIR/ggsn-tester/
 write_mp_osmo_repo "$VOL_BASE_DIR/ggsn-tester/GGSN_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/ggsn
 
 network_create
+
+if [ "$KERNEL_TEST" = 1 ]; then
+	CONFIGS_DIR="osmo-ggsn-kernel"
+else
+	CONFIGS_DIR="osmo-ggsn"
+fi
+
+cp "$CONFIGS_DIR"/osmo-ggsn.cfg $VOL_BASE_DIR/ggsn/osmo-ggsn.cfg
+network_replace_subnet_in_configs
+
 start_ggsn
 start_testsuite
