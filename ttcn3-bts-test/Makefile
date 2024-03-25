@@ -12,8 +12,10 @@ CFG_GEN_FILES = \
 	oml/osmo-bts.gen.cfg \
 	fh/osmo-bsc.gen.cfg
 
-.PHONY: cfg
-cfg: $(CFG_SRC_FILES) $(CFG_GEN_FILES)
+.PHONY: req-osmo-config-merge cfg
+req-osmo-config-merge:
+	command -v osmo-config-merge
+cfg: req-osmo-config-merge $(CFG_SRC_FILES) $(CFG_GEN_FILES)
 
 # Ensure that we always fetch up-to-date configuration files.
 # See https://www.gnu.org/software/make/manual/make.html#Force-Targets
