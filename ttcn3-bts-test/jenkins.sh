@@ -131,6 +131,98 @@ set_pcuif_version() {
 	fi
 }
 
+# Classic test suite with BSC for OML and trxcon+fake_trx
+start_config_generic() {
+	if ! test_config_enabled "generic"; then
+		return
+	fi
+
+	network_replace_subnet_in_configs
+
+	start_bsc
+	start_bts trx 1
+	start_fake_trx
+	start_trxcon
+
+	start_testsuite generic
+
+	docker_kill_wait ${BUILD_TAG}-trxcon
+	docker_kill_wait ${BUILD_TAG}-fake_trx
+	docker_kill_wait ${BUILD_TAG}-bts
+	docker_kill_wait ${BUILD_TAG}-bsc
+}
+
+# Some GPRS tests require virt_phy
+start_config_virtphy() {
+	if ! test_config_enabled "virtphy"; then
+		return
+	fi
+
+	# FIXME: multicast to/from a docker bridge network is currently not possible.
+	# See https://github.com/moby/libnetwork/issues/2397.
+	set +x
+	echo "ERROR: not running the virtphy configuration"
+	exit 1
+
+	cp virtphy/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
+	network_replace_subnet_in_configs
+
+	start_bsc
+	start_bts virtual 0
+	start_virtphy
+
+	start_testsuite virtphy
+
+	docker_kill_wait ${BUILD_TAG}-virtphy
+	docker_kill_wait ${BUILD_TAG}-bts
+	docker_kill_wait ${BUILD_TAG}-bsc
+}
+
+# OML tests require us to run without BSC
+start_config_oml() {
+	if ! test_config_enabled "oml"; then
+		return
+	fi
+
+	cp oml/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
+	network_replace_subnet_in_configs
+
+	start_bsc
+	start_bts trx 1
+	start_fake_trx
+	start_trxcon
+
+	start_testsuite oml
+
+	docker_kill_wait ${BUILD_TAG}-trxcon
+	docker_kill_wait ${BUILD_TAG}-fake_trx
+	docker_kill_wait ${BUILD_TAG}-bts
+	docker_kill_wait ${BUILD_TAG}-bsc
+}
+
+# Frequency hopping tests require different configuration files
+start_config_hopping() {
+	if ! test_config_enabled "hopping"; then
+		return
+	fi
+
+	cp fh/osmo-bsc.gen.cfg $VOL_BASE_DIR/bsc/
+	cp generic/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
+	network_replace_subnet_in_configs
+
+	start_bsc
+	start_bts trx 1
+	start_fake_trx
+	start_trxcon
+
+	start_testsuite hopping
+
+	docker_kill_wait ${BUILD_TAG}-trxcon
+	docker_kill_wait ${BUILD_TAG}-fake_trx
+	docker_kill_wait ${BUILD_TAG}-bsc
+	docker_kill_wait ${BUILD_TAG}-bts
+}
+
 network_create
 
 mkdir $VOL_BASE_DIR/bts-tester-generic
@@ -170,78 +262,7 @@ mkdir $VOL_BASE_DIR/fake_trx
 mkdir $VOL_BASE_DIR/trxcon
 mkdir $VOL_BASE_DIR/virtphy
 
-# 1) classic test suite with BSC for OML and trxcon+fake_trx
-if test_config_enabled "generic"; then
-	network_replace_subnet_in_configs
-
-	start_bsc
-	start_bts trx 1
-	start_fake_trx
-	start_trxcon
-
-	start_testsuite generic
-
-	docker_kill_wait ${BUILD_TAG}-trxcon
-	docker_kill_wait ${BUILD_TAG}-fake_trx
-	docker_kill_wait ${BUILD_TAG}-bts
-	docker_kill_wait ${BUILD_TAG}-bsc
-fi
-
-# 2) some GPRS tests require virt_phy
-if test_config_enabled "virtphy"; then
-	# FIXME: multicast to/from a docker bridge network is currently not possible.
-	# See https://github.com/moby/libnetwork/issues/2397.
-	set +x
-	echo "ERROR: not running the virtphy configuration"
-	exit 1
-
-	cp virtphy/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
-	network_replace_subnet_in_configs
-
-	start_bsc
-	start_bts virtual 0
-	start_virtphy
-
-	start_testsuite virtphy
-
-	docker_kill_wait ${BUILD_TAG}-virtphy
-	docker_kill_wait ${BUILD_TAG}-bts
-	docker_kill_wait ${BUILD_TAG}-bsc
-fi
-
-# 3) OML tests require us to run without BSC
-if test_config_enabled "oml"; then
-	cp oml/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
-	network_replace_subnet_in_configs
-
-	start_bsc
-	start_bts trx 1
-	start_fake_trx
-	start_trxcon
-
-	start_testsuite oml
-
-	docker_kill_wait ${BUILD_TAG}-trxcon
-	docker_kill_wait ${BUILD_TAG}-fake_trx
-	docker_kill_wait ${BUILD_TAG}-bts
-	docker_kill_wait ${BUILD_TAG}-bsc
-fi
-
-# 4) Frequency hopping tests require different configuration files
-if test_config_enabled "hopping"; then
-	cp fh/osmo-bsc.gen.cfg $VOL_BASE_DIR/bsc/
-	cp generic/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
-	network_replace_subnet_in_configs
-
-	start_bsc
-	start_bts trx 1
-	start_fake_trx
-	start_trxcon
-
-	start_testsuite hopping
-
-	docker_kill_wait ${BUILD_TAG}-trxcon
-	docker_kill_wait ${BUILD_TAG}-fake_trx
-	docker_kill_wait ${BUILD_TAG}-bsc
-	docker_kill_wait ${BUILD_TAG}-bts
-fi
+start_config_generic
+start_config_virtphy
+start_config_oml
+start_config_hopping
