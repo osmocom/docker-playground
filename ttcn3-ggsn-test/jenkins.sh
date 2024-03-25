@@ -132,5 +132,5 @@ for i in $TEST_CONFIGS_ALL; do
 	start_ggsn "$i"
 	start_testsuite "$i"
 
-	docker_kill_wait "$BUILD_TAG"-ggsn
+	docker_kill_wait "$BUILD_TAG"-ggsn || true
 done
