@@ -187,7 +187,6 @@ start_config_oml() {
 	cp oml/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
 	network_replace_subnet_in_configs
 
-	start_bsc
 	start_bts trx 1
 	start_fake_trx
 	start_trxcon
@@ -197,7 +196,6 @@ start_config_oml() {
 	docker_kill_wait ${BUILD_TAG}-trxcon
 	docker_kill_wait ${BUILD_TAG}-fake_trx
 	docker_kill_wait ${BUILD_TAG}-bts
-	docker_kill_wait ${BUILD_TAG}-bsc
 }
 
 # Frequency hopping tests require different configuration files
