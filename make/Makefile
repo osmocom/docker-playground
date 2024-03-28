@@ -17,6 +17,7 @@ REGISTRY_HOST?=docker.io
 USERNAME?=$(USER)
 UID=$(shell id -u)
 NAME?=$(shell basename $(CURDIR))
+ASTERISK_BRANCH?=sysmocom/master
 LIBOSMOCORE_BRANCH?=master
 OSMO_TTCN3_BRANCH?=master
 OSMO_BB_BRANCH?=master
@@ -100,6 +101,7 @@ docker-build: .release
 		--build-arg OSMOCOM_REPO_PATH=$(OSMOCOM_REPO_PATH) \
 		--build-arg OSMOCOM_REPO_VERSION=$(OSMOCOM_REPO_VERSION) \
 		--build-arg OSMOCOM_REPO_TESTSUITE_MIRROR=$(OSMOCOM_REPO_TESTSUITE_MIRROR) \
+		--build-arg ASTERISK_BRANCH=$(ASTERISK_BRANCH) \
 		--build-arg LIBOSMOCORE_BRANCH=$(LIBOSMOCORE_BRANCH) \
 		--build-arg OSMO_BB_BRANCH=$(OSMO_BB_BRANCH) \
 		--build-arg OSMO_BSC_BRANCH=$(OSMO_BSC_BRANCH) \
