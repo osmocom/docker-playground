@@ -163,6 +163,7 @@ RUN	set -x && \
 		tex-gyre \
 		texinfo \
 		unzip \
+		virtualenv \
 		xsltproc \
 		&& \
 	apt-get clean
