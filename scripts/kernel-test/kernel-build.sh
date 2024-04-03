@@ -3,7 +3,7 @@
 
 KERNEL_REMOTE_NAME="${KERNEL_REMOTE_NAME:-net-next}"
 KERNEL_URL="${KERNEL_URL:-https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git}"
-KERNEL_BRANCH="${KERNEL_BRANCH:-master}"
+KERNEL_BRANCH="${KERNEL_BRANCH:-main}"
 KERNEL_DIR=/cache/linux
 
 

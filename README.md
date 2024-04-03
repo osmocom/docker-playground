@@ -105,7 +105,7 @@ Environment variables:
 * `KERNEL_REMOTE_NAME`: git remote name (to add multiple git
   repositories in the same local linux clone, default: net-next)
 * `KERNEL_URL`: git remote url (default: net-next.git on kernel.org)
-* `KERNEL_BRANCH` branch to checkout (default: master)
+* `KERNEL_BRANCH` branch to checkout (default: main)
 * `KERNEL_SKIP_REBUILD`: set to 1 to not build the kernel again if already
   built with `KERNEL_BUILD=1`
 * `KERNEL_SKIP_SMOKE_TEST`: don't boot up the kernel in QEMU once before
