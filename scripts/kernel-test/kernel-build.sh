@@ -39,7 +39,7 @@ prepare_git_repo() {
 		fi
 	fi
 
-	git fetch "$KERNEL_REMOTE_NAME"
+	git fetch --depth=1 "$KERNEL_REMOTE_NAME"
 	git checkout "$KERNEL_REMOTE_NAME/$KERNEL_BRANCH"
 }
 
