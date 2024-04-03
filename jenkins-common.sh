@@ -467,11 +467,12 @@ kernel_test_prepare() {
 	cp "$initrd_project_script" \
 		"$CACHE_DIR/kernel-test/initrd-project-script.sh"
 
+	fix_perms
+
+	# Build kernel and initramfs
 	docker run \
 		--rm \
-		--cap-add=NET_ADMIN \
-		$(docker_kvm_param) \
-		--device /dev/net/tun:/dev/net/tun \
+		--user "build" \
 		-v "$CACHE_DIR:/cache" \
 		-v "$KERNEL_TEST_DIR:/kernel-test:ro" \
 		-e "KERNEL_BRANCH=$KERNEL_BRANCH" \
@@ -480,11 +481,25 @@ kernel_test_prepare() {
 		-e "KERNEL_REMOTE_NAME=$KERNEL_REMOTE_NAME" \
 		-e "KERNEL_URL=$KERNEL_URL" \
 		-e "KERNEL_SKIP_REBUILD=$KERNEL_SKIP_REBUILD" \
-		-e "KERNEL_SKIP_SMOKE_TEST=$KERNEL_SKIP_SMOKE_TEST" \
 		$DOCKER_ARGS \
 		"$@" \
 		"$docker_image" \
 		"/kernel-test/prepare.sh"
+
+	# Smoke test
+	if [ "$KERNEL_SKIP_SMOKE_TEST" != 1 ]; then
+		docker run \
+			--rm \
+			--cap-add=NET_ADMIN \
+			$(docker_kvm_param) \
+			--device /dev/net/tun:/dev/net/tun \
+			-v "$CACHE_DIR:/cache" \
+			-v "$KERNEL_TEST_DIR:/kernel-test:ro" \
+			$DOCKER_ARGS \
+			"$@" \
+			"$docker_image" \
+			"/kernel-test/smoke-test.sh"
+	fi
 }
 
 # Wait until the linux kernel is booted inside QEMU inside docker, and the
