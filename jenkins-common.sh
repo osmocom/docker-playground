@@ -386,7 +386,10 @@ fix_perms() {
 			-v $CACHE_DIR:/cache \
 			--name ${BUILD_TAG}-cleaner \
 			"debian:$DEBIAN_DEFAULT" \
-			chmod -R a+rX /data/ /cache/
+			sh -e -x -c "
+				chmod -R a+rX /data/ /cache/
+				chown -R $(id -u):$(id -g) /data /cache
+			"
 }
 
 collect_logs() {
