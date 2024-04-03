@@ -117,11 +117,6 @@ initrd_add_mod \
 initrd_add_file \
 	/lib/modules/*/modules.dep
 
-mknod dev/null c 1 3
-
-# Required for osmo-ggsn
-mknod dev/net/tun c 10 200
-
 cp /kernel-test/initrd-init.sh init
 
 # Add project specific files (e.g. osmo-ggsn and gtp kernel module)

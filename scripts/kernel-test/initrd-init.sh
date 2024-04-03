@@ -9,6 +9,11 @@ export TERM=screen
 
 /bin/busybox --install -s
 
+mknod /dev/null c 1 3
+
+# Required for osmo-ggsn
+mknod /dev/net/tun c 10 200
+
 hostname qemu
 
 mount -t proc proc /proc
