@@ -110,6 +110,7 @@ RUN	set -x && \
 		libncurses5-dev \
 		libnewlib-arm-none-eabi \
 		libnftables-dev \
+		libnftnl-dev \
 		libnl-3-dev \
 		libnl-route-3-dev \
 		liboping-dev \
