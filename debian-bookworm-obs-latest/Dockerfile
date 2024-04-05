@@ -6,10 +6,23 @@ FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 ARG	OSMOCOM_REPO_MIRROR="https://downloads.osmocom.org"
 ARG	OSMOCOM_REPO_PATH="packages/osmocom:"
 ARG	OSMOCOM_REPO="${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/latest/Debian_12/"
+ARG	UID
 
 # Copy from common dir
 COPY	.common/respawn.sh /usr/local/bin/respawn.sh
 COPY	.common/Release.key /usr/share/keyrings/osmocom-latest.asc
+
+# Configure build user, disable installing man pages
+# * /usr/local: osmo-python-tests's contrib/jenkins.sh writes there
+# * man pages: without them we avoid waiting for "generating manpages"
+RUN	set -x && \
+	useradd --uid=${UID} build && \
+	mkdir /build && \
+	chown -R build:build /build /usr/local && \
+	\
+	echo "path-exclude=/usr/share/man/*" \
+		> /etc/dpkg/dpkg.cfg.d/exclude-man-pages && \
+	rm -rf /usr/share/man/
 
 # Configure Osmocom latest repository, add telnet for debugging
 RUN	set -x && \
