@@ -25,7 +25,7 @@ VOLUME	/data
 
 COPY	osmo-uecups-daemon.cfg /data/osmo-uecups-daemon.cfg
 
-RUN	useradd -m --uid=1000 osmocom
+RUN	useradd -m osmocom
 
 WORKDIR /data
 CMD	["/bin/sh", "-c", "/usr/local/bin/osmo-uecups-daemon -c /data/osmo-uecups-daemon.cfg >/data/osmo-uecups-daemon.log 2>&1"]

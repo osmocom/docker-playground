@@ -53,6 +53,6 @@ RUN	apt-get update && \
 
 # create a user
 ARG	username=osmocom
-RUN	useradd -m --uid=1000 ${username} && \
+RUN	useradd -m ${username} && \
 	echo "${username} ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/${username} && \
 	chmod 0440 /etc/sudoers.d/${username}
