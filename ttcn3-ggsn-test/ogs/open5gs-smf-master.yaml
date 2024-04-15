@@ -7,28 +7,7 @@ global:
   max:
     ue: 1024
 
-sbi:
-    server:
-      no_tls: true
-      cacert: /etc/open5gs/tls/ca.crt
-      key: /etc/open5gs/tls/smf.key
-      cert: /etc/open5gs/tls/smf.crt
-    client:
-      no_tls: true
-      cacert: /etc/open5gs/tls/ca.crt
-      key: /etc/open5gs/tls/smf.key
-      cert: /etc/open5gs/tls/smf.crt
-
 smf:
-    sbi:
-      server:
-      - address: 172.18.3.201
-        port: 7777
-      client:
-        nrf:
-          - uri: http://172.18.3.201:7777
-        scp:
-          - uri: http://127.0.1.10:7777
     pfcp:
       server:
         - address: 172.18.3.201
