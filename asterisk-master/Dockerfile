@@ -36,6 +36,17 @@ RUN	useradd -m ${username} && \
 
 WORKDIR	/home/${username}
 
+# clone pjproject
+ARG	PJPROJECT_REMOTE=https://gitea.sysmocom.de/sysmocom/pjproject.git
+ARG	PJPROJECT_BRANCH=sysmocom/2.14
+
+RUN	git clone $PJPROJECT_REMOTE
+ADD	https://gitea.sysmocom.de/api/v1/repos/sysmocom/pjproject/git/refs/heads/$PJPROJECT_BRANCH /tmp/pjproject-ver
+
+RUN	cd pjproject && \
+	git fetch && git checkout $PJPROJECT_BRANCH && \
+	(git symbolic-ref -q HEAD && git reset --hard origin/$PJPROJECT_BRANCH || exit 1); \
+	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD
 
 # clone asterisk
 ARG	ASTERISK_REMOTE=https://gitea.sysmocom.de/sysmocom/asterisk.git
@@ -43,6 +54,10 @@ RUN	git clone $ASTERISK_REMOTE
 
 RUN	cd asterisk && \
 	git fetch && git checkout -f -B sysmocom/master origin/sysmocom/master
+
+# Use pjproject from git repo above instead of downloading tar.gz:
+RUN	cd asterisk/third-party/pjproject && \
+	ln -s ../../../pjproject/ source
 
 RUN	cd asterisk && \
 	./bootstrap.sh && \
