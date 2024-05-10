@@ -77,3 +77,6 @@ RUN	cd asterisk && \
 	make install && \
 	make samples && \
 	ldconfig
+
+# Required to set up ipsec:
+RUN	setcap 'cap_net_admin,cap_sys_resource=ep' /usr/sbin/asterisk

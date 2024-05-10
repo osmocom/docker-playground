@@ -22,6 +22,8 @@ network_replace_subnet_in_configs
 
 echo Starting container with Asterisk
 docker run	--rm \
+		--cap-add=NET_ADMIN \
+		--cap-add=SYS_RESOURCE \
 		$(docker_network_params $SUBNET 10) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/asterisk:/data \
