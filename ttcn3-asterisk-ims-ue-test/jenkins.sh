@@ -37,6 +37,8 @@ sleep 3
 
 echo Starting container with Asterisk testsuite
 docker run	--rm \
+		--cap-add=NET_ADMIN \
+		--cap-add=SYS_RESOURCE \
 		$(docker_network_params $SUBNET 103) \
 		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \

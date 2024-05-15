@@ -21,6 +21,7 @@ RUN	set -x && \
 		ca-certificates \
 		ccache \
 		git \
+		iproute2 \
 		iputils-ping \
 		netcat-openbsd \
 		procps \

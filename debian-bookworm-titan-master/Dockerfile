@@ -20,6 +20,7 @@ RUN	set -x && \
 		build-essential \
 		ca-certificates \
 		git \
+		iproute2 \
 		iputils-ping \
 		netcat-openbsd \
 		procps \
