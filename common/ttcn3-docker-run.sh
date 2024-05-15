@@ -31,6 +31,9 @@ if [ -n "$WAIT_FOR_NETDEV" ]; then
 	done
 fi
 
+# Make sure /data is owned to the user running inside docker.
+# jenkins-commons.sh fix_perms() will fix back the permissions once done.
+chown -R "$(id -u):$(id -g)" /data
 cd /data
 
 # Use TEST_NAME to only run one test instead of all. Set it like this:
