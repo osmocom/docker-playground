@@ -23,4 +23,4 @@ cp /data/manager.conf "${ASTERISK_CFG_PATH}/"
 cp /data/logger.conf "${ASTERISK_CFG_PATH}/"
 cat /data/extensions.conf >>"${ASTERISK_CFG_PATH}/extensions.conf"
 
-/usr/sbin/asterisk -C "${ASTERISK_CFG_PATH}/asterisk.conf" -f -g -vvvvv -ddddd
+gdb -ex 'run' -ex 'bt' --arg /usr/sbin/asterisk -C "${ASTERISK_CFG_PATH}/asterisk.conf" -f -g -vvvvv -ddddd

@@ -25,6 +25,7 @@ RUN	apt-get update && \
 		libjansson-dev \
 		libxml2-dev \
 		uuid-dev \
+		gdb \
 		wget && \
 	apt-get clean
 
