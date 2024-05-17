@@ -142,6 +142,7 @@ RUN	set -x && \
 		patchelf \
 		picolibc-arm-none-eabi \
 		pkg-config \
+		pylint \
 		python3 \
 		python3-gi \
 		python3-mako \
@@ -179,7 +180,6 @@ RUN	set -x && \
 		'git+https://github.com/osmocom/sphinx-argparse@master#egg=sphinx-argparse' \
 		'git+https://github.com/podshumok/python-smpplib.git' \
 		'pydbus' \
-		'pylint' \
 		'pysispm' \
 		'sphinx' \
 		'sphinxcontrib-napoleon' \

@@ -104,6 +104,7 @@ RUN \
 		osc \
 		patchelf \
 		pkg-config \
+		pylint \
 		python-pip \
 		python-setuptools \
 		python-yaml \
@@ -147,7 +148,6 @@ RUN pip3 install \
 	'git+https://github.com/osmocom/sphinx-argparse@master#egg=sphinx-argparse' \
 	'git+https://github.com/podshumok/python-smpplib.git' \
 	'pydbus' \
-	'pylint' \
 	'pysispm' \
 	'sphinx' \
 	'sphinxcontrib-napoleon' \
