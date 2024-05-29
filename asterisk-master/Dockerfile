@@ -28,6 +28,16 @@ RUN	apt-get update && \
 		wget && \
 	apt-get clean
 
+# AMR support in asterisk, catched at configure time:
+RUN	apt-get update && \
+apt-get upgrade -y && \
+DEBIAN_FRONTEND=noninteractive \
+apt-get install -y --no-install-recommends \
+	libopencore-amrnb-dev \
+	libopencore-amrwb-dev \
+	libvo-amrwbenc-dev && \
+apt-get clean
+
 # create a user
 ARG	username=asterisk
 RUN	useradd -m ${username} && \
