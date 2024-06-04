@@ -4,10 +4,14 @@
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \
 	"asterisk-$IMAGE_SUFFIX" \
-	"ttcn3-asterisk-ims-ue-test"
+	"ttcn3-asterisk-ims-ue-test" \
+	"dnsmasq"
 
 set_clean_up_trap
 set -e
+
+mkdir $VOL_BASE_DIR/dnsmasq
+cp dnsmasq/* $VOL_BASE_DIR/dnsmasq/
 
 mkdir $VOL_BASE_DIR/asterisk-ims-ue-tester
 mkdir $VOL_BASE_DIR/asterisk-ims-ue-tester/unix
@@ -19,6 +23,16 @@ cp asterisk/* $VOL_BASE_DIR/asterisk/
 
 network_create
 network_replace_subnet_in_configs
+
+echo Starting container with dnsmasq
+docker run	--rm \
+		--cap-add=NET_ADMIN \
+		$(docker_network_params $SUBNET 200) \
+		--ulimit core=-1 \
+		-v $VOL_BASE_DIR/dnsmasq:/data \
+		--name ${BUILD_TAG}-dnsmasq -d \
+		$DOCKER_ARGS \
+		$REPO_USER/dnsmasq
 
 echo Starting container with Asterisk
 docker run	--rm \
