@@ -54,7 +54,7 @@ docker run	--rm \
 		/bin/sh -c "/data/asterisk.sh >/data/asterisk.console.log 2>&1"
 
 # Leave some time for asterisk to start:
-sleep 3
+sleep 5
 
 echo Starting container with Asterisk testsuite
 docker run	--rm \
