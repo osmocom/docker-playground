@@ -1,5 +1,10 @@
 #!/bin/sh
 
+#export OSMO_TTCN3_BRANCH=jolly/ttcn3
+#export LIBOSMOCORE_BRANCH=jolly/testing
+#export LIBOSMONETIF_BRANCH=jolly/testing
+#export OSMO_STP_BRANCH=jolly/testing
+
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 docker_images_require \

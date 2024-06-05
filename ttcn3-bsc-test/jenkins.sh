@@ -30,6 +30,7 @@ echo Starting container with STP
 docker run	--rm \
 		$(docker_network_params $SUBNET 200) \
 		--ulimit core=-1 \
+		-e LIBOSMO_IO_BACKEND=IO_URING --privileged \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp -d \
 		$DOCKER_ARGS \
@@ -39,6 +40,7 @@ echo Starting container with BSC
 docker run	--rm \
 		$(docker_network_params $SUBNET 20) \
 		--ulimit core=-1 \
+		-e LIBOSMO_IO_BACKEND=IO_URING --privileged \
 		-v $VOL_BASE_DIR/bsc:/data \
 		--name ${BUILD_TAG}-bsc -d \
 		$DOCKER_ARGS \
@@ -52,6 +54,7 @@ for i in "0 1" "1 1" "2 4"; do
 	docker run	--rm \
 			$(docker_network_params $SUBNET 10$1) \
 			--ulimit core=-1 \
+			-e LIBOSMO_IO_BACKEND=IO_URING --privileged \
 			-v $VOL_BASE_DIR/bts-omldummy:/data \
 			--name ${BUILD_TAG}-bts$1 -d \
 			$DOCKER_ARGS \

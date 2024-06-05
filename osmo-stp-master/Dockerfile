@@ -23,6 +23,38 @@ RUN	case "$DISTRO" in \
 
 WORKDIR	/data
 
+ARG     LIBOSMOCORE_BRANCH="master"
+
+RUN	git clone https://gerrit.osmocom.org/libosmocore.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/libosmocore/+/$LIBOSMOCORE_BRANCH?format=TEXT /tmp/commit-libosmocore
+
+RUN     cd libosmocore \
+        && git fetch && git checkout -f -B $LIBOSMOCORE_BRANCH origin/$LIBOSMOCORE_BRANCH \
+        && autoreconf -fi \
+        && ./configure \
+                --disable-doxygen \
+                --disable-pcsc \
+                --prefix=/usr/local \
+        && make -j5 \
+        && make install \
+        && make distclean && ldconfig
+
+ARG     LIBOSMONETIF_BRANCH="master"
+
+RUN	git clone https://gerrit.osmocom.org/libosmo-netif.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/libosmo-netif/+/$LIBOSMONETIF_BRANCH?format=TEXT /tmp/commit-libosmonetif
+
+RUN     cd libosmo-netif \
+        && git fetch && git checkout -f -B $LIBOSMONETIF_BRANCH origin/$LIBOSMONETIF_BRANCH \
+        && autoreconf -fi \
+        && ./configure \
+               --disable-doxygen \
+               --prefix=/usr/local \
+        && make -j8 \
+        && echo $LIBOSMONETIF_BRANCH \
+        && make install \
+        && make distclean && ldconfig
+
 ARG	OSMO_STP_BRANCH="master"
 
 RUN	git clone https://gerrit.osmocom.org/libosmo-sigtran.git

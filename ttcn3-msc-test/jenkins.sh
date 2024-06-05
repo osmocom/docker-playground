@@ -31,6 +31,7 @@ echo Starting container with STP
 docker run	--rm \
 		$(docker_network_params $SUBNET 200) \
 		--ulimit core=-1 \
+		-e LIBOSMO_IO_BACKEND=IO_URING --privileged \
 		-v $VOL_BASE_DIR/stp:/data \
 		--name ${BUILD_TAG}-stp -d \
 		$REPO_USER/osmo-stp-$IMAGE_SUFFIX
@@ -39,6 +40,7 @@ echo Starting container with MSC
 docker run	--rm \
 		$(docker_network_params $SUBNET 10) \
 		--ulimit core=-1 \
+		-e LIBOSMO_IO_BACKEND=IO_URING --privileged \
 		-v $VOL_BASE_DIR/msc:/data \
 		-v $VOL_BASE_DIR/unix:/data/unix \
 		--name ${BUILD_TAG}-msc -d \
