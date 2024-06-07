@@ -2,10 +2,14 @@
 set +e
 set -x
 
-ASTERISK_CFG_PATH="/etc/asterisk"
-DNSMASQ_IPADDR="172.18.11.200"
+if [[ -z "${DNS_IPADDR}" ]]; then
+  echo "env var DNS_IPADDR undefined!"
+  exit 1
+fi
 
-echo "nameserver $DNSMASQ_IPADDR" > /etc/resolv.conf
+ASTERISK_CFG_PATH="/etc/asterisk"
+
+echo "nameserver $DNS_IPADDR" > /etc/resolv.conf
 
 #rm -rf "${ASTERISK_CFG_PATH}"
 #mkdir -p "${ASTERISK_CFG_PATH}"

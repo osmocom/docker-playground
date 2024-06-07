@@ -15,6 +15,7 @@ cp dnsmasq/* $VOL_BASE_DIR/dnsmasq/
 
 mkdir $VOL_BASE_DIR/asterisk-ims-ue-tester
 mkdir $VOL_BASE_DIR/asterisk-ims-ue-tester/unix
+cp ttcn3.sh $VOL_BASE_DIR/asterisk-ims-ue-tester/
 cp Asterisk_Tests.cfg $VOL_BASE_DIR/asterisk-ims-ue-tester/
 write_mp_osmo_repo "$VOL_BASE_DIR/asterisk-ims-ue-tester/Asterisk_Tests.cfg"
 
@@ -23,11 +24,16 @@ cp asterisk/* $VOL_BASE_DIR/asterisk/
 
 network_create
 network_replace_subnet_in_configs
+SUBNET_IP_PREFIX="172.18.$SUBNET"
+ASTERISK_IP_SUFFIX="10"
+TTCN3_IP_SUFFIX="103"
+IMSCORE_IP_SUFFIX="104"
+DNS_IP_SUFFIX="200"
 
 echo Starting container with dnsmasq
 docker run	--rm \
 		--cap-add=NET_ADMIN \
-		$(docker_network_params $SUBNET 200) \
+		$(docker_network_params $SUBNET $DNS_IP_SUFFIX) \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/dnsmasq:/data \
 		--name ${BUILD_TAG}-dnsmasq -d \
@@ -38,7 +44,8 @@ echo Starting container with Asterisk
 docker run	--rm \
 		--cap-add=NET_ADMIN \
 		--cap-add=SYS_RESOURCE \
-		$(docker_network_params $SUBNET 10) \
+		$(docker_network_params $SUBNET $ASTERISK_IP_SUFFIX) \
+		-e "DNS_IPADDR=${SUBNET_IP_PREFIX}.${DNS_IP_SUFFIX}" \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/asterisk:/data \
 		--name ${BUILD_TAG}-asterisk -d \
@@ -53,10 +60,12 @@ echo Starting container with Asterisk testsuite
 docker run	--rm \
 		--cap-add=NET_ADMIN \
 		--cap-add=SYS_RESOURCE \
-		$(docker_network_params $SUBNET 103) \
+		$(docker_network_params $SUBNET $TTCN3_IP_SUFFIX) \
 		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
+		-e "EXTRA_IPADDR=${SUBNET_IP_PREFIX}.${IMSCORE_IP_SUFFIX}/24" \
 		-v $VOL_BASE_DIR/asterisk-ims-ue-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-asterisk-ims-ue-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-asterisk-ims-ue-test
+		$REPO_USER/ttcn3-asterisk-ims-ue-test \
+		/data/ttcn3.sh
