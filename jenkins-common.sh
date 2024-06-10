@@ -21,6 +21,7 @@ docker_depends() {
 	osmo-*-centos7) echo "centos7-build" ;;
 	osmo-*-centos8) echo "centos8-build" ;;
 	osmo-*-latest) echo "debian-$DEBIAN_DEFAULT-obs-latest" ;;
+	osmo-*-asan) echo "debian-$DEBIAN_DEFAULT-obs-asan" ;;
 	osmo_dia2gsup-*) echo "debian-$DEBIAN_DEFAULT-erlang" ;;
 	osmo-epdg-*) echo "debian-$DEBIAN_DEFAULT-erlang" ;;
 	osmo-*) echo "debian-$DEBIAN_DEFAULT-build" ;;
@@ -77,6 +78,13 @@ docker_dir_from_image_name() {
 	centos8-obs-20*q*)
 		# e.g. centos8-obs-2021q1 -> centos8-obs-latest
 		echo "$1" | sed 's/20[0-9][0-9]q.*$/latest/'
+		;;
+	osmo-*-asan)
+		# Build Osmocom programs from the asan repository with the
+		# "-latest" docker containers (osmo-mgw-latest/Dockerfile etc.)
+		# so they are completely built from the OBS packages instead of
+		# building some of it from git (as in *-master/Dockerfile).
+		echo "$1" | sed 's/-asan/-latest/'
 		;;
 	*)
 		echo "$1"
