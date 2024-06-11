@@ -10,7 +10,7 @@ set_clean_up_trap
 set -e
 
 set_pcuif_version() {
-	if image_suffix_is_2023q1; then
+	if osmo_repo_is_2023q1; then
 		sed -i 's/PCUIF_Types.mp_pcuif_version := 12/PCUIF_Types.mp_pcuif_version := 10/g' $1
 	fi
 }

@@ -536,24 +536,25 @@ kernel_test_wait_for_vm() {
 	exit 1
 }
 
-# Check if IMAGE_SUFFIX starts with "latest" (e.g. "latest-centos8")
-image_suffix_is_latest() {
+# Check if the "latest" repo is used (e.g. "latest-centos8")
+osmo_repo_is_latest() {
 	case "$IMAGE_SUFFIX" in
 	latest*) return 0 ;;
 	*) return 1 ;;
 	esac
 }
 
-# Check if IMAGE_SUFFIX starts with "master" (e.g. "master-centos8")
-image_suffix_is_master() {
+# Check if the "nightly" repo is used (e.g. "master-centos8")
+osmo_repo_is_nightly() {
 	case "$IMAGE_SUFFIX" in
 	master*) return 0 ;;
+	asan*) return 0 ;;
 	*) return 1 ;;
 	esac
 }
 
-# Check if IMAGE_SUFFIX starts with "2023q1" (e.g. "2023q1-centos8")
-image_suffix_is_2023q1() {
+# Check if the "2023q1" repo is used (e.g. "2023q1-centos8")
+osmo_repo_is_2023q1() {
 	case "$IMAGE_SUFFIX" in
 	2023q1*) return 0 ;;
 	*) return 1 ;;

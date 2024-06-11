@@ -17,7 +17,7 @@ mkdir $VOL_BASE_DIR/stp
 cp osmo-stp.cfg $VOL_BASE_DIR/stp/
 
 # XXX: M3UA-over-TCP is not supported by osmo-stp <= 1.8.1
-if image_suffix_is_master; then
+if osmo_repo_is_nightly; then
 	osmo-config-merge ./osmo-stp.cfg \
 			  ./osmo-stp-tcp.confmerge \
 			  > "$VOL_BASE_DIR/stp/osmo-stp.cfg"
