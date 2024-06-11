@@ -16,9 +16,8 @@ COPY	.common/Release.key /usr/share/keyrings/osmocom-latest.asc
 # * /usr/local: osmo-python-tests's contrib/jenkins.sh writes there
 # * man pages: without them we avoid waiting for "generating manpages"
 RUN	set -x && \
-	useradd --uid=${UID} build && \
-	mkdir /build && \
-	chown -R build:build /build /usr/local && \
+	useradd --uid=${UID} -d /build -m build && \
+	chown -R build:build /usr/local && \
 	\
 	echo "path-exclude=/usr/share/man/*" \
 		> /etc/dpkg/dpkg.cfg.d/exclude-man-pages && \
