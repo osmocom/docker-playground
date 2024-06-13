@@ -24,6 +24,7 @@ docker_depends() {
 	osmo-*-asan) echo "debian-$DEBIAN_DEFAULT-obs-asan" ;;
 	osmo_dia2gsup-*) echo "debian-$DEBIAN_DEFAULT-erlang" ;;
 	osmo-epdg-*) echo "debian-$DEBIAN_DEFAULT-erlang" ;;
+	osmo-s1gw-*) echo "debian-$DEBIAN_DEFAULT-erlang" ;;
 	osmo-*) echo "debian-$DEBIAN_DEFAULT-build" ;;
 	open5gs-master) echo "debian-$DEBIAN_DEFAULT-build" ;;
 	ttcn3-*) echo "debian-bookworm-titan" ;;
