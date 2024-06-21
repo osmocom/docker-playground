@@ -4,14 +4,6 @@ FROM	$USER/$DISTRO-erlang
 # Arguments used after FROM must be specified again
 ARG	DISTRO
 
-# $distro-erlang switched to user build, but we need to install more stuff beforehand:
-USER	root
-RUN	apt-get update && \
-	apt-get install -y --no-install-recommends \
-		iproute2 && \
-	apt-get clean
-USER	build
-
 WORKDIR	/tmp
 
 ARG	OSMO_EPDG_BRANCH="master"

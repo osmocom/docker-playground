@@ -25,6 +25,7 @@ RUN	apt-get update && \
 	apt-get -y install \
 		build-essential \
 		git \
+		iproute2 \
 		netcat-openbsd \
 		procps \
 		tcpdump \

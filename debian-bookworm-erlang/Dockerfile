@@ -24,6 +24,7 @@ RUN	set -x && \
 	apt-get install -y --no-install-recommends \
 		build-essential \
 		git \
+		iproute2 \
 		netcat-openbsd \
 		procps \
 		tcpdump \
