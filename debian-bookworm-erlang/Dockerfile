@@ -24,10 +24,10 @@ RUN	set -x && \
 	apt-get install -y --no-install-recommends \
 		build-essential \
 		git \
+		netcat-openbsd \
 		procps \
 		tcpdump \
 		vim \
-		netcat-openbsd \
 		wget \
 		&& \
 	apt-get clean

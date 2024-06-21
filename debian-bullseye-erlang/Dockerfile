@@ -25,10 +25,10 @@ RUN	apt-get update && \
 	apt-get -y install \
 		build-essential \
 		git \
+		netcat-openbsd \
 		procps \
 		tcpdump \
 		vim \
-		netcat-openbsd \
 		wget \
 		&& \
 	apt-get clean
