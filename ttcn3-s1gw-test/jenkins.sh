@@ -23,6 +23,7 @@ network_replace_subnet_in_configs
 echo "Starting container with osmo-s1gw"
 docker run	--rm \
 		$(docker_network_params $SUBNET 100) \
+		--user=root \
 		--ulimit core=-1 \
 		--cap-add=NET_ADMIN \
 		-e "ERL_FLAGS=-config /data/osmo-s1gw.config" \
