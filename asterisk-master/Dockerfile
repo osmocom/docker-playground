@@ -60,10 +60,13 @@ RUN	cd pjproject && \
 
 # clone asterisk
 ARG	ASTERISK_REMOTE=https://gitea.sysmocom.de/sysmocom/asterisk.git
+ARG	ASTERISK_BRANCH=sysmocom/master
 RUN	git clone $ASTERISK_REMOTE
 
+ADD	https://gitea.sysmocom.de/api/v1/repos/sysmocom/asterisk/git/refs/heads/$ASTERISK_BRANCH /tmp/asterisk-ver
+
 RUN	cd asterisk && \
-	git fetch && git checkout -f -B sysmocom/master origin/sysmocom/master
+	git fetch && git checkout -f -B $ASTERISK_BRANCH origin/$ASTERISK_BRANCH
 
 # Use pjproject from git repo above instead of downloading tar.gz:
 RUN	cd asterisk/third-party/pjproject && \
@@ -72,17 +75,6 @@ RUN	cd asterisk/third-party/pjproject && \
 RUN	cd asterisk && \
 	./bootstrap.sh && \
 	./configure && \
-	make "-j$(nproc)"
-
-ARG	ASTERISK_BRANCH=sysmocom/master
-
-ADD	https://gitea.sysmocom.de/api/v1/repos/sysmocom/asterisk/git/refs/heads/$ASTERISK_BRANCH /tmp/asterisk-ver
-
-# update the source code (if needed)
-RUN	cd asterisk && \
-	git fetch && git checkout -B $ASTERISK_BRANCH origin/$ASTERISK_BRANCH
-
-RUN	cd asterisk && \
 	make "-j$(nproc)" && \
 	make install && \
 	make samples && \
