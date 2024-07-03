@@ -9,6 +9,7 @@ docker_images_require \
 	"systemd" \
 	"osmo-ran$IMAGE_SUFFIX"
 
+SUB4_PREFIX=${SUB4_PREFIX:-"172.18"}
 SUBNET=${SUBNET:-25}
 IPSUFFIX=200
 NET_NAME="osmo-ran-subnet$SUBNET"
@@ -20,7 +21,7 @@ mkdir $VOL_RAN_DIR/data
 mkdir $VOL_RAN_DIR/osmocom
 cp osmocom/* $VOL_RAN_DIR/osmocom/
 
-DOCKER_IN_IP="172.18.$SUBNET.$IPSUFFIX"
+DOCKER_IN_IP="$SUB4_PREFIX.$SUBNET.$IPSUFFIX"
 SGSN_IP="${SGSN_IP:-192.168.30.1}"
 STP_IP="${STP_IP:-192.168.30.1}"
 TRX_IP="${TRX_IP:-192.168.30.100}"

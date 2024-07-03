@@ -29,8 +29,8 @@ docker run	--rm \
 		$DOCKER_ARGS \
 		$REPO_USER/osmo-stp-master \
 		/bin/sh -c "sccp_demo_user \
-			-l 172.18.$SUBNET.200 \
-			-r 172.18.$SUBNET.203 \
+			-l $SUB4_PREFIX.$SUBNET.200 \
+			-r $SUB4_PREFIX.$SUBNET.203 \
 			-C /data/sccp_demo_user.cfg \
 			>>/data/sccp_demo_user.log 2>&1"
 

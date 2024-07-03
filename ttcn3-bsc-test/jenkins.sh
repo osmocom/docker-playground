@@ -59,7 +59,7 @@ for i in "0 1" "1 1" "2 4"; do
 			/bin/sh -c "/usr/local/bin/respawn.sh \
 				osmo-bts-omldummy \
 					$BTS_FEATURES \
-					172.18.$SUBNET.20 \
+					$SUB4_PREFIX.$SUBNET.20 \
 					$(($1 + 1234)) \
 					$2 \
 				>>/data/osmo-bts-omldummy-$1.log 2>&1"
@@ -74,7 +74,7 @@ docker run	--rm \
 		$(docker_network_params $SUBNET 203) \
 		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
-		-e "OSMO_SUT_HOST=172.18.$SUBNET.20" \
+		-e "OSMO_SUT_HOST=$SUB4_PREFIX.$SUBNET.20" \
 		-e "OSMO_SUT_PORT=4242" \
 		-v $VOL_BASE_DIR/bsc-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-bsc-test \

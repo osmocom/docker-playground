@@ -2,6 +2,9 @@ CACHE_DIR="$(realpath ../_cache)"
 KERNEL_TEST_DIR="$(realpath ../scripts/kernel-test)"
 DEBIAN_DEFAULT="bookworm"
 
+SUB4_PREFIX="172.18"
+SUB6_PREFIX="fd02:db8"
+
 docker_image_exists() {
 	test -n "$(docker images -q "$REPO_USER/$1")"
 }
@@ -251,8 +254,8 @@ network_create() {
 	for i in $(seq 1 30); do
 		SUBNET="$(echo "($SUBNET + 1) % 256" | bc)"
 		NET_NAME="$SUITE_NAME-$SUBNET"
-		SUB4="172.18.$SUBNET.0/24"
-		SUB6="fd02:db8:$SUBNET::/64"
+		SUB4="$SUB4_PREFIX.$SUBNET.0/24"
+		SUB6="$SUB6_PREFIX:$SUBNET::/64"
 		set +x
 		echo "Creating network $NET_NAME, trying SUBNET=$SUBNET..."
 		set -x
@@ -291,8 +294,8 @@ network_bridge_create() {
 		network_clean
 		network_remove
 	fi
-	SUB4="172.18.$NET.0/24"
-	SUB6="fd02:db8:$NET::/64"
+	SUB4="$SUB4_PREFIX.$NET.0/24"
+	SUB6="$SUB6_PREFIX:$NET::/64"
 	set +x
 	echo "Creating network $NET_NAME"
 	set -x
@@ -300,7 +303,7 @@ network_bridge_create() {
 		--driver=bridge \
 		--subnet $SUB4 \
 		--ipv6 --subnet $SUB6 \
-		-o "com.docker.network.bridge.host_binding_ipv4"="172.18.$NET.1" \
+		-o "com.docker.network.bridge.host_binding_ipv4"="$SUB4_PREFIX.$NET.1" \
 		$NET_NAME
 }
 
@@ -369,8 +372,8 @@ network_replace_subnet_in_configs() {
 		sed \
 			-i \
 			-E \
-			-e "s/172\.18\.[0-9]{1,3}\./172.18.$SUBNET./g" \
-			-e "s/fd02:db8:[0-9]{1,3}:/fd02:db8:$SUBNET:/g" \
+			-e "s/172\.18\.[0-9]{1,3}\./$SUB4_PREFIX.$SUBNET./g" \
+			-e "s/$SUB6_PREFIX:[0-9]{1,3}:/$SUB6_PREFIX:$SUBNET:/g" \
 			"$i"
 	done
 
@@ -383,7 +386,7 @@ network_replace_subnet_in_configs() {
 docker_network_params() {
 	NET=$1
 	ADDR_SUFIX=$2
-	echo --network $NET_NAME --ip "172.18.$NET.$ADDR_SUFIX" --ip6 "fd02:db8:$NET::$ADDR_SUFIX"
+	echo --network $NET_NAME --ip "$SUB4_PREFIX.$NET.$ADDR_SUFIX" --ip6 "$SUB6_PREFIX:$NET::$ADDR_SUFIX"
 }
 
 fix_perms() {

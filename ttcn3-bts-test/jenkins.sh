@@ -72,11 +72,11 @@ start_fake_trx() {
 				--log-file-level DEBUG \
 				--log-file-time \
 				--log-level INFO \
-				-R 172.18.$SUBNET.20 \
-				-r 172.18.$SUBNET.22 \
-				--trx TRX1@172.18.$SUBNET.20:5700/1 \
-				--trx TRX2@172.18.$SUBNET.20:5700/2 \
-				--trx TRX3@172.18.$SUBNET.20:5700/3 \
+				-R $SUB4_PREFIX.$SUBNET.20 \
+				-r $SUB4_PREFIX.$SUBNET.22 \
+				--trx TRX1@$SUB4_PREFIX.$SUBNET.20:5700/1 \
+				--trx TRX2@$SUB4_PREFIX.$SUBNET.20:5700/2 \
+				--trx TRX3@$SUB4_PREFIX.$SUBNET.20:5700/3 \
 				>>/data/fake_trx.out 2>&1"
 }
 
@@ -91,7 +91,7 @@ start_trxcon() {
 			$DOCKER_ARGS \
 			$REPO_USER/osmocom-bb-host-master \
 			/bin/sh -c "trxcon \
-				-i 172.18.$SUBNET.21 \
+				-i $SUB4_PREFIX.$SUBNET.21 \
 				-s /data/unix/osmocom_l2 \
 				>>/data/trxcon.log 2>&1"
 }
@@ -116,7 +116,7 @@ start_testsuite() {
 			$(docker_network_params $SUBNET 10) \
 			--ulimit core=-1 \
 			-e "TTCN3_PCAP_PATH=/data" \
-			-e "OSMO_SUT_HOST=172.18.$SUBNET.20" \
+			-e "OSMO_SUT_HOST=$SUB4_PREFIX.$SUBNET.20" \
 			-e "OSMO_SUT_PORT=4241" \
 			-v $VOL_BASE_DIR/bts-tester-${variant}:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \

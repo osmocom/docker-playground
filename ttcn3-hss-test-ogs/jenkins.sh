@@ -24,7 +24,7 @@ cp ogs/freediameter.conf $VOL_BASE_DIR/hss/
 network_create
 network_replace_subnet_in_configs
 
-MONGOD_ADDR="172.18.$SUBNET.103"
+MONGOD_ADDR="$SUB4_PREFIX.$SUBNET.103"
 DBCTL="open5gs-dbctl --db_uri=mongodb://$MONGOD_ADDR/open5gs"
 
 # start container with mongod in background

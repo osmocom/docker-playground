@@ -61,13 +61,13 @@ start_ggsn() {
 			-v "$KERNEL_TEST_DIR:/kernel-test:ro"
 			-v "$CACHE_DIR:/cache"
 			"
-		OSMO_SUT_HOST="172.18.$SUBNET.200"
+		OSMO_SUT_HOST="$SUB4_PREFIX.$SUBNET.200"
 	else
 
 		GGSN_DOCKER_ARGS="
 			$(docker_network_params $SUBNET 201)
 			"
-		OSMO_SUT_HOST="172.18.$SUBNET.201"
+		OSMO_SUT_HOST="$SUB4_PREFIX.$SUBNET.201"
 	fi
 	docker run	--rm \
 			--cap-add=NET_ADMIN \

@@ -24,7 +24,7 @@ cp asterisk/* $VOL_BASE_DIR/asterisk/
 
 network_create
 network_replace_subnet_in_configs
-SUBNET_IP_PREFIX="172.18.$SUBNET"
+SUBNET_IP_PREFIX="$SUB4_PREFIX.$SUBNET"
 ASTERISK_IP_SUFFIX="10"
 TTCN3_IP_SUFFIX="103"
 IMSCORE_IP_SUFFIX="104"

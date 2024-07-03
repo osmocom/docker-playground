@@ -32,7 +32,7 @@ start_bankd() {
 			$REPO_USER/osmo-remsim-$IMAGE_SUFFIX \
 			/bin/sh -c "pcscd; \
 				osmo-remsim-bankd \
-					-i 172.18.$SUBNET.10 \
+					-i $SUB4_PREFIX.$SUBNET.10 \
 					>/data/osmo-remsim-bankd.log 2>&1"
 }
 

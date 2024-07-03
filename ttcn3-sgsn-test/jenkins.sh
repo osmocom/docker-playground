@@ -49,7 +49,7 @@ docker run	--rm \
 		$(docker_network_params $SUBNET 103) \
 		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
-		-e "OSMO_SUT_HOST=172.18.$SUBNET.10" \
+		-e "OSMO_SUT_HOST=$SUB4_PREFIX.$SUBNET.10" \
 		-e "OSMO_SUT_PORT=4245" \
 		-v $VOL_BASE_DIR/sgsn-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-sgsn-test \
