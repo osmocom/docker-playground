@@ -15,8 +15,8 @@ cp dnsmasq/* $VOL_BASE_DIR/dnsmasq/
 
 mkdir $VOL_BASE_DIR/asterisk-ims-ue-tester
 mkdir $VOL_BASE_DIR/asterisk-ims-ue-tester/unix
-cp ttcn3.sh $VOL_BASE_DIR/asterisk-ims-ue-tester/
-cp Asterisk_Tests.cfg $VOL_BASE_DIR/asterisk-ims-ue-tester/
+cp ttcn3/ttcn3.sh $VOL_BASE_DIR/asterisk-ims-ue-tester/
+cp ttcn3/Asterisk_Tests.cfg $VOL_BASE_DIR/asterisk-ims-ue-tester/
 write_mp_osmo_repo "$VOL_BASE_DIR/asterisk-ims-ue-tester/Asterisk_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/asterisk
