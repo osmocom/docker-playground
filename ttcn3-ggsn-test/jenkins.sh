@@ -109,11 +109,7 @@ else
 	CONFIGS_DIR="osmo-ggsn"
 fi
 
-for i in $TEST_CONFIGS_ALL; do
-	if ! test_config_enabled "$i"; then
-		continue
-	fi
-
+for i in $TEST_CONFIGS; do
 	# OS#6106: Currently it is not possible to configure multiple APNs with
 	# gtpu-mode kernel-gtp in OsmoGGSN, because it cannot share the GTP-U
 	# bind socket between tunnels.
