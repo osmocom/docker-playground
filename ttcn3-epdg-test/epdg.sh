@@ -11,7 +11,11 @@ ip link add $UE_IFACE type dummy
 ip addr add $UE_ADDR dev $UE_IFACE
 ip link set $UE_IFACE up
 ip rule add from $UE_SUBNET table 45
-ERL_FLAGS='-config /data/osmo-epdg.config' /tmp/osmo-epdg/_build/default/bin/osmo-epdg &
+if [ "$IMAGE_SUFFIX" = "latest" ]; then
+	ERL_FLAGS='-config /data/osmo-epdg.latest.config' /usr/bin/osmo-epdg &
+else
+	ERL_FLAGS='-config /data/osmo-epdg.config' /tmp/osmo-epdg/_build/default/bin/osmo-epdg &
+fi
 MYPID=$!
 
 # We cannot set a route for the interface until it is created by osmo-epdg...

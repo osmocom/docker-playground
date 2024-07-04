@@ -15,6 +15,7 @@ write_mp_osmo_repo "$VOL_BASE_DIR/epdg-tester/EPDG_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/epdg
 cp osmo-epdg.config $VOL_BASE_DIR/epdg/
+cp osmo-epdg.latest.config $VOL_BASE_DIR/epdg/
 cp epdg.sh $VOL_BASE_DIR/epdg/
 cp ../common/pipework $VOL_BASE_DIR/epdg/
 
@@ -28,6 +29,7 @@ echo Starting container with osmo-epdg
 docker run	--rm \
 		$(docker_network_params $SUBNET 20) \
 		-u root \
+		-e IMAGE_SUFFIX=$IMAGE_SUFFIX \
 		--ulimit core=-1 \
 		--cap-add=NET_ADMIN \
 		--device /dev/net/tun:/dev/net/tun \
