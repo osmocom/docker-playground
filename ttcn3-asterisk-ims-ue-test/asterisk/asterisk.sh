@@ -23,4 +23,13 @@ cp /data/manager.conf "${ASTERISK_CFG_PATH}/"
 cp /data/logger.conf "${ASTERISK_CFG_PATH}/"
 cat /data/extensions.conf >>"${ASTERISK_CFG_PATH}/extensions.conf"
 
+SERVER_NAME="ims.mnc001.mcc238.3gppnetwork.org"
+for i in $(seq 30); do
+  set -e
+  ping -q -c 1 "$SERVER_NAME" && break
+  set +e
+  echo "[$i] DNS resolution $SERVER_NAME not ready, waiting..."
+  sleep 1
+done
+
 /usr/sbin/asterisk -C "${ASTERISK_CFG_PATH}/asterisk.conf" -f -g -vvvvv -ddddd
