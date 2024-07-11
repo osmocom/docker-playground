@@ -15,4 +15,4 @@ EXPOSE	53/tcp \
 
 VOLUME	/etc/dnsmasq
 
-CMD	["/bin/sh", "-c", "dnsmasq -d -C /data/dnsmasq.conf >/data/dnsmasq.log 2>&1"]
+CMD	["/bin/sh", "-c", "dnsmasq -d --log-queries=extra -C /data/dnsmasq.conf >/data/dnsmasq.log 2>&1"]
