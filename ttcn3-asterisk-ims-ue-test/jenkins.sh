@@ -74,6 +74,7 @@ start_testsuite() {
 			--ulimit core=-1 \
 			-e "TTCN3_PCAP_PATH=/data" \
 			-e "EXTRA_IPADDR=${EXTRA_IPADDR}" \
+			-e "ASTERISK_IPADDR=${ASTERISK_IPADDR}" \
 			-v "$VOL_BASE_DIR/asterisk-ims-ue-tester-${test_config}:/data" \
 			--name "${BUILD_TAG}-ttcn3-asterisk-ims-ue-test" \
 			$DOCKER_ARGS \
@@ -109,17 +110,19 @@ for i in $TEST_CONFIGS; do
 	if [ "$i" = "ipv4" ]; then
 		NETMASK_PREFIX="24"
 		SUBNET_IP_PREFIX="$SUB4_PREFIX.$SUBNET"
+		ASTERISK_IPADDR="${SUBNET_IP_PREFIX}.${ASTERISK_IP_SUFFIX}"
 		DNS_IPADDR="${SUBNET_IP_PREFIX}.${DNS_IP_SUFFIX}"
 		EXTRA_IPADDR="${SUBNET_IP_PREFIX}.${IMSCORE_IP_SUFFIX}/${NETMASK_PREFIX}"
 	elif [ "$i" = "ipv6" ]; then
 		NETMASK_PREFIX="64"
 		SUBNET_IP_PREFIX="$SUB6_PREFIX:$SUBNET"
+		ASTERISK_IPADDR="${SUBNET_IP_PREFIX}::${ASTERISK_IP_SUFFIX}"
 		DNS_IPADDR="${SUBNET_IP_PREFIX}::${DNS_IP_SUFFIX}"
 		EXTRA_IPADDR="${SUBNET_IP_PREFIX}::${IMSCORE_IP_SUFFIX}/${NETMASK_PREFIX}"
 
 		# Replace IPv4 addresses with IPv6 ones:
 		REPLACE_V4_TO_V6_EXPR="s,${SUB4_PREFIX}\.${SUBNET}\.,${SUB6_PREFIX}:${SUBNET}::,g"
-		REPLACE_V4_TO_V6_PORT_EXPR="s,${SUB4_PREFIX}\.${SUBNET}\.${ASTERISK_IP_SUFFIX}:,[${SUB6_PREFIX}:${SUBNET}::${ASTERISK_IP_SUFFIX}]:,g"
+		REPLACE_V4_TO_V6_PORT_EXPR="s,${SUB4_PREFIX}\.${SUBNET}\.${ASTERISK_IP_SUFFIX}:,[${ASTERISK_IPADDR}]:,g"
 		sed -i -E -e "${REPLACE_V4_TO_V6_EXPR}" "${VOL_BASE_DIR}/dnsmasq-${i}"/*.conf
 		sed -i -E -e "s,${SUB4_PREFIX}\.${SUBNET}\.${TTCN3_IP_SUFFIX}/24,${SUB6_PREFIX}:${SUBNET}::${TTCN3_IP_SUFFIX}/${NETMASK_PREFIX},g" "${VOL_BASE_DIR}/asterisk-${i}"/manager.conf
 		sed -i -E -e "s,${SUB4},${SUB6},g" "${VOL_BASE_DIR}/asterisk-${i}"/*.conf
@@ -130,8 +133,6 @@ for i in $TEST_CONFIGS; do
 
 	start_dnsmasq "$i"
 	start_asterisk "$i"
-	# Leave some time for asterisk to start:
-	sleep 5
 	start_testsuite "$i"
 
 	docker_kill_wait "$BUILD_TAG"-asterisk || true
