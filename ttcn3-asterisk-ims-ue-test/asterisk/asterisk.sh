@@ -26,7 +26,7 @@ cat /data/extensions.conf >>"${ASTERISK_CFG_PATH}/extensions.conf"
 SERVER_NAME="ims.mnc001.mcc238.3gppnetwork.org"
 for i in $(seq 30); do
   set -e
-  ping -q -c 1 "$SERVER_NAME" && break
+  ping -q -w 3 -c 1 "$SERVER_NAME" && break
   set +e
   echo "[$i] DNS resolution $SERVER_NAME not ready, waiting..."
   sleep 1
