@@ -5,6 +5,13 @@ FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 ARG	OSMOCOM_REPO_MIRROR="https://downloads.osmocom.org"
 ARG	OSMOCOM_REPO_PATH="packages/osmocom:"
 
+# Use vault.centos.org instead of mirrorlist.centos.org, which doesn't exist
+# anymore (see https://serverfault.com/a/1161847).
+RUN	set -x && \
+	sed -i 's/mirror.centos.org/vault.centos.org/g' /etc/yum.repos.d/*.repo && \
+	sed -i 's/^#.*baseurl=http/baseurl=http/g' /etc/yum.repos.d/*.repo && \
+	sed -i 's/^mirrorlist=http/#mirrorlist=http/g' /etc/yum.repos.d/*.repo
+
 # Use dnf package manager instead of yum, so we can use all the dnf codepaths
 # that were originally written for CentOS8 in this CentOS7 image too
 RUN	yum install -y dnf
