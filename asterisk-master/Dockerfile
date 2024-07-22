@@ -75,6 +75,9 @@ RUN	cd asterisk/third-party/pjproject && \
 RUN	cd asterisk && \
 	./bootstrap.sh && \
 	./configure && \
+	make menuselect.makeopts && \
+	menuselect/menuselect --enable codec_vevs menuselect.makeopts && \
+	menuselect/menuselect --check-deps menuselect.makeopts && \
 	make "-j$(nproc)" && \
 	make install && \
 	make samples && \
@@ -82,3 +85,7 @@ RUN	cd asterisk && \
 
 # Required to set up ipsec:
 RUN	setcap 'cap_net_admin,cap_sys_resource=ep' /usr/sbin/asterisk
+
+RUN	cd asterisk/codec_server && \
+	make "-j$(nproc)" && \
+	cp cserver /usr/bin/cserver
