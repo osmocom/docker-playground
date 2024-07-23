@@ -11,6 +11,7 @@ set_clean_up_trap
 set -e
 
 mkdir $VOL_BASE_DIR/sgsn-tester
+cp "ttcn3.sh" "$VOL_BASE_DIR/sgsn-tester/"
 cp SGSN_Tests.cfg $VOL_BASE_DIR/sgsn-tester/
 write_mp_osmo_repo "$VOL_BASE_DIR/sgsn-tester/SGSN_Tests.cfg"
 
@@ -24,6 +25,7 @@ mkdir $VOL_BASE_DIR/unix
 
 network_create
 network_replace_subnet_in_configs
+TTCN3_RAN_IPADDR="$SUB4_PREFIX.$SUBNET.104"
 
 echo Starting container with STP
 docker run	--rm \
@@ -46,12 +48,15 @@ docker run	--rm \
 
 echo Starting container with SGSN testsuite
 docker run	--rm \
+		--cap-add=NET_ADMIN \
 		$(docker_network_params $SUBNET 103) \
 		--ulimit core=-1 \
 		-e "TTCN3_PCAP_PATH=/data" \
 		-e "OSMO_SUT_HOST=$SUB4_PREFIX.$SUBNET.10" \
 		-e "OSMO_SUT_PORT=4245" \
+		-e "EXTRA_IPADDR=${TTCN3_RAN_IPADDR}" \
 		-v $VOL_BASE_DIR/sgsn-tester:/data \
 		--name ${BUILD_TAG}-ttcn3-sgsn-test \
 		$DOCKER_ARGS \
-		$REPO_USER/ttcn3-sgsn-test
+		$REPO_USER/ttcn3-sgsn-test \
+		/data/ttcn3.sh
