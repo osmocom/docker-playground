@@ -3,7 +3,7 @@
 
 LOG=/tmp/smoke_test.log
 
-/kernel-test/run-qemu.sh SMOKE_TEST > "$LOG" 2>&1 || true
+/kernel-test/run-qemu.sh SMOKE_TEST 2>&1 | tee "$LOG" || true
 
 if ! grep -q SMOKE_TEST_SUCCESS "$LOG"; then
 	cat "$LOG"
