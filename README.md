@@ -2,8 +2,15 @@ Osmocom docker playground
 =========================
 
 This repository contains some humble attempts at creating some Docker
-containers + related stacks around Osmocom.   So far, the main focus is
-test automation.
+containers + related stacks around Osmocom.
+
+Historically this repository had all containers for running the TTCN3
+testsuites. We are porting them over to the new testenv configurations
+inside `osmo-ttcn3-hacks.git` and removing them afterwards from
+`docker-playground.git`. See
+[_testenv/README.md](https://gitea.osmocom.org/ttcn3/osmo-ttcn3-hacks/src/branch/master/_testenv/README.md)
+for more information, and [OS#6494](https://osmocom.org/issues/6494)
+for reasoning.
 
 ## Running a testsuite
 All testsuite folders start with `ttcn3` or `nplab`. Run the following
