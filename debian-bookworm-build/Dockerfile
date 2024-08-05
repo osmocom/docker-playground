@@ -176,7 +176,7 @@ RUN	set -x && \
 	cat /tmp/pysim_requirements.txt && \
 	pip3 install --break-system-packages \
 		'git+https://github.com/eriwen/lcov-to-cobertura-xml.git' \
-		'git+https://github.com/osmocom/sphinx-argparse@master#egg=sphinx-argparse' \
+		'git+https://github.com/osmocom/sphinx-argparse@inside-classes#egg=sphinx-argparse' \
 		'git+https://github.com/podshumok/python-smpplib.git' \
 		'pydbus' \
 		'pysispm' \
