@@ -15,7 +15,6 @@ write_mp_osmo_repo "$VOL_BASE_DIR/epdg-tester/EPDG_Tests.cfg"
 
 mkdir $VOL_BASE_DIR/epdg
 cp osmo-epdg.config $VOL_BASE_DIR/epdg/
-cp osmo-epdg.latest.config $VOL_BASE_DIR/epdg/
 cp epdg.sh $VOL_BASE_DIR/epdg/
 cp ../common/pipework $VOL_BASE_DIR/epdg/
 
