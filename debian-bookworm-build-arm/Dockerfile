@@ -3,7 +3,7 @@
 # See master-builds.yml, gerrit-verifications.yml in osmo-ci.git.
 ARG	REGISTRY=docker.io
 ARG	UPSTREAM_DISTRO=debian:bookworm
-FROM	${REGISTRY}/${UPSTREAM_DISTRO}
+FROM	${REGISTRY}/arm32v7/${UPSTREAM_DISTRO}
 
 # Arguments used after FROM must be specified again
 ARG	OSMOCOM_REPO_MIRROR="https://downloads.osmocom.org"
