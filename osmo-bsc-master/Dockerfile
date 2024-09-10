@@ -11,7 +11,6 @@ RUN	case "$DISTRO" in \
 			libosmocore-dev \
 			libosmo-abis-dev \
 			libosmo-netif-dev \
-			libosmo-sccp-dev \
 			libosmo-sigtran-dev \
 			libosmo-mgcp-client-dev \
 			libgtp-dev && \
@@ -21,7 +20,6 @@ RUN	case "$DISTRO" in \
 		dnf install -y \
 			"pkgconfig(libosmo-mgcp-client)" \
 			"pkgconfig(libosmo-netif)" \
-			"pkgconfig(libosmo-sccp)" \
 			"pkgconfig(libosmo-sigtran)" \
 			"pkgconfig(libosmoabis)" \
 			"pkgconfig(libosmocore)" \

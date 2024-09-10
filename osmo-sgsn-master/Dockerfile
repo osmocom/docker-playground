@@ -13,7 +13,6 @@ RUN	case "$DISTRO" in \
 			libosmo-gsup-client-dev \
 			libosmo-netif-dev \
 			libosmo-ranap-dev \
-			libosmo-sccp-dev \
 			libosmo-sigtran-dev \
 			libsmpp34-dev \
 			libgtp-dev \

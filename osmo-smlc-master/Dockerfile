@@ -10,14 +10,12 @@ RUN	case "$DISTRO" in \
 		apt-get install -y --no-install-recommends \
 			libosmocore-dev \
 			libosmo-netif-dev \
-			libosmo-sccp-dev \
 			libosmo-sigtran-dev && \
 		apt-get clean \
 		;; \
 	centos*) \
 		dnf install -y \
 			"pkgconfig(libosmo-netif)" \
-			"pkgconfig(libosmo-sccp)" \
 			"pkgconfig(libosmo-sigtran)" \
 			"pkgconfig(libosmocore)" \
 			"pkgconfig(libosmoctrl)" \

@@ -11,7 +11,7 @@ RUN	case "$DISTRO" in \
 			libosmocore-dev \
 			libosmo-abis-dev \
 			libosmo-netif-dev \
-			libosmo-sccp-dev && \
+			&& \
 		apt-get clean \
 		;; \
 	centos*) \
