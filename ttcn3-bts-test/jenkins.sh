@@ -127,7 +127,11 @@ start_testsuite() {
 
 set_pcuif_version() {
 	if osmo_repo_is_2023q1; then
-		sed -i 's/PCUIF_Types.mp_pcuif_version := 12/PCUIF_Types.mp_pcuif_version := 10/g' $1
+		sed -i 's/PCUIF_Types.mp_pcuif_version := 13/PCUIF_Types.mp_pcuif_version := 10/g' $1
+	fi
+
+	if osmo_repo_is_latest; then
+		sed -i 's/PCUIF_Types.mp_pcuif_version := 13/PCUIF_Types.mp_pcuif_version := 12/g' $1
 	fi
 }
 
