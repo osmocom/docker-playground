@@ -152,8 +152,6 @@ RUN pip3 install \
 	'sphinx' \
 	'sphinxcontrib-napoleon' \
 	'swig'
-ADD https://gitea.osmocom.org/sim-card/pysim/raw/branch/master/requirements.txt /tmp/pysim_requirements.txt
-RUN pip3 install -r /tmp/pysim_requirements.txt
 
 # match the outside user
 RUN useradd --uid=1000 build
