@@ -25,10 +25,10 @@ WORKDIR	/data
 
 ARG	OSMO_STP_BRANCH="master"
 
-RUN	git clone https://gerrit.osmocom.org/libosmo-sccp.git
-ADD	https://gerrit.osmocom.org/plugins/gitiles/libosmo-sccp/+/$OSMO_STP_BRANCH?format=TEXT /tmp/commit-libosmo-sccp
+RUN	git clone https://gerrit.osmocom.org/libosmo-sigtran.git
+ADD	https://gerrit.osmocom.org/plugins/gitiles/libosmo-sigtran/+/$OSMO_STP_BRANCH?format=TEXT /tmp/commit-libosmo-sigtran
 
-RUN	cd libosmo-sccp && \
+RUN	cd libosmo-sigtran && \
 	git fetch && git checkout $OSMO_STP_BRANCH && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$OSMO_STP_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
