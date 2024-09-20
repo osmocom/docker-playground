@@ -78,4 +78,5 @@ RUN	if ! diff -q /tmp/deps-Makefile /osmo-ttcn3-hacks/deps/Makefile; then \
 		cd /osmo-ttcn3-hacks && \
 		git pull && \
 		make -j8 deps; \
-	fi
+	fi && \
+	chown -R 1000:1000 /osmo-ttcn3-hacks/deps
