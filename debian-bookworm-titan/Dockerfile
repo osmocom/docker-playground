@@ -71,6 +71,7 @@ RUN	set -x && \
 	apt-get clean
 
 # Clone osmo-ttcn3-hacks and deps, invalidate cache if deps change (OS#5017)
+# chown: gerrit-verifications will potentially update the deps as UID=1000
 RUN	git clone https://gerrit.osmocom.org/osmo-ttcn3-hacks && \
 	make -j8 -C /osmo-ttcn3-hacks deps
 ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-ttcn3-hacks/+/refs/heads/master/deps/Makefile?format=TEXT /tmp/deps-Makefile
@@ -78,4 +79,5 @@ RUN	if ! diff -q /tmp/deps-Makefile /osmo-ttcn3-hacks/deps/Makefile; then \
 		cd /osmo-ttcn3-hacks && \
 		git pull && \
 		make -j8 deps; \
-	fi
+	fi && \
+	chown -R 1000:1000 /osmo-ttcn3-hacks/deps
