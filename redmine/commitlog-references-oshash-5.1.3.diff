@@ -1,5 +1,5 @@
 diff --git a/app/models/changeset.rb b/app/models/changeset.rb
-index f1580ce33..748c66ddc 100644
+index 9ee758128..cc92217e5 100644
 --- a/app/models/changeset.rb
 +++ b/app/models/changeset.rb
 @@ -136,7 +136,7 @@ class Changeset < ActiveRecord::Base
@@ -15,8 +15,8 @@ index f1580ce33..748c66ddc 100644
        refs   = match[3]
        next unless action.present? || ref_keywords_any
  
--      refs.scan(/#(\d+)(\s+@#{TIMELOG_RE})?/).each do |m|
-+      refs.scan(/OS#(\d+)(\s+@#{TIMELOG_RE})?/).each do |m|
+-      refs.scan(/#(\d+)(\s+@#{TIMELOG_RE})?/o).each do |m|
++      refs.scan(/OS#(\d+)(\s+@#{TIMELOG_RE})?/o).each do |m|
          issue = find_referenced_issue_by_id(m[0].to_i)
          hours = m[2]
          if issue && !issue_linked_to_same_commit?(issue)
