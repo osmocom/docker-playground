@@ -158,12 +158,6 @@ start_config_virtphy() {
 		return
 	fi
 
-	# FIXME: multicast to/from a docker bridge network is currently not possible.
-	# See https://github.com/moby/libnetwork/issues/2397.
-	set +x
-	echo "ERROR: not running the virtphy configuration"
-	exit 1
-
 	cp virtphy/osmo-bts.gen.cfg $VOL_BASE_DIR/bts/
 	network_replace_subnet_in_configs
 
