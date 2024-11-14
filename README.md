@@ -33,6 +33,7 @@ Environment variables:
   Osmocom project. Defaults to `master`.
 * `NO_DOCKER_IMAGE_BUILD`: when set to `1`, it won't try to update the
   containers (see "caching" below)
+* `NO_DOCKER_IMAGE_PULL`: when running `docker build`, don't add `--pull`
 * `DOCKER_ARGS`: pass extra arguments to docker, e.g. to mount local sources
   for building as done in osmo-dev.git/ttcn3/ttcn3.sh
 * `TEST_CONFIGS`: for tests that can run with multiple config sets (e.g.

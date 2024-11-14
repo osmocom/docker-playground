@@ -203,10 +203,12 @@ docker_images_require() {
 			dir="$(docker_dir_from_image_name "$i")"
 
 			# Pull upstream base images
-			pull_arg="--pull"
-			from_line="$(grep '^FROM' ${IMAGE_DIR_PREFIX}/${dir}/Dockerfile)"
-			if echo "$from_line" | grep -q '$USER'; then
-				pull_arg=""
+			if [ -z "$NO_DOCKER_IMAGE_PULL" ]; then
+				pull_arg="--pull"
+				from_line="$(grep '^FROM' ${IMAGE_DIR_PREFIX}/${dir}/Dockerfile)"
+				if echo "$from_line" | grep -q '$USER'; then
+					pull_arg=""
+				fi
 			fi
 
 			set +x
