@@ -1,6 +1,6 @@
 #!/bin/sh
 TEST_CONFIGS_ALL="generic virtphy oml hopping"
-TEST_CONFIGS="${TEST_CONFIGS:-"generic oml hopping"}"
+TEST_CONFIGS="${TEST_CONFIGS:-"generic virtphy oml hopping"}"
 
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
