@@ -37,6 +37,7 @@ OSMO_MGW_BRANCH?=master
 OSMO_MSC_BRANCH?=master
 OSMO_NITB_BRANCH?=master
 OSMO_PCU_BRANCH?=master
+OSMO_REMSIM_BRANCH?=master
 OSMO_SGSN_BRANCH?=master
 OSMO_SIP_BRANCH?=master
 OSMO_STP_BRANCH?=master
@@ -121,6 +122,7 @@ docker-build: .release
 		--build-arg OSMO_MSC_BRANCH=$(OSMO_MSC_BRANCH) \
 		--build-arg OSMO_NITB_BRANCH=$(OSMO_NITB_BRANCH) \
 		--build-arg OSMO_PCU_BRANCH=$(OSMO_PCU_BRANCH) \
+		--build-arg OSMO_REMSIM_BRANCH=$(OSMO_REMSIM_BRANCH) \
 		--build-arg OSMO_SGSN_BRANCH=$(OSMO_SGSN_BRANCH) \
 		--build-arg OSMO_SIP_BRANCH=$(OSMO_SIP_BRANCH) \
 		--build-arg OSMO_STP_BRANCH=$(OSMO_STP_BRANCH) \
