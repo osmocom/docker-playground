@@ -9,6 +9,7 @@ RUN	case "$DISTRO" in \
 		apt-get update && \
 		apt-get install -y --no-install-recommends \
 			libosmocore-dev \
+			libosmo-netif-dev \
 			libzmq3-dev \
 			&& \
 		apt-get clean \
@@ -20,6 +21,7 @@ RUN	case "$DISTRO" in \
 			"pkgconfig(libosmogb)" \
 			"pkgconfig(libosmogsm)" \
 			"pkgconfig(libosmovty)" \
+			"pkgconfig(libosmo-netif)" \
 			"pkgconfig(libzmq)" \
 		;; \
 	esac
