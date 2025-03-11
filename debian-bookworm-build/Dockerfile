@@ -61,6 +61,7 @@ RUN	set -x && \
 		bzip2 \
 		ca-certificates \
 		ccache \
+		clang-format \
 		cmake \
 		coccinelle \
 		cppcheck \
@@ -180,6 +181,7 @@ RUN	set -x && \
 		'git+https://github.com/podshumok/python-smpplib.git' \
 		'pydbus' \
 		'pysispm' \
+		'ruff' \
 		'sphinx' \
 		'sphinxcontrib-napoleon' \
 		-r /tmp/pysim_requirements.txt
