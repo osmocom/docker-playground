@@ -54,10 +54,12 @@ RUN	apt-get update && \
 		libusb-1.0-0-dev \
 		libusb-dev \
 		make \
+		netcat-openbsd \
 		pkg-config \
 		sqlite3 \
 		stow \
 		telnet \
+		tcpdump \
 		wget && \
 	apt-get clean
 

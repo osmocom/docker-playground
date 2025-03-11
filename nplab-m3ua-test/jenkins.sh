@@ -36,4 +36,5 @@ docker run	--rm \
 		--ulimit core=-1 \
 		-v $VOL_BASE_DIR/m3ua-tester:/data \
 		--name ${BUILD_TAG}-m3ua-test \
-		$REPO_USER/nplab-m3ua-test > $VOL_BASE_DIR/m3ua-tester/junit-xml-m3ua.log
+		$REPO_USER/nplab-m3ua-test \
+		/usr/local/bin/test.sh

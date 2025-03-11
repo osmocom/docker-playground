@@ -10,6 +10,9 @@ RUN	cd /tmp/sua-testtool && \
 	cp runtest-junitxml.py /usr/local/bin/
 
 COPY	dotguile /root/.guile
+COPY	.common/tcpdump-start.sh /usr/local/bin/tcpdump-start.sh
+COPY	.common/tcpdump-stop.sh /usr/local/bin/tcpdump-stop.sh
+COPY	test.sh /usr/local/bin/test.sh
 
 RUN	mkdir /data
 
