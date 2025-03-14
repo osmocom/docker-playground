@@ -167,6 +167,7 @@ RUN	set -x && \
 		unzip \
 		virtualenv \
 		xsltproc \
+		xxd \
 		&& \
 	apt-get clean
 
