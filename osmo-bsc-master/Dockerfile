@@ -12,8 +12,7 @@ RUN	case "$DISTRO" in \
 			libosmo-abis-dev \
 			libosmo-netif-dev \
 			libosmo-sigtran-dev \
-			libosmo-mgcp-client-dev \
-			libgtp-dev && \
+			libosmo-mgcp-client-dev && \
 		apt-get clean \
 		;; \
 	centos*) \

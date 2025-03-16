@@ -10,9 +10,7 @@ RUN	case "$DISTRO" in \
 		apt-get install -y --no-install-recommends \
 			libosmocore-dev \
 			libosmo-abis-dev \
-			libosmo-netif-dev \
-			libsmpp34-dev \
-			libgtp-dev && \
+			libosmo-netif-dev && \
 		apt-get clean \
 		;; \
 	centos*) \

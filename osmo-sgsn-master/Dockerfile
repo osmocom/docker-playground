@@ -14,7 +14,6 @@ RUN	case "$DISTRO" in \
 			libosmo-netif-dev \
 			libosmo-ranap-dev \
 			libosmo-sigtran-dev \
-			libsmpp34-dev \
 			libgtp-dev \
 			libasn1c-dev && \
 		apt-get clean \
