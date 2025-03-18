@@ -60,6 +60,8 @@ start_fake_trx() {
 	echo Starting container with fake_trx
 	docker run	--rm \
 			$(docker_network_params $SUBNET 21) \
+			--cap-add=SYS_ADMIN \
+			--ulimit rtprio=99 \
 			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/fake_trx:/data \
 			--name ${BUILD_TAG}-fake_trx -d \
@@ -70,6 +72,7 @@ start_fake_trx() {
 				--log-file-level DEBUG \
 				--log-file-time \
 				--log-level INFO \
+				--sched-rr-prio 30 \
 				-R $SUB4_PREFIX.$SUBNET.20 \
 				-r $SUB4_PREFIX.$SUBNET.22 \
 				--trx TRX1@$SUB4_PREFIX.$SUBNET.20:5700/1 \
