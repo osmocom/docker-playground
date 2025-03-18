@@ -80,6 +80,7 @@ start_fake_trx() {
 				--log-file-level DEBUG \
 				--log-file-time \
 				--log-level INFO \
+				--sched-rr-prio 30 \
 				-R $SUB4_PREFIX.$SUBNET.20 \
 				-r $SUB4_PREFIX.$SUBNET.22 \
 				--trx TRX1@$SUB4_PREFIX.$SUBNET.20:5700/1 \
