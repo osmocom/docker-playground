@@ -47,6 +47,8 @@ start_bts() {
 	fi
 	docker run	--rm \
 			$(docker_network_params $SUBNET 20) \
+			--cap-add=SYS_ADMIN \
+			--ulimit rtprio=99 \
 			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/bts:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
