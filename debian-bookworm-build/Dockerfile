@@ -173,11 +173,13 @@ RUN	set -x && \
 
 # Install pip dependencies (alphabetic order)
 # break-system-packages: inside docker it's fine to install pkgs system-wide
+# lcov-to-cobertura-xml: use this commit as the latest version fails:
+#                        https://github.com/eriwen/lcov-to-cobertura-xml/issues/63
 ADD	https://gitea.osmocom.org/sim-card/pysim/raw/branch/master/requirements.txt /tmp/pysim_requirements.txt
 RUN	set -x && \
 	cat /tmp/pysim_requirements.txt && \
 	pip3 install --break-system-packages \
-		'git+https://github.com/eriwen/lcov-to-cobertura-xml.git' \
+		'git+https://github.com/eriwen/lcov-to-cobertura-xml.git@028da3798355d0260c6c6491b39347d84ca7a02d' \
 		'git+https://github.com/osmocom/sphinx-argparse@inside-classes#egg=sphinx-argparse' \
 		'git+https://github.com/podshumok/python-smpplib.git' \
 		'pydbus' \
