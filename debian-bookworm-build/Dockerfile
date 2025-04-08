@@ -182,8 +182,6 @@ RUN	set -x && \
 		'git+https://github.com/eriwen/lcov-to-cobertura-xml.git@028da3798355d0260c6c6491b39347d84ca7a02d' \
 		'git+https://github.com/osmocom/sphinx-argparse@inside-classes#egg=sphinx-argparse' \
 		'git+https://github.com/podshumok/python-smpplib.git' \
-		'pydbus' \
-		'pysispm' \
 		'ruff' \
 		'sphinx' \
 		'sphinxcontrib-napoleon' \
