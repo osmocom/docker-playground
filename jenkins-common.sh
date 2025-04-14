@@ -23,6 +23,8 @@ docker_depends() {
 	osmo-*-latest-centos8) echo "centos8-obs-latest" ;;
 	osmo-*-centos7) echo "centos7-build" ;;
 	osmo-*-centos8) echo "centos8-build" ;;
+	osmo-*-latest-debian10) echo "debian-buster-obs-latest" ;;
+	osmo-*-debian10) echo "debian-buster-build" ;;
 	osmo-*-latest) echo "debian-$DEBIAN_DEFAULT-obs-latest" ;;
 	osmo-*-asan) echo "debian-$DEBIAN_DEFAULT-obs-asan" ;;
 	osmo_dia2gsup-*) echo "debian-$DEBIAN_DEFAULT-erlang" ;;
@@ -40,6 +42,7 @@ docker_distro_from_image_name() {
 	osmo-*-centos8) echo "centos8" ;;
 	centos7-*) echo "centos7" ;;
 	centos8-*) echo "centos8" ;;
+	osmo-*-debian10) echo "debian-buster" ;;
 	debian-buster-*) echo "debian-buster" ;;
 	debian-bullseye-*) echo "debian-bullseye" ;;
 	debian-bookworm-*) echo "debian-bookworm" ;;
@@ -53,6 +56,7 @@ docker_upstream_distro_from_image_name() {
 	osmo-*-centos8) echo "almalinux:8"; ;;
 	centos7-*) echo "centos:centos7" ;;
 	centos8-*) echo "almalinux:8" ;;
+	osmo-*-debian10) echo "debian:buster" ;;
 	debian9-*) echo "debian:stretch" ;;
 	debian10-*) echo "debian:buster" ;;
 	debian11-*) echo "debian:bullseye" ;;
@@ -78,6 +82,10 @@ docker_dir_from_image_name() {
 	osmo-*-centos8)
 		# e.g. osmo-mgw-latest-centos8 -> osmo-mgw-latest
 		echo "$1" | sed 's/\-centos8$//'
+		;;
+	osmo-*-debian10)
+		# e.g. osmo-gbproxy-master-debian10 -> osmo-gbproxy-master
+		echo "$1" | sed 's/\-debian10$//'
 		;;
 	centos8-obs-20*q*)
 		# e.g. centos8-obs-2021q1 -> centos8-obs-latest
