@@ -25,12 +25,17 @@ ARG	LIBOSMOCORE_BRANCH="master"
 RUN	git clone https://gerrit.osmocom.org/libosmocore.git
 ADD	https://gerrit.osmocom.org/plugins/gitiles/libosmocore/+/$LIBOSMOCORE_BRANCH?format=TEXT /tmp/commit-libosmocore
 
-RUN	cd libosmocore && \
+RUN	set -x && \
+	cd libosmocore && \
 	git fetch && git checkout $LIBOSMOCORE_BRANCH && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$LIBOSMOCORE_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
-	./configure --disable-doxygen --disable-pcsc --enable-external-tests && \
+	CONFIGURE_FLAGS="--disable-doxygen --disable-pcsc --enable-external-tests" && \
+	if [ "$DISTRO" = "debian-buster" ]; then \
+		CONFIGURE_FLAGS="$CONFIGURE_FLAGS --disable-uring"; \
+	fi && \
+	./configure $CONFIGURE_FLAGS && \
 	make "-j$(nproc)" install && \
 	install -m 0755 utils/.libs/osmo-ns-dummy /usr/local/bin/osmo-ns-dummy && \
 	/sbin/ldconfig
