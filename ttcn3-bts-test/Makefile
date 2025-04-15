@@ -1,3 +1,6 @@
+# XXX: use an older version of fake_trx.py, that predates
+# commit 0f4714776a9c9b64c4a7268eb8a346f304835565 (OS#6672).
+OSMO_BB_BRANCH=ttcn3-bts-test
 
 include ../make/Makefile
 
