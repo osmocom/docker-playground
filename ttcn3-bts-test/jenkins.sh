@@ -2,6 +2,10 @@
 TEST_CONFIGS_ALL="generic virtphy oml hopping"
 TEST_CONFIGS="${TEST_CONFIGS:-"generic oml hopping"}"
 
+# XXX: use an older version of fake_trx.py, that predates
+# commit 0f4714776a9c9b64c4a7268eb8a346f304835565 (OS#6672).
+export OSMO_BB_BRANCH=ttcn3-bts-test
+
 . ../jenkins-common.sh
 IMAGE_SUFFIX="${IMAGE_SUFFIX:-master}"
 # NOTE: there is no osmocom-bb-host-latest, hence always use master!
