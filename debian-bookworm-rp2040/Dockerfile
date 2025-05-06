@@ -28,8 +28,10 @@ RUN	set -x && \
 		libnewlib-arm-none-eabi \
 		libstdc++-arm-none-eabi-newlib \
 		libusb-1.0-0-dev \
+		openssh-client \
 		pkg-config \
 		python3 \
+		rsync \
 	&& \
 	apt-get clean
 
