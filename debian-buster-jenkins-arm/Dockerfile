@@ -50,13 +50,13 @@ RUN mkdir /build
 RUN chown build:build /build
 
 # Install osmo-python-tests for python3
-ADD http://git.osmocom.org/python/osmo-python-tests/patch /tmp/osmo-python-tests3-commit
+ADD https://gerrit.osmocom.org/plugins/gitiles/python/osmo-python-tests/+/master?format=TEXT /tmp/osmo-python-tests-commit
 RUN git clone https://gerrit.osmocom.org/python/osmo-python-tests osmo-python-tests3 && \
 	cd osmo-python-tests3 && \
 	python3 setup.py clean build install
 
 # Install osmo-ci.git/scripts to /usr/local/bin
-ADD http://git.osmocom.org/osmo-ci/patch /tmp/osmo-ci-commit
+ADD https://gerrit.osmocom.org/plugins/gitiles/osmo-ci/+/master?format=TEXT /tmp/osmo-ci-commit
 RUN git clone https://gerrit.osmocom.org/osmo-ci osmo-ci && \
 	cp -v $(find osmo-ci/scripts \
 		-maxdepth 1 \
