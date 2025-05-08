@@ -33,7 +33,7 @@ if ! diff -q /tmp/deps-Makefile deps/Makefile; then
 fi
 
 # Link start/stop scripts to /
-for i in ttcn3-*-start.sh ttcn3-*-stop.sh; do
+for i in ttcn3-*-start.sh ttcn3-*-stop.sh _scripts; do
 	ln -sv "/osmo-ttcn3-hacks/$i" "/$i"
 done
 
