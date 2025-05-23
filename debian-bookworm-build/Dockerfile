@@ -104,13 +104,16 @@ RUN	set -x && \
 		libgnutls28-dev \
 		libgps-dev \
 		libgsm1-dev \
+		libidn-dev \
 		libjansson-dev \
 		liblua5.3-dev \
 		libmnl-dev \
+		libmongoc-dev \
 		libncurses5-dev \
 		libnewlib-arm-none-eabi \
 		libnftables-dev \
 		libnftnl-dev \
+		libnghttp2-dev \
 		libnl-3-dev \
 		libnl-route-3-dev \
 		liboping-dev \
@@ -124,6 +127,7 @@ RUN	set -x && \
 		libsnmp-dev \
 		libsofia-sip-ua-glib-dev \
 		libsqlite3-dev \
+		libssh-gcrypt-dev \
 		libssl-dev \
 		libtalloc-dev \
 		libtinfo5 \
@@ -132,10 +136,12 @@ RUN	set -x && \
 		libusb-1.0-0-dev \
 		libusb-dev \
 		libxml2-utils \
+		libyaml-dev \
 		libzmq3-dev \
 		locales \
 		lua-socket \
 		make \
+		meson \
 		mscgen \
 		ofono \
 		openssh-client \
@@ -149,6 +155,7 @@ RUN	set -x && \
 		python3-nwdiag \
 		python3-pip \
 		python3-pyflakes \
+		python3-pytest \
 		python3-setuptools \
 		python3-usb \
 		python3-yaml \
