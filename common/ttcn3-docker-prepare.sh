@@ -1,4 +1,9 @@
 #!/bin/sh -e
+if [ -n "$TITAN_VERSION" ]; then
+	export TTCN3_DIR="/opt/eclipse-titan-$TITAN_VERSION"
+	export PATH="$TTCN3_DIR/bin:$PATH"
+fi
+
 if [ $# -lt 2 ]; then
 	echo
 	echo "usage: ttcn3-docker-prepare OSMO_TTCN3_BRANCH PROJECT [PROJECT ...]"

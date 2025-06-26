@@ -59,7 +59,9 @@ RUN	set -x && \
 RUN	git config --global user.email docker@dock.er && \
 	git config --global user.name "Dock Er"
 
-# Add eclipse-titan from osmocom:latest, invalidate cache when :latest changes
+# Add eclipse-titan (latest version we use) from osmocom:latest, as well as
+# version 9.0.0 for testsuites that still need it (OS#6800). Invalidate cache
+# when :latest changes.
 RUN	echo "deb [signed-by=/usr/share/keyrings/osmocom-latest.asc] $OSMOCOM_REPO ./" \
 		> /etc/apt/sources.list.d/osmocom-latest.list
 ADD	$OSMOCOM_REPO/Release /tmp/Release
@@ -67,6 +69,7 @@ RUN	set -x && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		eclipse-titan \
+		eclipse-titan-optdir-9.0.0 \
 		&& \
 	apt-get clean
 
