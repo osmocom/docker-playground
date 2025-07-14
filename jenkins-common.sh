@@ -56,13 +56,13 @@ docker_upstream_distro_from_image_name() {
 	osmo-*-centos8) echo "almalinux:8"; ;;
 	centos7-*) echo "centos:centos7" ;;
 	centos8-*) echo "almalinux:8" ;;
-	osmo-*-debian10) echo "debian:buster" ;;
-	debian9-*) echo "debian:stretch" ;;
-	debian10-*) echo "debian:buster" ;;
+	osmo-*-debian10) echo "debian/eol:buster" ;;
+	debian9-*) echo "debian/eol:stretch" ;;
+	debian10-*) echo "debian/eol:buster" ;;
 	debian11-*) echo "debian:bullseye" ;;
 	debian12-*) echo "debian:bookworm" ;;
-	debian-stretch-*) echo "debian:stretch" ;;
-	debian-buster-*) echo "debian:buster" ;;
+	debian-stretch-*) echo "debian/eol:stretch" ;;
+	debian-buster-*) echo "debian/eol:buster" ;;
 	debian-bullseye-*) echo "debian:bullseye" ;;
 	debian-bookworm-*) echo "debian:bookworm" ;;
 	*) echo "debian:$DEBIAN_DEFAULT" ;;

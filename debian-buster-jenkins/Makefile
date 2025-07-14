@@ -1,3 +1,3 @@
-UPSTREAM_DISTRO=debian:buster
+UPSTREAM_DISTRO=debian/eol:buster
 DISTRO=debian-buster
 include ../make/Makefile

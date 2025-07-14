@@ -1,5 +1,5 @@
 ARG	REGISTRY=docker.io
-ARG	UPSTREAM_DISTRO=debian:buster
+ARG	UPSTREAM_DISTRO=debian/eol:buster
 FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 # Arguments used after FROM must be specified again
 ARG	OSMOCOM_REPO_MIRROR="https://downloads.osmocom.org"
