@@ -35,9 +35,9 @@ RUN	set -x && \
 # Binary-only transcoding library for RANAP/RUA/HNBAP to work around TITAN only implementing BER
 RUN	set -x && \
 	export DPKG_ARCH="$(dpkg --print-architecture)" && \
-	wget https://ftp.osmocom.org/binaries/libfftranscode/libfftranscode0_0.5_${DPKG_ARCH}.deb && \
-	wget https://ftp.osmocom.org/binaries/libfftranscode/libfftranscode-dev_0.5_${DPKG_ARCH}.deb && \
-	dpkg -i ./libfftranscode0_0.5_${DPKG_ARCH}.deb ./libfftranscode-dev_0.5_${DPKG_ARCH}.deb && \
+	wget https://ftp.osmocom.org/binaries/libfftranscode/libfftranscode0_0.6_${DPKG_ARCH}.deb && \
+	wget https://ftp.osmocom.org/binaries/libfftranscode/libfftranscode-dev_0.6_${DPKG_ARCH}.deb && \
+	dpkg -i ./libfftranscode0_0.6_${DPKG_ARCH}.deb ./libfftranscode-dev_0.6_${DPKG_ARCH}.deb && \
 	apt install --fix-broken && \
 	rm libfftranscode*.deb
 
