@@ -27,7 +27,7 @@ RUN	case "$DISTRO" in \
 		if [ "x${DEBIAN_VERSION}" = "xbookworm" ]; then \
 			echo "Using bullseye since bookworm mongodb-org package is not available. Furthermore, manually install required libssl1.1." && \
 			DEBIAN_VERSION="bullseye" && \
-			wget "http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.1_1.1.1n-0+deb10u6_amd64.deb" && \
+			wget "http://archive.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.1_1.1.1n-0+deb10u6_amd64.deb" && \
 			dpkg -i "libssl1.1_1.1.1n-0+deb10u6_amd64.deb" && \
 			rm "libssl1.1_1.1.1n-0+deb10u6_amd64.deb"; \
 		fi; \
