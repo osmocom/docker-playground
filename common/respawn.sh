@@ -7,7 +7,7 @@ SLEEP_BEFORE_RESPAWN=${SLEEP_BEFORE_RESPAWN:-0}
 i=0
 max_i=500
 while [ $i -lt $max_i ]; do
-	echo "$i: starting: $*"
+	echo "respawn: $i: starting: $*"
 	$* &
 	LAST_PID=$!
 	wait $LAST_PID
