@@ -44,6 +44,7 @@ start_bsc() {
 start_bts() {
 	local variant
 	variant="$1"
+	sleep_time_respawn="$2"
 	echo Starting container with BTS
 	if [ -z "$variant" ]; then
 		echo ERROR: You have to specify a BTS variant
@@ -56,10 +57,11 @@ start_bts() {
 			--ulimit core=-1 \
 			-v $VOL_BASE_DIR/bts:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
+			-e "SLEEP_BEFORE_RESPAWN=$sleep_time_respawn" \
 			--name ${BUILD_TAG}-bts -d \
 			$DOCKER_ARGS \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
-			/bin/sh -c "osmo-bts-$variant -c /data/osmo-bts.gen.cfg >>/data/osmo-bts.log 2>&1"
+			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-$variant -c /data/osmo-bts.gen.cfg >>/data/osmo-bts.log 2>&1"
 }
 
 start_fake_trx() {
