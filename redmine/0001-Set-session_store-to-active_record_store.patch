@@ -1,0 +1,44 @@
+From 84ab3fe831c138e452f6edbeff03c26524cff8ca Mon Sep 17 00:00:00 2001
+From: Oliver Smith <osmith@sysmocom.de>
+Date: Fri, 19 Sep 2025 10:51:06 +0200
+Subject: [PATCH] Set session_store to active_record_store
+
+Related: https://www.redmineup.com/pages/help/getting-started/how-to-fix-cookiesoverflow-error
+Related: OS#5476
+---
+ Gemfile               | 3 +++
+ config/application.rb | 3 +--
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/Gemfile b/Gemfile
+index 7746ece04..3082054e0 100644
+--- a/Gemfile
++++ b/Gemfile
+@@ -16,6 +16,9 @@ gem 'rbpdf', '~> 1.21.3'
+ gem 'addressable'
+ gem 'rubyzip', '~> 2.3.0'
+ 
++# OS#5476
++gem 'activerecord-session_store', '~> 2.0.0'
++
+ #  Ruby Standard Gems
+ gem 'csv', '~> 3.2.6'
+ gem 'net-imap', '~> 0.3.4'
+diff --git a/config/application.rb b/config/application.rb
+index 5e93df122..c0d2deb39 100644
+--- a/config/application.rb
++++ b/config/application.rb
+@@ -87,9 +87,8 @@ module RedmineApp
+     config.log_level = Rails.env.production? ? :info : :debug
+ 
+     config.session_store(
+-      :cookie_store,
++      :active_record_store,
+       :key => '_redmine_session',
+-      :path => config.relative_url_root || '/',
+       :same_site => :lax
+     )
+ 
+-- 
+2.43.0
+
