@@ -80,6 +80,7 @@ RUN	set -x && \
 		gawk \
 		gcc \
 		gcc-arm-none-eabi \
+		gdb \
 		ghostscript \
 		git \
 		gnupg \
