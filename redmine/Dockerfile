@@ -1,4 +1,4 @@
-FROM redmine:5.1.7
+FROM redmine:5.1.10
 
 RUN	apt-get update && \
 	apt-get -y upgrade && \
