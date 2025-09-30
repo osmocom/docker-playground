@@ -46,6 +46,7 @@ docker_distro_from_image_name() {
 	debian-buster-*) echo "debian-buster" ;;
 	debian-bullseye-*) echo "debian-bullseye" ;;
 	debian-bookworm-*) echo "debian-bookworm" ;;
+	debian-trixie-*) echo "debian-trixie" ;;
 	*) echo "debian-$DEBIAN_DEFAULT" ;;
 	esac
 }
@@ -61,10 +62,12 @@ docker_upstream_distro_from_image_name() {
 	debian10-*) echo "debian/eol:buster" ;;
 	debian11-*) echo "debian:bullseye" ;;
 	debian12-*) echo "debian:bookworm" ;;
+	debian13-*) echo "debian:trixie" ;;
 	debian-stretch-*) echo "debian/eol:stretch" ;;
 	debian-buster-*) echo "debian/eol:buster" ;;
 	debian-bullseye-*) echo "debian:bullseye" ;;
 	debian-bookworm-*) echo "debian:bookworm" ;;
+	debian-trixie-*) echo "debian:trixie" ;;
 	*) echo "debian:$DEBIAN_DEFAULT" ;;
 	esac
 }
