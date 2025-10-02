@@ -18,6 +18,9 @@ RUN 	cd /usr/local/bundle/gems/ruby-openid-2.9.2 && patch -p1 < /tmp/openid_serv
 ADD	commitlog-references-oshash-5.1.3.diff /tmp/commitlog-references-oshash-5.1.3.diff
 RUN	cd /usr/src/redmine && patch -p1 < /tmp/commitlog-references-oshash-5.1.3.diff
 
+ADD	redmine_openid_provider /usr/src/redmine/plugins/redmine_openid_provider
+#RUN	cd /usr/src/redmine/plugins && git clone https://github.com/osmocom/redmine_openid_provider.git
+
 ADD	docker-entrypoint-osmo.sh /
 ENTRYPOINT ["/docker-entrypoint-osmo.sh"]
 CMD	["rails", "server", "-b", "0.0.0.0"]
