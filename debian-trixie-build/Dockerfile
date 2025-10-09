@@ -105,6 +105,7 @@ RUN	set -x && \
 		libelf-dev \
 		libffi-dev \
 		libfftw3-dev \
+		libgcrypt20-dev \
 		libgmp-dev \
 		libgnutls28-dev \
 		libgps-dev \
