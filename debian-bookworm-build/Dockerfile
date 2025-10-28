@@ -193,6 +193,7 @@ RUN	set -x && \
 		'ruff' \
 		'sphinx' \
 		'sphinxcontrib-napoleon' \
+		'git+https://github.com/LudovicRousseau/pyscard.git@dabf0491fc873e4b37be173014908daff4f42ec0' \
 		-r /tmp/pysim_requirements.txt
 
 # Install osmo-python-tests
