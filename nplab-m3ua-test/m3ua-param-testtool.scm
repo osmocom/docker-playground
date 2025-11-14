@@ -66,7 +66,7 @@
 (define ss7-message (list 11 34 45 67 67 89))
 (define ss7-si      0)
 
-(define iut-ni  1)
+(define iut-ni  0)
 (define iut-mp  0)
 (define iut-sls 0)
 
