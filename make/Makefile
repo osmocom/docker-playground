@@ -19,6 +19,7 @@ UID=$(shell id -u)
 NAME?=$(shell basename $(CURDIR))
 ASTERISK_BRANCH?=sysmocom/20.7.0
 LIBOSMOCORE_BRANCH?=master
+M3UA_TESTTOOL_BRANCH?=osmocom/master
 OSMO_TTCN3_BRANCH?=master
 OSMO_BB_BRANCH?=master
 OSMO_BSC_BRANCH?=master
@@ -106,6 +107,7 @@ docker-build: .release
 		--build-arg OSMOCOM_REPO_TESTSUITE_MIRROR=$(OSMOCOM_REPO_TESTSUITE_MIRROR) \
 		--build-arg ASTERISK_BRANCH=$(ASTERISK_BRANCH) \
 		--build-arg LIBOSMOCORE_BRANCH=$(LIBOSMOCORE_BRANCH) \
+		--build-arg M3UA_TESTTOOL_BRANCH=$(M3UA_TESTTOOL_BRANCH) \
 		--build-arg OSMO_BB_BRANCH=$(OSMO_BB_BRANCH) \
 		--build-arg OSMO_BSC_BRANCH=$(OSMO_BSC_BRANCH) \
 		--build-arg OSMO_BTS_BRANCH=$(OSMO_BTS_BRANCH) \

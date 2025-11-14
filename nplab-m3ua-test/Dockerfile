@@ -1,11 +1,14 @@
 ARG USER=osmocom-build
 FROM $USER/sigtran-tests
 
+ARG	M3UA_TESTTOOL_BRANCH="osmocom/master"
+
 RUN	cd /tmp && git clone https://gitea.osmocom.org/nplab/m3ua-testtool
-ADD	https://gitea.osmocom.org/api/v1/repos/nplab/m3ua-testtool/git/refs/heads/laforge/python3 /tmp/commit
+ADD	https://gitea.osmocom.org/api/v1/repos/nplab/m3ua-testtool/git/refs/heads/$M3UA_TESTTOOL_BRANCH?format=TEXT /tmp/commit
 RUN	cd /tmp/m3ua-testtool && \
-	git fetch && \
-	git checkout -f laforge/python3 && \
+	git fetch && git checkout $M3UA_TESTTOOL_BRANCH && \
+	(git symbolic-ref -q HEAD && git reset --hard origin/$M3UA_TESTTOOL_BRANCH || exit 1); \
+	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	cp runtest-junitxml.py /usr/local/bin/
 
 COPY	dotguile /root/.guile
