@@ -42,9 +42,9 @@ start_bsc() {
 }
 
 start_bts() {
-	local variant
-	variant="$1"
-	sleep_time_respawn="$2"
+	local variant="$1"
+	local sleep_time_respawn="$2"
+
 	echo Starting container with BTS
 	if [ -z "$variant" ]; then
 		echo ERROR: You have to specify a BTS variant
