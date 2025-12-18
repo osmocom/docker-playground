@@ -44,8 +44,17 @@ start_bsc() {
 start_bts() {
 	local variant="$1"
 	local sleep_time_respawn="$2"
+	local extra_args=""
 
 	echo Starting container with BTS
+	if [ "$RUN_BPFTRACE" = "1" ]; then
+		if ! mount | grep -q /sys/kernel/tracing; then
+			echo "ERROR: mount /sys/kernel/tracing first!"
+			echo "https://www.kernel.org/doc/html/latest/trace/ftrace.html#the-file-system"
+			exit 1
+		fi
+		extra_args="--ulimit memlock=-1 --privileged"
+	fi
 	if [ -z "$variant" ]; then
 		echo ERROR: You have to specify a BTS variant
 		exit 23
@@ -55,13 +64,41 @@ start_bts() {
 			--cap-add=SYS_ADMIN \
 			--ulimit rtprio=99 \
 			--ulimit core=-1 \
+			-v /sys/kernel/tracing:/sys/kernel/tracing \
 			-v $VOL_BASE_DIR/bts:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			-e "SLEEP_BEFORE_RESPAWN=$sleep_time_respawn" \
 			--name ${BUILD_TAG}-bts -d \
 			$DOCKER_ARGS \
+			$extra_args \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
 			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-$variant -c /data/osmo-bts.gen.cfg >>/data/osmo-bts.log 2>&1"
+
+	# Run bpftrace scripts (OS#6794#note-16)
+	if [ "$RUN_BPFTRACE" = "1" ]; then
+		local script
+		mkdir -p "$VOL_BASE_DIR"/bts/bpftrace
+		for script in bpftrace/*.bt; do
+			if ! [ -e "$script" ]; then
+				# Avoid unexpected behavior when there are no scripts
+				continue
+			fi
+
+			local logfile="$VOL_BASE_DIR"/bts/bpftrace/$(basename "$script" | sed s/\.bt/.log/)
+			local startscript="$VOL_BASE_DIR"/bts/bpftrace/$(basename "$script" | sed s/\.bt/.sh/)
+
+			cp "$script" "$VOL_BASE_DIR"/bts/bpftrace
+
+			( echo "#!/bin/sh -ex"
+			  echo "bpftrace /data/bpftrace/$(basename "$script") -p \$(pidof osmo-bts-$variant)" ) >"$startscript"
+			chmod +x "$startscript"
+
+			docker exec \
+				"${BUILD_TAG}-bts" \
+				/usr/local/bin/respawn.sh /data/bpftrace/"$(basename "$startscript")" \
+				>>"$logfile" 2>&1 &
+		done
+	fi
 }
 
 start_fake_trx() {

@@ -39,6 +39,7 @@ Environment variables:
 * `TEST_CONFIGS`: for tests that can run with multiple config sets (e.g.
   `ttcn3-bts-test`), run only some of them. See `TEST_CONFIGS_ALL` in the
   `jenkins.sh` for possible values.
+* `RUN_BPFTRACE`: when set to `1`, run bpftrace scripts in `ttcn3-bts-test`.
 
 ### Run only one test
 
