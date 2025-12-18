@@ -9,6 +9,7 @@ RUN	case "$DISTRO" in \
 	debian*) \
 		apt-get update && \
 		apt-get install -y --no-install-recommends \
+			bpftrace \
 			osmo-bts-trx \
 			osmo-bts-virtual && \
 		apt-get clean \
