@@ -7,15 +7,15 @@ SLEEP_BEFORE_RESPAWN=${SLEEP_BEFORE_RESPAWN:-0}
 i=0
 max_i=500
 while [ $i -lt $max_i ]; do
-	echo "respawn: $i: starting: $*"
+	echo "[$(date)] respawn: $i: starting: $*"
 	$* &
 	LAST_PID=$!
 	wait $LAST_PID
-	echo "$i: stopped pid $LAST_PID with status $?"
+	echo "[$(date)] respawn: $i: stopped pid $LAST_PID with status $?"
 	if [ $SLEEP_BEFORE_RESPAWN -gt 0 ]; then
-		echo "sleeping $SLEEP_BEFORE_RESPAWN seconds..."
+		echo "[$(date)] respawn: sleeping $SLEEP_BEFORE_RESPAWN seconds..."
 		sleep $SLEEP_BEFORE_RESPAWN
 	fi
 	i=$(expr $i + 1)
 done
-echo "exiting after $max_i runs"
+echo "[$(date)] respawn: exiting after $max_i runs"
