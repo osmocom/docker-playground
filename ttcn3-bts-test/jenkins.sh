@@ -169,6 +169,12 @@ start_testsuite() {
 			--name ${BUILD_TAG}-ttcn3-bts-test \
 			$DOCKER_ARGS \
 			$REPO_USER/ttcn3-bts-test
+
+	if [ "$RUN_BPFTRACE" = 1 ]; then
+		# Give bpftrace scripts time to print their stats
+		docker exec "${BUILD_TAG}-bts" sh -x -c 'kill $(pidof bpftrace)'
+		sleep 0.5
+	fi
 }
 
 set_pcuif_version() {
