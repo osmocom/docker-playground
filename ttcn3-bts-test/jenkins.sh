@@ -53,7 +53,9 @@ start_bts() {
 			echo "https://www.kernel.org/doc/html/latest/trace/ftrace.html#the-file-system"
 			exit 1
 		fi
-		extra_args="--ulimit memlock=-1 --privileged"
+		extra_args="$extra_args --ulimit memlock=-1"
+		extra_args="$extra_args --privileged"
+		extra_args="$extra_args -v /sys/kernel/tracing:/sys/kernel/tracing"
 	fi
 	if [ -z "$variant" ]; then
 		echo ERROR: You have to specify a BTS variant
@@ -64,7 +66,6 @@ start_bts() {
 			--cap-add=SYS_ADMIN \
 			--ulimit rtprio=99 \
 			--ulimit core=-1 \
-			-v /sys/kernel/tracing:/sys/kernel/tracing \
 			-v $VOL_BASE_DIR/bts:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			-e "SLEEP_BEFORE_RESPAWN=$sleep_time_respawn" \
