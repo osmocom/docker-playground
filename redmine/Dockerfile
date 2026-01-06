@@ -1,4 +1,5 @@
-FROM redmine:5.1.10
+#FROM redmine:5.1.10
+FROM registry.sysmocom.de/redmine-base:5.1.11
 
 RUN	apt-get update && \
 	apt-get -y upgrade && \
