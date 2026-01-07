@@ -1,0 +1,39 @@
+#!/usr/bin/env bpftrace
+
+/* Script to obtain ksys_write() latency histograms.
+ * It will measure time between entry and exit and plot one histogram
+ * for each destination port number, indicating the amount of time spent.
+ *
+ * Implemented 2026 by Pau Espin Pedrol <pespin@sysmocom.de>
+ * SPDX-License-Identifier: CC0
+ *
+ * As no filtering on PID etc. is done, you will likely use this with 'bpftrace -p' like
+ *
+ *     bpftrace ./ksys_write.bt -p PID
+ *
+ * (where PID is the PID of the process, like osmo-bts-trx)
+ */
+
+BEGIN
+{
+  printf("Tracing ksys_write() latency... Hit Ctrl-C to end.\n");
+}
+
+kprobe:ksys_write
+{
+  $fd = (int64)arg0;
+
+  @start[tid] = nsecs;
+  @fd[tid] = $fd;
+}
+
+kretprobe:ksys_write / @start[tid] /
+{
+  $delta_us = (nsecs - @start[tid]) / 1000;
+  @latency[@fd[tid]] = hist($delta_us);
+
+  delete(@start[tid]);
+  delete(@fd[tid]);
+}
+
+/* vim:set ts=2 sw=2 et: */
