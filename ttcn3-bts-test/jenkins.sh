@@ -85,19 +85,14 @@ start_bts() {
 				continue
 			fi
 
-			local logfile="$VOL_BASE_DIR"/bts/bpftrace/$(basename "$script" | sed s/\.bt/.log/)
-			local startscript="$VOL_BASE_DIR"/bts/bpftrace/$(basename "$script" | sed s/\.bt/.sh/)
+			local scriptfile="/data/bpftrace/$(basename "$script")"
+			local logfile="${scriptfile}.log"
 
 			cp "$script" "$VOL_BASE_DIR"/bts/bpftrace
 
-			( echo "#!/bin/sh -ex"
-			  echo "bpftrace /data/bpftrace/$(basename "$script") -p \$(pidof osmo-bts-$variant)" ) >"$startscript"
-			chmod +x "$startscript"
-
-			docker exec \
+			docker exec -d \
 				"${BUILD_TAG}-bts" \
-				/usr/local/bin/respawn.sh /data/bpftrace/"$(basename "$startscript")" \
-				>>"$logfile" 2>&1 &
+				/bin/sh -c "/usr/local/bin/respawn.sh bpftrace $scriptfile osmo-bts-$variant >>$logfile 2>&1"
 		done
 	fi
 }

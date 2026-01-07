@@ -7,11 +7,9 @@
  * Implemented 2026 by Pau Espin Pedrol <pespin@sysmocom.de>
  * SPDX-License-Identifier: CC0
  *
- * As no filtering on PID etc. is done, you will likely use this with 'bpftrace -p' like
+ * The executable name must be passed as the first argument:
  *
- *     bpftrace ./ksys_write.bt -p PID
- *
- * (where PID is the PID of the process, like osmo-bts-trx)
+ *     bpftrace ./ksys_write.bt osmo-bts-trx
  */
 
 BEGIN
@@ -19,7 +17,7 @@ BEGIN
   printf("Tracing ksys_write() latency... Hit Ctrl-C to end.\n");
 }
 
-kprobe:ksys_write
+kprobe:ksys_write / comm == $1 /
 {
   $fd = (int64)arg0;
 
