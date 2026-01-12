@@ -11,7 +11,9 @@ RUN	case "$DISTRO" in \
 			bpftrace \
 			libosmocore-dev \
 			libosmo-abis-dev \
-			libosmo-netif-dev && \
+			libosmo-netif-dev \
+			lsof \
+			gdb && \
 		apt-get clean \
 		;; \
 	centos*) \

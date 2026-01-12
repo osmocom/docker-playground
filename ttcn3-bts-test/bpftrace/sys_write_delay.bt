@@ -1,0 +1,91 @@
+#!/usr/bin/env bpftrace
+
+/* Script to obtain sys_write() latency histograms.
+ * It will measure time between entry and exit and plot one histogram
+ * for each destination port number, indicating the amount of time spent.
+ *
+ * Implemented 2026 by Pau Espin Pedrol <pespin@sysmocom.de>
+ * SPDX-License-Identifier: CC0
+ *
+ * As no filtering on PID etc. is done, you will likely use this with 'bpftrace -p' like
+ *
+ *     bpftrace ./sys_write.bt -p PID
+ *
+ * (where PID is the PID of the process, like osmo-bts-trx)
+ */
+
+BEGIN
+{
+  printf("Tracing sys_write() latency... Hit Ctrl-C to end.\n");
+}
+
+tracepoint:syscalls:sys_enter_write / comm == str($1) /
+{
+  @write_start[tid] = nsecs;
+  @write_fd[tid] = args->fd;
+  @write_buf[tid] = args->buf;
+  @write_count[tid] = args->count;
+}
+
+kfunc:vfs_write / comm == str($1) && @write_start[tid] /
+{
+  @vfs_write_start[tid] = nsecs;
+  @vfs_write_file[tid] = args->file;
+  //printf("PESPIN: kfunc vfs_write file->f_flags=0x%x\n", @vfs_write_file[tid]->f_flags);
+  //printf("PESPIN: fd=%d kfunc vfs_write f_op->iter=0x%p=%s\n", @write_fd[tid], args->file->f_op->write, ksym(args->file->f_op->write));
+  //printf("PESPIN: fd=%d kfunc vfs_write f_op->write_iter=0x%p=%s\n", @write_fd[tid], args->file->f_op->write_iter, ksym(args->file->f_op->write_iter));
+}
+
+kfunc:shmem_file_write_iter / comm == str($1) && @vfs_write_start[tid] /
+{
+  @shmem_file_write_iter_start[tid] = nsecs;
+}
+
+kretfunc:shmem_file_write_iter / comm == str($1) && @vfs_write_start[tid] /
+{
+  $delta_us = (nsecs - @shmem_file_write_iter_start[tid]) / 1000;
+  @shmem_file_write_iter_delta_us[tid] = $delta_us;
+  //printf("PESPIN: kfunc shmem_file_write_iter delta=%d us\n", @shmem_file_write_iter_delta_us[tid]);
+}
+
+kretfunc:vfs_write / comm == str($1) && @write_start[tid] /
+{
+  $delta_us = (nsecs - @vfs_write_start[tid]) / 1000;
+  @vfs_write_delta_us[tid] = $delta_us;
+  //printf("PESPIN: kfunc vfs_write delta=%d us\n", @vfs_write_delta_us[tid]);
+}
+
+tracepoint:syscalls:sys_exit_write / comm == str($1) && @write_start[tid] /
+{
+  $delta_us = (nsecs - @write_start[tid]) / 1000;
+
+  if ($delta_us >= 400000) {
+    printf("PESPIN: PID %d detected long write(fd=%d, count=%d, ret=%d): %d us\n", pid, @write_fd[tid], @write_count[tid], args->ret, $delta_us);
+    printf("PESPIN: vfs_write delta=%d us, file->f_flags=0x%x\n", @vfs_write_delta_us[tid], @vfs_write_file[tid]->f_flags);
+    if (!(@vfs_write_file[tid]->f_flags & 0x800)) { // O_NONBLOCK is 0x800 in hex (04000 in octal)
+      printf("PESPIN: O_NONBLOCK unset!!!\n");
+    }
+    printf("PESPIN: shmem_file_write_iter delta=%d us\n", @shmem_file_write_iter_delta_us[tid]);
+    printf("PESPIN: sys_write content: %s\n", str(@write_buf[tid], @write_count[tid]));
+    printf("stack trace of write():\n%s\n", ustack);
+    @[ustack()] = count();
+  }
+
+  @latency[@write_fd[tid]] = hist($delta_us);
+
+  delete(@write_start[tid]);
+  delete(@write_fd[tid]);
+  delete(@write_buf[tid]);
+  delete(@write_count[tid]);
+  if (has_key(@vfs_write_start, tid)) {
+    delete(@vfs_write_start[tid]);
+    delete(@vfs_write_file[tid]);
+    delete(@vfs_write_delta_us[tid]);
+    if (has_key(@shmem_file_write_iter_start, tid)) {
+      delete(@shmem_file_write_iter_start[tid]);
+      delete(@shmem_file_write_iter_delta_us[tid]);
+    }
+  }
+}
+
+/* vim:set ts=2 sw=2 et: */

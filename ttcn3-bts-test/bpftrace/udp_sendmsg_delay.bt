@@ -19,7 +19,7 @@ BEGIN
   printf("Tracing udp_sendmsg() latency... Hit Ctrl-C to end.\n");
 }
 
-kprobe:udp_sendmsg
+kprobe:udp_sendmsg / comm == str($1) /
 {
   $sk = (struct sock *)arg0;
   /* poor man's ntohs() */
