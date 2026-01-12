@@ -96,7 +96,7 @@ start_bts() {
 			# removed, but make sure that only few tests are
 			# running!
 			( echo "#!/bin/sh -ex"
-			  echo "bpftrace --no-warnings /data/bpftrace/$(basename "$script") -p \$(pidof osmo-bts-$variant)" ) >"$startscript"
+			  echo "bpftrace --no-warnings /data/bpftrace/$(basename "$script") -p \$(pidof osmo-bts-$variant) osmo-bts-$variant" ) >"$startscript"
 			chmod +x "$startscript"
 
 			docker exec \

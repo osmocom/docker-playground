@@ -10,6 +10,11 @@ while [ $i -lt $max_i ]; do
 	echo "[$(date)] respawn: $i: starting: $*"
 	$* &
 	LAST_PID=$!
+	sleep 5
+	echo "lsof output:"
+	lsof +f g -p $LAST_PID
+	echo "maps output:"
+	cat /proc/$LAST_PID/maps
 	wait $LAST_PID
 	echo "[$(date)] respawn: $i: stopped pid $LAST_PID with status $?"
 	if [ $SLEEP_BEFORE_RESPAWN -gt 0 ]; then
