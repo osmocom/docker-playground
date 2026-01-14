@@ -1,6 +1,6 @@
 CACHE_DIR="$(realpath ../_cache)"
 KERNEL_TEST_DIR="$(realpath ../scripts/kernel-test)"
-DEBIAN_DEFAULT="bookworm"
+DEBIAN_DEFAULT="trixie"
 
 SUB4_PREFIX="172.18"
 SUB6_PREFIX="fd02:db8"
