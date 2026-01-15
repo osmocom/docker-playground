@@ -90,8 +90,13 @@ start_bts() {
 
 			cp "$script" "$VOL_BASE_DIR"/bts/bpftrace
 
+			# --no-warnings: without this, the log file can easily
+			# fill up gigabytes of data while ttcn3-bts-test does a
+			# full run. For development --no-warnings can be
+			# removed, but make sure that only few tests are
+			# running!
 			( echo "#!/bin/sh -ex"
-			  echo "bpftrace /data/bpftrace/$(basename "$script") -p \$(pidof osmo-bts-$variant)" ) >"$startscript"
+			  echo "bpftrace --no-warnings /data/bpftrace/$(basename "$script") -p \$(pidof osmo-bts-$variant)" ) >"$startscript"
 			chmod +x "$startscript"
 
 			docker exec \
