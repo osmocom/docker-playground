@@ -36,16 +36,16 @@ kfunc:vfs_write / comm == str($1) && @write_start[tid] /
   //printf("PESPIN: fd=%d kfunc vfs_write f_op->write_iter=0x%p=%s\n", @write_fd[tid], args->file->f_op->write_iter, ksym(args->file->f_op->write_iter));
 }
 
-kfunc:shmem_file_write_iter / comm == str($1) && @vfs_write_start[tid] /
+kfunc:ext4_file_write_iter / comm == str($1) && @vfs_write_start[tid] /
 {
-  @shmem_file_write_iter_start[tid] = nsecs;
+  @ext4_file_write_iter_start[tid] = nsecs;
 }
 
-kretfunc:shmem_file_write_iter / comm == str($1) && @vfs_write_start[tid] /
+kretfunc:ext4_file_write_iter / comm == str($1) && @vfs_write_start[tid] /
 {
-  $delta_us = (nsecs - @shmem_file_write_iter_start[tid]) / 1000;
-  @shmem_file_write_iter_delta_us[tid] = $delta_us;
-  //printf("PESPIN: kfunc shmem_file_write_iter delta=%d us\n", @shmem_file_write_iter_delta_us[tid]);
+  $delta_us = (nsecs - @ext4_file_write_iter_start[tid]) / 1000;
+  @ext4_file_write_iter_delta_us[tid] = $delta_us;
+  //printf("PESPIN: kfunc ext4_file_write_iter delta=%d us\n", @ext4_file_write_iter_delta_us[tid]);
 }
 
 kretfunc:vfs_write / comm == str($1) && @write_start[tid] /
@@ -65,7 +65,7 @@ tracepoint:syscalls:sys_exit_write / comm == str($1) && @write_start[tid] /
     if (!(@vfs_write_file[tid]->f_flags & 0x800)) { // O_NONBLOCK is 0x800 in hex (04000 in octal)
       printf("PESPIN: O_NONBLOCK unset!!!\n");
     }
-    printf("PESPIN: shmem_file_write_iter delta=%d us\n", @shmem_file_write_iter_delta_us[tid]);
+    printf("PESPIN: ext4_file_write_iter delta=%d us\n", @ext4_file_write_iter_delta_us[tid]);
     printf("PESPIN: sys_write content: %s\n", str(@write_buf[tid], @write_count[tid]));
     printf("stack trace of write():\n%s\n", ustack);
     @[ustack()] = count();
@@ -81,9 +81,9 @@ tracepoint:syscalls:sys_exit_write / comm == str($1) && @write_start[tid] /
     delete(@vfs_write_start[tid]);
     delete(@vfs_write_file[tid]);
     delete(@vfs_write_delta_us[tid]);
-    if (has_key(@shmem_file_write_iter_start, tid)) {
-      delete(@shmem_file_write_iter_start[tid]);
-      delete(@shmem_file_write_iter_delta_us[tid]);
+    if (has_key(@ext4_file_write_iter_start, tid)) {
+      delete(@ext4_file_write_iter_start[tid]);
+      delete(@ext4_file_write_iter_delta_us[tid]);
     }
   }
 }

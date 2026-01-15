@@ -30,7 +30,7 @@ kprobe:udp_sendmsg / comm == str($1) /
   @dport[tid] = $dport;
 }
 
-kretprobe:udp_sendmsg / @start[tid] /
+kretprobe:udp_sendmsg / comm == str($1) && @start[tid] /
 {
   $delta_us = (nsecs - @start[tid]) / 1000;
   @latency[@dport[tid]] = hist($delta_us);
