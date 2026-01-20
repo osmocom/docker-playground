@@ -5,7 +5,8 @@ FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 # Arguments used after FROM must be specified again
 ARG	OSMOCOM_REPO_MIRROR="https://downloads.osmocom.org"
 ARG	OSMOCOM_REPO_PATH="packages/osmocom:"
-ARG	OSMOCOM_REPO="${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/latest/Debian_13/"
+ARG	OSMOCOM_REPO_LATEST="${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/latest/Debian_13/"
+ARG	OSMOCOM_REPO_MISC="${OSMOCOM_REPO_MIRROR}/${OSMOCOM_REPO_PATH}/misc/Debian_13/"
 ARG	UID
 
 # Copy from common dir
@@ -23,7 +24,7 @@ RUN	set -x && \
 		> /etc/dpkg/dpkg.cfg.d/exclude-man-pages && \
 	rm -rf /usr/share/man/
 
-# Configure Osmocom latest repository, add telnet for debugging
+# Configure Osmocom repositories, add telnet for debugging
 RUN	set -x && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends \
@@ -31,8 +32,10 @@ RUN	set -x && \
 		telnet \
 		&& \
 	apt-get clean && \
-	echo "deb [signed-by=/usr/share/keyrings/osmocom-latest.asc] $OSMOCOM_REPO ./" \
-		> /etc/apt/sources.list.d/osmocom-latest.list
+	echo "deb [signed-by=/usr/share/keyrings/osmocom-latest.asc] $OSMOCOM_REPO_LATEST ./" \
+		> /etc/apt/sources.list.d/osmocom-latest.list && \
+	echo "deb [signed-by=/usr/share/keyrings/osmocom-misc.asc] $OSMOCOM_REPO_MISC ./" \
+		> /etc/apt/sources.list.d/osmocom-misc.list
 
 # Invalidate cache once the repository is updated
-ADD	$OSMOCOM_REPO/Release /tmp/Release
+ADD	$OSMOCOM_REPO_LATEST/Release /tmp/Release

@@ -6,7 +6,8 @@ FROM	${REGISTRY}/${UPSTREAM_DISTRO}
 # Arguments used after FROM must be specified again
 ARG	OSMOCOM_REPO_MIRROR="https://downloads.osmocom.org"
 ARG	OSMOCOM_REPO_PATH="packages/osmocom:"
-ARG	OSMOCOM_REPO="$OSMOCOM_REPO_MIRROR/${OSMOCOM_REPO_PATH}/nightly/Debian_13/"
+ARG	OSMOCOM_REPO_NIGHTLY="$OSMOCOM_REPO_MIRROR/${OSMOCOM_REPO_PATH}/nightly/Debian_13/"
+ARG	OSMOCOM_REPO_MISC="$OSMOCOM_REPO_MIRROR/${OSMOCOM_REPO_PATH}/misc/Debian_13/"
 ARG	UID
 ARG	LLVM_VERSION="14.0.0"
 
@@ -221,11 +222,17 @@ RUN 	set -x && \
 ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-gsm-manuals/+/master?format=TEXT /tmp/osmo-gsm-manuals-commit
 RUN	git -C /opt clone --depth=1 https://gerrit.osmocom.org/osmo-gsm-manuals
 
+# Install the Osmocom OBS misc repository
+ADD	$OSMOCOM_REPO_MISC/Release /tmp/Release
+RUN	set -x && \
+	echo "deb [signed-by=/etc/apt/trusted.gpg.d/obs.osmocom.org.asc] $OSMOCOM_REPO_MISC ./" \
+		> /etc/apt/sources.list.d/osmocom-misc.list
+
 # Install packages from Osmocom OBS nightly repository
 # * osmo-trx: sdcc (OS#6748)
-ADD	$OSMOCOM_REPO/Release /tmp/Release
+ADD	$OSMOCOM_REPO_NIGHTLY/Release /tmp/Release
 RUN	set -x && \
-	echo "deb [signed-by=/etc/apt/trusted.gpg.d/obs.osmocom.org.asc] $OSMOCOM_REPO ./" \
+	echo "deb [signed-by=/etc/apt/trusted.gpg.d/obs.osmocom.org.asc] $OSMOCOM_REPO_NIGHTLY ./" \
 		> /etc/apt/sources.list.d/osmocom-nightly.list && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends \
