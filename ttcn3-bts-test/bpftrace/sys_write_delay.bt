@@ -41,6 +41,18 @@ kfunc:ext4_file_write_iter / comm == str($1) && @vfs_write_start[tid] /
   @ext4_file_write_iter_start[tid] = nsecs;
 }
 
+kfunc:generic_perform_write / comm == str($1) && @ext4_file_write_iter_start[tid] /
+{
+  @generic_perform_write_start[tid] = nsecs;
+}
+
+kretfunc:generic_perform_write / comm == str($1) && @ext4_file_write_iter_start[tid] /
+{
+  $delta_us = (nsecs - @generic_perform_write_start[tid]) / 1000;
+  @generic_perform_write_delta_us[tid] = $delta_us;
+  //printf("PESPIN: kfunc generic_perform_write delta=%d us\n", @generic_perform_write_delta_us[tid]);
+}
+
 kretfunc:ext4_file_write_iter / comm == str($1) && @vfs_write_start[tid] /
 {
   $delta_us = (nsecs - @ext4_file_write_iter_start[tid]) / 1000;
@@ -66,6 +78,7 @@ tracepoint:syscalls:sys_exit_write / comm == str($1) && @write_start[tid] /
       printf("PESPIN: O_NONBLOCK unset!!!\n");
     }
     printf("PESPIN: ext4_file_write_iter delta=%d us\n", @ext4_file_write_iter_delta_us[tid]);
+    printf("PESPIN: generic_perform_write delta=%d us\n", @generic_perform_write_delta_us[tid]);
     printf("PESPIN: sys_write content: %s\n", str(@write_buf[tid], @write_count[tid]));
     printf("stack trace of write():\n%s\n", ustack);
     @[ustack()] = count();
@@ -84,6 +97,10 @@ tracepoint:syscalls:sys_exit_write / comm == str($1) && @write_start[tid] /
     if (has_key(@ext4_file_write_iter_start, tid)) {
       delete(@ext4_file_write_iter_start[tid]);
       delete(@ext4_file_write_iter_delta_us[tid]);
+      if (has_key(@generic_perform_write_start, tid)) {
+        delete(@generic_perform_write_start[tid]);
+        delete(@generic_perform_write_delta_us[tid]);
+      }
     }
   }
 }
