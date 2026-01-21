@@ -11,7 +11,7 @@ ARG	UID
 
 # Copy from common dir
 COPY	.common/respawn.sh /usr/local/bin/respawn.sh
-COPY	.common/Release.key /usr/share/keyrings/osmocom-latest.asc
+COPY	.common/Release.key /usr/share/keyrings/osmocom.asc
 
 # Configure build user, disable installing man pages
 # * /usr/local: osmo-python-tests's contrib/jenkins.sh writes there
@@ -32,9 +32,9 @@ RUN	set -x && \
 		telnet \
 		&& \
 	apt-get clean && \
-	echo "deb [signed-by=/usr/share/keyrings/osmocom-latest.asc] $OSMOCOM_REPO_LATEST ./" \
+	echo "deb [signed-by=/usr/share/keyrings/osmocom.asc] $OSMOCOM_REPO_LATEST ./" \
 		> /etc/apt/sources.list.d/osmocom-latest.list && \
-	echo "deb [signed-by=/usr/share/keyrings/osmocom-misc.asc] $OSMOCOM_REPO_MISC ./" \
+	echo "deb [signed-by=/usr/share/keyrings/osmocom.asc] $OSMOCOM_REPO_MISC ./" \
 		> /etc/apt/sources.list.d/osmocom-misc.list
 
 # Invalidate cache once the repository is updated
