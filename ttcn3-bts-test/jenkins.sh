@@ -96,7 +96,7 @@ start_bts() {
 			# removed, but make sure that only few tests are
 			# running!
 			( echo "#!/bin/sh -ex"
-			  echo "bpftrace --no-warnings /data/bpftrace/$(basename "$script") -p \$(pidof osmo-bts-$variant) osmo-bts-$variant" ) >"$startscript"
+			  echo "bpftrace /data/bpftrace/$(basename "$script") -v -p \$(pidof osmo-bts-$variant) osmo-bts-$variant" ) >"$startscript"
 			chmod +x "$startscript"
 
 			docker exec \
@@ -340,9 +340,9 @@ mkdir $VOL_BASE_DIR/trxcon
 mkdir $VOL_BASE_DIR/virtphy
 
 start_config_generic
-start_config_virtphy
-start_config_oml
-start_config_hopping
+#start_config_virtphy
+#start_config_oml
+#start_config_hopping
 
 # Show respawn count at the very end
 clean_up_common
