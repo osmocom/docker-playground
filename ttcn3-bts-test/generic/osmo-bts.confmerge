@@ -1,3 +1,14 @@
+log stderr
+ logging level rsl info
+ logging level meas info
+ logging level pag info
+ logging level l1c info
+ logging level dsp info
+ logging level pcu info
+ logging level trx info
+ logging level osmux info
+ logging level lmib info
+ logging level lmux info
 line vty
  bind 0.0.0.0
 phy 0
