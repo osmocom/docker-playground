@@ -43,6 +43,12 @@ kfunc:ext4_file_write_iter / comm == str($1) && @vfs_write_start[tid] /
 
 kfunc:generic_perform_write / comm == str($1) && @ext4_file_write_iter_start[tid] /
 {
+/* inode_lock is a static inline, and furthermore is a really generic function.
+ * Better track the time between ext4_file_write_iter started and we enter the
+ * function generic_perform_write() after taking the log: */
+  $delta_us = (nsecs - @ext4_file_write_iter_start[tid]) / 1000;
+  @inode_lock_delta_us[tid] = $delta_us;
+
   @generic_perform_write_start[tid] = nsecs;
 }
 
@@ -78,6 +84,7 @@ tracepoint:syscalls:sys_exit_write / comm == str($1) && @write_start[tid] /
       printf("PESPIN: O_NONBLOCK unset!!!\n");
     }
     printf("PESPIN: ext4_file_write_iter delta=%d us\n", @ext4_file_write_iter_delta_us[tid]);
+    printf("PESPIN: inode_lock delta=%d us\n", @inode_lock_delta_us[tid]);
     printf("PESPIN: generic_perform_write delta=%d us\n", @generic_perform_write_delta_us[tid]);
     printf("PESPIN: sys_write content: %s\n", str(@write_buf[tid], @write_count[tid]));
     printf("stack trace of write():\n%s\n", ustack);
@@ -97,6 +104,9 @@ tracepoint:syscalls:sys_exit_write / comm == str($1) && @write_start[tid] /
     if (has_key(@ext4_file_write_iter_start, tid)) {
       delete(@ext4_file_write_iter_start[tid]);
       delete(@ext4_file_write_iter_delta_us[tid]);
+      if (has_key(@inode_lock_delta_us, tid)) {
+        delete(@inode_lock_delta_us[tid]);
+      }
       if (has_key(@generic_perform_write_start, tid)) {
         delete(@generic_perform_write_start[tid]);
         delete(@generic_perform_write_delta_us[tid]);
