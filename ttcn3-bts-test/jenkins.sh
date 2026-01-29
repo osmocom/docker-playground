@@ -279,7 +279,7 @@ start_config_hopping() {
 	docker_kill_wait ${BUILD_TAG}-bts
 }
 
-show_respawn_count() {
+check_respawn_count() {
 	set +x
 	local count=$(grep -P 'respawn: \d+: starting: ' "$VOL_BASE_DIR"/bts/osmo-bts.log | wc -l)
 	# Currently we run generic/bts/oml configurations, which means 3
@@ -298,6 +298,7 @@ show_respawn_count() {
 	echo "================================================================"
 	echo
 	printf '\033[0m'
+	exit 1
 }
 
 network_create
@@ -346,4 +347,4 @@ start_config_hopping
 
 # Show respawn count at the very end
 clean_up_common
-show_respawn_count
+check_respawn_count
