@@ -8,7 +8,6 @@ RUN	case "$DISTRO" in \
 	debian*) \
 		apt-get update && \
 		apt-get install -y --no-install-recommends \
-			python3-osmopy-utils \
 			libmnl-dev && \
 		apt-get clean \
 		;; \
@@ -31,7 +30,7 @@ RUN	set -x && \
 	(git symbolic-ref -q HEAD && git reset --hard origin/$LIBOSMOCORE_BRANCH || exit 1); \
 	git rev-parse --abbrev-ref HEAD && git rev-parse HEAD && \
 	autoreconf -fi && \
-	CONFIGURE_FLAGS="--disable-doxygen --disable-pcsc --enable-external-tests" && \
+	CONFIGURE_FLAGS="--disable-doxygen --disable-pcsc" && \
 	if [ "$DISTRO" = "debian-buster" ]; then \
 		CONFIGURE_FLAGS="$CONFIGURE_FLAGS --disable-uring"; \
 	fi && \
