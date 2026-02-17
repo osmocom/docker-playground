@@ -50,7 +50,7 @@ WORKDIR	/home/${username}
 ARG	PJPROJECT_REMOTE=https://gitea.sysmocom.de/sysmocom/pjproject.git
 ARG	PJPROJECT_BRANCH=sysmocom/2.14
 
-RUN	git clone $PJPROJECT_REMOTE
+RUN	git clone $PJPROJECT_REMOTE -b $PJPROJECT_BRANCH --depth=1
 ADD	https://gitea.sysmocom.de/api/v1/repos/sysmocom/pjproject/git/refs/heads/$PJPROJECT_BRANCH /tmp/pjproject-ver
 
 RUN	cd pjproject && \
@@ -61,7 +61,7 @@ RUN	cd pjproject && \
 # clone asterisk
 ARG	ASTERISK_REMOTE=https://gitea.sysmocom.de/sysmocom/asterisk.git
 ARG	ASTERISK_BRANCH=sysmocom/master
-RUN	git clone $ASTERISK_REMOTE
+RUN	git clone $ASTERISK_REMOTE -b $ASTERISK_BRANCH --depth=1
 
 ADD	https://gitea.sysmocom.de/api/v1/repos/sysmocom/asterisk/git/refs/heads/$ASTERISK_BRANCH /tmp/asterisk-ver
 
