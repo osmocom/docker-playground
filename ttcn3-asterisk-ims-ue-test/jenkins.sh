@@ -57,10 +57,11 @@ start_asterisk() {
 			-e "DNS_IPADDR=${DNS_IPADDR}" \
 			--ulimit core=-1 \
 			-v "$VOL_BASE_DIR/asterisk-${test_config}:/data" \
+			-w /data \
 			--name "${BUILD_TAG}-asterisk" -d \
 			$DOCKER_ARGS \
 			"$REPO_USER/asterisk-$IMAGE_SUFFIX" \
-			/bin/sh -c "/data/asterisk.sh >/data/asterisk.console.log 2>&1"
+			/bin/sh -c "wrapper_core_bt_on_error.sh /data/asterisk.sh >/data/asterisk.console.log 2>&1"
 }
 
 # Start docker container with testsuite in foreground

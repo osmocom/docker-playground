@@ -89,3 +89,7 @@ RUN	setcap 'cap_net_admin,cap_sys_resource=ep' /usr/sbin/asterisk
 RUN	cd asterisk/codec_server && \
 	make "-j$(nproc)" && \
 	cp cserver /usr/bin/cserver
+
+COPY	--chmod=755 \
+	.common/wrapper_core_bt_on_error.sh \
+	/usr/bin/wrapper_core_bt_on_error.sh
