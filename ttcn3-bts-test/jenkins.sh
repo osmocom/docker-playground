@@ -1,4 +1,9 @@
 #!/bin/sh
+# Start the bts testsuite.
+# In an attempt to avoid clock skew errors (OS#6794), osmo-bts log output is
+# written to tmpfs first, and only copied to the jenkins workspace before the
+# container gets stopped.
+
 TEST_CONFIGS_ALL="generic virtphy oml hopping"
 TEST_CONFIGS="${TEST_CONFIGS:-"generic oml hopping"}"
 
@@ -66,6 +71,7 @@ start_bts() {
 			--cap-add=SYS_ADMIN \
 			--ulimit rtprio=99 \
 			--ulimit core=-1 \
+			--mount type=tmpfs,dst=/tmp \
 			-v $VOL_BASE_DIR/bts:/data \
 			-v $VOL_BASE_DIR/unix:/data/unix \
 			-e "SLEEP_BEFORE_RESPAWN=$sleep_time_respawn" \
@@ -73,7 +79,7 @@ start_bts() {
 			$DOCKER_ARGS \
 			$extra_args \
 			$REPO_USER/osmo-bts-$IMAGE_SUFFIX \
-			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-$variant -c /data/osmo-bts.gen.cfg >>/data/osmo-bts.log 2>&1"
+			/bin/sh -c "/usr/local/bin/respawn.sh osmo-bts-$variant -c /data/osmo-bts.gen.cfg >>/tmp/osmo-bts.log 2>&1"
 
 	# Run bpftrace scripts (OS#6794#note-16)
 	if [ "$RUN_BPFTRACE" = "1" ]; then
@@ -105,6 +111,11 @@ start_bts() {
 				>>"$logfile" 2>&1 &
 		done
 	fi
+}
+
+stop_bts() {
+	docker exec "${BUILD_TAG}-bts" sh -c "cat /tmp/osmo-bts.log >> /data/osmo-bts.log"
+	docker_kill_wait "${BUILD_TAG}-bts"
 }
 
 start_fake_trx() {
@@ -206,7 +217,7 @@ start_config_generic() {
 
 	docker_kill_wait ${BUILD_TAG}-trxcon
 	docker_kill_wait ${BUILD_TAG}-fake_trx
-	docker_kill_wait ${BUILD_TAG}-bts
+	stop_bts
 	docker_kill_wait ${BUILD_TAG}-bsc
 }
 
@@ -232,7 +243,7 @@ start_config_virtphy() {
 	start_testsuite virtphy
 
 	docker_kill_wait ${BUILD_TAG}-virtphy
-	docker_kill_wait ${BUILD_TAG}-bts
+	stop_bts
 	docker_kill_wait ${BUILD_TAG}-bsc
 }
 
@@ -253,7 +264,7 @@ start_config_oml() {
 
 	docker_kill_wait ${BUILD_TAG}-trxcon
 	docker_kill_wait ${BUILD_TAG}-fake_trx
-	docker_kill_wait ${BUILD_TAG}-bts
+	stop_bts
 }
 
 # Frequency hopping tests require different configuration files
@@ -276,7 +287,7 @@ start_config_hopping() {
 	docker_kill_wait ${BUILD_TAG}-trxcon
 	docker_kill_wait ${BUILD_TAG}-fake_trx
 	docker_kill_wait ${BUILD_TAG}-bsc
-	docker_kill_wait ${BUILD_TAG}-bts
+	stop_bts
 }
 
 check_respawn_count() {
