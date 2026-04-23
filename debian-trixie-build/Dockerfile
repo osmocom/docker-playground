@@ -179,6 +179,7 @@ RUN	set -x && \
 		telnet \
 		tex-gyre \
 		texinfo \
+		tshark \
 		unzip \
 		virtualenv \
 		xsltproc \
