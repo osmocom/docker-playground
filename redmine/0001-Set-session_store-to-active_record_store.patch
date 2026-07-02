@@ -19,7 +19,7 @@ index 7746ece04..3082054e0 100644
  gem 'rubyzip', '~> 2.3.0'
  
 +# OS#5476
-+gem 'activerecord-session_store', '~> 2.0.0'
++gem 'activerecord-session_store', '~> 2.2.0'
 +
  #  Ruby Standard Gems
  gem 'csv', '~> 3.2.6'
