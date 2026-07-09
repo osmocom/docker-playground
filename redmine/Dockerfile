@@ -26,6 +26,9 @@ RUN	cd /usr/src/redmine && patch -p1 < /tmp/commitlog-references-oshash-5.1.3.di
 ADD	0001-Set-session_store-to-active_record_store.patch /tmp/
 RUN	cd /usr/src/redmine && patch -p1 < /tmp/0001-Set-session_store-to-active_record_store.patch
 
+ADD	0002-Hide-avatars.patch /tmp/
+RUN	cd /usr/src/redmine && patch -p1 < /tmp/0002-Hide-avatars.patch
+
 ADD	docker-entrypoint-osmo.sh /
 ENTRYPOINT ["/docker-entrypoint-osmo.sh"]
 CMD	["rails", "server", "-b", "0.0.0.0"]

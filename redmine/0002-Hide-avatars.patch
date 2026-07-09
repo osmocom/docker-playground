@@ -1,0 +1,30 @@
+From bedc707e3bf8b839e7b6e39467fed8806b7cad38 Mon Sep 17 00:00:00 2001
+From: Oliver Smith <osmith@sysmocom.de>
+Date: Thu, 9 Jul 2026 14:31:06 +0200
+Subject: [PATCH] Hide avatars
+
+We aren't using gravatar or other 3rd party avatar services, and we
+don't want the default avatars either as they can give the same color to
+different users, making them look like the same user on first glance.
+
+Related: SYS#8097#note-15
+---
+ app/assets/stylesheets/application.css | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/app/assets/stylesheets/application.css b/app/assets/stylesheets/application.css
+index c6656f70e..3d21a692f 100644
+--- a/app/assets/stylesheets/application.css
++++ b/app/assets/stylesheets/application.css
+@@ -2271,7 +2271,7 @@ img.filecontent.image {background-image: url(/transparent.png);}
+ span[role="img"].avatar {
+   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+   align-items: center;
+-  display: inline-flex;
++  display: none;
+   font-size: calc(24px * .4);
+   justify-content: center;
+   user-select: none;
+-- 
+2.53.0
+
