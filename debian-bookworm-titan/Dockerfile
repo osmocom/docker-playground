@@ -25,6 +25,7 @@ RUN	set -x && \
 		iputils-ping \
 		netcat-openbsd \
 		procps \
+		python3-pip \
 		python3-setuptools \
 		tcpdump \
 		vim \
@@ -48,12 +49,8 @@ RUN	set -x && \
 
 # Install osmo-python-tests (for obtaining talloc reports from SUT)
 ADD	https://gerrit.osmocom.org/plugins/gitiles/python/osmo-python-tests/+/master?format=TEXT /tmp/osmo-python-tests-commit
-RUN	set -x && \
-	git clone --depth=1 https://gerrit.osmocom.org/python/osmo-python-tests osmo-python-tests && \
-	cd osmo-python-tests && \
-	python3 setup.py clean build install && \
-	cd .. && \
-	rm -rf osmo-python-tests
+RUN	pip3 install --break-system-packages \
+	'git+https://gerrit.osmocom.org/python/osmo-python-tests'
 
 # Configure git
 RUN	git config --global user.email docker@dock.er && \

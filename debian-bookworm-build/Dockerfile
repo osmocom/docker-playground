@@ -197,12 +197,8 @@ RUN	set -x && \
 
 # Install osmo-python-tests
 ADD	https://gerrit.osmocom.org/plugins/gitiles/python/osmo-python-tests/+/master?format=TEXT /tmp/osmo-python-tests-commit
-RUN	set -x && \
-	git clone --depth=1 https://gerrit.osmocom.org/python/osmo-python-tests osmo-python-tests && \
-	cd osmo-python-tests && \
-	python3 setup.py clean build install && \
-	cd .. && \
-	rm -rf osmo-python-tests
+RUN	pip3 install --break-system-packages \
+	'git+https://gerrit.osmocom.org/python/osmo-python-tests'
 
 # Install osmo-ci.git/scripts to /usr/local/bin
 ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-ci/+/master?format=TEXT /tmp/osmo-ci-commit
