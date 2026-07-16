@@ -38,15 +38,6 @@ RUN	set -x && \
 # testsuites inside the docker containers. Don't use it by default.
 ENV	USE_CCACHE=0
 
-# Binary-only transcoding library for RANAP/RUA/HNBAP to work around TITAN only implementing BER
-RUN	set -x && \
-	export DPKG_ARCH="$(dpkg --print-architecture)" && \
-	wget https://ftp.osmocom.org/binaries/libfftranscode/libfftranscode0_0.6_${DPKG_ARCH}.deb && \
-	wget https://ftp.osmocom.org/binaries/libfftranscode/libfftranscode-dev_0.6_${DPKG_ARCH}.deb && \
-	dpkg -i ./libfftranscode0_0.6_${DPKG_ARCH}.deb ./libfftranscode-dev_0.6_${DPKG_ARCH}.deb && \
-	apt install --fix-broken && \
-	rm libfftranscode*.deb
-
 # Install osmo-python-tests (for obtaining talloc reports from SUT)
 ADD	https://gerrit.osmocom.org/plugins/gitiles/python/osmo-python-tests/+/master?format=TEXT /tmp/osmo-python-tests-commit
 RUN	pip3 install --break-system-packages \
