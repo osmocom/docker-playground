@@ -55,6 +55,7 @@ start_asterisk() {
 			--cap-add=SYS_RESOURCE \
 			$(docker_network_params $SUBNET $ASTERISK_IP_SUFFIX) \
 			-e "DNS_IPADDR=${DNS_IPADDR}" \
+			-e "BT_ON_ERR_EXECFN_FALLBACK=/usr/sbin/asterisk" \
 			--ulimit core=-1 \
 			-v "$VOL_BASE_DIR/asterisk-${test_config}:/data" \
 			-w /data \

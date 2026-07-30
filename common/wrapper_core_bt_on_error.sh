@@ -22,8 +22,13 @@ if [ "$RC" != 0 ]; then
 		msg "Found coredump: $i"
 		execfn="$(file "$i" | grep -P -o "execfn: '.*?'" | cut -d "'" -f 2)"
 		if [ -z "$execfn" ] || ! [ -e "$execfn" ]; then
-			msg "Failed to get execfn, ignoring..."
-			continue
+			if [ -n "$BT_ON_ERR_EXECFN_FALLBACK" ]; then
+				msg "Failed to get execfn, using BT_ON_ERR_EXECFN_FALLBACK: $BT_ON_ERR_EXECFN_FALLBACK"
+				execfn="$BT_ON_ERR_EXECFN_FALLBACK"
+			else
+				msg "Failed to get execfn, ignoring... consider setting BT_ON_ERR_EXECFN_FALLBACK"
+				continue
+			fi
 		fi
 
 		echo
