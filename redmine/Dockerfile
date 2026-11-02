@@ -1,4 +1,4 @@
-FROM redmine:6.1.3
+FROM redmine:6.1.6
 
 RUN	apt-get update && \
 	apt-get -y upgrade && \
