@@ -207,10 +207,6 @@ RUN 	set -x && \
 	su build -c "cd osmo-ci/scripts && cp -v *.sh *.py /usr/local/bin" && \
 	rm -rf osmo-ci
 
-# Install osmo-gsm-manuals to /opt/osmo-gsm-manuals
-ADD	https://gerrit.osmocom.org/plugins/gitiles/osmo-gsm-manuals/+/master?format=TEXT /tmp/osmo-gsm-manuals-commit
-RUN	git -C /opt clone --depth=1 https://gerrit.osmocom.org/osmo-gsm-manuals
-
 # Install packages from Osmocom OBS nightly repository
 # * osmo-remsim: libulfius
 # * osmo-trx: liblimesuite-dev, libuhd-dev
