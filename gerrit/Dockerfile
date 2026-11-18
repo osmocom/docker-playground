@@ -1,4 +1,6 @@
-FROM gerritcodereview/gerrit:3.11.7
+# https://www.gerritcodereview.com/support.html
+# https://hub.docker.com/r/gerritcodereview/gerrit/tags
+FROM gerritcodereview/gerrit:3.13.11
 
 USER root
 RUN yum -y install zip unzip patch
