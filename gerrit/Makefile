@@ -1,3 +1,3 @@
-IMAGE=registry.sysmocom.de/gerrit
+IMAGE=registry.osmocom.org/gerrit
 
 include ../make/Makefile
